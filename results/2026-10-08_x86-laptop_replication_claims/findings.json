@@ -1,0 +1,184 @@
+[
+ {
+  "probe": "P-01",
+  "claims": [
+   "C-031"
+  ],
+  "title": "a skill with no frontmatter at all",
+  "expect": "Claude Code: loads, named after its directory (the open spec calls frontmatter required)",
+  "observed": "skills beyond bundled: []",
+  "verdict": "fails"
+ },
+ {
+  "probe": "P-02",
+  "claims": [
+   "C-090"
+  ],
+  "title": "frontmatter name differs from the directory name",
+  "expect": "spec: name must match the directory; client guidance: load leniently (either name may appear)",
+  "observed": "skills beyond bundled: ['dirname-a']",
+  "verdict": "holds"
+ },
+ {
+  "probe": "P-03",
+  "claims": [
+   "C-068"
+  ],
+  "title": "reserved word 'claude' in the skill name",
+  "expect": "platform docs: forbidden; Claude Code docs reserve only anthropic-skills and synced (claim = not loaded)",
+  "observed": "skills beyond bundled: ['claude-helper']",
+  "verdict": "fails"
+ },
+ {
+  "probe": "P-04",
+  "claims": [
+   "C-004",
+   "C-069",
+   "K-030"
+  ],
+  "title": "description length against listing tokens (500 to 6,000 characters)",
+  "expect": "the listing cap is 1,536 characters: tokens grow until about 1,536 characters and then stop (the spec says 1,024; an old issue says 250)",
+  "observed": "500ch:+220, 1000ch:+437, 1100ch:+480, 1536ch:+670, 1600ch:+671, 3000ch:+671, 6000ch:+671; reaches 97% of the maximum at 1536 characters",
+  "verdict": "holds"
+ },
+ {
+  "probe": "P-05",
+  "claims": [
+   "C-045"
+  ],
+  "title": "boolean spellings of disable-model-invocation",
+  "expect": "true, True, YES, yes, 1, on all hide the skill from the model (listing cost 0); false does not",
+  "observed": "true:+0, True:+0, YES:+0, yes:+0, 1:+0, on:+0, false:+21",
+  "verdict": "holds"
+ },
+ {
+  "probe": "P-06",
+  "claims": [
+   "C-047"
+  ],
+  "title": "invalid optional fields (license, compatibility, metadata)",
+  "expect": "accepted but ignored: the skill still loads",
+  "observed": "skills beyond bundled: ['optfields']",
+  "verdict": "holds"
+ },
+ {
+  "probe": "P-07",
+  "claims": [
+   "K-010"
+  ],
+  "title": "block-scalar description (>-) against a single-line one",
+  "expect": "both load and cost the same (the claim of a broken loader concerns reflowed files)",
+  "observed": "single +27, block +27; listed: ['blk']",
+  "verdict": "holds"
+ },
+ {
+  "probe": "P-08",
+  "claims": [
+   "C-025"
+  ],
+  "title": "a skill and a command with the same name",
+  "expect": "the skill wins (the reply contains SKILLVERSION)",
+  "observed": "reply: 'SKILLVERSION'",
+  "verdict": "holds"
+ },
+ {
+  "probe": "P-09",
+  "claims": [
+   "C-024"
+  ],
+  "title": "same skill name in the personal config and in the project",
+  "expect": "documentation: personal over project (the CLI help calls project over user the universal convention); reply names the winner",
+  "observed": "winners over 3 runs: ['PROJECT', 'PROJECT', 'PROJECT']",
+  "verdict": "fails"
+ },
+ {
+  "probe": "P-10",
+  "claims": [
+   "C-021"
+  ],
+  "title": "a skill in a nested directory",
+  "expect": "not listed at start; loads only when a file in that subdirectory is read",
+  "observed": "skills beyond bundled: []",
+  "verdict": "holds"
+ },
+ {
+  "probe": "P-11a",
+  "claims": [
+   "C-022"
+  ],
+  "title": "start in a subfolder, skill in the parent (no git)",
+  "expect": "parent .claude/skills is found up to the repository root",
+  "observed": "skills beyond bundled: ['upskill']",
+  "verdict": "holds"
+ },
+ {
+  "probe": "P-11b",
+  "claims": [
+   "C-022"
+  ],
+  "title": "start in a subfolder, skill in the parent (git repository)",
+  "expect": "parent .claude/skills is found up to the repository root",
+  "observed": "skills beyond bundled: ['upskill']",
+  "verdict": "holds"
+ },
+ {
+  "probe": "P-12",
+  "claims": [
+   "C-040"
+  ],
+  "title": "paths globs",
+  "expect": "a skill with paths: ['**/*.py'] is not offered to the model until a matching file is touched (listing cost about 0)",
+  "observed": "added tokens 0",
+  "verdict": "holds"
+ },
+ {
+  "probe": "P-13",
+  "claims": [
+   "C-108"
+  ],
+  "title": "skills under .agents/skills",
+  "expect": "client guidance: a widely adopted location; Claude Code docs list only .claude/skills (either result is informative)",
+  "observed": "skills beyond bundled: []",
+  "verdict": "fails"
+ },
+ {
+  "probe": "P-14",
+  "claims": [
+   "C-044"
+  ],
+  "title": "argument substitution",
+  "expect": "$ARGUMENTS = all arguments, $0 and $1 the first two; a missing positional ($2) stays literal",
+  "observed": "reply: 'A=alpha beta|F=alpha|S=beta|T=$2'",
+  "verdict": "holds"
+ },
+ {
+  "probe": "P-15a",
+  "claims": [
+   "C-042"
+  ],
+  "title": "shell injection runs before the content is sent",
+  "expect": "the output replaces the placeholder (the reply contains INJECTED_OK_42)",
+  "observed": "reply: 'INJECTED_OK_42'",
+  "verdict": "holds"
+ },
+ {
+  "probe": "P-15b",
+  "claims": [
+   "C-042"
+  ],
+  "title": "a failing injected command",
+  "expect": "the whole invocation aborts (no normal reply)",
+  "observed": "reply: ''",
+  "verdict": "holds"
+ },
+ {
+  "probe": "P-17",
+  "claims": [
+   "C-032"
+  ],
+  "title": "disable-model-invocation stops automatic use",
+  "expect": "with the flag the model never calls the skill; without it, it does",
+  "observed": "Skill calls: with flag 0/3, without 3/3",
+  "verdict": "holds"
+ }
+]

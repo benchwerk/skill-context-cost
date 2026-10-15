@@ -1,0 +1,116 @@
+```html
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tents and Shelter | Fellmark Outfitters</title>
+<!-- Design Read: outdoor-gear category page for trip planners comparing options, with a calm forest-and-grey language, native CSS (no design system), one green accent, one 8px radius, auto light/dark. -->
+<style>
+:root{--bg:#f3f5f4;--ink:#141b17;--mute:#55625b;--line:#d5dcd8;--acc:#1f5a3d;--on:#fff;--r:8px;--ease:cubic-bezier(.16,1,.3,1)}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1311;--ink:#e7eee9;--mute:#9fb0a6;--line:#27312c;--acc:#6fcf9a;--on:#0c1a13}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Geist","Outfit",system-ui,sans-serif}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.wrap{max-width:1280px;margin:0 auto;padding:0 20px}
+nav{height:64px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:28px;white-space:nowrap}
+nav b{font-size:20px;letter-spacing:-.03em;margin-right:auto}
+nav a{text-decoration:none;color:var(--mute);font-size:15px}
+nav a:hover{color:var(--ink)}
+h1{font-size:clamp(34px,5vw,56px);line-height:1.05;letter-spacing:-.04em;margin:44px 0 10px}
+.lede{color:var(--mute);max-width:56ch;margin:0 0 36px}
+.layout{display:grid;grid-template-columns:230px 1fr;gap:48px;align-items:start}
+aside{position:sticky;top:20px;display:grid;gap:22px}
+fieldset{border:0;padding:0;margin:0;display:grid;gap:8px}
+legend,label.t{font-weight:600;font-size:14px;margin-bottom:8px;padding:0}
+.chk{display:flex;gap:10px;align-items:center;font-size:15px;cursor:pointer}
+input[type=checkbox]{accent-color:var(--acc);width:18px;height:18px}
+select{width:100%;padding:10px;border-radius:var(--r);border:1px solid var(--mute);background:var(--bg);color:var(--ink);font:inherit}
+button{font:inherit;border-radius:var(--r);padding:10px 16px;cursor:pointer;transition:transform .2s var(--ease)}
+button:active{transform:scale(.98) translateY(1px)}
+.btn{background:var(--acc);color:var(--on);border:0;font-weight:600}
+.ghost{background:none;color:var(--ink);border:1px solid var(--mute)}
+.bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;color:var(--mute);font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px 24px}
+.item{animation:in .6s var(--ease) both;animation-delay:calc(var(--i)*40ms)}
+.item .ph{aspect-ratio:4/5;overflow:hidden;border-radius:var(--r);background:var(--line)}
+.item:nth-child(5n+2) .ph{aspect-ratio:1/1}
+.item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--ease)}
+.item:hover img{transform:scale(1.04)}
+.item h3{margin:12px 0 2px;font-size:17px;letter-spacing:-.01em}
+.item p{margin:0;color:var(--mute);font-size:14px}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.row strong{font-size:17px}
+.row button{padding:7px 14px;font-size:14px}
+.empty{grid-column:1/-1;padding:64px 0}
+.empty h3{font-size:24px;margin:0 0 6px}
+.guide{margin-top:96px;padding:56px 0 72px;border-top:1px solid var(--line);display:grid;grid-template-columns:230px 1fr;gap:48px}
+.guide h2{font-size:clamp(26px,3.4vw,38px);line-height:1.1;letter-spacing:-.03em;margin:0 0 14px;grid-column:2}
+.guide>p{grid-column:2;color:var(--mute);max-width:65ch;margin:0 0 24px}
+details{grid-column:2;max-width:65ch;padding:14px 0;border-bottom:1px solid var(--line)}
+summary{font-weight:600;cursor:pointer}
+details p{color:var(--mute);margin:10px 0 0}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:var(--r);opacity:0;pointer-events:none;transition:opacity .3s}
+#toast.on{opacity:1}
+@keyframes in{from{opacity:0;transform:translateY(16px)}}
+@media(max-width:1023px){.grid{grid-template-columns:repeat(2,1fr)}nav a:nth-of-type(n+4){display:none}}
+@media(max-width:767px){.layout,.guide{grid-template-columns:1fr;gap:28px}aside{position:static}.grid{grid-template-columns:1fr}.guide h2,.guide>p,details{grid-column:1}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><b>Fellmark</b><a href="#">Shelter</a><a href="#">Packs</a><a href="#">Sleep</a><a href="#">Cook</a><a href="#">Footwear</a><a href="#">Cart (0)</a></nav>
+<h1>Shelter, packs and sleep systems</h1>
+<p class="lede">Gear tested on exposed ridges and wet forest trails, sorted by what you carry and where you sleep.</p>
+<div class="layout">
+<aside>
+<fieldset id="cats"><legend>Category</legend></fieldset>
+<div><label class="t" for="price">Price</label>
+<select id="price"><option value="9999">Any price</option><option value="100">Under $100</option><option value="200">Under $200</option><option value="300">Under $300</option></select></div>
+<div><label class="t" for="sort">Sort by</label>
+<select id="sort"><option value="feat">Featured</option><option value="lo">Price, low to high</option><option value="hi">Price, high to low</option></select></div>
+<button class="ghost" id="clear" type="button">Clear filters</button>
+</aside>
+<main><div class="bar"><span id="count" aria-live="polite"></span></div><div class="grid" id="grid"></div></main>
+</div>
+<section class="guide" id="guide">
+<h2>How to choose a three-season tent</h2>
+<p>Start with how many people sleep inside and how far you carry it. Then check weight, vestibule space and how the fly pitches in wind.</p>
+<details open><summary>Capacity and weight</summary><p>A 2-person tent suits one hiker with a pack or two people who share. Under 1.5 kg per person is a good target for multi-day trips.</p></details>
+<details><summary>Fabric and waterproofing</summary><p>Look for a fly rated at 2000 mm or more and taped seams. Silnylon packs small, while polyester stretches less when wet.</p></details>
+<details><summary>Packs, quilts and pads</summary><p>Match the quilt rating to the coldest night you expect, and choose a pad with an R-value above 3 for shoulder seasons.</p></details>
+</section>
+</div>
+<div id="toast" role="status"></div>
+<script>
+const P=[
+["Alder 2P Tent","Shelter",389,"1.6 kg, two doors"],["Tarn Bivy","Shelter",219,"Single hoop, waterproof floor"],
+["Ridgeline 45L","Packs",229,"Frameless, roll-top"],["Corrie 28 Daypack","Packs",139,"Hip pockets, hydration sleeve"],
+["Sedge 60L","Packs",289,"Vented back, rain cover"],["Wren Quilt 20F","Sleep",259,"850 fill goose down"],
+["Marl Insulated Pad","Sleep",149,"R-value 4.2, packs to a bottle"],["Fenn Bag 30F","Sleep",199,"Synthetic, washable"],
+["Kettle Stove","Cook",119,"Boils 1 L in under 4 minutes"],["Basalt Pot 1.3L","Cook",64,"Hard-anodized, folding handle"],
+["Cinder Windscreen","Cook",39,"Folds flat, fits any pot"],["Hollin Trail Boot","Footwear",214,"Waterproof, rock plate"]];
+const $=s=>document.querySelector(s),cats=[...new Set(P.map(p=>p[1]))];
+$("#cats").insertAdjacentHTML("beforeend",cats.map(c=>`<label class="chk"><input type="checkbox" value="${c}">${c}</label>`).join(""));
+function render(){
+  const on=[...document.querySelectorAll("#cats input:checked")].map(i=>i.value),max=+$("#price").value,s=$("#sort").value;
+  let L=P.map((p,i)=>({n:p[0],c:p[1],p:p[2],d:p[3],i})).filter(x=>(!on.length||on.includes(x.c))&&x.p<=max);
+  if(s!="feat")L.sort((a,b)=>s=="lo"?a.p-b.p:b.p-a.p);
+  $("#count").textContent=L.length+" of "+P.length+" products";
+  $("#grid").innerHTML=L.length?L.map((x,k)=>`<article class="item" style="--i:${k}"><div class="ph"><img loading="lazy" width="400" height="500" src="https://picsum.photos/seed/fellmark-${x.n.toLowerCase().replace(/\W+/g,"-")}/400/500" alt="${x.n}"></div><h3>${x.n}</h3><p>${x.d}</p><div class="row"><strong>$${x.p}</strong><button class="btn" data-n="${x.n}">Add</button></div></article>`).join(""):`<div class="empty"><h3>No gear matches those filters</h3><p>Try a higher price limit or remove a category.</p><button class="btn" data-reset>Reset filters</button></div>`;
+}
+function reset(){document.querySelectorAll("#cats input").forEach(i=>i.checked=false);$("#price").value="9999";$("#sort").value="feat";render()}
+document.querySelector(".layout").addEventListener("change",render);
+$("#clear").onclick=reset;
+$("#grid").addEventListener("click",e=>{
+  if(e.target.hasAttribute("data-reset"))return reset();
+  const n=e.target.dataset.n;if(!n)return;
+  const t=$("#toast");t.textContent=n+" added to cart";t.classList.add("on");clearTimeout(t.h);t.h=setTimeout(()=>t.classList.remove("on"),1800);
+});
+render();
+</script>
+</body>
+</html>
+```

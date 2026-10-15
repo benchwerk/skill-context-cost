@@ -1,0 +1,86 @@
+[
+ {
+  "config": "M-docs-used",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 1
+ },
+ {
+  "config": "M-skill-used",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 2
+ },
+ {
+  "config": "M-base",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 3
+ },
+ {
+  "config": "M-docs-idle",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 4
+ },
+ {
+  "config": "M-skill-idle",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 5
+ },
+ {
+  "config": "M-claudemd",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 6
+ },
+ {
+  "config": "M-base",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 7
+ },
+ {
+  "config": "M-prompt-used",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 8
+ },
+ {
+  "config": "M-claudemd",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 9
+ },
+ {
+  "config": "M-skill-used",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 10
+ },
+ {
+  "config": "M-prompt-used",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 11
+ },
+ {
+  "config": "M-docs-used",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 12
+ },
+ {
+  "config": "M-docs-idle",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 13
+ },
+ {
+  "config": "M-skill-idle",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 14
+ }
+]

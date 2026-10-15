@@ -1,0 +1,157 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Halcyon 75 – Mechanical Keyboard</title>
+<style>
+  :root { --bg:#f6f5f2; --ink:#1c1c1f; --muted:#6b6b72; --card:#fff; --accent:#e4572e; --line:#e3e1dc; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:16px/1.5 system-ui,sans-serif; background:var(--bg); color:var(--ink); }
+  header { padding:16px 24px; border-bottom:1px solid var(--line); background:var(--card); font-weight:700; letter-spacing:.08em; }
+  main { max-width:1000px; margin:0 auto; padding:24px; display:grid; gap:32px; }
+  .hero { display:grid; grid-template-columns:1.2fr 1fr; gap:32px; }
+  .stage { aspect-ratio:4/3; border-radius:16px; display:grid; place-items:center; background:var(--card); border:1px solid var(--line); overflow:hidden; }
+  .stage svg { width:100%; height:100%; }
+  .thumbs { display:flex; gap:10px; margin-top:12px; }
+  .thumbs button { flex:1; aspect-ratio:4/3; border:2px solid var(--line); border-radius:10px; padding:0; cursor:pointer; background:var(--card); overflow:hidden; }
+  .thumbs button[aria-pressed=true] { border-color:var(--accent); }
+  .thumbs svg { width:100%; height:100%; }
+  h1 { margin:0 0 4px; font-size:2rem; }
+  .stars { color:#f0a500; letter-spacing:2px; }
+  .price { font-size:1.8rem; font-weight:700; margin:12px 0; }
+  .opt { margin:14px 0; }
+  .opt label { display:block; font-size:.85rem; color:var(--muted); margin-bottom:6px; }
+  .chips { display:flex; gap:8px; flex-wrap:wrap; }
+  .chips button { padding:8px 14px; border-radius:999px; border:1px solid var(--line); background:var(--card); cursor:pointer; font:inherit; }
+  .chips button[aria-pressed=true] { background:var(--ink); color:#fff; border-color:var(--ink); }
+  .buy { display:flex; gap:10px; margin-top:20px; }
+  .buy input { width:64px; padding:10px; border:1px solid var(--line); border-radius:10px; font:inherit; }
+  .buy button { flex:1; padding:14px; border:0; border-radius:10px; background:var(--accent); color:#fff; font:700 1rem inherit; font-family:inherit; cursor:pointer; }
+  .buy button:hover { filter:brightness(.92); }
+  #msg { min-height:1.4em; color:#2a7d3f; font-size:.9rem; margin-top:8px; }
+  h2 { margin:0 0 12px; font-size:1.3rem; }
+  table { width:100%; border-collapse:collapse; background:var(--card); border-radius:12px; overflow:hidden; }
+  th, td { text-align:left; padding:10px 14px; border-bottom:1px solid var(--line); }
+  th { width:35%; color:var(--muted); font-weight:500; }
+  .summary { display:flex; align-items:center; gap:12px; margin-bottom:12px; color:var(--muted); }
+  .review { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin-bottom:10px; }
+  .review b { display:block; }
+  .review small { color:var(--muted); }
+  form.rv { display:grid; gap:8px; margin-top:16px; }
+  form.rv input, form.rv textarea, form.rv select { padding:10px; border:1px solid var(--line); border-radius:10px; font:inherit; }
+  form.rv button { justify-self:start; padding:10px 18px; border:0; border-radius:10px; background:var(--ink); color:#fff; cursor:pointer; font:inherit; }
+  @media (max-width:720px) { .hero { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<header>HALCYON</header>
+<main>
+  <section class="hero">
+    <div>
+      <div class="stage" id="stage"></div>
+      <div class="thumbs" id="thumbs" aria-label="Gallery"></div>
+    </div>
+    <div>
+      <h1>Halcyon 75</h1>
+      <div><span class="stars">★★★★☆</span> <small id="avg"></small></div>
+      <div class="price" id="price">$149</div>
+      <p style="color:var(--muted)">A gasket-mounted 75% board with hot-swap sockets, PBT keycaps and a thocky, foam-dampened sound.</p>
+      <div class="opt"><label>Switch</label><div class="chips" id="switches"></div></div>
+      <div class="opt"><label>Colour</label><div class="chips" id="colors"></div></div>
+      <div class="buy">
+        <input type="number" id="qty" value="1" min="1" max="9" aria-label="Quantity">
+        <button id="buy">Add to cart</button>
+      </div>
+      <div id="msg" role="status"></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Key specifications</h2>
+    <table>
+      <tr><th>Layout</th><td>75% · 82 keys, ANSI</td></tr>
+      <tr><th>Mounting</th><td>Gasket, aluminium case</td></tr>
+      <tr><th>Switches</th><td>Hot-swappable, 5-pin</td></tr>
+      <tr><th>Keycaps</th><td>Double-shot PBT, Cherry profile</td></tr>
+      <tr><th>Connectivity</th><td>USB-C, Bluetooth 5.1, 2.4 GHz</td></tr>
+      <tr><th>Battery</th><td>4000 mAh · up to 90 hours</td></tr>
+      <tr><th>Polling rate</th><td>1000 Hz wired</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Customer reviews</h2>
+    <div class="summary"><span class="stars">★★★★☆</span><span id="count"></span></div>
+    <div id="reviews"></div>
+    <form class="rv" id="form">
+      <input id="name" placeholder="Your name" required>
+      <select id="rating" aria-label="Rating"><option value="5">5 stars</option><option value="4">4 stars</option><option value="3">3 stars</option><option value="2">2 stars</option><option value="1">1 star</option></select>
+      <textarea id="text" rows="3" placeholder="Share your experience" required></textarea>
+      <button>Submit review</button>
+    </form>
+  </section>
+</main>
+<script>
+  const $ = id => document.getElementById(id);
+  const colors = { Slate:"#4a5560", Sand:"#d8c9a8", Coral:"#e4572e" };
+  const switches = { Linear:0, Tactile:10, Clicky:15 };
+  let color = "Slate", sw = "Linear", view = 0;
+  const keys = (c) => { let k = ""; for (let r = 0; r < 4; r++) for (let i = 0; i < 12; i++)
+    k += `<rect x="${30 + i*30}" y="${60 + r*30}" width="26" height="26" rx="4" fill="#f4f1ea"/>`; return k; };
+  const views = [
+    c => `<rect x="14" y="40" width="392" height="148" rx="14" fill="${c}"/>${keys()}`,
+    c => `<g transform="translate(0 40) scale(1 .6)"><rect x="14" y="40" width="392" height="148" rx="14" fill="${c}"/>${keys()}</g>`,
+    c => `<circle cx="210" cy="120" r="70" fill="#f4f1ea"/><circle cx="210" cy="120" r="34" fill="${c}"/><text x="210" y="205" text-anchor="middle" font-size="14" fill="#6b6b72">Hot-swap switch</text>`
+  ];
+  const svg = (i, c) => `<svg viewBox="0 0 420 240" role="img" aria-label="View ${i+1}">${views[i](c)}</svg>`;
+  function draw() {
+    $("stage").innerHTML = svg(view, colors[color]);
+    $("thumbs").innerHTML = "";
+    views.forEach((_, i) => {
+      const b = document.createElement("button");
+      b.innerHTML = svg(i, colors[color]);
+      b.setAttribute("aria-pressed", i === view);
+      b.setAttribute("aria-label", "Show view " + (i + 1));
+      b.onclick = () => { view = i; draw(); };
+      $("thumbs").append(b);
+    });
+    $("price").textContent = "$" + (149 + switches[sw]);
+  }
+  function chips(id, opts, get, set) {
+    const box = $(id); box.innerHTML = "";
+    Object.keys(opts).forEach(n => {
+      const b = document.createElement("button");
+      b.textContent = n; b.setAttribute("aria-pressed", get() === n);
+      b.onclick = () => { set(n); chips(id, opts, get, set); draw(); };
+      box.append(b);
+    });
+  }
+  const reviews = [
+    { n:"Maya R.", r:5, t:"Sounds unreal out of the box. The gasket mount feels bouncy without being mushy." },
+    { n:"Devon K.", r:4, t:"Great build and battery life. Wish the Bluetooth switched devices a bit faster." },
+    { n:"Sam T.", r:4, t:"Hot-swap made trying switches painless. Keycaps feel premium for the price." }
+  ];
+  function renderReviews() {
+    $("reviews").innerHTML = reviews.map(v => `<div class="review"><b>${v.n} <span class="stars">${"★".repeat(v.r)}${"☆".repeat(5 - v.r)}</span></b><small>Verified buyer</small><p>${v.t.replace(/[<>&]/g, "")}</p></div>`).join("");
+    const avg = reviews.reduce((s, v) => s + v.r, 0) / reviews.length;
+    $("avg").textContent = avg.toFixed(1) + " (" + reviews.length + " reviews)";
+    $("count").textContent = avg.toFixed(1) + " out of 5 · " + reviews.length + " reviews";
+  }
+  $("form").onsubmit = e => {
+    e.preventDefault();
+    reviews.unshift({ n:$("name").value, r:+$("rating").value, t:$("text").value });
+    e.target.reset(); renderReviews();
+  };
+  $("buy").onclick = () => {
+    const q = Math.max(1, +$("qty").value || 1);
+    $("msg").textContent = `Added ${q} × Halcyon 75 (${color}, ${sw}) – $${q * (149 + switches[sw])}`;
+  };
+  chips("switches", switches, () => sw, v => sw = v);
+  chips("colors", colors, () => color, v => color = v);
+  draw(); renderReviews();
+</script>
+</body>
+</html>
+```

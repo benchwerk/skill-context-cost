@@ -1,0 +1,151 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Odalys Brandt | Wedding Photography</title>
+<!-- Design Read: portfolio for engaged couples, editorial-quiet language, native CSS, restrained motion. Dials 8 / 5 / 3. Swap picsum seeds for real photos. -->
+<style>
+:root{--bg:#f4f5f6;--ink:#17191c;--mute:#4d535b;--line:#d5d8dc;--accent:#a8294a;--on-accent:#fff;--field:#fff;--err:#b3261e;--r:6px;--ease:cubic-bezier(.16,1,.3,1)}
+@media (prefers-color-scheme:dark){:root{--bg:#121315;--ink:#eceeef;--mute:#a4abb3;--line:#2e3237;--accent:#f08ba2;--on-accent:#1a0d11;--field:#1a1c1f;--err:#ff9a92}}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 1rem/1.65 "Outfit","Geist",system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1400px;margin:0 auto;padding:0 clamp(1rem,4vw,3rem)}
+nav{height:68px;display:flex;align-items:center;justify-content:space-between}
+nav b{font-weight:600;letter-spacing:-.01em}
+nav div{display:flex;gap:1.75rem;align-items:center}
+nav a{text-decoration:none;color:var(--mute);transition:color .2s}
+nav a:hover{color:var(--ink)}
+.btn{display:inline-block;white-space:nowrap;border:1px solid var(--accent);background:var(--accent);color:var(--on-accent);padding:.85rem 1.6rem;border-radius:var(--r);font:600 1rem/1 inherit;text-decoration:none;cursor:pointer;transition:transform .25s var(--ease),filter .2s}
+.btn:hover{filter:brightness(1.08);transform:translateY(-2px)}
+.btn:active{transform:scale(.98)}
+nav .btn{color:var(--on-accent)}
+.hero{min-height:calc(100dvh - 68px);display:grid;grid-template-columns:5fr 6fr;gap:clamp(2rem,5vw,5rem);align-items:center;padding-bottom:3rem}
+h1{font-size:clamp(2.4rem,5.2vw,4.6rem);line-height:1.04;letter-spacing:-.035em;font-weight:600}
+h1 em{font-style:italic;font-weight:500;color:var(--accent);padding-bottom:.08em}
+.hero p{margin:1.5rem 0 2rem;color:var(--mute);max-width:42ch;font-size:1.125rem}
+.hero img{width:100%;height:min(76dvh,720px);object-fit:cover;border-radius:var(--r);display:block}
+section{padding:clamp(4rem,9vw,8rem) 0}
+h2{font-size:clamp(1.9rem,3.6vw,3rem);line-height:1.1;letter-spacing:-.03em;font-weight:600;margin-bottom:2.5rem}
+.gallery{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:clamp(220px,30vw,420px);gap:clamp(.6rem,1.4vw,1.25rem)}
+.gallery figure{overflow:hidden;border-radius:var(--r);background:var(--line)}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s var(--ease)}
+.gallery figure:hover img{transform:scale(1.045)}
+.g1{grid-column:span 7}.g2{grid-column:span 5}.g3{grid-column:span 3}.g4{grid-column:span 5}.g5{grid-column:span 4}.g6{grid-column:span 12}
+.about{display:grid;grid-template-columns:1fr 2fr;gap:clamp(2rem,6vw,6rem);border-top:1px solid var(--line)}
+.about img{width:100%;max-width:340px;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r);align-self:start}
+.about h2{margin-bottom:1.5rem}
+.about p{color:var(--mute);max-width:62ch;margin-bottom:1.1rem}
+.contact{border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,6rem)}
+.contact p{color:var(--mute);max-width:36ch}
+form{display:grid;gap:1.25rem}
+label{display:grid;gap:.5rem;font-weight:500}
+input,textarea{font:inherit;color:var(--ink);background:var(--field);border:1px solid var(--mute);border-radius:var(--r);padding:.8rem 1rem;width:100%}
+input::placeholder,textarea::placeholder{color:var(--mute);opacity:1}
+input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+small{color:var(--mute);font-weight:400}
+.err{color:var(--err);font-weight:400;min-height:1.2em}
+form .btn{justify-self:start}
+#ok{display:none;border:1px solid var(--accent);border-radius:var(--r);padding:1.25rem 1.5rem}
+footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--mute)}
+.js .rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:no-preference){.hero>*{animation:up .9s var(--ease) both}.hero img{animation-delay:.12s}}
+@keyframes up{from{opacity:0;transform:translateY(24px)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.js .rv{opacity:1;transform:none}html{scroll-behavior:auto}}
+@media (max-width:767px){
+nav div{gap:1rem}
+.hero,.about,.contact{grid-template-columns:1fr}
+.hero{min-height:0;padding-top:1rem}.hero img{height:48dvh}
+.gallery{grid-template-columns:1fr;grid-auto-rows:70vw}
+.gallery figure{grid-column:1/-1!important}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav>
+  <b>Odalys Brandt</b>
+  <div><a href="#work">Work</a><a href="#about">About</a><a class="btn" href="#contact">Check availability</a></div>
+</nav>
+
+<header class="hero">
+  <div>
+    <h1>Weddings, photographed as they <em>actually</em> felt.</h1>
+    <p>Unposed, natural-light photography for couples who would rather be present than perform.</p>
+    <a class="btn" href="#contact">Check availability</a>
+  </div>
+  <img src="https://picsum.photos/seed/wedding-couple-golden-hour/1000/1200" alt="A couple laughing together in a field at golden hour" width="1000" height="1200">
+</header>
+
+<section id="work">
+  <h2 class="rv">Recent weddings</h2>
+  <div class="gallery">
+    <figure class="g1 rv"><img loading="lazy" src="https://picsum.photos/seed/wedding-vows-garden/1400/900" alt="Two people exchanging vows in a garden ceremony"></figure>
+    <figure class="g2 rv"><img loading="lazy" src="https://picsum.photos/seed/wedding-bride-veil/900/1100" alt="A bride adjusting her veil by a window"></figure>
+    <figure class="g3 rv"><img loading="lazy" src="https://picsum.photos/seed/wedding-rings-detail/700/1000" alt="Two rings resting on a folded invitation"></figure>
+    <figure class="g4 rv"><img loading="lazy" src="https://picsum.photos/seed/wedding-first-dance/1100/900" alt="A first dance under string lights"></figure>
+    <figure class="g5 rv"><img loading="lazy" src="https://picsum.photos/seed/wedding-family-laughing/900/1000" alt="Family members laughing at a long dinner table"></figure>
+    <figure class="g6 rv"><img loading="lazy" src="https://picsum.photos/seed/wedding-venue-evening/2000/900" alt="A wedding venue at dusk with guests gathered outside"></figure>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <img class="rv" loading="lazy" src="https://picsum.photos/seed/photographer-portrait-camera/680/850" alt="Odalys Brandt holding her camera">
+  <div class="rv">
+    <h2>I started at my sister's wedding.</h2>
+    <p>I was a guest with a borrowed camera, and the photos I kept were the ones nobody posed for: our father fixing his tie, a flower girl asleep under a chair.</p>
+    <p>Ten years on, I still work the same way. I arrive early, stay quiet, and shoot in available light so the day belongs to you and not to me.</p>
+    <p>I take a limited number of weddings each season, so every couple gets my full attention before and after the day.</p>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="rv">
+    <h2>Tell me about your day.</h2>
+    <p>Share your date and venue and I will reply within two working days.</p>
+  </div>
+  <div class="rv">
+    <form id="f" novalidate>
+      <label>Your names
+        <input name="names" autocomplete="name" placeholder="Ana and Tomás" required>
+        <span class="err" aria-live="polite"></span></label>
+      <label>Email
+        <input name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+        <span class="err" aria-live="polite"></span></label>
+      <label>Wedding date and venue <small>Optional</small>
+        <textarea name="details" rows="4" placeholder="June 14, a vineyard near Napa"></textarea>
+        <span class="err"></span></label>
+      <button class="btn" type="submit">Send message</button>
+    </form>
+    <div id="ok" role="status">Thank you. Your message is in and I will be in touch soon.</div>
+  </div>
+</section>
+</div>
+<footer><div class="wrap">Odalys Brandt Photography</div></footer>
+
+<script>
+document.documentElement.classList.add('js');
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%3)*70+'ms';io.observe(el)});
+const f=document.getElementById('f');
+f.addEventListener('submit',ev=>{
+  ev.preventDefault();
+  const rules=[['names',v=>v.trim()?'':'Please enter your names.'],['email',v=>/^\S+@\S+\.\S+$/.test(v)?'':'Please enter a valid email address.']];
+  let bad=false;
+  rules.forEach(([n,fn])=>{
+    const input=f.elements[n],msg=fn(input.value);
+    input.parentElement.querySelector('.err').textContent=msg;
+    input.setAttribute('aria-invalid',!!msg);
+    if(msg&&!bad){input.focus();bad=true}
+  });
+  if(!bad){f.style.display='none';document.getElementById('ok').style.display='block'}
+});
+</script>
+</body>
+</html>
+```

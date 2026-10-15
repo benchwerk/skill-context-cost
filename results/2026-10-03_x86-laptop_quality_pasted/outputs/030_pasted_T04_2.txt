@@ -1,0 +1,127 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Larkspur Dental - Schedule</title>
+<style>
+  /* Single accent (teal), single radius scale (10px), system sans stack. All data below is mock. */
+  :root {
+    --bg: #f3f5f4; --surface: #ffffff; --line: #dce3e0; --text: #1b2421; --muted: #53605b;
+    --accent: #0f766e; --accent-ink: #ffffff; --tint: #dff1ee; --bar: #b9d6d1; --r: 10px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0f1615; --surface: #172120; --line: #26322f; --text: #e5eeeb; --muted: #9bada7;
+      --accent: #4fd1c0; --accent-ink: #082521; --tint: #1b3a36; --bar: #2c4a45; }
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--bg); color: var(--text); font: 15px/1.5 "Geist", "Segoe UI", system-ui, sans-serif; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 24px 16px 48px; }
+  header { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+  h1 { font-size: clamp(1.6rem, 3vw, 2.25rem); letter-spacing: -0.03em; line-height: 1.1; }
+  header p { color: var(--muted); }
+  button { font: inherit; font-weight: 600; background: var(--accent); color: var(--accent-ink); border: 0;
+    border-radius: var(--r); padding: 10px 18px; cursor: pointer; white-space: nowrap; transition: transform .15s ease; }
+  button:hover { transform: translateY(-1px); }
+  button:active { transform: scale(.98); }
+  button:focus-visible, .appt:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+  .stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px 20px; }
+  .stat:first-child { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .stat:first-child small { color: inherit; opacity: .85; }
+  .stat b { display: block; font-size: 2rem; letter-spacing: -0.03em; line-height: 1.2; font-variant-numeric: tabular-nums; }
+  small { color: var(--muted); font-size: .85rem; }
+  .grid { display: grid; grid-template-columns: 1.7fr 1fr; gap: 24px; align-items: start; }
+  section { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 20px; }
+  h2 { font-size: 1.15rem; letter-spacing: -0.02em; margin-bottom: 16px; }
+  .appt { display: grid; grid-template-columns: 72px 1fr auto; gap: 16px; align-items: center; padding: 12px;
+    border-radius: var(--r); width: 100%; text-align: left; background: none; color: inherit; font-weight: 400;
+    transition: background .2s ease; }
+  .appt:hover { background: var(--bg); transform: none; }
+  .appt + .appt { margin-top: 4px; }
+  .appt time { font-weight: 600; font-variant-numeric: tabular-nums; }
+  .appt strong { display: block; font-weight: 600; }
+  .appt.next { background: var(--tint); }
+  .chip { font-size: .8rem; font-weight: 600; padding: 3px 10px; border-radius: var(--r); background: var(--bg); color: var(--muted); }
+  .chip.live { background: var(--accent); color: var(--accent-ink); }
+  .chip.next { background: var(--surface); color: var(--text); }
+  .week { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; height: 200px; align-items: end; }
+  .day { display: flex; flex-direction: column; justify-content: end; align-items: center; height: 100%; gap: 6px; }
+  .day i { display: block; width: 100%; background: var(--bar); border-radius: 6px 6px 0 0; transform-origin: bottom; }
+  .day.today i { background: var(--accent); }
+  .day b { font-variant-numeric: tabular-nums; }
+  .day span { color: var(--muted); font-size: .85rem; }
+  .day.today span { color: var(--text); font-weight: 700; }
+  .note { margin-top: 16px; color: var(--muted); font-size: .9rem; }
+  @media (prefers-reduced-motion: no-preference) {
+    .day i { animation: grow .7s cubic-bezier(.16, 1, .3, 1) both; animation-delay: calc(var(--n) * 60ms); }
+    @keyframes grow { from { transform: scaleY(0); } }
+  }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .stats { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { .appt { grid-template-columns: 60px 1fr; } .appt .chip { grid-column: 2; justify-self: start; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div><h1>Today's schedule</h1><p id="date"></p></div>
+    <button type="button" id="add">New appointment</button>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><b id="s-total">0</b><small>Appointments today</small></div>
+    <div class="stat"><b>3h 40m</b><small>Chair time open</small></div>
+    <div class="stat"><b>2</b><small>Unconfirmed</small></div>
+    <div class="stat"><b>4.7%</b><small>No-show rate, 30 days</small></div>
+  </div>
+
+  <div class="grid">
+    <section aria-labelledby="h-today">
+      <h2 id="h-today">Appointments</h2>
+      <div id="list"></div>
+    </section>
+    <section aria-labelledby="h-week">
+      <h2 id="h-week">This week</h2>
+      <div class="week" id="week" role="img" aria-label="Appointments per day this week"></div>
+      <p class="note">Saturday hours run 9:00 to 13:00.</p>
+    </section>
+  </div>
+</div>
+
+<script>
+  // Mock data. Replace with your practice-management system export.
+  const appts = [
+    { t: "09:00", n: "Marta Kowalczyk", p: "Routine cleaning, Dr. Osei", s: "done" },
+    { t: "09:45", n: "Idris Bello", p: "Crown fitting, Dr. Osei", s: "done" },
+    { t: "10:30", n: "Hannah Lindqvist", p: "Root canal, Dr. Varga", s: "live" },
+    { t: "11:15", n: "Tomás Ferreira", p: "Check-up and X-ray, Dr. Osei", s: "next" },
+    { t: "12:00", n: "Priya Raman", p: "Whitening consult, Dr. Varga", s: "later" },
+    { t: "12:30", n: "Callum Reid", p: "Filling, Dr. Osei", s: "later" }
+  ];
+  const labels = { done: "Completed", live: "In chair", next: "Up next", later: "Scheduled" };
+  const week = [["Mon", 14], ["Tue", 12], ["Wed", 16], ["Thu", 11], ["Fri", 13], ["Sat", 6]];
+
+  document.getElementById("date").textContent =
+    new Date().toLocaleDateString(undefined, { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+  document.getElementById("s-total").textContent = appts.length;
+
+  const cls = s => (s === "live" ? "chip live" : s === "next" ? "chip next" : "chip");
+  document.getElementById("list").innerHTML = appts.map(a =>
+    `<button type="button" class="appt ${a.s === "next" ? "next" : ""}">
+       <time>${a.t}</time>
+       <span><strong>${a.n}</strong><small>${a.p}</small></span>
+       <span class="${cls(a.s)}">${labels[a.s]}</span>
+     </button>`).join("");
+
+  const max = Math.max(...week.map(d => d[1]));
+  document.getElementById("week").innerHTML = week.map(([d, v], i) =>
+    `<div class="day ${i === week.length - 1 ? "today" : ""}" style="--n:${i}">
+       <b>${v}</b><i style="height:${(v / max) * 130}px"></i><span>${d}</span>
+     </div>`).join("");
+
+  document.getElementById("add").addEventListener("click", () => alert("Hook this up to your booking form."));
+</script>
+</body>
+</html>
+```

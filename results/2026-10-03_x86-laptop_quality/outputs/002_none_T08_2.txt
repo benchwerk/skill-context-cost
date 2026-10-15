@@ -1,0 +1,167 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About Ledgerly — Finance that works for everyone</title>
+<style>
+  :root {
+    --bg: #f7f8fb; --surface: #fff; --ink: #11172b; --muted: #5b6480;
+    --line: #e2e6f0; --accent: #1f5eff; --accent-ink: #fff; --tint: #eaf0ff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0c1020; --surface: #151b30; --ink: #eef1fb; --muted: #9aa4c4;
+      --line: #263052; --accent: #6b94ff; --accent-ink: #0c1020; --tint: #1b2547;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; background: var(--bg); color: var(--ink); }
+  a { color: var(--accent); }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+  header.nav { border-bottom: 1px solid var(--line); background: var(--surface); }
+  header.nav .wrap { display: flex; justify-content: space-between; align-items: center; height: 64px; }
+  .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: -.02em; }
+  .logo span { color: var(--accent); }
+  nav a { margin-left: 20px; text-decoration: none; color: var(--muted); font-size: .95rem; }
+  nav a:hover, nav a:focus-visible { color: var(--ink); }
+  .hero { padding: 80px 0 56px; }
+  .eyebrow { color: var(--accent); font-weight: 700; font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; }
+  h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.1; letter-spacing: -.03em; margin: 12px 0 16px; max-width: 18ch; }
+  .lead { font-size: 1.15rem; color: var(--muted); max-width: 60ch; margin: 0; }
+  section { padding: 48px 0; border-top: 1px solid var(--line); }
+  h2 { font-size: 1.6rem; letter-spacing: -.02em; margin: 0 0 8px; }
+  .sub { color: var(--muted); margin: 0 0 28px; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px; }
+  .stat { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+  .stat b { display: block; font-size: 2rem; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+  .stat span { color: var(--muted); font-size: .9rem; }
+  .values { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 24px; }
+  .values div { padding-left: 14px; border-left: 3px solid var(--accent); }
+  .values h3 { margin: 0 0 4px; font-size: 1.05rem; }
+  .values p { margin: 0; color: var(--muted); font-size: .95rem; }
+  .team { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 20px; }
+  .person { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+  .avatar { width: 56px; height: 56px; border-radius: 50%; background: var(--tint); color: var(--accent); display: grid; place-items: center; font-weight: 700; margin-bottom: 12px; }
+  .person h3 { margin: 0; font-size: 1.05rem; }
+  .person .role { color: var(--accent); font-size: .85rem; font-weight: 600; margin: 0 0 8px; }
+  .person p:last-child { margin: 0; color: var(--muted); font-size: .9rem; }
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .filters button { font: inherit; font-size: .9rem; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+  .filters button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .filters button:focus-visible, .apply:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  ul.jobs { list-style: none; margin: 0; padding: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
+  .jobs li { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 20px; border-top: 1px solid var(--line); }
+  .jobs li:first-child { border-top: 0; }
+  .jobs strong { display: block; }
+  .jobs small { color: var(--muted); }
+  .apply { text-decoration: none; font-weight: 600; font-size: .9rem; padding: 8px 16px; border: 1px solid var(--accent); border-radius: 8px; white-space: nowrap; }
+  .apply:hover { background: var(--accent); color: var(--accent-ink); }
+  .empty { padding: 20px; color: var(--muted); }
+  footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-size: .85rem; }
+  @media (max-width: 560px) { nav { display: none; } .jobs li { flex-direction: column; align-items: flex-start; } }
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <div class="logo">Ledger<span>ly</span></div>
+    <nav aria-label="Primary"><a href="#mission">Mission</a><a href="#team">Team</a><a href="#numbers">Numbers</a><a href="#careers">Careers</a></nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero" id="mission">
+    <div class="eyebrow">About Ledgerly</div>
+    <h1>Money infrastructure that works for everyone.</h1>
+    <p class="lead">We build payments and credit tools for small businesses that banks overlook. Our mission is to make moving, saving and borrowing money as simple, fast and fair as sending a message.</p>
+    <div class="values">
+      <div><h3>Transparent by default</h3><p>No hidden fees, no fine print. Every price is visible before you commit.</p></div>
+      <div><h3>Built to be trusted</h3><p>Security and compliance are product features, not afterthoughts.</p></div>
+      <div><h3>Small teams, big impact</h3><p>We ship weekly and listen to customers daily.</p></div>
+    </div>
+  </div>
+
+  <div class="wrap"><section id="numbers">
+    <h2>Ledgerly in numbers</h2>
+    <p class="sub">Figures as of Q3 2026.</p>
+    <div class="stats">
+      <div class="stat"><b data-count="48000">48,000</b><span>Businesses served</span></div>
+      <div class="stat"><b data-count="3.2" data-prefix="$" data-suffix="B" data-dec="1">$3.2B</b><span>Payments processed</span></div>
+      <div class="stat"><b data-count="22">22</b><span>Countries supported</span></div>
+      <div class="stat"><b data-count="99.99" data-suffix="%" data-dec="2">99.99%</b><span>Platform uptime</span></div>
+    </div>
+  </section></div>
+
+  <div class="wrap"><section id="team">
+    <h2>Leadership</h2>
+    <p class="sub">Operators from banking, payments and engineering.</p>
+    <div class="team">
+      <div class="person"><div class="avatar" aria-hidden="true">AO</div><h3>Amara Okafor</h3><p class="role">Co-founder &amp; CEO</p><p>Former head of product at a global payments network.</p></div>
+      <div class="person"><div class="avatar" aria-hidden="true">DR</div><h3>Daniel Reyes</h3><p class="role">Co-founder &amp; CTO</p><p>Built real-time ledgers at scale for two fintech unicorns.</p></div>
+      <div class="person"><div class="avatar" aria-hidden="true">MS</div><h3>Mei Sato</h3><p class="role">Chief Risk Officer</p><p>Fifteen years in credit risk and regulatory strategy.</p></div>
+      <div class="person"><div class="avatar" aria-hidden="true">JB</div><h3>James Blackwood</h3><p class="role">Chief Financial Officer</p><p>Scaled finance teams through three funding rounds.</p></div>
+    </div>
+  </section></div>
+
+  <div class="wrap"><section id="careers">
+    <h2>Open roles</h2>
+    <p class="sub">Join us and help shape the future of finance.</p>
+    <div class="filters" role="group" aria-label="Filter roles by team"></div>
+    <ul class="jobs" aria-live="polite"></ul>
+  </section></div>
+</main>
+
+<footer><div class="wrap">© 2026 Ledgerly, Inc. Ledgerly is a financial technology company, not a bank. Banking services are provided by partner institutions.</div></footer>
+
+<script>
+  const jobs = [
+    { title: "Senior Backend Engineer", team: "Engineering", loc: "Remote (EU/US)" },
+    { title: "Staff Security Engineer", team: "Engineering", loc: "London" },
+    { title: "Product Designer", team: "Design", loc: "Remote" },
+    { title: "Credit Risk Analyst", team: "Risk", loc: "New York" },
+    { title: "Compliance Manager", team: "Risk", loc: "London" },
+    { title: "Customer Success Lead", team: "Operations", loc: "Lagos" }
+  ];
+  const teams = ["All", ...new Set(jobs.map(j => j.team))];
+  const filters = document.querySelector(".filters");
+  const list = document.querySelector(".jobs");
+
+  function render(team) {
+    const shown = jobs.filter(j => team === "All" || j.team === team);
+    list.innerHTML = shown.map(j =>
+      `<li><div><strong>${j.title}</strong><small>${j.team} · ${j.loc}</small></div>` +
+      `<a class="apply" href="mailto:careers@ledgerly.example?subject=${encodeURIComponent(j.title)}">Apply</a></li>`
+    ).join("") || '<li class="empty">No open roles in this team right now.</li>';
+    filters.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.textContent === team));
+  }
+
+  teams.forEach(t => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.textContent = t;
+    b.addEventListener("click", () => render(t));
+    filters.appendChild(b);
+  });
+  render("All");
+
+  // Count-up animation for key numbers, skipped for reduced-motion users
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const io = new IntersectionObserver(entries => entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      io.unobserve(e.target);
+      const el = e.target, end = +el.dataset.count, dec = +(el.dataset.dec || 0);
+      const pre = el.dataset.prefix || "", suf = el.dataset.suffix || "", t0 = performance.now();
+      (function tick(now) {
+        const p = Math.min((now - t0) / 1200, 1), v = end * (1 - Math.pow(1 - p, 3));
+        el.textContent = pre + v.toLocaleString("en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec }) + suf;
+        if (p < 1) requestAnimationFrame(tick);
+      })(t0);
+    }), { threshold: .5 });
+    document.querySelectorAll("[data-count]").forEach(el => io.observe(el));
+  }
+</script>
+</body>
+</html>
+```

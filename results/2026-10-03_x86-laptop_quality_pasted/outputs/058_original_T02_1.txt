@@ -1,0 +1,161 @@
+```html
+<!-- Reading this as: B2B SaaS pricing page for small engineering teams, with a calm technical language, leaning toward native CSS, system fonts and restrained motion. Dials: variance 6, motion 4, density 4. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sluice Pricing</title>
+<style>
+  :root {
+    --bg: #f6f7f6; --panel: #ffffff; --ink: #161a18; --muted: #4d5651; --line: #d9dedb;
+    --accent: #0f6b52; --on-accent: #f4faf7; --tint: #e3f0ea; --r: 8px;
+    --sans: "Geist", "Segoe UI Variable", system-ui, sans-serif;
+    --mono: "Geist Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #121614; --panel: #1a1f1c; --ink: #e8ece9; --muted: #a2aca6; --line: #2e3631;
+            --accent: #4fc79f; --on-accent: #08241b; --tint: #1b2a24; }
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { font: 16px/1.55 var(--sans); background: var(--bg); color: var(--ink); }
+  a { color: inherit; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  nav { height: 64px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
+  nav .links { display: flex; gap: 28px; align-items: center; font-size: 15px; color: var(--muted); }
+  .logo { font-weight: 700; font-size: 20px; letter-spacing: -0.03em; text-decoration: none; }
+  .btn { display: inline-block; padding: 10px 18px; border-radius: var(--r); border: 1px solid var(--accent); background: var(--accent);
+         color: var(--on-accent); font-weight: 600; font-size: 15px; text-decoration: none; white-space: nowrap;
+         transition: transform .2s cubic-bezier(.16,1,.3,1), filter .2s; }
+  .btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+  .btn:active { transform: scale(.98); }
+  .btn.quiet { background: transparent; color: var(--ink); border-color: var(--line); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  header.hero { padding: 72px 0 40px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: end; }
+  h1 { font-size: clamp(36px, 5vw, 56px); line-height: 1.05; letter-spacing: -0.04em; max-width: 14ch; }
+  .hero p { color: var(--muted); max-width: 46ch; margin-top: 16px; }
+  .toggle { justify-self: end; display: inline-flex; padding: 4px; border: 1px solid var(--line); border-radius: var(--r); background: var(--panel); }
+  .toggle button { font: inherit; font-size: 14px; padding: 8px 16px; border: 0; border-radius: 6px; background: none; color: var(--muted); cursor: pointer; }
+  .toggle button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); font-weight: 600; }
+  .plans { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 20px; align-items: stretch; padding-bottom: 72px; }
+  .plan { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); padding: 28px; display: flex; flex-direction: column; gap: 14px; }
+  .plan.pick { background: var(--tint); border-color: var(--accent); margin-top: -12px; padding-top: 40px; }
+  .plan h2 { font-size: 20px; letter-spacing: -0.02em; }
+  .plan .for { color: var(--muted); font-size: 15px; min-height: 46px; }
+  .price { font: 600 44px/1 var(--mono); letter-spacing: -0.04em; }
+  .price small { font: 400 14px var(--sans); color: var(--muted); letter-spacing: 0; }
+  .plan ul { list-style: none; padding: 14px 0 0; border-top: 1px solid var(--line); display: grid; gap: 8px; font-size: 15px; flex: 1; }
+  .plan li::before { content: "+"; font-family: var(--mono); color: var(--accent); font-weight: 700; margin-right: 10px; }
+  section.block { padding: 8px 0 72px; }
+  h3 { font-size: 28px; letter-spacing: -0.03em; margin-bottom: 24px; }
+  .scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r); background: var(--panel); }
+  table { width: 100%; border-collapse: collapse; min-width: 640px; font-size: 15px; }
+  th, td { padding: 14px 20px; text-align: left; }
+  thead th { font-size: 14px; color: var(--muted); font-weight: 600; }
+  tbody th { font-weight: 500; }
+  tbody tr:not(:last-child) > * { border-bottom: 1px solid var(--line); }
+  td { font-family: var(--mono); font-size: 14px; }
+  td.no { color: var(--muted); }
+  .faq { max-width: 760px; }
+  details { border-bottom: 1px solid var(--line); padding: 18px 0; }
+  summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; font-family: var(--mono); color: var(--accent); transition: transform .25s cubic-bezier(.16,1,.3,1); }
+  details[open] summary::after { transform: rotate(45deg); }
+  details p { color: var(--muted); margin-top: 10px; max-width: 62ch; }
+  footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-size: 14px; }
+  @media (prefers-reduced-motion: no-preference) {
+    .plan { animation: rise .6s cubic-bezier(.16,1,.3,1) both; }
+    .plan:nth-child(2) { animation-delay: .08s; } .plan:nth-child(3) { animation-delay: .16s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(16px); } }
+  }
+  @media (max-width: 767px) {
+    header.hero, .plans { grid-template-columns: 1fr; }
+    .toggle { justify-self: start; } .plan.pick { margin-top: 0; padding-top: 28px; }
+    nav .links a:not(.btn) { display: none; } header.hero { padding-top: 48px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="logo" href="#">Sluice</a>
+    <div class="links"><a href="#compare">Compare</a><a href="#faq">FAQ</a><a class="btn" href="#">Get started</a></div>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <h1>Logs your whole team can afford to search.</h1>
+      <p>Search, tail and alert on logs without a platform team. Pay for ingest, not seats.</p>
+    </div>
+    <div class="toggle" role="group" aria-label="Billing period">
+      <button type="button" data-mode="monthly" aria-pressed="true">Monthly</button>
+      <button type="button" data-mode="annual" aria-pressed="false">Annual, 17% off</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="plans">
+      <article class="plan">
+        <h2>Trickle</h2>
+        <p class="for">For side projects and a first service in production.</p>
+        <div class="price">$0<small> /month</small></div>
+        <ul><li>5 GB ingest per month</li><li>3 days of retention</li><li>2 saved searches</li><li>Community support</li></ul>
+        <a class="btn quiet" href="#">Get started</a>
+      </article>
+      <article class="plan pick">
+        <h2>Stream</h2>
+        <p class="for">For teams of 3 to 15 running several services and an on-call rotation.</p>
+        <div class="price">$<span data-m="29" data-a="24">29</span><small> /month</small></div>
+        <ul><li>50 GB ingest per month</li><li>14 days of retention</li><li>Unlimited seats and saved searches</li><li>Alerts to Slack, email and PagerDuty</li><li>Support replies within one business day</li></ul>
+        <a class="btn" href="#">Get started</a>
+      </article>
+      <article class="plan">
+        <h2>Channel</h2>
+        <p class="for">For growing teams with compliance needs and heavier traffic.</p>
+        <div class="price">$<span data-m="99" data-a="82">99</span><small> /month</small></div>
+        <ul><li>500 GB ingest per month</li><li>30 days of retention</li><li>SSO and audit log</li><li>Archive to your own S3 bucket</li></ul>
+        <a class="btn quiet" href="#">Get started</a>
+      </article>
+    </div>
+
+    <section class="block" id="compare">
+      <h3>Compare plans</h3>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Feature</th><th>Trickle</th><th>Stream</th><th>Channel</th></tr></thead>
+          <tbody>
+            <tr><th>Ingest per month</th><td>5 GB</td><td>50 GB</td><td>500 GB</td></tr>
+            <tr><th>Retention</th><td>3 days</td><td>14 days</td><td>30 days</td></tr>
+            <tr><th>Seats</th><td>3</td><td>Unlimited</td><td>Unlimited</td></tr>
+            <tr><th>Live tail</th><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+            <tr><th>Alert rules</th><td>2</td><td>50</td><td>Unlimited</td></tr>
+            <tr><th>SSO</th><td class="no">-</td><td class="no">-</td><td>Yes</td></tr>
+            <tr><th>Archive to S3</th><td class="no">-</td><td class="no">-</td><td>Yes</td></tr>
+            <tr><th>Support</th><td>Community</td><td>Email</td><td>Email and shared channel</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="block faq" id="faq">
+      <h3>Questions</h3>
+      <details><summary>What happens if I go over my ingest limit?</summary><p>We keep accepting logs and email you at 80% and 100%. Overage is billed at $0.60 per extra GB, or you can move up a plan mid-cycle.</p></details>
+      <details><summary>Can I change plans later?</summary><p>Yes. Upgrades apply immediately and are prorated. Downgrades take effect at the next billing date.</p></details>
+      <details><summary>Do you charge per seat?</summary><p>No. Trickle includes 3 seats. Stream and Channel include as many as your team needs.</p></details>
+      <details><summary>Is there a trial for paid plans?</summary><p>Every paid plan starts with 14 days free and no card required. You drop to Trickle if you do not subscribe.</p></details>
+    </section>
+  </main>
+  <footer>Sluice Logging, Inc. Prices in US dollars.</footer>
+</div>
+<script>
+  const buttons = document.querySelectorAll(".toggle button");
+  const amounts = document.querySelectorAll("[data-m]");
+  buttons.forEach(b => b.addEventListener("click", () => {
+    buttons.forEach(x => x.setAttribute("aria-pressed", x === b));
+    amounts.forEach(el => el.textContent = el.dataset[b.dataset.mode === "annual" ? "a" : "m"]);
+  }));
+</script>
+</body>
+</html>
+```

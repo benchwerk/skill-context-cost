@@ -1,0 +1,162 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tailwind Logs: Pricing</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #fff; --ink: #14181f; --muted: #5b6573;
+    --line: #e2e6ec; --accent: #0f766e; --accent-ink: #fff; --soft: #e6f4f2;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0e1116; --card: #161b22; --ink: #e8ecf1; --muted: #9aa5b3;
+            --line: #2a313b; --accent: #2dd4bf; --accent-ink: #06201c; --soft: #12302d; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  header, main, footer { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; }
+  .logo { font-weight: 700; font-size: 1.15rem; letter-spacing: -.01em; }
+  .logo span { color: var(--accent); }
+  nav a { color: var(--muted); text-decoration: none; font-size: .95rem; }
+  .hero { text-align: center; padding: 36px 0 24px; }
+  h1 { font-size: clamp(1.9rem, 4vw, 2.7rem); margin: 0 0 10px; letter-spacing: -.02em; }
+  .hero p { color: var(--muted); max-width: 540px; margin: 0 auto; }
+  .toggle { display: inline-flex; margin-top: 24px; padding: 4px; background: var(--card);
+            border: 1px solid var(--line); border-radius: 999px; }
+  .toggle button { border: 0; background: none; color: var(--muted); padding: 7px 18px;
+                   border-radius: 999px; font: inherit; font-size: .92rem; cursor: pointer; }
+  .toggle button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+  .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+           gap: 18px; margin: 28px 0 56px; }
+  .plan { background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+          padding: 26px; display: flex; flex-direction: column; position: relative; }
+  .plan.featured { border: 2px solid var(--accent); }
+  .badge { position: absolute; top: -12px; left: 24px; background: var(--accent);
+           color: var(--accent-ink); font-size: .75rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+  .plan h2 { margin: 0; font-size: 1.15rem; }
+  .plan .tag { color: var(--muted); font-size: .92rem; margin: 4px 0 16px; min-height: 2.9em; }
+  .price { font-size: 2.4rem; font-weight: 700; letter-spacing: -.02em; }
+  .price small { font-size: .9rem; font-weight: 400; color: var(--muted); }
+  .note { color: var(--muted); font-size: .82rem; min-height: 1.3em; margin-bottom: 18px; }
+  .plan ul { list-style: none; padding: 0; margin: 0 0 24px; flex: 1; }
+  .plan li { padding: 5px 0 5px 24px; position: relative; font-size: .94rem; }
+  .plan li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+  .btn { display: block; text-align: center; padding: 11px; border-radius: 9px; font-weight: 600;
+         text-decoration: none; border: 1px solid var(--line); color: var(--ink); }
+  .featured .btn { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  h3.sec { font-size: 1.4rem; margin: 0 0 16px; letter-spacing: -.01em; }
+  .table-wrap { overflow-x: auto; background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
+  table { width: 100%; border-collapse: collapse; min-width: 560px; font-size: .93rem; }
+  th, td { padding: 12px 16px; text-align: center; border-bottom: 1px solid var(--line); }
+  th:first-child, td:first-child { text-align: left; }
+  thead th { font-size: .95rem; }
+  th.hl, td.hl { background: var(--soft); }
+  tbody tr:last-child td { border-bottom: 0; }
+  tr.group td { text-align: left; font-size: .75rem; text-transform: uppercase; letter-spacing: .06em;
+                color: var(--muted); background: var(--bg); font-weight: 700; }
+  .yes { color: var(--accent); font-weight: 700; } .no { color: var(--muted); }
+  .faq { margin: 56px 0; }
+  details { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px 18px; margin-bottom: 10px; }
+  summary { cursor: pointer; font-weight: 600; }
+  details p { color: var(--muted); margin: 10px 0 0; font-size: .95rem; }
+  footer { color: var(--muted); font-size: .85rem; text-align: center; padding: 20px 20px 40px; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+<header>
+  <nav>
+    <div class="logo">Tail<span>wind</span> Logs</div>
+    <a href="#faq">Questions? See the FAQ</a>
+  </nav>
+  <section class="hero">
+    <h1>Search every log. Pay for what you keep.</h1>
+    <p>Fast, simple log analytics for teams of 2 to 30 engineers. No per-seat fees, no sales calls.</p>
+    <div class="toggle" role="group" aria-label="Billing period">
+      <button id="monthly" aria-pressed="true">Monthly</button>
+      <button id="yearly" aria-pressed="false">Yearly · save 20%</button>
+    </div>
+  </section>
+</header>
+<main>
+  <section class="plans">
+    <article class="plan">
+      <h2>Spark</h2>
+      <p class="tag">For side projects and early prototypes.</p>
+      <div class="price">$0<small> /mo</small></div>
+      <div class="note">Free forever</div>
+      <ul><li>5 GB ingest / month</li><li>3-day retention</li><li>Up to 3 teammates</li><li>Community support</li></ul>
+      <a class="btn" href="#">Start free</a>
+    </article>
+    <article class="plan featured">
+      <span class="badge">Most popular</span>
+      <h2>Team</h2>
+      <p class="tag">For product teams shipping to production.</p>
+      <div class="price">$<span data-m="49" data-y="39">49</span><small> /mo</small></div>
+      <div class="note" data-m="Billed monthly" data-y="Billed $468 yearly">Billed monthly</div>
+      <ul><li>100 GB ingest / month</li><li>30-day retention</li><li>Unlimited teammates</li><li>Alerts to Slack and PagerDuty</li><li>Email support</li></ul>
+      <a class="btn" href="#">Start 14-day trial</a>
+    </article>
+    <article class="plan">
+      <h2>Scale</h2>
+      <p class="tag">For teams with compliance and volume needs.</p>
+      <div class="price">$<span data-m="199" data-y="159">199</span><small> /mo</small></div>
+      <div class="note" data-m="Billed monthly" data-y="Billed $1,908 yearly">Billed monthly</div>
+      <ul><li>500 GB ingest / month</li><li>180-day retention</li><li>SSO and audit logs</li><li>Priority support, 4h response</li></ul>
+      <a class="btn" href="#">Start 14-day trial</a>
+    </article>
+  </section>
+
+  <section>
+    <h3 class="sec">Compare plans</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Feature</th><th>Spark</th><th class="hl">Team</th><th>Scale</th></tr></thead>
+        <tbody>
+          <tr class="group"><td colspan="4">Usage</td></tr>
+          <tr><td>Monthly ingest</td><td>5 GB</td><td class="hl">100 GB</td><td>500 GB</td></tr>
+          <tr><td>Retention</td><td>3 days</td><td class="hl">30 days</td><td>180 days</td></tr>
+          <tr><td>Teammates</td><td>3</td><td class="hl">Unlimited</td><td>Unlimited</td></tr>
+          <tr class="group"><td colspan="4">Features</td></tr>
+          <tr><td>Live tail and search</td><td class="yes">✓</td><td class="yes hl">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Saved queries and dashboards</td><td class="no">—</td><td class="yes hl">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Alerting</td><td class="no">—</td><td class="yes hl">✓</td><td class="yes">✓</td></tr>
+          <tr><td>SSO (SAML) and audit logs</td><td class="no">—</td><td class="no hl">—</td><td class="yes">✓</td></tr>
+          <tr class="group"><td colspan="4">Support</td></tr>
+          <tr><td>Support channel</td><td>Community</td><td class="hl">Email</td><td>Priority, 4h</td></tr>
+          <tr><td>Uptime SLA</td><td class="no">—</td><td class="hl">99.5%</td><td>99.9%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="faq" id="faq">
+    <h3 class="sec">Frequently asked questions</h3>
+    <details open><summary>What happens if I go over my ingest limit?</summary>
+      <p>We never drop logs silently. You'll get an alert at 80%, and overage is billed at $0.40 per extra GB, or you can upgrade mid-cycle.</p></details>
+    <details><summary>Do you charge per seat?</summary>
+      <p>No. Team and Scale include unlimited teammates, so you can invite the whole engineering org.</p></details>
+    <details><summary>Can I change or cancel plans anytime?</summary>
+      <p>Yes. Upgrades apply immediately with prorated billing, and downgrades take effect next cycle. Cancel any time from settings.</p></details>
+    <details><summary>Can I export my data?</summary>
+      <p>Every plan can export logs to S3-compatible storage or download as JSON or CSV.</p></details>
+  </section>
+</main>
+<footer>© 2026 Tailwind Logs, Inc. Prices in USD, excluding taxes.</footer>
+<script>
+  const buttons = { monthly: document.getElementById('monthly'), yearly: document.getElementById('yearly') };
+  function setPeriod(p) {
+    for (const k in buttons) buttons[k].setAttribute('aria-pressed', k === p);
+    const key = p === 'yearly' ? 'y' : 'm';
+    document.querySelectorAll('span[data-m]').forEach(el => el.textContent = el.dataset[key]);
+    document.querySelectorAll('div.note[data-m]').forEach(el => el.textContent = el.dataset[key]);
+  }
+  buttons.monthly.onclick = () => setPeriod('monthly');
+  buttons.yearly.onclick = () => setPeriod('yearly');
+</script>
+</body>
+</html>
+```

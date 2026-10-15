@@ -1,0 +1,156 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About · Tessera</title>
+<style>
+  :root {
+    --paper: #f4f1ea; --ink: #14201b; --muted: #5d6a63; --line: #d9d4c7;
+    --moss: #1f4d3a; --accent: #d9542b; --card: #fbf9f4;
+    --serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --sans: "Segoe UI", system-ui, -apple-system, Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--paper); color: var(--ink); font: 16px/1.6 var(--sans); }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; border-bottom: 1px solid var(--line); }
+  .logo { font: 700 22px var(--serif); letter-spacing: -.02em; text-decoration: none; }
+  .logo i { color: var(--accent); font-style: normal; }
+  nav ul { display: flex; gap: 28px; list-style: none; padding: 0; font-size: 14px; }
+  nav a { text-decoration: none; color: var(--muted); }
+  nav a:hover, nav a[aria-current] { color: var(--ink); }
+  .eyebrow { font: 600 12px var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+  .hero { padding: 88px 0 72px; display: grid; grid-template-columns: 1.5fr 1fr; gap: 56px; align-items: end; }
+  h1 { font: 400 clamp(38px, 6vw, 68px)/1.05 var(--serif); letter-spacing: -.03em; margin: 14px 0 0; }
+  h1 em { color: var(--moss); }
+  .hero p { color: var(--muted); font-size: 18px; border-left: 2px solid var(--accent); padding-left: 20px; }
+  section { padding: 64px 0; border-top: 1px solid var(--line); }
+  h2 { font: 400 clamp(28px, 4vw, 40px)/1.15 var(--serif); letter-spacing: -.02em; margin: 8px 0 32px; max-width: 560px; }
+  .stats { background: var(--moss); color: var(--paper); border: 0; }
+  .stats .eyebrow { color: #f0a58a; }
+  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: #ffffff26; }
+  .stat { background: var(--moss); padding: 8px 24px 8px 0; }
+  .stat + .stat { padding-left: 24px; }
+  .stat b { display: block; font: 400 clamp(36px, 5vw, 56px)/1 var(--serif); letter-spacing: -.03em; }
+  .stat span { font-size: 14px; opacity: .75; }
+  .team { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .person { background: var(--card); border: 1px solid var(--line); padding: 20px; border-radius: 4px; transition: transform .2s, border-color .2s; }
+  .person:hover { transform: translateY(-4px); border-color: var(--moss); }
+  .avatar { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; font: 400 22px var(--serif); color: var(--paper); margin-bottom: 18px; }
+  .person h3 { font: 600 17px var(--sans); }
+  .person small { display: block; color: var(--accent); font-weight: 600; margin-bottom: 10px; }
+  .person p { font-size: 14px; color: var(--muted); }
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+  .filters button { font: 500 13px var(--sans); padding: 7px 16px; border-radius: 99px; border: 1px solid var(--line); background: none; color: var(--ink); cursor: pointer; }
+  .filters button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .filters button:focus-visible, .role:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .role { display: grid; grid-template-columns: 1fr 140px 120px 24px; gap: 16px; align-items: center; padding: 20px 4px; border-top: 1px solid var(--line); text-decoration: none; transition: padding .2s, background .2s; }
+  .role:last-child { border-bottom: 1px solid var(--line); }
+  .role:hover { background: var(--card); padding-left: 16px; }
+  .role strong { font: 400 20px var(--serif); }
+  .role span { font-size: 14px; color: var(--muted); }
+  .role[hidden] { display: none; }
+  footer { padding: 40px 0 56px; color: var(--muted); font-size: 14px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; padding-top: 56px; }
+    .stat-grid, .team { grid-template-columns: repeat(2, 1fr); }
+    .stat:nth-child(3) { padding-left: 0; }
+    .role { grid-template-columns: 1fr 24px; } .role span { display: none; }
+    nav ul { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="logo" href="#">Tessera<i>.</i></a>
+    <ul><li><a href="#">Product</a></li><li><a href="#">Pricing</a></li><li><a href="#" aria-current="page">About</a></li><li><a href="#roles">Careers</a></li></ul>
+  </nav>
+  <header class="hero">
+    <div>
+      <span class="eyebrow">Our mission</span>
+      <h1>Money should move at the speed of <em>trust</em>, not paperwork.</h1>
+    </div>
+    <p>Tessera builds payment and treasury infrastructure for small businesses. We replace three-day settlement, hidden fees and opaque statements with software that explains itself.</p>
+  </header>
+</div>
+
+<section class="stats">
+  <div class="wrap">
+    <span class="eyebrow">Tessera in numbers</span>
+    <h2>Four years in, growing carefully.</h2>
+    <div class="stat-grid">
+      <div class="stat"><b data-to="48000" data-suffix="+">0</b><span>businesses on the platform</span></div>
+      <div class="stat"><b data-to="2.4" data-prefix="$" data-suffix="B" data-dec="1">0</b><span>processed in the last 12 months</span></div>
+      <div class="stat"><b data-to="99.99" data-suffix="%" data-dec="2">0</b><span>uptime since launch</span></div>
+      <div class="stat"><b data-to="112">0</b><span>people across 9 countries</span></div>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+  <section>
+    <span class="eyebrow">Leadership</span>
+    <h2>Operators who have run payments before.</h2>
+    <div class="team">
+      <article class="person"><div class="avatar" style="background:#1f4d3a">AO</div><h3>Amara Okafor</h3><small>Co-founder &amp; CEO</small><p>Ten years in card issuing at two global banks. Started Tessera after a invoice took 11 days to clear.</p></article>
+      <article class="person"><div class="avatar" style="background:#d9542b">LM</div><h3>Lukas Meyer</h3><small>Co-founder &amp; CTO</small><p>Built real-time ledgers at scale. Believes every money movement should be replayable.</p></article>
+      <article class="person"><div class="avatar" style="background:#14201b">PR</div><h3>Priya Raman</h3><small>Chief Risk Officer</small><p>Former regulator. Leads compliance, fraud and our relationships with banking partners.</p></article>
+      <article class="person"><div class="avatar" style="background:#7a6a3a">DS</div><h3>Daniel Silva</h3><small>Chief Product Officer</small><p>Designed onboarding flows for three fintechs. Obsessed with the first five minutes.</p></article>
+    </div>
+  </section>
+
+  <section id="roles">
+    <span class="eyebrow">Open roles</span>
+    <h2>Help us build the boring, reliable parts.</h2>
+    <div class="filters" role="group" aria-label="Filter roles by team">
+      <button aria-pressed="true" data-team="all">All teams</button>
+      <button aria-pressed="false" data-team="Engineering">Engineering</button>
+      <button aria-pressed="false" data-team="Risk">Risk</button>
+      <button aria-pressed="false" data-team="Design">Design</button>
+      <button aria-pressed="false" data-team="Growth">Growth</button>
+    </div>
+    <div id="list">
+      <a class="role" href="#" data-team="Engineering"><strong>Senior Backend Engineer, Ledger</strong><span>Engineering</span><span>Remote · EU</span><b>→</b></a>
+      <a class="role" href="#" data-team="Engineering"><strong>Site Reliability Engineer</strong><span>Engineering</span><span>Lisbon</span><b>→</b></a>
+      <a class="role" href="#" data-team="Risk"><strong>Fraud Analyst</strong><span>Risk</span><span>London</span><b>→</b></a>
+      <a class="role" href="#" data-team="Design"><strong>Product Designer, Onboarding</strong><span>Design</span><span>Remote · Global</span><b>→</b></a>
+      <a class="role" href="#" data-team="Growth"><strong>Partnerships Manager, Accounting</strong><span>Growth</span><span>New York</span><b>→</b></a>
+    </div>
+  </section>
+</main>
+
+<div class="wrap"><footer><span>© 2026 Tessera Financial Ltd. Authorised e-money institution.</span><span>hello@tessera.example</span></footer></div>
+
+<script>
+  const fmt = (v, d) => v.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
+  const run = el => {
+    const to = +el.dataset.to, d = +(el.dataset.dec || 0), t0 = performance.now();
+    const step = now => {
+      const p = Math.min((now - t0) / 1400, 1), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = (el.dataset.prefix || "") + fmt(to * e, d) + (el.dataset.suffix || "");
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const io = new IntersectionObserver(es => es.forEach(x => {
+    if (!x.isIntersecting) return;
+    reduce ? (x.target.textContent = (x.target.dataset.prefix || "") + fmt(+x.target.dataset.to, +(x.target.dataset.dec || 0)) + (x.target.dataset.suffix || "")) : run(x.target);
+    io.unobserve(x.target);
+  }), { threshold: .6 });
+  document.querySelectorAll("[data-to]").forEach(el => io.observe(el));
+
+  const btns = document.querySelectorAll(".filters button");
+  btns.forEach(b => b.addEventListener("click", () => {
+    btns.forEach(o => o.setAttribute("aria-pressed", o === b));
+    document.querySelectorAll(".role").forEach(r => r.hidden = b.dataset.team !== "all" && r.dataset.team !== b.dataset.team);
+  }));
+</script>
+</body>
+</html>
+```

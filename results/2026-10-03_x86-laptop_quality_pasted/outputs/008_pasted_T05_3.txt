@@ -1,0 +1,166 @@
+```html
+<!doctype html>
+<!-- Design Read: product page for keyboard enthusiasts, calm premium-consumer language, native CSS + vanilla JS. Dials 6/4/3. Spec values and reviews are sample data. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Halden 75 Mechanical Keyboard</title>
+<style>
+:root{--bg:#eef0f2;--surface:#e3e6e9;--text:#16191d;--muted:#4a525b;--line:#c5cad0;--accent:#0b6b4f;--on-accent:#f4f7f5;--r:12px;
+  --ease:cubic-bezier(.16,1,.3,1)}
+@media (prefers-color-scheme:dark){:root{--bg:#121417;--surface:#1b1e22;--text:#e8ebee;--muted:#a3abb4;--line:#2d3238;--accent:#3ddc9a;--on-accent:#06150f}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--text);font:16px/1.6 "Geist","Satoshi",system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+nav{height:64px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+nav b{font-size:1.1rem;letter-spacing:-.02em}
+nav div{display:flex;gap:28px;font-size:.95rem;color:var(--muted)}
+nav a{text-decoration:none}nav a:hover{color:var(--text)}
+.hero{min-height:calc(100dvh - 64px);display:grid;grid-template-columns:1.25fr 1fr;gap:56px;align-items:center;padding:24px 0 48px}
+.stage{aspect-ratio:4/3;width:100%;object-fit:cover;border-radius:var(--r);background:var(--surface);display:block;transition:opacity .35s var(--ease)}
+.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px}
+.thumbs button{padding:0;border:2px solid transparent;border-radius:var(--r);overflow:hidden;cursor:pointer;background:var(--surface);transition:transform .3s var(--ease)}
+.thumbs button:hover{transform:translateY(-2px)}
+.thumbs button[aria-current=true]{border-color:var(--accent)}
+.thumbs img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.16em;color:var(--accent);font-weight:600}
+h1{font-size:clamp(2.4rem,4.6vw,4rem);letter-spacing:-.04em;line-height:1;margin:12px 0 16px}
+.lede{color:var(--muted);max-width:42ch}
+.price{font-size:1.6rem;font-weight:600;margin:24px 0 8px;letter-spacing:-.02em}
+fieldset{border:0;padding:0;margin:20px 0}
+legend{font-size:.9rem;color:var(--muted);margin-bottom:8px}
+.opts{display:flex;gap:10px;flex-wrap:wrap}
+.opts label{cursor:pointer}
+.opts input{position:absolute;opacity:0}
+.opts span{display:block;padding:10px 16px;border:1px solid var(--line);border-radius:var(--r);transition:border-color .2s,background .2s}
+.opts input:checked+span{border-color:var(--accent);background:var(--surface);font-weight:600}
+.opts input:focus-visible+span,.buy:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.buy{width:100%;padding:16px 24px;border:0;border-radius:var(--r);background:var(--accent);color:var(--on-accent);font:600 1.05rem inherit;font-family:inherit;cursor:pointer;transition:transform .2s var(--ease)}
+.buy:hover{transform:translateY(-2px)}.buy:active{transform:scale(.98)}
+.note{font-size:.9rem;color:var(--muted);margin-top:10px;min-height:1.4em}
+section{padding:96px 0}
+h2{font-size:clamp(1.8rem,3vw,2.6rem);letter-spacing:-.03em;line-height:1.1;margin-bottom:12px}
+.specs{display:grid;grid-template-columns:2fr 1fr 1fr;gap:16px;margin-top:40px}
+.tile{background:var(--surface);border-radius:var(--r);padding:28px;display:flex;flex-direction:column;justify-content:flex-end;min-height:190px}
+.tile.photo{background:center/cover url(https://picsum.photos/seed/halden-keycaps-macro/900/500);color:#f4f6f7;position:relative;isolation:isolate}
+.tile.photo::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(transparent 20%,rgba(10,12,14,.82));z-index:-1}
+.tile.accent{background:var(--accent);color:var(--on-accent)}
+.tile big{font-size:2.4rem;font-weight:600;letter-spacing:-.03em;line-height:1.1}
+.tile small{font-size:.95rem;opacity:.85;margin-top:4px}
+.more{margin-top:16px;border:1px solid var(--line);border-radius:var(--r);padding:16px 24px}
+.more summary{cursor:pointer;font-weight:600}
+.more dl{display:grid;grid-template-columns:repeat(2,1fr);gap:12px 40px;margin-top:16px}
+.more dt{color:var(--muted);font-size:.9rem}.more dd{font-weight:500}
+.reviews{display:grid;grid-template-columns:1fr 1.6fr;gap:64px;align-items:start}
+.score{font-size:5rem;font-weight:600;letter-spacing:-.05em;line-height:1}
+.stars{color:var(--accent);letter-spacing:.15em;font-size:1.1rem}
+.quotes{display:grid;gap:36px}
+blockquote{font-size:1.15rem;line-height:1.55;max-width:56ch}
+cite{display:block;font-style:normal;color:var(--muted);font-size:.92rem;margin-top:10px}
+cite b{color:var(--text)}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:.9rem}
+@media (max-width:767px){
+  nav div{display:none}
+  .hero,.reviews,.specs{grid-template-columns:1fr}
+  .hero{gap:28px;min-height:0}.reviews{gap:32px}
+  section{padding:64px 0}.more dl{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav><b>Halden</b><div><a href="#specs">Specifications</a><a href="#reviews">Reviews</a></div></nav>
+  <header class="hero">
+    <div>
+      <img id="stage" class="stage" src="https://picsum.photos/seed/halden-75-keyboard-desk/1200/900" alt="Halden 75 keyboard on a desk" width="1200" height="900" fetchpriority="high">
+      <div class="thumbs" id="thumbs"></div>
+    </div>
+    <div>
+      <p class="eyebrow">75% hot-swap board</p>
+      <h1>Halden 75</h1>
+      <p class="lede">A gasket-mounted aluminum keyboard that sounds deep, types smoothly and opens with one tool.</p>
+      <p class="price">$189</p>
+      <fieldset>
+        <legend>Switch type</legend>
+        <div class="opts">
+          <label><input type="radio" name="sw" value="Linear" checked><span>Linear</span></label>
+          <label><input type="radio" name="sw" value="Tactile"><span>Tactile</span></label>
+          <label><input type="radio" name="sw" value="Silent"><span>Silent</span></label>
+        </div>
+      </fieldset>
+      <button class="buy" id="buy" type="button">Add to cart</button>
+      <p class="note" id="note" role="status"></p>
+    </div>
+  </header>
+
+  <section id="specs">
+    <h2 class="reveal">Built to be opened up</h2>
+    <p class="reveal" style="color:var(--muted);max-width:60ch">The numbers that matter most, with the full list below.</p>
+    <div class="specs">
+      <div class="tile photo reveal"><big>PBT double-shot</big><small>Cherry profile keycaps, 1.5 mm thick</small></div>
+      <div class="tile accent reveal"><big>Gasket</big><small>Silicone strips isolate the plate</small></div>
+      <div class="tile reveal"><big>3 modes</big><small>USB-C, Bluetooth and 2.4 GHz</small></div>
+    </div>
+    <details class="more reveal">
+      <summary>View full specifications</summary>
+      <dl>
+        <dt>Case</dt><dd>CNC anodized aluminum</dd>
+        <dt>Layout</dt><dd>75%, 82 keys, ANSI</dd>
+        <dt>Plate</dt><dd>Polycarbonate</dd>
+        <dt>Sockets</dt><dd>Hot-swap, 5-pin and 3-pin</dd>
+        <dt>Battery</dt><dd>4000 mAh</dd>
+        <dt>Firmware</dt><dd>QMK and VIA compatible</dd>
+      </dl>
+    </details>
+  </section>
+
+  <section id="reviews" class="reviews">
+    <div class="reveal">
+      <h2>What owners say</h2>
+      <p class="score">4.7</p>
+      <p class="stars" aria-label="4.7 out of 5 stars">★★★★★</p>
+      <p style="color:var(--muted)">Based on 312 sample reviews</p>
+    </div>
+    <div class="quotes">
+      <blockquote class="reveal">“The typing sound is the first thing I noticed. Full, low and no rattle in the spacebar. It replaced my old board the same day.”<cite><b>Mateo Okafor</b>, backend engineer</cite></blockquote>
+      <blockquote class="reveal">“Swapping switches took ten minutes with the included puller. Bluetooth reconnects quickly between my laptop and tablet.”<cite><b>Priya Venkataraman</b>, technical writer</cite></blockquote>
+      <blockquote class="reveal">“Heavier than I expected, which I like. It stays put on the desk. Battery lasts me about three weeks.”<cite><b>Lena Brandt</b>, illustrator</cite></blockquote>
+    </div>
+  </section>
+</div>
+<footer><div class="wrap">Halden Keyboards. Free returns within 30 days.</div></footer>
+<script>
+const shots=["halden-75-keyboard-desk","halden-keyboard-side-profile","halden-keyboard-pcb-inside","halden-keyboard-keycaps-close"];
+const stage=document.getElementById("stage"),thumbs=document.getElementById("thumbs");
+const src=(s,w,h)=>`https://picsum.photos/seed/${s}/${w}/${h}`;
+shots.forEach((s,i)=>{
+  const b=document.createElement("button");
+  b.type="button";b.setAttribute("aria-label","Show photo "+(i+1));
+  if(!i)b.setAttribute("aria-current","true");
+  b.innerHTML=`<img src="${src(s,300,225)}" alt="" loading="lazy" width="300" height="225">`;
+  b.onclick=()=>{
+    thumbs.querySelectorAll("button").forEach(x=>x.removeAttribute("aria-current"));
+    b.setAttribute("aria-current","true");
+    stage.style.opacity=0;
+    setTimeout(()=>{stage.src=src(s,1200,900);stage.alt="Halden 75 photo "+(i+1)},180);
+    stage.onload=()=>stage.style.opacity=1;
+  };
+  thumbs.appendChild(b);
+});
+const buy=document.getElementById("buy"),note=document.getElementById("note");
+buy.onclick=()=>{
+  const sw=document.querySelector("input[name=sw]:checked").value;
+  buy.disabled=true;buy.textContent="Adding...";
+  setTimeout(()=>{buy.disabled=false;buy.textContent="Add to cart";note.textContent=`Halden 75 with ${sw} switches added to your cart.`},700);
+};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.2});
+document.querySelectorAll(".reveal").forEach((el,i)=>{el.style.transitionDelay=(i%3)*70+"ms";io.observe(el)});
+</script>
+</body>
+</html>
+```

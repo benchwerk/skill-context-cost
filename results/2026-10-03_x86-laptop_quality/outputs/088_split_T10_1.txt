@@ -1,0 +1,151 @@
+```html
+<!-- Design Read: event landing for working designers, editorial/brutalist-lite language, native CSS, system type, restrained motion. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OFFSET 26 — Two days of design, Lisbon</title>
+<style>
+:root{--paper:#eee9de;--ink:#15130f;--mute:#6b665b;--hot:#ff4a1c;--line:#15130f22;
+--serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+--mono:ui-monospace,"SF Mono","Cascadia Mono",Consolas,monospace}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font:1.0625rem/1.55 var(--serif)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--hot);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(1rem,4vw,3rem)}
+.mono{font:.78rem/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+nav{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 0}
+nav ul{display:flex;gap:1.5rem;list-style:none;padding:0}
+nav a{text-decoration:none}nav a:hover{color:var(--hot)}
+.btn{display:inline-block;background:var(--ink);color:var(--paper);padding:.9rem 1.4rem;border:0;font:inherit;
+font-family:var(--mono);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;cursor:pointer;
+transition:transform .2s,background .2s}
+.btn:hover{background:var(--hot);transform:translate(-3px,-3px);box-shadow:3px 3px 0 var(--ink)}
+.hero{min-height:calc(100dvh - 4.5rem);display:grid;grid-template-columns:repeat(12,1fr);align-content:end;gap:1.5rem;padding-bottom:3rem}
+.hero h1{grid-column:1/-1;font-size:clamp(5rem,23vw,21rem);line-height:.78;letter-spacing:-.06em;font-weight:400;margin-left:-.05em}
+.hero h1 i{color:var(--hot);font-style:normal}
+.hero .meta{grid-column:1/6;border-top:2px solid var(--ink);padding-top:.8rem}
+.hero .lede{grid-column:8/-1;font-size:1.35rem;line-height:1.35}
+.hero .lede p{margin-bottom:1.25rem}
+.tape{background:var(--hot);color:var(--ink);overflow:hidden;white-space:nowrap;border-block:2px solid var(--ink);padding:.7rem 0}
+.tape span{display:inline-block;animation:run 28s linear infinite}
+@keyframes run{to{transform:translateX(-50%)}}
+section{padding:clamp(4rem,10vw,8rem) 0}
+h2{font-size:clamp(2.4rem,6vw,5rem);line-height:.95;letter-spacing:-.04em;font-weight:400;margin-bottom:2.5rem}
+h2 small{display:block;color:var(--hot);margin-bottom:.8rem}
+.speakers{display:grid;grid-template-columns:repeat(12,1fr);gap:2rem 1.5rem}
+.sp{grid-column:span 4}
+.sp:nth-child(2){grid-column:6/span 3;margin-top:5rem}
+.sp:nth-child(3){grid-column:10/span 3}
+.sp:nth-child(4){grid-column:2/span 4;margin-top:-2rem}
+.sp:nth-child(5){grid-column:7/span 3;margin-top:3rem}
+.sp:nth-child(6){grid-column:10/span 3;margin-top:-1rem}
+.ph{aspect-ratio:4/5;display:grid;place-items:center;font-size:6rem;letter-spacing:-.06em;margin-bottom:.8rem;transition:transform .3s}
+.sp:hover .ph{transform:rotate(-2deg) scale(1.02)}
+.sp h3{font-size:1.4rem;font-weight:400;line-height:1.1}.sp p{color:var(--mute);font-size:.95rem}
+.tabs{display:flex;gap:.5rem;margin-bottom:1.5rem}
+.tabs button{font:inherit;font-family:var(--mono);font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;background:none;
+border:2px solid var(--ink);padding:.7rem 1.2rem;cursor:pointer;color:var(--ink)}
+.tabs button[aria-selected=true]{background:var(--ink);color:var(--paper)}
+.row{display:grid;grid-template-columns:7rem 1fr auto;gap:1rem;align-items:baseline;padding:1.1rem 0;border-top:1px solid var(--line)}
+.row:last-child{border-bottom:1px solid var(--line)}
+.row b{font-weight:400;font-size:1.35rem;line-height:1.2}.row em{color:var(--mute)}
+.row .mono:first-child{color:var(--hot)}
+.venue{display:grid;grid-template-columns:5fr 7fr;gap:3rem;align-items:start}
+.venue dl{display:grid;grid-template-columns:7rem 1fr;gap:.9rem 1rem;border-top:2px solid var(--ink);padding-top:1.2rem}
+.venue dt{color:var(--mute)}
+.plan{background:var(--ink);color:var(--paper);min-height:380px;padding:1.5rem;display:grid;grid-template:1fr 1fr/2fr 1fr;gap:6px}
+.plan div{border:1px solid #eee9de55;padding:.8rem;display:flex;align-items:flex-end}
+.plan div:first-child{grid-row:span 2;background:var(--hot);color:var(--ink);border-color:var(--hot);font-size:2rem;line-height:1}
+.tix{display:grid;gap:0;border-top:2px solid var(--ink)}
+.tix label{display:grid;grid-template-columns:1fr auto;gap:.5rem 2rem;padding:1.6rem 1rem;border-bottom:1px solid var(--line);cursor:pointer;
+transition:background .2s,padding .25s}
+.tix label:hover{background:#15130f0d}
+.tix input{position:absolute;opacity:0}
+.tix label:has(input:checked){background:var(--ink);color:var(--paper);padding-left:2rem}
+.tix label:has(input:focus-visible){outline:3px solid var(--hot);outline-offset:-3px}
+.tix strong{font-weight:400;font-size:clamp(1.6rem,3.5vw,2.8rem);letter-spacing:-.03em;line-height:1}
+.tix .price{font-size:clamp(1.6rem,3.5vw,2.8rem);letter-spacing:-.03em;grid-row:span 2;align-self:center}
+.tix span{opacity:.7}
+.buy{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:1.5rem}
+footer{border-top:2px solid var(--ink);padding:2rem 0 3rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}.rv.in{opacity:1;transform:none}
+@media(max-width:800px){
+.hero .meta,.hero .lede{grid-column:1/-1}nav ul{display:none}
+.sp,.sp:nth-child(n){grid-column:span 6;margin-top:0}.ph{font-size:4rem}
+.venue{grid-template-columns:1fr}.row{grid-template-columns:4.5rem 1fr}.row .mono:last-child{grid-column:2}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <nav class="mono"><a href="#top"><b>Offset/26</b></a>
+    <ul><li><a href="#speakers">Speakers</a></li><li><a href="#schedule">Schedule</a></li><li><a href="#venue">Venue</a></li></ul>
+    <a href="#tickets">Tickets →</a></nav>
+</header>
+<main id="top">
+  <div class="wrap hero">
+    <h1>Off<i>set</i></h1>
+    <div class="meta mono">19–20 November 2026<br>Armazém 14, Lisbon<br>700 designers, 2 days, 1 stage</div>
+    <div class="lede"><p>A conference for people who make interfaces, identities and objects, about the craft that happens a few pixels off the grid.</p>
+      <a class="btn" href="#tickets">Get a ticket</a></div>
+  </div>
+  <div class="tape mono" aria-hidden="true"><span>Type · Systems · Motion · Print · Craft · Critique · Type · Systems · Motion · Print · Craft · Critique · Type · Systems · Motion · Print · Craft · Critique · Type · Systems · Motion · Print · Craft · Critique ·&nbsp;</span></div>
+
+  <section id="speakers"><div class="wrap">
+    <h2 class="rv"><small class="mono">01 / Speakers</small>Six people<br>worth the flight.</h2>
+    <div class="speakers" id="spk"></div>
+  </div></section>
+
+  <section id="schedule" style="background:#e3dccb"><div class="wrap">
+    <h2 class="rv"><small class="mono">02 / Schedule</small>Two days,<br>no filler.</h2>
+    <div class="tabs" role="tablist" aria-label="Conference day">
+      <button role="tab" aria-selected="true" data-d="0">Day 1 · Thu</button>
+      <button role="tab" aria-selected="false" data-d="1">Day 2 · Fri</button></div>
+    <div id="sch" role="tabpanel"></div>
+  </div></section>
+
+  <section id="venue"><div class="wrap">
+    <h2 class="rv"><small class="mono">03 / Venue</small>A former<br>textile warehouse.</h2>
+    <div class="venue rv">
+      <dl><dt class="mono">Address</dt><dd>Rua do Açúcar 14, 1950-006 Lisbon</dd>
+        <dt class="mono">Getting in</dt><dd>Metro Santa Apolónia, 6 minutes on foot. Tram 28 stops at the corner.</dd>
+        <dt class="mono">Access</dt><dd>Step-free throughout, live captions on stage, a quiet room on level 1.</dd>
+        <dt class="mono">Doors</dt><dd>08:30 both days. Coffee is on us.</dd></dl>
+      <div class="plan mono" role="img" aria-label="Simplified floor plan: main stage, workshop room and cafe"><div>Main stage<br>600 seats</div><div>Workshops</div><div>Café + expo</div></div>
+    </div>
+  </div></section>
+
+  <section id="tickets" style="background:#e3dccb"><div class="wrap">
+    <h2 class="rv"><small class="mono">04 / Tickets</small>Pick your<br>seat.</h2>
+    <form class="tix rv" id="form">
+      <label><input type="radio" name="t" value="Student" data-p="120"><strong>Student</strong><span class="price">€120</span><span>Both days. Valid ID required. Limited to 80.</span></label>
+      <label><input type="radio" name="t" value="Full pass" data-p="390" checked><strong>Full pass</strong><span class="price">€390</span><span>Both days, lunch, the Thursday night party and recordings.</span></label>
+      <label><input type="radio" name="t" value="Studio (5)" data-p="1500"><strong>Studio ×5</strong><span class="price">€1,500</span><span>Five full passes for your team, plus a private critique hour.</span></label>
+      <div class="buy"><p class="mono" id="sum"></p><button class="btn" type="submit">Reserve</button></div>
+    </form>
+  </div></section>
+</main>
+<footer class="wrap mono"><span>Offset/26 — Lisbon</span><a href="mailto:hello@offset.example">hello@offset.example</a><span>Code of conduct · Privacy</span></footer>
+<script>
+const S=[["Mara Okonkwo","Type designer, Lagos","MO","#ff4a1c"],["Jonas Ek","Head of design systems, Malmö","JE","#15130f;color:#eee9de"],["Inês Valadas","Motion director, Lisbon","IV","#d9c9a3"],
+["Takumi Aoki","Industrial designer, Osaka","TA","#b9c4a8"],["Priya Raman","Research lead, Bengaluru","PR","#ff4a1c"],["Luca Ferrante","Editorial art director, Milan","LF","#c9b7d6"]];
+spk.innerHTML=S.map(s=>`<article class="sp rv"><div class="ph" style="background:${s[3]}">${s[2]}</div><h3>${s[0]}</h3><p>${s[1]}</p></article>`).join("");
+const D=[[["09:30","Opening: the case for imperfection","Mara Okonkwo"],["11:00","Tokens are not a design system","Jonas Ek"],["13:30","Lunch and expo",""],["14:30","Workshop: ten frames, one idea","Inês Valadas"],["17:00","Panel: who owns the grid?","All speakers"]],
+[["09:30","Making things you can hold","Takumi Aoki"],["11:00","Research that changes the roadmap","Priya Raman"],["13:30","Lunch and expo",""],["14:30","Editorial rhythm on screens","Luca Ferrante"],["16:30","Open critique and closing","Everyone"]]];
+const draw=i=>sch.innerHTML=D[i].map(r=>`<div class="row"><span class="mono">${r[0]}</span><b>${r[1]}</b><span class="mono"><em>${r[2]}</em></span></div>`).join("");
+draw(0);
+document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll(".tabs button").forEach(x=>x.setAttribute("aria-selected",x===b));draw(+b.dataset.d)});
+const upd=()=>{const t=document.querySelector("input[name=t]:checked");sum.textContent=`${t.value} · €${(+t.dataset.p).toLocaleString("en")}`};
+form.onchange=upd;upd();
+form.onsubmit=e=>{e.preventDefault();sum.textContent="Reserved: check your inbox ("+sum.textContent+")"};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
+```

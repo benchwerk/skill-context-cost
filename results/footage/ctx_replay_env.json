@@ -1,0 +1,60 @@
+{
+ "what": "real output of Claude Code /context in print mode, replayed in a drawn terminal window (decision 2026-10-03)",
+ "changed": "first line of each recording dropped (printed by the wrapper); clock rebased to the first output line; nothing else",
+ "shots": [
+  {
+   "cmd": 0,
+   "config": "C0",
+   "model": "claude-sonnet-5-5[1m]",
+   "skills_in_project": 0,
+   "recorded": "2026-10-03T15:01:03+02:00",
+   "source": "ctx_C0.jsonl",
+   "source_sha256": "7428934fec30665099e3bf15b4169df53576aed0c18c8680ababa64e543dcf6e"
+  },
+  {
+   "cmd": 1,
+   "config": "C10",
+   "model": "claude-sonnet-5-5[1m]",
+   "skills_in_project": 10,
+   "recorded": "2026-10-03T15:01:05+02:00",
+   "source": "ctx_C10.jsonl",
+   "source_sha256": "1a222a1cdd7fcd56423db6cfd03894897b9431f7b67ea9aac835ec75ff4b0579"
+  },
+  {
+   "cmd": 2,
+   "config": "C50",
+   "model": "claude-sonnet-5-5[1m]",
+   "skills_in_project": 50,
+   "recorded": "2026-10-03T15:01:08+02:00",
+   "source": "ctx_C50.jsonl",
+   "source_sha256": "0d92ac70f506758c31034fc5405c3631ea4af2f9f085147786ad8233e3bdaab7"
+  },
+  {
+   "cmd": 3,
+   "config": "C100",
+   "model": "claude-sonnet-5-5[1m]",
+   "skills_in_project": 100,
+   "recorded": "2026-10-03T15:01:11+02:00",
+   "source": "ctx_C100.jsonl",
+   "source_sha256": "305855bcf1a9901c54b47edf73813f24015492b27eff6aecc690fd469e448bbe"
+  },
+  {
+   "cmd": 4,
+   "config": "C50-disable",
+   "model": "claude-sonnet-5-5[1m]",
+   "skills_in_project": 50,
+   "recorded": "2026-10-03T15:01:13+02:00",
+   "source": "ctx_C50-disable.jsonl",
+   "source_sha256": "8e5b3b59d48b87eac909c5e5f27602af5605e3720f0477f9078f18f4de1f4325"
+  },
+  {
+   "cmd": 5,
+   "config": "C100",
+   "model": "claude-haiku-4-5-20251001",
+   "skills_in_project": 100,
+   "recorded": "2026-10-03T15:01:17+02:00",
+   "source": "ctx_C100_haiku.jsonl",
+   "source_sha256": "405d7a87df32072109e17de3f1cbb296342cdf70dea9e96dd56f796b8acf2a79"
+  }
+ ]
+}

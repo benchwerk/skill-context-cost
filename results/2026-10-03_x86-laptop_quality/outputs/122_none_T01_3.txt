@@ -1,0 +1,131 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Barro Azul — Ceramics Studio, Lisbon</title>
+<meta name="description" content="Handmade ceramics and pottery workshops in Alfama, Lisbon.">
+<style>
+  :root {
+    --clay: #b5573a;
+    --clay-dark: #8c3f27;
+    --sand: #f5ede2;
+    --cream: #fffaf3;
+    --ink: #2b2420;
+    --blue: #2f5d7c;
+    --muted: #6f625a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, "Times New Roman", serif; color: var(--ink); background: var(--cream); line-height: 1.6; }
+  h1, h2, h3 { font-weight: normal; line-height: 1.2; }
+  a { color: inherit; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 80px 0; }
+  h2 { font-size: 2rem; text-align: center; margin-bottom: 8px; }
+  .sub { text-align: center; color: var(--muted); margin-bottom: 48px; font-style: italic; }
+  nav { position: sticky; top: 0; z-index: 10; background: rgba(255,250,243,.92); backdrop-filter: blur(6px); border-bottom: 1px solid #e8dccb; }
+  nav .wrap { display: flex; justify-content: space-between; align-items: center; height: 64px; }
+  .logo { font-size: 1.3rem; letter-spacing: .08em; text-decoration: none; color: var(--clay-dark); }
+  nav ul { display: flex; gap: 28px; list-style: none; font-family: system-ui, sans-serif; font-size: .9rem; }
+  nav ul a { text-decoration: none; color: var(--muted); }
+  nav ul a:hover { color: var(--clay); }
+  .hero { background: linear-gradient(160deg, var(--sand) 0%, #ecd5bd 100%); padding: 110px 0; text-align: center; position: relative; overflow: hidden; }
+  .hero::before, .hero::after { content: ""; position: absolute; border-radius: 50%; background: var(--clay); opacity: .1; }
+  .hero::before { width: 360px; height: 360px; left: -120px; top: -100px; }
+  .hero::after { width: 260px; height: 260px; right: -70px; bottom: -90px; background: var(--blue); }
+  .hero .wrap { position: relative; z-index: 1; }
+  .eyebrow { font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: .2em; font-size: .75rem; color: var(--clay-dark); margin-bottom: 20px; }
+  .hero h1 { font-size: clamp(2.4rem, 6vw, 4.2rem); max-width: 760px; margin: 0 auto 20px; }
+  .hero p { max-width: 520px; margin: 0 auto 36px; color: var(--muted); font-size: 1.1rem; }
+  .btn { display: inline-block; font-family: system-ui, sans-serif; background: var(--clay); color: #fff; padding: 14px 32px; border-radius: 999px; text-decoration: none; font-size: .95rem; transition: background .2s, transform .2s; }
+  .btn:hover { background: var(--clay-dark); transform: translateY(-2px); }
+  .btn.ghost { background: transparent; color: var(--clay-dark); border: 1px solid var(--clay); margin-left: 8px; }
+  .btn.ghost:hover { background: var(--clay); color: #fff; }
+  .grid { display: grid; gap: 28px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+  .item { text-align: center; }
+  .swatch { aspect-ratio: 1; border-radius: 50% 50% 46% 46% / 40% 40% 60% 60%; margin-bottom: 18px; box-shadow: inset -12px -14px 30px rgba(0,0,0,.15); transition: transform .3s; }
+  .item:hover .swatch { transform: rotate(-3deg) scale(1.03); }
+  .item h3 { font-size: 1.25rem; margin-bottom: 4px; }
+  .item p { color: var(--muted); font-size: .95rem; }
+  .quotes { background: var(--sand); }
+  blockquote { background: var(--cream); padding: 32px 28px; border-radius: 12px; border-top: 4px solid var(--clay); }
+  blockquote p { font-style: italic; margin-bottom: 16px; }
+  blockquote cite { font-style: normal; font-family: system-ui, sans-serif; font-size: .85rem; color: var(--muted); }
+  .prices { display: grid; gap: 28px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .card { border: 1px solid #e3d5c1; border-radius: 14px; padding: 36px 28px; text-align: center; background: #fff; }
+  .card.featured { border-color: var(--clay); box-shadow: 0 12px 30px rgba(181,87,58,.18); position: relative; }
+  .card.featured::before { content: "Most popular"; position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--clay); color: #fff; font: .72rem system-ui, sans-serif; padding: 4px 14px; border-radius: 999px; }
+  .price { font-size: 2.6rem; color: var(--clay-dark); margin: 12px 0; }
+  .price small { font-size: 1rem; color: var(--muted); }
+  .card ul { list-style: none; font-family: system-ui, sans-serif; font-size: .9rem; color: var(--muted); margin-bottom: 28px; }
+  .card li { padding: 6px 0; border-bottom: 1px dashed #eadfce; }
+  .note { text-align: center; margin-top: 28px; color: var(--muted); font-size: .9rem; }
+  footer { background: var(--ink); color: #d8cbbd; padding: 56px 0 28px; font-family: system-ui, sans-serif; font-size: .9rem; }
+  footer .cols { display: grid; gap: 32px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-bottom: 36px; }
+  footer h4 { color: #fff; font-family: Georgia, serif; font-weight: normal; font-size: 1.1rem; margin-bottom: 10px; }
+  footer a { text-decoration: none; }
+  footer a:hover { color: #fff; }
+  .copy { border-top: 1px solid #4a3f38; padding-top: 20px; text-align: center; font-size: .8rem; color: #9b8d80; }
+  @media (max-width: 640px) { nav ul { display: none; } section { padding: 56px 0; } .btn.ghost { margin: 12px 0 0; } }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="logo" href="#top">BARRO AZUL</a>
+  <ul><li><a href="#make">What we make</a></li><li><a href="#words">Kind words</a></li><li><a href="#workshops">Workshops</a></li><li><a href="#visit">Visit</a></li></ul>
+</div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+  <p class="eyebrow">Ceramics studio · Alfama, Lisbon</p>
+  <h1>Hand-thrown pottery, shaped by Lisbon light</h1>
+  <p>Small-batch tableware and sculptural pieces, glazed in the blues and ochres of the Tagus.</p>
+  <a class="btn" href="#workshops">Book a workshop</a><a class="btn ghost" href="#make">See the work</a>
+</div></header>
+
+<section id="make"><div class="wrap">
+  <h2>What we make</h2>
+  <p class="sub">Everything is thrown, trimmed and glazed in our studio.</p>
+  <div class="grid">
+    <div class="item"><div class="swatch" style="background:radial-gradient(circle at 35% 30%,#4d86a8,#2f5d7c)"></div><h3>Tableware</h3><p>Bowls, plates and mugs made for daily use. From €18.</p></div>
+    <div class="item"><div class="swatch" style="background:radial-gradient(circle at 35% 30%,#d98562,#b5573a)"></div><h3>Vases &amp; planters</h3><p>Terracotta forms with matte, mineral glazes. From €35.</p></div>
+    <div class="item"><div class="swatch" style="background:radial-gradient(circle at 35% 30%,#f2e6cf,#cdb48d)"></div><h3>Azulejo-inspired tiles</h3><p>Hand-painted tiles, single or in custom sets. From €22.</p></div>
+    <div class="item"><div class="swatch" style="background:radial-gradient(circle at 35% 30%,#8a9a74,#5b6b4c)"></div><h3>Commissions</h3><p>Dinner sets and restaurant ware, made to order.</p></div>
+  </div>
+</div></section>
+
+<section class="quotes" id="words"><div class="wrap">
+  <h2>Kind words</h2>
+  <p class="sub">From people who got clay on their hands.</p>
+  <div class="grid">
+    <blockquote><p>“I had never touched a wheel and left with a bowl I actually use every morning. Marta is endlessly patient.”</p><cite>— Sophie L., visiting from Lyon</cite></blockquote>
+    <blockquote><p>“The glazes are unlike anything else in the city. Our whole dinner set came from Barro Azul and guests always ask.”</p><cite>— João P., Lisbon</cite></blockquote>
+    <blockquote><p>“We booked the couples class for our anniversary. Messy, funny and a lovely memento to take home.”</p><cite>— Aisha &amp; Tom, London</cite></blockquote>
+  </div>
+</div></section>
+
+<section id="workshops"><div class="wrap">
+  <h2>Workshop pricing</h2>
+  <p class="sub">All materials, firing and glazing included. No experience needed.</p>
+  <div class="prices">
+    <div class="card"><h3>Taster</h3><div class="price">€45</div><ul><li>2 hours</li><li>Wheel introduction</li><li>1 piece to keep</li></ul><a class="btn" href="#visit">Reserve</a></div>
+    <div class="card featured"><h3>Weekend Wheel</h3><div class="price">€120</div><ul><li>2 × 3 hours</li><li>Throwing &amp; trimming</li><li>3 glazed pieces to keep</li></ul><a class="btn" href="#visit">Reserve</a></div>
+    <div class="card"><h3>Six-Week Course</h3><div class="price">€290</div><ul><li>6 × 2.5 hours</li><li>Small group of 6</li><li>Open studio access</li></ul><a class="btn" href="#visit">Reserve</a></div>
+  </div>
+  <p class="note">Private groups and team events: <a href="mailto:ola@barroazul.example">ask for a quote</a>.</p>
+</div></section>
+
+<footer id="visit"><div class="wrap">
+  <div class="cols">
+    <div><h4>Barro Azul</h4><p>Ceramics studio &amp; workshops<br>Rua das Escolas Gerais 24, Alfama<br>1100-213 Lisboa</p></div>
+    <div><h4>Opening hours</h4><p>Wed–Fri 11:00–18:00<br>Sat 10:00–17:00<br>Sun–Tue by booking</p></div>
+    <div><h4>Say olá</h4><p><a href="mailto:ola@barroazul.example">ola@barroazul.example</a><br>+351 21 000 0000<br><a href="#top">Instagram</a> · <a href="#top">Pinterest</a></p></div>
+  </div>
+  <p class="copy">© <span id="yr">2026</span> Barro Azul Cerâmica, Lda. Made by hand in Lisbon.</p>
+</div></footer>
+<script>document.getElementById("yr").textContent = new Date().getFullYear();</script>
+</body>
+</html>
+```

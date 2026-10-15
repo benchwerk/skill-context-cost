@@ -1,0 +1,166 @@
+```html
+<!DOCTYPE html>
+<!-- Design read: mobile-first onboarding flow for new language learners, calm and friendly language, native CSS + vanilla JS (no design system). Dials: VARIANCE 4, MOTION 4, DENSITY 3. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Parlo | Create your account</title>
+<style>
+  :root {
+    --bg: #f3f4f2; --surface: #fafaf8; --text: #1f2421; --muted: #565d58; --line: #c9cec9;
+    --accent: #b83c0b; --on-accent: #fff8f3; --tint: #f6e3d9; --error: #a31d1d;
+    --r: 14px; --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #151816; --surface: #1d211f; --text: #e9ece9; --muted: #a2aaa4; --line: #3a413d;
+      --accent: #f08a54; --on-accent: #1c1008; --tint: #34261f; --error: #ff9a9a; }
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { min-height: 100dvh; background: var(--bg); color: var(--text); display: grid; justify-items: center;
+    font: 16px/1.5 "Avenir Next", "Segoe UI Variable", system-ui, sans-serif; }
+  main { width: 100%; max-width: 440px; padding: 20px 20px 32px; display: flex; flex-direction: column; gap: 20px; }
+  .top { display: flex; align-items: center; justify-content: space-between; }
+  .brand { font-weight: 800; font-size: 1.25rem; letter-spacing: -0.03em; }
+  .back { background: none; border: 0; color: var(--muted); font: inherit; padding: 8px 4px; cursor: pointer; }
+  .back[hidden] { display: none; }
+  ol { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  ol li { font-size: 0.8125rem; color: var(--muted); border-top: 4px solid var(--line); padding-top: 6px; transition: border-color .3s; }
+  ol li.on { border-color: var(--accent); color: var(--text); font-weight: 600; }
+  .photo { width: 100%; height: 132px; object-fit: cover; border-radius: var(--r); display: block; }
+  h1 { font-size: 1.875rem; line-height: 1.1; letter-spacing: -0.035em; padding-bottom: 4px; }
+  .lead { color: var(--muted); max-width: 34ch; margin-top: 8px; }
+  form { display: flex; flex-direction: column; gap: 20px; }
+  .panel { display: flex; flex-direction: column; gap: 16px; }
+  .panel:not([hidden]) { animation: in .45s var(--ease); }
+  @keyframes in { from { opacity: 0; transform: translateX(24px); } }
+  .field { display: flex; flex-direction: column; gap: 8px; }
+  label, legend { font-weight: 600; font-size: 0.9375rem; }
+  input[type=email], input[type=password] { font: inherit; color: var(--text); background: var(--surface);
+    border: 1.5px solid var(--muted); border-radius: var(--r); padding: 14px; min-height: 52px; }
+  input::placeholder { color: var(--muted); }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .help { font-size: 0.875rem; color: var(--muted); }
+  .err { font-size: 0.875rem; color: var(--error); min-height: 1.3em; }
+  fieldset { border: 0; padding: 0; display: grid; gap: 10px; }
+  fieldset.two { grid-template-columns: 1fr 1fr; }
+  .opt input { position: absolute; opacity: 0; }
+  .opt span { display: flex; flex-direction: column; gap: 2px; padding: 14px; min-height: 60px; justify-content: center;
+    background: var(--surface); border: 1.5px solid var(--line); border-radius: var(--r); cursor: pointer;
+    transition: transform .2s var(--ease), border-color .2s, background .2s; }
+  .opt small { color: var(--muted); font-size: 0.875rem; }
+  .opt input:checked + span { border-color: var(--accent); background: var(--tint); box-shadow: inset 0 0 0 1px var(--accent); }
+  .opt input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .opt span:active, .cta:active { transform: scale(0.98); }
+  .cta { font: inherit; font-weight: 700; min-height: 54px; border: 0; border-radius: var(--r); cursor: pointer;
+    background: var(--accent); color: var(--on-accent); transition: transform .2s var(--ease), filter .2s; }
+  .cta:hover { filter: brightness(1.08); }
+  .done { text-align: left; }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="top">
+    <span class="brand">Parlo</span>
+    <button class="back" type="button" id="back" hidden>Back</button>
+  </div>
+  <ol id="steps" aria-label="Sign-up progress">
+    <li class="on">Account</li><li>Language</li><li>Goal</li>
+  </ol>
+  <img class="photo" src="https://picsum.photos/seed/parlo-cafe-conversation/880/264" width="440" height="132" alt="Two friends talking at a cafe table">
+
+  <form id="form" novalidate>
+    <section class="panel" data-step="0">
+      <div><h1 tabindex="-1">Create your account</h1><p class="lead">Save your streak and pick up on any device.</p></div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" type="email" autocomplete="email" placeholder="you@example.com" aria-describedby="e-err">
+        <p class="err" id="e-err" role="alert"></p>
+      </div>
+      <div class="field">
+        <label for="pw">Password</label>
+        <input id="pw" type="password" autocomplete="new-password" aria-describedby="p-help p-err">
+        <p class="help" id="p-help">At least 8 characters.</p>
+        <p class="err" id="p-err" role="alert"></p>
+      </div>
+    </section>
+
+    <section class="panel" data-step="1" hidden>
+      <div><h1 tabindex="-1">What do you want to learn?</h1><p class="lead">You can add more languages later.</p></div>
+      <fieldset class="two" aria-describedby="l-err"><legend class="sr" style="position:absolute;left:-9999px">Language</legend>
+        <label class="opt"><input type="radio" name="lang" value="Spanish"><span>Spanish</span></label>
+        <label class="opt"><input type="radio" name="lang" value="Japanese"><span>Japanese</span></label>
+        <label class="opt"><input type="radio" name="lang" value="Portuguese"><span>Portuguese</span></label>
+        <label class="opt"><input type="radio" name="lang" value="Korean"><span>Korean</span></label>
+        <label class="opt"><input type="radio" name="lang" value="Italian"><span>Italian</span></label>
+        <label class="opt"><input type="radio" name="lang" value="German"><span>German</span></label>
+      </fieldset>
+      <p class="err" id="l-err" role="alert"></p>
+    </section>
+
+    <section class="panel" data-step="2" hidden>
+      <div><h1 tabindex="-1">Set a daily goal</h1><p class="lead">Small and steady beats long and rare.</p></div>
+      <fieldset aria-describedby="g-err"><legend style="position:absolute;left:-9999px">Daily goal</legend>
+        <label class="opt"><input type="radio" name="goal" value="5 minutes a day"><span>5 minutes<small>Casual, fits any commute</small></span></label>
+        <label class="opt"><input type="radio" name="goal" value="10 minutes a day"><span>10 minutes<small>Regular, one short lesson</small></span></label>
+        <label class="opt"><input type="radio" name="goal" value="20 minutes a day"><span>20 minutes<small>Serious, lesson plus review</small></span></label>
+        <label class="opt"><input type="radio" name="goal" value="30 minutes a day"><span>30 minutes<small>Intense, for a fast start</small></span></label>
+      </fieldset>
+      <p class="err" id="g-err" role="alert"></p>
+    </section>
+
+    <section class="panel done" data-step="3" hidden>
+      <h1 tabindex="-1">You are all set</h1>
+      <p class="lead" id="summary"></p>
+    </section>
+
+    <button class="cta" id="next" type="submit">Continue</button>
+  </form>
+</main>
+<script>
+  const panels = [...document.querySelectorAll('.panel')];
+  const marks = [...document.querySelectorAll('#steps li')];
+  const $ = id => document.getElementById(id);
+  const form = $('form'), next = $('next'), back = $('back');
+  let step = 0;
+
+  const checked = name => form.querySelector(`input[name=${name}]:checked`);
+
+  // Returns true when the current stage is valid, otherwise writes inline errors.
+  function validate() {
+    if (step === 0) {
+      const okMail = /^\S+@\S+\.\S+$/.test($('email').value.trim());
+      const okPw = $('pw').value.length >= 8;
+      $('e-err').textContent = okMail ? '' : 'Enter a valid email address.';
+      $('p-err').textContent = okPw ? '' : 'Password needs at least 8 characters.';
+      $('email').setAttribute('aria-invalid', !okMail);
+      $('pw').setAttribute('aria-invalid', !okPw);
+      return okMail && okPw;
+    }
+    const name = step === 1 ? 'lang' : 'goal', box = $(name === 'lang' ? 'l-err' : 'g-err');
+    const ok = !!checked(name);
+    box.textContent = ok ? '' : step === 1 ? 'Choose a language to continue.' : 'Choose a goal to continue.';
+    return ok;
+  }
+
+  function show(n) {
+    step = n;
+    panels.forEach((p, i) => p.hidden = i !== n);
+    marks.forEach((m, i) => m.classList.toggle('on', i <= Math.min(n, 2)));
+    back.hidden = n === 0 || n === 3;
+    next.textContent = n === 2 ? 'Start learning' : 'Continue';
+    next.hidden = n === 3;
+    if (n === 3) $('summary').textContent = `${checked('lang').value}, ${checked('goal').value}. Your first lesson is ready.`;
+    panels[n].querySelector('h1').focus({ preventScroll: true });
+    window.scrollTo({ top: 0 });
+  }
+
+  form.addEventListener('submit', e => { e.preventDefault(); if (validate()) show(step + 1); });
+  back.addEventListener('click', () => show(step - 1));
+  form.addEventListener('change', e => { if (e.target.type === 'radio') validate(); });
+</script>
+</body>
+</html>
+```

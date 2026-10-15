@@ -1,0 +1,150 @@
+```html
+<!doctype html>
+<!-- Design Read: product page for design-conscious enthusiast buyers, calm premium-consumer language, native CSS + tiny vanilla JS.
+     Dials: VARIANCE 6 / MOTION 4 / DENSITY 3. Sample specs and reviews are mock data. Images are picsum placeholders. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Korrin K75 Mechanical Keyboard</title>
+<style>
+:root{color-scheme:light dark;--bg:#f4f4f5;--surface:#fafafa;--ink:#18181b;--mute:#52525b;--line:#d4d4d8;--accent:#c2410c;--on:#fff;--r:12px;
+--font:Geist,"Segoe UI",system-ui,sans-serif}
+@media(prefers-color-scheme:dark){:root{--bg:#0f0f11;--surface:#18181b;--ink:#ededf0;--mute:#a1a1aa;--line:#2e2e33;--accent:#fb923c;--on:#1c1008}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--font)}
+img{display:block;width:100%;height:100%;object-fit:cover}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+nav{height:64px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+nav b{letter-spacing:-.02em;font-size:1.15rem}
+nav div{display:flex;gap:28px;font-size:.95rem;color:var(--mute)}
+nav a{text-decoration:none}nav a:hover{color:var(--ink)}
+.hero{display:grid;grid-template-columns:1.25fr 1fr;gap:56px;padding:40px 0 96px;align-items:start}
+.gallery{display:grid;grid-template-columns:84px 1fr;gap:14px}
+.thumbs{display:grid;gap:10px;align-content:start}
+.thumbs button{padding:0;border:2px solid transparent;border-radius:var(--r);overflow:hidden;aspect-ratio:1;cursor:pointer;background:none;opacity:.65;transition:opacity .3s,transform .3s}
+.thumbs button:hover{opacity:1}.thumbs button[aria-pressed=true]{border-color:var(--accent);opacity:1}
+.thumbs button:active{transform:scale(.96)}
+.main{border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;background:var(--surface)}
+.main img{transition:opacity .35s}
+.buy{position:sticky;top:24px;padding-top:8px}
+h1{font-size:clamp(2.2rem,4.4vw,3.4rem);line-height:1.02;letter-spacing:-.04em}
+.lead{color:var(--mute);max-width:42ch;margin:16px 0 24px}
+.price{font-size:1.75rem;font-weight:600;letter-spacing:-.02em;margin-bottom:20px}
+fieldset{border:0;padding:0;margin-bottom:24px}
+legend{font-size:.9rem;color:var(--mute);margin-bottom:8px}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opts label{cursor:pointer}
+.opts input{position:absolute;opacity:0}
+.opts span{display:block;padding:9px 16px;border:1px solid var(--line);border-radius:var(--r);transition:border-color .25s,background .25s}
+.opts input:checked+span{border-color:var(--accent);background:var(--surface);font-weight:600}
+.opts input:focus-visible+span{outline:2px solid var(--accent);outline-offset:3px}
+.cta{width:100%;padding:16px 24px;border:0;border-radius:var(--r);background:var(--accent);color:var(--on);font:600 1.05rem var(--font);cursor:pointer;white-space:nowrap;transition:transform .2s,filter .2s}
+.cta:hover{filter:brightness(1.08);transform:translateY(-1px)}.cta:active{transform:translateY(1px) scale(.98)}
+.note{font-size:.9rem;color:var(--mute);margin-top:12px;min-height:1.5em}
+section{padding:0 0 96px}
+h2{font-size:clamp(1.7rem,3vw,2.4rem);letter-spacing:-.03em;line-height:1.1;margin-bottom:32px}
+.eyebrow{display:block;font-size:.75rem;text-transform:uppercase;letter-spacing:.16em;color:var(--accent);margin-bottom:10px;font-weight:600}
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.cell{border-radius:var(--r);padding:28px;background:var(--surface);border:1px solid var(--line);position:relative;overflow:hidden;min-height:220px;display:flex;flex-direction:column;justify-content:flex-end}
+.cell h3{font-size:1.5rem;letter-spacing:-.02em;line-height:1.15}
+.cell p{color:var(--mute);margin-top:6px}
+.cell.img{border:0;color:#fff}
+.cell.img img{position:absolute;inset:0;z-index:0}
+.cell.img::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgb(10 10 12/.85),rgb(10 10 12/.15))}
+.cell.img>*:not(img){position:relative;z-index:2}.cell.img p{color:#e4e4e7}
+.cell.tint{background:var(--accent);border:0;color:var(--on)}.cell.tint p{color:inherit;opacity:.85}
+.c1{grid-column:span 4}.c2{grid-column:span 2}.c3{grid-column:span 2}.c4{grid-column:span 2}.c5{grid-column:span 2}
+.score{display:flex;align-items:baseline;gap:14px;margin-bottom:28px}
+.score strong{font-size:3rem;letter-spacing:-.04em;line-height:1}
+.reviews{display:grid;grid-template-columns:1.3fr 1fr;gap:16px}
+.reviews figure{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:28px}
+.reviews .big{grid-row:span 2;display:flex;flex-direction:column;justify-content:space-between;gap:24px}
+blockquote{font-size:1.15rem;line-height:1.45;letter-spacing:-.01em}
+.big blockquote{font-size:1.6rem;line-height:1.25}
+figcaption{font-size:.9rem;color:var(--mute);margin-top:14px}
+figcaption b{color:var(--ink);font-weight:600}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+footer{border-top:1px solid var(--line);padding:32px 0;color:var(--mute);font-size:.9rem}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}.rv{opacity:1;transform:none}}
+@media(max-width:767px){
+.hero,.reviews{grid-template-columns:1fr;gap:32px;padding-bottom:64px}
+.gallery{grid-template-columns:1fr}.thumbs{grid-template-columns:repeat(4,1fr);order:2}
+.buy{position:static}nav div{gap:16px}
+.bento{grid-template-columns:1fr}.bento .cell{grid-column:auto!important;min-height:180px}
+.reviews .big{grid-row:auto}section{padding-bottom:64px}}
+</style>
+</head>
+<body>
+<header class="wrap"><nav aria-label="Main"><b>Korrin</b><div><a href="#specs">Specs</a><a href="#reviews">Reviews</a><a href="#buy">Cart (<span id="count">0</span>)</a></div></nav></header>
+<main class="wrap">
+<div class="hero">
+  <div class="gallery">
+    <div class="thumbs" role="group" aria-label="Product photos">
+      <button aria-pressed="true" data-s="korrin-keyboard-desk"><img src="https://picsum.photos/seed/korrin-keyboard-desk/160/160" alt="Thumbnail: keyboard on desk" width="160" height="160"></button>
+      <button aria-pressed="false" data-s="korrin-keycaps-macro"><img src="https://picsum.photos/seed/korrin-keycaps-macro/160/160" alt="Thumbnail: keycap close-up" width="160" height="160" loading="lazy"></button>
+      <button aria-pressed="false" data-s="korrin-aluminum-case"><img src="https://picsum.photos/seed/korrin-aluminum-case/160/160" alt="Thumbnail: aluminum case edge" width="160" height="160" loading="lazy"></button>
+      <button aria-pressed="false" data-s="korrin-typing-hands"><img src="https://picsum.photos/seed/korrin-typing-hands/160/160" alt="Thumbnail: hands typing" width="160" height="160" loading="lazy"></button>
+    </div>
+    <div class="main"><img id="big" src="https://picsum.photos/seed/korrin-keyboard-desk/1200/900" alt="Korrin K75 keyboard on a desk" width="1200" height="900" fetchpriority="high"></div>
+  </div>
+  <div class="buy" id="buy">
+    <h1>Korrin K75</h1>
+    <p class="lead">A 75% wireless keyboard with a gasket-mounted aluminum case and hot-swap sockets.</p>
+    <p class="price">$189</p>
+    <fieldset><legend>Switch type</legend>
+      <div class="opts">
+        <label><input type="radio" name="sw" value="Linear" checked><span>Linear</span></label>
+        <label><input type="radio" name="sw" value="Tactile"><span>Tactile</span></label>
+        <label><input type="radio" name="sw" value="Clicky"><span>Clicky</span></label>
+      </div>
+    </fieldset>
+    <button class="cta" id="add">Add to cart</button>
+    <p class="note" id="note" role="status" aria-live="polite">Ships in 3 to 5 business days.</p>
+  </div>
+</div>
+
+<section id="specs">
+  <h2>Built to type on all day</h2>
+  <div class="bento">
+    <div class="cell img c1 rv"><img src="https://picsum.photos/seed/korrin-switch-macro/1000/500" alt="" width="1000" height="500" loading="lazy"><h3>Hot-swap switches</h3><p>Any 3-pin or 5-pin switch pulls out without a soldering iron.</p></div>
+    <div class="cell tint c2 rv"><h3>75% layout</h3><p>84 keys with a full function row and arrows.</p></div>
+    <div class="cell c3 rv"><h3>CNC aluminum</h3><p>Anodized case with a gasket-mounted plate.</p></div>
+    <div class="cell img c4 rv"><img src="https://picsum.photos/seed/korrin-usbc-port/600/500" alt="" width="600" height="500" loading="lazy"><h3>Three ways to connect</h3><p>Bluetooth, 2.4 GHz, USB-C.</p></div>
+    <div class="cell c5 rv"><h3>4000 mAh battery</h3><p>Weeks of typing between charges with backlight off.</p></div>
+  </div>
+</section>
+
+<section id="reviews">
+  <h2>What owners say</h2>
+  <div class="score"><strong>4.7</strong><span>out of 5, from 312 sample reviews</span></div>
+  <div class="reviews">
+    <figure class="big rv"><blockquote>“The sound is the first thing you notice. Deep, clean, and no ping from the spacebar. I stopped looking at other boards.”</blockquote><figcaption><b>Mateus Oliveira</b>, backend engineer</figcaption></figure>
+    <figure class="rv"><blockquote>“Swapped to tactile switches in ten minutes. The sockets feel solid.”</blockquote><figcaption><b>Priya Raghunathan</b>, technical writer</figcaption></figure>
+    <figure class="rv"><blockquote>“Paired with three machines and switching is instant. Battery is still at 60% after a month.”</blockquote><figcaption><b>Tomasz Wieczorek</b>, video editor</figcaption></figure>
+  </div>
+</section>
+</main>
+<footer><div class="wrap">Korrin Keyboards. 30-day returns on every order.</div></footer>
+<script>
+const big=document.getElementById('big'),thumbs=document.querySelectorAll('.thumbs button');
+thumbs.forEach(b=>b.addEventListener('click',()=>{
+  thumbs.forEach(t=>t.setAttribute('aria-pressed',t===b));
+  big.style.opacity=0;
+  setTimeout(()=>{big.src=`https://picsum.photos/seed/${b.dataset.s}/1200/900`;big.alt=b.firstElementChild.alt.replace('Thumbnail: ','Korrin K75 ');big.onload=()=>big.style.opacity=1},180);
+}));
+let n=0;
+document.getElementById('add').addEventListener('click',()=>{
+  const sw=document.querySelector('input[name=sw]:checked').value;
+  document.getElementById('count').textContent=++n;
+  document.getElementById('note').textContent=`Added: Korrin K75 with ${sw} switches. ${n} in cart.`;
+});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.2});
+document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%3)*70+'ms';io.observe(el)});
+</script>
+</body>
+</html>
+```

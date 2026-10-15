@@ -1,0 +1,162 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cinderlog Pricing</title>
+<!-- Design read: pricing page for small engineering teams, warm editorial-technical language, native CSS, system fonts (no external requests), restrained motion. -->
+<style>
+  :root {
+    --paper: #f4efe6; --ink: #1d1a16; --muted: #6b645a; --line: #d9d1c3;
+    --ember: #c2410c; --ember-ink: #fff7ed; --card: #fbf8f2;
+    --serif: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --paper: #16130f; --ink: #f1eadf; --muted: #a79d8d; --line: #342d24; --card: #1d1914; --ember: #f97316; --ember-ink: #1d1a16; }
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--paper); color: var(--ink); font: 16px/1.55 system-ui, sans-serif; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 28px 0; font-family: var(--mono); font-size: 14px; }
+  nav b { font-size: 17px; letter-spacing: -.02em; }
+  nav b::before { content: ""; display: inline-block; width: 10px; height: 10px; background: var(--ember); border-radius: 50%; margin-right: 8px; }
+  nav a { color: var(--muted); text-decoration: none; margin-left: 24px; }
+  nav a:hover { color: var(--ink); }
+  header.hero { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: end; padding: 56px 0 48px; }
+  h1 { font: 400 clamp(2.5rem, 6vw, 4.5rem)/1.02 var(--serif); letter-spacing: -.03em; }
+  h1 em { color: var(--ember); }
+  .hero p { color: var(--muted); max-width: 38ch; }
+  .toggle { display: inline-flex; margin-top: 20px; border: 1px solid var(--line); border-radius: 999px; padding: 3px; font: 13px var(--mono); }
+  .toggle button { border: 0; background: none; color: var(--muted); padding: 7px 16px; border-radius: 999px; cursor: pointer; font: inherit; }
+  .toggle button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+  .plans { display: grid; grid-template-columns: 1fr 1.12fr 1fr; gap: 20px; align-items: start; }
+  .plan { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 28px; transition: transform .25s ease; }
+  .plan:hover { transform: translateY(-4px); }
+  .plan.feat { border: 2px solid var(--ember); padding-block: 40px; margin-top: -16px; }
+  .tag { font: 12px var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--ember); }
+  .plan h2 { font: 400 1.75rem var(--serif); margin: 6px 0 2px; }
+  .price { font: 400 3.25rem/1 var(--serif); letter-spacing: -.04em; margin: 18px 0 4px; }
+  .price small { font: 13px var(--mono); color: var(--muted); letter-spacing: 0; }
+  .plan > p { color: var(--muted); font-size: 14px; min-height: 44px; }
+  .plan ul { list-style: none; padding: 0; margin: 20px 0 24px; border-top: 1px solid var(--line); }
+  .plan li { padding: 9px 0 9px 22px; border-bottom: 1px solid var(--line); font-size: 14px; position: relative; }
+  .plan li::before { content: ""; position: absolute; left: 3px; top: 15px; width: 6px; height: 10px; border: solid var(--ember); border-width: 0 2px 2px 0; transform: translateY(-3px) rotate(45deg) scale(.8); }
+  .btn { display: block; text-align: center; padding: 12px; border-radius: 8px; border: 1px solid var(--ink); color: var(--ink); text-decoration: none; font: 600 14px var(--mono); }
+  .feat .btn { background: var(--ember); border-color: var(--ember); color: var(--ember-ink); }
+  .btn:hover { opacity: .85; }
+  .btn:focus-visible, .toggle button:focus-visible, summary:focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; }
+  section { padding: 88px 0 0; }
+  h3 { font: 400 2rem var(--serif); letter-spacing: -.02em; margin-bottom: 24px; }
+  .table-scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 560px; }
+  th, td { text-align: left; padding: 14px 12px; border-bottom: 1px solid var(--line); }
+  thead th { font: 12px var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+  tbody th { font-weight: 500; }
+  td { font-family: var(--mono); font-size: 13px; }
+  td.no { color: var(--muted); }
+  .faq { display: grid; grid-template-columns: 1fr 1.6fr; gap: 48px; }
+  details { border-top: 1px solid var(--line); padding: 18px 0; }
+  details:last-child { border-bottom: 1px solid var(--line); }
+  summary { cursor: pointer; font: 400 1.2rem var(--serif); list-style: none; display: flex; justify-content: space-between; }
+  summary::after { content: "+"; font-family: var(--mono); color: var(--ember); }
+  details[open] summary::after { content: "\2212"; }
+  details p { color: var(--muted); margin-top: 10px; max-width: 56ch; }
+  footer { margin-top: 96px; padding: 28px 0 48px; border-top: 1px solid var(--line); font: 13px var(--mono); color: var(--muted); display: flex; justify-content: space-between; }
+  @media (max-width: 860px) {
+    header.hero, .faq { grid-template-columns: 1fr; gap: 24px; }
+    .plans { grid-template-columns: 1fr; }
+    .plan.feat { margin-top: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) { .plan { transition: none; } .plan:hover { transform: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav><b>cinderlog</b><div><a href="#compare">Compare</a><a href="#faq">FAQ</a><a href="#">Sign in</a></div></nav>
+
+  <header class="hero">
+    <div>
+      <h1>Find the line that <em>broke prod</em>. Pay for the logs you keep.</h1>
+    </div>
+    <div>
+      <p>Flat pricing for teams of 2 to 25 engineers. No per-seat surprises, no per-query meter, no sales call.</p>
+      <div class="toggle" role="group" aria-label="Billing period">
+        <button type="button" data-mode="monthly" aria-pressed="true">Monthly</button>
+        <button type="button" data-mode="annual" aria-pressed="false">Annual, 20% off</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="plans">
+      <article class="plan">
+        <span class="tag">Side project</span>
+        <h2>Ember</h2>
+        <div class="price">$0<small> /mo</small></div>
+        <p>For hobby services and trying Cinderlog on one staging app.</p>
+        <ul><li>5 GB ingest per month</li><li>3-day retention</li><li>3 seats</li><li>Community support</li></ul>
+        <a class="btn" href="#">Start free</a>
+      </article>
+      <article class="plan feat">
+        <span class="tag">Most teams pick this</span>
+        <h2>Kindle</h2>
+        <div class="price"><span data-m="49" data-a="39">$49</span><small> /mo, flat</small></div>
+        <p>Everything a ten-person team needs to debug production with confidence.</p>
+        <ul><li>50 GB ingest per month</li><li>30-day retention</li><li>10 seats</li><li>Saved queries and live tail</li><li>Slack and PagerDuty alerts</li></ul>
+        <a class="btn" href="#">Start 14-day trial</a>
+      </article>
+      <article class="plan">
+        <span class="tag">Growing fast</span>
+        <h2>Blaze</h2>
+        <div class="price"><span data-m="149" data-a="119">$149</span><small> /mo, flat</small></div>
+        <p>More history, more seats, and the controls your auditors ask about.</p>
+        <ul><li>250 GB ingest per month</li><li>90-day retention</li><li>25 seats</li><li>SSO and audit log</li><li>Priority support, 4h reply</li></ul>
+        <a class="btn" href="#">Start 14-day trial</a>
+      </article>
+    </div>
+
+    <section id="compare">
+      <h3>Compare the plans</h3>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th scope="col">Feature</th><th scope="col">Ember</th><th scope="col">Kindle</th><th scope="col">Blaze</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Monthly ingest</th><td>5 GB</td><td>50 GB</td><td>250 GB</td></tr>
+            <tr><th scope="row">Retention</th><td>3 days</td><td>30 days</td><td>90 days</td></tr>
+            <tr><th scope="row">Seats</th><td>3</td><td>10</td><td>25</td></tr>
+            <tr><th scope="row">Live tail</th><td class="no">Not included</td><td>Included</td><td>Included</td></tr>
+            <tr><th scope="row">Alert routing</th><td class="no">Email only</td><td>Slack, PagerDuty</td><td>Slack, PagerDuty, webhooks</td></tr>
+            <tr><th scope="row">SSO and audit log</th><td class="no">Not included</td><td class="no">Not included</td><td>Included</td></tr>
+            <tr><th scope="row">Support</th><td>Community</td><td>Email, 1 business day</td><td>Priority, 4 hours</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="faq" class="faq">
+      <h3>Questions, answered</h3>
+      <div>
+        <details open><summary>What happens if we exceed our ingest?</summary><p>We never drop logs mid-incident. Overage is billed at $0.90 per extra GB, and we email you at 80% so it is never a surprise.</p></details>
+        <details><summary>Do I pay per seat?</summary><p>No. Each plan includes a fixed number of seats. Need more than 25? Talk to us and we will quote a flat rate.</p></details>
+        <details><summary>Can I ship logs from my existing stack?</summary><p>Yes. Cinderlog accepts OpenTelemetry, syslog, and plain HTTP, and works with Fluent Bit and Vector without changes.</p></details>
+        <details><summary>Can I cancel or change plans?</summary><p>Anytime. Upgrades apply immediately, downgrades at the next billing date, and you can export everything as JSON.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <footer><span>&copy; 2026 Cinderlog Labs</span><span>Prices in USD, excl. tax</span></footer>
+</div>
+<script>
+  const buttons = document.querySelectorAll('.toggle button');
+  const prices = document.querySelectorAll('[data-m]');
+  buttons.forEach(btn => btn.addEventListener('click', () => {
+    const mode = btn.dataset.mode;
+    buttons.forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+    prices.forEach(p => { p.textContent = '$' + (mode === 'annual' ? p.dataset.a : p.dataset.m); });
+  }));
+</script>
+</body>
+</html>
+```

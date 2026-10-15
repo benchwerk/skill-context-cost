@@ -1,0 +1,134 @@
+```html
+<!-- Reading this as: local craft studio landing for design-conscious Lisbon locals and visitors, with a calm premium-consumer language, leaning toward native CSS, cobalt on cool off-white (auto dark), sans display, restrained motion. Dials: VARIANCE 7, MOTION 5, DENSITY 3. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forno Alto | Ceramics studio in Lisbon</title>
+<style>
+:root{--bg:#f3f5f8;--ink:#14182b;--mute:#555c74;--line:#d8dce6;--panel:#e7ebf3;--accent:#2b46c9;--on:#f3f5f8;--r:14px;
+--font:"Avenir Next","Segoe UI Variable Display","Segoe UI",Helvetica,Arial,sans-serif}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1220;--ink:#eceff7;--mute:#a4abc3;--line:#2a3050;--panel:#181c32;--accent:#93a5ff;--on:#0f1220}}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 1rem/1.6 var(--font)}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%;height:100%;object-fit:cover;background:var(--panel)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+nav{height:68px;display:flex;align-items:center;justify-content:space-between;white-space:nowrap}
+nav .links{display:flex;gap:28px;align-items:center;color:var(--mute);font-size:.95rem}
+.logo{font-weight:700;letter-spacing:-.02em;font-size:1.15rem}
+.btn{display:inline-block;white-space:nowrap;padding:13px 22px;border-radius:var(--r);font-weight:600;border:1.5px solid var(--accent);
+background:var(--accent);color:var(--on);transition:transform .25s cubic-bezier(.16,1,.3,1),opacity .2s}
+.btn:hover{opacity:.9;transform:translateY(-2px)}.btn:active{transform:translateY(1px) scale(.98)}
+.btn.ghost{background:transparent;color:var(--accent)}
+a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.hero{min-height:calc(100dvh - 68px);display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;padding:24px 0 48px}
+.eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:.75rem;font-weight:700;color:var(--accent);margin-bottom:18px}
+h1{font-size:clamp(2.4rem,5vw,4.1rem);line-height:1.04;letter-spacing:-.04em;max-width:13ch}
+h1 em{font-style:italic;font-weight:700;color:var(--accent);padding-bottom:.08em;display:inline-block;line-height:1.1}
+.hero p{max-width:40ch;color:var(--mute);margin:22px 0 32px;font-size:1.1rem}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero figure{height:min(68dvh,620px);border-radius:var(--r);overflow:hidden;margin-top:36px}
+section{padding:96px 0}
+h2{font-size:clamp(1.8rem,3.2vw,2.6rem);letter-spacing:-.03em;line-height:1.1;max-width:18ch}
+.lead{color:var(--mute);max-width:56ch;margin-top:14px}
+.bento{display:grid;grid-template-columns:1.6fr 1fr;grid-template-rows:260px 260px;gap:16px;margin-top:44px}
+.tile{position:relative;border-radius:var(--r);overflow:hidden;background:var(--panel)}
+.tile.big{grid-row:span 2}
+.tile .cap{position:absolute;left:0;right:0;bottom:0;padding:20px;background:linear-gradient(transparent,rgba(10,12,28,.82));color:#f3f5f8}
+.tile h3{font-size:1.25rem;letter-spacing:-.02em}.tile p{font-size:.95rem;opacity:.9}
+.quotes{background:var(--panel)}
+.qgrid{display:grid;grid-template-columns:1.5fr 1fr;gap:56px;margin-top:44px}
+blockquote{font-size:1.2rem;line-height:1.5;letter-spacing:-.01em}
+.big blockquote,.qbig{font-size:clamp(1.5rem,2.6vw,2.1rem);line-height:1.25;letter-spacing:-.03em}
+.who{margin-top:14px;color:var(--mute);font-size:.92rem}.who b{color:var(--ink)}
+.side{display:grid;gap:32px;align-content:start;border-left:1.5px solid var(--line);padding-left:40px}
+.plans{display:grid;grid-template-columns:1fr 1.35fr 1fr;gap:16px;margin-top:44px;align-items:stretch}
+.plan{border:1.5px solid var(--line);border-radius:var(--r);padding:30px;display:flex;flex-direction:column;gap:10px}
+.plan.hot{border-color:var(--accent);background:var(--panel)}
+.price{font-size:2.6rem;font-weight:700;letter-spacing:-.04em;line-height:1.1}
+.plan ul{list-style:none;padding:0;color:var(--mute);flex:1;margin-bottom:12px}
+.plan li+li{margin-top:6px}
+footer{border-top:1.5px solid var(--line);padding:56px 0 40px}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;color:var(--mute)}
+.fgrid b{display:block;color:var(--ink);margin-bottom:8px}
+.fine{margin-top:40px;font-size:.85rem;color:var(--mute)}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.btn{transition:none}html{scroll-behavior:auto}}
+@media(max-width:767px){
+.hero,.qgrid,.fgrid,.plans,.bento{grid-template-columns:1fr}
+.bento{grid-template-rows:none;grid-auto-rows:240px}.tile.big{grid-row:auto;min-height:320px}
+.hero{padding-top:8px;gap:8px}.hero figure{height:340px;margin-top:8px}
+nav .links a:not(.btn){display:none}section{padding:64px 0}
+.side{border-left:0;padding-left:0;border-top:1.5px solid var(--line);padding-top:32px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav>
+<a class="logo" href="#">Forno Alto</a>
+<div class="links"><a href="#make">Our work</a><a href="#words">Testimonials</a><a href="#pricing">Pricing</a><a class="btn" href="#pricing">Book a workshop</a></div>
+</nav>
+<header class="hero">
+<div class="rv">
+<p class="eyebrow">Ceramics studio</p>
+<h1>Clay, fire and a <em>quiet</em> afternoon.</h1>
+<p>Handmade tableware and small-group pottery classes, fired in our kiln in Lisbon.</p>
+<div class="cta"><a class="btn" href="#pricing">Book a workshop</a><a class="btn ghost" href="#make">See what we make</a></div>
+</div>
+<figure class="rv"><img src="https://picsum.photos/seed/lisbon-ceramics-studio-wheel/900/1100" alt="Hands shaping a bowl on a pottery wheel" width="900" height="1100"></figure>
+</header>
+</div>
+
+<section id="make"><div class="wrap">
+<h2 class="rv">Made by hand, used every day.</h2>
+<p class="lead rv">Stoneware for the table, glazed in small batches and finished one piece at a time.</p>
+<div class="bento">
+<div class="tile big rv"><img src="https://picsum.photos/seed/stoneware-dinner-set-table/900/1000" alt="Stoneware dinner set on a wooden table" loading="lazy"><div class="cap"><h3>Dinner sets</h3><p>Plates and bowls, sold in sets of four.</p></div></div>
+<div class="tile rv"><img src="https://picsum.photos/seed/ceramic-mugs-glaze-blue/700/500" alt="Row of glazed mugs in blue tones" loading="lazy"><div class="cap"><h3>Cups and mugs</h3></div></div>
+<div class="tile rv"><img src="https://picsum.photos/seed/ceramic-vase-shelf-flowers/700/500" alt="Tall vase with dried flowers on a shelf" loading="lazy"><div class="cap"><h3>Vases and planters</h3></div></div>
+</div>
+</div></section>
+
+<section class="quotes" id="words"><div class="wrap">
+<h2 class="rv">What our students say.</h2>
+<div class="qgrid">
+<figure class="rv"><blockquote class="qbig">&ldquo;I arrived nervous and left with a bowl I actually use for breakfast. Patient teaching, great clay.&rdquo;</blockquote><figcaption class="who"><b>Marta Figueiredo</b><br>Architect, Campo de Ourique</figcaption></figure>
+<div class="side">
+<figure class="rv"><blockquote>&ldquo;We booked a team afternoon. Everyone talked about it for weeks.&rdquo;</blockquote><figcaption class="who"><b>Duarte Salgueiro</b><br>Operations lead, Alfama Logistics</figcaption></figure>
+<figure class="rv"><blockquote>&ldquo;The glaze room alone is worth the trip from Porto.&rdquo;</blockquote><figcaption class="who"><b>Inês Albuquerque</b><br>Illustrator, Porto</figcaption></figure>
+</div>
+</div>
+</div></section>
+
+<section id="pricing"><div class="wrap">
+<h2 class="rv">Workshop pricing.</h2>
+<p class="lead rv">Materials, firing and glazing are included. Pieces are ready for pickup in about three weeks.</p>
+<div class="plans">
+<div class="plan rv"><h3>Wheel intro</h3><div class="price">€58</div><ul><li>2 hours, up to 6 people</li><li>One piece to keep</li></ul><a class="btn ghost" href="#">Book a workshop</a></div>
+<div class="plan hot rv"><h3>Saturday full day</h3><div class="price">€140</div><ul><li>6 hours with lunch</li><li>Throwing, trimming and glazing</li><li>Up to three pieces to keep</li></ul><a class="btn" href="#">Book a workshop</a></div>
+<div class="plan rv"><h3>Private group</h3><div class="price">€320</div><ul><li>Up to 8 people</li><li>Date of your choice</li></ul><a class="btn ghost" href="#">Book a workshop</a></div>
+</div>
+</div></section>
+
+<footer><div class="wrap">
+<div class="fgrid">
+<div><b>Forno Alto</b>Rua da Olaria 14, 1100-123 Lisboa<br>Open Wednesday to Sunday, 10:00 to 18:00</div>
+<div><b>Studio</b><a href="#make">Our work</a><br><a href="#words">Testimonials</a><br><a href="#pricing">Pricing</a></div>
+<div><b>Contact</b>ola@fornoalto.example<br>Instagram @fornoalto</div>
+</div>
+<p class="fine">&copy; 2026 Forno Alto Cerâmica</p>
+</div></footer>
+
+<script>
+const els=document.querySelectorAll('.rv');
+if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches){els.forEach(e=>e.classList.add('in'))}
+else{const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+els.forEach((e,i)=>{e.style.transitionDelay=(i%3)*70+'ms';io.observe(e)})}
+</script>
+</body>
+</html>
+```

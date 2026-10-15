@@ -1,0 +1,146 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tamsin Adeyemi | Wedding Photography</title>
+<!-- Design Read: portfolio for engaged couples, editorial-clean sans language, native CSS + light JS.
+     Dials: VARIANCE 7, MOTION 6, DENSITY 3. One theme that follows system light/dark. -->
+<style>
+:root{--bg:#f4f5f6;--surface:#e7e9ec;--text:#1c2024;--muted:#4b5360;--accent:#a8324f;--on-accent:#fff7f8;--line:#cfd3d9;--r:12px;
+  --font:"Avenir Next","Outfit","Helvetica Neue",Arial,sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#14171a;--surface:#1e2226;--text:#eceef0;--muted:#aab1ba;--accent:#e0708a;--on-accent:#1a0a0e;--line:#333a42}}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{display:block;width:100%;height:100%;object-fit:cover;border-radius:var(--r)}
+a{color:inherit}
+.wrap{max-width:1280px;margin:0 auto;padding:0 24px}
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;white-space:nowrap}
+nav ul{display:flex;gap:28px;list-style:none;align-items:center}
+nav a{text-decoration:none;font-size:15px;color:var(--muted)}
+nav a:hover{color:var(--text)}
+.logo{font-weight:600;color:var(--text);letter-spacing:-.01em}
+.btn{display:inline-block;white-space:nowrap;background:var(--accent);color:var(--on-accent)!important;padding:12px 24px;border-radius:var(--r);border:0;font:600 15px var(--font);text-decoration:none;cursor:pointer;transition:transform .3s cubic-bezier(.16,1,.3,1),filter .3s}
+.btn:hover{filter:brightness(1.08);transform:translateY(-2px)}
+.btn:active{transform:scale(.98)}
+.btn.ghost{background:transparent;color:var(--text)!important;border:1px solid var(--text)}
+.hero{min-height:calc(100dvh - 64px);display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding-top:48px;padding-bottom:48px}
+h1{font-size:clamp(2.25rem,4.6vw,4rem);line-height:1.05;letter-spacing:-.035em;font-weight:600;max-width:14ch}
+h1 em{font-style:italic;font-weight:500;color:var(--accent);padding-bottom:4px;display:inline-block;line-height:1.15}
+.hero p{margin:24px 0 32px;color:var(--muted);font-size:1.125rem;max-width:42ch}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero figure{aspect-ratio:4/5;max-height:calc(100dvh - 160px);margin-left:auto;width:100%}
+h2{font-size:clamp(1.75rem,3.2vw,2.75rem);letter-spacing:-.03em;line-height:1.1;font-weight:600}
+section{padding:112px 0}
+.gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:40px}
+.gallery figure{overflow:hidden;border-radius:var(--r);height:420px}
+.gallery figure:nth-child(-n+2){height:520px}
+.gallery figure:nth-child(1){grid-column:span 7}
+.gallery figure:nth-child(2){grid-column:span 5}
+.gallery figure:nth-child(n+3):nth-child(-n+5){grid-column:span 4}
+.gallery figure:nth-child(6){grid-column:span 12;height:560px}
+.gallery img{transition:transform .8s cubic-bezier(.16,1,.3,1)}
+.gallery figure:hover img{transform:scale(1.04)}
+.about{display:grid;grid-template-columns:5fr 6fr;gap:80px;align-items:center;background:var(--surface);border-radius:var(--r);padding:56px}
+.about figure{aspect-ratio:4/5}
+.about p{color:var(--muted);margin-top:20px;max-width:60ch}
+.about p:first-of-type{margin-top:28px}
+.contact h2{max-width:16ch}
+.contact>p{color:var(--muted);margin:16px 0 40px;max-width:55ch}
+form{display:grid;grid-template-columns:1fr 1fr;gap:20px 24px}
+.field{display:grid;gap:8px}
+.field.full{grid-column:1/-1}
+label{font-size:14px;font-weight:600}
+input,textarea{font:inherit;color:var(--text);background:var(--bg);border:1.5px solid var(--muted);border-radius:var(--r);padding:12px 14px;width:100%}
+input::placeholder,textarea::placeholder{color:var(--muted)}
+input:focus-visible,textarea:focus-visible,.btn:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.err{color:#b3261e;font-size:14px;min-height:20px}
+@media (prefers-color-scheme:dark){.err{color:#ff8f86}}
+[aria-invalid=true]{border-color:#b3261e}
+.status{grid-column:1/-1;font-weight:600}
+footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:14px}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}}
+@media (prefers-reduced-motion:no-preference){.hero>*{animation:rise .9s cubic-bezier(.16,1,.3,1) both}.hero>figure{animation-delay:.15s}}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.gallery img{transition:none}html{scroll-behavior:auto}}
+@media (max-width:767px){
+  nav ul li:not(:last-child){display:none}
+  .hero,.about,form{grid-template-columns:1fr}.hero{gap:32px;padding-top:32px}
+  .hero figure{margin:0;max-height:none}
+  section{padding:72px 0}.about{padding:24px;gap:32px}
+  .gallery{grid-template-columns:1fr}.gallery figure,.gallery figure:nth-child(n){grid-column:auto;height:360px}
+}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><a class="logo" href="#top">Tamsin Adeyemi</a>
+  <ul><li><a href="#work">Work</a></li><li><a href="#about">About</a></li><li><a class="btn" href="#contact">Book a date</a></li></ul></div></nav>
+
+<main id="top">
+<div class="wrap hero">
+  <div>
+    <h1>Weddings, photographed as they <em>happen.</em></h1>
+    <p>Unposed, honest photographs of your day, from the first look to the last dance.</p>
+    <div class="actions"><a class="btn" href="#contact">Book a date</a><a class="btn ghost" href="#work">See the gallery</a></div>
+  </div>
+  <figure><img src="https://picsum.photos/seed/wedding-couple-garden/900/1125" alt="A couple laughing together in a garden after their ceremony" fetchpriority="high"></figure>
+</div>
+
+<section id="work"><div class="wrap">
+  <h2 class="reveal">Recent weddings</h2>
+  <div class="gallery">
+    <figure class="reveal"><img src="https://picsum.photos/seed/wedding-vows-barn/1200/900" alt="Two people exchanging vows in a timber barn" loading="lazy"></figure>
+    <figure class="reveal"><img src="https://picsum.photos/seed/wedding-bouquet-hands/800/1000" alt="Hands holding a loose wildflower bouquet" loading="lazy"></figure>
+    <figure class="reveal"><img src="https://picsum.photos/seed/wedding-first-dance/800/800" alt="A first dance under string lights" loading="lazy"></figure>
+    <figure class="reveal"><img src="https://picsum.photos/seed/wedding-rings-detail/800/800" alt="Two rings resting on a linen napkin" loading="lazy"></figure>
+    <figure class="reveal"><img src="https://picsum.photos/seed/wedding-confetti-exit/800/800" alt="Guests throwing confetti as the couple walks out" loading="lazy"></figure>
+    <figure class="reveal"><img src="https://picsum.photos/seed/wedding-table-evening/1600/900" alt="A long dinner table set outdoors at dusk" loading="lazy"></figure>
+  </div>
+</div></section>
+
+<section id="about"><div class="wrap"><div class="about reveal">
+  <figure><img src="https://picsum.photos/seed/photographer-portrait-camera/800/1000" alt="Tamsin Adeyemi holding her camera" loading="lazy"></figure>
+  <div>
+    <h2>Hi, I'm Tamsin.</h2>
+    <p>I started photographing weddings after shooting my sister's day on borrowed gear. The pictures I kept coming back to were the quiet ones: a father adjusting a cuff, a grandmother laughing mid-sentence.</p>
+    <p>Twelve years on, I still work that way. I stay out of the way, I keep the group shots short, and I deliver your full gallery within six weeks.</p>
+  </div>
+</div></div></section>
+
+<section id="contact" class="contact"><div class="wrap">
+  <h2 class="reveal">Tell me about your day.</h2>
+  <p>Share your date and venue. I reply to every enquiry within two working days.</p>
+  <form id="enquiry" novalidate class="reveal">
+    <div class="field"><label for="name">Your names</label><input id="name" name="name" autocomplete="name" placeholder="Priya and Daniel" required><span class="err" id="e-name"></span></div>
+    <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required><span class="err" id="e-email"></span></div>
+    <div class="field full"><label for="date">Wedding date</label><input id="date" name="date" type="date" required><span class="err" id="e-date"></span></div>
+    <div class="field full"><label for="msg">Your plans</label><textarea id="msg" name="msg" rows="5" placeholder="Venue, guest count, anything you'd like me to know" required></textarea><span class="err" id="e-msg"></span></div>
+    <div class="field full"><button class="btn" type="submit">Book a date</button></div>
+    <p class="status" id="status" role="status" aria-live="polite"></p>
+  </form>
+</div></section>
+</main>
+<footer><div class="wrap">&copy; 2026 Tamsin Adeyemi Photography</div></footer>
+
+<script>
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+const form = document.getElementById('enquiry'), status = document.getElementById('status');
+const rules = { name: 'Please enter your names.', email: 'Please enter a valid email address.', date: 'Please choose your wedding date.', msg: 'Please tell me a little about your plans.' };
+form.addEventListener('submit', ev => {
+  ev.preventDefault(); status.textContent = ''; let ok = true;
+  for (const id in rules) {
+    const f = form.elements[id], bad = !f.value.trim() || (id === 'email' && !f.checkValidity());
+    f.setAttribute('aria-invalid', bad); document.getElementById('e-' + id).textContent = bad ? rules[id] : '';
+    if (bad && ok) { f.focus(); ok = false; }
+  }
+  if (ok) { status.textContent = 'Thank you. I will reply within two working days.'; form.reset(); }
+});
+</script>
+</body>
+</html>
+```

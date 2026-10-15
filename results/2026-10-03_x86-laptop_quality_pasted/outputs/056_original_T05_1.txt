@@ -1,0 +1,162 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Halden 75 Mechanical Keyboard</title>
+<!-- Design read: product page for keyboard enthusiasts, calm premium-consumer language, native CSS, burnt orange accent on cool neutrals, light/dark via prefers-color-scheme. Dials 6 / 4 / 3. Product, prices and reviews are sample data. -->
+<style>
+:root{--bg:#f4f5f6;--surface:#e9ebed;--text:#17191c;--muted:#4b5158;--line:#cfd3d7;--accent:#c2410c;--on-accent:#fff;--r:12px;--ease:cubic-bezier(.16,1,.3,1)}
+@media (prefers-color-scheme:dark){:root{--bg:#121416;--surface:#1b1e21;--text:#eceef0;--muted:#a3a9b0;--line:#2c3035;--accent:#fb923c;--on-accent:#1a0e05}}
+*{box-sizing:border-box;margin:0}
+body{font-family:Geist,Satoshi,"Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+a,button,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+nav{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;padding:0 24px;height:64px}
+nav b{letter-spacing:-.02em;font-size:1.1rem}
+nav a{color:var(--muted);text-decoration:none}
+main{max-width:1200px;margin:0 auto;padding:0 24px 80px}
+.hero{display:grid;grid-template-columns:1.35fr 1fr;gap:56px;align-items:start;padding-top:16px}
+.stage{border-radius:var(--r);overflow:hidden;background:var(--surface);aspect-ratio:4/3}
+.stage img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .3s var(--ease)}
+.stage img.swap{opacity:0}
+.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px}
+.thumbs button{padding:0;border:2px solid transparent;border-radius:var(--r);overflow:hidden;cursor:pointer;background:none;transition:transform .3s var(--ease)}
+.thumbs button:hover{transform:translateY(-2px)}
+.thumbs button[aria-pressed=true]{border-color:var(--accent)}
+.thumbs img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover}
+.buy{position:sticky;top:24px;padding-top:8px}
+h1{font-size:clamp(2.2rem,4.5vw,3.4rem);line-height:1.02;letter-spacing:-.04em;font-weight:650}
+.lede{color:var(--muted);margin:16px 0 24px;max-width:46ch}
+.price{font-size:1.8rem;font-weight:600;letter-spacing:-.02em;margin-bottom:20px}
+fieldset{border:0;padding:0;margin-bottom:24px}
+legend{font-weight:600;margin-bottom:8px}
+.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.opts label{position:relative;display:block;text-align:center;padding:10px 4px;border:1px solid var(--line);border-radius:var(--r);cursor:pointer;transition:border-color .2s}
+.opts input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.opts label:has(input:checked){border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.opts label:has(input:focus-visible){outline:2px solid var(--accent);outline-offset:3px}
+.opts small{display:block;color:var(--muted)}
+.cta{width:100%;padding:16px;border:0;border-radius:var(--r);background:var(--accent);color:var(--on-accent);font-weight:650;font-size:1.05rem;cursor:pointer;white-space:nowrap;transition:transform .2s var(--ease),filter .2s}
+.cta:hover{filter:brightness(1.06)}
+.cta:active{transform:scale(.98) translateY(1px)}
+.cta[aria-busy=true]{opacity:.7;cursor:progress}
+.note{color:var(--muted);font-size:.9rem;margin-top:12px}
+section{margin-top:104px}
+h2{font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-.03em;line-height:1.1;margin-bottom:32px}
+.specs{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.group{background:var(--surface);border-radius:var(--r);padding:28px}
+.group:first-child{grid-row:span 2;display:flex;flex-direction:column;justify-content:space-between;min-height:340px}
+.group h3{font-size:1rem;color:var(--accent);margin-bottom:16px}
+.big{font-size:clamp(2.6rem,6vw,4.4rem);font-weight:650;letter-spacing:-.05em;line-height:1}
+dl{display:grid;grid-template-columns:auto 1fr;gap:8px 24px}
+dt{color:var(--muted)}
+dd{font-weight:550;text-align:right}
+.reviews{display:grid;grid-template-columns:minmax(220px,1fr) 2.2fr;gap:56px}
+.score{font-size:4rem;font-weight:650;letter-spacing:-.05em;line-height:1}
+.score+p{color:var(--muted);margin:8px 0 24px}
+select{display:block;margin-top:8px;padding:10px 12px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg);width:100%}
+.list{display:grid;gap:36px}
+blockquote{font-size:1.15rem;letter-spacing:-.01em;max-width:60ch;margin:8px 0 12px}
+.who{color:var(--muted);font-size:.92rem}
+.rate{font-weight:650;color:var(--accent)}
+.empty{display:none;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:32px 24px;text-align:center;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){.hero>*{animation:in .8s var(--ease) both}.hero>.buy{animation-delay:.12s}@keyframes in{from{opacity:0;transform:translateY(16px)}}}
+@media (max-width:767px){.hero,.reviews,.specs{grid-template-columns:1fr;gap:32px}.buy{position:static}.group:first-child{grid-row:auto;min-height:0;gap:32px}section{margin-top:72px}main,nav{padding:0 16px}}
+</style>
+</head>
+<body>
+<nav><b>Halden</b><a href="#cart" id="cart">Cart (0)</a></nav>
+<main>
+  <div class="hero">
+    <div>
+      <div class="stage"><img id="main" src="https://picsum.photos/seed/halden-keyboard-desk/1200/900" width="1200" height="900" alt="Halden 75 keyboard on a wooden desk"></div>
+      <div class="thumbs" id="thumbs"></div>
+    </div>
+    <div class="buy">
+      <h1>Halden 75</h1>
+      <p class="lede">A gasket-mounted 75% keyboard with an aluminium case and hot-swappable switches.</p>
+      <p class="price">$189</p>
+      <form id="form">
+        <fieldset>
+          <legend>Switch type</legend>
+          <div class="opts">
+            <label><input type="radio" name="sw" value="Linear" checked>Linear<small>Smooth</small></label>
+            <label><input type="radio" name="sw" value="Tactile">Tactile<small>Bump</small></label>
+            <label><input type="radio" name="sw" value="Clicky">Clicky<small>Audible</small></label>
+          </div>
+        </fieldset>
+        <button class="cta" type="submit">Add to cart</button>
+        <p class="note" id="note" role="status">Ships in 3 to 5 business days. 30-day returns.</p>
+      </form>
+    </div>
+  </div>
+
+  <section>
+    <h2>Built for long typing days</h2>
+    <div class="specs">
+      <div class="group"><h3>Layout</h3><p class="big">75%</p><dl><dt>Keys</dt><dd>84 with knob</dd><dt>Connection</dt><dd>USB-C, Bluetooth 5.1</dd></dl></div>
+      <div class="group"><h3>Case and plate</h3><dl><dt>Case</dt><dd>CNC aluminium</dd><dt>Plate</dt><dd>FR4, gasket mounted</dd><dt>Weight</dt><dd>1.6 kg</dd></dl></div>
+      <div class="group"><h3>Switches and keycaps</h3><dl><dt>Switches</dt><dd>Hot-swap, 5-pin</dd><dt>Keycaps</dt><dd>Double-shot PBT</dd><dt>Software</dt><dd>VIA compatible</dd></dl></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="reviews">
+      <div>
+        <h2>Customer reviews</h2>
+        <p class="score">4.7</p>
+        <p>Based on 212 reviews</p>
+        <label for="sort">Sort by</label>
+        <select id="sort"><option value="new">Most recent</option><option value="high">Highest rated</option><option value="low">Lowest rated</option></select>
+      </div>
+      <div class="list" id="list"></div>
+    </div>
+    <p class="empty" id="empty">No reviews yet. Be the first to share how it sounds.</p>
+  </section>
+</main>
+<footer>Halden Keyboards. Support: help@halden.example</footer>
+<script>
+const imgs=["desk","closeup","switches","side"].map(n=>"https://picsum.photos/seed/halden-keyboard-"+n);
+const main=document.getElementById("main"),thumbs=document.getElementById("thumbs");
+imgs.forEach((u,i)=>{
+  const b=document.createElement("button");b.type="button";b.setAttribute("aria-pressed",i==0);b.setAttribute("aria-label","Show photo "+(i+1));
+  b.innerHTML='<img src="'+u+'/320/240" width="320" height="240" alt="" loading="lazy">';
+  b.onclick=()=>{
+    thumbs.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x==b));
+    main.classList.add("swap");
+    setTimeout(()=>{main.src=u+"/1200/900";main.onload=()=>main.classList.remove("swap")},200);
+  };
+  thumbs.append(b);
+});
+const reviews=[
+  {r:5,d:3,q:"The gasket mount feels soft without being mushy. My office neighbours stopped asking what I was typing on.",n:"Maren Okafor",t:"Backend developer"},
+  {r:4,d:2,q:"Great build and sound out of the box. I swapped in tactile switches in ten minutes with the included puller.",n:"Tomasz Wieland",t:"Technical writer"},
+  {r:3,d:1,q:"Lovely case, but the Bluetooth took two attempts to pair with my laptop. Fine once connected.",n:"Priya Raghunathan",t:"Product designer"}
+];
+const list=document.getElementById("list"),empty=document.getElementById("empty");
+function draw(mode){
+  const s=[...reviews].sort((a,b)=>mode=="high"?b.r-a.r:mode=="low"?a.r-b.r:a.d-b.d);
+  list.innerHTML=s.map(v=>'<article><span class="rate">'+v.r+' out of 5</span><blockquote>\u201C'+v.q+'\u201D</blockquote><p class="who">'+v.n+' - '+v.t+'</p></article>').join("");
+  empty.style.display=s.length?"none":"block";
+}
+document.getElementById("sort").onchange=e=>draw(e.target.value);draw("new");
+let count=0;
+document.getElementById("form").onsubmit=e=>{
+  e.preventDefault();
+  const btn=e.target.querySelector(".cta"),note=document.getElementById("note");
+  if(btn.getAttribute("aria-busy"))return;
+  btn.setAttribute("aria-busy","true");btn.textContent="Adding";
+  setTimeout(()=>{
+    count++;btn.removeAttribute("aria-busy");btn.textContent="Added to cart";
+    document.getElementById("cart").textContent="Cart ("+count+")";
+    note.textContent=e.target.sw.value+" switches added.";
+    setTimeout(()=>btn.textContent="Add to cart",2000);
+  },700);
+};
+</script>
+</body>
+</html>
+```

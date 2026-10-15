@@ -1,0 +1,147 @@
+```html
+<!DOCTYPE html>
+<!-- Design Read: portfolio for engaged couples, editorial/quiet-luxury language, native CSS + serif type + restrained reveal motion.
+     Dials: VARIANCE 8 / MOTION 5 / DENSITY 3. Photo tiles are tonal gradient placeholders: swap each background for a real image. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marlowe Reyes — Wedding Photography</title>
+<style>
+  :root {
+    --paper: #f4efe8; --ink: #23201c; --muted: #6f675d; --clay: #a4533a; --line: #d9d0c3;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--serif); line-height: 1.6; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--clay); outline-offset: 3px; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 3rem); }
+  .label { font-family: var(--sans); font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+
+  nav { position: absolute; inset: 0 0 auto; z-index: 2; }
+  nav .wrap { display: flex; justify-content: space-between; align-items: center; padding-block: 1.5rem; }
+  nav a { text-decoration: none; font-family: var(--sans); font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; margin-left: 1.75rem; }
+  nav a:first-child { margin: 0; font-family: var(--serif); font-size: 1.15rem; letter-spacing: 0; text-transform: none; }
+
+  .hero { min-height: 100dvh; display: grid; grid-template-columns: 1fr; align-items: end; position: relative; padding-block: 7rem 4rem; }
+  .hero .wrap { display: grid; gap: 3rem; grid-template-columns: repeat(12, 1fr); align-items: end; }
+  .hero h1 { grid-column: 1 / span 8; font-weight: 400; font-size: clamp(3rem, 9vw, 8rem); line-height: .95; letter-spacing: -.03em; }
+  .hero h1 em { color: var(--clay); }
+  .hero aside { grid-column: 9 / -1; padding-bottom: .75rem; }
+  .hero aside p { margin-block: .75rem 1.5rem; color: var(--muted); max-width: 32ch; }
+  .btn { display: inline-block; font-family: var(--sans); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; padding: 1rem 1.75rem; background: var(--ink); color: var(--paper); border: 0; cursor: pointer; transition: background .3s, transform .3s; }
+  .btn:hover { background: var(--clay); transform: translateY(-2px); }
+
+  section { padding-block: clamp(4rem, 10vw, 8rem); }
+  h2 { font-weight: 400; font-size: clamp(2rem, 4.5vw, 3.5rem); line-height: 1.05; letter-spacing: -.02em; margin-top: .75rem; }
+  .gallery { display: grid; gap: clamp(.75rem, 1.6vw, 1.5rem); grid-template-columns: repeat(12, 1fr); margin-top: 3rem; }
+  figure { position: relative; overflow: hidden; min-height: 260px; }
+  figure i { position: absolute; inset: 0; transition: transform 1.2s cubic-bezier(.2, .7, .2, 1); }
+  figure:hover i { transform: scale(1.05); }
+  figcaption { position: absolute; left: 1rem; bottom: .9rem; color: #fff; font-family: var(--sans); font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; text-shadow: 0 1px 8px rgb(0 0 0 / .4); }
+  .g1 { grid-column: span 7; min-height: 520px; } .g2 { grid-column: span 5; margin-top: 4rem; }
+  .g3 { grid-column: span 4; } .g4 { grid-column: span 4; min-height: 380px; margin-top: -3rem; } .g5 { grid-column: span 4; }
+  .g6 { grid-column: 3 / span 8; min-height: 340px; }
+  .g1 i { background: linear-gradient(160deg, #d8b9a0, #8c5b48 70%); }
+  .g2 i { background: linear-gradient(200deg, #b9c1b0, #55654f); }
+  .g3 i { background: linear-gradient(140deg, #e8d9c2, #b99a76); }
+  .g4 i { background: linear-gradient(180deg, #8d9aa6, #333d4a); }
+  .g5 i { background: linear-gradient(120deg, #e5c6c0, #a86a64); }
+  .g6 i { background: linear-gradient(90deg, #cdb68f, #6b5a40 60%, #2e2a24); }
+
+  .about { border-block: 1px solid var(--line); }
+  .about .wrap { display: grid; gap: 4rem; grid-template-columns: repeat(12, 1fr); }
+  .portrait { grid-column: 1 / span 4; aspect-ratio: 3/4; background: linear-gradient(170deg, #c9a58c, #5d4636); }
+  .story { grid-column: 6 / -1; }
+  .story p { margin-top: 1.25rem; max-width: 56ch; font-size: 1.1rem; color: #3e3830; }
+  .story p:first-of-type::first-letter { float: left; font-size: 4.2rem; line-height: .8; padding: .35rem .6rem 0 0; color: var(--clay); }
+  .stats { display: flex; gap: 3rem; margin-top: 2.5rem; }
+  .stats b { display: block; font-weight: 400; font-size: 2.4rem; }
+
+  form { display: grid; gap: 1.75rem; grid-template-columns: 1fr 1fr; max-width: 760px; margin-top: 3rem; }
+  .field { display: grid; gap: .4rem; } .field.full { grid-column: 1 / -1; }
+  input, textarea, select { font: inherit; padding: .6rem 0; border: 0; border-bottom: 1px solid var(--ink); background: transparent; border-radius: 0; color: var(--ink); }
+  input:focus, textarea:focus, select:focus { outline: none; border-color: var(--clay); box-shadow: 0 1px 0 var(--clay); }
+  #note { font-style: italic; color: var(--clay); align-self: center; }
+  footer { padding-block: 2rem; border-top: 1px solid var(--line); }
+
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s ease, transform .9s cubic-bezier(.2, .7, .2, 1); }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (max-width: 800px) {
+    .hero h1, .hero aside, .portrait, .story { grid-column: 1 / -1; }
+    .gallery > figure { grid-column: 1 / -1; margin: 0; min-height: 320px; }
+    .portrait { max-width: 320px; } form { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } figure i, .btn { transition: none; } }
+</style>
+</head>
+<body>
+<nav><div class="wrap"><a href="#top">Marlowe Reyes</a><div><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Inquire</a></div></div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+  <h1 class="reveal">Quiet moments, <em>kept</em> forever.</h1>
+  <aside class="reveal">
+    <span class="label">Wedding photography · Lisbon &amp; worldwide</span>
+    <p>Unposed, unhurried images for couples who would rather feel their day than perform it.</p>
+    <a class="btn" href="#contact">Check my availability</a>
+  </div></aside>
+</div></header>
+
+<section id="work"><div class="wrap">
+  <span class="label">Selected weddings</span>
+  <h2 class="reveal">Six days, as they were.</h2>
+  <div class="gallery">
+    <figure class="g1 reveal"><i></i><figcaption>Sintra, September</figcaption></figure>
+    <figure class="g2 reveal"><i></i><figcaption>Douro Valley</figcaption></figure>
+    <figure class="g3 reveal"><i></i><figcaption>Porto, the vows</figcaption></figure>
+    <figure class="g4 reveal"><i></i><figcaption>Evening, Comporta</figcaption></figure>
+    <figure class="g5 reveal"><i></i><figcaption>First dance</figcaption></figure>
+    <figure class="g6 reveal"><i></i><figcaption>Algarve coast, golden hour</figcaption></figure>
+  </div>
+</div></section>
+
+<section class="about" id="about"><div class="wrap">
+  <div class="portrait reveal" role="img" aria-label="Portrait of Marlowe Reyes (placeholder)"></div>
+  <div class="story reveal">
+    <span class="label">The photographer</span>
+    <h2>I started at my sister's wedding, hiding behind a borrowed lens.</h2>
+    <p>I was meant to be a guest. Instead I spent the day watching our grandmother fix her father's tie, and I realised the photographs people treasure are the ones nobody planned.</p>
+    <p>Twelve years on, I still work that way: small timelines, natural light, and enough distance that you forget I'm there. You get a gallery that feels like your day, not a performance of it.</p>
+    <div class="stats"><span class="label"><b>140+</b>weddings</span><span class="label"><b>14</b>countries</span><span class="label"><b>2 wk</b>to preview</span></div>
+  </div>
+</div></section>
+
+<section id="contact"><div class="wrap">
+  <span class="label">Inquire</span>
+  <h2 class="reveal">Tell me about your day.</h2>
+  <form class="reveal" id="f">
+    <div class="field"><label class="label" for="n">Your names</label><input id="n" name="names" required autocomplete="name"></div>
+    <div class="field"><label class="label" for="e">Email</label><input id="e" type="email" name="email" required autocomplete="email"></div>
+    <div class="field"><label class="label" for="d">Wedding date</label><input id="d" type="date" name="date"></div>
+    <div class="field"><label class="label" for="p">Location</label><input id="p" name="place" placeholder="City or venue"></div>
+    <div class="field full"><label class="label" for="m">Your story</label><textarea id="m" name="message" rows="4" required></textarea></div>
+    <div class="field full" style="display:flex;flex-direction:row;gap:1.5rem"><button class="btn" type="submit">Send inquiry</button><span id="note" role="status"></span></div>
+  </form>
+</div></section>
+
+<footer><div class="wrap label">© 2026 Marlowe Reyes Photography · hello@marlowereyes.example</div></footer>
+
+<script>
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: .15 });
+  document.querySelectorAll('.reveal').forEach((el, i) => { el.style.transitionDelay = (i % 3) * 90 + 'ms'; io.observe(el); });
+
+  document.getElementById('f').addEventListener('submit', e => {
+    e.preventDefault(); // demo only: wire to your form backend
+    const n = e.target.names.value.split(/[&,]/)[0].trim();
+    document.getElementById('note').textContent = `Thank you, ${n}. I'll reply within two days.`;
+    e.target.reset();
+  });
+</script>
+</body>
+</html>
+```

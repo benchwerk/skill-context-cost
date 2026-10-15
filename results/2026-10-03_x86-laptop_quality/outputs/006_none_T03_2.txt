@@ -1,0 +1,201 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elise Marlowe Photography — Wedding Photographer</title>
+<style>
+  :root {
+    --ink: #2b2623;
+    --paper: #faf6f1;
+    --blush: #e8d5cb;
+    --accent: #a8745a;
+    --muted: #6f655e;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.7;
+  }
+  h1, h2, h3 { font-weight: 400; letter-spacing: .02em; }
+  a { color: inherit; }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.1rem 5vw;
+    background: rgba(250, 246, 241, .92);
+    backdrop-filter: blur(6px);
+  }
+  nav .logo { font-size: 1.15rem; font-style: italic; text-decoration: none; }
+  nav ul { display: flex; gap: 1.8rem; list-style: none; }
+  nav ul a {
+    font: .75rem/1 Arial, sans-serif; text-transform: uppercase;
+    letter-spacing: .18em; text-decoration: none; color: var(--muted);
+  }
+  nav ul a:hover { color: var(--accent); }
+  .hero {
+    min-height: 100vh; display: grid; place-items: center; text-align: center;
+    padding: 6rem 5vw 3rem;
+    background:
+      linear-gradient(rgba(43,38,35,.45), rgba(43,38,35,.55)),
+      linear-gradient(135deg, #c9a58f, #7d5b4a 55%, #3d2e28);
+    color: #fff;
+  }
+  .hero p.kicker {
+    font: .8rem Arial, sans-serif; letter-spacing: .3em; text-transform: uppercase;
+    margin-bottom: 1rem; opacity: .85;
+  }
+  .hero h1 { font-size: clamp(2.6rem, 8vw, 5.5rem); line-height: 1.1; font-style: italic; }
+  .hero p.sub { max-width: 34rem; margin: 1.2rem auto 2rem; font-size: 1.15rem; opacity: .92; }
+  .btn {
+    display: inline-block; padding: .9rem 2.2rem; border: 1px solid currentColor;
+    font: .75rem Arial, sans-serif; letter-spacing: .2em; text-transform: uppercase;
+    text-decoration: none; background: transparent; color: inherit; cursor: pointer;
+    transition: background .25s, color .25s;
+  }
+  .hero .btn:hover { background: #fff; color: var(--ink); }
+  section { padding: 6rem 5vw; max-width: 1200px; margin: 0 auto; }
+  section h2 { font-size: 2.2rem; text-align: center; margin-bottom: .5rem; }
+  .lead { text-align: center; color: var(--muted); margin-bottom: 3rem; font-style: italic; }
+  .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .gallery figure {
+    position: relative; aspect-ratio: 4 / 5; overflow: hidden;
+    background: var(--c); cursor: pointer;
+  }
+  .gallery figure:nth-child(2), .gallery figure:nth-child(5) { aspect-ratio: 4 / 6; }
+  .gallery figure::before {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 25%, rgba(255,255,255,.45), transparent 55%);
+    transition: transform .6s;
+  }
+  .gallery figure:hover::before { transform: scale(1.15); }
+  .gallery figcaption {
+    position: absolute; left: 0; right: 0; bottom: 0; padding: 1.2rem;
+    color: #fff; font-style: italic;
+    background: linear-gradient(transparent, rgba(0,0,0,.55));
+    opacity: 0; transform: translateY(8px); transition: .3s;
+  }
+  .gallery figure:hover figcaption, .gallery figure:focus figcaption { opacity: 1; transform: none; }
+  .about { display: grid; grid-template-columns: 1fr 1.3fr; gap: 4rem; align-items: center; }
+  .portrait {
+    aspect-ratio: 3 / 4; background: linear-gradient(160deg, var(--blush), var(--accent));
+    border-radius: 50% 50% 0 0 / 38% 38% 0 0;
+  }
+  .about h2 { text-align: left; }
+  .about p { margin-top: 1rem; color: var(--muted); }
+  .stats { display: flex; gap: 2.5rem; margin-top: 2rem; }
+  .stats strong { display: block; font-size: 2rem; color: var(--accent); font-weight: 400; }
+  .stats span { font: .7rem Arial, sans-serif; letter-spacing: .15em; text-transform: uppercase; }
+  .contact { background: var(--blush); max-width: none; }
+  form { max-width: 640px; margin: 0 auto; display: grid; gap: 1.2rem; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  label { display: grid; gap: .35rem; font: .7rem Arial, sans-serif; letter-spacing: .15em; text-transform: uppercase; }
+  input, textarea, select {
+    font: 1rem Georgia, serif; padding: .8rem; border: 1px solid #cdb6a9;
+    background: var(--paper); color: var(--ink); border-radius: 0;
+  }
+  input:focus, textarea:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  form .btn { justify-self: start; background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  form .btn:hover { background: var(--accent); border-color: var(--accent); }
+  #status { min-height: 1.5rem; font-style: italic; }
+  footer { text-align: center; padding: 2rem; font: .75rem Arial, sans-serif; color: var(--muted); letter-spacing: .1em; }
+  @media (max-width: 760px) {
+    nav ul { gap: 1rem; }
+    .gallery { grid-template-columns: repeat(2, 1fr); }
+    .about, .row { grid-template-columns: 1fr; }
+    .portrait { max-width: 320px; margin: 0 auto; }
+    section { padding: 4rem 6vw; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="#top">Elise Marlowe</a>
+  <ul>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="top">
+  <div>
+    <p class="kicker">Wedding &amp; Elopement Photography</p>
+    <h1>Quiet moments,<br>forever kept.</h1>
+    <p class="sub">Honest, light-filled photographs for couples who want to remember how the day actually felt.</p>
+    <a class="btn" href="#contact">Check your date</a>
+  </div>
+</header>
+
+<section id="work">
+  <h2>Selected Work</h2>
+  <p class="lead">Six days, six love stories</p>
+  <div class="gallery">
+    <figure tabindex="0" style="--c:#d8b9a6"><figcaption>Amelia &amp; James — Tuscany</figcaption></figure>
+    <figure tabindex="0" style="--c:#9fae9a"><figcaption>Noor &amp; Daniel — Garden vows</figcaption></figure>
+    <figure tabindex="0" style="--c:#c7a0a0"><figcaption>Sofia &amp; Mateo — First dance</figcaption></figure>
+    <figure tabindex="0" style="--c:#a9b4c2"><figcaption>Priya &amp; Tom — Coastal elopement</figcaption></figure>
+    <figure tabindex="0" style="--c:#b89b82"><figcaption>Hannah &amp; Ruth — Barn reception</figcaption></figure>
+    <figure tabindex="0" style="--c:#8f8a7a"><figcaption>Leila &amp; Omar — Golden hour</figcaption></figure>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <div class="portrait" role="img" aria-label="Portrait of Elise Marlowe"></div>
+  <div>
+    <h2>Hello, I'm Elise.</h2>
+    <p>I picked up my grandmother's old film camera at sixteen and never really put it down. Her wedding album, creased and a little faded, taught me that the best photographs aren't posed. They're the glance, the laugh, the hand squeezed just before the aisle.</p>
+    <p>After a decade of photographing weddings across three continents, I still cry during most ceremonies. I work quietly, stay close, and guide only when you want it, so you can be present while I gather the day.</p>
+    <div class="stats">
+      <div><strong>150+</strong><span>Weddings</span></div>
+      <div><strong>10</strong><span>Years</span></div>
+      <div><strong>3</strong><span>Continents</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <h2>Let's Talk</h2>
+  <p class="lead">Tell me about your day. I reply within two working days.</p>
+  <form id="form">
+    <div class="row">
+      <label>Your names<input name="names" required autocomplete="name"></label>
+      <label>Email<input type="email" name="email" required autocomplete="email"></label>
+    </div>
+    <div class="row">
+      <label>Wedding date<input type="date" name="date"></label>
+      <label>Location<input name="location" placeholder="City or venue"></label>
+    </div>
+    <label>Package interest
+      <select name="package">
+        <option>Full day coverage</option>
+        <option>Half day</option>
+        <option>Elopement</option>
+        <option>Not sure yet</option>
+      </select>
+    </label>
+    <label>Your story<textarea name="message" rows="5" required></textarea></label>
+    <button class="btn" type="submit">Send inquiry</button>
+    <p id="status" role="status"></p>
+  </form>
+</section>
+
+<footer>© 2026 Elise Marlowe Photography · hello@elisemarlowe.example</footer>
+
+<script>
+  const form = document.getElementById('form');
+  const status = document.getElementById('status');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const first = new FormData(form).get('names').split(/[&,]| and /)[0].trim();
+    status.textContent = `Thank you, ${first}! Your inquiry is on its way. I'll be in touch soon.`;
+    form.reset();
+  });
+</script>
+</body>
+</html>
+```

@@ -1,0 +1,140 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Larkspur Dental | Schedule</title>
+<style>
+  :root {
+    --bg: #f4f6f5; --surface: #fcfdfc; --text: #16201d; --muted: #4f5d58;
+    --line: #dce3e0; --accent: #0b6e5c; --accent-ink: #ffffff; --accent-soft: #d8ede7;
+    --radius: 12px;
+    --shadow: 0 1px 2px rgb(22 40 34 / .08);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0e1513; --surface: #162120; --text: #e6eeeb; --muted: #9db0aa;
+      --line: #263532; --accent: #4fc3a8; --accent-ink: #08201a; --accent-soft: #1d3a34;
+      --shadow: none;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 24px 16px 48px; }
+  header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 12px; margin-bottom: 20px; }
+  h1 { font-size: 1.6rem; letter-spacing: -.02em; line-height: 1.15; }
+  h2 { font-size: 1rem; margin-bottom: 12px; }
+  .sub { color: var(--muted); }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+  .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 16px; }
+  .stat b { display: block; font-size: 1.9rem; letter-spacing: -.03em; font-variant-numeric: tabular-nums; line-height: 1.2; }
+  .stat span { color: var(--muted); font-size: .85rem; }
+  .main { display: grid; grid-template-columns: 1.7fr 1fr; gap: 16px; align-items: start; }
+  .row { display: grid; grid-template-columns: 64px 1fr auto; gap: 12px; align-items: center; padding: 12px 0; }
+  .row + .row { border-top: 1px solid var(--line); }
+  .time { font-variant-numeric: tabular-nums; font-weight: 600; }
+  .who strong { display: block; }
+  .who span { color: var(--muted); font-size: .85rem; }
+  .row.done .who, .row.done .time { opacity: .6; }
+  button { font: inherit; font-size: .85rem; font-weight: 600; min-width: 108px; padding: 7px 12px; border-radius: 999px;
+    border: 1px solid var(--accent); background: transparent; color: var(--accent); cursor: pointer;
+    transition: transform .15s ease, background-color .15s ease; }
+  button:hover { background: var(--accent-soft); }
+  button:active { transform: scale(.97); }
+  button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  button[data-s="1"] { background: var(--accent); color: var(--accent-ink); }
+  button[data-s="2"] { border-color: var(--line); color: var(--muted); cursor: default; }
+  .week { display: flex; align-items: end; gap: 10px; height: 170px; padding-top: 8px; }
+  .day { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: end; height: 100%; gap: 6px; font-size: .8rem; color: var(--muted); }
+  .bar { width: 100%; max-width: 38px; border-radius: 8px 8px 0 0; background: var(--line); transform-origin: bottom; animation: grow .6s cubic-bezier(.16, 1, .3, 1) both; }
+  .day.today .bar { background: var(--accent); }
+  .day.today { color: var(--text); font-weight: 700; }
+  .day em { font-style: normal; font-variant-numeric: tabular-nums; color: var(--text); }
+  .note { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
+  @keyframes grow { from { transform: scaleY(0); } }
+  @media (prefers-reduced-motion: reduce) { .bar { animation: none; } button { transition: none; } }
+  @media (max-width: 860px) { .main { grid-template-columns: 1fr; } .stats { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .row { grid-template-columns: 56px 1fr; } .row button { grid-column: 2; justify-self: start; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Larkspur Dental</h1>
+      <p class="sub" id="today"></p>
+    </div>
+    <p class="sub">Front desk view, 2 chairs</p>
+  </header>
+
+  <section class="stats" aria-label="Summary">
+    <div class="panel stat"><b id="s-total">0</b><span>Appointments today</span></div>
+    <div class="panel stat"><b id="s-in">0</b><span>Checked in</span></div>
+    <div class="panel stat"><b id="s-done">0</b><span>Completed</span></div>
+    <div class="panel stat"><b id="s-open">0</b><span>Open slots today</span></div>
+  </section>
+
+  <div class="main">
+    <section class="panel" aria-labelledby="sched">
+      <h2 id="sched">Today's schedule</h2>
+      <div id="list"></div>
+    </section>
+    <section class="panel" aria-labelledby="wk">
+      <h2 id="wk">Week overview</h2>
+      <div class="week" id="week" role="img" aria-label="Appointments booked per day this week"></div>
+      <p class="note" id="wknote"></p>
+    </section>
+  </div>
+</div>
+
+<script>
+  // Sample data for demonstration.
+  const CAPACITY = 12;
+  const labels = ["Check in", "Mark done", "Completed"];
+  const visits = [
+    { t: "08:30", n: "Mirela Okonkwo", k: "Cleaning and exam", d: "Dr. Haddad", s: 2 },
+    { t: "09:15", n: "Tobias Lindqvist", k: "Root canal, session 2", d: "Dr. Haddad", s: 2 },
+    { t: "10:30", n: "Priya Raghunathan", k: "Crown fitting", d: "Dr. Osei", s: 1 },
+    { t: "11:15", n: "Gabriel Fontaine", k: "Whitening consult", d: "Dr. Osei", s: 0 },
+    { t: "13:00", n: "Ayesha Bandara", k: "Filling, lower left", d: "Dr. Haddad", s: 0 },
+    { t: "14:15", n: "Henrik Dvorak", k: "Cleaning and exam", d: "Hygienist Lena", s: 0 },
+    { t: "15:30", n: "Noor Castellanos", k: "Orthodontic review", d: "Dr. Osei", s: 0 },
+  ];
+  const week = [["Mon", 10], ["Tue", 11], ["Wed", 8], ["Thu", 12], ["Fri", 9], ["Sat", 5]];
+  const $ = id => document.getElementById(id);
+
+  function renderList() {
+    $("list").innerHTML = visits.map((v, i) => `
+      <div class="row ${v.s === 2 ? "done" : ""}">
+        <span class="time">${v.t}</span>
+        <div class="who"><strong>${v.n}</strong><span>${v.k}, ${v.d}</span></div>
+        <button data-i="${i}" data-s="${v.s}" ${v.s === 2 ? "disabled" : ""}>${labels[v.s]}</button>
+      </div>`).join("");
+    $("s-total").textContent = visits.length;
+    $("s-in").textContent = visits.filter(v => v.s === 1).length;
+    $("s-done").textContent = visits.filter(v => v.s === 2).length;
+    $("s-open").textContent = CAPACITY - visits.length;
+  }
+
+  $("list").addEventListener("click", e => {
+    const b = e.target.closest("button");
+    if (!b || visits[b.dataset.i].s >= 2) return;
+    visits[b.dataset.i].s++;
+    renderList();
+  });
+
+  const now = new Date();
+  $("today").textContent = now.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+  const todayName = now.toLocaleDateString("en-US", { weekday: "short" });
+  $("week").innerHTML = week.map(([d, n]) => `
+    <div class="day ${d === todayName ? "today" : ""}">
+      <em>${n}</em><div class="bar" style="height:${(n / CAPACITY) * 100}%"></div>${d}
+    </div>`).join("");
+  const booked = week.reduce((a, w) => a + w[1], 0);
+  $("wknote").textContent = `${booked} of ${CAPACITY * week.length} slots booked this week. Thursday is full.`;
+  renderList();
+</script>
+</body>
+</html>
+```

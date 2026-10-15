@@ -1,0 +1,135 @@
+```html
+<!DOCTYPE html>
+<!-- Design read: small-studio ceramics landing for design-conscious locals and visitors, calm tactile language, cobalt accent on cool neutrals. Dials 7 / 5 / 3. Native CSS, one accent, auto light/dark. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estúdio Cobalto | Ceramics studio in Lisbon</title>
+<style>
+:root{--bg:#f1f2f4;--surface:#e4e6ea;--text:#15171d;--muted:#4b5060;--line:#c9ccd4;--accent:#2c43b3;--on-accent:#f6f7fb;--r:12px;--ease:cubic-bezier(.16,1,.3,1)}
+@media (prefers-color-scheme:dark){:root{--bg:#101218;--surface:#1a1d27;--text:#e7e9f0;--muted:#a3a9ba;--line:#2e3342;--accent:#9aabff;--on-accent:#0e1122}}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font:400 1rem/1.6 "Helvetica Neue","Segoe UI",system-ui,sans-serif}
+img{display:block;width:100%;height:100%;object-fit:cover}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+nav{height:68px;display:flex;align-items:center;justify-content:space-between}
+nav b{font-size:1.1rem;letter-spacing:-.02em}
+nav div{display:flex;gap:28px}
+nav a{text-decoration:none;color:var(--muted);font-size:.95rem;transition:color .3s}
+nav a:hover{color:var(--text)}
+h1,h2{letter-spacing:-.035em;line-height:1.05;font-weight:650}
+h1{font-size:clamp(2.4rem,5.2vw,4.4rem);max-width:14ch}
+h2{font-size:clamp(1.8rem,3.4vw,2.6rem);margin-bottom:12px}
+.lead{color:var(--muted);max-width:52ch}
+.btn{display:inline-block;padding:14px 26px;border-radius:var(--r);text-decoration:none;font-weight:600;white-space:nowrap;transition:transform .3s var(--ease),background .3s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(1px) scale(.98)}
+.primary{background:var(--accent);color:var(--on-accent)}
+.ghost{border:1.5px solid var(--text)}
+.hero{min-height:calc(100dvh - 68px);display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;padding-top:24px;padding-bottom:48px}
+.hero .lead{margin:22px 0 32px}
+.cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero figure{height:min(68dvh,620px);border-radius:var(--r);overflow:hidden;margin-top:40px}
+section{padding:112px 0}
+.bento{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:260px 260px;gap:16px;margin-top:40px}
+.tile{position:relative;border-radius:var(--r);overflow:hidden;background:var(--surface)}
+.tile:first-child{grid-row:span 2}
+.tile img{transition:transform .8s var(--ease)}
+.tile:hover img{transform:scale(1.04)}
+.tile figcaption{position:absolute;left:12px;right:12px;bottom:12px;padding:12px 16px;border-radius:var(--r);background:var(--bg);font-size:.95rem}
+.tile figcaption b{display:block}
+.tile.plain{display:flex;flex-direction:column;justify-content:flex-end;padding:24px;background:var(--accent);color:var(--on-accent)}
+.quotes{display:grid;gap:56px;margin-top:48px}
+blockquote{max-width:34ch;font-size:clamp(1.3rem,2.4vw,1.8rem);line-height:1.3;letter-spacing:-.02em}
+blockquote:nth-child(2){margin-left:auto}
+blockquote:nth-child(3){margin-left:12%}
+cite{display:block;margin-top:14px;font:400 .95rem/1.4 "Helvetica Neue","Segoe UI",system-ui,sans-serif;color:var(--muted)}
+.prices{margin-top:40px;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:1.2fr 2fr auto;gap:32px;align-items:baseline;padding:28px 16px;border-bottom:1px solid var(--line);transition:background .3s}
+.row:hover{background:var(--surface)}
+.row h3{font-size:1.25rem;letter-spacing:-.02em}
+.row p{color:var(--muted)}
+.row strong{font-size:1.6rem;letter-spacing:-.03em}
+.row small{display:block;color:var(--muted);text-align:right}
+.row.feat{background:var(--surface);border-left:4px solid var(--accent)}
+footer{border-top:1px solid var(--line);padding:56px 0 40px}
+footer .wrap{display:grid;grid-template-columns:2fr 1fr 1fr;gap:32px}
+footer h4{margin-bottom:8px}
+footer p,footer a{color:var(--muted);display:block;text-decoration:none;font-size:.95rem}
+footer a:hover{color:var(--text)}
+.rev{opacity:0;transform:translateY(24px)}
+.rev.in{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease)}
+@media (prefers-reduced-motion:no-preference){.hero>*{animation:up .9s var(--ease) both}.hero figure{animation-delay:.15s}@keyframes up{from{opacity:0;transform:translateY(28px)}}}
+@media (prefers-reduced-motion:reduce){.rev{opacity:1;transform:none}*{transition:none!important}}
+@media (max-width:767px){
+.hero,.bento,footer .wrap,.row{grid-template-columns:1fr}
+.hero{gap:8px;min-height:0}.hero figure{height:340px;margin-top:24px}
+.bento{grid-template-rows:none;grid-auto-rows:260px}.tile:first-child{grid-row:auto}
+blockquote:nth-child(n){margin-left:0}section{padding:72px 0}
+.row{gap:6px}.row small{text-align:left}nav div{gap:16px}}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <nav aria-label="Main">
+    <b>Estúdio Cobalto</b>
+    <div><a href="#made">Our work</a><a href="#words">Testimonials</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a></div>
+  </nav>
+</header>
+<main>
+  <div class="wrap hero">
+    <div>
+      <h1>Hand-thrown tableware for everyday meals.</h1>
+      <p class="lead">Small-batch bowls, cups and plates made on our wheels in Lisbon. Come and throw your own at a weekend workshop.</p>
+      <div class="cta"><a class="btn primary" href="#pricing">Book a workshop</a><a class="btn ghost" href="#made">See what we make</a></div>
+    </div>
+    <figure><img src="https://picsum.photos/seed/lisbon-ceramics-studio-wheel/900/1100" width="900" height="1100" alt="A potter shaping a bowl on a wheel in a bright studio"></figure>
+  </div>
+
+  <section id="made"><div class="wrap">
+    <h2 class="rev">Made on the wheel, finished by hand.</h2>
+    <p class="lead rev">Every piece is thrown, trimmed and glazed in the studio, then fired twice in our own kilns.</p>
+    <div class="bento">
+      <figure class="tile rev"><img src="https://picsum.photos/seed/stoneware-dinner-set-blue/1000/800" width="1000" height="800" loading="lazy" alt="Stoneware dinner plates glazed in deep blue"><figcaption><b>Dinner sets</b>Plates and bowls, sold in sets of four.</figcaption></figure>
+      <figure class="tile rev"><img src="https://picsum.photos/seed/ceramic-cups-shelf/600/500" width="600" height="500" loading="lazy" alt="Handleless cups lined up on a wooden shelf"><figcaption><b>Cups</b>Handleless, 200 ml.</figcaption></figure>
+      <div class="tile plain rev"><h2>Custom orders</h2><p>Restaurants and cafés can commission matching sets.</p></div>
+    </div>
+  </div></section>
+
+  <section id="words"><div class="wrap">
+    <h2 class="rev">What people say</h2>
+    <div class="quotes">
+      <blockquote class="rev">“I arrived never having touched clay and left with a wobbly but very proud bowl.”<cite>Inês Valadares, graphic designer</cite></blockquote>
+      <blockquote class="rev">“We ordered forty cups for the café. Every one matched, and customers ask where they come from.”<cite>Tomás Figueiredo, owner of Café Pateo</cite></blockquote>
+      <blockquote class="rev">“Patient teachers, small groups, great coffee. We booked the private session for my sister's birthday.”<cite>Marta Quintela, architect</cite></blockquote>
+    </div>
+  </div></section>
+
+  <section id="pricing"><div class="wrap">
+    <h2 class="rev">Workshops</h2>
+    <p class="lead rev">All materials, firing and glazing included. Pieces are ready for pickup two weeks after your session.</p>
+    <div class="prices">
+      <div class="row rev"><h3>Intro evening</h3><p>Three hours at the wheel. You take home one piece.</p><div><strong>€45</strong></div></div>
+      <div class="row feat rev"><h3>Weekend course</h3><p>Two full days, six people maximum. Throw, trim and glaze a small set.</p><div><strong>€160</strong></div></div>
+      <div class="row rev"><h3>Private group</h3><p>A session for four to eight friends or colleagues, with drinks.</p><div><strong>€60</strong><small>per person</small></div></div>
+    </div>
+  </div></section>
+</main>
+
+<footer id="contact"><div class="wrap">
+  <div><h4>Estúdio Cobalto</h4><p>Rua da Fábrica 14, 1300-501 Lisboa</p></div>
+  <div><h4>Contact</h4><a href="mailto:ola@estudiocobalto.example">ola@estudiocobalto.example</a><a href="tel:+351211234567">+351 21 123 4567</a></div>
+  <div><h4>Opening hours</h4><p>Wed to Sat, 10:00 to 18:00</p><a href="#">Instagram</a></div>
+</div></footer>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.2});
+document.querySelectorAll('.rev').forEach((el,i)=>{el.style.transitionDelay=(i%3)*80+'ms';io.observe(el)});
+</script>
+</body>
+</html>
+```

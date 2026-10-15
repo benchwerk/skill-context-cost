@@ -1,0 +1,131 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tents &amp; Shelters · Fieldwork Outfitters</title>
+<style>
+  :root { --paper:#f3efe6; --ink:#1f2a24; --moss:#2f4a3a; --rust:#b4532a; --line:#d8d1c0; --card:#faf7f0; }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--paper); color: var(--ink); font: 16px/1.5 "Segoe UI", system-ui, sans-serif; }
+  a { color: inherit; }
+  header { display: flex; justify-content: space-between; align-items: baseline; padding: 20px 5vw; border-bottom: 1px solid var(--line); }
+  .logo { font: 700 1.1rem Georgia, serif; letter-spacing: .04em; text-transform: uppercase; }
+  nav a { margin-left: 22px; font-size: .9rem; text-decoration: none; color: var(--moss); }
+  nav a:hover { color: var(--rust); }
+  .hero { padding: 40px 5vw 24px; }
+  .crumb { font-size: .8rem; color: #6b7468; }
+  h1 { font: 700 clamp(2rem, 4vw, 3rem) Georgia, serif; line-height: 1.1; margin: 8px 0; }
+  .hero p { max-width: 52ch; color: #4a5650; }
+  .layout { display: grid; grid-template-columns: 240px 1fr; gap: 40px; padding: 0 5vw 48px; align-items: start; }
+  aside { position: sticky; top: 16px; border-top: 3px solid var(--moss); padding-top: 14px; }
+  fieldset { border: 0; padding: 0; margin-bottom: 22px; }
+  legend { font: 700 .75rem/1 system-ui; letter-spacing: .12em; text-transform: uppercase; color: var(--moss); margin-bottom: 10px; }
+  label { display: flex; align-items: center; gap: 9px; padding: 4px 0; font-size: .95rem; cursor: pointer; }
+  input[type=checkbox], input[type=radio] { accent-color: var(--moss); width: 16px; height: 16px; }
+  input:focus-visible, select:focus-visible, button:focus-visible { outline: 2px solid var(--rust); outline-offset: 2px; }
+  .bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; font-size: .9rem; color: #4a5650; }
+  select { font: inherit; padding: 6px 10px; background: var(--card); border: 1px solid var(--line); border-radius: 4px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; transition: transform .2s, box-shadow .2s; }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 8px 18px rgba(31,42,36,.12); }
+  .thumb { height: 140px; position: relative; background: repeating-radial-gradient(ellipse at 30% 120%, transparent 0 11px, rgba(255,255,255,.22) 11px 12px), hsl(var(--h) 28% 34%); }
+  .tag { position: absolute; top: 10px; left: 10px; background: var(--paper); font-size: .7rem; padding: 2px 8px; border-radius: 99px; letter-spacing: .06em; text-transform: uppercase; }
+  .body { padding: 14px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+  .body h3 { font: 600 1rem/1.3 Georgia, serif; }
+  .meta { font-size: .82rem; color: #6b7468; }
+  .row { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 10px; }
+  .price { font-weight: 700; }
+  button.add { background: var(--moss); color: #fff; border: 0; padding: 7px 12px; border-radius: 4px; font: inherit; font-size: .85rem; cursor: pointer; }
+  button.add:hover { background: var(--rust); }
+  .empty { grid-column: 1 / -1; padding: 40px; text-align: center; color: #6b7468; border: 1px dashed var(--line); }
+  .guide { margin: 0 5vw 56px; padding: 32px; background: var(--moss); color: #eef0e6; border-radius: 6px; display: grid; grid-template-columns: 1fr 2fr; gap: 32px; }
+  .guide h2 { font: 700 1.6rem/1.15 Georgia, serif; }
+  .guide dl { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .guide dt { font-weight: 700; color: #f0b38f; margin-bottom: 4px; }
+  .guide dd { font-size: .9rem; opacity: .9; }
+  @media (max-width: 800px) {
+    .layout, .guide, .guide dl { grid-template-columns: 1fr; }
+    aside { position: static; }
+  }
+  @media (prefers-reduced-motion: reduce) { .card { transition: none; } }
+</style>
+</head>
+<body>
+<header>
+  <span class="logo">Fieldwork Outfitters</span>
+  <nav><a href="#">Shelter</a><a href="#">Sleep</a><a href="#">Pack</a><a href="#">Cook</a></nav>
+</header>
+
+<section class="hero">
+  <span class="crumb">Shop / Camp / Shelter</span>
+  <h1>Tents &amp; Shelters</h1>
+  <p>Field-tested tents, tarps and bivies, chosen by people who sleep outside more than they sleep in.</p>
+</section>
+
+<div class="layout">
+  <aside aria-label="Filters">
+    <fieldset id="type"><legend>Type</legend>
+      <label><input type="checkbox" value="Tent"> Tents</label>
+      <label><input type="checkbox" value="Tarp"> Tarps</label>
+      <label><input type="checkbox" value="Bivy"> Bivies</label>
+    </fieldset>
+    <fieldset id="season"><legend>Season</legend>
+      <label><input type="radio" name="s" value="" checked> Any</label>
+      <label><input type="radio" name="s" value="3"> 3-season</label>
+      <label><input type="radio" name="s" value="4"> 4-season</label>
+    </fieldset>
+    <fieldset id="price"><legend>Max price: <span id="pv">$600</span></legend>
+      <input type="range" min="100" max="600" step="50" value="600" style="width:100%;accent-color:var(--moss)" aria-label="Maximum price">
+    </fieldset>
+  </aside>
+
+  <main>
+    <div class="bar"><span id="count"></span>
+      <label>Sort <select id="sort"><option value="n">Featured</option><option value="p">Price: low to high</option><option value="w">Weight: lightest</option></select></label>
+    </div>
+    <div class="grid" id="grid" aria-live="polite"></div>
+  </main>
+</div>
+
+<section class="guide">
+  <h2>How to choose a shelter</h2>
+  <dl>
+    <div><dt>Match the season</dt><dd>Three-season tents breathe well and shed rain. Choose four-season only for snow load and sustained wind.</dd></div>
+    <div><dt>Count the grams</dt><dd>Split the weight between partners. Under 1.5 kg per person is a comfortable target for multi-day trips.</dd></div>
+    <div><dt>Size up by one</dt><dd>A two-person tent is snug for one with a pack inside. Add a vestibule if you cook under cover.</dd></div>
+  </dl>
+</section>
+
+<script>
+  const P = [
+    ["Ridgeline 2", "Tent", 3, 389, 1.6], ["Basecamp 4", "Tent", 3, 449, 4.1], ["Summit Storm 2", "Tent", 4, 599, 2.4],
+    ["Wisp Solo", "Tent", 3, 329, 0.9], ["Cairn Tarp 10×10", "Tarp", 3, 119, 0.5], ["Ridgeback Flat Tarp", "Tarp", 3, 159, 0.4],
+    ["Storm Fly Tarp", "Tarp", 4, 189, 0.7], ["Nightjar Bivy", "Bivy", 3, 219, 0.6], ["Alpine Bivy Pro", "Bivy", 4, 349, 0.9],
+    ["Hollow 3", "Tent", 3, 429, 2.3], ["Glacier 2P", "Tent", 4, 579, 2.9], ["Ember Bivy Lite", "Bivy", 3, 179, 0.4]
+  ].map(([name, type, season, price, kg], i) => ({ name, type, season, price, kg, i, h: 90 + i * 17 }));
+  const $ = s => document.querySelector(s), grid = $("#grid");
+
+  function render() {
+    const types = [...document.querySelectorAll("#type input:checked")].map(e => e.value);
+    const season = document.querySelector("#season input:checked").value;
+    const max = +$("#price input").value, sort = $("#sort").value;
+    $("#pv").textContent = "$" + max;
+    const list = P.filter(p => (!types.length || types.includes(p.type)) && (!season || p.season === +season) && p.price <= max)
+      .sort((a, b) => sort === "p" ? a.price - b.price : sort === "w" ? a.kg - b.kg : a.i - b.i);
+    $("#count").textContent = `${list.length} of ${P.length} products`;
+    grid.innerHTML = list.length ? list.map(p => `
+      <article class="card">
+        <div class="thumb" style="--h:${p.h}"><span class="tag">${p.season}-season</span></div>
+        <div class="body"><h3>${p.name}</h3><span class="meta">${p.type} · ${p.kg} kg</span>
+          <div class="row"><span class="price">$${p.price}</span><button class="add" aria-label="Add ${p.name} to cart">Add</button></div>
+        </div>
+      </article>`).join("") : `<p class="empty">Nothing matches those filters. Try a higher price or fewer types.</p>`;
+  }
+  document.querySelectorAll("aside input, #sort").forEach(e => e.addEventListener("input", render));
+  render();
+</script>
+</body>
+</html>
+```

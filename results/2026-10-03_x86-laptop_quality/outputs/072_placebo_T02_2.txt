@@ -1,0 +1,150 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kerflog · Pricing</title>
+<style>
+  :root {
+    --paper: #f4efe6; --ink: #1d1b17; --muted: #6b655a; --line: #d9d1c1;
+    --card: #fbf8f2; --ember: #c8431a; --ember-ink: #fff;
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    --sans: "Inter", "Segoe UI", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--paper); color: var(--ink); font: 16px/1.55 var(--sans); }
+  a { color: inherit; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 28px 0; }
+  .logo { font: 700 20px var(--mono); letter-spacing: -.02em; text-decoration: none; }
+  .logo b { color: var(--ember); }
+  nav a.link { font-size: 14px; color: var(--muted); text-decoration: none; }
+  nav a.link:hover { color: var(--ink); }
+  header { padding: 56px 0 40px; max-width: 680px; }
+  .eyebrow { font: 500 13px var(--mono); color: var(--ember); text-transform: uppercase; letter-spacing: .08em; }
+  h1 { font-size: clamp(34px, 5.5vw, 56px); line-height: 1.05; letter-spacing: -.035em; margin: 14px 0 18px; }
+  header p { color: var(--muted); font-size: 18px; }
+  .toggle { display: inline-flex; border: 1px solid var(--ink); border-radius: 999px; padding: 3px; margin: 28px 0 36px; }
+  .toggle button { font: 500 14px var(--sans); border: 0; background: none; padding: 7px 18px; border-radius: 999px; cursor: pointer; color: var(--ink); }
+  .toggle button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+  .toggle small { font-family: var(--mono); color: var(--ember); margin-left: 4px; }
+  .toggle button[aria-pressed="true"] small { color: #f0a283; }
+  .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
+  .plan { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 28px; display: flex; flex-direction: column; }
+  .plan.featured { border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); }
+  .plan h2 { font: 600 15px var(--mono); display: flex; justify-content: space-between; }
+  .tag { background: var(--ember); color: var(--ember-ink); font-size: 11px; padding: 2px 8px; border-radius: 3px; }
+  .price { font-size: 52px; font-weight: 700; letter-spacing: -.04em; margin: 18px 0 2px; line-height: 1; }
+  .price span { font: 400 14px var(--sans); color: var(--muted); letter-spacing: 0; }
+  .sub { color: var(--muted); font-size: 14px; min-height: 44px; margin-top: 8px; }
+  .plan ul { list-style: none; padding: 0; margin: 20px 0 28px; flex: 1; font-size: 15px; }
+  .plan li { padding: 7px 0; border-top: 1px dashed var(--line); }
+  .plan li::before { content: "→ "; font-family: var(--mono); color: var(--ember); }
+  .btn { display: block; text-align: center; padding: 12px; border: 1px solid var(--ink); border-radius: 4px; font-weight: 600; text-decoration: none; }
+  .btn:hover { background: var(--ink); color: var(--paper); }
+  .featured .btn { background: var(--ember); border-color: var(--ember); color: var(--ember-ink); }
+  .featured .btn:hover { background: var(--ink); border-color: var(--ink); }
+  h3 { font-size: 28px; letter-spacing: -.03em; margin: 88px 0 24px; }
+  .scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; min-width: 560px; font-size: 15px; }
+  th, td { text-align: left; padding: 13px 12px; border-bottom: 1px solid var(--line); }
+  thead th { font: 600 13px var(--mono); border-bottom: 2px solid var(--ink); }
+  tbody th { font-weight: 500; }
+  td { font-family: var(--mono); font-size: 14px; }
+  td.no { color: #aaa293; }
+  tr.group th { padding-top: 28px; font: 600 12px var(--mono); color: var(--ember); text-transform: uppercase; letter-spacing: .08em; }
+  th:nth-child(3), td:nth-child(3) { background: rgba(200, 67, 26, .06); }
+  details { border-top: 1px solid var(--line); padding: 18px 0; max-width: 720px; }
+  details:last-of-type { border-bottom: 1px solid var(--line); }
+  summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+  summary::after { content: "+"; font: 400 22px/1 var(--mono); color: var(--ember); }
+  details[open] summary::after { content: "–"; }
+  details p { color: var(--muted); margin-top: 10px; }
+  footer { margin: 96px 0 48px; padding-top: 24px; border-top: 1px solid var(--ink); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font: 13px var(--mono); color: var(--muted); }
+  a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--ember); outline-offset: 2px; }
+  @media (max-width: 860px) { .plans { grid-template-columns: 1fr; } .plan.featured { box-shadow: 4px 4px 0 var(--ink); } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="logo" href="#">kerf<b>log</b></a>
+    <a class="link" href="#">Docs</a>
+  </nav>
+
+  <header>
+    <div class="eyebrow">Pricing</div>
+    <h1>Cut through the noise. Not your budget.</h1>
+    <p>Kerflog turns raw logs into searchable answers for teams of 2 to 30 engineers. Flat prices, no per-seat math, no surprise ingest bills.</p>
+    <div class="toggle" role="group" aria-label="Billing period">
+      <button data-period="monthly" aria-pressed="true">Monthly</button>
+      <button data-period="yearly" aria-pressed="false">Yearly <small>−20%</small></button>
+    </div>
+  </header>
+
+  <section class="plans">
+    <article class="plan">
+      <h2>SCRATCH</h2>
+      <div class="price">$0<span> /mo</span></div>
+      <p class="sub">For side projects and kicking the tires.</p>
+      <ul><li>5 GB ingest per month</li><li>3 days retention</li><li>Up to 3 teammates</li><li>Community support</li></ul>
+      <a class="btn" href="#">Start free</a>
+    </article>
+    <article class="plan featured">
+      <h2>CREW <span class="tag">Most teams</span></h2>
+      <div class="price"><em style="font-style:normal" data-m="49" data-y="39">$49</em><span> /mo flat</span></div>
+      <p class="sub">Everything a growing team needs to debug production fast.</p>
+      <ul><li>100 GB ingest per month</li><li>30 days retention</li><li>Up to 15 teammates</li><li>Alerts to Slack and PagerDuty</li><li>Email support</li></ul>
+      <a class="btn" href="#">Try Crew for 14 days</a>
+    </article>
+    <article class="plan">
+      <h2>FOREMAN</h2>
+      <div class="price"><em style="font-style:normal" data-m="149" data-y="119">$149</em><span> /mo flat</span></div>
+      <p class="sub">For teams with compliance needs and heavier traffic.</p>
+      <ul><li>500 GB ingest per month</li><li>90 days retention</li><li>Unlimited teammates</li><li>SSO and audit log</li><li>Priority support, 4h response</li></ul>
+      <a class="btn" href="#">Talk to us</a>
+    </article>
+  </section>
+
+  <h3>Compare plans</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Feature</th><th>Scratch</th><th>Crew</th><th>Foreman</th></tr></thead>
+      <tbody>
+        <tr class="group"><th colspan="4">Volume</th></tr>
+        <tr><th>Monthly ingest</th><td>5 GB</td><td>100 GB</td><td>500 GB</td></tr>
+        <tr><th>Retention</th><td>3 days</td><td>30 days</td><td>90 days</td></tr>
+        <tr><th>Extra ingest</th><td class="no">n/a</td><td>$0.40 / GB</td><td>$0.25 / GB</td></tr>
+        <tr class="group"><th colspan="4">Workflow</th></tr>
+        <tr><th>Teammates</th><td>3</td><td>15</td><td>Unlimited</td></tr>
+        <tr><th>Saved searches</th><td>10</td><td>Unlimited</td><td>Unlimited</td></tr>
+        <tr><th>Alerts</th><td class="no">—</td><td>Slack, PagerDuty</td><td>Slack, PagerDuty, webhook</td></tr>
+        <tr class="group"><th colspan="4">Security and support</th></tr>
+        <tr><th>SSO (SAML)</th><td class="no">—</td><td class="no">—</td><td>Included</td></tr>
+        <tr><th>Audit log</th><td class="no">—</td><td class="no">—</td><td>Included</td></tr>
+        <tr><th>Support</th><td>Community</td><td>Email</td><td>4h response</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Questions, answered</h3>
+  <details><summary>What counts as ingest?</summary><p>The uncompressed size of log lines we accept. Dropped or filtered lines never count, and you can set drop rules before data leaves your servers.</p></details>
+  <details><summary>What happens if we go over our limit?</summary><p>Nothing breaks. We keep ingesting and bill overage at the rate in the table. Scratch pauses ingest until the next month instead of charging you.</p></details>
+  <details><summary>Can we change plans later?</summary><p>Any time. Upgrades apply immediately and downgrades start next cycle. Yearly plans are refunded pro rata in the first 30 days.</p></details>
+  <details><summary>Where is our data stored?</summary><p>Encrypted at rest in your choice of US or EU regions. Foreman customers can request a dedicated bucket.</p></details>
+
+  <footer><span>© 2026 Kerflog Labs</span><span>Prices in USD · Taxes may apply</span></footer>
+</div>
+<script>
+  const buttons = document.querySelectorAll(".toggle button");
+  const prices = document.querySelectorAll("[data-m]");
+  buttons.forEach(btn => btn.addEventListener("click", () => {
+    const yearly = btn.dataset.period === "yearly";
+    buttons.forEach(b => b.setAttribute("aria-pressed", String(b === btn)));
+    prices.forEach(p => p.textContent = "$" + (yearly ? p.dataset.y : p.dataset.m));
+  }));
+</script>
+</body>
+</html>
+```

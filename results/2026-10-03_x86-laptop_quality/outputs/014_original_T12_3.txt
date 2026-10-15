@@ -1,0 +1,135 @@
+```html
+<!DOCTYPE html>
+<!-- Design read: consumer app announcement for coffee drinkers, clean modern language, native CSS, system fonts, one vermilion accent, auto light/dark. Dials 7 / 5 / 3. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ferrow Coffee Roasters: the app</title>
+<meta name="description" content="Order small-batch coffee beans and track your delivery with the Ferrow app.">
+<style>
+  /* Shape rule: buttons are full pills, every card and image is 20px. */
+  :root{--bg:#f2f3f1;--ink:#14171a;--mute:#4d535a;--line:#d5d9d4;--tile:#e5e8e3;--acc:#c4361a;--on-acc:#fff;--r:20px;
+    --ease:cubic-bezier(.16,1,.3,1)}
+  @media (prefers-color-scheme:dark){
+    :root{--bg:#101315;--ink:#eef0ec;--mute:#a4abb1;--line:#2a3035;--tile:#1a1f22;--acc:#ff7048;--on-acc:#141210}
+  }
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--bg);color:var(--ink);font:400 1.0625rem/1.6 "Avenir Next","Segoe UI Variable Display","Helvetica Neue",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  img{display:block;width:100%;height:100%;object-fit:cover;background:var(--tile)}
+  a{color:inherit}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+  h1,h2{letter-spacing:-.035em;line-height:1.02;font-weight:700}
+  h1{font-size:clamp(2.5rem,6.2vw,4.25rem)}
+  h2{font-size:clamp(1.9rem,4vw,3rem);margin-bottom:16px}
+  p{color:var(--mute);max-width:60ch}
+  nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{font-weight:800;font-size:1.25rem;letter-spacing:-.03em;text-decoration:none}
+  .nav-r{display:flex;align-items:center;gap:28px}
+  .nav-r a:not(.btn){color:var(--mute);text-decoration:none;font-size:.95rem}
+  .nav-r a:not(.btn):hover{color:var(--ink)}
+  .btn{display:inline-block;white-space:nowrap;background:var(--acc);color:var(--on-acc);padding:14px 26px;border-radius:999px;
+    font-weight:600;text-decoration:none;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px -10px var(--acc)}
+  .btn:active{transform:scale(.97)}
+  .btn.ghost{background:none;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+  .btn.ghost:hover{box-shadow:inset 0 0 0 1.5px var(--ink),0 10px 24px -14px var(--ink)}
+  .btn:focus-visible,a:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+  .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;min-height:calc(100dvh - 68px);padding-top:24px;padding-bottom:48px}
+  .hero p{margin:24px 0 32px;font-size:1.2rem}
+  .row{display:flex;flex-wrap:wrap;gap:12px}
+  .hero figure{aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;margin-top:48px}
+  section{padding:104px 0}
+  .bento{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:auto auto;gap:16px;margin-top:40px}
+  .cell{border-radius:var(--r);overflow:hidden;padding:32px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px}
+  .cell h3{font-size:1.5rem;letter-spacing:-.025em;line-height:1.15}
+  .photo{grid-row:span 2;position:relative;min-height:460px;padding:0;justify-content:flex-end}
+  .photo img{position:absolute;inset:0}
+  .photo .cap{position:relative;margin:24px;padding:20px 24px;border-radius:var(--r);background:var(--bg);max-width:360px}
+  .photo .cap p{font-size:.98rem}
+  .track{background:var(--acc);color:var(--on-acc);min-height:240px}
+  .track p{color:inherit}
+  .again{background:var(--tile);min-height:200px}
+  .how{display:grid;grid-template-columns:1fr 1.3fr;gap:64px;align-items:start}
+  .steps{list-style:none;padding:0}
+  .steps li{display:grid;grid-template-columns:150px 1fr;gap:24px;padding:28px 0;border-top:1px solid var(--line);align-items:baseline}
+  .steps li:last-child{border-bottom:1px solid var(--line)}
+  .steps b{font-size:1.6rem;letter-spacing:-.03em}
+  .steps li:hover b{color:var(--acc)}
+  .cta{background:var(--tile);border-radius:var(--r);padding:72px 48px;display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:center}
+  .cta .row{justify-content:flex-end}
+  footer{padding:40px 0 56px;color:var(--mute);font-size:.9rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  @media (prefers-reduced-motion:no-preference){
+    .hero>*{animation:up .9s var(--ease) both}.hero>figure{animation-delay:.15s}
+    .js .rv{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+    .js .rv.in{opacity:1;transform:none}
+    @keyframes up{from{opacity:0;transform:translateY(28px)}}
+  }
+  @media (max-width:767px){
+    .nav-r a:not(.btn){display:none}
+    .hero,.how,.cta,.bento{grid-template-columns:1fr}
+    .hero{min-height:0;gap:32px}.hero figure{margin-top:0;aspect-ratio:4/3}
+    .photo{grid-row:auto;min-height:380px}
+    section{padding:72px 0}
+    .steps li{grid-template-columns:1fr;gap:4px}
+    .cta{padding:40px 24px}.cta .row{justify-content:flex-start}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="logo" href="#">Ferrow</a>
+    <div class="nav-r"><a href="#how">How it works</a><a class="btn" href="#get">Get the app</a></div>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <h1>Fresh roasts, tracked home.</h1>
+      <p>Order small-batch roasts in the app, then watch your bag travel from our roaster to your kitchen.</p>
+      <div class="row"><a class="btn" href="#get">Get the app</a><a class="btn ghost" href="#how">How it works</a></div>
+    </div>
+    <figure><img src="https://picsum.photos/seed/ferrow-coffee-roaster-beans/900/1125" alt="Freshly roasted coffee beans in a scoop beside a paper bag" width="900" height="1125" fetchpriority="high"></figure>
+  </header>
+
+  <section>
+    <h2 class="rv">Everything between roast and cup.</h2>
+    <p class="rv">Pick a bag, choose your grind, and follow it until it lands on your doorstep.</p>
+    <div class="bento">
+      <article class="cell photo rv">
+        <img src="https://picsum.photos/seed/ferrow-coffee-bags-shelf/1000/900" alt="Rows of kraft coffee bags on a roastery shelf" loading="lazy">
+        <div class="cap"><h3>Order by roast date</h3><p>Every bag shows when it was roasted, so you always know how fresh it is.</p></div>
+      </article>
+      <article class="cell track rv"><h3>Track every handoff</h3><p>Roasted, packed, collected, out for delivery. Each change sends a notification.</p></article>
+      <article class="cell again rv"><h3>Reorder in one tap</h3><p>Your last grind and bag size are saved for next time.</p></article>
+    </div>
+  </section>
+
+  <section id="how" class="how">
+    <div class="rv"><h2>Three taps to a fresh bag.</h2><p>No account forms and no subscription lock-in. Pause or skip whenever you like.</p></div>
+    <ol class="steps rv">
+      <li><b>Choose</b><p>Browse roasts by flavor, origin, or brew method.</p></li>
+      <li><b>Roast</b><p>We roast your order the next morning and pack it the same day.</p></li>
+      <li><b>Follow</b><p>Watch the courier's progress live until the bag is at your door.</p></li>
+    </ol>
+  </section>
+
+  <section id="get" style="padding-top:0">
+    <div class="cta rv">
+      <div><h2>Your next bag is a download away.</h2><p>Available for iPhone and Android.</p></div>
+      <div class="row"><a class="btn" href="#">Get the app</a></div>
+    </div>
+  </section>
+
+  <footer><span>Ferrow Coffee Roasters</span><span>hello@ferrowcoffee.example</span></footer>
+</div>
+<script>
+  document.documentElement.classList.add('js');
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: .2 });
+  document.querySelectorAll('.rv').forEach((el, i) => { el.style.transitionDelay = (i % 3) * 80 + 'ms'; io.observe(el); });
+</script>
+</body>
+</html>
+```

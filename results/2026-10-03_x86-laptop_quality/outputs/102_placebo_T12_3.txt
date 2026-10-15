@@ -1,0 +1,142 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tamper Lane Coffee — Fresh beans, tracked to your door</title>
+<meta name="description" content="The Tamper Lane app: order freshly roasted beans and watch them travel from our roaster to your kitchen.">
+<style>
+:root{--bg:#f4ede1;--ink:#241711;--muted:#6f5d50;--roast:#2b1a12;--accent:#c4501b;--line:#dccfba;--card:#fbf7f0}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:17px/1.6 "Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.serif{font-family:Georgia,"Iowan Old Style","Times New Roman",serif;font-weight:700;letter-spacing:-.02em;line-height:1.05}
+a{color:inherit}
+.wrap{max-width:1100px;margin:0 auto;padding:0 28px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:26px 0}
+.logo{font-family:Georgia,serif;font-weight:700;font-size:1.25rem;text-decoration:none}
+.logo b{color:var(--accent)}
+nav a.link{font-size:.95rem;color:var(--muted);text-decoration:none}
+nav a.link:hover{color:var(--ink)}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center;padding:48px 0 96px}
+.eyebrow{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:20px}
+h1{font-size:clamp(2.6rem,6vw,4.6rem)}
+h1 em{font-style:italic;color:var(--accent)}
+.lede{max-width:46ch;margin:26px 0 34px;color:var(--muted);font-size:1.15rem}
+form{display:flex;gap:10px;max-width:460px;flex-wrap:wrap}
+input{flex:1 1 220px;padding:15px 18px;border:1.5px solid var(--line);border-radius:999px;background:var(--card);font:inherit;color:var(--ink)}
+input:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+button{padding:15px 26px;border:0;border-radius:999px;background:var(--roast);color:#fff;font:inherit;font-weight:600;cursor:pointer;transition:background .2s,transform .2s}
+button:hover{background:var(--accent)}
+button:active{transform:scale(.97)}
+.note{font-size:.88rem;color:var(--muted);margin-top:14px;min-height:1.4em}
+.phone{justify-self:center;width:290px;background:var(--roast);border-radius:44px;padding:12px;box-shadow:0 40px 70px -30px rgba(43,26,18,.55);transform:rotate(2.5deg)}
+.screen{background:var(--card);border-radius:34px;padding:26px 22px 24px;min-height:520px}
+.screen small{color:var(--muted);font-size:.78rem}
+.screen h3{font-size:1.5rem;margin:6px 0 4px}
+.eta{display:inline-block;background:#f3d9c8;color:#8a3410;font-size:.78rem;font-weight:600;padding:4px 12px;border-radius:99px;margin:10px 0 22px}
+.step{position:relative;display:flex;gap:14px;padding-bottom:22px;font-size:.92rem}
+.step:not(:last-child)::before{content:"";position:absolute;left:8px;top:20px;bottom:0;width:2px;background:var(--line)}
+.step i{flex:none;width:18px;height:18px;border-radius:50%;border:2px solid var(--line);background:var(--card);margin-top:3px;z-index:1}
+.step.done i{background:var(--roast);border-color:var(--roast)}
+.step.done:not(:last-child)::before{background:var(--roast)}
+.step.now i{border-color:var(--accent);background:var(--accent);box-shadow:0 0 0 0 rgba(196,80,27,.5);animation:pulse 2s infinite}
+.step span{display:block;color:var(--muted);font-size:.8rem}
+.step.later{opacity:.5}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(196,80,27,0)}100%{box-shadow:0 0 0 0 rgba(196,80,27,0)}}
+.band{background:var(--roast);color:#f4ede1;padding:88px 0}
+.band h2{font-size:clamp(2rem,4vw,3rem);max-width:18ch;margin-bottom:56px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;counter-reset:s}
+.steps div{counter-increment:s;border-top:1px solid rgba(244,237,225,.25);padding-top:20px}
+.steps div::before{content:"0" counter(s);font-family:Georgia,serif;font-size:1.1rem;color:#e8895a}
+.steps h3{font-size:1.45rem;margin:10px 0 8px}
+.steps p{color:#cdbfae;font-size:.98rem}
+.feats{display:grid;grid-template-columns:repeat(2,1fr);gap:0 64px;padding:96px 0 40px}
+.feats h2{grid-column:1/-1;font-size:clamp(2rem,4vw,3rem);margin-bottom:40px}
+.feats article{padding:22px 0;border-bottom:1px solid var(--line)}
+.feats h3{font-size:1.25rem;margin-bottom:4px}
+.feats p{color:var(--muted);font-size:.98rem}
+.cta{text-align:center;padding:96px 0 72px}
+.cta h2{font-size:clamp(2rem,4.5vw,3.4rem);max-width:16ch;margin:0 auto 18px}
+.cta p{color:var(--muted);margin-bottom:28px}
+.cta a{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:600;padding:16px 32px;border-radius:999px;transition:transform .2s}
+.cta a:hover{transform:translateY(-2px)}
+footer{border-top:1px solid var(--line);padding:26px 0 40px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:var(--muted);font-size:.88rem}
+@media(max-width:820px){.hero{grid-template-columns:1fr;padding-bottom:64px}.phone{transform:none}.steps,.feats{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <nav>
+    <a class="logo" href="#">Tamper Lane<b>.</b></a>
+    <a class="link" href="#how">How it works</a>
+  </nav>
+</header>
+<main>
+  <section class="wrap hero">
+    <div>
+      <p class="eyebrow">New · iOS &amp; Android</p>
+      <h1>Roasted on Tuesday. <em>On your counter</em> by Thursday.</h1>
+      <p class="lede">The Tamper Lane app lets you order single-origin beans straight from our roaster and follow every bag from the drum to your doorstep.</p>
+      <form id="join">
+        <label for="email" hidden>Email address</label>
+        <input id="email" type="email" placeholder="you@email.com" required autocomplete="email">
+        <button type="submit">Get the app link</button>
+      </form>
+      <p class="note" id="note" role="status">We'll send one email on launch day. Nothing else.</p>
+    </div>
+    <div class="phone" aria-label="App screen showing a delivery in progress">
+      <div class="screen">
+        <small>Order #2841 · 2 bags</small>
+        <h3>Ethiopia Guji, medium roast</h3>
+        <span class="eta">Arrives today, 2–4 pm</span>
+        <div class="step done"><i></i><div>Roasted<span>Tue 6:40 am · Batch 118</span></div></div>
+        <div class="step done"><i></i><div>Packed &amp; sealed<span>Tue 11:15 am</span></div></div>
+        <div class="step now"><i></i><div>Out for delivery<span>4 stops away</span></div></div>
+        <div class="step later"><i></i><div>At your door<span>Photo on arrival</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="how">
+    <div class="wrap">
+      <h2>Three taps from craving to cup.</h2>
+      <div class="steps">
+        <div><h3>Pick your beans</h3><p>Browse this week's roasts with tasting notes, grind options and bag sizes.</p></div>
+        <div><h3>We roast to order</h3><p>Nothing sits on a shelf. Your bag is roasted the morning it ships.</p></div>
+        <div><h3>Watch it travel</h3><p>Live status from roaster to doorstep, with a nudge when it's close.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap feats">
+    <h2>Small details, done properly.</h2>
+    <article><h3>Subscribe, then forget</h3><p>Set a rhythm that matches your pour-overs. Skip or pause in one tap.</p></article>
+    <article><h3>Roast date on every bag</h3><p>See exactly when your coffee was roasted, and when it peaks.</p></article>
+    <article><h3>Brew guides built in</h3><p>Recipes tuned to each coffee for filter, espresso or moka pot.</p></article>
+    <article><h3>Reorder your favorite</h3><p>Loved the last one? It's waiting at the top of your list.</p></article>
+  </section>
+
+  <section class="wrap cta">
+    <h2>Fresher coffee is one download away.</h2>
+    <p>Free to install. Free delivery on your first bag.</p>
+    <a href="#join">Join the launch list</a>
+  </section>
+</main>
+<footer class="wrap">
+  <span>© 2026 Tamper Lane Coffee Roasters</span>
+  <span>Roasted in small batches, every weekday.</span>
+</footer>
+<script>
+document.getElementById('join').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var note = document.getElementById('note');
+  note.textContent = 'Thanks! Check ' + this.email.value + ' on launch day.';
+  this.reset();
+});
+</script>
+</body>
+</html>
+```

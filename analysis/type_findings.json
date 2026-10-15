@@ -1,0 +1,540 @@
+{
+ "n": 138,
+ "by_domain": {
+  "D1": {
+   "label": "software-process",
+   "n": 19,
+   "share": 0.138,
+   "median_body_chars": 3575,
+   "median_listing_chars": 201.0,
+   "median_listing_tokens": 76.0,
+   "median_invocation_tokens": 1373,
+   "total_listing_tokens": 1464,
+   "multi_file_share": 0.84,
+   "points_to_files_share": 0.42,
+   "median_deferred_share_if_any": 0.565,
+   "has_scripts_share": 0.26,
+   "manual_only": 5,
+   "median_clarity": 3,
+   "examples": [
+    "grill-me",
+    "grill-with-docs",
+    "improve-codebase-architecture",
+    "caveman-commit"
+   ]
+  },
+  "D2": {
+   "label": "frontend-ui-design",
+   "n": 15,
+   "share": 0.109,
+   "median_body_chars": 10893,
+   "median_listing_chars": 245.0,
+   "median_listing_tokens": 88.5,
+   "median_invocation_tokens": 4080,
+   "total_listing_tokens": 1561,
+   "multi_file_share": 0.47,
+   "points_to_files_share": 0.33,
+   "median_deferred_share_if_any": 0.699,
+   "has_scripts_share": 0.13,
+   "manual_only": 1,
+   "median_clarity": 2,
+   "examples": [
+    "frontend-design",
+    "web-design-guidelines",
+    "design-taste-frontend",
+    "high-end-visual-design"
+   ]
+  },
+  "D3": {
+   "label": "platform-reference",
+   "n": 36,
+   "share": 0.261,
+   "median_body_chars": 6734.0,
+   "median_listing_chars": 351.0,
+   "median_listing_tokens": 121.5,
+   "median_invocation_tokens": 2563.0,
+   "total_listing_tokens": 5415,
+   "multi_file_share": 0.81,
+   "points_to_files_share": 0.69,
+   "median_deferred_share_if_any": 0.815,
+   "has_scripts_share": 0.17,
+   "manual_only": 0,
+   "median_clarity": 3.0,
+   "examples": [
+    "vercel-react-best-practices",
+    "microsoft-foundry",
+    "azure-diagnostics",
+    "azure-prepare"
+   ]
+  },
+  "D4": {
+   "label": "tool-operation",
+   "n": 13,
+   "share": 0.094,
+   "median_body_chars": 4193,
+   "median_listing_chars": 447,
+   "median_listing_tokens": 147,
+   "median_invocation_tokens": 1601,
+   "total_listing_tokens": 2028,
+   "multi_file_share": 0.46,
+   "points_to_files_share": 0.46,
+   "median_deferred_share_if_any": 0.758,
+   "has_scripts_share": 0.08,
+   "manual_only": 0,
+   "median_clarity": 3,
+   "examples": [
+    "agent-browser",
+    "hyperframes-cli",
+    "lark-shared",
+    "orca-cli"
+   ]
+  },
+  "D5": {
+   "label": "media-generation",
+   "n": 16,
+   "share": 0.116,
+   "median_body_chars": 8754.0,
+   "median_listing_chars": 753.0,
+   "median_listing_tokens": 236.5,
+   "median_invocation_tokens": 3225.5,
+   "total_listing_tokens": 3337,
+   "multi_file_share": 0.5,
+   "points_to_files_share": 0.5,
+   "median_deferred_share_if_any": 0.6465,
+   "has_scripts_share": 0.12,
+   "manual_only": 0,
+   "median_clarity": 3.0,
+   "examples": [
+    "hyperframes",
+    "hyperframes-registry",
+    "remotion-best-practices",
+    "video-edit"
+   ]
+  },
+  "D6": {
+   "label": "business-marketing",
+   "n": 10,
+   "share": 0.072,
+   "median_body_chars": 9323.0,
+   "median_listing_chars": 618.0,
+   "median_listing_tokens": 197.0,
+   "median_invocation_tokens": 3499.5,
+   "total_listing_tokens": 1963,
+   "multi_file_share": 0.6,
+   "points_to_files_share": 0.5,
+   "median_deferred_share_if_any": 0.749,
+   "has_scripts_share": 0.0,
+   "manual_only": 0,
+   "median_clarity": 3.0,
+   "examples": [
+    "seo-audit",
+    "copywriting",
+    "marketing-psychology",
+    "landing-page-conversion-audit"
+   ]
+  },
+  "D7": {
+   "label": "office-documents",
+   "n": 11,
+   "share": 0.08,
+   "median_body_chars": 10217,
+   "median_listing_chars": 212,
+   "median_listing_tokens": 79,
+   "median_invocation_tokens": 3830,
+   "total_listing_tokens": 1125,
+   "multi_file_share": 0.82,
+   "points_to_files_share": 0.73,
+   "median_deferred_share_if_any": 0.753,
+   "has_scripts_share": 0.18,
+   "manual_only": 0,
+   "median_clarity": 3,
+   "examples": [
+    "lark-doc",
+    "lark-base",
+    "pptx",
+    "obsidian-markdown"
+   ]
+  },
+  "D8": {
+   "label": "agent-meta",
+   "n": 16,
+   "share": 0.116,
+   "median_body_chars": 8972.0,
+   "median_listing_chars": 311.0,
+   "median_listing_tokens": 104.0,
+   "median_invocation_tokens": 3369.5,
+   "total_listing_tokens": 2137,
+   "multi_file_share": 0.56,
+   "points_to_files_share": 0.44,
+   "median_deferred_share_if_any": 0.552,
+   "has_scripts_share": 0.12,
+   "manual_only": 0,
+   "median_clarity": 3.0,
+   "examples": [
+    "find-skills",
+    "caveman",
+    "google-agents-cli-adk-code",
+    "google-agents-cli-workflow"
+   ]
+  },
+  "D9": {
+   "label": "other",
+   "n": 2,
+   "share": 0.014,
+   "median_body_chars": 5507.5,
+   "median_listing_chars": 254.0,
+   "median_listing_tokens": 91.5,
+   "median_invocation_tokens": 2087.5,
+   "total_listing_tokens": 183,
+   "multi_file_share": 1.0,
+   "points_to_files_share": 0.5,
+   "median_deferred_share_if_any": 0.551,
+   "has_scripts_share": 0.0,
+   "manual_only": 0,
+   "median_clarity": 2.5,
+   "examples": [
+    "typescript-advanced-types",
+    "scaffold-exercises"
+   ]
+  }
+ },
+ "by_form": {
+  "F1": {
+   "label": "procedure",
+   "n": 53,
+   "share": 0.384,
+   "median_body_chars": 8703,
+   "median_listing_chars": 404.5,
+   "median_listing_tokens": 135.0,
+   "median_invocation_tokens": 3270,
+   "total_listing_tokens": 7787,
+   "multi_file_share": 0.7,
+   "points_to_files_share": 0.57,
+   "median_deferred_share_if_any": 0.603,
+   "has_scripts_share": 0.28,
+   "manual_only": 3,
+   "median_clarity": 3,
+   "examples": [
+    "find-skills",
+    "improve-codebase-architecture",
+    "hyperframes",
+    "web-design-guidelines"
+   ]
+  },
+  "F2": {
+   "label": "reference",
+   "n": 17,
+   "share": 0.123,
+   "median_body_chars": 9170,
+   "median_listing_chars": 428,
+   "median_listing_tokens": 142,
+   "median_invocation_tokens": 3443,
+   "total_listing_tokens": 2909,
+   "multi_file_share": 0.88,
+   "points_to_files_share": 0.71,
+   "median_deferred_share_if_any": 0.7605,
+   "has_scripts_share": 0.12,
+   "manual_only": 0,
+   "median_clarity": 3,
+   "examples": [
+    "hyperframes-registry",
+    "google-agents-cli-adk-code",
+    "prisma-client-api",
+    "supabase"
+   ]
+  },
+  "F3": {
+   "label": "rules-and-style",
+   "n": 24,
+   "share": 0.174,
+   "median_body_chars": 6286.0,
+   "median_listing_chars": 236,
+   "median_listing_tokens": 86,
+   "median_invocation_tokens": 2439.5,
+   "total_listing_tokens": 2658,
+   "multi_file_share": 0.79,
+   "points_to_files_share": 0.46,
+   "median_deferred_share_if_any": 0.749,
+   "has_scripts_share": 0.0,
+   "manual_only": 1,
+   "median_clarity": 3.0,
+   "examples": [
+    "frontend-design",
+    "vercel-react-best-practices",
+    "design-taste-frontend",
+    "supabase-postgres-best-practices"
+   ]
+  },
+  "F4": {
+   "label": "tool-wrapper",
+   "n": 24,
+   "share": 0.174,
+   "median_body_chars": 9272.5,
+   "median_listing_chars": 430.5,
+   "median_listing_tokens": 142.5,
+   "median_invocation_tokens": 3481.0,
+   "total_listing_tokens": 3531,
+   "multi_file_share": 0.62,
+   "points_to_files_share": 0.62,
+   "median_deferred_share_if_any": 0.773,
+   "has_scripts_share": 0.04,
+   "manual_only": 0,
+   "median_clarity": 3.0,
+   "examples": [
+    "hyperframes-cli",
+    "lark-base",
+    "lark-shared",
+    "nano-banana-2"
+   ]
+  },
+  "F5": {
+   "label": "persona-or-mode",
+   "n": 6,
+   "share": 0.043,
+   "median_body_chars": 9750.5,
+   "median_listing_chars": 231.0,
+   "median_listing_tokens": 89.0,
+   "median_invocation_tokens": 3657.5,
+   "total_listing_tokens": 816,
+   "multi_file_share": 0.33,
+   "points_to_files_share": 0.17,
+   "median_deferred_share_if_any": 0.97,
+   "has_scripts_share": 0.17,
+   "manual_only": 0,
+   "median_clarity": 2.0,
+   "examples": [
+    "caveman",
+    "high-end-visual-design",
+    "emil-design-eng",
+    "impeccable"
+   ]
+  },
+  "F6": {
+   "label": "stub-pointer",
+   "n": 14,
+   "share": 0.101,
+   "median_body_chars": 1744.5,
+   "median_listing_chars": 220.5,
+   "median_listing_tokens": 81.5,
+   "median_invocation_tokens": 695.5,
+   "total_listing_tokens": 1512,
+   "multi_file_share": 0.29,
+   "points_to_files_share": 0.29,
+   "median_deferred_share_if_any": 0.781,
+   "has_scripts_share": 0.07,
+   "manual_only": 2,
+   "median_clarity": 3.0,
+   "examples": [
+    "grill-me",
+    "grill-with-docs",
+    "agent-browser",
+    "remotion-best-practices"
+   ]
+  }
+ },
+ "by_coarse_form": {
+  "procedural": {
+   "label": "procedure + tool-wrapper",
+   "n": 77,
+   "share": 0.558,
+   "median_body_chars": 8703,
+   "median_listing_chars": 408.0,
+   "median_listing_tokens": 136.0,
+   "median_invocation_tokens": 3270,
+   "total_listing_tokens": 11318,
+   "multi_file_share": 0.68,
+   "points_to_files_share": 0.58,
+   "median_deferred_share_if_any": 0.699,
+   "has_scripts_share": 0.21,
+   "manual_only": 3,
+   "median_clarity": 3,
+   "examples": [
+    "find-skills",
+    "improve-codebase-architecture",
+    "hyperframes-cli",
+    "hyperframes"
+   ]
+  },
+  "knowledge": {
+   "label": "reference + rules-and-style",
+   "n": 41,
+   "share": 0.297,
+   "median_body_chars": 7868,
+   "median_listing_chars": 307.0,
+   "median_listing_tokens": 106.5,
+   "median_invocation_tokens": 2890,
+   "total_listing_tokens": 5567,
+   "multi_file_share": 0.83,
+   "points_to_files_share": 0.56,
+   "median_deferred_share_if_any": 0.749,
+   "has_scripts_share": 0.05,
+   "manual_only": 1,
+   "median_clarity": 3,
+   "examples": [
+    "frontend-design",
+    "vercel-react-best-practices",
+    "hyperframes-registry",
+    "design-taste-frontend"
+   ]
+  },
+  "mode-or-stub": {
+   "label": "persona/mode + stub",
+   "n": 20,
+   "share": 0.145,
+   "median_body_chars": 2744.5,
+   "median_listing_chars": 228.5,
+   "median_listing_tokens": 84.5,
+   "median_invocation_tokens": 1034.0,
+   "total_listing_tokens": 2328,
+   "multi_file_share": 0.3,
+   "points_to_files_share": 0.25,
+   "median_deferred_share_if_any": 0.919,
+   "has_scripts_share": 0.1,
+   "manual_only": 2,
+   "median_clarity": 3.0,
+   "examples": [
+    "grill-me",
+    "grill-with-docs",
+    "agent-browser",
+    "remotion-best-practices"
+   ]
+  }
+ },
+ "by_clarity": {
+  "1": {
+   "n": 16,
+   "median_description_chars": 64.0,
+   "trigger_phrase_share": 0.0
+  },
+  "2": {
+   "n": 26,
+   "median_description_chars": 201.0,
+   "trigger_phrase_share": 0.5
+  },
+  "3": {
+   "n": 96,
+   "median_description_chars": 509.5,
+   "trigger_phrase_share": 0.77
+  }
+ },
+ "popular_vs_random_only": {
+  "popular_median_invocation": 3006.5,
+  "random_median_invocation": 2982.5,
+  "popular_median_listing_automatic": 135.0,
+  "random_median_listing_automatic": 87.0
+ },
+ "listing_concentration": {
+  "total_listing_tokens_all_138": 19213,
+  "top10_share": 0.165,
+  "top10": [
+   [
+    "microsoft-foundry",
+    403,
+    "D3"
+   ],
+   [
+    "agent-browser",
+    325,
+    "D4"
+   ],
+   [
+    "higgsfield-product-photoshoot",
+    313,
+    "D5"
+   ],
+   [
+    "solana-dev",
+    309,
+    "D3"
+   ],
+   [
+    "multi-account-isolation",
+    308,
+    "D4"
+   ],
+   [
+    "higgsfield-generate",
+    306,
+    "D5"
+   ],
+   [
+    "browser-mcp-agent",
+    305,
+    "D8"
+   ],
+   [
+    "playwright-best-practices",
+    304,
+    "D1"
+   ],
+   [
+    "anti-detect-browser",
+    303,
+    "D4"
+   ],
+   [
+    "hyperframes-registry",
+    297,
+    "D5"
+   ]
+  ]
+ },
+ "invocation_extremes": [
+  [
+   "design-taste-frontend",
+   35199,
+   "D2",
+   "F3",
+   0.0
+  ],
+  [
+   "anti-detect-browser",
+   14160,
+   "D4",
+   "F2",
+   0.171
+  ],
+  [
+   "skill-creator",
+   12122,
+   "D8",
+   "F1",
+   0.661
+  ],
+  [
+   "subagent-driven-development",
+   11970,
+   "D8",
+   "F1",
+   0.383
+  ],
+  [
+   "neon",
+   11812,
+   "D3",
+   "F2",
+   0.54
+  ],
+  [
+   "google-agents-cli-deploy",
+   11514,
+   "D8",
+   "F1",
+   0.552
+  ],
+  [
+   "emil-design-eng",
+   9977,
+   "D2",
+   "F5",
+   0.0
+  ],
+  [
+   "microsoft-foundry",
+   9771,
+   "D3",
+   "F1",
+   0.901
+  ]
+ ]
+}

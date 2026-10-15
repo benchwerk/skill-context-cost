@@ -1,0 +1,156 @@
+```html
+<!DOCTYPE html>
+<!-- Design Read: portfolio for a wedding photographer, aimed at engaged couples, with a quiet editorial-sans language, built as native CSS (sharp corners, one emerald accent, auto light/dark). Dials 7 / 6 / 3. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teodora Lindqvist, Wedding Photographer</title>
+<style>
+:root{--bg:#f3f4f2;--ink:#121413;--mute:#4a514e;--line:#c9cdca;--accent:#1f6b52;--on-accent:#fff;--err:#a32218;--ease:cubic-bezier(.16,1,.3,1)}
+@media (prefers-color-scheme:dark){:root{--bg:#121413;--ink:#eef0ee;--mute:#aab1ad;--line:#3a403d;--accent:#6fcaa5;--on-accent:#0d1210;--err:#ff9d93}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 "Helvetica Neue",Arial,system-ui,sans-serif}
+img{display:block;width:100%;height:100%;object-fit:cover}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1400px;margin:0 auto;padding:0 1rem}
+nav{height:68px;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+nav .links{display:flex;align-items:center;gap:1.5rem;font-size:.95rem}
+nav a{text-decoration:none;white-space:nowrap}
+.brand{font-weight:600;letter-spacing:-.01em}
+.btn{display:inline-block;background:var(--accent);color:var(--on-accent);border:1px solid var(--accent);padding:.8rem 1.5rem;font:600 1rem/1.2 inherit;font-family:inherit;text-decoration:none;white-space:nowrap;cursor:pointer;transition:transform .3s var(--ease)}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(1px) scale(.98)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn[disabled]{opacity:.7;cursor:progress}
+.hero{min-height:calc(100dvh - 68px);display:grid;grid-template-columns:7fr 5fr;gap:3rem;align-items:center;padding-top:1rem}
+h1{font-size:clamp(2.25rem,5.2vw,4.75rem);line-height:1.02;letter-spacing:-.04em;font-weight:600;max-width:12ch}
+.hero p{max-width:34ch;color:var(--mute);margin:1.5rem 0 2rem;font-size:1.15rem}
+.hero .cta{display:flex;gap:.75rem;flex-wrap:wrap}
+.hero figure{height:min(78dvh,760px);margin-top:3rem}
+h2{font-size:clamp(1.75rem,3.4vw,3rem);line-height:1.08;letter-spacing:-.03em;font-weight:600;margin-bottom:2rem}
+section{padding:6rem 0}
+.gallery{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:210px;gap:.75rem}
+.gallery figure{overflow:hidden}
+.gallery img{transition:transform .9s var(--ease)}
+.gallery figure:hover img{transform:scale(1.04)}
+.g1{grid-column:span 5;grid-row:span 2}.g2{grid-column:span 4}.g3{grid-column:span 3}
+.g4{grid-column:span 3}.g5{grid-column:span 4}.g6{grid-column:span 12}
+.about{display:grid;grid-template-columns:4fr 7fr;gap:5rem;align-items:start}
+.about figure{aspect-ratio:4/5}
+.about h2{max-width:16ch}
+.about p{max-width:62ch;color:var(--mute);margin-bottom:1.25rem}
+.about p:first-of-type{color:var(--ink);font-size:1.3rem;line-height:1.5}
+.contact{padding-left:8vw}
+.contact form{max-width:560px;display:grid;gap:1.4rem}
+.contact .lede{color:var(--mute);max-width:46ch;margin:-1rem 0 2rem}
+label{display:block;font-weight:600;font-size:.95rem;margin-bottom:.4rem}
+.hint{display:block;font-weight:400;color:var(--mute);font-size:.875rem}
+input,textarea{width:100%;font:inherit;color:var(--ink);background:transparent;border:1px solid var(--mute);padding:.75rem .9rem;border-radius:0}
+input[aria-invalid=true],textarea[aria-invalid=true]{border-color:var(--err);border-width:2px}
+.err{color:var(--err);font-size:.875rem;min-height:1.2em;margin-top:.3rem}
+.ok{border-left:4px solid var(--accent);padding:1rem 1.25rem;max-width:560px}
+footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--mute);font-size:.9rem}
+@media (prefers-reduced-motion:no-preference){
+ .hero>*{animation:rise 1s var(--ease) both}.hero figure{animation-delay:.15s}
+ .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+ .reveal.in{opacity:1;transform:none}
+ @keyframes rise{from{opacity:0;transform:translateY(28px)}}
+}
+@media (max-width:767px){
+ nav .links a:not(.btn){display:none}
+ .hero,.about{grid-template-columns:1fr;gap:2rem}
+ .hero figure{height:auto;aspect-ratio:4/5;margin-top:0}
+ section{padding:4rem 0}
+ .gallery{grid-template-columns:1fr;grid-auto-rows:auto}
+ .gallery figure{grid-column:auto!important;grid-row:auto!important;aspect-ratio:4/3}
+ .g1{aspect-ratio:3/4!important}
+ .contact{padding-left:1rem}
+}
+</style>
+</head>
+<body>
+<header class="wrap">
+ <nav aria-label="Primary">
+  <a class="brand" href="#top">Teodora Lindqvist</a>
+  <div class="links"><a href="#gallery">Gallery</a><a href="#about">About</a><a class="btn" href="#contact">Book a date</a></div>
+ </nav>
+</header>
+<main id="top">
+ <div class="wrap hero">
+  <div>
+   <h1>Weddings, photographed as they happened.</h1>
+   <p>Documentary wedding photography for couples who would rather be present than posed.</p>
+   <div class="cta"><a class="btn" href="#contact">Book a date</a><a class="btn ghost" href="#gallery">View gallery</a></div>
+  </div>
+  <figure><img src="https://picsum.photos/seed/wedding-couple-hero/1000/1250" width="1000" height="1250" alt="A couple laughing together after their ceremony"></figure>
+ </div>
+
+ <section id="gallery" class="wrap">
+  <h2 class="reveal">Recent weddings</h2>
+  <div class="gallery">
+   <figure class="g1 reveal"><img src="https://picsum.photos/seed/wedding-vows-garden/900/1100" width="900" height="1100" loading="lazy" alt="Two people exchanging vows in a garden"></figure>
+   <figure class="g2 reveal"><img src="https://picsum.photos/seed/wedding-first-dance/800/440" width="800" height="440" loading="lazy" alt="First dance under string lights"></figure>
+   <figure class="g3 reveal"><img src="https://picsum.photos/seed/wedding-bouquet-detail/600/440" width="600" height="440" loading="lazy" alt="A bouquet resting on a chair"></figure>
+   <figure class="g4 reveal"><img src="https://picsum.photos/seed/wedding-father-daughter/600/440" width="600" height="440" loading="lazy" alt="A father adjusting his daughter's veil"></figure>
+   <figure class="g5 reveal"><img src="https://picsum.photos/seed/wedding-guests-toast/800/440" width="800" height="440" loading="lazy" alt="Guests raising glasses at a long dinner table"></figure>
+   <figure class="g6 reveal"><img src="https://picsum.photos/seed/wedding-sunset-walk/1600/440" width="1600" height="440" loading="lazy" alt="A couple walking across a field at sunset"></figure>
+  </div>
+ </section>
+
+ <section id="about" class="wrap about">
+  <figure class="reveal"><img src="https://picsum.photos/seed/photographer-portrait-teodora/700/875" width="700" height="875" loading="lazy" alt="Teodora Lindqvist holding her camera"></figure>
+  <div class="reveal">
+   <h2>I started by photographing my sister's wedding.</h2>
+   <p>She hated posed photos, so I put the camera down at the portrait list and followed the day instead. Those were the pictures she kept.</p>
+   <p>Twelve years later, I still work that way. I arrive early, stay quiet, and shoot on film and digital side by side. You get an honest record of the day, delivered within six weeks.</p>
+   <p>I take a limited number of weddings each year so every couple gets my full attention, from the first call to the final gallery.</p>
+  </div>
+ </section>
+
+ <section id="contact" class="wrap contact">
+  <h2 class="reveal">Tell me about your day</h2>
+  <p class="lede">Share a date and a few details. I reply personally within two working days.</p>
+  <form id="f" novalidate class="reveal">
+   <div><label for="n">Your names</label><input id="n" name="names" autocomplete="name" required aria-describedby="n-e"><div class="err" id="n-e" aria-live="polite"></div></div>
+   <div><label for="e">Email</label><input id="e" name="email" type="email" autocomplete="email" required aria-describedby="e-e"><div class="err" id="e-e" aria-live="polite"></div></div>
+   <div><label for="d">Wedding date <span class="hint">An estimate is fine</span></label><input id="d" name="date" type="date" required aria-describedby="d-e"><div class="err" id="d-e" aria-live="polite"></div></div>
+   <div><label for="m">Your plans <span class="hint">Venue, guest count, what matters most</span></label><textarea id="m" name="plans" rows="4" required aria-describedby="m-e"></textarea><div class="err" id="m-e" aria-live="polite"></div></div>
+   <div><button class="btn" type="submit">Book a date</button></div>
+  </form>
+  <p class="ok" id="ok" role="status" hidden>Thank you. Your note is with Teodora, and she will reply within two working days.</p>
+ </section>
+</main>
+<footer><div class="wrap">&copy; 2026 Teodora Lindqvist Photography</div></footer>
+<script>
+const io = new IntersectionObserver((es) => es.forEach((x) => {
+  if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); }
+}), { threshold: .15 });
+document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+const f = document.getElementById('f');
+const rules = {
+  n: (v) => v.trim() ? '' : 'Please enter your names.',
+  e: (v) => /^\S+@\S+\.\S+$/.test(v) ? '' : 'Enter a valid email, like name@example.com.',
+  d: (v) => v ? '' : 'Choose an approximate wedding date.',
+  m: (v) => v.trim().length > 9 ? '' : 'Add a sentence or two about your day.'
+};
+function check(id) {
+  const el = document.getElementById(id), msg = rules[id](el.value);
+  document.getElementById(id + '-e').textContent = msg;
+  el.setAttribute('aria-invalid', msg ? 'true' : 'false');
+  return !msg;
+}
+Object.keys(rules).forEach((id) => document.getElementById(id).addEventListener('blur', () => check(id)));
+f.addEventListener('submit', (ev) => {
+  ev.preventDefault();
+  const bad = Object.keys(rules).filter((id) => !check(id));
+  if (bad.length) { document.getElementById(bad[0]).focus(); return; }
+  const b = f.querySelector('button');
+  b.disabled = true; b.textContent = 'Sending...';
+  setTimeout(() => { f.hidden = true; const ok = document.getElementById('ok'); ok.hidden = false; ok.focus(); }, 900);
+});
+</script>
+</body>
+</html>
+```

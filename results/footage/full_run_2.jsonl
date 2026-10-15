@@ -1,0 +1,5 @@
+{"cmd": 0, "t": 0.252, "line": "125 runs (5 already done) -> <repo>\\results\\2026-10-02_x86-laptop_skills"}
+{"cmd": 0, "t": 0.252, "line": "claude: <scrubbed>\\AppData\\Local/Packages/Claude_pzs8sxrjxfjjc/LocalCache/Roaming/Claude/claude-code/2.1.284/claude.exe (2.1.284 (Claude Code))"}
+{"cmd": 0, "t": 6.416, "line": "[6/125] C50-trim100 claude-sonnet-5-5[1m] run 2 rc=0 5.1s"}
+{"cmd": 0, "t": 8.419, "line": "STOP: subscription status is allowed_warning. The five-hour window resets at 2026-10-02T21:40+02:00. Continue then with: python bench/run.py --resume 2026-10-02_x86-laptop_skills"}
+{"cmd": 0, "exit": 3, "t": 8.448}

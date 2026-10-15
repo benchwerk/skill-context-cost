@@ -1,0 +1,115 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tents &amp; Shelters | Ridgeline Outfitters</title>
+<style>
+  :root { --bg:#f6f4ef; --card:#fff; --ink:#1f2a24; --muted:#5f6b63; --accent:#2f6b4f; --line:#ddd8cc; --sale:#b5441f; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:16px/1.5 system-ui,sans-serif; background:var(--bg); color:var(--ink); }
+  header { background:var(--ink); color:#fff; padding:14px 24px; display:flex; justify-content:space-between; align-items:center; }
+  header strong { letter-spacing:.08em; text-transform:uppercase; }
+  header nav a { color:#cfd8d2; margin-left:18px; text-decoration:none; font-size:14px; }
+  .wrap { max-width:1200px; margin:0 auto; padding:24px; }
+  .crumbs { font-size:13px; color:var(--muted); margin-bottom:6px; }
+  h1 { margin:0 0 4px; font-size:30px; }
+  .layout { display:grid; grid-template-columns:240px 1fr; gap:28px; margin-top:20px; }
+  aside { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:18px; align-self:start; }
+  aside h2 { font-size:13px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin:18px 0 8px; }
+  aside h2:first-child { margin-top:0; }
+  aside label { display:flex; gap:8px; align-items:center; padding:3px 0; cursor:pointer; font-size:15px; }
+  input[type=range] { width:100%; accent-color:var(--accent); }
+  button { font:inherit; cursor:pointer; }
+  #reset { margin-top:16px; width:100%; padding:8px; background:none; border:1px solid var(--accent); color:var(--accent); border-radius:6px; }
+  .bar { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; font-size:14px; color:var(--muted); }
+  select { font:inherit; padding:5px 8px; border:1px solid var(--line); border-radius:6px; background:#fff; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:18px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:8px; overflow:hidden; display:flex; flex-direction:column; }
+  .thumb { height:120px; display:grid; place-items:center; font-size:46px; position:relative; }
+  .badge { position:absolute; top:8px; left:8px; background:var(--sale); color:#fff; font-size:11px; padding:2px 7px; border-radius:10px; }
+  .info { padding:12px 14px 14px; display:flex; flex-direction:column; gap:3px; flex:1; }
+  .info h3 { margin:0; font-size:16px; }
+  .meta { font-size:13px; color:var(--muted); }
+  .price { font-weight:700; margin-top:auto; padding-top:8px; }
+  .card button { margin-top:8px; padding:7px; background:var(--accent); color:#fff; border:0; border-radius:6px; }
+  .card button:hover, #reset:hover { filter:brightness(1.15); }
+  .empty { grid-column:1/-1; padding:40px; text-align:center; color:var(--muted); }
+  .guide { margin-top:36px; background:var(--card); border:1px solid var(--line); border-radius:8px; padding:22px 26px; }
+  .guide h2 { margin-top:0; }
+  .guide div { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; }
+  .guide h3 { margin:0 0 4px; font-size:15px; color:var(--accent); }
+  .guide p { margin:0; font-size:14px; color:var(--muted); }
+  :focus-visible { outline:3px solid #e0a526; outline-offset:2px; }
+  @media (max-width:760px) { .layout { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<header><strong>Ridgeline Outfitters</strong><nav><a href="#">Camp</a><a href="#">Hike</a><a href="#">Climb</a><a href="#">Sale</a></nav></header>
+<main class="wrap">
+  <div class="crumbs">Home › Camping › Tents</div>
+  <h1>Tents &amp; Shelters</h1>
+  <p class="meta">From ultralight solo shelters to family basecamp domes.</p>
+  <div class="layout">
+    <aside aria-label="Filters">
+      <h2>Type</h2><div id="types"></div>
+      <h2>Capacity</h2><div id="caps"></div>
+      <h2>Max price: $<span id="pv">600</span></h2>
+      <input type="range" id="price" min="100" max="600" step="25" value="600" aria-label="Maximum price">
+      <h2>Features</h2>
+      <label><input type="checkbox" id="sale"> On sale</label>
+      <button id="reset">Clear filters</button>
+    </aside>
+    <section>
+      <div class="bar"><span id="count"></span>
+        <label>Sort <select id="sort"><option value="0">Featured</option><option value="1">Price: low to high</option><option value="2">Price: high to low</option><option value="3">Lightest</option></select></label>
+      </div>
+      <div class="grid" id="grid" aria-live="polite"></div>
+    </section>
+  </div>
+  <section class="guide">
+    <h2>Buying guide: choosing a tent</h2>
+    <div>
+      <article><h3>Match the season</h3><p>3-season tents balance ventilation and weather protection. Choose 4-season only for snow and high winds.</p></article>
+      <article><h3>Size up for comfort</h3><p>Add one person to the rating if you carry gear inside or want elbow room. Solo hikers often prefer a 2-person.</p></article>
+      <article><h3>Weigh the trade-offs</h3><p>Under 3 lb suits long trails but costs more and is less durable. Car campers can favor space over weight.</p></article>
+    </div>
+  </section>
+</main>
+<script>
+const P = [
+  ["Trailwisp 1","Backpacking",1,2.1,189,"⛺"],["Trailwisp 2","Backpacking",2,3.0,249,"⛺"],
+  ["Skyline UL","Ultralight",1,1.6,449,"🏔️"],["Skyline UL 2","Ultralight",2,2.2,529,"🏔️"],
+  ["Basecamp 4","Family",4,9.5,299,"🏕️"],["Basecamp 6","Family",6,14.2,399,"🏕️"],
+  ["Summit Pro","Backpacking",2,4.4,579,"🏔️"],["Ridge Dome","Family",4,8.1,229,"🏕️"],
+  ["Pebble Bivy","Ultralight",1,1.2,319,"🌙"],["Aspen Cabin 8","Family",8,22.0,549,"🏕️"],
+  ["Drift Tarp","Ultralight",2,0.9,129,"🌲"],["Hollow Duo","Backpacking",2,3.6,199,"⛺"]
+].map((a,i)=>({i,name:a[0],type:a[1],cap:a[2],wt:a[3],price:a[4],icon:a[5],sale:a[4]<250}));
+const $ = id => document.getElementById(id);
+const hues = {Backpacking:"#dfeadf",Ultralight:"#dde7ee",Family:"#f1e6d2"};
+const types = [...new Set(P.map(p=>p.type))], caps = [...new Set(P.map(p=>p.cap>=4?"4+":String(p.cap)))].sort();
+const box = (name,v) => `<label><input type="checkbox" name="${name}" value="${v}"> ${v}${name==="cap"?(v==="1"?" person":" people"):""}</label>`;
+$("types").innerHTML = types.map(t=>box("type",t)).join("");
+$("caps").innerHTML = caps.map(c=>box("cap",c)).join("");
+const checked = n => [...document.querySelectorAll(`input[name=${n}]:checked`)].map(e=>e.value);
+function render() {
+  const t = checked("type"), c = checked("cap"), max = +$("price").value, s = $("sale").checked;
+  $("pv").textContent = max;
+  const list = P.filter(p => (!t.length||t.includes(p.type)) && (!c.length||c.includes(p.cap>=4?"4+":String(p.cap))) && p.price<=max && (!s||p.sale));
+  const k = $("sort").value;
+  list.sort((a,b)=> k==1?a.price-b.price : k==2?b.price-a.price : k==3?a.wt-b.wt : a.i-b.i);
+  $("count").textContent = `${list.length} of ${P.length} products`;
+  $("grid").innerHTML = list.map(p=>`<article class="card">
+    <div class="thumb" style="background:${hues[p.type]}" aria-hidden="true">${p.sale?'<span class="badge">Sale</span>':""}${p.icon}</div>
+    <div class="info"><h3>${p.name}</h3><span class="meta">${p.type} · sleeps ${p.cap} · ${p.wt} lb</span>
+    <span class="price">$${p.price}</span><button>Add to cart</button></div></article>`).join("") || '<p class="empty">No products match. Try clearing a filter.</p>';
+}
+document.querySelector("aside").addEventListener("input", render);
+$("sort").addEventListener("change", render);
+$("reset").onclick = () => { document.querySelectorAll("aside input[type=checkbox]").forEach(e=>e.checked=false); $("price").value=600; render(); };
+render();
+</script>
+</body>
+</html>
+```

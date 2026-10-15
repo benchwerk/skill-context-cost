@@ -1,0 +1,137 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Halcyon 75 – Mechanical Keyboard</title>
+<style>
+  :root { --bg:#f6f5f2; --card:#fff; --ink:#1c1c1f; --muted:#6b6b73; --accent:#e4572e; --line:#e3e1dc; }
+  * { box-sizing:border-box; margin:0; }
+  body { font:16px/1.5 system-ui,sans-serif; background:var(--bg); color:var(--ink); }
+  header { padding:16px 24px; border-bottom:1px solid var(--line); background:var(--card); font-weight:700; letter-spacing:.08em; }
+  main { max-width:1000px; margin:32px auto; padding:0 20px; }
+  .hero { display:grid; grid-template-columns:1.1fr 1fr; gap:36px; }
+  .stage { aspect-ratio:4/3; border-radius:16px; display:grid; place-items:center; background:var(--card); border:1px solid var(--line); overflow:hidden; }
+  .stage svg { width:88%; transition:opacity .2s; }
+  .thumbs { display:flex; gap:10px; margin-top:12px; }
+  .thumbs button { flex:1; aspect-ratio:4/3; border:2px solid var(--line); border-radius:10px; background:var(--card); cursor:pointer; padding:4px; }
+  .thumbs button[aria-pressed="true"] { border-color:var(--accent); }
+  .thumbs svg { width:100%; height:100%; }
+  h1 { font-size:2rem; line-height:1.15; }
+  .stars { color:var(--accent); letter-spacing:2px; }
+  .muted { color:var(--muted); font-size:.9rem; }
+  .price { font-size:1.8rem; font-weight:700; margin:14px 0; }
+  fieldset { border:0; padding:0; margin:14px 0; }
+  legend { font-weight:600; margin-bottom:6px; }
+  .opts { display:flex; gap:8px; flex-wrap:wrap; }
+  .opts label { cursor:pointer; }
+  .opts input { position:absolute; opacity:0; }
+  .opts span { display:block; padding:7px 14px; border:1.5px solid var(--line); border-radius:999px; background:var(--card); font-size:.9rem; }
+  .opts input:checked + span { border-color:var(--accent); background:#fdeee8; }
+  .opts input:focus-visible + span { outline:2px solid var(--ink); outline-offset:2px; }
+  .buy { width:100%; padding:15px; border:0; border-radius:12px; background:var(--accent); color:#fff; font-size:1.05rem; font-weight:700; cursor:pointer; transition:transform .1s, filter .2s; }
+  .buy:hover { filter:brightness(.92); } .buy:active { transform:scale(.98); }
+  #msg { min-height:1.5em; margin-top:8px; color:#2a7a4b; font-size:.9rem; }
+  section { margin-top:48px; }
+  h2 { font-size:1.3rem; margin-bottom:14px; }
+  .specs { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; }
+  .spec { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; }
+  .spec b { display:block; font-size:.75rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); }
+  .review { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px; margin-bottom:12px; }
+  .review header { padding:0; border:0; background:none; display:flex; justify-content:space-between; font-weight:600; letter-spacing:0; }
+  @media (max-width:760px) { .hero { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<header>HALCYON</header>
+<main>
+  <div class="hero">
+    <div>
+      <div class="stage" id="stage"></div>
+      <div class="thumbs" id="thumbs"></div>
+    </div>
+    <div>
+      <p class="muted">Wireless · Hot-swappable · 75% layout</p>
+      <h1>Halcyon 75 Mechanical Keyboard</h1>
+      <p><span class="stars">★★★★☆</span> <span class="muted" id="avg">4.5 (3 reviews)</span></p>
+      <div class="price" id="price">$149</div>
+      <fieldset class="opts"><legend>Switch</legend>
+        <label><input type="radio" name="sw" value="Linear" data-p="149" checked><span>Linear</span></label>
+        <label><input type="radio" name="sw" value="Tactile" data-p="149"><span>Tactile</span></label>
+        <label><input type="radio" name="sw" value="Clicky" data-p="159"><span>Clicky +$10</span></label>
+      </fieldset>
+      <fieldset class="opts"><legend>Colour</legend>
+        <label><input type="radio" name="col" value="Slate" checked><span>Slate</span></label>
+        <label><input type="radio" name="col" value="Sand"><span>Sand</span></label>
+        <label><input type="radio" name="col" value="Coral"><span>Coral</span></label>
+      </fieldset>
+      <button class="buy" id="buy">Add to cart</button>
+      <p id="msg" role="status"></p>
+      <p class="muted">Free shipping · 30-day returns · 2-year warranty</p>
+    </div>
+  </div>
+
+  <section>
+    <h2>Key specifications</h2>
+    <div class="specs">
+      <div class="spec"><b>Layout</b>75% · 82 keys</div>
+      <div class="spec"><b>Case</b>CNC aluminium</div>
+      <div class="spec"><b>Connectivity</b>USB-C, Bluetooth 5.1, 2.4 GHz</div>
+      <div class="spec"><b>Battery</b>4,000 mAh · ~200 hrs</div>
+      <div class="spec"><b>Keycaps</b>Double-shot PBT</div>
+      <div class="spec"><b>Polling rate</b>1000 Hz</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Customer reviews</h2>
+    <div id="reviews"></div>
+  </section>
+</main>
+<script>
+  const colors = { Slate:["#3d4452","#59627a"], Sand:["#cbb99a","#e6dac1"], Coral:["#e4572e","#f08a68"] };
+  const views = ["Top", "Angle", "Side"];
+  const reviews = [
+    { n:"Maya R.", r:5, t:"Typing feels buttery. The gasket mount sounds incredible out of the box." },
+    { n:"Dev P.", r:4, t:"Great build and battery life. Wish the knob were programmable without software." },
+    { n:"Lena K.", r:4, t:"Hot-swap made trying switches painless. Bluetooth reconnects quickly." }
+  ];
+  const $ = s => document.querySelector(s);
+  let view = 0;
+
+  function board(v, c) {
+    const [body, key] = colors[c];
+    const skew = v === 1 ? 'transform="skewX(-14) translate(40 0)"' : '';
+    const h = v === 2 ? 40 : 150;
+    let keys = "";
+    if (v !== 2) for (let r = 0; r < 5; r++) for (let i = 0; i < 14; i++)
+      keys += `<rect x="${38 + i * 24}" y="${34 + r * 22}" width="20" height="18" rx="4" fill="${key}"/>`;
+    return `<svg viewBox="0 0 400 ${v === 2 ? 90 : 190}" role="img" aria-label="${views[v]} view">
+      <g ${skew}><rect x="22" y="${v === 2 ? 20 : 18}" width="356" height="${h}" rx="14" fill="${body}"/>${keys}</g></svg>`;
+  }
+  function render() {
+    const c = document.querySelector('[name=col]:checked').value;
+    $("#stage").innerHTML = board(view, c);
+    $("#thumbs").innerHTML = views.map((n, i) =>
+      `<button aria-pressed="${i === view}" aria-label="${n} view" data-i="${i}">${board(i, c)}</button>`).join("");
+  }
+  $("#thumbs").onclick = e => {
+    const b = e.target.closest("button");
+    if (b) { view = +b.dataset.i; render(); }
+  };
+  document.querySelectorAll("input").forEach(i => i.onchange = () => {
+    $("#price").textContent = "$" + document.querySelector("[name=sw]:checked").dataset.p;
+    render();
+  });
+  $("#buy").onclick = () => {
+    const sw = document.querySelector("[name=sw]:checked").value, c = document.querySelector("[name=col]:checked").value;
+    $("#msg").textContent = `Added: Halcyon 75, ${c}, ${sw} switches — ${$("#price").textContent}`;
+  };
+  $("#reviews").innerHTML = reviews.map(r => `<div class="review"><header><span>${r.n}</span>
+    <span class="stars">${"★".repeat(r.r)}${"☆".repeat(5 - r.r)}</span></header><p>${r.t}</p></div>`).join("");
+  render();
+</script>
+</body>
+</html>
+```

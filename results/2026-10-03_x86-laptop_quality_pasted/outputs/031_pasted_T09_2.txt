@@ -1,0 +1,149 @@
+```html
+<!DOCTYPE html>
+<!-- Design Read: open-source CLI homepage for developers, with a restrained technical language, leaning toward native CSS, system fonts, one emerald accent, auto light/dark. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>kiln - rebuild only what changed</title>
+<meta name="description" content="kiln is an open-source build runner that hashes your inputs and skips work it has already done.">
+<style>
+:root{--bg:#f6f7f6;--surface:#eceeed;--text:#18201c;--muted:#4b5750;--line:#d5dad7;--accent:#047857;--on-accent:#f6f7f6;--tint:#dcebe3;--r:8px;--mono:ui-monospace,"Geist Mono","JetBrains Mono",Menlo,Consolas,monospace;--sans:"Geist","Satoshi",ui-sans-serif,system-ui,"Segoe UI",sans-serif}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1311;--surface:#161d19;--text:#e6ebe8;--muted:#a3b0a9;--line:#27312c;--accent:#34d399;--on-accent:#06130d;--tint:#12261d}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--text);font:16px/1.6 var(--sans)}
+a{color:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+nav{height:64px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+nav .links{display:flex;gap:24px;align-items:center;white-space:nowrap}
+nav a{text-decoration:none;color:var(--muted);font-size:15px}
+nav a:hover{color:var(--text)}
+.logo{font:700 20px var(--mono);color:var(--text)!important;letter-spacing:-.02em}
+.btn{display:inline-flex;align-items:center;white-space:nowrap;padding:12px 20px;border-radius:var(--r);font-weight:600;text-decoration:none;border:1px solid var(--line);transition:transform .2s cubic-bezier(.16,1,.3,1)}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:scale(.98)}
+.btn.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.hero{min-height:calc(100dvh - 64px);padding-top:48px;display:grid;grid-template-columns:7fr 5fr;gap:56px;align-items:center}
+h1{font-size:clamp(2.25rem,5vw,3.75rem);line-height:1.05;letter-spacing:-.04em;max-width:14ch}
+.hero p{margin:20px 0 32px;color:var(--muted);max-width:44ch;font-size:18px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero pre{padding:24px}
+pre{font:14px/1.8 var(--mono);background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;overflow-x:auto}
+.c{color:var(--muted)}.k{color:var(--accent)}
+section{padding:96px 0}
+h2{font-size:clamp(1.75rem,3.5vw,2.5rem);letter-spacing:-.03em;line-height:1.1;margin-bottom:12px}
+.sub{color:var(--muted);max-width:60ch;margin-bottom:40px}
+.tabs{display:flex;gap:8px;margin-bottom:12px}
+.tabs button{font:600 14px var(--mono);padding:8px 14px;border-radius:var(--r);border:1px solid var(--line);background:none;color:var(--muted);cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.snip{display:flex;gap:12px;align-items:stretch;max-width:640px}
+.snip pre{flex:1;margin:0;color:var(--text)}
+.snip .btn{background:var(--surface);color:var(--text);cursor:pointer;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.cell{border-radius:var(--r);padding:32px;border:1px solid var(--line);background:var(--surface)}
+.cell h3{font-size:20px;letter-spacing:-.02em;margin-bottom:8px}
+.cell p{color:var(--muted);max-width:48ch}
+.cell code{font:14px var(--mono);color:var(--accent)}
+.c1{grid-column:span 7;min-height:240px;background:var(--tint)}
+.c2{grid-column:span 5}
+.c3{grid-column:span 4}
+.c4{grid-column:span 8;background:linear-gradient(135deg,var(--tint),var(--surface))}
+.log{border-left:1px solid var(--line);margin-left:6px}
+.rel{padding:0 0 40px 32px;max-width:680px}
+.rel h3{font:700 18px var(--mono);margin-bottom:4px}
+.rel time{color:var(--muted);font-size:14px;display:block;margin-bottom:12px}
+.rel ul{padding-left:18px;color:var(--muted)}
+.rel li{margin-bottom:6px}
+.rel b{color:var(--text)}
+details summary{cursor:pointer;color:var(--accent);font-weight:600;padding-left:32px}
+footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-size:15px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.btn{transition:none}}
+@media(max-width:767px){
+.hero{grid-template-columns:1fr;gap:32px;padding-top:32px}
+.grid{grid-template-columns:1fr}.cell{grid-column:auto!important}
+nav .links a:not(.btn){display:none}section{padding:64px 0}
+.snip{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<header class="wrap"><nav aria-label="Main">
+<a class="logo" href="#">kiln</a>
+<div class="links"><a href="#install">Install</a><a href="#features">Features</a><a href="#changelog">Changelog</a><a class="btn primary" href="#install">Get kiln</a></div>
+</nav></header>
+
+<main class="wrap">
+<div class="hero">
+<div>
+<h1>Rebuild only what changed.</h1>
+<p>kiln hashes your inputs, caches every task result, and skips any work it has already done.</p>
+<div class="cta"><a class="btn primary" href="#install">Install kiln</a><a class="btn" href="#features">Read the docs</a></div>
+</div>
+<pre aria-label="Example kiln session"><span class="c"># kiln.toml</span>
+<span class="k">[task.build]</span>
+inputs  = ["src/**/*.rs"]
+command = "cargo build --release"
+
+<span class="c">$ kiln build</span>
+build   compiled   14.2s
+<span class="c">$ kiln build</span>
+build   cached     0.1s</pre>
+</div>
+
+<section id="install" class="rv">
+<h2>Install in one line</h2>
+<p class="sub">kiln ships as a single static binary for Linux, macOS and Windows.</p>
+<div class="tabs" role="tablist" aria-label="Package manager">
+<button role="tab" aria-selected="true" data-cmd="brew install kiln-build/tap/kiln">Homebrew</button>
+<button role="tab" aria-selected="false" data-cmd="cargo install kiln-cli">Cargo</button>
+<button role="tab" aria-selected="false" data-cmd="npm install -g @kiln-build/cli">npm</button>
+</div>
+<div class="snip"><pre><code id="cmd">brew install kiln-build/tap/kiln</code></pre><button class="btn" id="copy" type="button">Copy</button></div>
+<p id="status" class="sub" role="status" style="margin:12px 0 0;min-height:1.6em"></p>
+</section>
+
+<section id="features">
+<h2 class="rv">What kiln does</h2>
+<p class="sub rv">Four things, done properly.</p>
+<div class="grid">
+<article class="cell c1 rv"><h3>Content-addressed cache</h3><p>Every task is keyed by a hash of its files, environment and command. Same inputs, same result, no rerun.</p></article>
+<article class="cell c2 rv"><h3>Parallel by default</h3><p>kiln reads your task graph and runs independent steps on every core you have.</p></article>
+<article class="cell c3 rv"><h3>Shared remote cache</h3><p>Point <code>cache.remote</code> at an S3 bucket and your CI reuses what your laptop built.</p></article>
+<article class="cell c4 rv"><h3>Plain TOML config</h3><p>One <code>kiln.toml</code> per repository. No plugins to install and no scripting language to learn.</p></article>
+</div>
+</section>
+
+<section id="changelog">
+<h2 class="rv">Changelog</h2>
+<p class="sub rv">Recent releases. Full history lives on GitHub.</p>
+<div class="log">
+<div class="rel rv"><h3>v0.9.0</h3><time datetime="2026-09-18">18 September 2026</time><ul><li><b>Added</b> remote cache support for S3-compatible storage.</li><li><b>Fixed</b> stale cache hits when an environment variable was unset.</li></ul></div>
+<div class="rel rv"><h3>v0.8.2</h3><time datetime="2026-08-30">30 August 2026</time><ul><li><b>Fixed</b> glob patterns that ignored dotfiles on Windows.</li><li><b>Improved</b> error messages for cyclic task dependencies.</li></ul></div>
+<div class="rel rv"><h3>v0.8.0</h3><time datetime="2026-08-02">2 August 2026</time><ul><li><b>Added</b> <code>kiln watch</code> for rebuilding on file save.</li><li><b>Changed</b> the default cache directory to <code>.kiln/cache</code>.</li></ul></div>
+</div>
+<details><summary>Show older releases</summary><div class="rel" style="padding-top:24px"><h3>v0.7.4</h3><time datetime="2026-06-21">21 June 2026</time><ul><li><b>Fixed</b> a crash when the config file was empty.</li></ul></div></details>
+</section>
+</main>
+
+<footer><div class="wrap"><span>kiln is released under the MIT license.</span><span><a href="#">GitHub</a> &nbsp; <a href="#">Docs</a> &nbsp; <a href="#">Discussions</a></span></div></footer>
+
+<script>
+const cmd=document.getElementById('cmd'),status=document.getElementById('status');
+document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.tabs button').forEach(x=>x.setAttribute('aria-selected',x===b));
+  cmd.textContent=b.dataset.cmd;
+}));
+document.getElementById('copy').addEventListener('click',async()=>{
+  try{await navigator.clipboard.writeText(cmd.textContent);status.textContent='Copied to clipboard.'}
+  catch{status.textContent='Copy failed. Select the command and copy it manually.'}
+  setTimeout(()=>status.textContent='',2500);
+});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
+```

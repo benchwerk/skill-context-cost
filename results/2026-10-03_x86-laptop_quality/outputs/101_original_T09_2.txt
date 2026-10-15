@@ -1,0 +1,162 @@
+```html
+<!-- Reading this as: open-source CLI homepage for developers, with a restrained dark-tech language, leaning toward native CSS, system fonts and one emerald accent. Dials 6 / 4 / 4. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>sluice - reshape structured logs from the terminal</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f6f7f6; --panel: #ffffff; --ink: #18201c; --muted: #4d5a53; --line: #d6dbd8;
+    --accent: #0b7a4f; --on-accent: #ffffff; --code: #eef1ef; --r: 6px;
+    --mono: ui-monospace, "Cascadia Code", "JetBrains Mono", Menlo, monospace;
+    --sans: "Geist", "Satoshi", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0f1411; --panel: #161d19; --ink: #e8eee9; --muted: #a2b0a7; --line: #28332d;
+            --accent: #3ddc97; --on-accent: #07140d; --code: #0b100d; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 var(--sans); }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  nav { height: 64px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
+  nav .links { display: flex; gap: 28px; font-size: 15px; color: var(--muted); }
+  nav .links a { text-decoration: none; transition: color .2s; }
+  nav .links a:hover { color: var(--ink); }
+  .brand { font: 700 20px var(--mono); letter-spacing: -.04em; text-decoration: none; }
+  .hero { min-height: calc(100dvh - 64px); display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items: center; padding: 48px 0; }
+  .eyebrow { font: 600 12px var(--mono); text-transform: uppercase; letter-spacing: .16em; color: var(--accent); margin: 0 0 20px; }
+  h1 { font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.04; letter-spacing: -.04em; margin: 0 0 20px; max-width: 14ch; }
+  h1 em { font-style: italic; color: var(--accent); padding-bottom: 4px; }
+  .lead { color: var(--muted); max-width: 46ch; margin: 0 0 32px; font-size: 18px; }
+  .btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn { display: inline-block; white-space: nowrap; padding: 12px 22px; border-radius: var(--r); border: 1px solid var(--line); text-decoration: none; font-weight: 600; transition: transform .2s cubic-bezier(.16,1,.3,1), background .2s; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn:active { transform: translateY(1px) scale(.98); }
+  .btn.primary { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+  .btn.ghost:hover { background: var(--panel); }
+  .install { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); box-shadow: 0 24px 48px -28px rgb(11 60 40 / .35); }
+  .tabs { display: flex; border-bottom: 1px solid var(--line); }
+  .tabs button { flex: 1; padding: 12px; background: none; border: 0; color: var(--muted); font: 600 14px var(--mono); cursor: pointer; border-bottom: 2px solid transparent; }
+  .tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+  .install pre { margin: 0; padding: 24px; font: 15px/1.7 var(--mono); overflow-x: auto; min-height: 96px; }
+  .install .foot { display: flex; justify-content: space-between; align-items: center; padding: 12px 24px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+  .copy { background: var(--code); color: var(--ink); border: 1px solid var(--line); border-radius: var(--r); padding: 6px 14px; font: 600 13px var(--mono); cursor: pointer; }
+  .copy:active { transform: scale(.96); }
+  section { padding: 96px 0; border-top: 1px solid var(--line); }
+  h2 { font-size: clamp(1.8rem, 3.4vw, 2.6rem); letter-spacing: -.035em; line-height: 1.1; margin: 0 0 16px; }
+  .sub { color: var(--muted); max-width: 62ch; margin: 0 0 48px; }
+  .features { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
+  .features img { width: 100%; height: 100%; min-height: 280px; object-fit: cover; border-radius: var(--r); filter: grayscale(1) contrast(1.05); }
+  .features ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 28px; align-content: start; }
+  .features li strong { display: block; font-size: 18px; letter-spacing: -.02em; margin-bottom: 4px; }
+  .features li span { color: var(--muted); }
+  code { font: 14px var(--mono); background: var(--code); padding: 2px 6px; border-radius: var(--r); }
+  .log { display: grid; grid-template-columns: 1fr 2fr; gap: 56px; }
+  .log h2 { position: sticky; top: 24px; align-self: start; }
+  .rel { padding: 0 0 36px; }
+  .rel + .rel { padding-top: 36px; border-top: 1px solid var(--line); }
+  .rel header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 12px; }
+  .rel h3 { font: 700 22px var(--mono); margin: 0; letter-spacing: -.03em; }
+  .rel time { color: var(--muted); font: 14px var(--mono); }
+  .rel ul { margin: 0; padding-left: 20px; color: var(--muted); }
+  .rel li { margin-bottom: 6px; }
+  .rel li b { color: var(--ink); font-weight: 600; }
+  footer { border-top: 1px solid var(--line); padding: 32px 0 48px; color: var(--muted); font-size: 14px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  @media (prefers-reduced-motion: no-preference) {
+    .rise { opacity: 0; transform: translateY(20px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); transition-delay: calc(var(--i, 0) * 90ms); }
+    .rise.in { opacity: 1; transform: none; }
+  }
+  @media (max-width: 767px) {
+    nav .links { gap: 16px; font-size: 14px; }
+    .hero, .features, .log { grid-template-columns: 1fr; gap: 32px; }
+    .hero { min-height: auto; padding: 40px 0; }
+    .log h2 { position: static; }
+    section { padding: 64px 0; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="brand" href="#">sluice</a>
+    <div class="links"><a href="#features">Features</a><a href="#changelog">Changelog</a><a href="https://github.com/">GitHub</a></div>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <div>
+        <p class="eyebrow rise" style="--i:0">Open source, MIT licensed</p>
+        <h1 class="rise" style="--i:1">Shape your logs, <em>before</em> you read them.</h1>
+        <p class="lead rise" style="--i:2">Sluice filters, joins and reformats JSON logs from any pipe. One static binary, no config.</p>
+        <div class="btns rise" style="--i:3">
+          <a class="btn primary" href="#install">Install</a>
+          <a class="btn ghost" href="#features">Read the docs</a>
+        </div>
+      </div>
+      <div class="install rise" id="install" style="--i:2">
+        <div class="tabs" role="tablist">
+          <button role="tab" aria-selected="true" data-cmd="brew install sluice">Homebrew</button>
+          <button role="tab" aria-selected="false" data-cmd="cargo install sluice-cli">Cargo</button>
+          <button role="tab" aria-selected="false" data-cmd="curl -fsSL https://sluice.example/install.sh | sh">Script</button>
+        </div>
+        <pre><code id="cmd">brew install sluice</code></pre>
+        <div class="foot"><span id="status" role="status">Linux, macOS and Windows</span><button class="copy" id="copy" type="button">Copy</button></div>
+      </div>
+    </div>
+
+    <section id="features">
+      <h2 class="rise">Built for the pipe</h2>
+      <p class="sub rise">Sluice reads stdin, writes stdout and stays out of the way. Combine it with the tools you already use.</p>
+      <div class="features">
+        <img class="rise" src="https://picsum.photos/seed/sluice-water-channel/900/560" alt="Water running through a concrete channel" width="900" height="560" loading="lazy">
+        <ul>
+          <li class="rise"><strong>Query with plain expressions</strong><span><code>level == "error" &amp;&amp; ms &gt; 250</code> works on any field, nested or not.</span></li>
+          <li class="rise" style="--i:1"><strong>Follow multiple files</strong><span>Tail rotated logs and merge them by timestamp.</span></li>
+          <li class="rise" style="--i:2"><strong>Output you can reuse</strong><span>Emit JSON, CSV or a compact colored table.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="changelog" class="log">
+      <h2 class="rise">Changelog</h2>
+      <div>
+        <article class="rel rise">
+          <header><h3>0.9.0</h3><time datetime="2026-09-18">18 Sep 2026</time></header>
+          <ul><li><b>Added</b> <code>--follow</code> for rotated files.</li><li><b>Added</b> CSV output.</li><li><b>Fixed</b> timestamps with a numeric UTC offset were parsed as local time.</li></ul>
+        </article>
+        <article class="rel rise">
+          <header><h3>0.8.2</h3><time datetime="2026-08-02">2 Aug 2026</time></header>
+          <ul><li><b>Fixed</b> a crash on empty input lines.</li><li><b>Changed</b> color output now respects <code>NO_COLOR</code>.</li></ul>
+        </article>
+        <article class="rel rise">
+          <header><h3>0.8.0</h3><time datetime="2026-06-21">21 Jun 2026</time></header>
+          <ul><li><b>Added</b> nested field access with dot paths.</li><li><b>Added</b> Windows builds.</li><li><b>Changed</b> startup is about twice as fast.</li></ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer><span>MIT License. Contributions welcome.</span><a href="https://github.com/">Source on GitHub</a></footer>
+</div>
+<script>
+  const cmd = document.getElementById('cmd'), status = document.getElementById('status');
+  const tabs = document.querySelectorAll('.tabs button');
+  tabs.forEach(t => t.addEventListener('click', () => {
+    tabs.forEach(o => o.setAttribute('aria-selected', o === t));
+    cmd.textContent = t.dataset.cmd;
+  }));
+  document.getElementById('copy').addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(cmd.textContent); status.textContent = 'Copied to clipboard'; }
+    catch { status.textContent = 'Copy failed, select the text manually'; }
+  });
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15 });
+  document.querySelectorAll('.rise').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
+```

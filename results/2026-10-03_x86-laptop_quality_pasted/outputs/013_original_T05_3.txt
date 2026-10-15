@@ -1,0 +1,161 @@
+```html
+<!DOCTYPE html>
+<!-- Design read: product page for design-conscious keyboard enthusiasts, calm premium-consumer language, native CSS (aesthetic, no official system). Dials 6 / 4 / 3. All specs, prices and reviews are mock data. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Halden 75 Mechanical Keyboard</title>
+<style>
+:root{--bg:#f4f4f2;--panel:#e9e9e6;--ink:#1c1d1f;--mute:#55575c;--line:#d3d3cf;--accent:#b9400a;--on-accent:#fff;--r:12px;--ease:cubic-bezier(.16,1,.3,1)}
+@media (prefers-color-scheme:dark){:root{--bg:#141516;--panel:#1d1f21;--ink:#ececea;--mute:#a4a6ab;--line:#2f3134;--accent:#f08a4b;--on-accent:#1a1209}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 "Geist","Satoshi",ui-sans-serif,system-ui,sans-serif}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+nav{height:64px;display:flex;align-items:center;justify-content:space-between}
+nav b{font-size:1.1rem;letter-spacing:-.02em}
+nav div{display:flex;gap:28px;color:var(--mute);font-size:.95rem}
+nav a:hover{color:var(--ink)}
+.hero{display:grid;grid-template-columns:1.25fr 1fr;gap:56px;padding:24px 0 96px;align-items:start}
+.stage{aspect-ratio:4/3;width:100%;object-fit:cover;border-radius:var(--r);background:var(--panel);display:block}
+.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px}
+.thumbs button{padding:0;border:2px solid transparent;border-radius:var(--r);overflow:hidden;cursor:pointer;background:var(--panel);transition:transform .3s var(--ease)}
+.thumbs button:hover{transform:translateY(-2px)}
+.thumbs button[aria-pressed=true]{border-color:var(--accent)}
+.thumbs img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+h1{font-size:clamp(2.2rem,4.5vw,3.4rem);line-height:1.05;letter-spacing:-.04em;margin:8px 0 12px}
+h2{font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.1;letter-spacing:-.03em;margin-bottom:12px}
+.lede{color:var(--mute);max-width:46ch}
+.rating{margin-top:16px;font-size:.95rem;color:var(--mute)}
+.rating a{text-decoration:underline;text-underline-offset:3px}
+.price{font-size:2rem;font-weight:600;letter-spacing:-.03em;margin:28px 0 20px}
+fieldset{border:0;padding:0;margin-bottom:24px}
+legend{font-weight:600;margin-bottom:10px}
+.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.opts label{cursor:pointer}
+.opts input{position:absolute;opacity:0}
+.opts span{display:block;padding:12px;border:1.5px solid var(--line);border-radius:var(--r);text-align:center;font-weight:500;transition:border-color .2s,transform .2s var(--ease)}
+.opts small{display:block;color:var(--mute);font-weight:400;font-size:.8rem}
+.opts input:checked+span{border-color:var(--accent);background:var(--panel)}
+.opts input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+.buy{width:100%;padding:16px 24px;border:0;border-radius:var(--r);background:var(--accent);color:var(--on-accent);font:600 1.05rem inherit;font-family:inherit;cursor:pointer;white-space:nowrap;transition:transform .2s var(--ease),filter .2s}
+.buy:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.buy:active{transform:scale(.98)}
+.buy[disabled]{cursor:progress;opacity:.75}
+.hint{margin-top:10px;color:var(--mute);font-size:.9rem;min-height:1.4em}
+section{padding:0 0 96px}
+.specs{display:grid;grid-template-columns:1.4fr 1fr;gap:20px;margin-top:32px}
+.big{background:var(--panel);border-radius:var(--r);padding:32px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.big strong{display:block;font-size:2.4rem;line-height:1.1;letter-spacing:-.04em}
+.big p,.grp p{color:var(--mute);font-size:.92rem}
+.stack{display:grid;gap:20px}
+.grp{padding:4px 0 20px;border-top:1px solid var(--line)}
+.grp h3{font-size:1rem;margin:14px 0 6px}
+.reviews{display:grid;grid-template-columns:1.3fr 1fr;gap:20px;margin-top:32px}
+.reviews figure{background:var(--panel);border-radius:var(--r);padding:32px}
+.reviews .lead{grid-row:span 2;display:flex;flex-direction:column;justify-content:space-between;gap:32px}
+blockquote{font-size:1.15rem;line-height:1.5;letter-spacing:-.01em}
+.lead blockquote{font-size:1.6rem;line-height:1.3;letter-spacing:-.03em}
+figcaption{color:var(--mute);font-size:.9rem}
+figcaption b{display:block;color:var(--ink)}
+footer{border-top:1px solid var(--line);padding:32px 0;color:var(--mute);font-size:.9rem}
+@media (prefers-reduced-motion:no-preference){.rv{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}.rv.in{opacity:1;transform:none}}
+@media (max-width:768px){.hero,.specs,.reviews,.big{grid-template-columns:1fr;gap:24px}.hero{padding-bottom:64px}nav div{gap:16px}.reviews .lead{grid-row:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><b>Halden</b><div><a href="#specs">Specifications</a><a href="#reviews">Reviews</a><a href="#cart">Cart (<span id="count">0</span>)</a></div></nav>
+
+<main>
+<div class="hero">
+  <div>
+    <img id="stage" class="stage" width="1200" height="900" src="https://picsum.photos/seed/halden-keyboard-top/1200/900" alt="Halden 75 keyboard seen from above on a walnut desk">
+    <div class="thumbs" role="group" aria-label="Product photos">
+      <button aria-pressed="true" data-alt="Halden 75 keyboard seen from above on a walnut desk" data-seed="halden-keyboard-top"><img width="300" height="225" src="https://picsum.photos/seed/halden-keyboard-top/300/225" alt="Top view"></button>
+      <button aria-pressed="false" data-alt="Close view of the PBT keycaps and legends" data-seed="halden-keycaps-close"><img width="300" height="225" src="https://picsum.photos/seed/halden-keycaps-close/300/225" alt="Keycap close-up"></button>
+      <button aria-pressed="false" data-alt="Aluminum case edge and USB-C port" data-seed="halden-aluminum-case"><img width="300" height="225" src="https://picsum.photos/seed/halden-aluminum-case/300/225" alt="Case edge"></button>
+      <button aria-pressed="false" data-alt="Halden 75 on a desk beside a monitor" data-seed="halden-desk-setup"><img width="300" height="225" src="https://picsum.photos/seed/halden-desk-setup/300/225" alt="Desk setup"></button>
+    </div>
+  </div>
+  <div>
+    <h1>Halden 75</h1>
+    <p class="lede">A gasket-mounted 75% keyboard in machined aluminum, tuned to sound deep and quiet.</p>
+    <p class="rating">4.7 out of 5 from 212 owners. <a href="#reviews">Read reviews</a></p>
+    <p class="price" id="price">$189</p>
+    <fieldset>
+      <legend>Switch</legend>
+      <div class="opts">
+        <label><input type="radio" name="sw" value="189" checked><span>Linear<small>Smooth</small></span></label>
+        <label><input type="radio" name="sw" value="189"><span>Tactile<small>Bumpy</small></span></label>
+        <label><input type="radio" name="sw" value="199"><span>Silent<small>+$10</small></span></label>
+      </div>
+    </fieldset>
+    <button class="buy" id="buy">Add to cart</button>
+    <p class="hint" id="hint" role="status" aria-live="polite">Ships in 3 to 5 days. 30-day returns.</p>
+  </div>
+</div>
+
+<section id="specs" class="rv">
+  <h2>Built for daily typing</h2>
+  <div class="specs">
+    <div class="big">
+      <div><strong>82 keys</strong><p>75% layout with a dedicated arrow cluster and function row.</p></div>
+      <div><strong>3 modes</strong><p>USB-C wired, Bluetooth 5.1, or a 2.4 GHz dongle.</p></div>
+      <div><strong>Hot-swap</strong><p>Change any switch without a soldering iron.</p></div>
+      <div><strong>1.4 kg</strong><p>Solid enough to stay put on the desk.</p></div>
+    </div>
+    <div class="stack">
+      <div class="grp"><h3>Materials</h3><p>CNC aluminum case, PBT double-shot keycaps, polycarbonate plate.</p></div>
+      <div class="grp"><h3>Sound</h3><p>Gasket mount, foam-lined case, and a pre-lubed stabilizer set.</p></div>
+      <div class="grp"><h3>Software</h3><p>Remap keys and macros in the browser, no install needed.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" class="rv">
+  <h2>What owners say</h2>
+  <div class="reviews">
+    <figure class="lead">
+      <blockquote>“I came from a plastic board and the difference in sound is immediate. Every key feels the same, even the spacebar.”</blockquote>
+      <figcaption><b>Mateus Oyelaran</b>Backend developer, verified buyer</figcaption>
+    </figure>
+    <figure>
+      <blockquote>“Pairing three devices took a minute, and the battery lasted my whole month of travel.”</blockquote>
+      <figcaption><b>Ingrid Valtonen</b>Product designer, verified buyer</figcaption>
+    </figure>
+    <figure>
+      <blockquote>“The silent switches are quiet enough for calls. I swapped two keys by hand in seconds.”</blockquote>
+      <figcaption><b>Dev Pillai</b>Support engineer, verified buyer</figcaption>
+    </figure>
+  </div>
+</section>
+</main>
+<footer>Halden Keyboards. Free shipping on orders over $150.</footer>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const stage = $('#stage'), price = $('#price'), hint = $('#hint'), buy = $('#buy');
+document.querySelectorAll('.thumbs button').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.thumbs button').forEach(x => x.setAttribute('aria-pressed', x === b));
+  stage.src = `https://picsum.photos/seed/${b.dataset.seed}/1200/900`;
+  stage.alt = b.dataset.alt;
+}));
+document.querySelectorAll('input[name=sw]').forEach(r => r.addEventListener('change', () => price.textContent = '$' + r.value));
+buy.addEventListener('click', () => {
+  buy.disabled = true; buy.textContent = 'Adding...';
+  setTimeout(() => {
+    if (Math.random() < 0.1) { hint.textContent = 'Could not add to cart. Please try again.'; }
+    else { $('#count').textContent = +$('#count').textContent + 1; hint.textContent = 'Added to your cart.'; }
+    buy.disabled = false; buy.textContent = 'Add to cart';
+  }, 700);
+});
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15 });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
+```

@@ -1,0 +1,173 @@
+```html
+<!-- Design Read: portfolio for engaged couples, editorial-luxury language, native CSS, a serif system stack, restrained motion.
+     Dials: VARIANCE 7 / MOTION 4 / DENSITY 2. The photo tiles are tonal placeholders; swap each background for an <img>. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maren Okafor | Wedding Photography</title>
+<style>
+  :root {
+    --paper: #f4efe8; --ink: #231f1b; --muted: #6d645b; --line: #d9d0c4; --accent: #a8472c;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font: 1.0625rem/1.65 var(--sans); }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 3rem); }
+  h1, h2 { font-family: var(--serif); font-weight: 400; line-height: 1.05; letter-spacing: -0.02em; }
+  .eyebrow { font-size: .75rem; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; }
+  nav .mark { font-family: var(--serif); font-size: 1.25rem; text-decoration: none; }
+  nav ul { display: flex; gap: 2rem; list-style: none; padding: 0; font-size: .9rem; }
+  nav ul a { text-decoration: none; color: var(--muted); transition: color .2s; }
+  nav ul a:hover { color: var(--ink); }
+
+  .hero { min-height: calc(100dvh - 5rem); display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(2rem, 6vw, 6rem); align-items: end; padding-bottom: 4rem; }
+  .hero h1 { font-size: clamp(3.25rem, 8.5vw, 8rem); margin: 1.25rem 0 1.75rem; }
+  .hero h1 em { color: var(--accent); font-style: italic; }
+  .hero p { max-width: 34ch; color: var(--muted); }
+  .cta { display: inline-block; margin-top: 2rem; padding: .95rem 1.75rem; background: var(--ink); color: var(--paper); text-decoration: none; font-size: .9rem; transition: background .25s, transform .25s; }
+  .cta:hover { background: var(--accent); transform: translateY(-2px); }
+  .hero .photo { aspect-ratio: 4 / 5; margin-bottom: -1rem; }
+
+  .photo { background: var(--bg); position: relative; overflow: hidden; }
+  .photo::after { content: attr(data-cap); position: absolute; left: 1rem; bottom: .9rem; font: italic .95rem var(--serif); color: #fffaf3; opacity: 0; transform: translateY(6px); transition: .35s; }
+  .photo:hover::after { opacity: 1; transform: none; }
+  .photo::before { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, #0006, transparent 45%); opacity: 0; transition: opacity .35s; }
+  .photo:hover::before { opacity: 1; }
+
+  section { padding: clamp(4rem, 9vw, 8rem) 0; border-top: 1px solid var(--line); }
+  .head { display: flex; justify-content: space-between; align-items: end; gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap; }
+  .head h2 { font-size: clamp(2.25rem, 5vw, 4.25rem); }
+
+  .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: clamp(.75rem, 2vw, 1.5rem); }
+  .grid .photo:nth-child(1) { grid-column: span 7; aspect-ratio: 4 / 3; }
+  .grid .photo:nth-child(2) { grid-column: span 5; aspect-ratio: 4 / 5; margin-top: 3rem; }
+  .grid .photo:nth-child(3) { grid-column: span 4; aspect-ratio: 3 / 4; }
+  .grid .photo:nth-child(4) { grid-column: span 4; aspect-ratio: 3 / 4; margin-top: 2rem; }
+  .grid .photo:nth-child(5) { grid-column: span 4; aspect-ratio: 3 / 4; margin-top: 4rem; }
+  .grid .photo:nth-child(6) { grid-column: 3 / span 8; aspect-ratio: 21 / 9; }
+
+  .about { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(2rem, 6vw, 6rem); align-items: start; }
+  .about .photo { aspect-ratio: 3 / 4; }
+  .about h2 { font-size: clamp(2rem, 4.5vw, 3.5rem); margin: 1rem 0 1.5rem; }
+  .about p { max-width: 56ch; color: var(--muted); margin-bottom: 1.1rem; }
+  .about dl { display: flex; gap: 3rem; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+  .about dt { font: 2.25rem var(--serif); color: var(--ink); }
+  .about dd { font-size: .8rem; color: var(--muted); }
+
+  .contact { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 6rem); }
+  .contact h2 { font-size: clamp(2.25rem, 5vw, 4.25rem); }
+  form { display: grid; gap: 1.5rem; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  label { display: grid; gap: .4rem; font-size: .8rem; color: var(--muted); }
+  input, textarea { font: inherit; color: var(--ink); background: transparent; border: 0; border-bottom: 1px solid var(--ink); padding: .6rem 0; border-radius: 0; transition: border-color .2s; }
+  input:focus, textarea:focus { outline: 0; border-color: var(--accent); box-shadow: 0 1px 0 var(--accent); }
+  textarea { resize: vertical; min-height: 7rem; }
+  button.cta { border: 0; cursor: pointer; justify-self: start; margin-top: 0; font: inherit; font-size: .9rem; }
+  #status { min-height: 1.5rem; color: var(--accent); font-family: var(--serif); font-style: italic; }
+
+  footer { padding: 2rem 0; border-top: 1px solid var(--line); font-size: .8rem; color: var(--muted); display: flex; justify-content: space-between; }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s cubic-bezier(.2, .7, .2, 1); }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .reveal { opacity: 1; transform: none; transition: none; } }
+  @media (max-width: 800px) {
+    nav ul { gap: 1rem; }
+    .hero, .about, .contact, .row { grid-template-columns: 1fr; }
+    .hero .photo { order: -1; aspect-ratio: 4 / 3; margin: 0; }
+    .grid .photo { grid-column: span 12 !important; margin-top: 0 !important; aspect-ratio: 4 / 3 !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="mark" href="#top">Maren Okafor</a>
+    <ul><li><a href="#work">Work</a></li><li><a href="#about">About</a></li><li><a href="#contact">Enquire</a></li></ul>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="reveal">
+      <span class="eyebrow">Wedding photography, Hudson Valley and beyond</span>
+      <h1>The quiet part of <em>your</em> loudest day.</h1>
+      <p>Unposed, unhurried portraits and the small moments between the big ones, made for couples who would rather feel the day than perform it.</p>
+      <a class="cta" href="#contact">Check my 2027 dates</a>
+    </div>
+    <div class="photo reveal" role="img" aria-label="Couple laughing under a veil in golden light" style="--bg: linear-gradient(160deg, #d9a97f, #a8472c 60%, #4a2a1f)"></div>
+  </header>
+</div>
+
+<section id="work">
+  <div class="wrap">
+    <div class="head reveal"><h2>Selected weddings</h2><span class="eyebrow">Six of 140 days</span></div>
+    <div class="grid">
+      <div class="photo reveal" data-cap="Priya and Jonah, Cold Spring" role="img" aria-label="Priya and Jonah walking a mossy path" style="--bg: linear-gradient(135deg, #8a9a7b, #2f3d2c)"></div>
+      <div class="photo reveal" data-cap="Hands, before the vows" role="img" aria-label="Close portrait of clasped hands" style="--bg: linear-gradient(200deg, #e8d5bf, #b89572)"></div>
+      <div class="photo reveal" data-cap="Last dance, Rhinebeck" role="img" aria-label="Couple dancing in a barn at dusk" style="--bg: linear-gradient(170deg, #c98b6b, #3b2a2f)"></div>
+      <div class="photo reveal" data-cap="Grandmother's veil" role="img" aria-label="Veil lifting in the wind" style="--bg: linear-gradient(150deg, #efe6da, #a9a29a)"></div>
+      <div class="photo reveal" data-cap="Rain on the terrace" role="img" aria-label="Guests under umbrellas on a stone terrace" style="--bg: linear-gradient(190deg, #7d8c97, #28323a)"></div>
+      <div class="photo reveal" data-cap="Elena and Sam, Montauk" role="img" aria-label="Wide coastal portrait at sunrise" style="--bg: linear-gradient(100deg, #f0c9a0, #d7876a 50%, #5c6b7a)"></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about">
+    <div class="photo reveal" role="img" aria-label="Portrait of Maren holding a film camera" style="--bg: linear-gradient(165deg, #c9b8a3, #6d5a49)"></div>
+    <div class="reveal">
+      <span class="eyebrow">About</span>
+      <h2>I started by photographing my sister's wedding, badly.</h2>
+      <p>I was a hospice nurse then, and the borrowed camera was an excuse to stay near people at the moments that mattered. I missed every formal shot. What I caught was our father wiping his eyes behind the cake table, and that frame is still the best thing I have made.</p>
+      <p>Twelve years later the approach hasn't changed. I arrive early, learn the family's names, and stay out of the way. You get a calm presence, a gentle prompt when you need one, and a gallery within three weeks.</p>
+      <dl><div><dt>140</dt><dd>weddings</dd></div><div><dt>12</dt><dd>years</dd></div><div><dt>3 wks</dt><dd>to delivery</dd></div></dl>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contact">
+    <div class="reveal"><span class="eyebrow">Enquire</span><h2 style="margin-top:1rem">Tell me about your day.</h2></div>
+    <form class="reveal" id="form" novalidate>
+      <div class="row">
+        <label>Your names<input name="names" required autocomplete="name"></label>
+        <label>Email<input name="email" type="email" required autocomplete="email"></label>
+      </div>
+      <div class="row">
+        <label>Wedding date<input name="date" type="date"></label>
+        <label>Venue or region<input name="venue"></label>
+      </div>
+      <label>What matters most to you?<textarea name="msg" required></textarea></label>
+      <button class="cta" type="submit">Send enquiry</button>
+      <p id="status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<div class="wrap"><footer><span>&copy; 2026 Maren Okafor Photography</span><a href="mailto:hello@marenokafor.example">hello@marenokafor.example</a></footer></div>
+
+<script>
+  const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  const form = document.getElementById('form'), status = document.getElementById('status');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const bad = [...form.querySelectorAll('[required]')].find((f) => !f.value.trim() || !f.checkValidity());
+    if (bad) { status.textContent = 'Please complete the highlighted details.'; bad.focus(); return; }
+    // Demo only: wire this to your form backend (Formspree, Netlify Forms, etc.)
+    status.textContent = 'Thank you. I read every note personally and will reply within two days.';
+    form.reset();
+  });
+</script>
+</body>
+</html>
+```

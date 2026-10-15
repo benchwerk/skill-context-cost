@@ -1,0 +1,156 @@
+```html
+<!DOCTYPE html>
+<!-- Design read: consumer sign-up flow for new language learners on phones, with a warm editorial language
+     (serif display, terracotta accent, paper tones), native CSS only. Dials: variance 6 / motion 4 / density 3. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Begin - Lumen Languages</title>
+<style>
+  :root { --paper:#f6f1e7; --ink:#1f1a14; --muted:#6d6254; --line:#d9cfbd; --accent:#c4491c; --accent-ink:#fff8ef; --ok:#2f6b4f; }
+  * { box-sizing: border-box; margin: 0; }
+  body { min-height: 100dvh; background: var(--paper); color: var(--ink); font: 16px/1.5 "Segoe UI", system-ui, sans-serif; display: grid; justify-items: center; }
+  main { width: 100%; max-width: 30rem; min-height: 100dvh; padding: 1.5rem 1.25rem 1rem; display: flex; flex-direction: column; }
+  .bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: .375rem; }
+  .bar i { height: .25rem; border-radius: 2px; background: var(--line); transition: background .4s; }
+  .bar i.on { background: var(--accent); }
+  .meta { display: flex; justify-content: space-between; align-items: center; margin: .75rem 0 2.5rem; font-size: .8125rem; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+  .meta button { min-height: 2.75rem; padding: 0 .5rem; margin-right: -.5rem; }
+  h1 { font: 400 2.5rem/1.05 Georgia, "Times New Roman", serif; letter-spacing: -.02em; max-width: 11ch; }
+  h1 em { color: var(--accent); }
+  .lede { margin: .75rem 0 2rem; color: var(--muted); max-width: 32ch; }
+  section { flex: 1; animation: rise .45s cubic-bezier(.2,.8,.2,1); }
+  section[hidden] { display: none; }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+  label.f { display: block; margin-bottom: 1.25rem; font-size: .875rem; font-weight: 600; }
+  .field { display: flex; margin-top: .375rem; border-bottom: 2px solid var(--ink); }
+  .field:focus-within { border-color: var(--accent); }
+  input[type=email], input[type=password], input[type=text] { flex: 1; min-width: 0; min-height: 3rem; border: 0; background: none; font: inherit; font-size: 1.125rem; color: var(--ink); outline: 0; }
+  .err { min-height: 1.25rem; color: #a3260f; font-size: .875rem; margin-top: -.5rem; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  button:focus-visible, .opt input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 2px; }
+  fieldset { border: 0; padding: 0; display: grid; gap: .625rem; }
+  .opt { position: relative; }
+  .opt input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+  .opt span { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 0 1rem; min-height: 3.5rem; padding: .75rem 1rem; border: 1.5px solid var(--line); border-radius: .75rem; transition: border-color .2s, background .2s, transform .2s; }
+  .opt b { font: 400 1.375rem/1.2 Georgia, serif; }
+  .opt small { grid-column: 1; color: var(--muted); }
+  .opt u { grid-row: 1; grid-column: 2; text-decoration: none; font-size: .8125rem; color: var(--muted); }
+  .opt input:checked + span { border-color: var(--accent); background: #fff; transform: translateX(4px); box-shadow: -4px 0 0 var(--accent); }
+  .opt input:checked + span u { color: var(--accent); font-weight: 700; }
+  .total { margin-top: 1.25rem; font-size: .9375rem; color: var(--muted); }
+  .total strong { color: var(--ok); }
+  .cta { position: sticky; bottom: 0; padding: 1rem 0 .5rem; background: linear-gradient(transparent, var(--paper) 30%); }
+  .cta button { width: 100%; min-height: 3.5rem; border-radius: 999px; background: var(--ink); color: var(--accent-ink); font-weight: 600; font-size: 1.0625rem; transition: background .2s, transform .15s; }
+  .cta button:hover { background: var(--accent); }
+  .cta button:active { transform: scale(.98); }
+  .fine { text-align: center; font-size: .75rem; color: var(--muted); margin-top: .5rem; }
+  .done { text-align: left; align-self: center; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+  @media (min-width: 640px) { main { min-height: auto; margin: 4vh 0; border: 1px solid var(--line); border-radius: 1.5rem; min-height: 44rem; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="bar" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+  <div class="meta"><span id="count" aria-live="polite">Step 1 of 3</span><button id="back" hidden>Back</button></div>
+
+  <form id="flow" novalidate>
+    <section data-step="1">
+      <h1>Make your <em>account</em></h1>
+      <p class="lede">Save your streaks and pick up on any device.</p>
+      <label class="f">Email
+        <span class="field"><input id="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com"></span>
+      </label>
+      <label class="f">Password
+        <span class="field"><input id="pw" type="password" autocomplete="new-password" minlength="8" placeholder="At least 8 characters">
+          <button type="button" id="show" aria-pressed="false">Show</button></span>
+      </label>
+      <p class="err" id="err" role="alert"></p>
+    </section>
+
+    <section data-step="2" hidden>
+      <h1>What will you <em>learn?</em></h1>
+      <p class="lede">You can add more languages later.</p>
+      <fieldset><legend class="sr" style="position:absolute;left:-999px">Language</legend>
+        <label class="opt"><input type="radio" name="lang" value="Spanish" checked><span><b>Spanish</b><u>Beginner friendly</u><small>Español</small></span></label>
+        <label class="opt"><input type="radio" name="lang" value="Japanese"><span><b>Japanese</b><u>Long game</u><small>日本語</small></span></label>
+        <label class="opt"><input type="radio" name="lang" value="Portuguese"><span><b>Portuguese</b><u>Quick wins</u><small>Português</small></span></label>
+        <label class="opt"><input type="radio" name="lang" value="Korean"><span><b>Korean</b><u>Growing fast</u><small>한국어</small></span></label>
+      </fieldset>
+    </section>
+
+    <section data-step="3" hidden>
+      <h1>Set a <em>daily</em> goal</h1>
+      <p class="lede">Small and steady beats big and rare.</p>
+      <fieldset><legend style="position:absolute;left:-999px">Daily goal</legend>
+        <label class="opt"><input type="radio" name="goal" value="5"><span><b>5 minutes</b><u>Casual</u><small>A coffee break</small></span></label>
+        <label class="opt"><input type="radio" name="goal" value="10" checked><span><b>10 minutes</b><u>Regular</u><small>Most popular</small></span></label>
+        <label class="opt"><input type="radio" name="goal" value="20"><span><b>20 minutes</b><u>Serious</u><small>Visible progress in weeks</small></span></label>
+        <label class="opt"><input type="radio" name="goal" value="30"><span><b>30 minutes</b><u>Intense</u><small>Fastest route to fluency</small></span></label>
+      </fieldset>
+      <p class="total" id="total" aria-live="polite"></p>
+    </section>
+
+    <section class="done" data-step="4" hidden>
+      <h1>You're in, <em id="who"></em></h1>
+      <p class="lede" id="summary"></p>
+    </section>
+
+    <div class="cta"><button type="submit" id="next">Continue</button>
+      <p class="fine" id="fine">Free forever. No card needed.</p></div>
+  </form>
+</main>
+<script>
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const steps = $$('section'), bars = $$('.bar i');
+  let step = 1;
+
+  function go(n) {
+    step = n;
+    steps.forEach(s => s.hidden = +s.dataset.step !== n);
+    bars.forEach((b, i) => b.classList.toggle('on', i < Math.min(n, 3)));
+    $('#count').textContent = n < 4 ? `Step ${n} of 3` : 'Welcome';
+    $('#back').hidden = n === 1 || n === 4;
+    $('#next').textContent = n === 3 ? 'Start learning' : n === 4 ? 'Go to first lesson' : 'Continue';
+    $('#fine').hidden = n !== 1;
+    if (n === 3) updateTotal();
+    $('h1', steps[n - 1]).scrollIntoView({ block: 'start' });
+  }
+
+  function updateTotal() {
+    const m = +$('[name=goal]:checked').value;
+    $('#total').innerHTML = `That is <strong>${Math.round(m * 7 / 6) * 6 / 6 * 1} min</strong> a week, about <strong>${(m * 30 / 60).toFixed(m * 30 % 60 ? 1 : 0)} hours</strong> a month.`;
+  }
+
+  function validate() {
+    const email = $('#email'), pw = $('#pw');
+    const msg = !/^\S+@\S+\.\S+$/.test(email.value) ? 'Enter a valid email address.'
+              : pw.value.length < 8 ? 'Password needs at least 8 characters.' : '';
+    $('#err').textContent = msg;
+    if (msg) (email.validity.valid && /^\S+@\S+\.\S+$/.test(email.value) ? pw : email).focus();
+    return !msg;
+  }
+
+  $('#flow').addEventListener('submit', e => {
+    e.preventDefault();
+    if (step === 1 && !validate()) return;
+    if (step === 3) {
+      $('#who').textContent = $('#email').value.split('@')[0];
+      $('#summary').textContent = `${$('[name=lang]:checked').value}, ${$('[name=goal]:checked').value} minutes a day. See you tomorrow.`;
+    }
+    if (step < 4) go(step + 1);
+  });
+  $('#back').addEventListener('click', () => go(step - 1));
+  $$('[name=goal]').forEach(r => r.addEventListener('change', updateTotal));
+  $('#show').addEventListener('click', e => {
+    const hide = $('#pw').type === 'password';
+    $('#pw').type = hide ? 'text' : 'password';
+    e.target.textContent = hide ? 'Hide' : 'Show';
+    e.target.setAttribute('aria-pressed', hide);
+  });
+</script>
+</body>
+</html>
+```

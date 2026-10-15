@@ -1,0 +1,68 @@
+{
+ "G2-original": {
+  "runs": 10,
+  "nested_skill_calls": 10,
+  "hit_rate": 1.0,
+  "hit_rate_95ci": [
+   0.722,
+   1.0
+  ],
+  "first_request_added_median": 8389.0,
+  "last_request_added_median": 9125.0,
+  "last_request_added_min_max": [
+   9125,
+   12656
+  ],
+  "turns": {
+   "3": 7,
+   "4": 3
+  },
+  "result_subtypes": {
+   "success": 10
+  }
+ },
+ "G2-prose": {
+  "runs": 10,
+  "nested_skill_calls": 10,
+  "hit_rate": 1.0,
+  "hit_rate_95ci": [
+   0.722,
+   1.0
+  ],
+  "first_request_added_median": 8389.0,
+  "last_request_added_median": 9125.0,
+  "last_request_added_min_max": [
+   9125,
+   9322
+  ],
+  "turns": {
+   "3": 8,
+   "4": 2
+  },
+  "result_subtypes": {
+   "success": 10
+  }
+ },
+ "G2-slash": {
+  "runs": 10,
+  "nested_skill_calls": 10,
+  "hit_rate": 1.0,
+  "hit_rate_95ci": [
+   0.722,
+   1.0
+  ],
+  "first_request_added_median": 8382.0,
+  "last_request_added_median": 9321.5,
+  "last_request_added_min_max": [
+   9118,
+   12688
+  ],
+  "turns": {
+   "3": 3,
+   "4": 7
+  },
+  "result_subtypes": {
+   "success": 10
+  }
+ }
+}

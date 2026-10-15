@@ -1,0 +1,160 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Argila — Ceramics Studio, Lisbon</title>
+<style>
+  :root {
+    --clay: #b8623e;
+    --bone: #f4ede2;
+    --ink: #231a15;
+    --azul: #1f3f8f;
+    --sand: #e6d9c4;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bone); color: var(--ink); font: 1.0625rem/1.6 var(--sans); }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.1; letter-spacing: -0.01em; }
+  h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 2.5rem; }
+  .eyebrow { font-size: .78rem; letter-spacing: .18em; text-transform: uppercase; color: var(--clay); margin-bottom: 1rem; }
+  section { padding: 6rem 0; }
+
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; }
+  nav strong { font: 500 1.5rem var(--serif); }
+  nav a { text-decoration: none; margin-left: 1.5rem; font-size: .95rem; }
+  nav a:hover { color: var(--clay); }
+
+  .hero { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; padding: 3rem 0 6rem; }
+  .hero h1 { font-size: clamp(2.8rem, 7vw, 5.5rem); }
+  .hero h1 em { color: var(--azul); font-style: italic; }
+  .hero p { max-width: 34ch; margin: 1.5rem 0 2rem; font-size: 1.2rem; }
+  .btn { display: inline-block; background: var(--ink); color: var(--bone); padding: .9rem 1.8rem; border-radius: 999px; text-decoration: none; transition: background .2s, transform .2s; }
+  .btn:hover { background: var(--clay); transform: translateY(-2px); }
+  .vessel { aspect-ratio: 4/5; background: radial-gradient(circle at 35% 30%, #d98a63, var(--clay) 55%, #7a3a20); border-radius: 48% 48% 42% 42% / 38% 38% 62% 62%; position: relative; box-shadow: 0 30px 50px -20px rgba(35,26,21,.5); }
+  .vessel::before { content: ""; position: absolute; inset: 14% 18% auto; height: 22%; border-radius: 50%; background: var(--ink); opacity: .85; }
+  .vessel::after { content: ""; position: absolute; inset: 52% 10% 22%; background: repeating-linear-gradient(90deg, var(--bone) 0 14px, var(--azul) 14px 28px); opacity: .9; clip-path: polygon(0 0, 100% 0, 96% 100%, 4% 100%); }
+
+  .make { background: var(--sand); }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .make article { border-top: 2px solid var(--ink); padding-top: 1.25rem; }
+  .make h3 { font-size: 1.7rem; margin-bottom: .5rem; }
+  .make span { display: block; margin-top: .75rem; font-size: .85rem; color: var(--azul); }
+
+  blockquote { background: #fff8ee; padding: 2rem; border-radius: 4px 40px 4px 40px; font: italic 1.2rem/1.5 var(--serif); }
+  blockquote cite { display: block; margin-top: 1.25rem; font: normal .85rem var(--sans); letter-spacing: .06em; color: var(--clay); }
+  blockquote:nth-child(2) { transform: translateY(1.5rem); }
+
+  .pricing { background: var(--azul); color: var(--bone); }
+  .pricing .eyebrow { color: #f0b48f; }
+  .toggle { display: inline-flex; background: rgba(255,255,255,.12); border-radius: 999px; padding: 4px; margin-bottom: 2.5rem; }
+  .toggle button { border: 0; background: none; color: inherit; font: inherit; padding: .5rem 1.25rem; border-radius: 999px; cursor: pointer; }
+  .toggle button.on { background: var(--bone); color: var(--azul); }
+  .card { border: 1px solid rgba(244,237,226,.35); padding: 2rem; border-radius: 6px; display: flex; flex-direction: column; gap: .75rem; }
+  .card.feat { background: var(--bone); color: var(--ink); }
+  .card h3 { font-size: 1.6rem; }
+  .price { font: 500 2.6rem var(--serif); }
+  .price small { font: .9rem var(--sans); opacity: .7; }
+  .card ul { padding-left: 1.1rem; font-size: .95rem; }
+
+  footer { padding: 4rem 0 3rem; }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem; }
+  footer h3 { font-size: 2rem; }
+  footer p { font-size: .95rem; }
+
+  :focus-visible { outline: 3px solid var(--clay); outline-offset: 3px; }
+  .rise { opacity: 0; transform: translateY(24px); transition: opacity .7s, transform .7s; }
+  .rise.in { opacity: 1; transform: none; }
+  @media (max-width: 800px) {
+    .hero, .grid3 { grid-template-columns: 1fr; }
+    .vessel { max-width: 300px; }
+    section { padding: 4rem 0; }
+    blockquote:nth-child(2) { transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { .rise { transition: none; opacity: 1; transform: none; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<header class="wrap">
+  <nav>
+    <strong>Argila</strong>
+    <div><a href="#make">Work</a><a href="#voices">Voices</a><a href="#workshops">Workshops</a></div>
+  </nav>
+</header>
+
+<main>
+  <section class="wrap hero" style="padding-top:3rem">
+    <div>
+      <p class="eyebrow">Ceramics studio · Alfama, Lisbon</p>
+      <h1>Shaped by hand, <em>glazed by light.</em></h1>
+      <p>Small-batch tableware and one-off vessels, thrown on Rua das Escolas Gerais and fired in kilns older than our oldest mug.</p>
+      <a class="btn" href="#workshops">Book a workshop</a>
+    </div>
+    <div class="vessel" role="img" aria-label="Terracotta vase with cobalt tile pattern"></div>
+  </section>
+
+  <section class="make" id="make">
+    <div class="wrap">
+      <p class="eyebrow">What we make</p>
+      <h2>Objects for the table, and for the slow hours.</h2>
+      <div class="grid3">
+        <article class="rise"><h3>Tableware</h3><p>Stoneware plates, bowls and cups in glazes mixed from Tagus clay and local ash. Dishwasher safe, built for daily use.</p><span>From €18</span></article>
+        <article class="rise"><h3>Azulejo-inspired tiles</h3><p>Hand-painted cobalt tiles, each pressed and brushed individually. Single pieces or custom panels for kitchens.</p><span>From €35</span></article>
+        <article class="rise"><h3>Vessels &amp; vases</h3><p>Wheel-thrown, one of a kind. Tall bottles, wide bowls and moon jars that look good empty.</p><span>From €60</span></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="voices">
+    <p class="eyebrow">Voices</p>
+    <h2>Kind words from the wheel.</h2>
+    <div class="grid3">
+      <blockquote class="rise">“I came for a two-hour class and left planning my next three. Marta makes clay feel forgiving.”<cite>INÊS C. · Lisbon</cite></blockquote>
+      <blockquote class="rise">“Our wedding gifts were Argila bowls. Guests still message us asking where they came from.”<cite>DANIEL &amp; PRIYA · London</cite></blockquote>
+      <blockquote class="rise">“The glaze on my morning cup changes with the weather. I have never loved a mug this much.”<cite>JOÃO M. · Porto</cite></blockquote>
+    </div>
+  </section>
+
+  <section class="pricing" id="workshops">
+    <div class="wrap">
+      <p class="eyebrow">Workshops</p>
+      <h2>Get your hands dirty.</h2>
+      <div class="toggle" role="group" aria-label="Booking type">
+        <button class="on" data-mode="solo" aria-pressed="true">Per person</button>
+        <button data-mode="pair" aria-pressed="false">For two</button>
+      </div>
+      <div class="grid3">
+        <div class="card"><h3>First Touch</h3><div class="price"><span data-p="45">€45</span> <small>2 hrs</small></div><ul><li>Intro to the wheel</li><li>One piece, glazed and fired</li><li>Wine and pastéis included</li></ul></div>
+        <div class="card feat"><h3>Weekend Wheel</h3><div class="price"><span data-p="120">€120</span> <small>2 days</small></div><ul><li>Throwing and trimming</li><li>Up to three finished pieces</li><li>Pickup after two weeks</li></ul></div>
+        <div class="card"><h3>Tile Painting</h3><div class="price"><span data-p="60">€60</span> <small>3 hrs</small></div><ul><li>Cobalt on tin glaze</li><li>Four tiles to take home</li><li>No experience needed</li></ul></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><h3>Argila</h3><p>Rua das Escolas Gerais 21, 1100 Lisboa</p></div>
+    <p>Tue–Sat · 10:00–18:00<br><a href="mailto:ola@argila.example">ola@argila.example</a></p>
+    <p>© <span id="yr"></span> Argila Cerâmica, Lda.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const prices = document.querySelectorAll('[data-p]');
+  document.querySelectorAll('.toggle button').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('.toggle button').forEach(x => { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b); });
+    prices.forEach(p => p.textContent = '€' + (b.dataset.mode === 'pair' ? Math.round(p.dataset.p * 1.8) : p.dataset.p));
+  }));
+  const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && (e.target.classList.add('in'), io.unobserve(e.target))), { threshold: .15 });
+  document.querySelectorAll('.rise').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
+```

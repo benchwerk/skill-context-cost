@@ -1,0 +1,142 @@
+{
+ "hits": 8827,
+ "repositories": 6032,
+ "requests": 110,
+ "token_used": true,
+ "skills_per_repository": {
+  "median": 1.0,
+  "mean": 1.31,
+  "p90": 2,
+  "max": 25,
+  "share_with_1": 0.852,
+  "share_with_10_plus": 0.006
+ },
+ "projects_under_30_skills": {
+  "n": 6032,
+  "median": 1.0,
+  "p90": 2
+ },
+ "most_vendored_skill_names": [
+  [
+   "verify",
+   71
+  ],
+  [
+   "commit",
+   55
+  ],
+  [
+   "pr",
+   46
+  ],
+  [
+   "release",
+   42
+  ],
+  [
+   "review",
+   40
+  ],
+  [
+   "ship",
+   35
+  ],
+  [
+   "lint",
+   33
+  ],
+  [
+   "code-review",
+   30
+  ],
+  [
+   "deploy",
+   30
+  ],
+  [
+   "plan",
+   26
+  ],
+  [
+   "grill-me",
+   25
+  ],
+  [
+   "debug",
+   23
+  ],
+  [
+   "build",
+   22
+  ],
+  [
+   "setup",
+   21
+  ],
+  [
+   "docs",
+   21
+  ],
+  [
+   "qa",
+   21
+  ],
+  [
+   "fix",
+   21
+  ],
+  [
+   "graphify",
+   20
+  ],
+  [
+   "docker",
+   19
+  ],
+  [
+   "test",
+   19
+  ],
+  [
+   "check",
+   18
+  ],
+  [
+   "tdd",
+   18
+  ],
+  [
+   "ci",
+   16
+  ],
+  [
+   "audit",
+   15
+  ],
+  [
+   "spec",
+   15
+  ],
+  [
+   "push",
+   15
+  ],
+  [
+   "handoff",
+   14
+  ],
+  [
+   "pdf",
+   13
+  ],
+  [
+   "design",
+   13
+  ],
+  [
+   "research",
+   13
+  ]
+ ],
+ "limits": "search capped at 1,000 results per slice, ranked by GitHub, partial index; a committed skill is not a used skill"
+}

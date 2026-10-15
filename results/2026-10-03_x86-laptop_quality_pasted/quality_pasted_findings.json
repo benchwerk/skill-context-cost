@@ -1,0 +1,77 @@
+{
+ "run": "2026-10-03_x86-laptop_quality_pasted",
+ "generations": 72,
+ "failed_attempts_excluded_and_rerun": 1,
+ "mean_score_pct": {
+  "pasted": 98.61,
+  "original": 98.44,
+  "none": 91.67,
+  "original_part9": 98.44
+ },
+ "pasted_minus_original": {
+  "diff_pp": 0.17,
+  "ci_pp": [
+   -0.69,
+   1.04
+  ],
+  "briefs": 12
+ },
+ "pasted_minus_none_part9": {
+  "diff_pp": 6.94,
+  "ci_pp": [
+   3.3,
+   10.24
+  ],
+  "briefs": 12
+ },
+ "original_minus_none_part9": {
+  "diff_pp": 6.77,
+  "ci_pp": [
+   3.13,
+   10.07
+  ],
+  "briefs": 12
+ },
+ "original_this_run_minus_part9": {
+  "diff_pp": 0.0,
+  "ci_pp": [
+   -1.04,
+   1.04
+  ],
+  "briefs": 12
+ },
+ "one_turn_median_total_input_tokens": {
+  "pasted": 54174.5,
+  "original": 54335.0,
+  "n": {
+   "pasted": 36,
+   "original": 36
+  }
+ },
+ "original_minus_pasted_tokens": 160.5,
+ "per_condition": {
+  "pasted": {
+   "n": 36,
+   "median_turns": 1.0,
+   "share_with_tool_calls": 0.0,
+   "median_output_tokens": 5582.0,
+   "mean_meter_step_points": 1.371,
+   "meter_steps_n": 35
+  },
+  "original": {
+   "n": 36,
+   "median_turns": 1.0,
+   "share_with_tool_calls": 0.0,
+   "median_output_tokens": 5791.0,
+   "mean_meter_step_points": 1.143,
+   "meter_steps_n": 35
+  }
+ },
+ "verdicts_against_prediction": {
+  "R1_pasted_within_3pp_of_original_and_interval_includes_0": "holds",
+  "R2_pasted_at_least_3pp_above_none_interval_above_0": "holds",
+  "R3_original_minus_pasted_between_0_and_250_tokens": "holds",
+  "R4_pasted_median_one_turn_no_tool_calls": "holds",
+  "R5_original_within_5pp_of_part9": "holds"
+ }
+}

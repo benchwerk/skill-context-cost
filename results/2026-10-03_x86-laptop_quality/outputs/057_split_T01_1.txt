@@ -1,0 +1,171 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Argila Atelier | Ceramics studio in Lisbon</title>
+<meta name="description" content="Hand-thrown stoneware and small-group pottery workshops in Marvila, Lisbon.">
+<!-- Design read: consumer craft studio landing, editorial/warm-earth language, native CSS, restrained motion. Dials 7/5/3. -->
+<style>
+  :root {
+    --clay: #b5502e; --clay-dark: #8f3c20; --bone: #f4eee6; --paper: #fbf8f3;
+    --ink: #2a211c; --muted: #6f6258; --line: #d9cfc2; --glaze: #3f5a5c;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--bone); color: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--clay); outline-offset: 3px; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 3rem); }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.05; letter-spacing: -0.02em; }
+  h2 { font-size: clamp(2rem, 4.5vw, 3.4rem); }
+  .eyebrow { font-size: .75rem; letter-spacing: .18em; text-transform: uppercase; color: var(--clay-dark); font-weight: 600; margin-bottom: 1rem; display: block; }
+  .btn { display: inline-block; padding: .9rem 1.6rem; background: var(--ink); color: var(--paper); text-decoration: none; border-radius: 999px; font-weight: 600; font-size: .95rem; transition: transform .25s, background .25s; }
+  .btn:hover { background: var(--clay); transform: translateY(-2px); }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+  .btn.ghost:hover { background: var(--ink); color: var(--paper); }
+
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; }
+  nav .logo { font-family: var(--serif); font-size: 1.4rem; text-decoration: none; }
+  nav ul { display: flex; gap: 2rem; list-style: none; padding: 0; font-size: .9rem; }
+  nav ul a { text-decoration: none; color: var(--muted); }
+  nav ul a:hover { color: var(--clay); }
+
+  .hero { min-height: 100dvh; display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(2rem, 5vw, 5rem); align-items: center; padding-bottom: 4rem; }
+  .hero h1 { font-size: clamp(3rem, 8vw, 6.6rem); }
+  .hero h1 em { color: var(--clay); font-style: italic; }
+  .hero p { max-width: 42ch; margin: 1.75rem 0 2.25rem; color: var(--muted); font-size: 1.1rem; }
+  .hero .actions { display: flex; gap: .75rem; flex-wrap: wrap; }
+  .vessel { aspect-ratio: 4/5; position: relative; border-radius: 48% 48% 6px 6px / 28% 28% 6px 6px;
+    background: radial-gradient(circle at 30% 25%, #d98a62, var(--clay) 45%, var(--clay-dark)); overflow: hidden;
+    box-shadow: 0 40px 60px -30px rgba(80, 30, 10, .5); }
+  .vessel::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(0,0,0,.07) 0 2px, transparent 2px 14px); }
+  .vessel::after { content: "Stoneware No. 14, iron-rich glaze"; position: absolute; left: 1.25rem; bottom: 1.25rem; font-size: .75rem; color: var(--paper); letter-spacing: .08em; }
+  .tag { position: absolute; right: -1rem; top: 12%; background: var(--paper); padding: .8rem 1.1rem; border-radius: 4px; font-size: .8rem; box-shadow: 0 10px 30px rgba(0,0,0,.1); transform: rotate(3deg); }
+  .hero-art { position: relative; }
+
+  section { padding: clamp(4rem, 9vw, 8rem) 0; }
+  .make { background: var(--paper); }
+  .make-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+  .item { padding: 2rem; border: 1px solid var(--line); border-radius: 6px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 260px; }
+  .item:nth-child(1) { grid-column: span 7; background: var(--glaze); color: var(--paper); border: 0; min-height: 340px; }
+  .item:nth-child(2) { grid-column: span 5; }
+  .item:nth-child(3) { grid-column: span 4; }
+  .item:nth-child(4) { grid-column: span 8; background: var(--bone); }
+  .item h3 { font-size: 1.8rem; margin-bottom: .5rem; }
+  .item p { font-size: .95rem; opacity: .8; max-width: 38ch; }
+
+  .quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; margin-top: 3.5rem; }
+  blockquote { border-top: 2px solid var(--clay); padding-top: 1.5rem; font-family: var(--serif); font-size: 1.25rem; line-height: 1.45; }
+  blockquote:nth-child(2) { margin-top: 3rem; }
+  blockquote footer { font-family: var(--sans); font-size: .85rem; color: var(--muted); margin-top: 1.25rem; }
+
+  .pricing { background: var(--ink); color: var(--paper); }
+  .pricing .eyebrow { color: #e9a07e; }
+  .plans { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 3.5rem; border-top: 1px solid #5a4d44; }
+  .plan { padding: 2.25rem 2rem 2.5rem 0; border-right: 1px solid #5a4d44; }
+  .plan + .plan { padding-left: 2rem; }
+  .plan:last-child { border-right: 0; }
+  .plan h3 { font-size: 1.6rem; }
+  .price { font-family: var(--serif); font-size: 3.2rem; margin: 1rem 0 .25rem; color: #e9a07e; }
+  .plan small { color: #b8aa9d; }
+  .plan ul { list-style: none; padding: 0; margin: 1.5rem 0 2rem; font-size: .95rem; color: #d8ccc0; }
+  .plan li { padding: .5rem 0; border-bottom: 1px solid #3d332c; }
+  .plan .btn { background: var(--paper); color: var(--ink); }
+  .plan .btn:hover { background: var(--clay); color: var(--paper); }
+
+  footer.site { padding: 4rem 0 2rem; }
+  .foot { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2rem; font-size: .95rem; color: var(--muted); }
+  .foot strong { display: block; color: var(--ink); font-family: var(--serif); font-weight: 400; font-size: 1.5rem; margin-bottom: .5rem; }
+  .legal { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); font-size: .8rem; color: var(--muted); }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s, transform .8s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
+  @media (max-width: 860px) {
+    nav ul { display: none; }
+    .hero, .quotes, .plans, .foot { grid-template-columns: 1fr; }
+    .item:nth-child(n) { grid-column: span 12; min-height: 220px; }
+    blockquote:nth-child(2) { margin-top: 0; }
+    .plan, .plan + .plan { padding: 2rem 0; border-right: 0; border-bottom: 1px solid #5a4d44; }
+    .tag { right: 0; }
+  }
+</style>
+</head>
+<body>
+<header class="wrap">
+  <nav>
+    <a class="logo" href="#top">Argila Atelier</a>
+    <ul><li><a href="#make">Our work</a></li><li><a href="#words">Voices</a></li><li><a href="#workshops">Workshops</a></li><li><a href="#visit">Visit</a></li></ul>
+  </nav>
+  <div class="hero" id="top">
+    <div>
+      <span class="eyebrow">Ceramics studio · Marvila, Lisbon</span>
+      <h1>Made slowly, <em>by hand</em>, from Portuguese clay.</h1>
+      <p>We throw, glaze and fire small batches of tableware in a former tile warehouse, and teach anyone curious how to do the same.</p>
+      <div class="actions"><a class="btn" href="#workshops">Book a workshop</a><a class="btn ghost" href="#make">See what we make</a></div>
+    </div>
+    <div class="hero-art">
+      <div class="vessel" role="img" aria-label="Terracotta stoneware vase with throwing lines"></div>
+      <div class="tag">Next kiln opening<br><strong>Saturday, 11:00</strong></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="make" id="make"><div class="wrap">
+    <span class="eyebrow">What we make</span>
+    <h2 class="reveal">Objects for the table, shaped to be used daily.</h2>
+    <div class="make-grid">
+      <article class="item reveal"><h3>Dinner sets</h3><p>Plates and bowls in speckled stoneware with a pooling sea-green glaze. Sold in sets of four.</p></article>
+      <article class="item reveal"><h3>Cups &amp; carafes</h3><p>Pulled handles, thin rims, a weight that sits right in the hand.</p></article>
+      <article class="item reveal"><h3>Planters</h3><p>Unglazed terracotta with drainage that actually works.</p></article>
+      <article class="item reveal"><h3>Commissions</h3><p>Restaurants and homes across Lisbon order bespoke ranges. Allow six to eight weeks from sketch to delivery.</p></article>
+    </div>
+  </div></section>
+
+  <section id="words"><div class="wrap">
+    <span class="eyebrow">Voices</span>
+    <h2 class="reveal">What people say after the kiln cools.</h2>
+    <div class="quotes">
+      <blockquote class="reveal">“I walked in having never touched clay and left with a bowl I still eat from every morning.”<footer>Marta S., Alvalade</footer></blockquote>
+      <blockquote class="reveal">“Our restaurant plates came out better than the sketches. Patient, precise, and on time.”<footer>João P., chef at Taberna do Cais</footer></blockquote>
+      <blockquote class="reveal">“The Sunday session is my reset. Small group, good coffee, zero pressure to be perfect.”<footer>Emily R., visiting from Dublin</footer></blockquote>
+    </div>
+  </div></section>
+
+  <section class="pricing" id="workshops"><div class="wrap">
+    <span class="eyebrow">Workshops</span>
+    <h2 class="reveal">Pick your pace. Max six people per table.</h2>
+    <div class="plans">
+      <div class="plan reveal"><h3>First Touch</h3><div class="price">€55</div><small>per person · 2 hours</small>
+        <ul><li>Wheel basics with a tutor</li><li>Make one piece to keep</li><li>Glazing and firing included</li></ul><a class="btn" href="#visit">Reserve</a></div>
+      <div class="plan reveal"><h3>Six Evenings</h3><div class="price">€290</div><small>per person · 6 × 2.5 hours</small>
+        <ul><li>Centering to trimming</li><li>Up to four finished pieces</li><li>Clay and tools provided</li></ul><a class="btn" href="#visit">Reserve</a></div>
+      <div class="plan reveal"><h3>Private Table</h3><div class="price">€320</div><small>for up to six · 3 hours</small>
+        <ul><li>Birthdays, teams, hen parties</li><li>Wine and petiscos included</li><li>Pieces delivered after firing</li></ul><a class="btn" href="#visit">Enquire</a></div>
+    </div>
+  </div></section>
+</main>
+
+<footer class="site" id="visit"><div class="wrap">
+  <div class="foot">
+    <div><strong>Argila Atelier</strong>Rua do Grilo 120, Marvila, 1950 Lisboa.<br>Studio open Wed–Sun, 10:00–18:00.</div>
+    <div><strong>Write</strong><a href="mailto:ola@argila.example">ola@argila.example</a><br>+351 210 000 000</div>
+    <div><strong>Follow</strong><a href="#top">Instagram</a><br><a href="#top">Newsletter</a></div>
+  </div>
+  <p class="legal">© 2026 Argila Atelier. Fired in Lisbon.</p>
+</div></footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach((el, i) => { el.style.transitionDelay = (i % 3) * 90 + 'ms'; io.observe(el); });
+</script>
+</body>
+</html>
+```

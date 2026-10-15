@@ -1,0 +1,191 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Osteria Fiore – Neighbourhood Kitchen</title>
+<style>
+  :root {
+    --cream: #faf5ec;
+    --ink: #2b2118;
+    --olive: #5b6b3a;
+    --terra: #b5532f;
+    --line: #e2d8c6;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  a { color: inherit; }
+  header {
+    position: sticky; top: 0; z-index: 5;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 6vw;
+    background: rgba(250, 245, 236, .95);
+    border-bottom: 1px solid var(--line);
+  }
+  .logo { font-size: 1.4rem; font-style: italic; color: var(--terra); }
+  nav a {
+    margin-left: 22px; text-decoration: none;
+    font: 600 .8rem/1 system-ui, sans-serif;
+    letter-spacing: .12em; text-transform: uppercase;
+  }
+  nav a:hover { color: var(--terra); }
+  .hero {
+    min-height: 70vh; display: grid; place-content: center; text-align: center;
+    padding: 60px 6vw; color: #fff;
+    background: linear-gradient(rgba(43,33,24,.6), rgba(43,33,24,.6)),
+      radial-gradient(circle at 30% 20%, #c9733f, #5b6b3a 70%);
+  }
+  .hero h1 { font-size: clamp(2.4rem, 7vw, 4.6rem); font-weight: 400; }
+  .hero p { max-width: 34ch; margin: 14px auto 28px; font-size: 1.15rem; opacity: .9; }
+  .btn {
+    display: inline-block; padding: 13px 30px; border: 0; border-radius: 3px;
+    background: var(--terra); color: #fff; cursor: pointer; text-decoration: none;
+    font: 600 .85rem system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase;
+  }
+  .btn:hover { background: #99421f; }
+  section { padding: 70px 6vw; max-width: 1000px; margin: auto; }
+  h2 { font-size: 2rem; font-weight: 400; color: var(--olive); margin-bottom: 8px; }
+  .sub { font-style: italic; margin-bottom: 30px; opacity: .75; }
+  .menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px 50px; }
+  .menu h3 {
+    grid-column: 1 / -1; margin-top: 14px; padding-bottom: 6px;
+    font: 700 .8rem system-ui, sans-serif; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--terra); border-bottom: 1px solid var(--line);
+  }
+  .item { display: flex; justify-content: space-between; gap: 14px; }
+  .item b { font-weight: 600; }
+  .item small { display: block; opacity: .7; }
+  .item span { color: var(--olive); font-weight: 700; }
+  .alt { background: #f1e9d8; max-width: none; }
+  .alt > div { max-width: 1000px; margin: auto; }
+  .two { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; align-items: center; }
+  table { width: 100%; border-collapse: collapse; }
+  td { padding: 9px 0; border-bottom: 1px dotted #bfb29a; }
+  td:last-child { text-align: right; }
+  tr.today { color: var(--terra); font-weight: 700; }
+  .portrait {
+    aspect-ratio: 4/5; border-radius: 160px 160px 8px 8px;
+    background: linear-gradient(160deg, var(--olive), var(--terra));
+    display: grid; place-items: center; color: #fff; font-size: 5rem;
+  }
+  form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  label { display: grid; gap: 4px; font: 600 .75rem system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+  .full { grid-column: 1 / -1; }
+  input, select, textarea {
+    padding: 11px; border: 1px solid var(--line); border-radius: 3px; background: #fff;
+    font: 1rem Georgia, serif; color: var(--ink);
+  }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--olive); }
+  #msg { grid-column: 1 / -1; font-style: italic; color: var(--olive); min-height: 1.6em; }
+  footer { text-align: center; padding: 30px; background: var(--ink); color: #cfc3ad; font-size: .9rem; }
+  @media (max-width: 600px) { nav { display: none; } form { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Osteria Fiore</div>
+  <nav><a href="#menu">Menu</a><a href="#hours">Hours</a><a href="#chef">Chef</a><a href="#reserve">Reserve</a></nav>
+</header>
+
+<div class="hero">
+  <h1>Good food, close to home</h1>
+  <p>Seasonal Italian cooking on the corner of Willow &amp; 4th, since 2012.</p>
+  <div><a class="btn" href="#reserve">Reserve a table</a></div>
+</div>
+
+<section id="menu">
+  <h2>The Menu</h2>
+  <p class="sub">Changes with the market. Ask us about allergens.</p>
+  <div class="menu">
+    <h3>To start</h3>
+    <div class="item"><div><b>Burrata &amp; roasted peaches</b><small>basil oil, toasted almonds</small></div><span>£11</span></div>
+    <div class="item"><div><b>Crispy artichokes</b><small>lemon aioli, parsley</small></div><span>£9</span></div>
+    <h3>Mains</h3>
+    <div class="item"><div><b>Handmade tagliatelle</b><small>slow-cooked beef ragù</small></div><span>£17</span></div>
+    <div class="item"><div><b>Wild mushroom risotto</b><small>thyme, aged parmesan (v)</small></div><span>£16</span></div>
+    <div class="item"><div><b>Roast sea bream</b><small>fennel, salsa verde</small></div><span>£23</span></div>
+    <div class="item"><div><b>Wood-fired margherita</b><small>fior di latte, basil (v)</small></div><span>£13</span></div>
+    <h3>To finish</h3>
+    <div class="item"><div><b>Tiramisù</b><small>made every morning</small></div><span>£8</span></div>
+    <div class="item"><div><b>Lemon polenta cake</b><small>mascarpone cream</small></div><span>£8</span></div>
+  </div>
+</section>
+
+<div class="alt" id="hours"><section>
+  <h2>Opening Hours</h2>
+  <p class="sub">Walk-ins always welcome, bookings recommended at weekends.</p>
+  <table id="hoursTable">
+    <tr><td>Monday</td><td>Closed</td></tr>
+    <tr><td>Tuesday – Thursday</td><td>12:00 – 22:00</td></tr>
+    <tr><td>Friday</td><td>12:00 – 23:00</td></tr>
+    <tr><td>Saturday</td><td>11:00 – 23:00</td></tr>
+    <tr><td>Sunday</td><td>11:00 – 20:00</td></tr>
+  </table>
+</section></div>
+
+<section id="chef">
+  <div class="two">
+    <div class="portrait" aria-hidden="true">👩‍🍳</div>
+    <div>
+      <h2>Meet Chef Marta Rossi</h2>
+      <p class="sub">Born in Bologna, trained in London, settled here.</p>
+      <p>Marta learned to roll pasta at her grandmother's kitchen table and spent fifteen years in professional kitchens before opening Fiore. Her philosophy is simple: buy from neighbours, cook with patience, and never let a guest leave hungry.</p>
+      <p style="margin-top:12px">Most of our vegetables come from allotments within two miles of the restaurant.</p>
+    </div>
+  </div>
+</section>
+
+<div class="alt" id="reserve"><section>
+  <h2>Reserve a Table</h2>
+  <p class="sub">We'll confirm by email within a few hours.</p>
+  <form id="form">
+    <label>Name<input name="name" required autocomplete="name"></label>
+    <label>Email<input type="email" name="email" required autocomplete="email"></label>
+    <label>Date<input type="date" name="date" id="date" required></label>
+    <label>Time
+      <select name="time" required>
+        <option>12:00</option><option>13:00</option><option>14:00</option>
+        <option>18:00</option><option>19:00</option><option selected>20:00</option><option>21:00</option>
+      </select>
+    </label>
+    <label>Guests<input type="number" name="guests" min="1" max="10" value="2" required></label>
+    <label>Phone (optional)<input type="tel" name="phone" autocomplete="tel"></label>
+    <label class="full">Notes<textarea name="notes" rows="3" placeholder="Allergies, celebrations, high chair…"></textarea></label>
+    <div class="full"><button class="btn" type="submit">Request booking</button></div>
+    <p id="msg" role="status"></p>
+  </form>
+</section></div>
+
+<footer>Osteria Fiore · 14 Willow Street · 020 7946 0123 · hello@osteriafiore.example</footer>
+
+<script>
+  const date = document.getElementById('date');
+  date.min = new Date().toISOString().split('T')[0];
+
+  // Highlight today's row in the hours table
+  const rows = document.querySelectorAll('#hoursTable tr');
+  const map = [4, 0, 1, 1, 1, 2, 3]; // Sun..Sat -> row index
+  rows[map[new Date().getDay()]].classList.add('today');
+
+  document.getElementById('form').addEventListener('submit', e => {
+    e.preventDefault();
+    const f = new FormData(e.target);
+    if (new Date(f.get('date') + 'T00:00').getDay() === 1) {
+      document.getElementById('msg').textContent = 'Sorry, we are closed on Mondays. Please choose another day.';
+      return;
+    }
+    document.getElementById('msg').textContent =
+      `Thank you, ${f.get('name')}! Table for ${f.get('guests')} on ${f.get('date')} at ${f.get('time')} requested.`;
+    e.target.reset();
+  });
+</script>
+</body>
+</html>
+```

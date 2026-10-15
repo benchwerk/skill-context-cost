@@ -1,0 +1,151 @@
+```html
+<!doctype html>
+<!-- Design Read: wedding photographer portfolio for engaged couples, with a calm editorial-sans language, native CSS + a little JS. Dials 7 / 5 / 3. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maren Oyelaran Photography</title>
+<style>
+:root{--bg:#f3f4f2;--fg:#141716;--mute:#4b524f;--line:#d5d9d6;--card:#e8ebe8;--ac:#a8344f;--on-ac:#fff7f8;--err:#a1262b;--r:12px;--ease:cubic-bezier(.16,1,.3,1)}
+@media (prefers-color-scheme:dark){:root{--bg:#121413;--fg:#eef0ee;--mute:#aab2ae;--line:#2c322f;--card:#1b1f1d;--ac:#e68ba1;--on-ac:#1d0c11;--err:#ff9a9e}}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:"Geist","Satoshi",system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--fg);line-height:1.6}
+img{display:block;width:100%;height:100%;object-fit:cover}
+a{color:inherit}
+.wrap{max-width:1280px;margin:0 auto;padding:0 24px}
+header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav{height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+nav .brand{font-weight:600;letter-spacing:-.02em;text-decoration:none;white-space:nowrap}
+nav ul{display:flex;gap:28px;list-style:none;padding:0}
+nav ul a{text-decoration:none;color:var(--mute);font-size:.95rem}
+nav ul a:hover{color:var(--fg)}
+.btn{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;padding:13px 24px;border-radius:var(--r);border:1px solid var(--ac);background:var(--ac);color:var(--on-ac);font:inherit;font-weight:600;text-decoration:none;cursor:pointer;transition:transform .3s var(--ease)}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:scale(.98)}
+.btn.ghost{background:transparent;color:var(--fg);border-color:var(--fg)}
+:focus-visible{outline:3px solid var(--ac);outline-offset:3px}
+.hero{min-height:calc(100dvh - 68px);display:grid;grid-template-columns:5fr 6fr;gap:56px;align-items:center;padding-top:48px;padding-bottom:48px}
+h1{font-size:clamp(2.25rem,4.6vw,4.25rem);line-height:1.04;letter-spacing:-.04em;font-weight:600}
+h1 em{font-style:italic;color:var(--ac);padding-bottom:4px;display:inline-block;line-height:1.15}
+.hero p{margin:24px 0 32px;color:var(--mute);font-size:1.15rem;max-width:44ch}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero figure{height:min(72dvh,640px);border-radius:var(--r);overflow:hidden;margin-left:auto;width:100%}
+section{padding:112px 0}
+h2{font-size:clamp(1.75rem,3.2vw,2.75rem);letter-spacing:-.03em;line-height:1.1;font-weight:600;margin-bottom:12px}
+.lede{color:var(--mute);max-width:60ch;margin-bottom:40px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(3,230px);gap:14px}
+.grid figure{border-radius:var(--r);overflow:hidden;background:var(--card)}
+.grid img{transition:transform .8s var(--ease)}
+.grid figure:hover img{transform:scale(1.05)}
+.g1{grid-area:1/1/3/3}.g2{grid-area:1/3}.g3{grid-area:2/3}.g4{grid-area:1/4/3/5}.g5{grid-area:3/1/4/3}.g6{grid-area:3/3/4/5}
+.about{display:grid;grid-template-columns:1fr 1.15fr;gap:72px;align-items:start}
+.about figure{border-radius:var(--r);overflow:hidden;aspect-ratio:4/5;position:sticky;top:96px}
+.about p{color:var(--mute);margin-top:18px;max-width:60ch}
+.about p:first-of-type{color:var(--fg);font-size:1.25rem;line-height:1.5}
+form{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:820px;margin-top:36px}
+.f{display:grid;gap:8px;align-content:start}.f.full{grid-column:1/-1}
+label{font-weight:600;font-size:.95rem}
+.hint{font-size:.85rem;color:var(--mute)}
+input,textarea{font:inherit;color:var(--fg);background:var(--card);border:1px solid var(--mute);border-radius:var(--r);padding:12px 14px;width:100%}
+textarea{min-height:130px;resize:vertical}
+input[aria-invalid=true],textarea[aria-invalid=true]{border-color:var(--err)}
+.err{color:var(--err);font-size:.875rem;min-height:1.2em}
+.done{grid-column:1/-1;padding:20px;border:1px solid var(--ac);border-radius:var(--r)}
+footer{border-top:1px solid var(--line);padding:32px 0;color:var(--mute);font-size:.9rem}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media (prefers-reduced-motion:no-preference){
+.hero>*{animation:in 1s var(--ease) both}.hero figure{animation-delay:.15s}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.on{opacity:1;transform:none}}
+@keyframes in{from{opacity:0;transform:translateY(24px)}}
+@media (max-width:900px){nav ul{display:none}}
+@media (max-width:767px){
+.wrap{padding:0 16px}section{padding:72px 0}
+.hero,.about,form{grid-template-columns:1fr;gap:32px}
+.hero figure{height:56dvh}.about figure{position:static}
+.grid{grid-template-columns:1fr;grid-template-rows:none}
+.grid figure{grid-area:auto;aspect-ratio:4/3}
+.g1,.g4{aspect-ratio:4/5!important}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><nav>
+<a class="brand" href="#top">Maren Oyelaran</a>
+<ul><li><a href="#work">Weddings</a></li><li><a href="#about">About</a></li></ul>
+<a class="btn" href="#contact">Check availability</a>
+</nav></div></header>
+
+<main id="top">
+<div class="wrap hero">
+<div>
+<h1>Weddings, photographed as they <em>actually</em> felt.</h1>
+<p>Documentary wedding photography for couples who want the laughter, the nerves and the quiet in between.</p>
+<div class="actions"><a class="btn" href="#contact">Check availability</a><a class="btn ghost" href="#work">View galleries</a></div>
+</div>
+<figure><img src="https://picsum.photos/seed/wedding-couple-golden-hour/1200/1400" alt="A couple laughing together in a field at golden hour" fetchpriority="high"></figure>
+</div>
+
+<section id="work"><div class="wrap">
+<h2 class="rv">Recent weddings</h2>
+<p class="lede rv">Six days from the last two seasons, from a lakeside ceremony to a rainy city hall elopement.</p>
+<div class="grid">
+<figure class="g1 rv"><img loading="lazy" src="https://picsum.photos/seed/wedding-vows-lakeside/1000/1000" alt="Two people exchanging vows beside a lake"></figure>
+<figure class="g2 rv"><img loading="lazy" src="https://picsum.photos/seed/wedding-rings-detail/600/600" alt="Close detail of two rings on a bouquet"></figure>
+<figure class="g3 rv"><img loading="lazy" src="https://picsum.photos/seed/wedding-first-dance/600/600" alt="A first dance under string lights"></figure>
+<figure class="g4 rv"><img loading="lazy" src="https://picsum.photos/seed/wedding-veil-portrait/600/1000" alt="A bride in a long veil walking away from the camera"></figure>
+<figure class="g5 rv"><img loading="lazy" src="https://picsum.photos/seed/wedding-family-toast/1000/500" alt="Family members raising glasses at a long dinner table"></figure>
+<figure class="g6 rv"><img loading="lazy" src="https://picsum.photos/seed/wedding-rain-umbrella/1000/500" alt="A couple sharing an umbrella on a rainy street"></figure>
+</div>
+</div></section>
+
+<section id="about"><div class="wrap about">
+<figure class="rv"><img loading="lazy" src="https://picsum.photos/seed/photographer-with-camera/800/1000" alt="Maren Oyelaran holding her camera at a wedding venue"></figure>
+<div class="rv">
+<h2>Hi, I'm Maren.</h2>
+<p>I started shooting weddings after photographing my sister's in 2014 and realising the best frames happened when nobody was posing.</p>
+<p>Since then I have photographed over 160 weddings across Ontario and abroad. I work alone, carry two cameras and very little else, and stay quiet until something real happens.</p>
+<p>You get a small, relaxed presence on the day and a full gallery within four weeks, edited by me and nobody else.</p>
+</div>
+</div></section>
+
+<section id="contact"><div class="wrap rv">
+<h2>Tell me about your day.</h2>
+<p class="lede">Share your date and venue. I reply personally within two working days.</p>
+<form id="f" novalidate>
+<div class="f"><label for="n">Your names</label><input id="n" name="n" autocomplete="name" required><span class="err" id="en"></span></div>
+<div class="f"><label for="e">Email</label><input id="e" name="e" type="email" autocomplete="email" required><span class="err" id="ee"></span></div>
+<div class="f"><label for="d">Wedding date</label><input id="d" name="d" type="date" required><span class="err" id="ed"></span></div>
+<div class="f"><label for="v">Venue or city</label><input id="v" name="v"><span class="hint">Optional</span></div>
+<div class="f full"><label for="m">What are you picturing?</label><textarea id="m" name="m"></textarea><span class="hint">A few lines is plenty.</span></div>
+<div class="f full"><button class="btn" type="submit" style="justify-self:start">Check availability</button></div>
+<p class="done" id="ok" role="status" hidden>Thank you. Your note is in, and I will write back within two working days.</p>
+</form>
+</div></section>
+</main>
+
+<footer><div class="wrap"><span>Maren Oyelaran Photography</span><a href="mailto:hello@marenoyelaran.example">hello@marenoyelaran.example</a></div></footer>
+
+<script>
+const io = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add('on'); io.unobserve(x.target); } }), { threshold: .15 });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+const f = document.getElementById('f');
+const rules = { n: v => v.trim() ? '' : 'Please enter your names.', e: v => /^\S+@\S+\.\S+$/.test(v) ? '' : 'Enter a valid email address.', d: v => v ? '' : 'Choose a wedding date.' };
+f.addEventListener('submit', ev => {
+  ev.preventDefault();
+  let first = null;
+  for (const k in rules) {
+    const input = f.elements[k], msg = rules[k](input.value);
+    document.getElementById('e' + k).textContent = msg;
+    input.setAttribute('aria-invalid', !!msg);
+    if (msg && !first) first = input;
+  }
+  if (first) return first.focus();
+  document.getElementById('ok').hidden = false;
+  f.reset();
+});
+</script>
+</body>
+</html>
+```

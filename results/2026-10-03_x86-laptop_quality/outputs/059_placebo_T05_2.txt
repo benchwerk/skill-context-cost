@@ -1,0 +1,117 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Halden 75 — Mechanical Keyboard</title>
+<style>
+:root{--bg:#f2eee6;--ink:#1b1a17;--mute:#6f6a5f;--line:#d9d2c3;--acc:#d9481c}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,.price{font-family:ui-serif,Georgia,serif;font-weight:500;letter-spacing:-.02em}
+nav{display:flex;justify-content:space-between;padding:20px 5vw;border-bottom:1px solid var(--line);font-size:14px}
+nav b{letter-spacing:.2em;text-transform:uppercase}
+main{display:grid;grid-template-columns:1.25fr 1fr;gap:56px;padding:48px 5vw;max-width:1280px;margin:auto}
+.stage{aspect-ratio:4/3;border-radius:20px;display:grid;place-items:center;background:radial-gradient(circle at 30% 20%,#fff8,transparent 60%),var(--tint);transition:background .4s;perspective:900px}
+.kb{width:84%;padding:3.2%;border-radius:14px;background:var(--case);display:grid;gap:4px;transform:rotateX(var(--rx,24deg)) rotateZ(var(--rz,-4deg));transition:transform .25s ease-out;box-shadow:0 30px 40px -20px #0006,0 2px 0 #fff4 inset}
+.row{display:flex;gap:4px}
+.k{flex:var(--w);height:0;padding-bottom:calc(var(--w)*0 + 5.2%);min-width:0;border-radius:4px;background:var(--key);box-shadow:0 3px 0 var(--edge),0 4px 6px #0003}
+.k.m{background:var(--mod)}.k.a{background:var(--acc)}
+.thumbs{display:flex;gap:12px;margin-top:14px}
+.thumbs button{flex:1;padding:12px;border:1px solid var(--line);border-radius:12px;background:none;cursor:pointer;font:inherit;font-size:13px;color:var(--mute);text-align:left}
+.thumbs button i{display:block;height:26px;border-radius:6px;margin-bottom:8px}
+.thumbs button[aria-pressed=true]{border-color:var(--ink);color:var(--ink)}
+.eyebrow{font:12px ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+h1{font-size:clamp(40px,5vw,64px);line-height:1.02;margin:10px 0 14px}
+.lede{color:var(--mute);max-width:44ch}
+.price{font-size:34px;margin:22px 0 4px}
+.opt{display:flex;gap:8px;margin:12px 0 22px;flex-wrap:wrap}
+.opt label{cursor:pointer}
+.opt input{position:absolute;opacity:0}
+.opt span{display:block;padding:9px 16px;border:1px solid var(--line);border-radius:99px;font-size:14px}
+.opt input:checked+span{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.opt input:focus-visible+span,button:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+.buy{width:100%;padding:18px;border:0;border-radius:14px;background:var(--acc);color:#fff;font:600 16px inherit;cursor:pointer;transition:transform .15s,background .2s}
+.buy:hover{transform:translateY(-2px)}.buy:active{transform:scale(.98)}.buy.done{background:var(--ink)}
+.fine{font-size:13px;color:var(--mute);margin-top:10px}
+section{grid-column:1/-1;border-top:1px solid var(--line);padding-top:40px;display:grid;grid-template-columns:1.25fr 1fr;gap:56px}
+h2{font-size:32px}
+dl{display:grid;grid-template-columns:auto 1fr;margin-top:18px}
+dt,dd{padding:13px 0;border-bottom:1px solid var(--line)}
+dt{color:var(--mute);padding-right:32px;font-size:14px}dd{font:14px ui-monospace,monospace;text-align:right}
+.score{display:flex;align-items:baseline;gap:12px;margin:14px 0}
+.score b{font:500 56px ui-serif,Georgia,serif}
+.bar{display:grid;grid-template-columns:20px 1fr 28px;gap:10px;font-size:13px;color:var(--mute);align-items:center}
+.bar div{height:6px;background:var(--line);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:var(--ink)}
+.rev{padding:18px 0;border-bottom:1px solid var(--line)}
+.rev:first-of-type{padding-top:0}
+.rev p{margin-top:4px}.rev small{color:var(--mute)}
+.stars{color:var(--acc);letter-spacing:2px}
+@media(max-width:860px){main,section{grid-template-columns:1fr;gap:32px}}
+</style>
+</head>
+<body>
+<nav><b>Halden</b><span>Keyboards · Switches · Support</span><span id="bag">Bag (0)</span></nav>
+<main>
+  <div>
+    <div class="stage" id="stage"><div class="kb" id="kb"></div></div>
+    <div class="thumbs" id="thumbs"></div>
+  </div>
+  <div>
+    <p class="eyebrow">75% · Gasket-mounted · Hot-swap</p>
+    <h1>Halden 75</h1>
+    <p class="lede">A machined aluminium board tuned for a low, round sound. Foam-dampened, PBT keycaps, and a typing feel that settles in rather than wears out.</p>
+    <p class="price" id="price">$189</p>
+    <p class="fine">Free shipping · 30-day returns</p>
+    <div class="opt" id="sw" role="radiogroup" aria-label="Switch type">
+      <label><input type="radio" name="s" value="0" checked><span>Linear</span></label>
+      <label><input type="radio" name="s" value="10"><span>Tactile +$10</span></label>
+      <label><input type="radio" name="s" value="10"><span>Clicky +$10</span></label>
+    </div>
+    <button class="buy" id="buy">Add to bag</button>
+    <p class="fine">Ships in 3–5 business days.</p>
+  </div>
+  <section>
+    <div><h2>Specifications</h2>
+      <dl><dt>Layout</dt><dd>75% · 84 keys</dd><dt>Case</dt><dd>CNC 6063 aluminium</dd><dt>Mount</dt><dd>Gasket, PC plate</dd><dt>Switches</dt><dd>Hot-swap, 5-pin</dd><dt>Keycaps</dt><dd>Double-shot PBT, Cherry</dd><dt>Connection</dt><dd>USB-C · 2.4 GHz · BT 5.1</dd><dt>Battery</dt><dd>4,000 mAh · ~120 h</dd><dt>Weight</dt><dd>1.9 kg</dd></dl>
+    </div>
+    <div><h2>Reviews</h2>
+      <div class="score"><b>4.8</b><span class="stars">★★★★★</span><small>312 reviews</small></div>
+      <div id="bars"></div>
+      <div style="margin-top:24px">
+        <div class="rev"><span class="stars">★★★★★</span><p>The sound is unreal out of the box. Deep, no ping.</p><small>Mara T. · Verified buyer</small></div>
+        <div class="rev"><span class="stars">★★★★★</span><p>Heavy and solid. Bluetooth switching is instant.</p><small>Jon K. · Verified buyer</small></div>
+        <div class="rev"><span class="stars">★★★★☆</span><p>Superb build. I wish the cable were braided.</p><small>Priya S. · Verified buyer</small></div>
+      </div>
+    </div>
+  </section>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+const rows=[[...Array(15)].map(()=>1),[1.5,...Array(12).fill(1),1.5],[1.75,...Array(11).fill(1),2.25],[2.25,...Array(10).fill(1),1.75,1],[1.25,1.25,1.25,6.25,1,1,1,1,1]];
+const looks=[
+ {n:'Bone',tint:'#e4dccb',case:'#2b2a27',key:'#ece6d8',mod:'#cfc6b2',edge:'#b9b09a'},
+ {n:'Graphite',tint:'#cfd1d2',case:'#c3c5c6',key:'#4a4c4f',mod:'#2f3033',edge:'#1e1f21'},
+ {n:'Moss',tint:'#d5dcc9',case:'#33402f',key:'#dfe5d0',mod:'#8fa07c',edge:'#7a8a68'}];
+$('#kb').innerHTML=rows.map((r,i)=>`<div class="row">${r.map((w,j)=>
+ `<div class="k${(j==0&&i<4&&r[0]>1)||w>1.2&&w<6?' m':''}${(i==0&&j==0)||(i==2&&j==12)?' a':''}" style="--w:${w}"></div>`).join('')}</div>`).join('');
+function look(i){const l=looks[i],s=$('#stage').style;
+ s.setProperty('--tint',l.tint);
+ for(const k of['case','key','mod','edge'])$('#kb').style.setProperty('--'+k,l[k]);
+ document.querySelectorAll('#thumbs button').forEach((b,j)=>b.setAttribute('aria-pressed',i==j));}
+$('#thumbs').innerHTML=looks.map((l,i)=>`<button aria-pressed="false" data-i="${i}"><i style="background:linear-gradient(90deg,${l.case} 50%,${l.key} 50%)"></i>${l.n}</button>`).join('');
+$('#thumbs').onclick=e=>{const b=e.target.closest('button');if(b)look(+b.dataset.i)};
+look(0);
+$('#stage').onpointermove=e=>{const r=e.currentTarget.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5,s=$('#kb').style;
+ s.setProperty('--rx',24-y*10+'deg');s.setProperty('--rz',-4+x*8+'deg')};
+$('#stage').onpointerleave=()=>{$('#kb').style.removeProperty('--rx');$('#kb').style.removeProperty('--rz')};
+let add=0;
+$('#sw').onchange=e=>{$('#price').textContent='$'+(189+ +e.target.value)};
+$('#buy').onclick=e=>{add++;$('#bag').textContent=`Bag (${add})`;e.target.textContent=`Added — ${add} in bag`;e.target.classList.add('done');
+ clearTimeout(window.t);window.t=setTimeout(()=>{e.target.textContent='Add another';e.target.classList.remove('done')},1800)};
+$('#bars').innerHTML=[[5,82],[4,13],[3,3],[2,1],[1,1]].map(([n,p])=>`<div class="bar"><span>${n}★</span><div><i style="width:${p}%"></i></div><span>${p}%</span></div>`).join('');
+</script>
+</body>
+</html>
+```

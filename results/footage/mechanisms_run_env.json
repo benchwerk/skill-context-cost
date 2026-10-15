@@ -1,0 +1,7 @@
+{
+ "command": "python bench/run.py --experiment mechanisms --runs 2 --only M-base,M-skill-idle,M-skill-used,M-claudemd,M-prompt-used,M-docs-idle,M-docs-used",
+ "date": "2026-10-02T22:24:19+02:00",
+ "os": "Windows-11-10.0.26200-SP0",
+ "python": "3.14.6",
+ "exit": 0
+}

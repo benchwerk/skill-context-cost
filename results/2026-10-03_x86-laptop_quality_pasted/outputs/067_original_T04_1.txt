@@ -1,0 +1,140 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harbourview Dental - Today</title>
+<!-- Design read: internal clinic dashboard for front-desk staff, calm utilitarian language, native CSS with one teal accent. Sample data throughout. -->
+<style>
+:root{--bg:#f3f5f4;--panel:#fbfcfb;--ink:#17201e;--mute:#566360;--line:#dde3e0;--accent:#0d6b5e;--accent-ink:#fff;--tint:#e1efec;--r:10px;--ease:cubic-bezier(.16,1,.3,1)}
+@media(prefers-color-scheme:dark){:root{--bg:#101514;--panel:#161d1b;--ink:#e6ecea;--mute:#9aa8a4;--line:#26312e;--accent:#4fc3b0;--accent-ink:#0b1311;--tint:#1b2c28}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 Geist,"Segoe UI Variable","Segoe UI",system-ui,sans-serif;min-height:100dvh}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 48px}
+header{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:20px}
+h1{font-size:clamp(1.6rem,3vw,2.3rem);letter-spacing:-.03em;line-height:1.1}
+.date{color:var(--mute);margin-top:4px}
+.search{display:grid;gap:6px;font-size:13px;font-weight:600;min-width:240px}
+input{font:inherit;padding:9px 12px;border:1px solid var(--mute);border-radius:var(--r);background:var(--panel);color:var(--ink)}
+input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--line);margin-bottom:28px}
+.stat{padding:18px 20px 18px 0}
+.stat+.stat{padding-left:20px;border-left:1px solid var(--line)}
+.stat b{display:block;font-size:2rem;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1.1}
+.stat span{color:var(--mute);font-size:13px}
+.grid{display:grid;grid-template-columns:1.9fr 1fr;gap:24px;align-items:start}
+h2{font-size:1.05rem;letter-spacing:-.01em;margin-bottom:12px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:8px 18px}
+.row{display:grid;grid-template-columns:76px 1fr auto;gap:14px;align-items:center;padding:14px 0 14px 12px;border-left:3px solid transparent;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row.now{border-left-color:var(--accent);background:linear-gradient(90deg,var(--tint),transparent 70%)}
+.row.done{color:var(--mute)}
+.time{font-variant-numeric:tabular-nums;font-weight:600}
+.who{font-weight:600}
+.what{font-size:13px;color:var(--mute)}
+.tag{font-size:12px;font-weight:600;padding:3px 10px;border-radius:var(--r);border:1px solid var(--line);white-space:nowrap}
+.now .tag{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.empty{padding:36px 8px;text-align:center;color:var(--mute)}
+.empty button{margin-top:10px}
+button{font:inherit;font-weight:600;padding:8px 16px;border-radius:var(--r);border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);cursor:pointer;transition:transform .2s var(--ease)}
+button:active{transform:translateY(1px) scale(.98)}
+.week{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;align-items:end;height:190px;padding:16px 0 4px}
+.day{display:grid;grid-template-rows:1fr auto auto;justify-items:center;height:100%;gap:4px;font-size:12px;color:var(--mute)}
+.day i{align-self:end;width:100%;border-radius:6px;background:var(--line);transform-origin:bottom;min-height:4px}
+.day b{font-size:13px;color:var(--ink);font-variant-numeric:tabular-nums}
+.day.today i{background:var(--accent)}
+.day.today span{color:var(--accent);font-weight:700}
+.note{padding:10px 0 12px;color:var(--mute);font-size:13px;border-top:1px solid var(--line)}
+@media(prefers-reduced-motion:no-preference){
+.row{animation:up .6s var(--ease) both;animation-delay:calc(var(--i)*60ms)}
+.day i{animation:grow .8s var(--ease) both;animation-delay:calc(var(--i)*70ms)}
+@keyframes up{from{opacity:0;transform:translateY(10px)}}
+@keyframes grow{from{transform:scaleY(.05)}}}
+@media(max-width:768px){.grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.stat:nth-child(3){padding-left:0;border-left:0}.stat:nth-child(n+3){border-top:1px solid var(--line)}.search{width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Harbourview Dental</h1>
+      <p class="date" id="date"></p>
+    </div>
+    <label class="search">Find a patient
+      <input id="q" type="search" placeholder="Type a name" autocomplete="off">
+    </label>
+  </header>
+
+  <section class="stats" aria-label="Summary">
+    <div class="stat"><b id="s-booked">0</b><span>Booked today</span></div>
+    <div class="stat"><b id="s-hours">0 h</b><span>Chair time scheduled</span></div>
+    <div class="stat"><b>3</b><span>Open slots this week</span></div>
+    <div class="stat"><b>2</b><span>No-shows this week</span></div>
+  </section>
+
+  <div class="grid">
+    <section>
+      <h2>Today's schedule</h2>
+      <div class="panel" id="list" aria-live="polite"></div>
+    </section>
+    <section>
+      <h2>Week overview</h2>
+      <div class="panel">
+        <div class="week" id="week"></div>
+        <p class="note">Appointments per day. Saturday runs mornings only.</p>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+// Sample data. Replace with the practice management export.
+const appts = [
+  ["08:30", 30, "Marisol Ferreira", "Check-up and clean", "Dr. Adeyemi"],
+  ["09:00", 60, "Tobias Lindqvist", "Root canal, molar", "Dr. Okonkwo"],
+  ["09:30", 30, "Anwen Hartigan", "Filling, lower left", "Dr. Adeyemi"],
+  ["10:15", 45, "Daniyar Seitkali", "Crown fitting", "Dr. Okonkwo"],
+  ["11:00", 30, "Priya Venkataraghavan", "Whitening consult", "Dr. Adeyemi"],
+  ["11:30", 30, "Hollis Drummond", "Child check-up", "Dr. Adeyemi"],
+  ["12:00", 60, "Ines Marchetti", "Wisdom tooth extraction", "Dr. Okonkwo"],
+  ["12:30", 30, "Kofi Abernathy", "Follow-up, braces", "Dr. Adeyemi"]
+];
+const week = [["Mon", 11], ["Tue", 9], ["Wed", 12], ["Thu", 7], ["Fri", 10], ["Sat", appts.length]];
+const $ = id => document.getElementById(id);
+const mins = t => { const [h, m] = t.split(":"); return +h * 60 + +m; };
+const now = new Date(), cur = now.getHours() * 60 + now.getMinutes();
+
+$("date").textContent = now.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+$("s-booked").textContent = appts.length;
+$("s-hours").textContent = (appts.reduce((a, r) => a + r[1], 0) / 60).toFixed(1) + " h";
+
+function status(r) {
+  const s = mins(r[0]);
+  if (cur >= s + r[1]) return ["done", "Completed"];
+  if (cur >= s) return ["now", "In the chair"];
+  return ["", "Upcoming"];
+}
+
+function draw(filter = "") {
+  const rows = appts.filter(r => r[2].toLowerCase().includes(filter.toLowerCase().trim()));
+  $("list").innerHTML = rows.length ? rows.map((r, i) => {
+    const [cls, label] = status(r);
+    return `<div class="row ${cls}" style="--i:${i}">
+      <span class="time">${r[0]}</span>
+      <div><div class="who">${r[2]}</div><div class="what">${r[3]}, ${r[4]}</div></div>
+      <span class="tag">${label}</span></div>`;
+  }).join("") : `<div class="empty">No patient matches "${filter.replace(/</g, "&lt;")}".<br><button id="clear">Clear search</button></div>`;
+}
+
+$("week").innerHTML = week.map(([d, n], i) => `
+  <div class="day ${i === 5 ? "today" : ""}" style="--i:${i}">
+    <b>${n}</b><i style="height:${n / 12 * 100}%"></i><span>${d}</span></div>`).join("");
+
+$("q").addEventListener("input", e => draw(e.target.value));
+$("list").addEventListener("click", e => { if (e.target.id === "clear") { $("q").value = ""; draw(); $("q").focus(); } });
+draw();
+</script>
+</body>
+</html>
+```

@@ -1,0 +1,176 @@
+```html
+<!-- Reading this as: consumer app announcement for coffee drinkers who order online, with a calm premium-consumer language, leaning toward native CSS with a forest-and-amber palette, auto light/dark, and restrained CSS motion. Dials: VARIANCE 7, MOTION 5, DENSITY 3. Images are picsum placeholders; swap in real roastery photography. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kiln Street Coffee app: order beans, follow the delivery</title>
+<style>
+  :root {
+    --bg: #eef0ec; --fg: #141a17; --mut: #46514b; --card: #e0e5de; --line: #c5ccc3;
+    --ac: #e8692b; --on-ac: #1a0d06; --r: 12px;
+    --font: "Avenir Next", "Segoe UI Variable", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0f1512; --fg: #eef1ec; --mut: #a3aea7; --card: #18211c; --line: #2a362f; }
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--bg); color: var(--fg); font: 1rem/1.6 var(--font); -webkit-font-smoothing: antialiased; }
+  img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: var(--r); }
+  a { color: inherit; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem; }
+  h1, h2 { letter-spacing: -0.035em; line-height: 1.04; font-weight: 700; }
+  h1 { font-size: clamp(2.5rem, 6vw, 4.4rem); max-width: 14ch; }
+  h2 { font-size: clamp(1.9rem, 4vw, 3rem); }
+  p { color: var(--mut); max-width: 56ch; }
+  .btn { display: inline-block; padding: 0.8rem 1.4rem; border-radius: var(--r); font: 600 1rem var(--font); text-decoration: none;
+    border: 1.5px solid var(--fg); color: var(--fg); background: transparent; cursor: pointer; white-space: nowrap;
+    transition: transform 0.3s var(--ease), background 0.3s; }
+  .btn.pri { background: var(--ac); border-color: var(--ac); color: var(--on-ac); }
+  .btn:hover { transform: translateY(-2px); }
+  .btn:active { transform: scale(0.98); }
+  .btn:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid var(--ac); outline-offset: 2px; }
+  header { position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 1px solid var(--line); }
+  header .wrap { height: 64px; display: flex; align-items: center; justify-content: space-between; }
+  .logo { font-weight: 800; letter-spacing: -0.03em; text-decoration: none; font-size: 1.15rem; }
+  nav { display: flex; align-items: center; gap: 1.5rem; }
+  nav a:not(.btn) { text-decoration: none; color: var(--mut); }
+  nav .btn { padding: 0.5rem 1rem; }
+  .hero { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 3rem; align-items: center; min-height: calc(100dvh - 64px); padding-top: 3rem; padding-bottom: 3rem; }
+  .hero p { margin: 1.5rem 0 2rem; font-size: 1.15rem; }
+  .row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .hero figure { aspect-ratio: 4 / 5; transform: translateY(1.5rem); }
+  section.pad { padding: 7rem 0; }
+  .track { display: grid; grid-template-columns: 5fr 7fr; gap: 4rem; align-items: start; }
+  .track h2 + p { margin-top: 1.25rem; }
+  .panel { background: var(--card); border-radius: var(--r); padding: 1.75rem; }
+  label { display: block; font-weight: 600; margin-bottom: 0.5rem; }
+  select, input { width: 100%; padding: 0.8rem 1rem; font: 1rem var(--font); color: var(--fg); background: var(--bg); border: 1.5px solid var(--mut); border-radius: var(--r); }
+  ol { list-style: none; padding: 0; margin: 1.5rem 0; display: grid; gap: 0.25rem; }
+  ol li { padding: 0.8rem 1rem; border-radius: var(--r); color: var(--mut); border: 1.5px solid transparent; transition: transform 0.4s var(--ease), background 0.4s, color 0.4s; }
+  ol li.done { color: var(--fg); }
+  ol li.now { background: var(--ac); color: var(--on-ac); font-weight: 700; transform: translateX(8px); }
+  #status { min-height: 1.6em; color: var(--fg); margin-bottom: 1rem; }
+  .beans { display: grid; grid-template-columns: 1.6fr 1fr; grid-template-rows: auto auto; gap: 1rem; margin-top: 2.5rem; }
+  .beans article { background: var(--card); border-radius: var(--r); padding: 1rem; display: flex; flex-direction: column; gap: 0.9rem; }
+  .beans article:first-child { grid-row: span 2; }
+  .beans .photo { flex: 1; min-height: 220px; }
+  .beans h3 { font-size: 1.25rem; letter-spacing: -0.02em; }
+  .beans .fill { background: var(--ac); color: var(--on-ac); justify-content: center; padding: 2rem; }
+  .beans .fill p { color: var(--on-ac); }
+  .beans .fill h3 { font-size: 1.8rem; line-height: 1.1; }
+  .final { border-top: 1px solid var(--line); }
+  form { margin-top: 2rem; max-width: 520px; display: grid; gap: 0.5rem; }
+  form .row { flex-wrap: nowrap; }
+  .hint { font-size: 0.9rem; color: var(--mut); }
+  #err { color: #b3261e; font-weight: 600; min-height: 1.4em; }
+  @media (prefers-color-scheme: dark) { #err { color: #ff8f86; } }
+  footer { padding: 2rem 0; border-top: 1px solid var(--line); color: var(--mut); font-size: 0.9rem; }
+  @media (max-width: 767px) {
+    .hero, .track, .beans { grid-template-columns: 1fr; }
+    .hero { min-height: 0; gap: 2rem; }
+    .hero figure { transform: none; aspect-ratio: 4 / 3; }
+    .beans article:first-child { grid-row: auto; }
+    section.pad { padding: 4rem 0; }
+    nav a:not(.btn) { display: none; }
+    form .row { flex-wrap: wrap; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero > * { animation: up 0.9s var(--ease) both; }
+    .hero > figure { animation-delay: 0.15s; }
+    .js .rv { opacity: 0; transform: translateY(28px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+    .js .rv.in { opacity: 1; transform: none; }
+    @keyframes up { from { opacity: 0; transform: translateY(24px); } }
+  }
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="logo" href="#top">Kiln Street</a>
+  <nav><a href="#track">Tracking</a><a href="#beans">This week</a><a class="btn pri" href="#get">Get the app</a></nav>
+</div></header>
+
+<main id="top" class="wrap">
+  <div class="hero">
+    <div>
+      <h1>Fresh roasted beans, followed to your door.</h1>
+      <p>Order from this week's roast in the Kiln app, then watch your bag go from the drum to your doorstep.</p>
+      <div class="row"><a class="btn pri" href="#get">Get the app</a><a class="btn" href="#track">Try the tracker</a></div>
+    </div>
+    <figure><img src="https://picsum.photos/seed/coffee-roaster-drum-beans/800/1000" alt="Freshly roasted coffee beans cooling in a roastery tray" width="800" height="1000"></figure>
+  </div>
+
+  <section id="track" class="pad track rv">
+    <div>
+      <h2>Know where your bag is.</h2>
+      <p>Every order gets a live timeline. We update it when the beans are roasted, packed, handed to the courier and delivered.</p>
+    </div>
+    <div class="panel">
+      <!-- mock: a working demo of the in-app tracker, not live data -->
+      <label for="roast">Choose a roast to preview</label>
+      <select id="roast"><option>Guji Natural, 250 g</option><option>Huila Washed, 250 g</option><option>House Espresso, 1 kg</option></select>
+      <ol id="steps"><li>Roasted</li><li>Packed</li><li>With the courier</li><li>Delivered</li></ol>
+      <p id="status" role="status" aria-live="polite"></p>
+      <button class="btn pri" id="next" type="button">Advance demo</button>
+    </div>
+  </section>
+
+  <section id="beans" class="pad rv" style="padding-top:0">
+    <h2>On the roaster this week.</h2>
+    <div class="beans">
+      <article>
+        <div class="photo"><img src="https://picsum.photos/seed/ethiopia-guji-coffee-cherries/900/800" alt="Coffee cherries drying on raised beds" loading="lazy"></div>
+        <h3>Guji Natural</h3><p>Blueberry jam and jasmine. Best as a slow pour-over.</p>
+      </article>
+      <article>
+        <div class="photo"><img src="https://picsum.photos/seed/huila-coffee-pour-over/600/500" alt="Pour-over coffee being brewed" loading="lazy"></div>
+        <h3>Huila Washed</h3><p>Red apple and brown sugar.</p>
+      </article>
+      <article class="fill"><h3>Roasted to order, shipped the same week.</h3><p>Nothing sits on a shelf waiting for you.</p></article>
+    </div>
+  </section>
+</main>
+
+<section id="get" class="final pad rv"><div class="wrap">
+  <h2>Your next bag is one tap away.</h2>
+  <p style="margin-top:1rem">Enter your email and we will send the download link for iPhone and Android.</p>
+  <form id="f" novalidate>
+    <label for="em">Email address</label>
+    <div class="row"><input id="em" type="email" autocomplete="email" aria-describedby="err hint"><button class="btn pri" type="submit">Get the app</button></div>
+    <p id="err" role="alert"></p>
+    <p class="hint" id="hint">One email with the link. No newsletter.</p>
+  </form>
+</div></section>
+
+<footer><div class="wrap">Kiln Street Coffee. Small-batch roasters.</div></footer>
+
+<script>
+  document.documentElement.classList.add('js');
+  const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && (e.target.classList.add('in'), io.unobserve(e.target))), { threshold: 0.15 });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  const steps = [...document.querySelectorAll('#steps li')], status = document.getElementById('status'), next = document.getElementById('next');
+  const msg = ['Roasted this morning and resting.', 'Packed in a valve bag with your roast date.', 'On the road with the courier.', 'Delivered. Enjoy the first cup.'];
+  let at = -1;
+  function paint() {
+    steps.forEach((s, i) => { s.className = i < at ? 'done' : i === at ? 'now' : ''; });
+    status.textContent = at < 0 ? 'Nothing in transit yet. Press the button to start a demo order.' : msg[at];
+    next.textContent = at === 3 ? 'Replay demo' : 'Advance demo';
+  }
+  next.onclick = () => { at = at === 3 ? -1 : at + 1; paint(); };
+  document.getElementById('roast').onchange = () => { at = -1; paint(); };
+  paint();
+
+  document.getElementById('f').onsubmit = e => {
+    e.preventDefault();
+    const v = document.getElementById('em').value.trim(), err = document.getElementById('err');
+    err.textContent = /^\S+@\S+\.\S+$/.test(v) ? '' : 'Enter a valid email address, like name@example.com.';
+    if (!err.textContent) { err.style.color = 'var(--fg)'; err.textContent = 'Sent. Check your inbox for the download link.'; }
+    else err.style.color = '';
+  };
+</script>
+</body>
+</html>
+```

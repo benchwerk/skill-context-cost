@@ -1,0 +1,173 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lumo – Start learning</title>
+<style>
+  :root {
+    --bg: #f6f1e7; --card: #fffdf8; --ink: #1f2a24; --muted: #6b7468;
+    --line: #ded6c4; --brand: #1f5c46; --brand-ink: #f6f1e7; --accent: #e8643c;
+    --r: 14px;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    min-height: 100dvh; background: var(--bg); color: var(--ink);
+    font: 16px/1.45 "Avenir Next", "Segoe UI", system-ui, sans-serif;
+    display: grid; place-items: start center; padding: 20px 16px 32px;
+  }
+  main { width: 100%; max-width: 420px; }
+  header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+  .logo { font: 700 22px Georgia, serif; letter-spacing: -.02em; }
+  .logo b { color: var(--accent); }
+  .back { background: none; border: 0; color: var(--muted); font: inherit; padding: 8px; margin: -8px; cursor: pointer; }
+  .back[hidden] { display: none; }
+  .progress { display: flex; gap: 6px; margin-bottom: 8px; }
+  .progress i { flex: 1; height: 5px; border-radius: 3px; background: var(--line); transition: background .3s; }
+  .progress i.on { background: var(--brand); }
+  .count { color: var(--muted); font-size: 13px; margin-bottom: 22px; }
+  h1 { font: 700 28px/1.15 Georgia, serif; letter-spacing: -.02em; margin-bottom: 8px; }
+  .sub { color: var(--muted); margin-bottom: 22px; }
+  .step { display: none; animation: in .35s ease; }
+  .step.active { display: block; }
+  @keyframes in { from { opacity: 0; transform: translateX(16px); } }
+  label.field { display: block; font-size: 14px; font-weight: 600; margin-bottom: 14px; }
+  input[type=text], input[type=email], input[type=password] {
+    width: 100%; margin-top: 6px; padding: 14px; font: inherit; color: var(--ink);
+    background: var(--card); border: 1.5px solid var(--line); border-radius: var(--r);
+  }
+  input:focus-visible, .opt:focus-within, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  input[aria-invalid=true] { border-color: var(--accent); }
+  .err { color: #b23a17; font-size: 13px; min-height: 20px; margin-bottom: 10px; }
+  .grid { display: grid; gap: 10px; margin-bottom: 20px; }
+  .grid.two { grid-template-columns: 1fr 1fr; }
+  .opt { position: relative; display: flex; align-items: center; gap: 12px; padding: 14px;
+    background: var(--card); border: 1.5px solid var(--line); border-radius: var(--r); cursor: pointer;
+    transition: border-color .15s, background .15s; }
+  .opt input { position: absolute; opacity: 0; }
+  .opt:has(input:checked) { border-color: var(--brand); background: #e9f1ea; box-shadow: inset 0 0 0 1px var(--brand); }
+  .opt .flag { font-size: 26px; line-height: 1; }
+  .opt strong { display: block; }
+  .opt small { color: var(--muted); }
+  .goal { justify-content: space-between; }
+  .goal .mins { font: 700 22px Georgia, serif; }
+  .tag { font-size: 12px; background: var(--accent); color: #fff; padding: 2px 8px; border-radius: 99px; }
+  .cta { width: 100%; padding: 16px; font: 700 16px inherit; font-family: inherit; color: var(--brand-ink);
+    background: var(--brand); border: 0; border-radius: var(--r); cursor: pointer; transition: transform .1s; }
+  .cta:active { transform: scale(.98); }
+  .done { text-align: center; padding-top: 40px; }
+  .done .big { font-size: 56px; margin-bottom: 12px; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="logo">lumo<b>.</b></div>
+    <button class="back" id="back" hidden>← Back</button>
+  </header>
+
+  <div class="progress" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+  <p class="count" id="count" aria-live="polite">Step 1 of 3 · Account</p>
+
+  <form id="flow" novalidate>
+    <section class="step active" data-step="1">
+      <h1>Let’s get you started</h1>
+      <p class="sub">Free forever. Your streak starts today.</p>
+      <label class="field">Name
+        <input type="text" name="name" autocomplete="given-name" required>
+      </label>
+      <label class="field">Email
+        <input type="email" name="email" autocomplete="email" required>
+      </label>
+      <label class="field">Password
+        <input type="password" name="pw" autocomplete="new-password" minlength="8" required>
+      </label>
+      <p class="err" role="alert"></p>
+      <button class="cta" type="submit">Create account</button>
+    </section>
+
+    <section class="step" data-step="2">
+      <h1>What do you want to learn?</h1>
+      <p class="sub">You can add more languages later.</p>
+      <div class="grid two">
+        <label class="opt"><input type="radio" name="lang" value="Spanish" checked><span class="flag">🇪🇸</span><strong>Spanish</strong></label>
+        <label class="opt"><input type="radio" name="lang" value="Japanese"><span class="flag">🇯🇵</span><strong>Japanese</strong></label>
+        <label class="opt"><input type="radio" name="lang" value="French"><span class="flag">🇫🇷</span><strong>French</strong></label>
+        <label class="opt"><input type="radio" name="lang" value="Korean"><span class="flag">🇰🇷</span><strong>Korean</strong></label>
+      </div>
+      <button class="cta" type="submit">Continue</button>
+    </section>
+
+    <section class="step" data-step="3">
+      <h1>Pick a daily goal</h1>
+      <p class="sub">Small and steady beats big and rare.</p>
+      <div class="grid">
+        <label class="opt goal"><input type="radio" name="goal" value="5"><span><strong>Casual</strong><small>A coffee break</small></span><span class="mins">5 min</span></label>
+        <label class="opt goal"><input type="radio" name="goal" value="10" checked><span><strong>Regular</strong> <span class="tag">Popular</span><br><small>Most learners stick here</small></span><span class="mins">10 min</span></label>
+        <label class="opt goal"><input type="radio" name="goal" value="20"><span><strong>Serious</strong><small>Noticeable in a month</small></span><span class="mins">20 min</span></label>
+      </div>
+      <button class="cta" type="submit">Start learning</button>
+    </section>
+  </form>
+
+  <section class="done" id="done" hidden>
+    <div class="big">🌱</div>
+    <h1 id="doneTitle"></h1>
+    <p class="sub" id="doneText"></p>
+  </section>
+</main>
+
+<script>
+  const form = document.getElementById('flow');
+  const steps = [...form.querySelectorAll('.step')];
+  const bars = document.querySelectorAll('.progress i');
+  const back = document.getElementById('back');
+  const names = ['Account', 'Language', 'Daily goal'];
+  let cur = 0;
+
+  function show(n) {
+    cur = n;
+    steps.forEach((s, i) => s.classList.toggle('active', i === n));
+    bars.forEach((b, i) => b.classList.toggle('on', i <= n));
+    document.getElementById('count').textContent = `Step ${n + 1} of 3 · ${names[n]}`;
+    back.hidden = n === 0;
+    steps[n].querySelector('input:not([type=radio]), input:checked')?.focus();
+  }
+
+  function validate() {
+    const err = steps[0].querySelector('.err');
+    const f = form.elements;
+    const checks = [
+      [f.name, f.name.value.trim().length > 0, 'Tell us what to call you.'],
+      [f.email, /^\S+@\S+\.\S+$/.test(f.email.value), 'Enter a valid email address.'],
+      [f.pw, f.pw.value.length >= 8, 'Password needs at least 8 characters.'],
+    ];
+    checks.forEach(([el, ok]) => el.setAttribute('aria-invalid', !ok));
+    const bad = checks.find(c => !c[1]);
+    err.textContent = bad ? bad[2] : '';
+    if (bad) bad[0].focus();
+    return !bad;
+  }
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    if (cur === 0 && !validate()) return;
+    if (cur < 2) return show(cur + 1);
+    const d = Object.fromEntries(new FormData(form));
+    form.hidden = true;
+    document.querySelector('.progress').hidden = true;
+    document.getElementById('count').hidden = true;
+    back.hidden = true;
+    document.getElementById('done').hidden = false;
+    document.getElementById('doneTitle').textContent = `Welcome, ${d.name.trim()}!`;
+    document.getElementById('doneText').textContent =
+      `${d.goal} minutes of ${d.lang} a day. Your first lesson is ready.`;
+  });
+
+  back.addEventListener('click', () => cur > 0 && show(cur - 1));
+</script>
+</body>
+</html>
+```

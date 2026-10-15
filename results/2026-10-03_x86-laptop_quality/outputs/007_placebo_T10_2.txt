@@ -1,0 +1,125 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Offset 2026 — A two-day design conference, Porto</title>
+<style>
+  :root { --paper:#f1ece2; --ink:#16130f; --mute:#6b645a; --line:#d6cebf; --hot:#e2411f; --r:2px; }
+  * { box-sizing:border-box; margin:0; }
+  body { background:var(--paper); color:var(--ink); font:16px/1.55 "Helvetica Neue",Arial,sans-serif; -webkit-font-smoothing:antialiased; }
+  a { color:inherit; }
+  .wrap { max-width:1120px; margin:0 auto; padding:0 24px; }
+  .serif { font-family:Georgia,"Times New Roman",serif; font-weight:400; letter-spacing:-.03em; }
+  .eyebrow { font:600 12px/1 ui-monospace,Consolas,monospace; letter-spacing:.14em; text-transform:uppercase; color:var(--mute); }
+  nav { display:flex; justify-content:space-between; align-items:center; padding:20px 0; border-bottom:1px solid var(--ink); }
+  nav b { font:700 18px Georgia,serif; letter-spacing:-.02em; }
+  nav div a { margin-left:24px; font-size:14px; text-decoration:none; }
+  nav div a:hover { color:var(--hot); }
+  .btn { display:inline-block; background:var(--ink); color:var(--paper); padding:14px 22px; border-radius:var(--r); text-decoration:none; font-weight:600; font-size:15px; transition:background .2s,transform .2s; }
+  .btn:hover { background:var(--hot); transform:translateY(-2px); }
+  .btn:focus-visible, .tabs button:focus-visible { outline:3px solid var(--hot); outline-offset:3px; }
+  .btn.ghost { background:transparent; color:var(--ink); border:1px solid var(--ink); }
+  .btn.ghost:hover { color:var(--paper); background:var(--ink); }
+  header.hero { padding:72px 0 56px; display:grid; grid-template-columns:1.5fr 1fr; gap:48px; align-items:end; }
+  h1 { font-size:clamp(64px,11vw,150px); line-height:.86; margin:20px 0 0; }
+  h1 em { color:var(--hot); font-style:italic; }
+  .hero p { font-size:19px; max-width:34ch; margin-bottom:24px; }
+  .hero .cta { display:flex; gap:12px; flex-wrap:wrap; }
+  .facts { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--ink); border-bottom:1px solid var(--ink); }
+  .facts div { padding:20px 0; }
+  .facts div + div { padding-left:24px; border-left:1px solid var(--line); }
+  .facts strong { display:block; font:400 28px Georgia,serif; letter-spacing:-.02em; }
+  section { padding:88px 0 0; }
+  h2 { font-size:clamp(36px,5vw,56px); line-height:1; margin:12px 0 36px; }
+  .speakers { display:grid; grid-template-columns:repeat(4,1fr); gap:28px 20px; }
+  .sp .ph { aspect-ratio:4/5; border-radius:var(--r); display:grid; place-items:center; font:italic 64px Georgia,serif; color:var(--paper); background:var(--c); transition:transform .3s; }
+  .sp:hover .ph { transform:rotate(-1.5deg) scale(1.02); }
+  .sp h3 { font-size:17px; margin-top:12px; }
+  .sp p { color:var(--mute); font-size:14px; }
+  .tabs { display:flex; gap:8px; margin-bottom:8px; }
+  .tabs button { font:600 14px inherit; font-family:inherit; padding:10px 18px; background:none; border:1px solid var(--ink); border-radius:var(--r); cursor:pointer; color:var(--ink); }
+  .tabs button[aria-selected="true"] { background:var(--ink); color:var(--paper); }
+  .row { display:grid; grid-template-columns:110px 1fr auto; gap:20px; padding:18px 0; border-bottom:1px solid var(--line); align-items:baseline; }
+  .row time { font:500 14px ui-monospace,Consolas,monospace; color:var(--hot); }
+  .row h3 { font:400 22px Georgia,serif; letter-spacing:-.01em; }
+  .row span { color:var(--mute); font-size:14px; }
+  .venue { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:stretch; }
+  .map { background:var(--ink); color:var(--paper); border-radius:var(--r); padding:32px; display:flex; flex-direction:column; justify-content:space-between; min-height:300px;
+         background-image:linear-gradient(rgba(241,236,226,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(241,236,226,.08) 1px,transparent 1px); background-size:32px 32px; }
+  .map i { display:block; width:18px; height:18px; background:var(--hot); border-radius:50%; box-shadow:0 0 0 8px rgba(226,65,31,.3); margin:40px 0 0 55%; }
+  .venue ul { list-style:none; padding:0; }
+  .venue li { padding:12px 0; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; }
+  .venue li span { color:var(--mute); text-align:right; }
+  .tickets { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .t { border:1px solid var(--ink); border-radius:var(--r); padding:28px; display:flex; flex-direction:column; gap:14px; background:var(--paper); }
+  .t.pick { background:var(--ink); color:var(--paper); }
+  .t.pick .btn { background:var(--hot); }
+  .t .price { font:400 54px/1 Georgia,serif; letter-spacing:-.04em; }
+  .t ul { list-style:none; padding:0; flex:1; font-size:15px; }
+  .t li { padding:6px 0 6px 22px; position:relative; }
+  .t li::before { content:"→"; position:absolute; left:0; color:var(--hot); }
+  footer { margin-top:96px; border-top:1px solid var(--ink); padding:28px 0 40px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; color:var(--mute); font-size:14px; }
+  @media (max-width:820px) {
+    header.hero, .venue, .tickets { grid-template-columns:1fr; }
+    .speakers { grid-template-columns:repeat(2,1fr); }
+    .row { grid-template-columns:80px 1fr; } .row span { grid-column:2; }
+    nav div a:not(.btn) { display:none; }
+  }
+  @media (prefers-reduced-motion:reduce) { * { transition:none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav><b>Offset ’26</b><div><a href="#speakers">Speakers</a><a href="#schedule">Schedule</a><a href="#venue">Venue</a><a href="#tickets">Tickets</a></div></nav>
+
+  <header class="hero">
+    <div><span class="eyebrow">Design conference · Porto · 12–13 Nov 2026</span>
+      <h1 class="serif">Off<em>set</em><br>the default.</h1></div>
+    <div><p>Two days on craft, systems and the quiet decisions that make products feel considered. Twelve talks, no panels, no sponsors on stage.</p>
+      <div class="cta"><a class="btn" href="#tickets">Get a ticket</a><a class="btn ghost" href="#schedule">See the schedule</a></div></div>
+  </header>
+  <div class="facts"><div><strong>2 days</strong>12 talks, 4 workshops</div><div><strong>600</strong>attendees, capped</div><div><strong>1 stage</strong>nothing runs in parallel</div></div>
+
+  <section id="speakers"><span class="eyebrow">01 — Speakers</span><h2 class="serif">The people on stage</h2>
+    <div class="speakers" id="sp"></div></section>
+
+  <section id="schedule"><span class="eyebrow">02 — Schedule</span><h2 class="serif">Two days, one room</h2>
+    <div class="tabs" role="tablist"><button role="tab" aria-selected="true" data-d="0">Thu 12 Nov</button><button role="tab" aria-selected="false" data-d="1">Fri 13 Nov</button></div>
+    <div id="rows"></div></section>
+
+  <section id="venue"><span class="eyebrow">03 — Venue</span><h2 class="serif">Armazém das Artes</h2>
+    <div class="venue"><div class="map"><span class="eyebrow" style="color:#bdb5a6">41.1405° N, 8.6110° W</span><i></i><p>Rua de Miragaia 88<br>4050-387 Porto, Portugal</p></div>
+      <ul><li>Doors <span>08:30 daily</span></li><li>Metro <span>São Bento, 9 min walk</span></li><li>Airport <span>OPO, 25 min by metro</span></li>
+        <li>Access <span>Step-free, quiet room, live captions</span></li><li>Stay <span>Partner hotels from €92 / night</span></li></ul></div></section>
+
+  <section id="tickets"><span class="eyebrow">04 — Tickets</span><h2 class="serif">Pick your days</h2>
+    <div class="tickets">
+      <article class="t"><span class="eyebrow">One day</span><div class="price">€240</div><ul><li>Thursday or Friday</li><li>Lunch and coffee</li><li>Talk recordings</li></ul><a class="btn ghost" href="#">Choose one day</a></article>
+      <article class="t pick"><span class="eyebrow" style="color:#bdb5a6">Both days · most chosen</span><div class="price">€420</div><ul><li>All 12 talks</li><li>One workshop seat</li><li>Closing dinner</li><li>Talk recordings</li></ul><a class="btn" href="#">Choose both days</a></article>
+      <article class="t"><span class="eyebrow">Student</span><div class="price">€95</div><ul><li>Both days, valid ID</li><li>Lunch and coffee</li><li>Limited to 60</li></ul><a class="btn ghost" href="#">Choose student</a></article>
+    </div></section>
+
+  <footer><span>© 2026 Offset Conference</span><span>hello@offset.example · Code of conduct</span></footer>
+</div>
+<script>
+  const people = [["Marta Ilves","Type systems, Tallinn","#e2411f"],["Joaquim Reis","Product design, Lisbon","#16130f"],["Aiko Tanabe","Motion, Osaka","#3f5b4a"],["Dele Okafor","Design ops, Lagos","#8a5a2b"],
+                  ["Sofia Brandt","Research, Berlin","#2f4a73"],["Luca Ferrante","Industrial, Milan","#16130f"],["Noor Haddad","Accessibility, Amman","#e2411f"],["Ines Carvalho","Brand, Porto","#3f5b4a"]];
+  document.getElementById("sp").innerHTML = people.map(([n,r,c]) =>
+    `<article class="sp"><div class="ph" style="--c:${c}" aria-hidden="true">${n[0]}</div><h3>${n}</h3><p>${r}</p></article>`).join("");
+
+  const days = [
+    [["09:30","Opening: against the default","Marta Ilves"],["10:15","Type that survives a redesign","Marta Ilves"],["11:45","Shipping taste at scale","Joaquim Reis"],["14:00","Motion as information","Aiko Tanabe"],["15:30","Workshop block: systems audit","Dele Okafor"],["18:30","Evening drinks","Armazém terrace"]],
+    [["09:30","What research can’t tell you","Sofia Brandt"],["11:00","Objects people keep","Luca Ferrante"],["12:15","Access is a craft","Noor Haddad"],["14:30","Brand without the deck","Ines Carvalho"],["16:00","Panel-free closing conversation","All speakers"],["19:30","Closing dinner","Ribeira, Porto"]]];
+  const rows = document.getElementById("rows");
+  const show = d => rows.innerHTML = days[d].map(([t,h,s]) => `<div class="row"><time>${t}</time><h3>${h}</h3><span>${s}</span></div>`).join("");
+  document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => {
+    document.querySelectorAll(".tabs button").forEach(x => x.setAttribute("aria-selected", x === b));
+    show(+b.dataset.d);
+  }));
+  show(0);
+</script>
+</body>
+</html>
+```

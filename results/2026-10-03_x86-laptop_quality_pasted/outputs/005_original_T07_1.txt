@@ -1,0 +1,144 @@
+```html
+<!DOCTYPE html>
+<!-- Design Read: mobile-first onboarding flow for casual language learners, calm and friendly, native CSS, no libraries. Dials 6/4/3. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marula - Create your account</title>
+<style>
+:root{--bg:#f4f5f2;--surface:#fbfbf9;--ink:#1c2420;--muted:#55605a;--line:#c9d0ca;--accent:#0b6b52;--on-accent:#fff;--tint:#e1efe9;--err:#b3261e;--r:12px}
+@media (prefers-color-scheme:dark){:root{--bg:#121714;--surface:#1a211d;--ink:#e9eee9;--muted:#a3afa8;--line:#3a4640;--accent:#3ccf9f;--on-accent:#06201a;--tint:#1f3a31;--err:#ff8a80}}
+*{box-sizing:border-box}
+body{margin:0;min-height:100dvh;background:var(--bg);color:var(--ink);font:16px/1.5 "Geist","Segoe UI",system-ui,sans-serif;display:grid;justify-items:center;align-items:start}
+main{width:100%;max-width:440px;min-height:100dvh;padding:20px 20px 28px;display:flex;flex-direction:column}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.brand{font-weight:700;letter-spacing:-.02em;font-size:1.25rem}
+.back{background:none;border:0;color:var(--muted);font:inherit;padding:8px 0;min-height:44px;cursor:pointer}
+.back:focus-visible,button:focus-visible,input:focus-visible,.opt:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:2px}
+.bar{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:0 0 28px;padding:0;list-style:none}
+.bar li{height:6px;border-radius:99px;background:var(--line);transition:background .3s}
+.bar li.on{background:var(--accent)}
+form{flex:1;display:flex;flex-direction:column}
+section{flex:1;display:flex;flex-direction:column}
+section[hidden]{display:none}
+@media (prefers-reduced-motion:no-preference){section{animation:in .45s cubic-bezier(.16,1,.3,1)}@keyframes in{from{opacity:0;transform:translateY(14px)}}}
+h1{font-size:clamp(1.9rem,8vw,2.4rem);line-height:1.08;letter-spacing:-.035em;margin:0 0 8px}
+.sub{color:var(--muted);margin:0 0 24px;max-width:36ch}
+.photo{width:100%;aspect-ratio:16/7;object-fit:cover;border-radius:var(--r);margin-bottom:24px;background:var(--tint)}
+.field{display:grid;gap:8px;margin-bottom:18px}
+label,legend{font-weight:600;font-size:.95rem}
+.help{color:var(--muted);font-size:.875rem;margin:0}
+input[type=text],input[type=email],input[type=password]{font:inherit;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r);padding:13px 14px;min-height:48px;width:100%}
+input[aria-invalid=true]{border-color:var(--err)}
+.err{color:var(--err);font-size:.875rem;margin:0;min-height:0}
+.err:empty{display:none}
+fieldset{border:0;padding:0;margin:0 0 8px;display:grid;gap:10px}
+.grid2{grid-template-columns:1fr 1fr}
+.opt{position:relative;display:flex;flex-direction:column;gap:2px;padding:14px;min-height:64px;background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r);cursor:pointer;transition:border-color .2s,background .2s,transform .15s}
+.opt:active{transform:scale(.98)}
+.opt input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.opt:has(input:checked){border-color:var(--accent);background:var(--tint)}
+.opt b{font-size:1.05rem}
+.opt small{color:var(--muted)}
+.goals .opt{flex-direction:row;justify-content:space-between;align-items:baseline}
+.cta{margin-top:auto;padding-top:20px}
+button.main{width:100%;min-height:52px;border:0;border-radius:var(--r);background:var(--accent);color:var(--on-accent);font:inherit;font-weight:700;cursor:pointer;transition:transform .15s,opacity .2s}
+button.main:active{transform:translateY(1px) scale(.98)}
+button.main[disabled]{opacity:.6;cursor:progress}
+.done{align-items:flex-start;justify-content:center}
+.done .sub{margin-bottom:0}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="brand">Marula</span>
+    <button type="button" class="back" id="back" hidden>Back</button>
+  </header>
+  <ol class="bar" id="bar" aria-label="Sign-up progress"><li class="on"></li><li></li><li></li></ol>
+  <form id="f" novalidate>
+    <section data-s="0">
+      <img class="photo" src="https://picsum.photos/seed/market-stall-oranges/800/350" width="800" height="350" alt="Fruit stall at a morning market">
+      <h1>Create your account</h1>
+      <p class="sub">Save your progress and pick up on any device.</p>
+      <div class="field"><label for="name">First name</label><input id="name" type="text" autocomplete="given-name" aria-describedby="e-name"><p class="err" id="e-name"></p></div>
+      <div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="email" inputmode="email" aria-describedby="e-email"><p class="err" id="e-email"></p></div>
+      <div class="field"><label for="pw">Password</label><input id="pw" type="password" autocomplete="new-password" aria-describedby="h-pw e-pw"><p class="help" id="h-pw">At least 8 characters.</p><p class="err" id="e-pw"></p></div>
+      <div class="cta"><button class="main" type="submit">Continue</button></div>
+    </section>
+    <section data-s="1" hidden>
+      <h1>What do you want to speak?</h1>
+      <p class="sub">You can add more languages later.</p>
+      <fieldset class="grid2" aria-describedby="e-lang">
+        <legend class="sr" style="position:absolute;left:-9999px">Language</legend>
+        <label class="opt"><input type="radio" name="lang" value="Portuguese"><b>Portuguese</b><small>Brazil and Portugal</small></label>
+        <label class="opt"><input type="radio" name="lang" value="Japanese"><b>Japanese</b><small>Kana first</small></label>
+        <label class="opt"><input type="radio" name="lang" value="Korean"><b>Korean</b><small>Hangul basics</small></label>
+        <label class="opt"><input type="radio" name="lang" value="Italian"><b>Italian</b><small>Everyday talk</small></label>
+        <label class="opt"><input type="radio" name="lang" value="Swahili"><b>Swahili</b><small>East Africa</small></label>
+        <label class="opt"><input type="radio" name="lang" value="Polish"><b>Polish</b><small>Cases made clear</small></label>
+      </fieldset>
+      <p class="err" id="e-lang"></p>
+      <div class="cta"><button class="main" type="submit">Continue</button></div>
+    </section>
+    <section data-s="2" hidden>
+      <h1>Set a daily goal</h1>
+      <p class="sub">Short and steady beats long and rare. Change it any time.</p>
+      <fieldset class="goals" aria-describedby="e-goal">
+        <legend class="sr" style="position:absolute;left:-9999px">Daily goal</legend>
+        <label class="opt"><input type="radio" name="goal" value="5"><b>Casual</b><small>5 min a day</small></label>
+        <label class="opt"><input type="radio" name="goal" value="10"><b>Regular</b><small>10 min a day</small></label>
+        <label class="opt"><input type="radio" name="goal" value="15"><b>Serious</b><small>15 min a day</small></label>
+        <label class="opt"><input type="radio" name="goal" value="20"><b>Intense</b><small>20 min a day</small></label>
+      </fieldset>
+      <p class="err" id="e-goal"></p>
+      <div class="cta"><button class="main" type="submit" id="finish">Start learning</button></div>
+    </section>
+    <section data-s="3" class="done" hidden>
+      <h1 id="doneH"></h1>
+      <p class="sub" id="doneP"></p>
+    </section>
+  </form>
+</main>
+<script>
+const $=s=>document.querySelector(s), panels=[...document.querySelectorAll('section')], dots=[...$('#bar').children];
+let cur=0;
+function show(n){
+  cur=n;
+  panels.forEach((p,i)=>p.hidden=i!==n);
+  dots.forEach((d,i)=>d.classList.toggle('on',i<=Math.min(n,2)));
+  $('#back').hidden=n===0||n===3;
+  if(n===3)$('#bar').hidden=true;
+  panels[n].querySelector('h1').setAttribute('tabindex','-1');
+  panels[n].querySelector('h1').focus({preventScroll:false});
+}
+function fail(id,msg){const i=$('#'+id),e=$('#e-'+id);if(i)i.setAttribute('aria-invalid',!!msg);e.textContent=msg||'';return !msg}
+function valid(n){
+  if(n===0){
+    const a=fail('name',$('#name').value.trim()?'':'Enter your first name.');
+    const b=fail('email',/^\S+@\S+\.\S+$/.test($('#email').value)?'':'Enter a valid email, like sam@example.com.');
+    const c=fail('pw',$('#pw').value.length>=8?'':'Use at least 8 characters.');
+    if(!(a&&b&&c))panels[0].querySelector('[aria-invalid=true]').focus();
+    return a&&b&&c;
+  }
+  if(n===1)return fail('lang',document.querySelector('[name=lang]:checked')?'':'Pick a language to continue.');
+  return fail('goal',document.querySelector('[name=goal]:checked')?'':'Pick a goal to continue.');
+}
+$('#f').addEventListener('submit',e=>{
+  e.preventDefault();
+  if(!valid(cur))return;
+  if(cur<2)return show(cur+1);
+  const b=$('#finish');b.disabled=true;b.textContent='Creating your plan...';
+  setTimeout(()=>{
+    $('#doneH').textContent='Welcome, '+$('#name').value.trim()+'.';
+    $('#doneP').textContent=document.querySelector('[name=goal]:checked').value+' minutes of '+document.querySelector('[name=lang]:checked').value+' a day. Your first lesson is ready.';
+    show(3);
+  },900);
+});
+$('#back').addEventListener('click',()=>show(cur-1));
+document.querySelectorAll('[name=lang],[name=goal]').forEach(r=>r.addEventListener('change',()=>{$('#e-lang').textContent=$('#e-goal').textContent=''}));
+</script>
+</body>
+</html>
+```

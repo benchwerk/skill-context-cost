@@ -1,0 +1,151 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kettle Hill Roasters — Beans in the app, bag on the porch</title>
+<meta name="description" content="The Kettle Hill app: order freshly roasted beans and watch your bag travel from our roaster to your door.">
+<style>
+  :root{--paper:#f4ede1;--ink:#241a14;--soft:#6d5b4e;--ember:#c4501b;--bean:#2f211a;--line:#d9ccb8}
+  *{box-sizing:border-box;margin:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font:17px/1.6 "Iowan Old Style","Palatino Linotype",Georgia,serif}
+  a{color:inherit}
+  :focus-visible{outline:3px solid var(--ember);outline-offset:3px}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+  .sans{font-family:"Segoe UI",system-ui,-apple-system,sans-serif}
+  header{display:flex;justify-content:space-between;align-items:center;padding:26px 0}
+  .logo{font-weight:700;letter-spacing:.02em;text-decoration:none}
+  .logo span{color:var(--ember)}
+  header a.link{font-size:14px;color:var(--soft)}
+  .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center;padding:36px 0 88px}
+  .eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ember);font-weight:600}
+  h1{font-size:clamp(2.6rem,6vw,4.6rem);line-height:1.02;letter-spacing:-.02em;margin:16px 0 22px;font-weight:600}
+  h1 em{color:var(--ember);font-weight:500}
+  .lede{max-width:34em;color:var(--soft);font-size:1.12rem}
+  form{display:flex;gap:10px;margin:32px 0 10px;max-width:460px}
+  input{flex:1;min-width:0;padding:14px 16px;border:1.5px solid var(--ink);background:#fffaf1;border-radius:3px;font:15px inherit;font-family:"Segoe UI",system-ui,sans-serif}
+  button{padding:14px 22px;border:0;border-radius:3px;background:var(--ink);color:var(--paper);font:600 15px "Segoe UI",system-ui,sans-serif;cursor:pointer;transition:background .2s,transform .2s}
+  button:hover{background:var(--ember)}
+  button:active{transform:translateY(1px)}
+  .note{font-size:14px;color:var(--soft);min-height:1.6em}
+  .note.ok{color:#2d6a3e;font-weight:600}
+  .phone{justify-self:center;width:290px;background:var(--bean);border-radius:38px;padding:12px;box-shadow:0 30px 60px -20px rgba(36,26,20,.5);transform:rotate(2.5deg)}
+  .screen{background:var(--paper);border-radius:28px;padding:26px 22px 24px;min-height:480px}
+  .screen small{display:block;color:var(--soft);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+  .screen h3{font-size:1.35rem;line-height:1.2;margin:6px 0 4px}
+  .eta{color:var(--ember);font-weight:600;font-size:15px;margin-bottom:22px}
+  .steps{list-style:none;padding:0;position:relative}
+  .steps::before{content:"";position:absolute;left:8px;top:8px;bottom:8px;width:2px;background:var(--line)}
+  .steps li{position:relative;padding:0 0 22px 34px;font-size:15px;color:var(--soft);transition:color .4s}
+  .steps li::before{content:"";position:absolute;left:0;top:5px;width:18px;height:18px;border-radius:50%;background:var(--paper);border:2px solid var(--line);transition:.4s}
+  .steps li.done{color:var(--ink)}
+  .steps li.done::before{background:var(--ink);border-color:var(--ink)}
+  .steps li.now{color:var(--ink);font-weight:600}
+  .steps li.now::before{background:var(--ember);border-color:var(--ember);box-shadow:0 0 0 6px rgba(196,80,27,.2)}
+  .steps b{display:block;font-weight:inherit}
+  .steps span{font-size:12px}
+  .how{background:var(--bean);color:var(--paper);padding:84px 0}
+  .how h2,.roast h2{font-size:clamp(1.9rem,4vw,2.8rem);line-height:1.1;letter-spacing:-.01em;font-weight:600;max-width:15em}
+  .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:52px}
+  .cols div{border-top:1px solid rgba(244,237,225,.3);padding-top:18px}
+  .cols .n{font-size:3.2rem;line-height:1;color:var(--ember);display:block;margin-bottom:10px}
+  .cols h3{font-size:1.25rem;margin-bottom:6px;font-weight:600}
+  .cols p{color:#cdbfae;font-size:16px}
+  .roast{padding:84px 0}
+  dl{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:44px;border-top:2px solid var(--ink)}
+  dl div{padding:18px 18px 0 0}
+  dt{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+  dd{font-size:1.5rem;margin-top:4px}
+  footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:14px;color:var(--soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  @media(max-width:820px){
+    .hero{grid-template-columns:1fr;gap:48px;padding-bottom:64px}
+    .cols{grid-template-columns:1fr;gap:32px}
+    dl{grid-template-columns:1fr 1fr}
+    form{flex-direction:column}
+  }
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="sans">
+    <a class="logo" href="#">Kettle Hill<span>.</span></a>
+    <a class="link" href="#how">How it works</a>
+  </header>
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow sans">The Kettle Hill app · Coming October 28</p>
+        <h1>Roasted on Tuesday. <em>On your porch</em> by Thursday.</h1>
+        <p class="lede">Order single-origin beans from our roaster in two taps, then watch your bag travel from the drum to your door. No guessing, no "where's my coffee" emails.</p>
+        <form id="join" novalidate>
+          <input id="email" type="email" placeholder="you@email.com" aria-label="Email address" required>
+          <button type="submit">Get early access</button>
+        </form>
+        <p class="note sans" id="note" role="status">iOS and Android. We'll send one email on launch day.</p>
+      </div>
+      <div class="phone" aria-label="Preview of the delivery tracking screen">
+        <div class="screen sans">
+          <small>Order #2041</small>
+          <h3>Guji Natural, 340 g, whole bean</h3>
+          <p class="eta" id="eta">Arriving Thursday</p>
+          <ol class="steps" id="steps">
+            <li class="done"><b>Roasted</b><span>Tue 6:40 am, Batch 118</span></li>
+            <li class="now"><b>Packed and sealed</b><span>Tue 2:15 pm</span></li>
+            <li><b>With the courier</b><span>Wed</span></li>
+            <li><b>Out for delivery</b><span>Thu</span></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+<section class="how" id="how">
+  <div class="wrap">
+    <h2>Three taps between you and a good morning.</h2>
+    <div class="cols">
+      <div><span class="n">1</span><h3>Pick your beans</h3><p>Browse this week's roasts with tasting notes, farm names, and a grind setting that remembers you.</p></div>
+      <div><span class="n">2</span><h3>We roast to order</h3><p>Nothing sits on a shelf. Your bag is roasted after you order, and the batch number goes on the label.</p></div>
+      <div><span class="n">3</span><h3>Follow the bag</h3><p>Live tracking from roaster to doorstep, with a nudge when it lands so it never sits in the sun.</p></div>
+    </div>
+  </div>
+</section>
+<section class="roast">
+  <div class="wrap">
+    <h2>Small batches, no shortcuts.</h2>
+    <dl>
+      <div><dt>Batch size</dt><dd>12 kg</dd></div>
+      <div><dt>Roast to ship</dt><dd>Under 48 h</dd></div>
+      <div><dt>Origins this season</dt><dd>7</dd></div>
+      <div><dt>Subscription</dt><dd>Skip any week</dd></div>
+    </dl>
+  </div>
+</section>
+<div class="wrap">
+  <footer class="sans"><span>© 2026 Kettle Hill Roasters, Portland</span><a href="mailto:hello@kettlehill.example">hello@kettlehill.example</a></footer>
+</div>
+<script>
+  const form = document.getElementById('join'), email = document.getElementById('email'), note = document.getElementById('note');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const ok = /^\S+@\S+\.\S+$/.test(email.value.trim());
+    note.className = 'note sans' + (ok ? ' ok' : '');
+    note.textContent = ok ? "You're on the list. See you October 28." : 'That email looks off. Mind checking it?';
+    if (ok) form.reset(); else email.focus();
+  });
+  const steps = [...document.querySelectorAll('#steps li')], eta = document.getElementById('eta');
+  const labels = ['Arriving Thursday', 'Arriving Thursday', 'Arriving Thursday', 'Arriving today'];
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let i = 1;
+    setInterval(() => {
+      i = (i + 1) % steps.length;
+      steps.forEach((s, k) => s.className = k < i ? 'done' : k === i ? 'now' : '');
+      eta.textContent = labels[i];
+    }, 2600);
+  }
+</script>
+</body>
+</html>
+```

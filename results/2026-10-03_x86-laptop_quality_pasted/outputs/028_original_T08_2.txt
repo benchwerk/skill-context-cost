@@ -1,0 +1,141 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<!-- Design read: fintech About page for prospective hires and partners, trust-first but warm, native CSS, variance 6 / motion 4 / density 4. Figures and names are mock content. Images are picsum placeholders. -->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About Tallyard</title>
+<style>
+:root{--bg:#f4f5f3;--panel:#e8ebe7;--ink:#14201b;--mute:#4a5a52;--line:#cfd6d0;--acc:#0b6b4d;--on-acc:#fff;--r:10px;
+--font:"Avenir Next","Segoe UI Variable Display","Segoe UI",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1512;--panel:#16201b;--ink:#e9efeb;--mute:#a3b3aa;--line:#2b3a33;--acc:#5fd3a0;--on-acc:#07120e}}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 1rem/1.6 var(--font)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:var(--r)}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+nav{height:64px;display:flex;align-items:center;border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;width:100%}
+nav b{font-size:1.15rem;letter-spacing:-.02em}
+nav ul{display:flex;gap:28px;list-style:none;padding:0}
+nav ul a{text-decoration:none;color:var(--mute);font-size:.95rem}
+nav ul a:hover{color:var(--ink)}
+.btn{display:inline-block;white-space:nowrap;background:var(--acc);color:var(--on-acc);padding:14px 26px;border-radius:var(--r);font-weight:600;text-decoration:none;transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(1px) scale(.98)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;min-height:calc(100dvh - 64px);padding-top:48px;padding-bottom:48px}
+.hero small{font-size:.8rem;text-transform:uppercase;letter-spacing:.16em;color:var(--acc);font-weight:700}
+h1{font-size:clamp(2.2rem,4.6vw,3.9rem);line-height:1.04;letter-spacing:-.035em;margin:14px 0 20px;max-width:15em}
+h2{font-size:clamp(1.7rem,3vw,2.5rem);line-height:1.1;letter-spacing:-.03em;margin-bottom:28px}
+.hero p{color:var(--mute);max-width:46ch;margin-bottom:32px;font-size:1.1rem}
+.hero img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r);margin-top:32px;background:var(--panel)}
+section{padding:96px 0}
+.mission{background:var(--panel)}
+.mission p{font-size:clamp(1.3rem,2.4vw,1.9rem);line-height:1.35;letter-spacing:-.015em;max-width:30em;margin-left:12vw}
+.mission p+p{font-size:1.05rem;color:var(--mute);margin-top:24px;max-width:56ch}
+.stats{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px}
+.stats div{border-top:2px solid var(--ink);padding-top:16px}
+.stats strong{display:block;font-size:clamp(2.2rem,4vw,3.6rem);line-height:1;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.stats span{display:block;color:var(--mute);margin-top:10px;font-size:.95rem;max-width:22ch}
+.team{display:grid;grid-template-columns:1.4fr 1fr 1fr;grid-template-rows:auto auto;gap:20px}
+.team figure:first-child{grid-row:span 2}
+.team figure{display:flex;flex-direction:column;gap:12px}
+.team img{width:100%;flex:1;min-height:0;aspect-ratio:1/1;object-fit:cover;border-radius:var(--r);background:var(--panel);filter:grayscale(.35);transition:filter .4s}
+.team figure:first-child img{aspect-ratio:auto}
+.team figure:hover img{filter:none}
+.team b{display:block;letter-spacing:-.01em}
+.team figcaption{color:var(--mute);font-size:.92rem}
+.roles{background:var(--panel)}
+.roles .wrap{display:grid;grid-template-columns:1fr 1.6fr;gap:64px}
+.roles .lead p{color:var(--mute);max-width:36ch}
+details{border-top:1px solid var(--line);padding:18px 0}
+details:last-child{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-weight:600;font-size:1.1rem;list-style:none;display:flex;justify-content:space-between}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--acc);font-size:1.4rem;line-height:1}
+details[open] summary::after{content:"-"}
+details ul{list-style:none;padding:12px 0 0}
+details li{display:flex;justify-content:space-between;gap:16px;padding:10px 0;color:var(--mute)}
+details li a{color:var(--acc);font-weight:600;text-decoration:none}
+details li a:hover{text-decoration:underline}
+.empty{color:var(--mute);padding:12px 0 0}
+footer{padding:40px 0;color:var(--mute);font-size:.9rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+@media (prefers-reduced-motion:no-preference){
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);transition-delay:calc(var(--i,0)*70ms)}
+.js .rv.in{opacity:1;transform:none}}
+@media (max-width:767px){
+nav ul{display:none}
+.hero,.roles .wrap{grid-template-columns:1fr;gap:32px;min-height:0}
+.hero img{aspect-ratio:4/3;margin-top:0}
+section{padding:64px 0}
+.mission p{margin-left:0}
+.stats{grid-template-columns:1fr 1fr}
+.team{grid-template-columns:1fr 1fr}
+.team figure:first-child{grid-column:span 2;grid-row:auto}
+.team figure:first-child img{aspect-ratio:4/3}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><b>Tallyard</b>
+<ul><li><a href="#mission">Mission</a></li><li><a href="#numbers">Numbers</a></li><li><a href="#team">Leadership</a></li><li><a href="#roles">Open roles</a></li></ul></div></nav>
+<main>
+<header class="wrap hero">
+<div class="rv"><small>About Tallyard</small>
+<h1>Banking infrastructure that small businesses can trust.</h1>
+<p>We build payments and lending tools so a ten-person shop gets the same financial tooling as a listed company.</p>
+<a class="btn" href="#roles">See open roles</a></div>
+<img class="rv" style="--i:2" src="https://picsum.photos/seed/tallyard-team-office/800/1000" width="800" height="1000" alt="The Tallyard team gathered around a long table in the office">
+</header>
+<section class="mission" id="mission"><div class="wrap">
+<p class="rv">Money should move at the speed of the business that earns it. Tallyard replaces slow settlement, hidden fees and paper approvals with one clear ledger.</p>
+<p class="rv" style="--i:2">We are regulated, audited every year, and we publish how we handle customer funds.</p>
+</div></section>
+<section id="numbers"><div class="wrap">
+<h2 class="rv">Where we are today</h2>
+<!-- mock figures -->
+<div class="stats">
+<div class="rv"><strong>$4.7B</strong><span>processed for merchants last year</span></div>
+<div class="rv" style="--i:1"><strong>38,400</strong><span>businesses on the platform</span></div>
+<div class="rv" style="--i:2"><strong>1.3 days</strong><span>average time to first payout</span></div>
+<div class="rv" style="--i:3"><strong>212</strong><span>people across four offices</span></div>
+</div></div></section>
+<section id="team" style="padding-top:0"><div class="wrap">
+<h2 class="rv">Leadership</h2>
+<div class="team">
+<figure class="rv"><img src="https://picsum.photos/seed/tallyard-ceo-portrait/700/900" width="700" height="900" loading="lazy" alt="Portrait of Amara Okonkwo"><div><b>Amara Okonkwo</b><figcaption>Co-founder and CEO. Previously ran payments risk at a European clearing bank.</figcaption></div></figure>
+<figure class="rv" style="--i:1"><img src="https://picsum.photos/seed/tallyard-cto-portrait/500/500" width="500" height="500" loading="lazy" alt="Portrait of Tomasz Wieczorek"><div><b>Tomasz Wieczorek</b><figcaption>Co-founder and CTO</figcaption></div></figure>
+<figure class="rv" style="--i:2"><img src="https://picsum.photos/seed/tallyard-cfo-portrait/500/500" width="500" height="500" loading="lazy" alt="Portrait of Priya Raghunathan"><div><b>Priya Raghunathan</b><figcaption>Chief Financial Officer</figcaption></div></figure>
+<figure class="rv" style="--i:3"><img src="https://picsum.photos/seed/tallyard-cro-portrait/500/500" width="500" height="500" loading="lazy" alt="Portrait of Mateo Villaseca"><div><b>Mateo Villaseca</b><figcaption>Chief Risk Officer</figcaption></div></figure>
+<figure class="rv" style="--i:4"><img src="https://picsum.photos/seed/tallyard-coo-portrait/500/500" width="500" height="500" loading="lazy" alt="Portrait of Hana Lindqvist"><div><b>Hana Lindqvist</b><figcaption>Chief Operating Officer</figcaption></div></figure>
+</div></div></section>
+<section class="roles" id="roles"><div class="wrap">
+<div class="lead rv"><h2>Open roles</h2><p>We hire in Lisbon, Toronto, Nairobi and remotely within those time zones.</p></div>
+<div class="rv" style="--i:2" id="list">
+<details open><summary>Engineering</summary><ul>
+<li>Senior Backend Engineer, Ledger<a href="#roles">Apply</a></li>
+<li>Staff Engineer, Payments Routing<a href="#roles">Apply</a></li>
+<li>Site Reliability Engineer<a href="#roles">Apply</a></li></ul></details>
+<details><summary>Risk and compliance</summary><ul>
+<li>Fraud Analyst<a href="#roles">Apply</a></li>
+<li>Compliance Manager, Lending<a href="#roles">Apply</a></li></ul></details>
+<details><summary>Customer and growth</summary><ul>
+<li>Merchant Success Lead<a href="#roles">Apply</a></li>
+<li>Product Marketing Manager<a href="#roles">Apply</a></li></ul></details>
+<details><summary>Legal</summary><p class="empty">No openings right now. Check back next quarter.</p></details>
+</div></div></section>
+</main>
+<footer><div class="wrap"><span>Tallyard Financial Ltd. Authorised and regulated payment institution.</span><span>hello@tallyard.example</span></div></footer>
+<script>
+document.documentElement.classList.add('js');
+const els=document.querySelectorAll('.rv');
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+  els.forEach(el=>io.observe(el));
+}else{els.forEach(el=>el.classList.add('in'))}
+</script>
+</body>
+</html>
+```

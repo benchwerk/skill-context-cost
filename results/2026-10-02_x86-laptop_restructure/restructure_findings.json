@@ -1,0 +1,79 @@
+{
+ "run": "2026-10-02_x86-laptop_restructure",
+ "empty_session_tokens": 18919,
+ "configs": {
+  "X1-orig": {
+   "runs": 2,
+   "last_request_added_median": 35298.0,
+   "runs_that_read_a_file": 0,
+   "per_run": [
+    {
+     "seq": 1,
+     "turns": 1,
+     "last_request_added_tokens": 35298,
+     "tool_calls": [],
+     "files_read": []
+    },
+    {
+     "seq": 6,
+     "turns": 1,
+     "last_request_added_tokens": 35298,
+     "tool_calls": [],
+     "files_read": []
+    }
+   ]
+  },
+  "X1-split": {
+   "runs": 2,
+   "last_request_added_median": 5464.0,
+   "runs_that_read_a_file": 0,
+   "per_run": [
+    {
+     "seq": 2,
+     "turns": 1,
+     "last_request_added_tokens": 5464,
+     "tool_calls": [],
+     "files_read": []
+    },
+    {
+     "seq": 4,
+     "turns": 2,
+     "last_request_added_tokens": 5464,
+     "tool_calls": [
+      "Glob"
+     ],
+     "files_read": []
+    }
+   ]
+  },
+  "X1-split-read": {
+   "runs": 2,
+   "last_request_added_median": 10623.0,
+   "runs_that_read_a_file": 2,
+   "per_run": [
+    {
+     "seq": 3,
+     "turns": 2,
+     "last_request_added_tokens": 10623,
+     "tool_calls": [
+      "Read"
+     ],
+     "files_read": [
+      "06-9-ai-tells-forbidden-patterns.md"
+     ]
+    },
+    {
+     "seq": 5,
+     "turns": 2,
+     "last_request_added_tokens": 10623,
+     "tool_calls": [
+      "Read"
+     ],
+     "files_read": [
+      "06-9-ai-tells-forbidden-patterns.md"
+     ]
+    }
+   ]
+  }
+ }
+}

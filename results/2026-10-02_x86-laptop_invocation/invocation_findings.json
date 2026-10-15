@@ -1,0 +1,283 @@
+{
+ "model": "claude-sonnet-5-5[1m]",
+ "C0": 18919,
+ "skills": [
+  {
+   "k": 1,
+   "skill": "find-skills",
+   "source": "vercel-labs/skills",
+   "body_chars": 5250,
+   "listing_tokens": 90,
+   "invocation_tokens": 1839,
+   "manual_only": false,
+   "tokens_per_body_char": 0.3502857142857143,
+   "invocations_to_equal_listing_per_session": 20.433333333333334,
+   "init_ok": true
+  },
+  {
+   "k": 2,
+   "skill": "grill-me",
+   "source": "mattpocock/skills",
+   "body_chars": 40,
+   "listing_tokens": 0,
+   "invocation_tokens": 52,
+   "manual_only": true,
+   "tokens_per_body_char": 1.3,
+   "invocations_to_equal_listing_per_session": null,
+   "init_ok": true
+  },
+  {
+   "k": 3,
+   "skill": "grill-with-docs",
+   "source": "mattpocock/skills",
+   "body_chars": 68,
+   "listing_tokens": 0,
+   "invocation_tokens": 73,
+   "manual_only": true,
+   "tokens_per_body_char": 1.0735294117647058,
+   "invocations_to_equal_listing_per_session": null,
+   "init_ok": true
+  },
+  {
+   "k": 4,
+   "skill": "improve-codebase-architecture",
+   "source": "mattpocock/skills",
+   "body_chars": 5850,
+   "listing_tokens": 0,
+   "invocation_tokens": 2114,
+   "manual_only": true,
+   "tokens_per_body_char": 0.36136752136752137,
+   "invocations_to_equal_listing_per_session": null,
+   "init_ok": true
+  },
+  {
+   "k": 5,
+   "skill": "agent-browser",
+   "source": "vercel-labs/agent-browser",
+   "body_chars": 2457,
+   "listing_tokens": 325,
+   "invocation_tokens": 879,
+   "manual_only": false,
+   "tokens_per_body_char": 0.35775335775335776,
+   "invocations_to_equal_listing_per_session": 2.7046153846153844,
+   "init_ok": true
+  },
+  {
+   "k": 6,
+   "skill": "frontend-design",
+   "source": "anthropics/skills",
+   "body_chars": 9142,
+   "listing_tokens": 69,
+   "invocation_tokens": 2777,
+   "manual_only": false,
+   "tokens_per_body_char": 0.30376285276744697,
+   "invocations_to_equal_listing_per_session": 40.2463768115942,
+   "init_ok": true
+  },
+  {
+   "k": 7,
+   "skill": "vercel-react-best-practices",
+   "source": "vercel-labs/agent-skills",
+   "body_chars": 6948,
+   "listing_tokens": 117,
+   "invocation_tokens": 2726,
+   "manual_only": false,
+   "tokens_per_body_char": 0.39234312032239493,
+   "invocations_to_equal_listing_per_session": 23.299145299145298,
+   "init_ok": true
+  },
+  {
+   "k": 8,
+   "skill": "hyperframes-cli",
+   "source": "heygen-com/hyperframes",
+   "body_chars": 20294,
+   "listing_tokens": 235,
+   "invocation_tokens": 6844,
+   "manual_only": false,
+   "tokens_per_body_char": 0.3372425347393318,
+   "invocations_to_equal_listing_per_session": 29.123404255319148,
+   "init_ok": true
+  },
+  {
+   "k": 9,
+   "skill": "hyperframes",
+   "source": "heygen-com/hyperframes",
+   "body_chars": 17034,
+   "listing_tokens": 261,
+   "invocation_tokens": 4792,
+   "manual_only": false,
+   "tokens_per_body_char": 0.2813197135141482,
+   "invocations_to_equal_listing_per_session": 18.36015325670498,
+   "init_ok": true
+  },
+  {
+   "k": 10,
+   "skill": "web-design-guidelines",
+   "source": "vercel-labs/agent-skills",
+   "body_chars": 947,
+   "listing_tokens": 70,
+   "invocation_tokens": 365,
+   "manual_only": false,
+   "tokens_per_body_char": 0.38542766631467795,
+   "invocations_to_equal_listing_per_session": 5.214285714285714,
+   "init_ok": true
+  },
+  {
+   "k": 11,
+   "skill": "hyperframes-registry",
+   "source": "heygen-com/hyperframes",
+   "body_chars": 8898,
+   "listing_tokens": 297,
+   "invocation_tokens": 2961,
+   "manual_only": false,
+   "tokens_per_body_char": 0.3327714093054619,
+   "invocations_to_equal_listing_per_session": 9.969696969696969,
+   "init_ok": true
+  },
+  {
+   "k": 12,
+   "skill": "microsoft-foundry",
+   "source": "microsoft/azure-skills",
+   "body_chars": 25959,
+   "listing_tokens": 403,
+   "invocation_tokens": 9771,
+   "manual_only": false,
+   "tokens_per_body_char": 0.3764012481220386,
+   "invocations_to_equal_listing_per_session": 24.245657568238215,
+   "init_ok": true
+  },
+  {
+   "k": 13,
+   "skill": "azure-diagnostics",
+   "source": "microsoft/azure-skills",
+   "body_chars": 5636,
+   "listing_tokens": 296,
+   "invocation_tokens": 2278,
+   "manual_only": false,
+   "tokens_per_body_char": 0.4041873669268985,
+   "invocations_to_equal_listing_per_session": 7.695945945945946,
+   "init_ok": true
+  },
+  {
+   "k": 14,
+   "skill": "azure-prepare",
+   "source": "microsoft/azure-skills",
+   "body_chars": 12051,
+   "listing_tokens": 285,
+   "invocation_tokens": 4600,
+   "manual_only": false,
+   "tokens_per_body_char": 0.3817110613227118,
+   "invocations_to_equal_listing_per_session": 16.140350877192983,
+   "init_ok": true
+  },
+  {
+   "k": 15,
+   "skill": "remotion-best-practices",
+   "source": "remotion-dev/skills",
+   "body_chars": 4220,
+   "listing_tokens": 21,
+   "invocation_tokens": 1523,
+   "manual_only": false,
+   "tokens_per_body_char": 0.36090047393364927,
+   "invocations_to_equal_listing_per_session": 72.52380952380952,
+   "init_ok": true
+  },
+  {
+   "k": 16,
+   "skill": "caveman",
+   "source": "juliusbrussee/caveman",
+   "body_chars": 6599,
+   "listing_tokens": 93,
+   "invocation_tokens": 2534,
+   "manual_only": false,
+   "tokens_per_body_char": 0.3839975753902106,
+   "invocations_to_equal_listing_per_session": 27.247311827956988,
+   "init_ok": true
+  },
+  {
+   "k": 17,
+   "skill": "design-taste-frontend",
+   "source": "leonxlnx/taste-skill",
+   "body_chars": 88009,
+   "listing_tokens": 99,
+   "invocation_tokens": 35199,
+   "manual_only": false,
+   "tokens_per_body_char": 0.39994773261825495,
+   "invocations_to_equal_listing_per_session": 355.54545454545456,
+   "init_ok": true
+  },
+  {
+   "k": 18,
+   "skill": "google-agents-cli-adk-code",
+   "source": "google/agents-cli",
+   "body_chars": 3688,
+   "listing_tokens": 193,
+   "invocation_tokens": 1485,
+   "manual_only": false,
+   "tokens_per_body_char": 0.40265726681127983,
+   "invocations_to_equal_listing_per_session": 7.694300518134715,
+   "init_ok": true
+  },
+  {
+   "k": 19,
+   "skill": "google-agents-cli-workflow",
+   "source": "google/agents-cli",
+   "body_chars": 21513,
+   "listing_tokens": 199,
+   "invocation_tokens": 7821,
+   "manual_only": false,
+   "tokens_per_body_char": 0.3635476223678706,
+   "invocations_to_equal_listing_per_session": 39.301507537688444,
+   "init_ok": true
+  },
+  {
+   "k": 20,
+   "skill": "google-agents-cli-deploy",
+   "source": "google/agents-cli",
+   "body_chars": 29261,
+   "listing_tokens": 262,
+   "invocation_tokens": 11514,
+   "manual_only": false,
+   "tokens_per_body_char": 0.3934930453504665,
+   "invocations_to_equal_listing_per_session": 43.94656488549618,
+   "init_ok": true
+  }
+ ],
+ "fit": {
+  "overhead_tokens": -335.24720901734963,
+  "tokens_per_body_char": 0.3974671522374134,
+  "r2": 0.9953692430915608,
+  "n": 20
+ },
+ "median_body_chars": 6773.5,
+ "median_invocation_tokens": 2630.0,
+ "max_invocation_tokens": 35199,
+ "listing_cross_check_against_main_run": [
+  {
+   "skill": 1,
+   "this_run": 90,
+   "main_run": 90
+  },
+  {
+   "skill": 2,
+   "this_run": 0,
+   "main_run": 0
+  },
+  {
+   "skill": 3,
+   "this_run": 0,
+   "main_run": 0
+  },
+  {
+   "skill": 4,
+   "this_run": 0,
+   "main_run": 0
+  },
+  {
+   "skill": 5,
+   "this_run": 325,
+   "main_run": 325
+  }
+ ],
+ "median_invocations_to_equal_listing": 23.299145299145298
+}

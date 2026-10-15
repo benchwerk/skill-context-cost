@@ -1,0 +1,158 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Little Fennel | Neighbourhood kitchen</title>
+<!-- Design Read: neighbourhood restaurant for local diners, warm-modern sans language, native CSS, one rust accent, light and dark via prefers-color-scheme. Dials 6 / 5 / 4. Images are picsum placeholders: swap for real photography. -->
+<style>
+:root{--bg:#f3f4f4;--panel:#e6e9ea;--ink:#1d2327;--mute:#4a555b;--line:#c9d0d3;--acc:#b8431f;--on-acc:#fff;--r:10px;--ease:cubic-bezier(.16,1,.3,1)}
+@media(prefers-color-scheme:dark){:root{--bg:#14181b;--panel:#1d2327;--ink:#e8ebec;--mute:#aab4b9;--line:#37424a;--acc:#f09068;--on-acc:#1a1008}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Avenir Next","Segoe UI",system-ui,sans-serif}
+img{display:block;width:100%;height:100%;object-fit:cover;border-radius:var(--r)}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+nav{height:64px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+nav .links{display:flex;gap:28px;align-items:center}
+nav a{text-decoration:none;font-size:15px}
+.brand{font-weight:700;font-size:20px;letter-spacing:-.02em}
+.btn{display:inline-block;background:var(--acc);color:var(--on-acc);border:0;border-radius:var(--r);padding:12px 22px;font:600 15px inherit;font-family:inherit;white-space:nowrap;cursor:pointer;text-decoration:none;transition:transform .3s var(--ease),filter .3s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.07)}.btn:active{transform:scale(.98)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);font-weight:700;margin:0 0 14px}
+h1,h2{letter-spacing:-.035em;line-height:1.05;margin:0 0 18px}
+h1{font-size:clamp(2.4rem,5.5vw,4.4rem);max-width:12ch}
+h2{font-size:clamp(1.9rem,3.6vw,2.8rem)}
+p{margin:0 0 16px;max-width:60ch;color:var(--mute)}
+.hero{min-height:calc(100dvh - 65px);display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center;padding:32px 0}
+.hero .pic{height:min(68dvh,560px);margin-right:-60px}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+section{padding:96px 0}
+.tabs{display:flex;gap:8px;margin:24px 0 32px}
+.tabs button{font:600 15px inherit;font-family:inherit;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:var(--r);padding:9px 18px;cursor:pointer;transition:background .3s}
+.tabs button[aria-selected=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.dishes{display:grid;grid-template-columns:1fr 1fr;gap:28px 64px;margin:0;padding:0;list-style:none}
+.dishes li{display:grid;grid-template-columns:1fr auto;gap:2px 16px;animation:rise .5s var(--ease) both}
+.dishes b{font-size:18px}.dishes span{font-weight:700;color:var(--acc)}.dishes p{grid-column:1/-1;margin:0;font-size:15px}
+.chef{display:grid;grid-template-columns:5fr 6fr;gap:64px;align-items:center;background:var(--panel);border-radius:var(--r);padding:40px}
+.chef .pic{aspect-ratio:4/5;max-height:520px}
+blockquote{margin:24px 0 0;padding-left:18px;border-left:3px solid var(--acc);font-size:1.15rem;color:var(--ink);max-width:44ch}
+blockquote cite{display:block;margin-top:8px;font-size:14px;color:var(--mute);font-style:normal}
+.visit{display:grid;grid-template-columns:5fr 7fr;gap:72px}
+.hours{margin:24px 0;padding:0;list-style:none}
+.hours li{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line)}
+.hours li:last-child{border:0}.hours li.today{color:var(--acc);font-weight:700}
+form{display:grid;grid-template-columns:1fr 1fr;gap:20px;background:var(--panel);padding:32px;border-radius:var(--r)}
+.f{display:grid;gap:8px;align-content:start}.f.full,form .btn,#ok{grid-column:1/-1}
+label{font-weight:600;font-size:14px}
+input,select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--mute);border-radius:var(--r);padding:11px 12px;width:100%}
+.err{color:#b3261e;font-size:13px;min-height:0;margin:0}
+@media(prefers-color-scheme:dark){.err{color:#ff9d93}}
+input[aria-invalid=true]{border-color:#b3261e;border-width:2px}
+#ok{margin:0;color:var(--ink);font-weight:600}
+footer{border-top:1px solid var(--line);padding:28px 0;font-size:14px;color:var(--mute)}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}.rv.in{opacity:1;transform:none}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+@media(max-width:767px){
+ nav .links a:not(.btn){display:none}
+ .hero,.chef,.visit,form,.dishes{grid-template-columns:1fr;gap:28px}
+ .hero{min-height:0}.hero .pic{margin:0;height:300px}
+ section{padding:64px 0}.chef{padding:20px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <nav>
+  <a class="brand" href="#top">Little Fennel</a>
+  <div class="links"><a href="#menu">Menu</a><a href="#chef">Chef</a><a href="#visit">Hours</a><a class="btn" href="#reserve">Book a table</a></div>
+ </nav>
+ <header class="hero" id="top">
+  <div>
+   <p class="eyebrow">Neighbourhood kitchen</p>
+   <h1>Dinner the street comes back for.</h1>
+   <p>Wood-fired vegetables, hand-rolled pasta and a short wine list, cooked fresh every evening.</p>
+   <div class="cta"><a class="btn" href="#reserve">Book a table</a><a class="btn ghost" href="#menu">See the menu</a></div>
+  </div>
+  <div class="pic"><img src="https://picsum.photos/seed/little-fennel-dining-room/900/1000" alt="Candlelit tables inside the dining room" width="900" height="1000"></div>
+ </header>
+
+ <section id="menu" class="rv">
+  <h2>This week's menu</h2>
+  <p>We change the dishes with the market. Ask us about allergens.</p>
+  <div class="tabs" role="tablist" aria-label="Menu sections"></div>
+  <ul class="dishes" id="dishes"></ul>
+ </section>
+
+ <section id="chef" class="rv">
+  <div class="chef">
+   <div class="pic"><img src="https://picsum.photos/seed/chef-portrait-kitchen/800/1000" alt="Chef Ilse Brandvold at the pass" width="800" height="1000" loading="lazy"></div>
+   <div>
+    <p class="eyebrow">Meet the chef</p>
+    <h2>Ilse Brandvold cooks what she grew up eating.</h2>
+    <p>Ilse spent ten years in kitchens across Copenhagen and Naples before opening Little Fennel. She buys from three farms within an hour of the door and makes every pasta shape by hand.</p>
+    <blockquote>"If a neighbour would not eat it twice a week, it does not go on the menu."<cite>Ilse Brandvold, chef and owner</cite></blockquote>
+   </div>
+  </div>
+ </section>
+
+ <section id="visit" class="rv">
+  <div class="visit">
+   <div>
+    <h2>Opening hours</h2>
+    <ul class="hours" id="hours"></ul>
+    <p>14 Mill Lane. Walk-ins welcome at the bar, tables are held for 15 minutes.</p>
+   </div>
+   <div id="reserve">
+    <h2>Reserve a table</h2>
+    <form id="form" novalidate>
+     <div class="f full"><label for="name">Full name</label><input id="name" name="name" autocomplete="name" required><p class="err" id="e-name"></p></div>
+     <div class="f full"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required><p class="err" id="e-email"></p></div>
+     <div class="f"><label for="date">Date</label><input id="date" name="date" type="date" required><p class="err" id="e-date"></p></div>
+     <div class="f"><label for="time">Time</label><select id="time" name="time"><option>18:00</option><option>18:30</option><option>19:00</option><option selected>19:30</option><option>20:00</option><option>20:30</option></select></div>
+     <div class="f"><label for="guests">Guests</label><input id="guests" name="guests" type="number" min="1" max="8" value="2" required><p class="err" id="e-guests"></p></div>
+     <button class="btn" type="submit">Send request</button>
+     <p id="ok" role="status" aria-live="polite"></p>
+    </form>
+   </div>
+  </div>
+ </section>
+</div>
+<footer><div class="wrap">Little Fennel, 14 Mill Lane. Bookings for 9 or more: call the kitchen.</div></footer>
+
+<script>
+const menu={Starters:[["Charred leeks","7","Romesco, toasted hazelnuts"],["Whipped ricotta","8","Honey, grilled sourdough"],["Beetroot carpaccio","7","Horseradish cream, dill"],["Fried artichokes","9","Lemon aioli"]],
+Mains:[["Hand-rolled pappardelle","16","Slow-cooked beef shin, parsley"],["Roast cod","22","White beans, fennel, salsa verde"],["Wood-fired cauliflower","15","Tahini, pomegranate, mint"],["Half chicken","19","Brined, with charred greens"]],
+Desserts:[["Burnt honey tart","8","Crème fraîche"],["Chocolate pot","7","Olive oil, sea salt"],["Poached pear","8","Vanilla, almond crumb"],["Cheese plate","10","Three local cheeses, quince"]]};
+const tabs=document.querySelector(".tabs"),list=document.getElementById("dishes");
+function show(k){
+ [...tabs.children].forEach(b=>b.setAttribute("aria-selected",b.dataset.k===k));
+ list.innerHTML=menu[k].map(d=>`<li><b>${d[0]}</b><span>${d[1]}</span><p>${d[2]}</p></li>`).join("");
+}
+Object.keys(menu).forEach(k=>{const b=document.createElement("button");b.textContent=k;b.dataset.k=k;b.role="tab";b.onclick=()=>show(k);tabs.append(b)});
+show("Starters");
+
+const hrs=[["Monday","Closed",[1]],["Tuesday to Thursday","17:00 to 22:00",[2,3,4]],["Friday and Saturday","12:00 to 23:00",[5,6]],["Sunday","12:00 to 21:00",[0]]];
+const today=new Date().getDay();
+document.getElementById("hours").innerHTML=hrs.map(h=>`<li class="${h[2].includes(today)?"today":""}"><span>${h[0]}</span><span>${h[1]}</span></li>`).join("");
+
+const f=document.getElementById("form"),d=f.date;
+d.min=new Date().toISOString().slice(0,10);
+const rules={name:v=>v.trim().length>1||"Please enter your name.",email:v=>/^\S+@\S+\.\S+$/.test(v)||"Enter a valid email address.",date:v=>(v&&new Date(v).getDay()!==1)||"Pick a date when we are open (closed Mondays).",guests:v=>(v>=1&&v<=8)||"We seat 1 to 8 guests online."};
+f.addEventListener("submit",e=>{
+ e.preventDefault();let ok=true;
+ for(const k in rules){const el=f[k],r=rules[k](el.value);document.getElementById("e-"+k).textContent=r===true?"":r;el.setAttribute("aria-invalid",r!==true);if(r!==true)ok=false}
+ const msg=document.getElementById("ok");
+ if(ok){msg.textContent=`Thank you, ${f.name.value.split(" ")[0]}. We will email ${f.email.value} to confirm.`;f.reset();d.min=new Date().toISOString().slice(0,10)}else msg.textContent="";
+});
+
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}}),{threshold:.15});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
+```

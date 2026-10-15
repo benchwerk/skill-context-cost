@@ -1,0 +1,164 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About · Marlowe Pay</title>
+<!-- Design read: fintech About page, trust-first with an editorial voice. VARIANCE 6 / MOTION 3 / DENSITY 4. All figures and names are placeholders. -->
+<style>
+:root{--bg:#f6f3ec;--ink:#14231c;--mute:#5b6b62;--line:#d9d4c6;--card:#fffdf8;--accent:#0d5c46;--hot:#c8641b;
+--serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;--sans:"Segoe UI Variable","Helvetica Neue",Arial,sans-serif;--mono:ui-monospace,"Cascadia Mono",Consolas,monospace}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1a15;--ink:#eee9dc;--mute:#9fb0a6;--line:#27382f;--card:#15251d;--accent:#5fd0a5;--hot:#f0a05a}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:17px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--hot);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(20px,5vw,48px)}
+header.top{display:flex;justify-content:space-between;align-items:center;padding:28px 0;border-bottom:1px solid var(--line)}
+.logo{font:700 1.15rem var(--serif);letter-spacing:.01em;text-decoration:none}
+.logo b{color:var(--hot)}
+nav{display:flex;gap:28px;font-size:.92rem}
+nav a{text-decoration:none;color:var(--mute)}nav a:hover{color:var(--ink)}
+.eyebrow{font:500 .76rem var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.hero{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(32px,6vw,80px);padding:clamp(56px,10vw,120px) 0 clamp(48px,7vw,88px);align-items:end}
+h1{font:400 clamp(2.5rem,6.4vw,5.2rem)/1.02 var(--serif);letter-spacing:-.02em;margin-top:18px}
+h1 em{font-style:italic;color:var(--accent)}
+.hero p{color:var(--mute);max-width:36ch;border-left:3px solid var(--hot);padding-left:18px}
+section{padding:clamp(48px,7vw,88px) 0;border-top:1px solid var(--line)}
+.head{display:grid;grid-template-columns:1fr 2fr;gap:32px;margin-bottom:44px}
+h2{font:400 clamp(1.7rem,3vw,2.4rem)/1.15 var(--serif);letter-spacing:-.01em}
+.mission{display:grid;grid-template-columns:1fr 2fr;gap:32px}
+.mission blockquote{font:400 clamp(1.4rem,2.6vw,2rem)/1.35 var(--serif)}
+.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:40px;grid-column:2}
+.principles div{padding:0 24px 0 0}
+.principles div+div{padding-left:24px;border-left:1px solid var(--line)}
+.principles h3{font:600 1rem var(--sans);margin-bottom:6px}
+.principles p{font-size:.93rem;color:var(--mute)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);background:var(--ink);color:var(--bg);border-radius:4px}
+.stat{padding:36px 28px}
+.stat+.stat{border-left:1px solid rgba(255,255,255,.14)}
+.stat strong{display:block;font:400 clamp(2.1rem,4vw,3.3rem)/1 var(--serif);font-variant-numeric:tabular-nums}
+.stat span{display:block;margin-top:10px;font:.78rem var(--mono);letter-spacing:.05em;text-transform:uppercase;opacity:.7}
+.team{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;list-style:none;padding:0}
+.team li{background:var(--card);border:1px solid var(--line);padding:22px;border-radius:4px;transition:transform .25s,border-color .25s}
+.team li:nth-child(even){margin-top:28px}
+.team li:hover{transform:translateY(-4px);border-color:var(--accent)}
+.mono{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font:400 1.4rem var(--serif);color:#fff;background:var(--accent);margin-bottom:46px}
+.team li:nth-child(2n) .mono{background:var(--hot)}
+.team li:nth-child(3n) .mono{background:var(--ink);color:var(--bg)}
+.team h3{font:600 1.05rem var(--sans)}
+.team .role{font:.78rem var(--mono);color:var(--accent);margin:2px 0 10px}
+.team p{font-size:.88rem;color:var(--mute);line-height:1.5}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.filters button{font:500 .85rem var(--sans);padding:8px 16px;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:99px;cursor:pointer}
+.filters button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.roles{list-style:none;padding:0;border-top:1px solid var(--ink)}
+.roles li a{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:16px;align-items:center;padding:20px 4px;border-bottom:1px solid var(--line);text-decoration:none;transition:padding .25s,background .25s}
+.roles li a:hover{padding-left:16px;background:var(--card)}
+.roles b{font:400 1.25rem var(--serif)}
+.roles small{color:var(--mute);font:.82rem var(--mono)}
+.roles .go{color:var(--hot);font-weight:600}
+.roles li[hidden]{display:none}
+footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--mute);font-size:.82rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+@media(max-width:860px){
+.hero,.head,.mission{grid-template-columns:1fr}.principles{grid-column:1;grid-template-columns:1fr;gap:20px}
+.principles div+div{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:20px}
+.stats,.team{grid-template-columns:repeat(2,1fr)}.stat:nth-child(3){border-left:0}.stat:nth-child(n+3){border-top:1px solid rgba(255,255,255,.14)}
+.team li:nth-child(even){margin-top:0}nav{display:none}
+.roles li a{grid-template-columns:1fr auto}.roles small:nth-of-type(2){display:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="#">Marlowe<b>.</b>Pay</a>
+    <nav aria-label="Primary"><a href="#mission">Mission</a><a href="#team">Leadership</a><a href="#numbers">Numbers</a><a href="#roles">Careers</a></nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div>
+        <p class="eyebrow">About Marlowe Pay</p>
+        <h1>Money infrastructure that <em>keeps its promises.</em></h1>
+      </div>
+      <p>We build payment and treasury tools for small businesses, so a Friday payroll run is as dull and dependable as it should be.</p>
+    </div>
+
+    <section id="mission" class="mission">
+      <p class="eyebrow">Our mission</p>
+      <blockquote>To make moving money as transparent as sending a message, and to hold ourselves to the standards of a bank while we do it.</blockquote>
+      <div class="principles">
+        <div><h3>Clarity over cleverness</h3><p>Every fee, rate and delay is shown before you commit. No footnotes.</p></div>
+        <div><h3>Safety is the product</h3><p>Customer funds are safeguarded in segregated accounts and reconciled daily.</p></div>
+        <div><h3>Small teams, long horizons</h3><p>We hire carefully and ship steadily. Trust compounds slowly.</p></div>
+      </div>
+    </section>
+
+    <section id="numbers">
+      <div class="head"><p class="eyebrow">By the numbers</p><h2>Four years in, and still counting every cent.</h2></div>
+      <div class="stats">
+        <div class="stat"><strong data-to="48000">48,000</strong><span>Businesses onboarded</span></div>
+        <div class="stat"><strong data-to="12.4" data-pre="$" data-suf="B" data-dec="1">$12.4B</strong><span>Processed in 2025</span></div>
+        <div class="stat"><strong data-to="99.99" data-suf="%" data-dec="2">99.99%</strong><span>Uptime, trailing 12 mo</span></div>
+        <div class="stat"><strong data-to="140">140</strong><span>People across 9 countries</span></div>
+      </div>
+    </section>
+
+    <section id="team">
+      <div class="head"><p class="eyebrow">Leadership</p><h2>Operators who have run payments at scale before.</h2></div>
+      <ul class="team">
+        <li><div class="mono" aria-hidden="true">AO</div><h3>Amara Okafor</h3><p class="role">Co-founder &amp; CEO</p><p>Led risk at a top-five European acquirer before starting Marlowe.</p></li>
+        <li><div class="mono" aria-hidden="true">DH</div><h3>Daniel Hirsch</h3><p class="role">Co-founder &amp; CTO</p><p>Built ledger systems that settle millions of transfers a day.</p></li>
+        <li><div class="mono" aria-hidden="true">PS</div><h3>Priya Sandhu</h3><p class="role">Chief Compliance Officer</p><p>Fifteen years across FCA, FinCEN and MAS regulatory programs.</p></li>
+        <li><div class="mono" aria-hidden="true">LV</div><h3>Lucas Vermeer</h3><p class="role">Chief Financial Officer</p><p>Former treasury lead; guides our capital and safeguarding policy.</p></li>
+      </ul>
+    </section>
+
+    <section id="roles">
+      <div class="head"><p class="eyebrow">Open roles</p><h2>Help us build the boring, brilliant parts.</h2></div>
+      <div class="filters" role="group" aria-label="Filter roles by team">
+        <button aria-pressed="true" data-t="all">All teams</button><button aria-pressed="false" data-t="Engineering">Engineering</button>
+        <button aria-pressed="false" data-t="Risk">Risk &amp; Compliance</button><button aria-pressed="false" data-t="Growth">Growth</button>
+      </div>
+      <ul class="roles">
+        <li data-t="Engineering"><a href="#"><b>Senior Backend Engineer, Ledger</b><small>Engineering</small><small>London · Hybrid</small><span class="go">Apply →</span></a></li>
+        <li data-t="Engineering"><a href="#"><b>Staff Site Reliability Engineer</b><small>Engineering</small><small>Remote · EU</small><span class="go">Apply →</span></a></li>
+        <li data-t="Risk"><a href="#"><b>Financial Crime Analyst</b><small>Risk &amp; Compliance</small><small>Dublin · On-site</small><span class="go">Apply →</span></a></li>
+        <li data-t="Growth"><a href="#"><b>Product Marketing Manager, SMB</b><small>Growth</small><small>New York · Hybrid</small><span class="go">Apply →</span></a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer><span>© 2026 Marlowe Pay Ltd. Authorised and regulated as an electronic money institution (placeholder).</span><span>careers@marlowepay.example</span></footer>
+</div>
+
+<script>
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fmt = (el, v) => {
+  const d = +el.dataset.dec || 0;
+  el.textContent = (el.dataset.pre || '') + v.toLocaleString('en-US', {minimumFractionDigits: d, maximumFractionDigits: d}) + (el.dataset.suf || '');
+};
+const io = new IntersectionObserver(entries => entries.forEach(e => {
+  if (!e.isIntersecting) return;
+  io.unobserve(e.target);
+  const el = e.target, to = +el.dataset.to, t0 = performance.now();
+  const tick = now => {
+    const p = Math.min((now - t0) / 1200, 1);
+    fmt(el, to * (1 - Math.pow(1 - p, 3)));
+    if (p < 1) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}), {threshold: .6});
+if (!reduce) document.querySelectorAll('[data-to]').forEach(el => io.observe(el));
+
+const buttons = document.querySelectorAll('.filters button');
+buttons.forEach(b => b.addEventListener('click', () => {
+  buttons.forEach(x => x.setAttribute('aria-pressed', x === b));
+  document.querySelectorAll('.roles li').forEach(li => li.hidden = b.dataset.t !== 'all' && li.dataset.t !== b.dataset.t);
+}));
+</script>
+</body>
+</html>
+```

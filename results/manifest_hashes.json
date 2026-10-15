@@ -1,0 +1,47 @@
+{
+ "2026-10-02_x86-laptop_alias": {
+  "recorded_in_env_json": "f8f63e7b78106e5f40df43b9905847494cd7370c8ca40d0cbfdf80c945e9404a",
+  "published_manifest_sha256": "1cf9c089692ed0789fbb5b6a19f58e444a0370b056aa6ac7aca2e160e9753cdf",
+  "same": false
+ },
+ "2026-10-02_x86-laptop_claims": {
+  "recorded_in_env_json": null
+ },
+ "2026-10-02_x86-laptop_invocation": {
+  "recorded_in_env_json": "020524a58e48837ac3da2c88acd0ffa11a9f9f39a09e3fb0e73d77e88d53ee5d",
+  "published_manifest_sha256": "61f95b5dcde46a805920e9cac97406b3d8f900fe06165bb27b2fb15d2f352689",
+  "same": false
+ },
+ "2026-10-02_x86-laptop_mechanisms": {
+  "recorded_in_env_json": "7998ac9da4eaa42818570222139167b3079c0dab78d07aa5f8761dc419a74594",
+  "published_manifest_sha256": "b73e059d67f379d61e171e732f15b4384b593bde16ddd6d936b25987276b19df",
+  "same": false
+ },
+ "2026-10-02_x86-laptop_restructure": {
+  "recorded_in_env_json": "36efc3823e2fa135cef1145d5defe9e9be624cfa2d369df4dc08205c5bcd3703",
+  "published_manifest_sha256": "1841f47b166124350f6a7922dc8041e5a94461a9e21bc1f43a509796e3c16996",
+  "same": false
+ },
+ "2026-10-02_x86-laptop_skills": {
+  "recorded_in_env_json": "2112c0473c3e6afb91470b87ee1b18592a88ce2a768a5882f638bb7fa1cc5e65",
+  "published_manifest_sha256": "5a5ae387594fb0d14746b4b415cd6980bf37e28e60f203e0523f150ba6433962",
+  "same": false
+ },
+ "2026-10-02_x86-laptop_trigger": {
+  "recorded_in_env_json": null
+ },
+ "2026-10-03_x86-laptop_alias_crowded": {
+  "recorded_in_env_json": "2ef2159edfd2ffeb5d9d75f41899292e364a3d637d1107a4a29c70c9fc6b1d95",
+  "published_manifest_sha256": "2ef2159edfd2ffeb5d9d75f41899292e364a3d637d1107a4a29c70c9fc6b1d95",
+  "same": true
+ },
+ "2026-10-03_x86-laptop_claims": {
+  "recorded_in_env_json": null
+ },
+ "2026-10-03_x86-laptop_quality": {
+  "recorded_in_env_json": null
+ },
+ "2026-10-03_x86-laptop_quality_pasted": {
+  "recorded_in_env_json": null
+ }
+}

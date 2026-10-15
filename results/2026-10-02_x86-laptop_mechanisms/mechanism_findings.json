@@ -1,0 +1,71 @@
+{
+ "base_window_total": 18919,
+ "idle_added": {
+  "skill": 69,
+  "claude_md": 2855,
+  "prompt": 0,
+  "file_pointer": 150
+ },
+ "used_added": {
+  "skill": 2846,
+  "claude_md": 2855,
+  "prompt": 2743,
+  "file_pointer": 3157
+ },
+ "file_was_read_in_runs": 2,
+ "file_runs": 2,
+ "expected_added_tokens_per_session": {
+  "0": {
+   "skill": 69,
+   "claude_md": 2855,
+   "prompt": 0,
+   "file_pointer": 150
+  },
+  "0.01": {
+   "skill": 96.77,
+   "claude_md": 2855,
+   "prompt": 27.43,
+   "file_pointer": 180.07
+  },
+  "0.05": {
+   "skill": 207.85,
+   "claude_md": 2855,
+   "prompt": 137.15,
+   "file_pointer": 300.35
+  },
+  "0.1": {
+   "skill": 346.7,
+   "claude_md": 2855,
+   "prompt": 274.3,
+   "file_pointer": 450.7
+  },
+  "0.25": {
+   "skill": 763.25,
+   "claude_md": 2855,
+   "prompt": 685.75,
+   "file_pointer": 901.75
+  },
+  "0.5": {
+   "skill": 1457.5,
+   "claude_md": 2855,
+   "prompt": 1371.5,
+   "file_pointer": 1653.5
+  },
+  "0.75": {
+   "skill": 2151.75,
+   "claude_md": 2855,
+   "prompt": 2057.25,
+   "file_pointer": 2405.25
+  },
+  "1.0": {
+   "skill": 2846.0,
+   "claude_md": 2855,
+   "prompt": 2743.0,
+   "file_pointer": 3157.0
+  }
+ },
+ "crossings": {
+  "skill_vs_file_pointer_p": -0.3521739130434783
+ },
+ "note": "window tokens, first-request cache effects ignored; the pasted prompt and the file read also cost the person/extra turn"
+}

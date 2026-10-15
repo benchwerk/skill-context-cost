@@ -1,0 +1,175 @@
+```html
+<!-- Reading this as: product page for design-conscious keyboard enthusiasts, with a calm premium-consumer language, leaning toward native CSS + one orange accent. Dials 6 / 5 / 4. Sample data is mock. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Halden 75 Mechanical Keyboard</title>
+<style>
+:root{--bg:#f4f4f5;--panel:#e8e8ea;--ink:#18181b;--mute:#52525b;--line:#d4d4d8;--accent:#c2410c;--on-accent:#fff;--r:10px;--ease:cubic-bezier(.16,1,.3,1)}
+@media (prefers-color-scheme:dark){:root{--bg:#18181b;--panel:#232327;--ink:#ececee;--mute:#a1a1aa;--line:#3a3a40;--accent:#ea6a35;--on-accent:#18181b}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 "Geist","Satoshi",system-ui,sans-serif}
+img{display:block;width:100%;height:100%;object-fit:cover}
+a,button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+nav{height:64px;display:flex;align-items:center;justify-content:space-between}
+nav b{letter-spacing:-.02em;font-size:1.15rem}
+nav div{display:flex;gap:24px;color:var(--mute)}
+nav a{text-decoration:none}nav a:hover{color:var(--ink)}
+.hero{display:grid;grid-template-columns:7fr 5fr;gap:56px;padding:16px 0 96px;align-items:start}
+.stage{aspect-ratio:4/3;border-radius:var(--r);overflow:hidden;background:var(--panel)}
+.stage img{transition:opacity .4s var(--ease)}
+.stage img.swap{opacity:0}
+.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px}
+.thumbs button{aspect-ratio:1;border:2px solid transparent;border-radius:var(--r);overflow:hidden;padding:0;cursor:pointer;background:var(--panel);opacity:.7;transition:opacity .3s,transform .3s var(--ease)}
+.thumbs button:hover{opacity:1}
+.thumbs button[aria-pressed=true]{border-color:var(--accent);opacity:1}
+.info{position:sticky;top:24px;padding-top:12px}
+.tag{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600}
+h1{font-size:clamp(2.2rem,4.2vw,3.4rem);line-height:1.02;letter-spacing:-.04em;margin:10px 0 14px}
+.info>p{color:var(--mute);max-width:44ch}
+.price{font-size:1.9rem;letter-spacing:-.02em;margin:24px 0 4px;font-weight:600}
+.rate{color:var(--mute);font-size:.9rem}
+.rate a{color:var(--ink)}
+fieldset{border:0;padding:0;margin:24px 0}
+legend{font-size:.9rem;color:var(--mute);margin-bottom:10px}
+.opts{display:flex;gap:10px;flex-wrap:wrap}
+.opts button{padding:9px 16px;border:1px solid var(--line);border-radius:var(--r);background:none;cursor:pointer;transition:transform .2s var(--ease)}
+.opts button[aria-pressed=true]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.buy{width:100%;padding:16px 24px;border:0;border-radius:var(--r);background:var(--accent);color:var(--on-accent);font-weight:600;font-size:1.05rem;cursor:pointer;white-space:nowrap;transition:transform .2s var(--ease),opacity .2s}
+.buy:hover{transform:translateY(-2px)}
+.buy:active{transform:translateY(1px) scale(.98)}
+.buy:disabled{opacity:.7;cursor:progress}
+.note{font-size:.85rem;color:var(--mute);margin-top:10px;min-height:1.4em}
+.note.err{color:var(--accent)}
+section{padding:0 0 96px}
+h2{font-size:clamp(1.7rem,3vw,2.3rem);letter-spacing:-.03em;line-height:1.1;margin-bottom:28px}
+.specs{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:16px}
+.spec{background:var(--panel);border-radius:var(--r);padding:28px}
+.spec.big{grid-row:span 2;display:flex;flex-direction:column;justify-content:flex-end;padding:0;overflow:hidden}
+.spec.big img{height:260px}
+.spec.big div{padding:28px}
+.spec strong{display:block;font-size:2rem;letter-spacing:-.03em;line-height:1.1;margin-bottom:6px}
+.spec span{color:var(--mute);font-size:.92rem}
+details{margin-top:16px;color:var(--mute)}
+summary{cursor:pointer;color:var(--ink);width:max-content}
+details p{margin-top:10px;max-width:70ch}
+.reviews{display:grid;grid-template-columns:5fr 7fr;gap:56px}
+.score{font-size:4.2rem;letter-spacing:-.05em;line-height:1;font-weight:600}
+.list{display:grid;gap:32px}
+.rev{display:grid;grid-template-columns:48px 1fr;gap:16px}
+.rev img{width:48px;height:48px;border-radius:var(--r)}
+.rev blockquote{max-width:58ch}
+.rev cite{display:block;font-style:normal;color:var(--mute);font-size:.88rem;margin-top:6px}
+.empty{color:var(--mute);border:1px dashed var(--line);border-radius:var(--r);padding:20px}
+footer{border-top:1px solid var(--line);padding:28px 0;color:var(--mute);font-size:.9rem}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}.rv{opacity:1;transform:none}}
+@media (max-width:767px){.hero,.reviews,.specs{grid-template-columns:1fr;gap:32px}.info{position:static}.spec.big{grid-row:auto}nav div{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><b>Halden</b><div><a href="#specs">Specifications</a><a href="#reviews">Reviews</a><a href="#top">Cart (<span id="count">0</span>)</a></div></nav>
+
+<main id="top" class="hero">
+  <div>
+    <div class="stage"><img id="main" src="https://picsum.photos/seed/halden-keyboard-angle/1200/900" alt="Halden 75 keyboard seen from a three-quarter angle on a walnut desk" width="1200" height="900"></div>
+    <div class="thumbs" id="thumbs"></div>
+  </div>
+  <div class="info">
+    <span class="tag">Wireless 75% board</span>
+    <h1>Halden 75</h1>
+    <p>A gasket-mounted aluminium keyboard with a soft, low-pitched typing sound and hot-swap switches.</p>
+    <div class="price">$189</div>
+    <div class="rate">4.8 from 312 reviews. <a href="#reviews">Read them</a></div>
+    <fieldset>
+      <legend>Switch type</legend>
+      <div class="opts" id="opts">
+        <button type="button" aria-pressed="true">Linear</button>
+        <button type="button" aria-pressed="false">Tactile</button>
+        <button type="button" aria-pressed="false">Silent</button>
+      </div>
+    </fieldset>
+    <button class="buy" id="buy" type="button">Add to cart</button>
+    <p class="note" id="note" role="status" aria-live="polite">Ships in 3 to 5 working days. 60-day returns.</p>
+  </div>
+</main>
+
+<section id="specs">
+  <h2 class="rv">Built to feel quiet</h2>
+  <div class="specs">
+    <div class="spec big rv"><img src="https://picsum.photos/seed/halden-keyboard-internals/800/520" alt="Keyboard case opened to show the internal gasket mount" width="800" height="520" loading="lazy"><div><strong>Gasket mount</strong><span>Silicone gaskets let the plate flex slightly, which softens each keystroke.</span></div></div>
+    <div class="spec rv"><strong>82 keys</strong><span>75% layout with a dedicated arrow cluster and knob.</span></div>
+    <div class="spec rv"><strong>Hot-swap</strong><span>Change any switch without a soldering iron.</span></div>
+    <div class="spec rv"><strong>3 modes</strong><span>USB-C, Bluetooth 5.1 and a 2.4 GHz dongle.</span></div>
+    <div class="spec rv"><strong>CNC aluminium</strong><span>Anodised case with a PBT double-shot keycap set.</span></div>
+  </div>
+  <details>
+    <summary>View full specifications</summary>
+    <p>Case: 6063 aluminium. Plate: polycarbonate. Keycaps: PBT, Cherry profile. Battery: 4000 mAh, about three weeks of typical use. Software: remapping through a browser, no install. Weight: 1.6 kg. In the box: keyboard, USB-C cable, dongle, keycap puller, switch puller.</p>
+  </details>
+</section>
+
+<section id="reviews" class="reviews">
+  <div class="rv">
+    <h2>What owners say</h2>
+    <div class="score">4.8</div>
+    <p class="rate">Average across 312 verified reviews (sample figures)</p>
+  </div>
+  <div class="list" id="list"></div>
+</section>
+</div>
+<footer><div class="wrap">Halden Keyboards. Free returns within 60 days.</div></footer>
+
+<script>
+const shots=[["halden-keyboard-angle","Three-quarter view"],["halden-keyboard-top","Top view with keycaps"],["halden-keyboard-side","Side profile of the case"],["halden-keyboard-desk","Keyboard on a desk setup"]];
+const reviews=[
+  ["Ingrid Solheim","Backend engineer","halden-reviewer-ingrid","Typing on it is the first thing my coworkers ask about. Deep sound, no rattle, and the battery lasts weeks."],
+  ["Tomasz Wierzba","Technical writer","halden-reviewer-tomasz","Swapped the stock switches for my own in ten minutes. The gasket mount makes long writing days easier on my wrists."],
+  ["Priya Venkataraghavan","Illustration lead","halden-reviewer-priya","Three-device pairing works without fuss. I wish the cable were longer, but that is my only complaint."]
+];
+const $=id=>document.getElementById(id), main=$("main"), thumbs=$("thumbs");
+const src=(s,w,h)=>`https://picsum.photos/seed/${s}/${w}/${h}`;
+shots.forEach(([s,alt],i)=>{
+  const b=document.createElement("button");
+  b.type="button";b.setAttribute("aria-pressed",i==0);b.setAttribute("aria-label",alt);
+  b.innerHTML=`<img src="${src(s,240,240)}" alt="" width="240" height="240" loading="lazy">`;
+  b.onclick=()=>{
+    thumbs.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));
+    main.classList.add("swap");
+    setTimeout(()=>{main.src=src(s,1200,900);main.alt=alt;main.onload=()=>main.classList.remove("swap")},200);
+  };
+  thumbs.append(b);
+});
+const list=$("list");
+if(!reviews.length){list.innerHTML='<p class="empty">No reviews yet. Be the first to share how it feels.</p>'}
+reviews.forEach(([n,r,s,q])=>{
+  const d=document.createElement("div");d.className="rev rv";
+  d.innerHTML=`<img src="${src(s,96,96)}" alt="Portrait of ${n}" width="48" height="48" loading="lazy"><blockquote>\u201C${q}\u201D<cite>${n}, ${r}</cite></blockquote>`;
+  list.append(d);
+});
+$("opts").addEventListener("click",e=>{
+  const b=e.target.closest("button");if(!b)return;
+  $("opts").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));
+});
+let n=0;const buy=$("buy"),note=$("note");
+buy.onclick=()=>{
+  const type=$("opts").querySelector("[aria-pressed=true]").textContent;
+  buy.disabled=true;buy.textContent="Adding...";note.className="note";
+  setTimeout(()=>{
+    if(Math.random()<.1){note.className="note err";note.textContent="Could not add to cart. Please try again.";buy.textContent="Add to cart";}
+    else{$("count").textContent=++n;note.textContent=`Halden 75 with ${type.toLowerCase()} switches is in your cart.`;buy.textContent="Add to cart";}
+    buy.disabled=false;
+  },700);
+};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
+```

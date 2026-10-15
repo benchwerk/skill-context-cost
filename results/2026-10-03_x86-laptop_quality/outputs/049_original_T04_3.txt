@@ -1,0 +1,117 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Larkspur Dental - Schedule</title>
+<style>
+:root{--bg:#f4f6f5;--panel:#fcfdfc;--ink:#18211e;--mute:#566660;--line:#d9e0dd;--acc:#0d7a63;--on-acc:#fff;--soft:#e1f0ec;--warn:#9a4a12;--r:8px;color-scheme:light dark}
+@media(prefers-color-scheme:dark){:root{--bg:#101614;--panel:#171f1c;--ink:#e6ece9;--mute:#9aaba5;--line:#2a3631;--acc:#3fc3a3;--on-acc:#08150f;--soft:#1b2c27;--warn:#e0a068}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 "Geist","Satoshi",system-ui,sans-serif;min-height:100dvh}
+.num,time,.stat b{font-family:"Geist Mono",ui-monospace,Consolas,monospace;font-variant-numeric:tabular-nums}
+header{max-width:1200px;margin:0 auto;padding:28px 20px 8px;display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap}
+h1{font-size:28px;letter-spacing:-.03em;line-height:1.1}
+header p{color:var(--mute)}
+button{font:inherit;color:inherit;cursor:pointer;border-radius:var(--r);transition:transform .2s cubic-bezier(.16,1,.3,1),background .2s}
+button:active{transform:scale(.98)}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.btn{background:var(--acc);color:var(--on-acc);border:0;padding:10px 18px;font-weight:600;white-space:nowrap}
+main{max-width:1200px;margin:0 auto;padding:12px 20px 40px;display:grid;grid-template-columns:2fr 1fr;gap:28px}
+.stats{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--line)}
+.stat{padding:16px 20px 16px 0}
+.stat+.stat{padding-left:20px;border-left:1px solid var(--line)}
+.stat b{display:block;font-size:30px;letter-spacing:-.04em;font-weight:600}
+.stat span{color:var(--mute);font-size:13px}
+h2{font-size:17px;margin-bottom:12px;letter-spacing:-.01em}
+.list{list-style:none;padding:0}
+.appt{display:grid;grid-template-columns:76px 1fr auto;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);animation:in .5s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(var(--i)*50ms)}
+.appt:last-child{border-bottom:0}
+.appt time{color:var(--mute);font-size:14px}
+.appt strong{display:block;font-weight:600}
+.appt small{color:var(--mute)}
+.tag{font-size:12px;font-weight:600;padding:3px 10px;border-radius:var(--r);background:var(--soft);color:var(--acc)}
+.tag.wait{color:var(--warn);background:transparent;border:1px solid var(--line)}
+.tag.done{color:var(--mute);background:transparent;border:1px solid var(--line)}
+.appt.now{background:var(--soft);margin-inline:-12px;padding-inline:12px;border-radius:var(--r);border-bottom-color:transparent}
+.appt.now time{color:var(--acc);font-weight:600}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;align-items:end;height:190px}
+.day{height:100%;background:none;border:1px solid transparent;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px;padding:6px 0}
+.day:hover{background:var(--soft)}
+.day[aria-pressed=true]{border-color:var(--acc)}
+.day i{display:block;width:60%;background:var(--acc);border-radius:4px 4px 0 0;min-height:3px;opacity:.55;transform-origin:bottom;animation:grow .7s cubic-bezier(.16,1,.3,1) both}
+.day[aria-pressed=true] i{opacity:1}
+.day span{font-size:12px;color:var(--mute)}
+.day .num{font-size:13px;color:var(--ink)}
+.note{margin-top:16px;color:var(--mute);font-size:14px}
+.empty{padding:36px 0;color:var(--mute)}
+.empty b{display:block;color:var(--ink);margin-bottom:4px}
+@keyframes in{from{opacity:0;transform:translateY(10px)}}
+@keyframes grow{from{transform:scaleY(0)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(max-width:767px){main{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.stat:nth-child(3){padding-left:0;border-left:0}.appt{grid-template-columns:64px 1fr}.appt .tag{grid-column:2;justify-self:start}}
+</style>
+</head>
+<body>
+<header>
+  <div><h1>Larkspur Dental</h1><p id="today"></p></div>
+  <button class="btn" type="button" id="add">New appointment</button>
+</header>
+<main>
+  <section class="stats" aria-label="Summary">
+    <div class="stat"><b id="s1">0</b><span>Appointments today</span></div>
+    <div class="stat"><b id="s2">0</b><span>Checked in or done</span></div>
+    <div class="stat"><b id="s3">0</b><span>Open slots</span></div>
+    <div class="stat"><b id="s4">0</b><span>Booked this week</span></div>
+  </section>
+  <section aria-live="polite">
+    <h2 id="title">Schedule</h2>
+    <ul class="list" id="list"></ul>
+  </section>
+  <aside>
+    <h2>Week overview</h2>
+    <div class="week" id="week" role="group" aria-label="Select a day"></div>
+    <p class="note" id="note"></p>
+  </aside>
+</main>
+<script>
+// Sample data. Keys are weekday numbers (1 = Monday). Sunday is closed.
+const D={
+1:[["08:30","Marta Okonkwo-Reyes","Hygiene clean","Dr. Haldane"],["09:30","Tobias Lindqvist","Crown fitting","Dr. Wirawan"],["11:00","Priya Venkataraman","Whitening consult","Dr. Haldane"],["14:00","Ines Calloway","Root canal, visit 2","Dr. Wirawan"]],
+2:[["08:00","Dmitri Abelard","Filling, lower left","Dr. Haldane"],["10:00","Noor al-Tamimi","New patient exam","Dr. Wirawan"],["13:30","Gustavo Pereira","Extraction","Dr. Haldane"],["15:00","Sunniva Ekberg","Hygiene clean","Dr. Wirawan"],["16:00","Odell Fitzgerald","Night guard fitting","Dr. Haldane"]],
+3:[["09:00","Leocadia Marsh","Hygiene clean","Dr. Wirawan"],["10:30","Bao Tran-Whitfield","Crown prep","Dr. Haldane"],["13:00","Henrik Szabo","Check-up","Dr. Wirawan"],["14:30","Ayesha Rahimi","Invisalign review","Dr. Haldane"],["16:00","Cormac Delacroix","Filling, upper right","Dr. Wirawan"],["16:45","Yuki Brennan","Hygiene clean","Dr. Haldane"]],
+4:[["08:30","Waleed Nakamura","Implant consult","Dr. Haldane"],["09:45","Fenna Oyelaran","Hygiene clean","Dr. Wirawan"],["11:15","Rosalind Achterberg","Crown fitting","Dr. Haldane"]],
+5:[["09:00","Emeka Strand","Root canal, visit 1","Dr. Wirawan"],["10:30","Liesel Montoya","Check-up","Dr. Haldane"],["13:00","Anselm Qureshi","Filling, lower right","Dr. Wirawan"],["14:15","Greta Hollinshead","Hygiene clean","Dr. Haldane"],["15:30","Mateus Ilunga","Whitening","Dr. Wirawan"]],
+6:[["09:00","Saoirse Valdivia","Emergency, chipped tooth","Dr. Haldane"],["10:15","Kofi Brandvold","Hygiene clean","Dr. Wirawan"],["11:30","Thandiwe Pruitt","Check-up","Dr. Haldane"]],
+0:[]};
+const SLOTS=8, names=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"], now=new Date();
+const monday=new Date(now);monday.setDate(now.getDate()-((now.getDay()+6)%7));
+const dates=[1,2,3,4,5,6,0].map((w,i)=>{const d=new Date(monday);d.setDate(monday.getDate()+i);return{w,d}});
+const mins=t=>{const[h,m]=t.split(":");return h*60+ +m}, cur=now.getHours()*60+now.getMinutes();
+let sel=now.getDay();
+const $=id=>document.getElementById(id);
+function status(t,isToday){if(!isToday)return["Booked",""];const m=mins(t);return m+45<cur?["Done","done"]:m<=cur?["In chair",""]:m-cur<=30?["Waiting","wait"]:["Booked",""]}
+function render(){
+  const day=dates.find(x=>x.w===sel), list=D[sel], isToday=sel===now.getDay();
+  $("title").textContent=(isToday?"Today":names[sel]+" "+day.d.getDate())+", "+list.length+" appointments";
+  $("list").innerHTML=list.length?list.map((a,i)=>{const[s,c]=status(a[0],isToday),n=isToday&&mins(a[0])<=cur&&mins(a[0])+45>=cur;
+    return `<li class="appt${n?" now":""}" style="--i:${i}"><time>${a[0]}</time><div><strong>${a[1]}</strong><small>${a[2]} with ${a[3]}</small></div><span class="tag ${c}">${s}</span></li>`}).join("")
+    :`<li class="empty"><b>The clinic is closed on Sundays.</b>Pick another day from the week overview.</li>`;
+  document.querySelectorAll(".day").forEach(b=>b.setAttribute("aria-pressed",+b.dataset.w===sel));
+  const t=D[now.getDay()], done=isToday||sel===now.getDay();
+  $("s1").textContent=t.length;
+  $("s2").textContent=t.filter(a=>mins(a[0])<=cur).length;
+  $("s3").textContent=Math.max(SLOTS-t.length,0);
+  $("note").textContent=list.length+" of "+SLOTS+" slots booked on "+day.d.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})+".";
+}
+$("today").textContent=now.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+$("s4").textContent=Object.values(D).reduce((n,a)=>n+a.length,0);
+$("week").innerHTML=dates.map(({w,d},i)=>`<button class="day" type="button" data-w="${w}" aria-label="${names[w]} ${d.getDate()}, ${D[w].length} appointments"><span class="num">${D[w].length}</span><i style="height:${D[w].length/SLOTS*100}%;animation-delay:${i*60}ms"></i><span>${names[w]}</span></button>`).join("");
+$("week").addEventListener("click",e=>{const b=e.target.closest(".day");if(b){sel=+b.dataset.w;render()}});
+$("add").addEventListener("click",()=>alert("Booking form goes here."));
+render();
+</script>
+</body>
+</html>
+```

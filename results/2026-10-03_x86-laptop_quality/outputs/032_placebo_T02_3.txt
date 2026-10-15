@@ -1,0 +1,137 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Driftlog — Pricing</title>
+<style>
+:root{--bg:#f4f1ea;--ink:#1c1b18;--mute:#6d6a60;--line:#d9d4c7;--card:#fbf9f4;--acc:#c2410c;--acc-ink:#fff}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 "Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.mono{font-family:ui-monospace,"JetBrains Mono",Menlo,monospace}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:28px 0}
+.logo{font-family:ui-monospace,Menlo,monospace;font-weight:700;letter-spacing:-.02em}
+.logo i{color:var(--acc);font-style:normal}
+nav a{color:var(--mute);text-decoration:none;font-size:14px;margin-left:24px}
+nav a:hover{color:var(--ink)}
+header{padding:56px 0 40px;display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:end}
+h1{font:600 clamp(2.2rem,5vw,3.6rem)/1.05 Georgia,"Times New Roman",serif;letter-spacing:-.025em}
+header p{color:var(--mute);max-width:36ch}
+.toggle{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;margin:0 0 28px;background:var(--card)}
+.toggle button{border:0;background:none;font:inherit;font-size:14px;padding:6px 16px;border-radius:999px;cursor:pointer;color:var(--mute)}
+.toggle button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.toggle small{color:var(--acc);font-weight:600;margin-left:4px}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:6px;background:var(--card)}
+.plan{padding:32px 28px;display:flex;flex-direction:column;gap:14px}
+.plan+.plan{border-left:1px solid var(--line)}
+.plan.hot{background:var(--ink);color:var(--bg);margin:-1px;border-radius:6px}
+.plan h2{font:600 14px ui-monospace,Menlo,monospace;text-transform:uppercase;letter-spacing:.08em}
+.tag{font-size:11px;background:var(--acc);color:var(--acc-ink);padding:2px 8px;border-radius:3px;margin-left:8px;letter-spacing:.04em}
+.price{font:600 3rem/1 Georgia,serif;letter-spacing:-.03em}
+.price span{font:400 14px system-ui,sans-serif;opacity:.6;letter-spacing:0}
+.plan p{font-size:14px;opacity:.75;min-height:44px}
+.plan ul{list-style:none;padding:0;font-size:14px;display:grid;gap:8px;flex:1}
+.plan li::before{content:"→ ";color:var(--acc)}
+.btn{display:block;text-align:center;padding:11px;border-radius:4px;border:1px solid currentColor;text-decoration:none;color:inherit;font-weight:600;font-size:14px;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.hot .btn{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}
+section{padding:72px 0 0}
+h3{font:600 1.8rem Georgia,serif;letter-spacing:-.02em;margin-bottom:24px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:13px 12px;border-bottom:1px solid var(--line)}
+th{font:600 12px ui-monospace,Menlo,monospace;text-transform:uppercase;letter-spacing:.07em;color:var(--mute)}
+td:first-child{color:var(--mute)}
+td:not(:first-child),th:not(:first-child){text-align:center}
+tr.grp td{padding-top:26px;color:var(--ink);font-weight:600;border-bottom-color:var(--ink)}
+.y{color:var(--acc);font-weight:700}.n{color:var(--line)}
+details{border-bottom:1px solid var(--line);padding:18px 0}
+summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between}
+summary::after{content:"+";font-family:ui-monospace,monospace;color:var(--acc);transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{color:var(--mute);margin-top:10px;max-width:62ch}
+footer{padding:72px 0 48px;color:var(--mute);font-size:13px;display:flex;justify-content:space-between}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+@media(max-width:760px){header,.plans{grid-template-columns:1fr}.plan+.plan{border-left:0;border-top:1px solid var(--line)}.plan.hot{margin:0}table{font-size:12px}th,td{padding:10px 4px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><span class="logo">drift<i>log</i></span><div><a href="#">Docs</a><a href="#">Changelog</a><a href="#">Sign in</a></div></nav>
+<header>
+  <h1>Logs you can afford to keep.</h1>
+  <p>Driftlog is search-first log analytics for teams of 2 to 25. Flat prices, no per-seat tax, no surprise ingest bills.</p>
+</header>
+<div class="toggle" role="group" aria-label="Billing period">
+  <button aria-pressed="false" data-m="monthly">Monthly</button>
+  <button aria-pressed="true" data-m="annual">Annual<small>−20%</small></button>
+</div>
+<div class="plans">
+  <article class="plan">
+    <h2>Side Project</h2>
+    <div class="price">$0<span> /forever</span></div>
+    <p>For weekend apps and trying Driftlog on a real service.</p>
+    <ul><li>1 GB ingest / day</li><li>3 days retention</li><li>2 teammates</li><li>Community support</li></ul>
+    <a class="btn" href="#">Start free</a>
+  </article>
+  <article class="plan hot">
+    <h2>Crew<span class="tag">MOST PICKED</span></h2>
+    <div class="price"><b data-price="29">$23</b><span> /mo</span></div>
+    <p>For a team running production and tired of grepping SSH sessions.</p>
+    <ul><li>20 GB ingest / day</li><li>30 days retention</li><li>Unlimited teammates</li><li>Alerts to Slack &amp; PagerDuty</li><li>Saved queries &amp; dashboards</li></ul>
+    <a class="btn" href="#">Try Crew for 14 days</a>
+  </article>
+  <article class="plan">
+    <h2>Fleet</h2>
+    <div class="price"><b data-price="99">$79</b><span> /mo</span></div>
+    <p>For growing platforms that need audit trails and long memory.</p>
+    <ul><li>100 GB ingest / day</li><li>180 days retention</li><li>SSO &amp; audit log</li><li>Archive to your S3 bucket</li><li>Priority support, 4h reply</li></ul>
+    <a class="btn" href="#">Talk to us</a>
+  </article>
+</div>
+
+<section>
+  <h3>Compare plans</h3>
+  <table>
+    <thead><tr><th>Feature</th><th>Side Project</th><th>Crew</th><th>Fleet</th></tr></thead>
+    <tbody>
+      <tr class="grp"><td colspan="4">Volume</td></tr>
+      <tr><td>Daily ingest</td><td>1 GB</td><td>20 GB</td><td>100 GB</td></tr>
+      <tr><td>Retention</td><td>3 days</td><td>30 days</td><td>180 days</td></tr>
+      <tr><td>Teammates</td><td>2</td><td>Unlimited</td><td>Unlimited</td></tr>
+      <tr class="grp"><td colspan="4">Analysis</td></tr>
+      <tr><td>Live tail &amp; search</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+      <tr><td>Saved queries &amp; dashboards</td><td class="n">—</td><td class="y">✓</td><td class="y">✓</td></tr>
+      <tr><td>Alerts</td><td class="n">—</td><td class="y">✓</td><td class="y">✓</td></tr>
+      <tr><td>Archive to S3</td><td class="n">—</td><td class="n">—</td><td class="y">✓</td></tr>
+      <tr class="grp"><td colspan="4">Security &amp; support</td></tr>
+      <tr><td>SSO (SAML)</td><td class="n">—</td><td class="n">—</td><td class="y">✓</td></tr>
+      <tr><td>Audit log</td><td class="n">—</td><td class="n">—</td><td class="y">✓</td></tr>
+      <tr><td>Support</td><td>Community</td><td>Email, 1 day</td><td>Priority, 4h</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h3>Questions, answered</h3>
+  <details><summary>What counts as ingest?</summary><p>Raw bytes received per UTC day, before compression. Reindexing and queries never count against your limit.</p></details>
+  <details><summary>What happens if we go over our daily limit?</summary><p>We keep accepting logs for 24 hours and email you. After that, extra data is sampled rather than dropped silently, and you can upgrade at any time.</p></details>
+  <details><summary>Can we switch plans mid-cycle?</summary><p>Yes. Upgrades apply immediately and are prorated. Downgrades take effect at your next renewal.</p></details>
+  <details><summary>Do you offer discounts for open source or nonprofits?</summary><p>Maintainers of open-source projects get Crew free. Nonprofits get 50% off any paid plan. Write to us with a link.</p></details>
+</section>
+<footer><span class="mono">© 2026 Driftlog Labs</span><span>Prices in USD, excl. tax.</span></footer>
+</div>
+<script>
+const btns=document.querySelectorAll(".toggle button");
+btns.forEach(b=>b.addEventListener("click",()=>{
+  btns.forEach(x=>x.setAttribute("aria-pressed",x===b));
+  const annual=b.dataset.m==="annual";
+  document.querySelectorAll("[data-price]").forEach(el=>{
+    const p=+el.dataset.price;el.textContent="$"+(annual?Math.round(p*.8):p);
+  });
+}));
+</script>
+</body>
+</html>
+```

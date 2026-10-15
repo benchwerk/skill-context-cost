@@ -1,0 +1,110 @@
+```html
+<!-- Design Read: category page for outdoor-gear shoppers comparing products, utilitarian language, native CSS + vanilla JS. Dials 5 / 4 / 5. Palette: stone neutrals + one forest green accent, light and dark. System font stack, one 8px radius. Images are picsum placeholders, swap for real product photography. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trail Packs and Shelter | Ostrander Outfitters</title>
+<style>
+:root{--bg:#f3f2ee;--surface:#fbfaf8;--ink:#1d2420;--muted:#505a54;--line:#d6d4cc;--accent:#2f5d46;--on-accent:#fff;--r:8px;
+--font:"Segoe UI Variable","Helvetica Neue",Arial,system-ui,sans-serif}
+@media(prefers-color-scheme:dark){:root{--bg:#121714;--surface:#1a211d;--ink:#e8ebe6;--muted:#a3ada6;--line:#2e3832;--accent:#8fcfa8;--on-accent:#0f1a14}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--font)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1280px;margin:0 auto;padding:0 20px}
+header.top{border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-weight:800;letter-spacing:-.02em;text-decoration:none}
+nav{display:flex;gap:24px;font-size:.95rem}
+nav a{text-decoration:none;color:var(--muted)}nav a:hover,nav a[aria-current]{color:var(--ink)}
+.intro{padding:40px 0 24px;display:grid;grid-template-columns:2fr 1fr;gap:32px;align-items:end}
+h1{font-size:clamp(2rem,4.5vw,3.25rem);line-height:1.05;letter-spacing:-.04em;margin:0 0 8px}
+.intro p{margin:0;color:var(--muted);max-width:60ch}
+.layout{display:grid;grid-template-columns:250px 1fr;gap:40px;padding-bottom:64px}
+aside form{position:sticky;top:16px;display:grid;gap:24px}
+fieldset{border:0;padding:0;margin:0}
+legend{font-weight:700;margin-bottom:8px;padding:0}
+.opt{display:flex;gap:10px;align-items:center;padding:4px 0;cursor:pointer}
+.opt input{accent-color:var(--accent);width:18px;height:18px}
+label.f{display:block;font-weight:700;margin-bottom:8px}
+input[type=range]{width:100%;accent-color:var(--accent)}
+select{width:100%;padding:10px;border:1px solid var(--muted);border-radius:var(--r);background:var(--surface);color:var(--ink);font:inherit}
+.hint{font-size:.875rem;color:var(--muted);margin:4px 0 0}
+.btn{font:inherit;font-weight:600;padding:10px 18px;border-radius:var(--r);border:1px solid var(--accent);background:var(--accent);color:var(--on-accent);cursor:pointer;transition:transform .2s cubic-bezier(.16,1,.3,1)}
+.btn:active{transform:scale(.98)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--muted)}
+.bar{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:32px 24px;list-style:none;margin:0;padding:0}
+.p{animation:in .5s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(var(--i)*40ms)}
+.p img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r);background:var(--line);transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.p .ph{overflow:hidden;border-radius:var(--r);margin-bottom:12px}
+.p:hover img{transform:scale(1.04)}
+.p h2{font-size:1rem;margin:0;letter-spacing:-.01em}
+.p .meta{color:var(--muted);font-size:.9rem;margin:2px 0 6px}
+.p .price{font-weight:700}
+.empty{border:1px dashed var(--muted);border-radius:var(--r);padding:40px;text-align:center}
+.guide{border-top:1px solid var(--line);padding:56px 0 72px}
+.guide h2{font-size:clamp(1.5rem,3vw,2.25rem);letter-spacing:-.03em;margin:0 0 8px}
+.guide>.wrap>p{max-width:65ch;color:var(--muted);margin:0 0 32px}
+.tips{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px}
+.tips h3{margin:0 0 6px;font-size:1.05rem;border-top:3px solid var(--accent);padding-top:12px}
+.tips p{margin:0;color:var(--muted)}
+@keyframes in{from{opacity:0;transform:translateY(14px)}}
+@media(prefers-reduced-motion:reduce){.p{animation:none}.p img,.btn{transition:none}}
+@media(max-width:900px){.intro,.tips{grid-template-columns:1fr;gap:24px}.layout{grid-template-columns:1fr;gap:24px}aside form{position:static}nav{display:none}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="logo" href="#">Ostrander Outfitters</a>
+<nav aria-label="Main"><a href="#" aria-current="page">Packs and shelter</a><a href="#">Footwear</a><a href="#">Clothing</a><a href="#">Sale</a></nav></div></header>
+<main>
+<div class="wrap">
+<section class="intro"><div><h1>Packs and shelter</h1><p>Gear we have carried on the Wind Rivers and the Olympic coast, sorted by what you are doing this weekend.</p></div></section>
+<div class="layout">
+<aside aria-label="Filters"><form id="filters">
+<fieldset><legend>Category</legend>
+<label class="opt"><input type="checkbox" name="cat" value="Packs"> Packs</label>
+<label class="opt"><input type="checkbox" name="cat" value="Tents"> Tents</label>
+<label class="opt"><input type="checkbox" name="cat" value="Sleep"> Sleep systems</label>
+<label class="opt"><input type="checkbox" name="cat" value="Cook"> Cook kits</label></fieldset>
+<div><label class="f" for="max">Maximum price: <output id="maxout">$600</output></label>
+<input id="max" type="range" min="40" max="600" step="10" value="600"><p class="hint">Drag to hide gear above this price.</p></div>
+<div><label class="f" for="sort">Sort by</label><select id="sort"><option value="feat">Featured</option><option value="lo">Price, low to high</option><option value="hi">Price, high to low</option><option value="wt">Lightest first</option></select></div>
+<button type="reset" class="btn ghost">Clear filters</button></form></aside>
+<section aria-label="Products"><div class="bar"><strong id="count" aria-live="polite"></strong><span class="hint">Weights are for the listed size</span></div>
+<ul class="grid" id="grid"></ul></section>
+</div></div>
+<section class="guide"><div class="wrap"><h2>Choosing your shelter and pack</h2>
+<p>Match the gear to your longest trip and your coldest night. Everything else is a trade between weight and comfort.</p>
+<div class="tips">
+<div><h3>Start with pack volume</h3><p>Under 40 liters suits overnights. For three to five days with a bear canister, plan on 55 to 65 liters.</p></div>
+<div><h3>Count tent poles twice</h3><p>Freestanding tents pitch on rock. Trekking-pole shelters save weight but need soft ground.</p></div>
+<div><h3>Rate sleep to the cold</h3><p>Pick a bag whose limit rating is below the lowest forecast night.</p></div></div></div></section>
+</main>
+<script>
+const items=[
+["Ridgeline 55 Pack","Packs",289,1.6],["Switchback 28 Daypack","Packs",139,0.9],["Cirque 38 Pack","Packs",199,1.1],
+["Tamarack 2P Tent","Tents",449,1.7],["Lowland 3P Tent","Tents",379,2.4],["Bivy Hollow Shelter","Tents",229,0.8],
+["Dunlin 20F Down Bag","Sleep",359,0.9],["Alder 35F Quilt","Sleep",219,0.6],["Frostline Insulated Pad","Sleep",169,0.5],
+["Kettle Stove System","Cook",129,0.4],["Mesa Titanium Pot Set","Cook",74,0.2],["Spruce Camp Mug and Spork","Cook",42,0.1]];
+const $=s=>document.querySelector(s),grid=$("#grid"),f=$("#filters");
+function render(){
+ const cats=[...f.querySelectorAll("[name=cat]:checked")].map(i=>i.value),max=+$("#max").value,s=$("#sort").value;
+ $("#maxout").textContent="$"+max;
+ let list=items.filter(p=>p[2]<=max&&(!cats.length||cats.includes(p[1])));
+ if(s==="lo")list.sort((a,b)=>a[2]-b[2]);if(s==="hi")list.sort((a,b)=>b[2]-a[2]);if(s==="wt")list.sort((a,b)=>a[3]-b[3]);
+ $("#count").textContent=list.length+" of "+items.length+" products";
+ grid.innerHTML=list.length?list.map((p,i)=>`<li class="p" style="--i:${i}"><a href="#" style="text-decoration:none"><div class="ph"><img loading="lazy" width="400" height="500" src="https://picsum.photos/seed/ostrander-${p[0].toLowerCase().replace(/\W+/g,"-")}/400/500" alt="${p[0]}"></div><h2>${p[0]}</h2><p class="meta">${p[1]}, ${p[3]} kg</p><span class="price">$${p[2]}</span></a></li>`).join(""):
+ `<li class="empty" style="grid-column:1/-1"><p><strong>Nothing matches those filters.</strong></p><p class="hint">Raise the price limit or clear a category.</p><button class="btn" id="reset" type="button">Show all gear</button></li>`;
+}
+f.addEventListener("input",render);
+f.addEventListener("reset",()=>setTimeout(render));
+grid.addEventListener("click",e=>{if(e.target.id==="reset"){f.reset()}});
+render();
+</script>
+</body>
+</html>
+```

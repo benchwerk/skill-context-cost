@@ -1,0 +1,120 @@
+```html
+<!-- Reading this as: pricing page for small engineering teams, with a calm technical language, leaning toward native CSS, one teal accent, auto light/dark. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cordwood pricing</title>
+<style>
+:root{--bg:#f5f7f6;--panel:#ffffff;--ink:#131715;--mute:#4a5651;--line:#d5dcd9;--acc:#0f766e;--on:#ffffff;--r:10px;
+--font:"Geist","Satoshi",ui-sans-serif,system-ui,"Segoe UI",sans-serif;--mono:"Geist Mono","JetBrains Mono",ui-monospace,Consolas,monospace}
+@media(prefers-color-scheme:dark){:root{--bg:#0c0f0e;--panel:#141917;--ink:#e8ecea;--mute:#a2aeaa;--line:#2a3330;--acc:#2dd4bf;--on:#04201c}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--font)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+nav a{color:var(--mute);text-decoration:none;margin-left:24px;font-size:15px}
+nav a:hover,nav .logo{color:var(--ink)}
+nav .logo{font:600 18px var(--mono);margin:0;letter-spacing:-.02em}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+header.hero{padding:64px 0 40px;display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
+h1{font-size:clamp(34px,5vw,56px);line-height:1.05;letter-spacing:-.04em;max-width:14ch}
+.hero p{color:var(--mute);max-width:42ch;margin-top:16px}
+.toggle{display:inline-flex;border:1px solid var(--line);border-radius:var(--r);padding:4px;background:var(--panel)}
+.toggle button{font:inherit;font-size:14px;color:var(--mute);background:none;border:0;border-radius:calc(var(--r) - 4px);padding:6px 14px;cursor:pointer;transition:background .2s,color .2s}
+.toggle button[aria-pressed=true]{background:var(--acc);color:var(--on)}
+.plans{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:32px;align-items:start}
+.plan{padding:24px 0;border-top:1px solid var(--line);transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.plan.feat{background:var(--panel);border:1px solid var(--acc);border-radius:var(--r);padding:32px 28px;margin-top:-16px;box-shadow:0 18px 40px -24px color-mix(in srgb,var(--acc) 55%,transparent)}
+.plan:hover{transform:translateY(-3px)}
+.plan h2{font-size:20px;letter-spacing:-.02em}
+.plan .for{color:var(--mute);font-size:15px;min-height:48px;margin-top:4px}
+.price{font:600 44px/1 var(--mono);letter-spacing:-.04em;margin:20px 0 4px}
+.price small{font:400 14px var(--font);color:var(--mute);letter-spacing:0}
+.plan ul{list-style:none;padding:0;margin:20px 0 24px;display:grid;gap:8px;font-size:15px}
+.btn{display:inline-block;text-align:center;padding:11px 20px;border-radius:var(--r);border:1px solid var(--ink);color:var(--ink);text-decoration:none;font-weight:500;white-space:nowrap;transition:transform .15s,background .2s}
+.btn:active{transform:scale(.98)}
+.feat .btn{background:var(--acc);border-color:var(--acc);color:var(--on)}
+.btn:hover{background:color-mix(in srgb,var(--ink) 8%,transparent)}
+.feat .btn:hover{filter:brightness(1.08)}
+h3.sec{font-size:28px;letter-spacing:-.03em;margin:96px 0 24px}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:15px;min-width:560px}
+th,td{text-align:left;padding:12px 16px 12px 0}
+thead th{font-weight:600;border-bottom:1px solid var(--ink)}
+tbody th{font-weight:400;color:var(--mute)}
+td{font-family:var(--mono);font-size:14px}
+tr.grp th{color:var(--ink);font-weight:600;padding-top:28px}
+details{border-bottom:1px solid var(--line);padding:16px 0;max-width:720px}
+summary{cursor:pointer;font-weight:500;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::after{content:"+";font-family:var(--mono);color:var(--acc)}
+details[open] summary::after{content:"-"}
+details p{color:var(--mute);margin-top:8px;max-width:62ch}
+footer{margin-top:96px;padding:24px 0 48px;border-top:1px solid var(--line);color:var(--mute);font-size:14px}
+@media(prefers-reduced-motion:no-preference){.plan{animation:rise .7s cubic-bezier(.16,1,.3,1) both}.plan:nth-child(2){animation-delay:.08s}.plan:nth-child(3){animation-delay:.16s}}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}}
+@media(max-width:768px){.plans{grid-template-columns:1fr;gap:16px}.plan.feat{margin-top:0}.plan .for{min-height:0}nav a:not(.logo){margin-left:14px}header.hero{padding-top:40px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><a class="logo" href="#">cordwood</a><div><a href="#compare">Compare</a><a href="#faq">FAQ</a><a href="#">Docs</a></div></nav>
+<header class="hero">
+<div><h1>Pricing that follows your log volume.</h1>
+<p>Flat monthly plans for teams of 2 to 20. No per-seat fees, no surprise ingest bills.</p></div>
+<div class="toggle" role="group" aria-label="Billing period">
+<button type="button" data-mode="m" aria-pressed="true">Monthly</button>
+<button type="button" data-mode="a" aria-pressed="false">Annual, 2 months free</button></div>
+</header>
+<main>
+<section class="plans" aria-label="Plans">
+<article class="plan"><h2>Hobby</h2><p class="for">For side projects and trying Cordwood on one service.</p>
+<div class="price">$<span data-m="0" data-a="0">0</span><small> /month</small></div>
+<ul><li>2 GB ingest per month</li><li>3 day retention</li><li>2 team members</li></ul>
+<a class="btn" href="#">Create account</a></article>
+<article class="plan feat"><h2>Team</h2><p class="for">For a product team running several services in production.</p>
+<div class="price">$<span data-m="49" data-a="41">49</span><small> /month</small></div>
+<ul><li>50 GB ingest per month</li><li>30 day retention</li><li>Up to 15 team members</li><li>Saved queries and Slack alerts</li></ul>
+<a class="btn" href="#">Start trial</a></article>
+<article class="plan"><h2>Scale</h2><p class="for">For teams that need long retention and audit trails.</p>
+<div class="price">$<span data-m="189" data-a="158">189</span><small> /month</small></div>
+<ul><li>400 GB ingest per month</li><li>1 year retention</li><li>Unlimited team members</li><li>SSO and audit log</li></ul>
+<a class="btn" href="#">Talk to sales</a></article>
+</section>
+<section id="compare"><h3 class="sec">Compare plans</h3>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Feature</th><th scope="col">Hobby</th><th scope="col">Team</th><th scope="col">Scale</th></tr></thead>
+<tbody>
+<tr class="grp"><th scope="colgroup" colspan="4">Volume</th></tr>
+<tr><th scope="row">Monthly ingest</th><td>2 GB</td><td>50 GB</td><td>400 GB</td></tr>
+<tr><th scope="row">Retention</th><td>3 days</td><td>30 days</td><td>365 days</td></tr>
+<tr class="grp"><th scope="colgroup" colspan="4">Workflow</th></tr>
+<tr><th scope="row">Saved queries</th><td>5</td><td>Unlimited</td><td>Unlimited</td></tr>
+<tr><th scope="row">Slack and PagerDuty alerts</th><td>-</td><td>Included</td><td>Included</td></tr>
+<tr><th scope="row">Team members</th><td>2</td><td>15</td><td>Unlimited</td></tr>
+<tr class="grp"><th scope="colgroup" colspan="4">Security</th></tr>
+<tr><th scope="row">SSO (SAML)</th><td>-</td><td>-</td><td>Included</td></tr>
+<tr><th scope="row">Audit log</th><td>-</td><td>-</td><td>Included</td></tr>
+<tr><th scope="row">Support</th><td>Community</td><td>Email, 1 day</td><td>Shared channel, 4 hours</td></tr>
+</tbody></table></div>
+</section>
+<section id="faq"><h3 class="sec">Questions</h3>
+<details><summary>What counts as ingest?</summary><p>The compressed size of log lines we store after parsing. Dropped and filtered lines are not counted.</p></details>
+<details><summary>What happens if we go over our limit?</summary><p>We keep ingesting and email you. After two overages in a row we suggest the next plan. Nothing is cut off mid-incident.</p></details>
+<details><summary>Can we change plans later?</summary><p>Yes. Upgrades apply immediately and downgrades start at the next billing date.</p></details>
+<details><summary>Do you offer self-hosting?</summary><p>Not today. Scale customers can choose an EU or US storage region.</p></details>
+</section>
+</main>
+<footer>Cordwood Labs. Prices in USD, excluding tax.</footer>
+</div>
+<script>
+const btns=document.querySelectorAll(".toggle button"),prices=document.querySelectorAll(".price span");
+btns.forEach(b=>b.addEventListener("click",()=>{
+  btns.forEach(x=>x.setAttribute("aria-pressed",x===b));
+  prices.forEach(p=>p.textContent=p.dataset[b.dataset.mode]);
+}));
+</script>
+</body>
+</html>
+```

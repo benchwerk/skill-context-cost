@@ -1,0 +1,117 @@
+```html
+<!-- Reading this as: internal dashboard for clinic front-desk staff, calm trust-first language, native CSS with one teal accent, light and dark via prefers-color-scheme. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Larkspur Dental - Appointments</title>
+<style>
+:root{--bg:#f4f6f6;--panel:#fbfcfc;--ink:#18211f;--mute:#566360;--line:#d9e0de;--acc:#0f766e;--accInk:#ffffff;--tint:#e1f0ee;--warn:#9a5b00;--r:8px}
+@media (prefers-color-scheme:dark){:root{--bg:#121816;--panel:#192220;--ink:#e6ece9;--mute:#9aaaa5;--line:#2b3834;--acc:#4fb8ac;--accInk:#0e1a18;--tint:#1d3330;--warn:#e0a24a}}
+*{box-sizing:border-box;margin:0}
+body{font:15px/1.5 Geist,"Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--ink)}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 48px}
+header{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:20px}
+h1{font-size:28px;letter-spacing:-.03em;line-height:1.1}
+header p{color:var(--mute)}
+button{font:inherit;color:inherit;cursor:pointer;border-radius:var(--r);transition:transform .2s cubic-bezier(.16,1,.3,1),background .2s}
+button:active{transform:scale(.97)}
+button:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.primary{background:var(--acc);color:var(--accInk);border:0;padding:9px 16px;font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--line);margin-bottom:28px}
+.stat{padding:18px 20px 18px 0}
+.stat+.stat{padding-left:20px;border-left:1px solid var(--line)}
+.stat b{display:block;font:600 34px/1.1 "Geist Mono",ui-monospace,Consolas,monospace;letter-spacing:-.04em}
+.stat span{color:var(--mute);font-size:13px}
+.grid{display:grid;grid-template-columns:2fr 1fr;gap:32px}
+h2{font-size:17px;letter-spacing:-.01em;margin-bottom:12px}
+.row{display:grid;grid-template-columns:64px 40px 1fr auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);animation:in .5s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(var(--i)*50ms)}
+.row:last-child{border-bottom:0}
+.time{font:500 14px "Geist Mono",ui-monospace,Consolas,monospace;color:var(--mute)}
+.av{width:40px;height:40px;border-radius:var(--r);background:var(--tint);color:var(--acc);display:grid;place-items:center;font-weight:700;font-size:13px}
+.row strong{display:block;font-weight:600}
+.row small{color:var(--mute)}
+.st{border:1px solid var(--line);background:transparent;padding:6px 12px;font-size:13px;min-width:112px}
+.st.done{color:var(--mute);border-color:transparent}
+.st.waiting{background:var(--acc);color:var(--accInk);border-color:var(--acc);font-weight:600}
+.st.unconfirmed{color:var(--warn);border-color:var(--warn)}
+.week{display:grid;gap:4px}
+.day{display:grid;grid-template-columns:48px 1fr 28px;gap:12px;align-items:center;padding:10px 12px;border:1px solid transparent;background:transparent;text-align:left;width:100%}
+.day:hover{background:var(--panel)}
+.day[aria-pressed=true]{background:var(--panel);border-color:var(--acc)}
+.day em{font-style:normal;font-weight:600}
+.day i{display:block;height:6px;border-radius:3px;background:var(--acc);transform-origin:left;animation:grow .6s cubic-bezier(.16,1,.3,1) both}
+.day span{font:13px "Geist Mono",ui-monospace,Consolas,monospace;color:var(--mute);text-align:right}
+.empty{padding:40px 0;color:var(--mute);border-top:1px solid var(--line)}
+.empty b{display:block;color:var(--ink);font-size:16px;margin-bottom:4px}
+@keyframes in{from{opacity:0;transform:translateY(10px)}}
+@keyframes grow{from{transform:scaleX(0)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (max-width:768px){.grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.stat:nth-child(3){padding-left:0;border-left:0}.row{grid-template-columns:52px 1fr auto}.av{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div><h1 id="title">Today</h1><p id="sub"></p></div>
+    <button class="primary" id="add">New appointment</button>
+  </header>
+  <section class="stats" id="stats" aria-label="Summary"></section>
+  <div class="grid">
+    <section><h2>Schedule</h2><div id="list"></div></section>
+    <section><h2>This week</h2><div class="week" id="week"></div></section>
+  </div>
+</div>
+<script>
+// Sample data. Fields: start, patient, treatment, minutes, status
+const D=[
+ [["08:30","Marit Ostrowski","Hygiene clean",45,"done"],["09:30","Tobias Adeyemi","Crown fitting",60,"done"],["11:00","Priya Venkataraman","Check-up",30,"done"],["14:00","Lena Fairweather","Root canal, visit 2",90,"done"]],
+ [["08:00","Callum Reyes","Filling",45,"done"],["09:15","Ingrid Solheim","Whitening consult",30,"done"],["10:30","Dara Nwosu","Extraction",60,"done"],["13:00","Hugo Lindqvist","Check-up",30,"done"],["15:30","Beatriz Moreau","Hygiene clean",45,"done"]],
+ [],
+ [["08:30","Oskar Brandt","Hygiene clean",45,"done"],["09:30","Yuki Tanabe","Check-up",30,"done"],["10:15","Fiona McAllister","Filling",45,"waiting"],["11:30","Rashid Okafor","Crown prep",90,"confirmed"],["14:00","Elodie Fontaine","Orthodontic review",30,"confirmed"],["15:00","Mateus Carvalho","Hygiene clean",45,"unconfirmed"],["16:00","Greta Hallström","Emergency pain slot",30,"unconfirmed"]],
+ [["09:00","Samir Haddad","Implant consult",45,"confirmed"],["11:00","Noor Abbasi","Check-up",30,"unconfirmed"]],
+ [["09:00","Wren Calloway","Check-up",30,"confirmed"],["10:00","Anselm Petrov","Filling",45,"confirmed"],["11:00","Jorun Kvam","Hygiene clean",45,"unconfirmed"]]];
+const NAMES=["Mon","Tue","Wed","Thu","Fri","Sat"], CAP=6*60; // booked-minute capacity per day, used for open slot estimate
+const now=new Date(), off=(now.getDay()+6)%7, mon=new Date(now);
+mon.setDate(now.getDate()-off);
+const todayIdx=off>5?0:off; let sel=todayIdx;
+const $=id=>document.getElementById(id);
+const fmt=d=>d.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"});
+const dateOf=i=>{const d=new Date(mon);d.setDate(mon.getDate()+i);return d};
+const mins=a=>a.reduce((s,x)=>s+x[3],0);
+const label={done:"Completed",waiting:"Check in done",confirmed:"Check in",unconfirmed:"Confirm by phone"};
+
+function render(){
+  const a=D[sel], d=dateOf(sel), open=Math.max(0,Math.round((CAP-mins(a))/30));
+  $("title").textContent=sel===todayIdx?"Today":NAMES[sel]+"day".replace("day","");
+  $("sub").textContent=fmt(d);
+  $("stats").innerHTML=[[a.length,"Appointments"],[(mins(a)/60).toFixed(1),"Chair hours booked"],[a.filter(x=>x[4]==="unconfirmed").length,"Awaiting confirmation"],[open,"Open 30 min slots"]]
+    .map(s=>`<div class="stat"><b>${s[0]}</b><span>${s[1]}</span></div>`).join("");
+  $("list").innerHTML=a.length?a.map((x,i)=>{
+    const ini=x[1].split(" ").map(w=>w[0]).join("");
+    return `<div class="row" style="--i:${i}"><span class="time">${x[0]}</span><div class="av">${ini}</div>
+      <div><strong>${x[1]}</strong><small>${x[2]}, ${x[3]} min</small></div>
+      <button class="st ${x[4]}" data-i="${i}" ${x[4]==="done"?"disabled":""}>${label[x[4]]}</button></div>`}).join("")
+    :`<div class="empty"><b>Nothing booked for ${NAMES[sel]}</b>Use New appointment to add the first patient.</div>`;
+  $("week").innerHTML=D.map((x,i)=>`<button class="day" data-d="${i}" aria-pressed="${i===sel}">
+    <em>${NAMES[i]} ${dateOf(i).getDate()}</em><div>${x.length?`<i style="width:${Math.round(mins(x)/CAP*100)}%"></i>`:""}</div><span>${x.length}</span></button>`).join("");
+}
+$("list").onclick=e=>{
+  const b=e.target.closest("button[data-i]"); if(!b) return;
+  const x=D[sel][b.dataset.i];
+  x[4]=x[4]==="confirmed"?"waiting":x[4]==="unconfirmed"?"confirmed":x[4]==="waiting"?"done":x[4];
+  render();
+};
+$("week").onclick=e=>{const b=e.target.closest("button[data-d]"); if(b){sel=+b.dataset.d;render()}};
+$("add").onclick=()=>{
+  const t=prompt("Patient name and time, e.g. Ana Pereira 16:30"); if(!t) return;
+  const m=t.match(/^(.+?)\s+(\d{1,2}:\d{2})$/); if(!m) return alert("Please use: Name HH:MM");
+  D[sel].push([m[2].padStart(5,"0"),m[1],"Check-up",30,"unconfirmed"]);
+  D[sel].sort((p,q)=>p[0].localeCompare(q[0])); render();
+};
+render();
+</script>
+</body>
+</html>
+```

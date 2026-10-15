@@ -1,0 +1,131 @@
+```html
+<!-- Reading this as: About page for a fintech start-up, for prospective customers and candidates, with a calm trust-first language, leaning toward native CSS + system sans + one emerald accent. Dials 6 / 4 / 4. Stats and names are mock data. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About Halden Finance</title>
+<style>
+:root{--bg:#f4f5f3;--surface:#e9ece8;--ink:#1c211e;--muted:#4d5651;--line:#cfd5cf;--accent:#0b6b4d;--on-accent:#f4f5f3;--r:10px}
+@media (prefers-color-scheme:dark){:root{--bg:#121513;--surface:#1a1f1c;--ink:#e6eae6;--muted:#a3ada6;--line:#2b322d;--accent:#4fd1a1;--on-accent:#0e1a14}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 "Geist","Satoshi",system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+section{padding:96px 0}
+h1,h2{letter-spacing:-.03em;line-height:1.08;font-weight:650}
+h1{font-size:clamp(2.2rem,5vw,4rem);max-width:15ch}
+h2{font-size:clamp(1.7rem,3.2vw,2.5rem);margin-bottom:20px}
+p{color:var(--muted);max-width:62ch}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+nav{height:68px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:10}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:100%}
+nav b{font-size:1.15rem;letter-spacing:-.02em}
+nav div{display:flex;gap:28px;font-size:.95rem}
+nav a{text-decoration:none;color:var(--muted)}nav a:hover{color:var(--ink)}
+.btn{display:inline-block;white-space:nowrap;padding:13px 22px;border-radius:var(--r);background:var(--accent);color:var(--on-accent);font-weight:600;text-decoration:none;border:1px solid var(--accent);cursor:pointer;font:inherit;font-weight:600;transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:scale(.98)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+.hero{padding:56px 0 80px;min-height:calc(100dvh - 68px);display:grid;align-items:center}
+.hero .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center}
+.hero p{margin:22px 0 32px;font-size:1.1rem}
+.hero .acts{display:flex;gap:12px;flex-wrap:wrap}
+.hero img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r);margin-top:40px;background:var(--surface)}
+.mission .wrap{display:grid;grid-template-columns:1fr 2fr;gap:56px}
+.mission blockquote{font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.3;letter-spacing:-.02em}
+.mission p{margin-top:20px}
+.nums{display:grid;grid-template-columns:1.4fr 1fr 1fr;grid-template-rows:repeat(2,minmax(170px,auto));gap:16px}
+.nums div{padding:28px;border-radius:var(--r);background:var(--surface);display:flex;flex-direction:column;justify-content:flex-end}
+.nums div:first-child{grid-row:span 2;background:var(--accent);color:var(--on-accent)}
+.nums div:first-child small{color:inherit;opacity:.85}
+.nums strong{font-size:clamp(2.2rem,5vw,3.6rem);letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.nums small{margin-top:10px;color:var(--muted);font-size:.95rem}
+.team{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:40px}
+.team figure:nth-child(even){margin-top:40px}
+.team img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:var(--r);background:var(--surface);filter:grayscale(.25);transition:filter .4s}
+.team figure:hover img{filter:none}
+.team b{display:block;margin-top:12px}
+.team span{color:var(--muted);font-size:.92rem}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:28px 0}
+.filters button{padding:8px 16px;border-radius:var(--r);border:1px solid var(--line);background:transparent;color:var(--ink);font:inherit;cursor:pointer}
+.filters button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+details{border-bottom:1px solid var(--line)}
+summary{display:flex;justify-content:space-between;gap:16px;padding:20px 0;cursor:pointer;font-weight:600;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary span{color:var(--muted);font-weight:400}
+details[open] summary{color:var(--accent)}
+details p{padding-bottom:20px}
+details .btn{margin-bottom:24px}
+#none{display:none;padding:32px;border:1px dashed var(--line);border-radius:var(--r)}
+footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:.9rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+@media (prefers-reduced-motion:no-preference){
+.rise{animation:rise .8s cubic-bezier(.16,1,.3,1) both}
+@supports (animation-timeline:view()){.nums div,.team figure,.mission .wrap{animation:rise both linear;animation-timeline:view();animation-range:entry 0% entry 45%}}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}}
+@media (max-width:767px){
+section{padding:64px 0}nav div{gap:16px;font-size:.85rem}
+.hero .wrap,.mission .wrap{grid-template-columns:1fr;gap:32px}.hero img{margin-top:0;aspect-ratio:4/3}
+.nums{grid-template-columns:1fr;grid-template-rows:none}.nums div:first-child{grid-row:auto}
+.team{grid-template-columns:1fr 1fr}.team figure:nth-child(even){margin-top:0}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><b>Halden</b><div><a href="#mission">Mission</a><a href="#numbers">Numbers</a><a href="#team">Leadership</a><a href="#careers">Careers</a></div></div></nav>
+<header class="hero"><div class="wrap">
+<div class="rise"><h1>Money software that treats small businesses as equals</h1>
+<p>Halden builds business accounts, payouts and credit for companies that banks overlook.</p>
+<div class="acts"><a class="btn" href="#careers">See open roles</a><a class="btn ghost" href="#mission">Our mission</a></div></div>
+<img class="rise" src="https://picsum.photos/seed/halden-office-team/900/1100" alt="Halden team reviewing a payments roadmap at a shared table" width="900" height="1100">
+</div></header>
+<section id="mission" class="mission"><div class="wrap">
+<h2>Mission</h2>
+<div><blockquote>Every business should be able to move, hold and borrow money with the same speed and clarity as a bank with a thousand staff.</blockquote>
+<p>We were founded in 2021 by two ex-bank engineers who spent years watching good companies wait days for a transfer and weeks for a credit decision. We build the plumbing so they do not have to.</p></div>
+</div></section>
+<section id="numbers"><div class="wrap">
+<h2>Halden in numbers</h2>
+<!-- mock figures -->
+<div class="nums">
+<div><strong>$3.17B</strong><small>Payments processed in the last twelve months</small></div>
+<div><strong>41,800</strong><small>Businesses with a live account</small></div>
+<div><strong>1.4 sec</strong><small>Median payout time</small></div>
+<div><strong>38</strong><small>Countries where customers get paid</small></div>
+<div><strong>47.2%</strong><small>Customers who first applied for credit with us</small></div>
+</div></div></section>
+<section id="team"><div class="wrap">
+<h2>Leadership</h2>
+<p>Four people who have each run payments, risk or compliance at scale.</p>
+<div class="team">
+<figure><img src="https://picsum.photos/seed/halden-leader-amara/600/800" alt="Portrait of Amara Okonkwo-Reyes" width="600" height="800" loading="lazy"><b>Amara Okonkwo-Reyes</b><span>Co-founder and CEO</span></figure>
+<figure><img src="https://picsum.photos/seed/halden-leader-tomasz/600/800" alt="Portrait of Tomasz Wieczorek" width="600" height="800" loading="lazy"><b>Tomasz Wieczorek</b><span>Co-founder and CTO</span></figure>
+<figure><img src="https://picsum.photos/seed/halden-leader-priya/600/800" alt="Portrait of Priya Venkataraman" width="600" height="800" loading="lazy"><b>Priya Venkataraman</b><span>Chief Risk Officer</span></figure>
+<figure><img src="https://picsum.photos/seed/halden-leader-lars/600/800" alt="Portrait of Lars Eriksen-Baptiste" width="600" height="800" loading="lazy"><b>Lars Eriksen-Baptiste</b><span>Head of Compliance</span></figure>
+</div></div></section>
+<section id="careers"><div class="wrap">
+<h2>Open roles</h2>
+<p>We hire in small batches and reply to every application within five working days.</p>
+<div class="filters" role="group" aria-label="Filter roles by team">
+<button aria-pressed="true" data-t="all">All teams</button><button aria-pressed="false" data-t="Engineering">Engineering</button><button aria-pressed="false" data-t="Risk">Risk</button><button aria-pressed="false" data-t="Support">Support</button><button aria-pressed="false" data-t="Legal">Legal</button></div>
+<div id="roles">
+<details data-t="Engineering"><summary>Senior Backend Engineer, Ledger<span>Engineering, Remote (EU)</span></summary><p>Own the double-entry ledger that records every movement of customer funds. You will work in Go and Postgres.</p><a class="btn" href="#apply">Apply now</a></details>
+<details data-t="Engineering"><summary>Staff Engineer, Payouts<span>Engineering, Berlin</span></summary><p>Design the routing layer that decides how each payout reaches a bank in under two seconds.</p><a class="btn" href="#apply">Apply now</a></details>
+<details data-t="Risk"><summary>Credit Risk Analyst<span>Risk, London</span></summary><p>Build and monitor the models that price short-term credit for small merchants.</p><a class="btn" href="#apply">Apply now</a></details>
+<details data-t="Support"><summary>Customer Support Lead<span>Support, Lisbon</span></summary><p>Lead a team of eight who answer questions about money, so accuracy matters more than speed.</p><a class="btn" href="#apply">Apply now</a></details>
+</div>
+<div id="none">No open roles in this team right now. Choose another team or check back next month.</div>
+</div></section>
+<footer><div class="wrap"><span>Halden Finance Ltd. Authorised and regulated e-money institution.</span><span>hello@halden.example</span></div></footer>
+<script>
+const btns=document.querySelectorAll(".filters button"),rows=document.querySelectorAll("#roles details"),none=document.getElementById("none");
+btns.forEach(b=>b.addEventListener("click",()=>{
+  btns.forEach(x=>x.setAttribute("aria-pressed",x===b));
+  let n=0;
+  rows.forEach(r=>{const show=b.dataset.t==="all"||r.dataset.t===b.dataset.t;r.hidden=!show;if(show)n++});
+  none.style.display=n?"none":"block";
+}));
+</script>
+</body>
+</html>
+```

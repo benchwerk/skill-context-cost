@@ -1,0 +1,139 @@
+```html
+<!doctype html>
+<!-- Design Read: mobile sign-up flow for language learners, calm consumer language, native CSS + vanilla JS, one teal accent, system fonts (swap in Geist via @font-face when self-hosting). Dials 5/4/3. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Create your Parlo account</title>
+<style>
+:root{--bg:#f4f5f3;--surface:#fbfcfa;--text:#1d2420;--muted:#4f5b54;--line:#c9d0ca;--accent:#0f766e;--on-accent:#f4fbf9;--err:#b42318;--r:12px}
+@media (prefers-color-scheme:dark){:root{--bg:#121714;--surface:#1a211d;--text:#e6ebe7;--muted:#a3afa7;--line:#3a453e;--accent:#4fd1b5;--on-accent:#0a2620;--err:#ff8a7a}}
+*{box-sizing:border-box;margin:0}
+body{min-height:100dvh;background:var(--bg);color:var(--text);font:16px/1.5 Geist,ui-sans-serif,system-ui,"Segoe UI",sans-serif;display:flex;justify-content:center}
+main{width:100%;max-width:440px;padding:20px 16px 32px;display:flex;flex-direction:column;gap:20px}
+.bars{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;list-style:none;padding:0}
+.bars li{font-size:13px;color:var(--muted);border-top:3px solid var(--line);padding-top:6px;transition:border-color .3s,color .3s}
+.bars li.on{border-color:var(--accent);color:var(--text);font-weight:600}
+.hero{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:var(--r);background:var(--line)}
+h1{font-size:clamp(1.75rem,7vw,2.25rem);letter-spacing:-.03em;line-height:1.1}
+.sub{color:var(--muted);max-width:40ch;margin-top:8px}
+section{display:none;flex-direction:column;gap:18px}
+section.show{display:flex}
+@media (prefers-reduced-motion:no-preference){section.show{animation:in .45s cubic-bezier(.16,1,.3,1)}@keyframes in{from{opacity:0;transform:translateY(14px)}}}
+.field{display:flex;flex-direction:column;gap:8px}
+label,legend{font-weight:600;font-size:15px}
+input[type=email],input[type=password],input[type=text]{font:inherit;color:var(--text);background:var(--surface);border:1.5px solid var(--muted);border-radius:var(--r);padding:14px;min-height:52px;width:100%}
+input:focus-visible,button:focus-visible,.opt:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:2px}
+.help{font-size:14px;color:var(--muted)}
+.error{font-size:14px;color:var(--err);min-height:0}
+input[aria-invalid=true]{border-color:var(--err)}
+fieldset{border:0;padding:0;display:grid;gap:10px}
+.opt{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px;min-height:60px;background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r);cursor:pointer;transition:transform .2s,border-color .2s}
+.opt:active{transform:scale(.98)}
+.opt:has(input:checked){border-color:var(--accent);box-shadow:inset 0 0 0 1.5px var(--accent)}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt b{display:block}
+.opt small{color:var(--muted);font-size:14px}
+.opt .num{font-size:20px;font-weight:600;letter-spacing:-.02em;white-space:nowrap}
+.btn{font:inherit;font-weight:600;min-height:54px;border-radius:var(--r);border:1.5px solid var(--accent);background:var(--accent);color:var(--on-accent);cursor:pointer;transition:transform .2s;padding:0 20px;white-space:nowrap}
+.btn:active{transform:translateY(1px) scale(.98)}
+.btn.ghost{background:transparent;color:var(--text);border-color:var(--muted)}
+.row{display:grid;grid-template-columns:auto 1fr;gap:10px}
+.row .btn:only-child{grid-column:1/-1}
+.done{padding:18px;border:1.5px solid var(--line);border-radius:var(--r);background:var(--surface)}
+</style>
+</head>
+<body>
+<main>
+  <ol class="bars" aria-label="Sign-up progress">
+    <li class="on">Account</li><li>Language</li><li>Daily goal</li>
+  </ol>
+
+  <section id="s0" class="show" aria-labelledby="h0">
+    <img class="hero" src="https://picsum.photos/seed/market-street-signs/800/450" width="800" height="450" alt="Colourful shop signs along a market street" fetchpriority="high">
+    <div><h1 id="h0">Start speaking in weeks</h1><p class="sub">Make a free account to save your progress on every device.</p></div>
+    <form class="field" style="gap:16px" novalidate data-next>
+      <div class="field"><label for="email">Email</label>
+        <input id="email" type="email" autocomplete="email" inputmode="email" placeholder="name@example.com" aria-describedby="e-err">
+        <p class="error" id="e-err" role="alert"></p></div>
+      <div class="field"><label for="pw">Password</label>
+        <input id="pw" type="password" autocomplete="new-password" aria-describedby="p-help p-err">
+        <p class="help" id="p-help">At least 8 characters.</p>
+        <p class="error" id="p-err" role="alert"></p></div>
+      <div class="row"><button class="btn">Create account</button></div>
+    </form>
+  </section>
+
+  <section id="s1" aria-labelledby="h1">
+    <div><h1 id="h1">What do you want to learn?</h1><p class="sub">You can add more languages later.</p></div>
+    <form class="field" style="gap:16px" data-next>
+      <fieldset><legend class="sr" style="position:absolute;left:-9999px">Language</legend>
+        <label class="opt"><span><b>Spanish</b><small>Most popular with beginners</small></span><input type="radio" name="lang" value="Spanish" checked></label>
+        <label class="opt"><span><b>Japanese</b><small>Starts with kana</small></span><input type="radio" name="lang" value="Japanese"></label>
+        <label class="opt"><span><b>Portuguese</b><small>Brazilian and European</small></span><input type="radio" name="lang" value="Portuguese"></label>
+        <label class="opt"><span><b>Korean</b><small>Starts with Hangul</small></span><input type="radio" name="lang" value="Korean"></label>
+      </fieldset>
+      <div class="row"><button type="button" class="btn ghost" data-back>Back</button><button class="btn">Continue</button></div>
+    </form>
+  </section>
+
+  <section id="s2" aria-labelledby="h2">
+    <div><h1 id="h2">Pick a daily goal</h1><p class="sub">Short and steady beats long and rare.</p></div>
+    <form class="field" style="gap:16px" data-next>
+      <fieldset><legend style="position:absolute;left:-9999px">Daily goal</legend>
+        <label class="opt"><span><b>Casual</b><small>A coffee break</small></span><span class="num">5 min</span><input type="radio" name="goal" value="5 minutes" checked></label>
+        <label class="opt"><span><b>Regular</b><small>Best for habit building</small></span><span class="num">10 min</span><input type="radio" name="goal" value="10 minutes"></label>
+        <label class="opt"><span><b>Serious</b><small>Visible progress each week</small></span><span class="num">15 min</span><input type="radio" name="goal" value="15 minutes"></label>
+        <label class="opt"><span><b>Intense</b><small>Fastest route to fluency</small></span><span class="num">20 min</span><input type="radio" name="goal" value="20 minutes"></label>
+      </fieldset>
+      <div class="row"><button type="button" class="btn ghost" data-back>Back</button><button class="btn">Start learning</button></div>
+    </form>
+  </section>
+
+  <section id="s3" aria-labelledby="h3">
+    <h1 id="h3" tabindex="-1">You're all set</h1>
+    <p class="done" id="summary" aria-live="polite"></p>
+    <button class="btn" type="button" id="restart">Edit my choices</button>
+  </section>
+</main>
+<script>
+const secs=[...document.querySelectorAll("section")],bars=[...document.querySelectorAll(".bars li")];
+let at=0;
+function go(n){
+  at=n;
+  secs.forEach((s,i)=>s.classList.toggle("show",i===n));
+  bars.forEach((b,i)=>{b.classList.toggle("on",i<=Math.min(n,2));b.toggleAttribute("aria-current",i===n)});
+  const target=secs[n].querySelector("input:checked,input,h1");
+  target.focus({preventScroll:true});scrollTo({top:0});
+}
+function fail(input,msgId,msg){
+  const el=document.getElementById(msgId);el.textContent=msg;
+  input.toggleAttribute("aria-invalid",!!msg);if(msg)input.setAttribute("aria-invalid","true");
+  return !msg;
+}
+function validAccount(){
+  const e=document.getElementById("email"),p=document.getElementById("pw");
+  const okE=fail(e,"e-err",/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e.value.trim())?"":"Enter an email like name@example.com.");
+  const okP=fail(p,"p-err",p.value.length>=8?"":"Your password needs at least 8 characters.");
+  if(!okE)e.focus();else if(!okP)p.focus();
+  return okE&&okP;
+}
+document.querySelectorAll("form[data-next]").forEach((f,i)=>f.addEventListener("submit",ev=>{
+  ev.preventDefault();
+  if(i===0&&!validAccount())return;
+  if(i===2){
+    const d=new FormData(secs[1].querySelector("form")),g=new FormData(f);
+    document.getElementById("summary").textContent=`Welcome. You'll learn ${d.get("lang")} for ${g.get("goal")} a day. Your first lesson is ready.`;
+  }
+  go(i+1);
+}));
+document.querySelectorAll("[data-back]").forEach(b=>b.addEventListener("click",()=>go(at-1)));
+document.getElementById("restart").addEventListener("click",()=>go(1));
+["email","pw"].forEach(id=>document.getElementById(id).addEventListener("input",e=>{
+  e.target.removeAttribute("aria-invalid");document.getElementById(id==="pw"?"p-err":"e-err").textContent="";
+}));
+</script>
+</body>
+</html>
+```

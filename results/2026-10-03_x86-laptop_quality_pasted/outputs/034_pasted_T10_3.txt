@@ -1,0 +1,158 @@
+```html
+<!DOCTYPE html>
+<!-- Design Read: event page for working designers, with a confident modern-sans language, leaning toward native CSS + restrained motion. Dials 7/5/3. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Offset 2027, a two-day design conference in Rotterdam</title>
+<style>
+:root{color-scheme:light dark;--bg:#f3f3f1;--fg:#16171a;--mute:#53565d;--card:#e8e8e5;--line:#cfd0cc;--accent:#ff6a3d;--accent-ink:#b8400f;--r:10px}
+@media (prefers-color-scheme:dark){:root{--bg:#121316;--fg:#ececea;--mute:#a4a7ae;--card:#1b1d21;--line:#2c2f35;--accent-ink:#ff8a63}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 "Geist","Helvetica Neue",Arial,sans-serif}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+section{padding:96px 0}
+h1,h2,h3{letter-spacing:-.03em;line-height:1.05}
+h1{font-size:clamp(2.4rem,5.4vw,4.6rem);max-width:12ch}
+h2{font-size:clamp(1.9rem,3.4vw,2.8rem);margin-bottom:12px}
+p.lead{color:var(--mute);max-width:60ch}
+nav{position:sticky;top:0;z-index:40;background:var(--bg);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+nav ul{display:flex;gap:28px;list-style:none;padding:0}
+nav a{text-decoration:none;font-size:.95rem;color:var(--mute)}
+nav a:hover{color:var(--fg)}
+.logo{font-weight:700;letter-spacing:-.04em;font-size:1.25rem;color:var(--fg)}
+.btn{display:inline-block;white-space:nowrap;padding:12px 22px;border-radius:var(--r);background:var(--accent);color:#16171a;font-weight:600;text-decoration:none;border:1px solid var(--accent);transition:transform .25s cubic-bezier(.16,1,.3,1)}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:scale(.98)}
+.btn.ghost{background:transparent;color:var(--fg);border-color:var(--line)}
+.hero{min-height:calc(100dvh - 64px);display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding:48px 0}
+.hero p.lead{margin:24px 0 32px;font-size:1.15rem}
+.hero .btns{display:flex;gap:12px;flex-wrap:wrap}
+.hero img{width:100%;height:min(70dvh,640px);object-fit:cover;border-radius:var(--r);margin-left:auto}
+.hero>*{animation:rise .9s cubic-bezier(.16,1,.3,1) both}.hero>:last-child{animation-delay:.15s}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}}
+.logos{display:flex;gap:48px;flex-wrap:wrap;align-items:center;padding:28px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.logos img{height:26px;opacity:.7}
+@media (prefers-color-scheme:dark){.logos img{filter:invert(1)}}
+.speakers{display:grid;grid-template-columns:1.4fr 1fr 1fr;grid-template-rows:repeat(2,minmax(260px,1fr));gap:16px;margin-top:40px}
+.sp{position:relative;overflow:hidden;border-radius:var(--r);background:var(--card);display:flex;flex-direction:column}
+.sp:first-child{grid-row:span 2}
+.sp img{width:100%;flex:1;min-height:0;object-fit:cover;transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.sp:hover img{transform:scale(1.04)}
+.sp div{padding:16px 18px}.sp b{display:block;font-size:1.05rem}.sp span{color:var(--mute);font-size:.92rem}
+.tabs{display:flex;gap:8px;margin:32px 0 20px}
+.tabs button{font:inherit;cursor:pointer;padding:10px 20px;border-radius:var(--r);border:1px solid var(--line);background:transparent;color:var(--fg)}
+.tabs button[aria-selected=true]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.slot{display:grid;grid-template-columns:110px 1fr auto;gap:20px;padding:18px 20px;border-radius:var(--r);background:var(--card);margin-bottom:8px}
+.slot time{font-variant-numeric:tabular-nums;color:var(--accent-ink);font-weight:600}
+.slot small{color:var(--mute)}
+.venue{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.venue img{width:100%;height:440px;object-fit:cover;border-radius:var(--r)}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:28px}
+.facts dt{font-weight:600}.facts dd{color:var(--mute);margin:0}
+.tiers{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:16px;margin-top:40px;align-items:stretch}
+.tier{border:1px solid var(--line);border-radius:var(--r);padding:28px;display:flex;flex-direction:column;gap:14px}
+.tier.main{background:var(--accent);border-color:var(--accent);color:#16171a}
+.tier.main li{color:#16171a}
+.tier.main .btn{background:#16171a;color:#f3f3f1;border-color:#16171a}
+.price{font-size:2.6rem;font-weight:700;letter-spacing:-.04em}
+.tier ul{padding-left:18px;color:var(--mute);flex:1}
+footer{border-top:1px solid var(--line);padding:32px 0;color:var(--mute);font-size:.92rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s cubic-bezier(.16,1,.3,1)}.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+@media (max-width:768px){
+ section{padding:64px 0}nav ul{display:none}
+ .hero,.venue,.tiers,.facts{grid-template-columns:1fr}.hero{min-height:auto}.hero img{height:340px}
+ .speakers{grid-template-columns:1fr;grid-template-rows:none}.sp:first-child{grid-row:auto}.sp img{height:260px;flex:none}
+ .slot{grid-template-columns:1fr;gap:4px}.venue img{height:300px}
+}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+ <a class="logo" href="#top">Offset</a>
+ <ul><li><a href="#speakers">Speakers</a></li><li><a href="#schedule">Schedule</a></li><li><a href="#venue">Venue</a></li></ul>
+ <a class="btn" href="#tickets">Get tickets</a>
+</div></nav>
+<main id="top">
+<div class="wrap hero">
+ <div>
+  <h1>Two days of design, up close.</h1>
+  <p class="lead">Offset is a conference for working designers. Eleven talks, four workshops, one hall in Rotterdam, March 18 and 19, 2027.</p>
+  <div class="btns"><a class="btn" href="#tickets">Get tickets</a><a class="btn ghost" href="#schedule">See schedule</a></div>
+ </div>
+ <img src="https://picsum.photos/seed/offset-conference-stage/900/1100" width="900" height="1100" alt="A speaker on a lit stage in front of a seated audience">
+</div>
+<div class="wrap"><div class="logos" aria-label="Partners">
+ <img src="https://cdn.simpleicons.org/figma/16171a" alt="Figma">
+ <img src="https://cdn.simpleicons.org/framer/16171a" alt="Framer">
+ <img src="https://cdn.simpleicons.org/adobe/16171a" alt="Adobe">
+ <img src="https://cdn.simpleicons.org/notion/16171a" alt="Notion">
+ <img src="https://cdn.simpleicons.org/spotify/16171a" alt="Spotify">
+</div></div>
+
+<section id="speakers"><div class="wrap rv">
+ <h2>Speakers</h2>
+ <p class="lead">Practitioners from product, type and motion, talking about work that shipped.</p>
+ <div class="speakers">
+  <article class="sp"><img src="https://picsum.photos/seed/speaker-amara/700/900" alt="Portrait of Amara Okonkwo"><div><b>Amara Okonkwo</b><span>Head of Design, Tessel Health</span></div></article>
+  <article class="sp"><img src="https://picsum.photos/seed/speaker-tobias/500/500" alt="Portrait of Tobias Lindqvist"><div><b>Tobias Lindqvist</b><span>Type designer, Nordform</span></div></article>
+  <article class="sp"><img src="https://picsum.photos/seed/speaker-mei/500/500" alt="Portrait of Mei Takahashi"><div><b>Mei Takahashi</b><span>Motion lead, Kiln Studio</span></div></article>
+  <article class="sp"><img src="https://picsum.photos/seed/speaker-rafael/500/500" alt="Portrait of Rafael Quispe"><div><b>Rafael Quispe</b><span>Design engineer, Ledgerly</span></div></article>
+  <article class="sp"><img src="https://picsum.photos/seed/speaker-ines/500/500" alt="Portrait of Ines Vandermeer"><div><b>Ines Vandermeer</b><span>Research director, Common Ground</span></div></article>
+ </div>
+</div></section>
+
+<section id="schedule" style="background:var(--card)"><div class="wrap rv">
+ <h2>Schedule</h2>
+ <div class="tabs" role="tablist"><button role="tab" aria-selected="true" data-d="0">Day 1, Thursday</button><button role="tab" aria-selected="false" data-d="1">Day 2, Friday</button></div>
+ <div id="slots" role="tabpanel"></div>
+</div></section>
+
+<section id="venue"><div class="wrap venue rv">
+ <img src="https://picsum.photos/seed/rotterdam-warehouse-hall/1000/880" width="1000" height="880" alt="Interior of a converted brick warehouse with tall windows">
+ <div>
+  <h2>The venue</h2>
+  <p class="lead">Halden Hall is a converted grain warehouse on the Maas, ten minutes by tram from Rotterdam Centraal.</p>
+  <dl class="facts">
+   <div><dt>Address</dt><dd>Kade 14, 3071 Rotterdam</dd></div>
+   <div><dt>Doors</dt><dd>8:30 on both days</dd></div>
+   <div><dt>Access</dt><dd>Step-free, with a quiet room and live captions</dd></div>
+   <div><dt>Getting there</dt><dd>Tram 25 to Maashaven, then a 4 minute walk</dd></div>
+  </dl>
+ </div>
+</div></section>
+
+<section id="tickets"><div class="wrap rv">
+ <h2>Tickets</h2>
+ <p class="lead">Every ticket covers both days, lunch and the Thursday evening party.</p>
+ <div class="tiers">
+  <div class="tier"><h3>Student</h3><div class="price">€180</div><ul><li>Both days</li><li>Valid student ID at the door</li></ul><a class="btn ghost" href="#tickets">Select</a></div>
+  <div class="tier main"><h3>Standard</h3><div class="price">€420</div><ul><li>Both days, all talks</li><li>One workshop of your choice</li><li>Recordings after the event</li></ul><a class="btn" href="#tickets">Select</a></div>
+  <div class="tier"><h3>Studio</h3><div class="price">€1,480</div><ul><li>Four Standard tickets</li><li>Reserved table at lunch</li></ul><a class="btn ghost" href="#tickets">Select</a></div>
+ </div>
+</div></section>
+</main>
+<footer><div class="wrap"><span>Offset Conference 2027</span><a href="mailto:hello@offset.example">hello@offset.example</a></div></footer>
+<script>
+const days=[
+ [["9:30","Opening keynote","Amara Okonkwo"],["11:00","Drawing letters for small screens","Tobias Lindqvist"],["13:30","Motion as a design material","Mei Takahashi"],["15:00","Workshop: type systems","Tobias Lindqvist"],["17:00","Panel: design after AI tools","All speakers"]],
+ [["9:30","Prototypes that ship","Rafael Quispe"],["11:00","Research people actually read","Ines Vandermeer"],["13:30","Workshop: motion in code","Mei Takahashi"],["15:00","Designing for the long term","Amara Okonkwo"],["16:30","Closing talk and Q&A","Rafael Quispe"]]
+];
+const box=document.getElementById("slots"),tabs=document.querySelectorAll(".tabs button");
+function show(i){
+ box.innerHTML=days[i].map(s=>`<div class="slot"><time>${s[0]}</time><b>${s[1]}</b><small>${s[2]}</small></div>`).join("");
+ tabs.forEach(t=>t.setAttribute("aria-selected",t.dataset.d==i));
+}
+tabs.forEach(t=>t.addEventListener("click",()=>show(+t.dataset.d)));
+show(0);
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
+```

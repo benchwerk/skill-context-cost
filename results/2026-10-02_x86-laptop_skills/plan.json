@@ -1,0 +1,752 @@
+[
+ {
+  "config": "C0",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 1
+ },
+ {
+  "config": "T4",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 4,
+  "seq": 2
+ },
+ {
+  "config": "T4",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 5,
+  "seq": 3
+ },
+ {
+  "config": "C50",
+  "model": "claude-haiku-4-5-20251001",
+  "run": 5,
+  "seq": 4
+ },
+ {
+  "config": "S10-L1000",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 4,
+  "seq": 5
+ },
+ {
+  "config": "C50-trim100",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 6
+ },
+ {
+  "config": "S10-L100",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 7
+ },
+ {
+  "config": "S10-L600",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 4,
+  "seq": 8
+ },
+ {
+  "config": "F1",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 9
+ },
+ {
+  "config": "S10-L600",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 3,
+  "seq": 10
+ },
+ {
+  "config": "C50-disable",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 4,
+  "seq": 11
+ },
+ {
+  "config": "C50",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 12
+ },
+ {
+  "config": "C1",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 4,
+  "seq": 13
+ },
+ {
+  "config": "S10-B600",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 14
+ },
+ {
+  "config": "C100",
+  "model": "claude-haiku-4-5-20251001",
+  "run": 2,
+  "seq": 15
+ },
+ {
+  "config": "C1",
+  "model": "claude-haiku-4-5-20251001",
+  "run": 5,
+  "seq": 16
+ },
+ {
+  "config": "T5",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 5,
+  "seq": 17
+ },
+ {
+  "config": "C50-trim100",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 18
+ },
+ {
+  "config": "S10-L100",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 5,
+  "seq": 19
+ },
+ {
+  "config": "T1",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 20
+ },
+ {
+  "config": "S10-L300",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 5,
+  "seq": 21
+ },
+ {
+  "config": "T2",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 3,
+  "seq": 22
+ },
+ {
+  "config": "C50",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 3,
+  "seq": 23
+ },
+ {
+  "config": "R50",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 3,
+  "seq": 24
+ },
+ {
+  "config": "C50-trim100",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 5,
+  "seq": 25
+ },
+ {
+  "config": "S10-L1000",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 26
+ },
+ {
+  "config": "S10-L1000",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 27
+ },
+ {
+  "config": "T2",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 28
+ },
+ {
+  "config": "S10-L1500",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 29
+ },
+ {
+  "config": "T3",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 3,
+  "seq": 30
+ },
+ {
+  "config": "C0",
+  "model": "claude-haiku-4-5-20251001",
+  "run": 3,
+  "seq": 31
+ },
+ {
+  "config": "R50",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 4,
+  "seq": 32
+ },
+ {
+  "config": "C0",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 4,
+  "seq": 33
+ },
+ {
+  "config": "T5",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 34
+ },
+ {
+  "config": "C50",
+  "model": "claude-haiku-4-5-20251001",
+  "run": 3,
+  "seq": 35
+ },
+ {
+  "config": "C0",
+  "model": "claude-haiku-4-5-20251001",
+  "run": 1,
+  "seq": 36
+ },
+ {
+  "config": "C50",
+  "model": "claude-haiku-4-5-20251001",
+  "run": 4,
+  "seq": 37
+ },
+ {
+  "config": "C0",
+  "model": "claude-haiku-4-5-20251001",
+  "run": 4,
+  "seq": 38
+ },
+ {
+  "config": "C0",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 5,
+  "seq": 39
+ },
+ {
+  "config": "S10-L1000",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 5,
+  "seq": 40
+ },
+ {
+  "config": "T4",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 41
+ },
+ {
+  "config": "T2",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 4,
+  "seq": 42
+ },
+ {
+  "config": "T3",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 5,
+  "seq": 43
+ },
+ {
+  "config": "C10",
+  "model": "claude-haiku-4-5-20251001",
+  "run": 4,
+  "seq": 44
+ },
+ {
+  "config": "C50-trim100",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 4,
+  "seq": 45
+ },
+ {
+  "config": "F1",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 4,
+  "seq": 46
+ },
+ {
+  "config": "T3",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 47
+ },
+ {
+  "config": "C50",
+  "model": "claude-haiku-4-5-20251001",
+  "run": 1,
+  "seq": 48
+ },
+ {
+  "config": "C10",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 49
+ },
+ {
+  "config": "C1",
+  "model": "claude-haiku-4-5-20251001",
+  "run": 3,
+  "seq": 50
+ },
+ {
+  "config": "C1",
+  "model": "claude-haiku-4-5-20251001",
+  "run": 1,
+  "seq": 51
+ },
+ {
+  "config": "S10-L100",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 52
+ },
+ {
+  "config": "C1",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 3,
+  "seq": 53
+ },
+ {
+  "config": "T1",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 4,
+  "seq": 54
+ },
+ {
+  "config": "T1",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 5,
+  "seq": 55
+ },
+ {
+  "config": "C10",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 3,
+  "seq": 56
+ },
+ {
+  "config": "C50-disable",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 57
+ },
+ {
+  "config": "C10",
+  "model": "claude-haiku-4-5-20251001",
+  "run": 1,
+  "seq": 58
+ },
+ {
+  "config": "T4",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 59
+ },
+ {
+  "config": "S10-B600",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 5,
+  "seq": 60
+ },
+ {
+  "config": "T1",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 61
+ },
+ {
+  "config": "T5",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 4,
+  "seq": 62
+ },
+ {
+  "config": "C100",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 3,
+  "seq": 63
+ },
+ {
+  "config": "T1",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 3,
+  "seq": 64
+ },
+ {
+  "config": "C100",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 5,
+  "seq": 65
+ },
+ {
+  "config": "S10-L300",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 66
+ },
+ {
+  "config": "C10",
+  "model": "claude-haiku-4-5-20251001",
+  "run": 5,
+  "seq": 67
+ },
+ {
+  "config": "T3",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 4,
+  "seq": 68
+ },
+ {
+  "config": "C10",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 5,
+  "seq": 69
+ },
+ {
+  "config": "C100",
+  "model": "claude-haiku-4-5-20251001",
+  "run": 5,
+  "seq": 70
+ },
+ {
+  "config": "C10",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 4,
+  "seq": 71
+ },
+ {
+  "config": "S10-L1000",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 3,
+  "seq": 72
+ },
+ {
+  "config": "R50",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 73
+ },
+ {
+  "config": "S10-L300",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 3,
+  "seq": 74
+ },
+ {
+  "config": "C50",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 75
+ },
+ {
+  "config": "S10-L1500",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 76
+ },
+ {
+  "config": "T2",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 5,
+  "seq": 77
+ },
+ {
+  "config": "C100",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 78
+ },
+ {
+  "config": "C50",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 4,
+  "seq": 79
+ },
+ {
+  "config": "R50",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 5,
+  "seq": 80
+ },
+ {
+  "config": "S10-L100",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 4,
+  "seq": 81
+ },
+ {
+  "config": "S10-L1500",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 5,
+  "seq": 82
+ },
+ {
+  "config": "T5",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 3,
+  "seq": 83
+ },
+ {
+  "config": "C0",
+  "model": "claude-haiku-4-5-20251001",
+  "run": 2,
+  "seq": 84
+ },
+ {
+  "config": "C0",
+  "model": "claude-haiku-4-5-20251001",
+  "run": 5,
+  "seq": 85
+ },
+ {
+  "config": "C100",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 4,
+  "seq": 86
+ },
+ {
+  "config": "C1",
+  "model": "claude-haiku-4-5-20251001",
+  "run": 2,
+  "seq": 87
+ },
+ {
+  "config": "C50-disable",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 88
+ },
+ {
+  "config": "S10-B600",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 3,
+  "seq": 89
+ },
+ {
+  "config": "C10",
+  "model": "claude-haiku-4-5-20251001",
+  "run": 3,
+  "seq": 90
+ },
+ {
+  "config": "C0",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 3,
+  "seq": 91
+ },
+ {
+  "config": "C1",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 5,
+  "seq": 92
+ },
+ {
+  "config": "S10-B600",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 93
+ },
+ {
+  "config": "S10-L600",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 94
+ },
+ {
+  "config": "C1",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 95
+ },
+ {
+  "config": "S10-L600",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 96
+ },
+ {
+  "config": "C100",
+  "model": "claude-haiku-4-5-20251001",
+  "run": 4,
+  "seq": 97
+ },
+ {
+  "config": "C50",
+  "model": "claude-haiku-4-5-20251001",
+  "run": 2,
+  "seq": 98
+ },
+ {
+  "config": "C10",
+  "model": "claude-haiku-4-5-20251001",
+  "run": 2,
+  "seq": 99
+ },
+ {
+  "config": "C50-disable",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 3,
+  "seq": 100
+ },
+ {
+  "config": "S10-L100",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 3,
+  "seq": 101
+ },
+ {
+  "config": "F1",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 3,
+  "seq": 102
+ },
+ {
+  "config": "C0",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 103
+ },
+ {
+  "config": "T5",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 104
+ },
+ {
+  "config": "C50-trim100",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 3,
+  "seq": 105
+ },
+ {
+  "config": "T2",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 106
+ },
+ {
+  "config": "S10-L1500",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 4,
+  "seq": 107
+ },
+ {
+  "config": "C50-disable",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 5,
+  "seq": 108
+ },
+ {
+  "config": "S10-L1500",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 3,
+  "seq": 109
+ },
+ {
+  "config": "S10-L300",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 110
+ },
+ {
+  "config": "C50",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 5,
+  "seq": 111
+ },
+ {
+  "config": "C100",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 112
+ },
+ {
+  "config": "S10-L300",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 4,
+  "seq": 113
+ },
+ {
+  "config": "S10-B600",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 4,
+  "seq": 114
+ },
+ {
+  "config": "C1",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 115
+ },
+ {
+  "config": "C100",
+  "model": "claude-haiku-4-5-20251001",
+  "run": 1,
+  "seq": 116
+ },
+ {
+  "config": "F1",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 5,
+  "seq": 117
+ },
+ {
+  "config": "R50",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 118
+ },
+ {
+  "config": "C100",
+  "model": "claude-haiku-4-5-20251001",
+  "run": 3,
+  "seq": 119
+ },
+ {
+  "config": "S10-L600",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 5,
+  "seq": 120
+ },
+ {
+  "config": "T4",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 3,
+  "seq": 121
+ },
+ {
+  "config": "T3",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 122
+ },
+ {
+  "config": "C1",
+  "model": "claude-haiku-4-5-20251001",
+  "run": 4,
+  "seq": 123
+ },
+ {
+  "config": "F1",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 124
+ },
+ {
+  "config": "C10",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 125
+ }
+]

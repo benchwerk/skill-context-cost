@@ -1,0 +1,161 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tailwind Logs — Pricing</title>
+<style>
+  :root {
+    --bg: #0f1419; --panel: #171e26; --line: #2a343f; --text: #e6edf3;
+    --muted: #8b98a5; --accent: #4cc9a0; --accent-ink: #06231a;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+  header { text-align: center; padding: 56px 0 24px; }
+  .brand { font-family: ui-monospace, Consolas, monospace; color: var(--accent); letter-spacing: .04em; }
+  h1 { font-size: clamp(28px, 5vw, 42px); margin: 8px 0 10px; line-height: 1.2; }
+  header p { color: var(--muted); max-width: 560px; margin: 0 auto; }
+  .toggle { display: inline-flex; margin-top: 24px; border: 1px solid var(--line); border-radius: 999px; padding: 3px; background: var(--panel); }
+  .toggle button { border: 0; background: none; color: var(--muted); padding: 7px 18px; border-radius: 999px; font: inherit; cursor: pointer; }
+  .toggle button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+  .toggle button:focus-visible, .cta:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+  .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; margin: 32px 0 56px; }
+  .plan { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 26px; display: flex; flex-direction: column; position: relative; }
+  .plan.featured { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .badge { position: absolute; top: -12px; right: 20px; background: var(--accent); color: var(--accent-ink); font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
+  .plan h2 { margin: 0; font-size: 20px; }
+  .tag { color: var(--muted); font-size: 14px; margin: 4px 0 16px; min-height: 42px; }
+  .price { font-size: 38px; font-weight: 700; }
+  .price small { font-size: 14px; color: var(--muted); font-weight: 400; }
+  .plan ul { list-style: none; padding: 0; margin: 18px 0 24px; flex: 1; }
+  .plan li { padding: 5px 0 5px 24px; position: relative; font-size: 15px; }
+  .plan li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); }
+  .cta { display: block; text-align: center; padding: 10px; border-radius: 8px; border: 1px solid var(--line); color: var(--text); text-decoration: none; font-weight: 600; }
+  .featured .cta { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .cta:hover { filter: brightness(1.12); }
+  h3 { font-size: 24px; margin: 0 0 16px; }
+  .table-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; }
+  table { width: 100%; border-collapse: collapse; min-width: 560px; }
+  th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--line); font-size: 15px; }
+  thead th { background: var(--panel); }
+  tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
+  tbody th { font-weight: 500; color: var(--muted); }
+  td.y { color: var(--accent); }
+  td.n { color: var(--muted); }
+  section.faq { margin: 56px 0; }
+  details { border-bottom: 1px solid var(--line); padding: 14px 0; }
+  summary { cursor: pointer; font-weight: 600; }
+  details p { color: var(--muted); margin: 10px 0 0; }
+  footer { text-align: center; color: var(--muted); font-size: 14px; padding: 24px 0 48px; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">&gt;_ Tailwind Logs</div>
+    <h1>Find the bug, not the bill.</h1>
+    <p>Fast log search and alerting for teams of 2 to 30 engineers. Flat, predictable pricing. No per-seat surprises.</p>
+    <div class="toggle" role="group" aria-label="Billing period">
+      <button id="monthly" aria-pressed="true">Monthly</button>
+      <button id="yearly" aria-pressed="false">Yearly · save 20%</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="plans">
+      <article class="plan">
+        <h2>Spark</h2>
+        <p class="tag">For side projects and early prototypes.</p>
+        <div class="price">$0<small> / forever</small></div>
+        <ul>
+          <li>5 GB ingest per month</li>
+          <li>3-day retention</li>
+          <li>Up to 3 users</li>
+          <li>Community support</li>
+        </ul>
+        <a class="cta" href="#">Start free</a>
+      </article>
+      <article class="plan featured">
+        <span class="badge">Most popular</span>
+        <h2>Team</h2>
+        <p class="tag">For small teams shipping to production.</p>
+        <div class="price">$<span class="amt" data-m="49" data-y="39">49</span><small> / month</small></div>
+        <ul>
+          <li>100 GB ingest per month</li>
+          <li>30-day retention</li>
+          <li>Up to 15 users</li>
+          <li>Slack and PagerDuty alerts</li>
+          <li>Email support, 1-day reply</li>
+        </ul>
+        <a class="cta" href="#">Try Team free for 14 days</a>
+      </article>
+      <article class="plan">
+        <h2>Scale</h2>
+        <p class="tag">For growing teams with compliance needs.</p>
+        <div class="price">$<span class="amt" data-m="149" data-y="119">149</span><small> / month</small></div>
+        <ul>
+          <li>500 GB ingest per month</li>
+          <li>90-day retention</li>
+          <li>Unlimited users</li>
+          <li>SSO and audit log</li>
+          <li>Priority chat support</li>
+        </ul>
+        <a class="cta" href="#">Talk to us</a>
+      </article>
+    </div>
+
+    <h3>Compare plans</h3>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th scope="col">Feature</th><th scope="col">Spark</th><th scope="col">Team</th><th scope="col">Scale</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Monthly ingest</th><td>5 GB</td><td>100 GB</td><td>500 GB</td></tr>
+          <tr><th scope="row">Retention</th><td>3 days</td><td>30 days</td><td>90 days</td></tr>
+          <tr><th scope="row">Users</th><td>3</td><td>15</td><td>Unlimited</td></tr>
+          <tr><th scope="row">Saved searches</th><td>5</td><td>Unlimited</td><td>Unlimited</td></tr>
+          <tr><th scope="row">Alerts</th><td class="n">—</td><td class="y">✓</td><td class="y">✓</td></tr>
+          <tr><th scope="row">Live tail</th><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+          <tr><th scope="row">SSO and audit log</th><td class="n">—</td><td class="n">—</td><td class="y">✓</td></tr>
+          <tr><th scope="row">Support</th><td>Community</td><td>Email</td><td>Priority chat</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <section class="faq">
+      <h3>Frequently asked questions</h3>
+      <details>
+        <summary>What happens if we go over our ingest limit?</summary>
+        <p>We never drop logs. Overage is billed at $0.40 per extra GB, and we email you at 80% and 100% of your quota.</p>
+      </details>
+      <details>
+        <summary>Can we change plans later?</summary>
+        <p>Yes. Upgrades apply immediately and are prorated. Downgrades take effect at the next billing date.</p>
+      </details>
+      <details>
+        <summary>Do you offer a free trial of paid plans?</summary>
+        <p>Team includes a 14-day trial with no credit card required. Spark stays free as long as you like.</p>
+      </details>
+      <details>
+        <summary>How do I send logs?</summary>
+        <p>Use our agent, OpenTelemetry, syslog or a simple HTTPS endpoint. Most teams are live in under 10 minutes.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer>© 2026 Tailwind Logs. Prices in USD, excluding tax.</footer>
+</div>
+
+<script>
+  const buttons = { monthly: document.getElementById('monthly'), yearly: document.getElementById('yearly') };
+  function setPeriod(period) {
+    document.querySelectorAll('.amt').forEach(el => { el.textContent = el.dataset[period === 'yearly' ? 'y' : 'm']; });
+    Object.entries(buttons).forEach(([key, btn]) => btn.setAttribute('aria-pressed', String(key === period)));
+  }
+  buttons.monthly.onclick = () => setPeriod('monthly');
+  buttons.yearly.onclick = () => setPeriod('yearly');
+</script>
+</body>
+</html>
+```

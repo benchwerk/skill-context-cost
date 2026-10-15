@@ -1,0 +1,155 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tallow Hill Roasters - The app for fresh beans, tracked to your door</title>
+<meta name="description" content="Order Tallow Hill beans and watch your delivery from roaster to doorstep. Coming to iOS and Android.">
+<style>
+  :root {
+    --bg: #f4ecdf; --ink: #231813; --muted: #6d5a4d; --line: #d9ccb8;
+    --card: #fffaf1; --accent: #c2410c; --accent-ink: #fff7ed; --roast: #2b1d16;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #1a120e; --ink: #f3e8d8; --muted: #b19d8b; --line: #3a2b22; --card: #251a14; --roast: #0f0a07; }
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--ink); font: 17px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 48px); }
+  header { display: flex; justify-content: space-between; align-items: center; padding: 28px 0; }
+  .logo { font: 700 1.15rem var(--serif); letter-spacing: .02em; text-decoration: none; }
+  .logo span { color: var(--accent); }
+  .tag { font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+  .hero { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(32px, 6vw, 96px); align-items: center; min-height: calc(100dvh - 90px); padding-bottom: 64px; }
+  h1 { font: 700 clamp(2.8rem, 7.2vw, 6rem)/.95 var(--serif); letter-spacing: -.03em; }
+  h1 em { color: var(--accent); font-style: italic; }
+  .lede { max-width: 46ch; margin: 28px 0 32px; color: var(--muted); font-size: 1.15rem; }
+  form { display: flex; gap: 8px; max-width: 460px; padding: 6px; background: var(--card); border: 1px solid var(--line); border-radius: 999px; }
+  input { flex: 1; min-width: 0; padding: 12px 18px; border: 0; background: transparent; color: inherit; font: inherit; border-radius: 999px; }
+  button { cursor: pointer; font: 600 .95rem var(--sans); border: 0; border-radius: 999px; padding: 12px 22px; background: var(--accent); color: var(--accent-ink); transition: transform .2s, filter .2s; }
+  button:hover { filter: brightness(1.1); } button:active { transform: scale(.97); }
+  .note { margin-top: 12px; min-height: 1.6em; font-size: .9rem; color: var(--muted); }
+  .stage { position: relative; display: grid; place-items: center; }
+  .stage::before { content: ""; position: absolute; inset: 6% -8% 2% 8%; border-radius: 46% 54% 40% 60% / 50% 40% 60% 50%; background: var(--roast); transform: rotate(-6deg); }
+  .phone { position: relative; width: min(300px, 80vw); padding: 14px; border-radius: 42px; background: #0d0907; border: 1px solid #4a3a30; box-shadow: 0 40px 70px -20px rgba(0,0,0,.55); transform: rotate(3deg); }
+  .screen { background: var(--card); color: var(--ink); border-radius: 30px; padding: 22px 20px 24px; }
+  .chips { display: flex; gap: 6px; margin: 14px 0 18px; }
+  .chip { padding: 6px 12px; font-size: .8rem; background: transparent; color: var(--muted); border: 1px solid var(--line); }
+  .chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .bag { padding: 14px 16px; border-radius: 16px; background: var(--roast); color: #f3e8d8; display: flex; justify-content: space-between; align-items: baseline; }
+  .bag b { font: 700 1.1rem var(--serif); } .bag small { opacity: .7; }
+  ol { list-style: none; padding: 0; margin: 20px 0 6px; position: relative; }
+  ol::before { content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: var(--line); }
+  li { position: relative; padding: 0 0 18px 32px; font-size: .92rem; color: var(--muted); transition: color .4s; }
+  li:last-child { padding-bottom: 0; }
+  li::before { content: ""; position: absolute; left: 0; top: 4px; width: 16px; height: 16px; border-radius: 50%; background: var(--card); border: 2px solid var(--line); transition: .4s; }
+  li.done { color: var(--ink); } li.done::before { background: var(--accent); border-color: var(--accent); }
+  li.now::before { box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 25%, transparent); }
+  .steps { border-top: 1px solid var(--line); display: grid; grid-template-columns: 5fr 7fr; gap: clamp(24px, 6vw, 96px); padding: 88px 0; }
+  h2 { font: 700 clamp(1.9rem, 4vw, 3rem)/1.05 var(--serif); letter-spacing: -.02em; }
+  .list > div { display: grid; grid-template-columns: 56px 1fr; padding: 22px 0; border-bottom: 1px solid var(--line); }
+  .list > div:first-child { padding-top: 0; }
+  .list span { font: italic 1.5rem var(--serif); color: var(--accent); }
+  .list h3 { font: 700 1.25rem var(--serif); } .list p { color: var(--muted); max-width: 52ch; }
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s, transform .7s; }
+  .reveal.in { opacity: 1; transform: none; }
+  footer { border-top: 1px solid var(--line); padding: 28px 0 40px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; color: var(--muted); font-size: .9rem; }
+  @media (max-width: 820px) {
+    .hero, .steps { grid-template-columns: 1fr; } .hero { min-height: 0; } .stage { padding: 24px 0 40px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } .reveal { opacity: 1; transform: none; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="logo" href="#">Tallow Hill<span>.</span></a>
+    <span class="tag">iOS &amp; Android - Autumn 2026</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <h1>Roasted Tuesday. <em>At your door</em> by Thursday.</h1>
+        <p class="lede">The Tallow Hill app lets you order small-batch beans in two taps, then follow the bag from our roaster to your doorstep, minute by minute.</p>
+        <form id="join">
+          <label for="email" class="tag" style="position:absolute;left:-9999px">Email address</label>
+          <input id="email" type="email" required placeholder="you@email.com" autocomplete="email">
+          <button type="submit">Get launch day access</button>
+        </form>
+        <p class="note" id="msg" role="status" aria-live="polite">First 500 sign-ups get a free bag with their first order.</p>
+      </div>
+
+      <div class="stage">
+        <div class="phone" aria-label="App preview showing a delivery being tracked">
+          <div class="screen">
+            <span class="tag">Your order</span>
+            <div class="chips" role="group" aria-label="Choose a roast">
+              <button class="chip" aria-pressed="true" data-n="Ethiopia Guji" data-r="Light" data-e="Thu, 9:40">Light</button>
+              <button class="chip" aria-pressed="false" data-n="Huila Reserve" data-r="Medium" data-e="Thu, 11:15">Medium</button>
+              <button class="chip" aria-pressed="false" data-n="Sumatra Gayo" data-r="Dark" data-e="Fri, 8:30">Dark</button>
+            </div>
+            <div class="bag"><div><b id="bean">Ethiopia Guji</b><br><small id="roast">Light roast - 340g</small></div><small id="eta">Thu, 9:40</small></div>
+            <ol id="track">
+              <li>Roasted in small batch</li>
+              <li>Packed and sealed</li>
+              <li>Out with your courier</li>
+              <li>Arriving at your door</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="steps">
+      <h2 class="reveal">Three taps from craving to cup.</h2>
+      <div class="list">
+        <div class="reveal"><span>01</span><section><h3>Pick your beans</h3><p>Browse this week's roasts, set a grind and a rhythm: one-off, fortnightly, or whenever you run low.</p></section></div>
+        <div class="reveal"><span>02</span><section><h3>We roast to order</h3><p>Nothing sits on a shelf. Your bag is roasted the day it ships, so it lands at peak flavor.</p></section></div>
+        <div class="reveal"><span>03</span><section><h3>Watch it arrive</h3><p>Live tracking, a delivery window you can shift, and a nudge when it's time to put the kettle on.</p></section></div>
+      </div>
+    </section>
+  </main>
+
+  <footer><span>Tallow Hill Roasters, 14 Mill Lane</span><span>hello@tallowhill.coffee</span></footer>
+</div>
+
+<script>
+  const steps = [...document.querySelectorAll('#track li')];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let timer;
+  function run() {
+    clearInterval(timer);
+    let i = -1;
+    const tick = () => {
+      i++;
+      steps.forEach((s, k) => { s.classList.toggle('done', k <= i); s.classList.toggle('now', k === i); });
+      if (i >= 2) clearInterval(timer);
+    };
+    steps.forEach(s => s.classList.remove('done', 'now'));
+    if (reduce) { i = 1; tick(); return; }
+    timer = setInterval(tick, 1100); tick();
+  }
+  document.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
+    document.querySelectorAll('.chip').forEach(o => o.setAttribute('aria-pressed', o === c));
+    bean.textContent = c.dataset.n; roast.textContent = c.dataset.r + ' roast - 340g'; eta.textContent = c.dataset.e;
+    run();
+  }));
+  run();
+  document.getElementById('join').addEventListener('submit', e => {
+    e.preventDefault();
+    msg.textContent = 'You are on the list. We will email ' + email.value + ' on launch day.';
+    e.target.reset();
+  });
+  const io = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }), { threshold: .2 });
+  document.querySelectorAll('.reveal').forEach((el, i) => { el.style.transitionDelay = (i % 4) * 80 + 'ms'; io.observe(el); });
+</script>
+</body>
+</html>
+```

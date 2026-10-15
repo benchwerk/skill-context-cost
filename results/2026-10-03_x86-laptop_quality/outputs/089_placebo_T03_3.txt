@@ -1,0 +1,161 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mara Ellison — Wedding Photography</title>
+<style>
+  :root {
+    --paper: #f4eee6; --ink: #2a2420; --muted: #7a6d62; --accent: #a8533a; --line: #d9cdbf;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font: 17px/1.65 var(--sans); }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 48px); }
+  .eyebrow { font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); }
+  h1, h2 { font-family: var(--serif); font-weight: 400; line-height: 1.05; letter-spacing: -.015em; }
+  h2 { font-size: clamp(32px, 4.5vw, 52px); margin: 10px 0 36px; }
+
+  header { position: absolute; inset: 0 0 auto; z-index: 2; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 28px 0; }
+  nav .mark { font-family: var(--serif); font-size: 20px; text-decoration: none; }
+  nav ul { display: flex; gap: 28px; list-style: none; padding: 0; font-size: 14px; }
+  nav ul a { text-decoration: none; border-bottom: 1px solid transparent; }
+  nav ul a:hover { border-color: var(--accent); }
+
+  .hero { min-height: 100svh; display: grid; align-items: end; padding: 120px 0 64px;
+    background: radial-gradient(120% 80% at 80% 10%, #e7c9ae 0%, transparent 55%),
+                linear-gradient(160deg, #d9b79b, #8c5b49 70%, #4a3028); color: #fbf6ef; }
+  .hero h1 { font-size: clamp(48px, 9vw, 120px); max-width: 11ch; }
+  .hero h1 em { font-style: italic; color: #f3c9a8; }
+  .hero p { max-width: 38ch; margin: 28px 0 32px; font-size: 18px; opacity: .92; }
+  .btn { display: inline-block; padding: 14px 28px; background: #fbf6ef; color: var(--ink); text-decoration: none;
+    font-size: 14px; letter-spacing: .08em; border: 0; cursor: pointer; font-family: inherit; transition: transform .2s, background .2s; }
+  .btn:hover { background: #fff; transform: translateY(-2px); }
+
+  section { padding: clamp(72px, 11vw, 140px) 0; }
+  .grid { display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: 150px; gap: 14px; }
+  .shot { position: relative; overflow: hidden; margin: 0; background: var(--g); }
+  .shot::after { content: ""; position: absolute; inset: 0; opacity: .18; mix-blend-mode: multiply;
+    background: repeating-linear-gradient(45deg, #000 0 1px, transparent 1px 3px); }
+  .shot figcaption { position: absolute; left: 16px; bottom: 14px; z-index: 1; color: #fff; font-family: var(--serif);
+    font-style: italic; font-size: 18px; transform: translateY(8px); opacity: 0; transition: .35s; text-shadow: 0 1px 12px #0008; }
+  .shot:hover figcaption, .shot:focus-within figcaption { transform: none; opacity: 1; }
+  .shot > div { position: absolute; inset: 0; background: var(--g); transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+  .shot:hover > div { transform: scale(1.06); }
+  .s1 { grid-column: span 4; grid-row: span 3; --g: linear-gradient(135deg, #e9d3bd, #b98468 60%, #6b4234); }
+  .s2 { grid-column: span 2; grid-row: span 2; --g: linear-gradient(200deg, #cfd5c4, #7d8b70); }
+  .s3 { grid-column: span 2; grid-row: span 2; --g: linear-gradient(160deg, #f1dfd0, #c99a86); }
+  .s4 { grid-column: span 2; grid-row: span 2; --g: linear-gradient(120deg, #3b3a45, #8a7f8f); }
+  .s5 { grid-column: span 2; grid-row: span 2; --g: linear-gradient(220deg, #efe3c8, #c4a46a); }
+  .s6 { grid-column: span 2; grid-row: span 2; --g: linear-gradient(150deg, #d8b8b0, #7a4a4a); }
+
+  .about { border-top: 1px solid var(--line); }
+  .about .wrap { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(32px, 7vw, 96px); align-items: start; }
+  .portrait { aspect-ratio: 4/5; background: linear-gradient(170deg, #c9a88f, #5c3d33); }
+  .about p + p { margin-top: 1.1em; }
+  .about p:first-of-type { font-family: var(--serif); font-size: 24px; line-height: 1.45; }
+  .sig { margin-top: 28px; font-family: var(--serif); font-style: italic; color: var(--accent); font-size: 22px; }
+
+  .contact { background: var(--ink); color: var(--paper); }
+  .contact .wrap { max-width: 720px; }
+  form { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 24px; }
+  label { display: grid; gap: 6px; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: #b9aa9a; }
+  label.full, form .btn { grid-column: 1 / -1; }
+  input, textarea { font: 17px var(--sans); color: var(--paper); background: transparent; border: 0;
+    border-bottom: 1px solid #6b5e53; padding: 8px 0; letter-spacing: 0; text-transform: none; border-radius: 0; }
+  input:focus, textarea:focus { outline: 0; border-color: var(--accent); }
+  textarea { resize: vertical; min-height: 110px; }
+  form .btn { background: var(--accent); color: #fff; justify-self: start; }
+  #note { grid-column: 1 / -1; font-family: var(--serif); font-style: italic; font-size: 20px; min-height: 1.5em; color: #f3c9a8; }
+  footer { padding: 28px 0; text-align: center; font-size: 13px; color: var(--muted); background: var(--ink); }
+
+  @media (max-width: 760px) {
+    nav ul { gap: 16px; } .grid { grid-auto-rows: 90px; }
+    .about .wrap, form { grid-template-columns: 1fr; } .portrait { max-width: 320px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<header class="wrap">
+  <nav>
+    <a class="mark" href="#top">Mara Ellison</a>
+    <ul><li><a href="#work">Work</a></li><li><a href="#about">About</a></li><li><a href="#contact">Enquire</a></li></ul>
+  </nav>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <p class="eyebrow" style="color:#f3c9a8">Wedding photography · Hudson Valley &amp; beyond</p>
+      <h1>The quiet moments <em>between</em> the vows.</h1>
+      <p>Unposed, unhurried photographs for couples who would rather remember the day than perform it.</p>
+      <a class="btn" href="#contact">Check my availability</a>
+    </div>
+  </div>
+
+  <section id="work">
+    <div class="wrap">
+      <p class="eyebrow">Selected work</p>
+      <h2>Six days I still think about</h2>
+      <div class="grid">
+        <!-- Swap each .shot > div background for url(your-photo.jpg) center/cover -->
+        <figure class="shot s1" tabindex="0"><div></div><figcaption>Anna &amp; Theo, a barn at dusk</figcaption></figure>
+        <figure class="shot s2" tabindex="0"><div></div><figcaption>The walk down</figcaption></figure>
+        <figure class="shot s3" tabindex="0"><div></div><figcaption>Her grandmother's veil</figcaption></figure>
+        <figure class="shot s4" tabindex="0"><div></div><figcaption>After the last dance</figcaption></figure>
+        <figure class="shot s5" tabindex="0"><div></div><figcaption>Vow cards, drying ink</figcaption></figure>
+        <figure class="shot s6" tabindex="0"><div></div><figcaption>Rain, and no one minded</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="wrap">
+      <div class="portrait" role="img" aria-label="Portrait of Mara Ellison"></div>
+      <div>
+        <p class="eyebrow">About</p>
+        <h2>I started by photographing my sister's wedding badly.</h2>
+        <p>I was twenty-three, borrowing a camera, and I missed the first kiss entirely. What I caught instead was our father fixing his tie in a hallway mirror, hands shaking. She framed that one.</p>
+        <p>Twelve years and about three hundred weddings later, that is still what I look for: the glance across a crowded room, the hand that finds a hand. I work with one assistant, no flash when I can help it, and I stay until the party does.</p>
+        <p>You will get a full gallery within four weeks, and a small printed album because some things should not live only on a screen.</p>
+        <p class="sig">— Mara</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <p class="eyebrow">Enquire</p>
+      <h2>Tell me about your day</h2>
+      <form id="enquiry">
+        <label>Your names <input name="names" required autocomplete="name"></label>
+        <label>Email <input name="email" type="email" required autocomplete="email"></label>
+        <label>Wedding date <input name="date" type="date"></label>
+        <label>Venue or region <input name="venue"></label>
+        <label class="full">What matters most to you? <textarea name="message" required></textarea></label>
+        <button class="btn" type="submit">Send enquiry</button>
+        <p id="note" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+<footer>© 2026 Mara Ellison Photography · hello@maraellison.example</footer>
+
+<script>
+  document.getElementById('enquiry').addEventListener('submit', e => {
+    e.preventDefault();
+    const first = new FormData(e.target).get('names').split(/[&,]| and /)[0].trim();
+    document.getElementById('note').textContent = `Thank you, ${first}. I read every note myself and will reply within two days.`;
+    e.target.reset();
+  });
+</script>
+</body>
+</html>
+```

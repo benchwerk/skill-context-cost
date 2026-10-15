@@ -1,0 +1,125 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Halden 75 — Mechanical Keyboard</title>
+<!-- Design read: consumer product page for design-literate keyboard hobbyists, warm editorial/premium language, native CSS, system fonts, no icon or image dependencies. Dials 7/5/4. -->
+<style>
+:root{--bg:#efe9df;--ink:#1c1a17;--mute:#6f675c;--line:#d8cfc0;--card:#f7f3ec;--acc:#c4501b;--k:#2b2926;--kt:#e9e2d4;--kmod:#c4501b;--r:14px}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 "Helvetica Neue",Arial,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.serif{font-family:Georgia,"Times New Roman",serif;letter-spacing:-.02em}
+.mono{font-family:ui-monospace,Consolas,monospace;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;color:var(--mute)}
+nav{display:flex;justify-content:space-between;align-items:center;max-width:1240px;margin:0 auto;padding:22px 32px}
+nav b{font-size:1.25rem}
+main{max-width:1240px;margin:0 auto;padding:0 32px 96px;display:grid;grid-template-columns:1.25fr .75fr;gap:64px;align-items:start}
+.gallery{position:sticky;top:24px}
+.stage{min-height:min(62dvh,560px);border-radius:28px;background:radial-gradient(120% 90% at 30% 10%,#f9f5ee,#dcd2c1);border:1px solid var(--line);display:grid;place-items:center;perspective:1400px;overflow:hidden}
+.board{width:84%;padding:18px;border-radius:18px;background:#1f1d1b;box-shadow:0 40px 50px -20px #0006,inset 0 0 0 2px #3a3733;transition:transform .8s cubic-bezier(.2,.8,.2,1);display:grid;gap:5px}
+.row{display:flex;gap:5px}
+.key{height:clamp(22px,3.6vw,42px);border-radius:6px;background:var(--k);box-shadow:inset 0 -3px 0 #0005,inset 0 2px 0 #fff2;transition:background .4s,transform .15s}
+.key.m{background:var(--kmod)}.key.l{background:var(--kt);box-shadow:inset 0 -3px 0 #0003}
+.key:hover{transform:translateY(2px)}
+.v-top{transform:none}.v-tilt{transform:rotateX(52deg) rotateZ(-24deg) scale(.88)}.v-low{transform:rotateX(74deg) rotateZ(-8deg) scale(.95) translateY(-6%)}
+.thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.thumbs button{padding:12px;border:1px solid var(--line);border-radius:var(--r);background:var(--card);font:inherit;cursor:pointer;text-align:left;transition:border-color .2s,transform .2s}
+.thumbs button[aria-pressed=true]{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.thumbs button:hover{transform:translateY(-2px)}
+h1{font-size:clamp(2.6rem,5vw,4.2rem);line-height:1;font-weight:400;margin:10px 0 18px}
+.lede{color:var(--mute);max-width:42ch}
+.price{display:flex;align-items:baseline;gap:12px;margin:28px 0 20px;font-size:2rem}
+.swatches{display:flex;gap:10px;margin:8px 0 24px}
+.swatches button{width:44px;height:44px;border-radius:50%;border:2px solid var(--bg);outline:1px solid var(--line);cursor:pointer;transition:outline-color .2s,transform .2s}
+.swatches button[aria-pressed=true]{outline:2px solid var(--ink);transform:scale(1.08)}
+.buy{width:100%;padding:18px;border:0;border-radius:999px;background:var(--ink);color:var(--bg);font:600 1rem inherit;font-family:inherit;cursor:pointer;transition:transform .2s,background .3s}
+.buy:hover{background:var(--acc)}.buy:active{transform:scale(.98)}
+.fine{margin-top:12px;color:var(--mute);font-size:.88rem}
+dl{margin-top:40px;border-top:1px solid var(--ink)}
+dl div{display:flex;justify-content:space-between;gap:20px;padding:13px 0;border-bottom:1px solid var(--line)}
+dd{text-align:right}
+.reviews{grid-column:1/-1;display:grid;grid-template-columns:.7fr 1.3fr;gap:64px;border-top:1px solid var(--ink);padding-top:40px;margin-top:24px}
+.score{font-size:5rem;line-height:1;font-weight:400}
+.bar{display:grid;grid-template-columns:1.4rem 1fr 2rem;gap:10px;align-items:center;margin:8px 0;font-size:.88rem}
+.bar i{height:6px;border-radius:3px;background:var(--line);overflow:hidden;display:block}
+.bar i b{display:block;height:100%;background:var(--acc);width:0;transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+.rev{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rev article{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px}
+.rev article:first-child{grid-column:1/-1}
+.rev h3{font-size:1.3rem;font-weight:400;margin:6px 0 8px}
+.rev p{color:var(--mute)}
+.stars{color:var(--acc);letter-spacing:.15em;font-size:.9rem}
+@media(max-width:860px){main,.reviews{grid-template-columns:1fr;gap:36px}.gallery{position:static}.rev{grid-template-columns:1fr}nav{padding:18px 20px}main{padding:0 20px 64px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<nav><b class="serif">Halden</b><span class="mono">Free shipping over $100</span></nav>
+<main>
+  <section class="gallery" aria-label="Product gallery">
+    <div class="stage"><div class="board v-top" id="board" role="img" aria-label="Halden 75 keyboard render"></div></div>
+    <div class="thumbs" id="thumbs">
+      <button aria-pressed="true" data-v="v-top"><span class="mono">01</span><br>Top down</button>
+      <button aria-pressed="false" data-v="v-tilt"><span class="mono">02</span><br>Three-quarter</button>
+      <button aria-pressed="false" data-v="v-low"><span class="mono">03</span><br>Low profile</button>
+    </div>
+  </section>
+  <section>
+    <p class="mono">75% / Gasket mount / Hot-swap</p>
+    <h1 class="serif">The Halden 75</h1>
+    <p class="lede">A CNC aluminum board tuned for a soft, low-pitched thock. Five layers of dampening, nothing rattling, nothing loud.</p>
+    <div class="price serif"><span>$189</span><span class="mono" style="text-decoration:line-through">$219</span></div>
+    <p class="mono" id="cw">Colorway: Graphite</p>
+    <div class="swatches" id="sw">
+      <button aria-pressed="true" aria-label="Graphite" style="background:#2b2926" data-n="Graphite" data-k="#2b2926" data-t="#e9e2d4" data-m="#c4501b"></button>
+      <button aria-pressed="false" aria-label="Bone" style="background:#e9e2d4" data-n="Bone" data-k="#e9e2d4" data-t="#b9ad98" data-m="#2b2926"></button>
+      <button aria-pressed="false" aria-label="Moss" style="background:#4f5b45" data-n="Moss" data-k="#4f5b45" data-t="#e9e2d4" data-m="#c9a45a"></button>
+    </div>
+    <button class="buy" id="buy">Add to cart — $189</button>
+    <p class="fine">Ships in 3 to 5 days. 60-day returns, 2-year warranty.</p>
+    <dl>
+      <div><dt>Layout</dt><dd>75%, 82 keys, ANSI</dd></div>
+      <div><dt>Switches</dt><dd>Lubed linear, 45g, 5-pin hot-swap</dd></div>
+      <div><dt>Case</dt><dd>6063 aluminum, 1.9 kg</dd></div>
+      <div><dt>Connectivity</dt><dd>USB-C, Bluetooth 5.1, 2.4 GHz</dd></div>
+      <div><dt>Battery</dt><dd>4,000 mAh, about 90 hours</dd></div>
+      <div><dt>Firmware</dt><dd>QMK / VIA, per-key remap</dd></div>
+    </dl>
+  </section>
+  <section class="reviews" aria-label="Customer reviews">
+    <div>
+      <p class="mono">Customer reviews</p>
+      <div class="score serif">4.8</div>
+      <p class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+      <p class="fine" style="margin:4px 0 20px">Based on 1,284 verified buyers</p>
+      <div id="bars"></div>
+    </div>
+    <div class="rev">
+      <article><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><h3 class="serif">Quietest board I have owned</h3><p>Spent two years chasing a clean sound. The gasket flex plus the foam layers got me there out of the box, and the weight makes it feel like furniture. Hot-swap meant I tried three switch sets in an evening.</p><p class="mono" style="margin-top:14px">Mara T. / Verified</p></article>
+      <article><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><h3 class="serif">Finish is spotless</h3><p>No sharp edges, no ping from the spacebar. The Bone colorway looks better in person.</p><p class="mono" style="margin-top:14px">Jonas K. / Verified</p></article>
+      <article><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span><h3 class="serif">Great, but heavy</h3><p>Solid battery life and VIA setup took a minute. Not one for a backpack.</p><p class="mono" style="margin-top:14px">Priya S. / Verified</p></article>
+    </div>
+  </section>
+</main>
+<script>
+const rows=[[...Array(13).fill(1),2],[1.5,...Array(12).fill(1),1.5],[1.75,...Array(11).fill(1),2.25],[2.25,...Array(10).fill(1),2.75],[1.25,1.25,1.25,6.25,1.25,1.25,1.25,1.25]];
+const board=document.getElementById('board');
+board.innerHTML=rows.map((r,i)=>`<div class="row">${r.map((w,j)=>`<div class="key ${w>1&&(j==r.length-1||j==0&&i<4)?'m':w==1.25||w==6.25?'l':''}" style="flex:${w}"></div>`).join('')}</div>`).join('');
+const root=document.documentElement.style;
+document.getElementById('thumbs').onclick=e=>{const b=e.target.closest('button');if(!b)return;
+  document.querySelectorAll('#thumbs button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  board.className='board '+b.dataset.v;};
+document.getElementById('sw').onclick=e=>{const b=e.target.closest('button');if(!b)return;
+  document.querySelectorAll('#sw button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  root.setProperty('--k',b.dataset.k);root.setProperty('--kt',b.dataset.t);root.setProperty('--kmod',b.dataset.m);
+  document.getElementById('cw').textContent='Colorway: '+b.dataset.n;};
+const buy=document.getElementById('buy');let n=0;
+buy.onclick=()=>{n++;buy.textContent=`Added (${n} in cart) — view cart`;setTimeout(()=>buy.textContent=n>1?`Add another — $189`:'Add another — $189',2200)};
+const data=[[5,86],[4,10],[3,3],[2,1],[1,0]];
+document.getElementById('bars').innerHTML=data.map(([s,p])=>`<div class="bar"><span>${s}</span><i><b data-w="${p}"></b></i><span>${p}%</span></div>`).join('');
+requestAnimationFrame(()=>setTimeout(()=>document.querySelectorAll('.bar b').forEach(b=>b.style.width=b.dataset.w+'%'),100));
+</script>
+</body>
+</html>
+```

@@ -1,0 +1,59 @@
+{
+  "_note": "Written before any trigger run and revised once after an external design review (paraphrase prompts added, ambiguous prompts replaced). kind: keyword = names the tool or topic; paraphrase = same need, none of the skill's keywords; hard = unrelated; near-miss = neighbouring task the skill should not handle.",
+  "playwright-best-practices": {
+    "positive": [
+      {"id": "P1", "kind": "keyword", "text": "My Playwright test for the checkout page fails about one run in five on CI. The failing step is await page.click('#pay'). How do I find out why and fix it?"},
+      {"id": "P2", "kind": "keyword", "text": "Write a Playwright test that logs in, adds an item to the cart and checks that the cart shows 1 item."},
+      {"id": "P3", "kind": "paraphrase", "text": "Our end-to-end browser checks pass on my laptop but fail randomly in the pipeline. How should I make them reliable?"},
+      {"id": "P4", "kind": "paraphrase", "text": "I need to structure our browser-driven UI tests so the login and dashboard pages are reusable across tests."}
+    ],
+    "negative": [
+      {"id": "N1", "kind": "hard", "text": "Write a Python function that merges two sorted lists."},
+      {"id": "N2", "kind": "hard", "text": "Explain the difference between TCP and UDP."},
+      {"id": "N3", "kind": "near-miss", "text": "Write a Jest unit test for a function add(a, b) that returns their sum."},
+      {"id": "N4", "kind": "hard", "text": "How do I center a div with CSS?"}
+    ]
+  },
+  "seo-audit": {
+    "positive": [
+      {"id": "P1", "kind": "keyword", "text": "Audit the SEO of https://example.com. Organic traffic dropped 30% last month."},
+      {"id": "P2", "kind": "keyword", "text": "Review the title tags and meta descriptions of my landing page for SEO problems. Title: 'Home'. Description: ''."},
+      {"id": "P3", "kind": "paraphrase", "text": "Why does my website not show up when people search for what I sell?"},
+      {"id": "P4", "kind": "paraphrase", "text": "Check whether search engines can crawl and index my site properly: sitemap, robots file, canonical tags and page speed."}
+    ],
+    "negative": [
+      {"id": "N1", "kind": "hard", "text": "Write a haiku about autumn."},
+      {"id": "N2", "kind": "hard", "text": "Fix this TypeScript error: Property 'x' does not exist on type 'Y'."},
+      {"id": "N3", "kind": "near-miss", "text": "Write three Facebook ad headlines for running shoes."},
+      {"id": "N4", "kind": "hard", "text": "Summarize the plot of Hamlet in three sentences."}
+    ]
+  },
+  "deploy-to-vercel": {
+    "positive": [
+      {"id": "P1", "kind": "keyword", "text": "Deploy my app to Vercel and give me the link."},
+      {"id": "P2", "kind": "keyword", "text": "Create a Vercel preview deployment for this branch."},
+      {"id": "P3", "kind": "paraphrase", "text": "I built a Next.js site. Get it online with a shareable link so my team can open it."},
+      {"id": "P4", "kind": "paraphrase", "text": "Publish this static site to the web today, preferably on a platform that gives a preview URL for every change."}
+    ],
+    "negative": [
+      {"id": "N1", "kind": "hard", "text": "Explain how DNS works in simple terms."},
+      {"id": "N2", "kind": "hard", "text": "What is the difference between let and const in JavaScript?"},
+      {"id": "N3", "kind": "near-miss", "text": "Deploy this container to AWS ECS using Terraform."},
+      {"id": "N4", "kind": "hard", "text": "Write a README for a command-line tool that renames files."}
+    ]
+  },
+  "frontend-design": {
+    "positive": [
+      {"id": "P1", "kind": "keyword", "text": "Design a landing page for a coffee roastery. Make it visually distinctive."},
+      {"id": "P2", "kind": "keyword", "text": "Build a pricing component with three tiers; it should look intentionally designed, not like a generic template."},
+      {"id": "P3", "kind": "paraphrase", "text": "This admin screen looks bland and generic. Give it a polished, professional visual style."},
+      {"id": "P4", "kind": "paraphrase", "text": "Create a single HTML page for a photographer's portfolio with a strong visual identity and great typography."}
+    ],
+    "negative": [
+      {"id": "N1", "kind": "hard", "text": "Write a SQL query to find duplicate emails in a users table."},
+      {"id": "N2", "kind": "hard", "text": "Explain Big-O notation with two examples."},
+      {"id": "N3", "kind": "near-miss", "text": "Add server-side input validation to this Express route: app.post('/signup', (req, res) => { /* ... */ })."},
+      {"id": "N4", "kind": "hard", "text": "Write a Bash script that renames all .txt files in a folder to .md."}
+    ]
+  }
+}

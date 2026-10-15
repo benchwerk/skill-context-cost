@@ -1,0 +1,7 @@
+{
+ "command": "python bench/footage_context.py C100",
+ "date": "2026-10-03T15:01:11+02:00",
+ "os": "Windows-11-10.0.26200-SP0",
+ "python": "3.14.6",
+ "exit": 0
+}

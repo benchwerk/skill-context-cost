@@ -1,0 +1,136 @@
+```html
+<!DOCTYPE html>
+<!-- Design read: consumer craft landing for design-conscious locals and visitors, calm azulejo-cobalt language, native CSS. Dials 7 / 5 / 3. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Oficina Cobalto | Ceramics studio</title>
+<style>
+:root{--bg:#f2f5fa;--bg2:#e4eaf5;--ink:#0f1b33;--mute:#44506a;--line:#c5cfe2;--accent:#1f4fd8;--on:#fff;--r:12px;
+--font:"Avenir Next","Segoe UI Variable","Segoe UI",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#0b1220;--bg2:#111b30;--ink:#e8edf7;--mute:#a3b0c9;--line:#26324d;--accent:#7b9bff;--on:#0b1220}}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 1.0625rem/1.6 var(--font)}
+a{color:inherit}
+img{display:block;width:100%;height:100%;object-fit:cover;border-radius:var(--r);background:var(--bg2)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+nav ul{display:flex;gap:28px;list-style:none;padding:0}
+nav ul a{text-decoration:none;color:var(--mute);font-size:.95rem}
+nav ul a:hover{color:var(--ink)}
+.logo{font-weight:700;letter-spacing:-.02em;text-decoration:none;white-space:nowrap}
+.btn{display:inline-block;white-space:nowrap;padding:12px 22px;border-radius:var(--r);background:var(--accent);color:var(--on);font-weight:600;text-decoration:none;border:1.5px solid var(--accent);transition:transform .3s cubic-bezier(.16,1,.3,1),filter .2s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.btn:active{transform:translateY(1px) scale(.98)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+.hero{min-height:calc(100dvh - 64px);display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;padding-top:48px;padding-bottom:48px}
+h1{font-size:clamp(2.4rem,5.2vw,4.4rem);line-height:1.04;letter-spacing:-.04em;max-width:13ch}
+h1 em{font-style:italic;color:var(--accent);padding-bottom:.08em}
+.hero p{margin:24px 0 32px;max-width:44ch;color:var(--mute);font-size:1.15rem}
+.hero .acts{display:flex;gap:12px;flex-wrap:wrap}
+.hero figure{aspect-ratio:4/5;max-height:76dvh;margin-left:auto;width:100%;max-width:520px;transform:translateY(24px)}
+h2{font-size:clamp(1.8rem,3.4vw,2.8rem);letter-spacing:-.035em;line-height:1.1;max-width:18ch;margin-bottom:40px}
+section{padding:96px 0}
+.make .grid{display:grid;grid-template-columns:1.5fr 1fr;grid-template-rows:auto auto;gap:24px}
+.make figure:first-child{grid-row:span 2}
+.make figure{display:flex;flex-direction:column;gap:14px}
+.make .ph{aspect-ratio:4/3;flex:1;min-height:0}
+.make figure:first-child .ph{aspect-ratio:auto;min-height:420px}
+.make h3{font-size:1.25rem;letter-spacing:-.02em}
+.make figcaption p{color:var(--mute);max-width:42ch;font-size:1rem}
+.quotes{background:var(--bg2)}
+.quotes blockquote{max-width:620px;padding-left:24px;border-left:3px solid var(--accent);margin-bottom:48px}
+.quotes blockquote:nth-of-type(2){margin-left:auto}
+.quotes blockquote:nth-of-type(3){margin-left:12%;margin-bottom:0}
+.quotes p{font-size:1.4rem;line-height:1.35;letter-spacing:-.02em}
+.quotes cite{display:block;margin-top:14px;font-style:normal;color:var(--mute);font-size:.95rem}
+.quotes cite b{color:var(--ink)}
+.price{display:grid;grid-template-columns:1.2fr 2fr auto;gap:8px 32px;align-items:baseline;padding:28px 0;border-top:1px solid var(--line)}
+.price h3{font-size:1.5rem;letter-spacing:-.03em}
+.price p{color:var(--mute)}
+.price strong{font-size:2rem;letter-spacing:-.03em;color:var(--accent)}
+.cta{margin-top:40px}
+footer{border-top:1px solid var(--line);padding:56px 0 40px}
+footer .wrap{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:32px}
+footer p,footer li{color:var(--mute);font-size:.98rem}
+footer ul{list-style:none;padding:0}
+footer h4{margin-bottom:8px;font-size:1rem}
+.js .rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:no-preference){.hero>*{animation:up .9s cubic-bezier(.16,1,.3,1) both}.hero figure{animation-delay:.15s}@keyframes up{from{opacity:0;transform:translateY(32px)}}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto}.js .rv{opacity:1;transform:none}}
+@media (max-width:767px){
+nav ul{display:none}
+.hero,.make .grid,footer .wrap{grid-template-columns:1fr}
+.hero{gap:32px;padding-top:32px}.hero figure{margin:0;max-width:none;transform:none;max-height:none}
+.make figure:first-child{grid-row:auto}.make figure:first-child .ph{min-height:0;aspect-ratio:4/3}
+section{padding:64px 0}
+.quotes blockquote:nth-of-type(n){margin-left:0}
+.price{grid-template-columns:1fr auto}.price p{grid-column:1/-1;order:3}
+}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="logo" href="#top">Oficina Cobalto</a>
+  <ul><li><a href="#make">Our work</a></li><li><a href="#voices">Testimonials</a></li><li><a href="#workshops">Pricing</a></li></ul>
+  <a class="btn" href="#workshops">Book a workshop</a>
+</div></nav>
+
+<main id="top">
+<div class="wrap hero">
+  <div>
+    <h1>Everyday ceramics, <em>thrown</em> by hand</h1>
+    <p>Handmade tableware thrown and glazed in small batches. Join a workshop and make your own bowl.</p>
+    <div class="acts"><a class="btn" href="#workshops">Book a workshop</a><a class="btn ghost" href="#make">See our work</a></div>
+  </div>
+  <figure><img src="https://picsum.photos/seed/cobalt-ceramics-studio-hero/1040/1300" width="1040" height="1300" alt="Hand-thrown cobalt glazed bowls on a wooden studio shelf"></figure>
+</div>
+
+<section class="make" id="make"><div class="wrap">
+  <h2 class="rv">What we make</h2>
+  <div class="grid">
+    <figure class="rv"><div class="ph"><img src="https://picsum.photos/seed/cobalt-dinner-set/1000/900" width="1000" height="900" loading="lazy" alt="Stacked stoneware dinner plates with a blue rim"></div>
+      <figcaption><h3>Dinnerware</h3><p>Plates, bowls and mugs in stoneware, glazed in cobalt and a soft white.</p></figcaption></figure>
+    <figure class="rv"><div class="ph"><img src="https://picsum.photos/seed/ceramic-vase-window/800/600" width="800" height="600" loading="lazy" alt="Tall ceramic vase with dried flowers by a window"></div>
+      <figcaption><h3>Vases</h3><p>One-off forms, each thrown and trimmed on the wheel.</p></figcaption></figure>
+    <figure class="rv"><div class="ph"><img src="https://picsum.photos/seed/blue-handpainted-tiles/800/600" width="800" height="600" loading="lazy" alt="Hand-painted blue tiles drying on a rack"></div>
+      <figcaption><h3>Tiles</h3><p>Hand-painted, made to order for kitchens and doorways.</p></figcaption></figure>
+  </div>
+</div></section>
+
+<section class="quotes" id="voices"><div class="wrap">
+  <h2 class="rv">What students and customers say</h2>
+  <blockquote class="rv"><p>&ldquo;I arrived never having touched clay and left with a bowl I use every morning.&rdquo;</p><cite><b>Leonor Vasques</b> - Primary school teacher, workshop student</cite></blockquote>
+  <blockquote class="rv"><p>&ldquo;They made forty plates for our restaurant and every one felt considered.&rdquo;</p><cite><b>Tomás Brandão</b> - Head chef, Taberna do Largo</cite></blockquote>
+  <blockquote class="rv"><p>&ldquo;The tiles for our hallway were exactly the blue we had imagined.&rdquo;</p><cite><b>Marta Figueiredo</b> - Architect, private commission</cite></blockquote>
+</div></section>
+
+<section id="workshops"><div class="wrap">
+  <h2 class="rv">Workshop pricing</h2>
+  <div class="price rv"><h3>Wheel taster</h3><p>Two hours at the wheel. Throw one piece, we glaze and fire it for pickup.</p><strong>€65</strong></div>
+  <div class="price rv"><h3>Pair night</h3><p>An evening for two with wine. Hand-build two cups or small bowls together.</p><strong>€110</strong></div>
+  <div class="price rv" style="border-bottom:1px solid var(--line)"><h3>Four-week course</h3><p>Weekly sessions with a small group. Learn centering, pulling walls and glazing.</p><strong>€240</strong></div>
+  <div class="cta rv"><a class="btn" href="mailto:hello@oficinacobalto.example?subject=Workshop%20booking">Book a workshop</a></div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <div><a class="logo" href="#top">Oficina Cobalto</a><p style="margin-top:8px;max-width:34ch">A small ceramics studio making tableware, vases and tiles by hand.</p></div>
+  <div><h4>Visit</h4><ul><li>Rua da Madalena 214</li><li>1100-319 Lisboa</li><li>Tue to Sat, 10:00-18:00</li></ul></div>
+  <div><h4>Contact</h4><ul><li><a href="mailto:hello@oficinacobalto.example">hello@oficinacobalto.example</a></li><li><a href="#top">Instagram</a></li></ul></div>
+</div></footer>
+
+<script>
+document.documentElement.classList.add('js');
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
+```

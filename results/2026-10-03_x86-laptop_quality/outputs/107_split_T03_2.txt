@@ -1,0 +1,141 @@
+```html
+<!DOCTYPE html>
+<!-- Design Read: portfolio for engaged couples, editorial/luxury language, native CSS + system serif, restrained motion.
+     Dials: VARIANCE 7 / MOTION 5 / DENSITY 2. Photos use picsum.photos placeholders; swap the src values for real work. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mara Ellison | Wedding Photographer</title>
+<style>
+  :root {
+    --paper: #f4efe8; --ink: #2a2522; --muted: #7a6f66; --accent: #8c4a32; --line: #d9d0c4;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font: 17px/1.7 var(--sans); }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 3rem); }
+  nav { position: absolute; inset: 0 0 auto; z-index: 2; display: flex; justify-content: space-between;
+        padding: 1.75rem clamp(1.25rem, 4vw, 3rem); color: #fff; font-size: .8rem; letter-spacing: .18em; text-transform: uppercase; }
+  nav a { text-decoration: none; margin-left: 1.75rem; }
+  nav a:first-child { margin: 0; }
+  .hero { position: relative; min-height: 100dvh; display: grid; align-items: end; color: #fff;
+          background: linear-gradient(to top, rgb(20 14 10 / .72), rgb(20 14 10 / .1) 60%),
+                      url("https://picsum.photos/seed/vow-hero/1800/1200") center / cover #5b4a3f; }
+  .hero h1 { font: 400 clamp(3rem, 9vw, 8rem)/.95 var(--serif); letter-spacing: -.02em; max-width: 11ch; padding-bottom: 1.5rem; }
+  .hero h1 em { color: #f0c9b4; }
+  .hero p { max-width: 38ch; padding-bottom: 4rem; color: #eee3d8; }
+  .eyebrow { font-size: .75rem; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); }
+  section { padding: clamp(4rem, 10vw, 8rem) 0; }
+  h2 { font: 400 clamp(2rem, 4.5vw, 3.5rem)/1.1 var(--serif); margin: .75rem 0 2.5rem; }
+  .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: clamp(.75rem, 2vw, 1.5rem); }
+  .grid figure { overflow: hidden; background: var(--line); position: relative; }
+  .grid img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .9s cubic-bezier(.2, .7, .2, 1); }
+  .grid figure:hover img { transform: scale(1.04); }
+  .grid figcaption { position: absolute; left: 1rem; bottom: .8rem; color: #fff; font-size: .75rem; letter-spacing: .15em;
+                     text-transform: uppercase; text-shadow: 0 1px 8px rgb(0 0 0 / .6); }
+  .g1 { grid-column: span 7; aspect-ratio: 4/3; }  .g2 { grid-column: span 5; aspect-ratio: 4/5; margin-top: 4rem; }
+  .g3 { grid-column: span 4; aspect-ratio: 3/4; }  .g4 { grid-column: span 4; aspect-ratio: 3/4; margin-top: 3rem; }
+  .g5 { grid-column: span 4; aspect-ratio: 3/4; }  .g6 { grid-column: 3 / span 8; aspect-ratio: 16/9; margin-top: 1rem; }
+  .about { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(2rem, 7vw, 6rem); align-items: start; border-top: 1px solid var(--line); }
+  .about img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
+  .about p { margin-bottom: 1.25rem; max-width: 56ch; color: #4a413b; }
+  .about blockquote { font: italic 1.5rem/1.4 var(--serif); color: var(--accent); margin-top: 2rem; padding-left: 1.25rem; border-left: 2px solid var(--accent); }
+  .contact { background: var(--ink); color: var(--paper); }
+  .contact .eyebrow { color: #e0a98f; }
+  form { display: grid; grid-template-columns: 1fr 1fr; gap: 1.75rem 2rem; max-width: 820px; }
+  label { display: grid; gap: .4rem; font-size: .75rem; letter-spacing: .15em; text-transform: uppercase; color: #bfb3a7; }
+  .full { grid-column: 1 / -1; }
+  input, textarea { font: 1.05rem var(--serif); color: var(--paper); background: transparent; border: 0;
+                    border-bottom: 1px solid #6b5f56; padding: .6rem 0; border-radius: 0; text-transform: none; letter-spacing: 0; }
+  input:focus, textarea:focus { outline: 0; border-color: #e0a98f; }
+  button { justify-self: start; font: inherit; font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; cursor: pointer;
+           padding: 1rem 2.25rem; background: var(--paper); color: var(--ink); border: 0; transition: background .3s, transform .3s; }
+  button:hover { background: #e0a98f; transform: translateY(-2px); }
+  #status { align-self: center; font: italic 1.2rem var(--serif); color: #e0a98f; }
+  footer { padding: 2rem 0; text-align: center; font-size: .75rem; letter-spacing: .15em; color: var(--muted); text-transform: uppercase; }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 1s ease, transform 1s cubic-bezier(.2, .7, .2, 1); }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (max-width: 760px) {
+    .grid figure, .g2, .g4, .g6 { grid-column: 1 / -1; margin-top: 0; aspect-ratio: 4/5; }
+    .about, form { grid-template-columns: 1fr; }
+    nav a:not(:last-child) { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .grid img, button { transition: none; }
+  }
+</style>
+</head>
+<body>
+<header class="hero">
+  <nav aria-label="Primary"><a href="#top">Mara Ellison</a><span><a href="#work">Work</a><a href="#story">Story</a><a href="#contact">Inquire</a></span></nav>
+  <div class="wrap" id="top">
+    <h1>Quiet moments, <em>kept.</em></h1>
+    <p>Documentary wedding photography for couples who would rather be present than posed. Based in Portland, traveling worldwide.</p>
+  </div>
+</header>
+
+<main>
+  <section id="work" class="wrap">
+    <p class="eyebrow">Selected weddings</p>
+    <h2>Six days I still think about</h2>
+    <div class="grid">
+      <figure class="g1 reveal"><img loading="lazy" src="https://picsum.photos/seed/vow-1/1200/900" alt="Couple sharing a private moment before the ceremony"><figcaption>Hood River</figcaption></figure>
+      <figure class="g2 reveal"><img loading="lazy" src="https://picsum.photos/seed/vow-2/900/1125" alt="Bride adjusting her veil in window light"><figcaption>Lisbon</figcaption></figure>
+      <figure class="g3 reveal"><img loading="lazy" src="https://picsum.photos/seed/vow-3/900/1200" alt="Hands clasped during the vows"><figcaption>Cannon Beach</figcaption></figure>
+      <figure class="g4 reveal"><img loading="lazy" src="https://picsum.photos/seed/vow-4/900/1200" alt="Guests laughing at a long candlelit table"><figcaption>Tuscany</figcaption></figure>
+      <figure class="g5 reveal"><img loading="lazy" src="https://picsum.photos/seed/vow-5/900/1200" alt="Groom reading a letter alone"><figcaption>Seattle</figcaption></figure>
+      <figure class="g6 reveal"><img loading="lazy" src="https://picsum.photos/seed/vow-6/1600/900" alt="First dance under string lights at dusk"><figcaption>Napa Valley</figcaption></figure>
+    </div>
+  </section>
+
+  <section id="story" class="wrap about">
+    <img class="reveal" loading="lazy" src="https://picsum.photos/seed/vow-mara/800/1000" alt="Portrait of Mara Ellison holding a camera">
+    <div class="reveal">
+      <p class="eyebrow">The photographer</p>
+      <h2>I started at my sister's wedding, hiding behind a borrowed lens.</h2>
+      <p>I was supposed to be a guest. Instead I spent the afternoon watching my father fix her boutonniere with shaking hands, and I understood that the photographs worth having are rarely the ones anyone planned.</p>
+      <p>Twelve years and more than two hundred weddings later, I still work the same way: one camera, no shot list, and a lot of patience. I arrive early, stay quiet, and let the day happen.</p>
+      <blockquote>Your photographs should feel like remembering, not like a performance.</blockquote>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <p class="eyebrow">Inquire</p>
+      <h2>Tell me about your day</h2>
+      <form id="inquiry">
+        <label>Your names<input name="names" required autocomplete="name"></label>
+        <label>Email<input type="email" name="email" required autocomplete="email"></label>
+        <label>Wedding date<input type="date" name="date"></label>
+        <label>Location<input name="place"></label>
+        <label class="full">What are you imagining?<textarea name="msg" rows="4" required></textarea></label>
+        <div class="full" style="display:flex; gap:1.5rem; flex-wrap:wrap"><button type="submit">Send inquiry</button><span id="status" role="status"></span></div>
+      </form>
+    </div>
+  </section>
+</main>
+<footer>&copy; 2026 Mara Ellison Photography</footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+  }), { threshold: 0.15 });
+  document.querySelectorAll(".reveal").forEach((el, i) => { el.style.transitionDelay = (i % 3) * 90 + "ms"; io.observe(el); });
+
+  document.getElementById("inquiry").addEventListener("submit", (e) => {
+    e.preventDefault(); // Replace with fetch() to your form endpoint.
+    const first = new FormData(e.target).get("names").split(/[\s&,]+/)[0];
+    document.getElementById("status").textContent = "Thank you, " + first + ". I will reply within two days.";
+    e.target.reset();
+  });
+</script>
+</body>
+</html>
+```

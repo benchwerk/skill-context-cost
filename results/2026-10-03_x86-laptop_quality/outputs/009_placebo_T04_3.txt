@@ -1,0 +1,155 @@
+```html
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harbor Street Dental – Today</title>
+<style>
+  :root {
+    --bg: #f4f2ee; --card: #fffdfa; --ink: #1d2b2a; --muted: #6b7775;
+    --line: #e4e0d8; --accent: #0f6b66; --accent-soft: #dcefec;
+    --warn: #b4620f; --warn-soft: #f8e8d2; --done: #8a9593;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    font: 15px/1.45 "Segoe UI", system-ui, -apple-system, sans-serif;
+    background: var(--bg); color: var(--ink); padding: 28px 20px 40px;
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; }
+  header { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 22px; }
+  h1 { font-size: 1.5rem; letter-spacing: -0.01em; }
+  header p { color: var(--muted); font-size: 0.9rem; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+  .stat, .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; }
+  .stat { padding: 14px 16px; }
+  .stat span { display: block; font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .stat strong { font-size: 1.75rem; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+  .stat small { color: var(--muted); font-size: 0.8rem; margin-left: 4px; }
+  .grid { display: grid; grid-template-columns: 1.7fr 1fr; gap: 16px; align-items: start; }
+  .card { padding: 18px 20px; }
+  .card h2 { font-size: 1rem; margin-bottom: 4px; }
+  .card > p { color: var(--muted); font-size: 0.85rem; margin-bottom: 12px; }
+  .tabs { display: flex; gap: 6px; margin-bottom: 8px; }
+  .tabs button {
+    font: inherit; font-size: 0.82rem; padding: 4px 12px; border-radius: 999px; cursor: pointer;
+    border: 1px solid var(--line); background: transparent; color: var(--muted);
+  }
+  .tabs button[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .tabs button:focus-visible, .day:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  ul { list-style: none; padding: 0; }
+  .appt { display: grid; grid-template-columns: 74px 1fr auto; gap: 12px; align-items: center; padding: 11px 0; border-top: 1px solid var(--line); }
+  .appt time { font-variant-numeric: tabular-nums; font-weight: 600; }
+  .appt b { display: block; font-weight: 600; }
+  .appt span.sub { color: var(--muted); font-size: 0.84rem; }
+  .appt.done b, .appt.done time { color: var(--done); }
+  .pill { font-size: 0.76rem; padding: 3px 10px 3px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); white-space: nowrap; }
+  .pill::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: currentColor; margin-right: 6px; vertical-align: 1px; }
+  .pill.done { background: #ecebe6; color: #5d6967; }
+  .pill.now { background: var(--accent); color: #fff; }
+  .pill.late { background: var(--warn-soft); color: var(--warn); }
+  .week { display: flex; align-items: flex-end; gap: 10px; height: 150px; padding-top: 8px; }
+  .day { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; gap: 6px; font-size: 0.8rem; color: var(--muted); background: none; border: 0; font-family: inherit; cursor: pointer; }
+  .day i { display: block; width: 100%; background: #cfd9d6; border-radius: 5px 5px 2px 2px; transition: height .3s; }
+  .day.today i { background: var(--accent); }
+  .day.today { color: var(--ink); font-weight: 600; }
+  .day:hover i { filter: brightness(0.93); }
+  .day em { font-style: normal; font-variant-numeric: tabular-nums; color: var(--ink); }
+  #weekNote { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 0.88rem; min-height: 2.6em; }
+  @media (max-width: 760px) { .stats { grid-template-columns: repeat(2, 1fr); } .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Harbor Street Dental</h1>
+      <p id="today">Today</p>
+    </div>
+    <p>Front desk · 2 chairs open</p>
+  </header>
+
+  <section class="stats" aria-label="Summary">
+    <div class="stat"><span>Appointments</span><strong id="sTotal">0</strong></div>
+    <div class="stat"><span>Completed</span><strong id="sDone">0</strong><small id="sPct"></small></div>
+    <div class="stat"><span>Open slots</span><strong>2</strong><small>1:30, 4:00</small></div>
+    <div class="stat"><span>Est. revenue</span><strong>$2,840</strong></div>
+  </section>
+
+  <div class="grid">
+    <section class="card" aria-labelledby="sched">
+      <h2 id="sched">Today's schedule</h2>
+      <p>Dr. Okafor and Dr. Lindqvist</p>
+      <div class="tabs" role="group" aria-label="Filter by dentist">
+        <button aria-pressed="true" data-f="all">All</button>
+        <button aria-pressed="false" data-f="Okafor">Dr. Okafor</button>
+        <button aria-pressed="false" data-f="Lindqvist">Dr. Lindqvist</button>
+      </div>
+      <ul id="list"></ul>
+    </section>
+
+    <section class="card" aria-labelledby="wk">
+      <h2 id="wk">This week</h2>
+      <p>Booked appointments per day</p>
+      <div class="week" id="week"></div>
+      <div id="weekNote" aria-live="polite"></div>
+    </section>
+  </div>
+</div>
+
+<script>
+  const appts = [
+    ["8:30 AM", "Maria Santos", "Routine cleaning", "Okafor", "done"],
+    ["9:15 AM", "Tomás Whitfield", "Crown fitting", "Lindqvist", "done"],
+    ["10:00 AM", "Priya Raman", "Filling, lower left", "Okafor", "done"],
+    ["10:45 AM", "Jonah Becker", "Root canal, stage 2", "Lindqvist", "done"],
+    ["11:30 AM", "Ellen Park", "Whitening consult", "Okafor", "now"],
+    ["12:15 PM", "Samir Haddad", "Extraction follow-up", "Lindqvist", "late"],
+    ["2:30 PM", "Chloe Ferreira", "Child exam", "Okafor", "next"],
+    ["3:15 PM", "Daniel Osei", "Night guard fitting", "Lindqvist", "next"],
+    ["5:00 PM", "Ruth Calloway", "Denture adjustment", "Okafor", "next"]
+  ];
+  const labels = { done: "Completed", now: "In chair", late: "Running late", next: "Upcoming" };
+  const week = [8, 11, 9, 12, 10, 5]; // Mon–Sat
+  const names = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const notes = ["Light day, good for recall calls.", "Busy, two hygiene blocks.", "Steady.", "Busiest day, double-check lab cases.", "Steady, early close at 4 PM.", "Half day, 9 AM to 1 PM."];
+
+  const now = new Date();
+  document.getElementById("today").textContent =
+    now.toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" }) + " · " + appts.length + " patients";
+
+  const done = appts.filter(a => a[4] === "done").length;
+  sTotal.textContent = appts.length;
+  sDone.textContent = done;
+  sPct.textContent = Math.round(done / appts.length * 100) + "%";
+
+  function renderList(filter) {
+    list.innerHTML = appts
+      .filter(a => filter === "all" || a[3] === filter)
+      .map(([t, name, what, dr, st]) =>
+        `<li class="appt ${st === "done" ? "done" : ""}"><time>${t}</time>
+         <div><b>${name}</b><span class="sub">${what} · Dr. ${dr}</span></div>
+         <span class="pill ${st === "next" ? "" : st}">${labels[st]}</span></li>`)
+      .join("");
+  }
+  document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => {
+    document.querySelectorAll(".tabs button").forEach(x => x.setAttribute("aria-pressed", x === b));
+    renderList(b.dataset.f);
+  }));
+  renderList("all");
+
+  const todayIdx = (now.getDay() + 6) % 7; // Monday = 0
+  const max = Math.max(...week);
+  week.forEach((n, i) => {
+    const d = document.createElement("button");
+    d.className = "day" + (i === todayIdx ? " today" : "");
+    d.setAttribute("aria-label", `${names[i]}: ${n} appointments`);
+    d.innerHTML = `<em>${n}</em><i style="height:${n / max * 100}px"></i>${names[i]}`;
+    d.addEventListener("click", () => weekNote.textContent = `${names[i]}: ${n} booked. ${notes[i]}`);
+    document.getElementById("week").appendChild(d);
+  });
+  weekNote.textContent = `Total this week: ${week.reduce((a, b) => a + b)} appointments. Tap a bar for detail.`;
+</script>
+</body>
+</html>
+```

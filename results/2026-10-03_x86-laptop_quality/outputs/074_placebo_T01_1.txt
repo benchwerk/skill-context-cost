@@ -1,0 +1,148 @@
+```html
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atelier Argila — Ceramics studio in Lisbon</title>
+<meta name="description" content="Hand-thrown stoneware and small-group ceramics workshops in Alfama, Lisbon.">
+<style>
+:root{--bone:#f3ece0;--clay:#b5532f;--ink:#241a14;--glaze:#1f4a5c;--sand:#e4d7c3;--line:#24 1a14}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bone);color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3,blockquote,.logo{font-family:Georgia,"Iowan Old Style","Times New Roman",serif;font-weight:400;letter-spacing:-.01em}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--glaze);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+header{display:flex;justify-content:space-between;align-items:center;padding:22px 0}
+.logo{font-size:1.35rem;text-decoration:none}
+nav{display:flex;gap:26px;font-size:.95rem}
+nav a{text-decoration:none;border-bottom:1px solid transparent}
+nav a:hover{border-color:currentColor}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding:56px 0 96px}
+.eyebrow{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--clay);margin-bottom:18px}
+h1{font-size:clamp(2.6rem,6vw,4.6rem);line-height:1.02}
+h1 em{color:var(--clay)}
+.hero p{max-width:46ch;margin:24px 0 32px;font-size:1.1rem}
+.btn{display:inline-block;background:var(--ink);color:var(--bone);padding:14px 26px;border-radius:999px;text-decoration:none;transition:background .2s,transform .2s}
+.btn:hover{background:var(--clay);transform:translateY(-2px)}
+.kiln{position:relative;aspect-ratio:4/5;background:var(--sand);border-radius:240px 240px 12px 12px;overflow:hidden}
+.kiln i{position:absolute;bottom:0;display:block;background:var(--clay);box-shadow:inset -14px 0 0 rgba(0,0,0,.12)}
+.kiln i:nth-child(1){left:12%;width:34%;height:46%;border-radius:40% 40% 8px 8px/30% 30% 8px 8px}
+.kiln i:nth-child(2){left:50%;width:26%;height:70%;background:var(--glaze);border-radius:50% 50% 8px 8px/22% 22% 8px 8px;clip-path:inset(0 0 0 0)}
+.kiln i:nth-child(3){left:76%;width:14%;height:28%;background:var(--ink);border-radius:12px 12px 4px 4px}
+section{padding:80px 0;border-top:1px solid rgba(36,26,20,.18)}
+h2{font-size:clamp(1.9rem,4vw,2.8rem);margin-bottom:40px;max-width:16ch;line-height:1.1}
+.make{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.make div{padding:0 28px;border-left:1px solid rgba(36,26,20,.18)}
+.make div:first-child{padding-left:0;border:0}
+.make h3{font-size:1.5rem;margin-bottom:8px}
+.make span{display:block;font-size:.85rem;color:var(--clay);margin-top:14px}
+.voices{background:var(--glaze);color:var(--bone);border:0}
+.voices h2{color:var(--bone)}
+.quotes{display:grid;grid-template-columns:repeat(6,1fr);gap:40px 48px}
+blockquote{font-size:1.3rem;line-height:1.4}
+.quotes figure:nth-child(1){grid-column:1/5}
+.quotes figure:nth-child(2){grid-column:3/7}
+.quotes figure:nth-child(3){grid-column:1/4}
+.quotes figure:nth-child(1) blockquote{font-size:1.8rem}
+figcaption{margin-top:12px;font-size:.88rem;opacity:.75}
+.tabs{display:inline-flex;border:1px solid var(--ink);border-radius:999px;margin-bottom:32px;padding:4px}
+.tabs button{font:inherit;font-size:.9rem;border:0;background:none;padding:8px 20px;border-radius:999px;cursor:pointer;color:var(--ink)}
+.tabs button[aria-pressed=true]{background:var(--ink);color:var(--bone)}
+.price{display:grid;grid-template-columns:1fr auto;gap:4px 24px;padding:26px 0;border-bottom:1px solid rgba(36,26,20,.18);align-items:baseline}
+.price h3{font-size:1.5rem}
+.price b{font:400 2rem Georgia,serif;color:var(--clay)}
+.price p{font-size:.95rem;opacity:.8}
+footer{background:var(--ink);color:var(--sand);padding:64px 0 40px;font-size:.95rem}
+footer .wrap{display:grid;grid-template-columns:2fr 1fr 1fr;gap:32px}
+footer .logo{font-size:1.8rem;color:var(--bone);display:block;margin-bottom:8px}
+footer small{grid-column:1/-1;opacity:.55;border-top:1px solid rgba(255,255,255,.15);padding-top:20px}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}
+.rv.on{opacity:1;transform:none}
+@media(max-width:760px){
+  nav{display:none}
+  .hero,.make,footer .wrap{grid-template-columns:1fr}
+  .kiln{aspect-ratio:1}
+  .make div{padding:20px 0;border:0;border-top:1px solid rgba(36,26,20,.18)}
+  .quotes{display:block}.quotes figure{margin-bottom:36px}
+}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="logo" href="#">Atelier Argila</a>
+    <nav><a href="#make">The work</a><a href="#voices">Voices</a><a href="#workshops">Workshops</a><a href="#visit">Visit</a></nav>
+  </header>
+  <main>
+    <div class="hero">
+      <div>
+        <p class="eyebrow">Stoneware · Alfama, Lisbon</p>
+        <h1>Made slowly, <em>fired</em> hot, used every day.</h1>
+        <p>We are four potters working out of a former tile warehouse. Everything is thrown by hand with Portuguese clay and finished in glazes we mix ourselves.</p>
+        <a class="btn" href="#workshops">Book a workshop</a>
+      </div>
+      <div class="kiln" role="img" aria-label="Illustration of three hand-thrown vessels: a terracotta bowl, a tall blue vase and a small black cup"><i></i><i></i><i></i></div>
+    </div>
+
+    <section id="make" class="rv">
+      <h2>What comes off the wheel</h2>
+      <div class="make">
+        <div><h3>Table</h3><p>Plates, bowls and cups in sets of two, four or six. Dishwasher safe, built to be chipped a little and loved anyway.</p><span>From €28</span></div>
+        <div><h3>Vessels</h3><p>Vases and oil jugs glazed in cobalt, ash and the rust red of Alentejo soil. Each one is signed on the foot.</p><span>From €64</span></div>
+        <div><h3>Commissions</h3><p>Full restaurant services and one-off pieces. Tell us the dish and we will shape the plate around it.</p><span>On request</span></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<section id="voices" class="voices rv">
+  <div class="wrap">
+    <h2>Heard at the studio door</h2>
+    <div class="quotes">
+      <figure><blockquote>“I came for one afternoon and stayed three hours. My lopsided bowl is the best thing on my shelf.”</blockquote><figcaption>Marta Reis, workshop guest</figcaption></figure>
+      <figure><blockquote>“Our entire dining room runs on their plates. Guests ask about them more than the wine.”</blockquote><figcaption>Tomás Aguiar, chef at Taberna do Cais</figcaption></figure>
+      <figure><blockquote>“Patient teachers, real clay under the nails, and coffee that is actually good.”</blockquote><figcaption>Hannah Cole, visiting from Leeds</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <section id="workshops" class="rv" style="border:0">
+    <h2>Workshops</h2>
+    <div class="tabs" role="group" aria-label="Group size">
+      <button aria-pressed="true" data-m="1">Per person</button>
+      <button aria-pressed="false" data-m="2">Couple</button>
+      <button aria-pressed="false" data-m="6">Group of six</button>
+    </div>
+    <div class="price"><h3>First Wheel · 2 hrs</h3><b data-p="45">€45</b><p>Learn to center and pull a cup. Pieces are glazed and ready for pickup in two weeks.</p></div>
+    <div class="price"><h3>Table Set · 3 weeks</h3><b data-p="160">€160</b><p>Three evening sessions to throw, trim and glaze your own bowl and plate pair.</p></div>
+    <div class="price"><h3>Private Evening · 3 hrs</h3><b data-p="70">€70</b><p>Wine, petiscos and a teacher of your own. Perfect for birthdays and farewell dinners.</p></div>
+  </section>
+</div>
+
+<footer id="visit">
+  <div class="wrap">
+    <div><a class="logo" href="#">Atelier Argila</a>Rua do Salvador 18, 1100-451 Lisboa<br>Wed–Sat 11:00–19:00</div>
+    <div>Hello<br><a href="mailto:ola@argila.example">ola@argila.example</a><br>+351 21 000 0000</div>
+    <div>Follow<br><a href="#">Instagram</a><br><a href="#">Newsletter</a></div>
+    <small>© 2026 Atelier Argila. Fired in Lisbon.</small>
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('on');io.unobserve(x.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+const tabs=document.querySelectorAll('.tabs button');
+tabs.forEach(b=>b.addEventListener('click',()=>{
+  tabs.forEach(t=>t.setAttribute('aria-pressed',t===b));
+  const m=+b.dataset.m;
+  document.querySelectorAll('[data-p]').forEach(p=>p.textContent='€'+Math.round(p.dataset.p*m*(m>1?.92:1)));
+}));
+</script>
+</body>
+</html>
+```

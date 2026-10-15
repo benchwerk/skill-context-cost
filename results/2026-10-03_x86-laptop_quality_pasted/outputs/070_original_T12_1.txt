@@ -1,0 +1,135 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harrow Street Coffee app</title>
+<!-- Design read: consumer app announcement for coffee drinkers, cool-grey + burnt-orange language, native CSS, system type, dual mode. -->
+<style>
+:root{--bg:#e9ebee;--panel:#dde0e5;--ink:#16181b;--mute:#4a5059;--accent:#b93d08;--on-accent:#fff7f2;--r:16px;
+  --ease:cubic-bezier(.16,1,.3,1);--font:"Avenir Next","Segoe UI Variable Display","Helvetica Neue",Arial,sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#121417;--panel:#1c1f24;--ink:#e8eaed;--mute:#a4abb5;--accent:#f0763a;--on-accent:#1d0e06}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:400 1.0625rem/1.55 var(--font)}
+img{display:block;width:100%;height:100%;object-fit:cover;border-radius:var(--r)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+nav{height:68px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:800;letter-spacing:-.02em;text-decoration:none}
+.btn{display:inline-block;padding:14px 26px;border:0;border-radius:999px;background:var(--accent);color:var(--on-accent);
+  font:700 1rem var(--font);text-decoration:none;white-space:nowrap;cursor:pointer;transition:transform .3s var(--ease)}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:scale(.97)}
+.ghost{background:none;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+h1,h2{letter-spacing:-.035em;line-height:1.02}
+h1{font-size:clamp(2.5rem,6vw,4.75rem);max-width:11ch}
+h2{font-size:clamp(1.9rem,4vw,3rem);max-width:16ch}
+.sub{color:var(--mute);max-width:46ch;margin-top:18px}
+.hero{min-height:calc(100dvh - 68px);display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center;padding-top:24px;padding-bottom:40px}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.hero .pic{height:min(68dvh,620px);margin-top:-2rem}
+section.s{padding:112px 0}
+.order{display:grid;grid-template-columns:2fr 1fr;gap:20px}
+.order .big{height:480px}
+.order .txt{align-self:end;padding-bottom:8px}
+.track{margin-top:44px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.track::before,.track .fill{content:"";position:absolute;top:15px;left:12.5%;right:12.5%;height:2px;background:var(--panel)}
+.track .fill{background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform 2.4s var(--ease) .3s}
+.track.in .fill{transform:scaleX(1)}
+.step{position:relative;text-align:center;font-weight:700}
+.step i{display:block;width:32px;height:32px;margin:0 auto 12px;border-radius:50%;background:var(--panel);transition:background .4s,transform .4s var(--ease)}
+.track.in .step i{background:var(--accent);transform:scale(1.1);transition-delay:calc(var(--n)*.6s)}
+.step small{display:block;font-weight:400;color:var(--mute)}
+.roast{display:grid;grid-template-columns:1fr 1.2fr;gap:48px;align-items:center}
+.tabs{display:flex;gap:8px;margin:28px 0 20px;flex-wrap:wrap}
+.tabs button{padding:10px 20px;border-radius:999px;border:0;background:var(--panel);color:var(--ink);font:600 1rem var(--font);cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--ink);color:var(--bg)}
+.panel{min-height:96px}.panel b{font-size:1.5rem;letter-spacing:-.02em}
+.roast .pic{height:420px}
+.close{background:var(--panel);border-radius:var(--r);padding:72px 40px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center}
+footer{padding:40px 0;color:var(--mute);font-size:.9rem}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:no-preference){.hero>*{animation:up .9s var(--ease) both}.hero>:nth-child(2){animation-delay:.12s}
+  @keyframes up{from{opacity:0;transform:translateY(24px)}}}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.track .fill,.track .step i{transition:none}.track .fill{transform:scaleX(1)}.track .step i{background:var(--accent)}.btn{transition:none}}
+@media (max-width:767px){
+  .hero,.order,.roast,.close{grid-template-columns:1fr}.hero{min-height:0;gap:28px}.hero .pic{height:300px;margin:0}
+  section.s{padding:72px 0}.order .big,.roast .pic{height:300px}.close{padding:40px 24px}
+  .track{grid-template-columns:1fr;gap:20px;text-align:left}.track::before,.track .fill{display:none}
+  .step{display:flex;gap:14px;text-align:left;align-items:center}.step i{margin:0;flex:none}.step small{display:inline;margin-left:6px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav><a class="logo" href="#">Harrow Street</a><a class="btn" href="#get">Get the app</a></nav>
+
+  <header class="hero">
+    <div>
+      <h1>Fresh beans, tracked to your door.</h1>
+      <p class="sub">Order small-batch coffee in two taps and watch it travel from our roaster to your kitchen.</p>
+      <div class="cta"><a class="btn" href="#get">Get the app</a><a class="btn ghost" href="#track">How tracking works</a></div>
+    </div>
+    <div class="pic"><img src="https://picsum.photos/seed/harrow-coffee-beans-roaster/900/1100" alt="Freshly roasted coffee beans cooling in a tray" width="900" height="1100" fetchpriority="high"></div>
+  </header>
+
+  <section class="s order rv">
+    <div class="big"><img src="https://picsum.photos/seed/harrow-coffee-bags-shelf/1400/900" alt="Bags of Harrow Street beans lined up on a wooden shelf" loading="lazy" width="1400" height="900"></div>
+    <div class="txt"><h2>Reorder your usual in seconds.</h2><p class="sub">Pick a roast, a grind and a size. Set a repeat schedule or skip a week whenever you like.</p></div>
+  </section>
+
+  <section class="s rv" id="track">
+    <h2>Know when your bag lands.</h2>
+    <p class="sub">Every order gets a roast date, live updates and a delivery window you can change from your phone.</p>
+    <div class="track" id="trk">
+      <span class="fill"></span>
+      <div class="step" style="--n:0"><i></i><span>Roasted<small>Tuesday morning</small></span></div>
+      <div class="step" style="--n:1"><i></i><span>Packed<small>Same afternoon</small></span></div>
+      <div class="step" style="--n:2"><i></i><span>In transit<small>Live map in the app</small></span></div>
+      <div class="step" style="--n:3"><i></i><span>Delivered<small>Photo at your door</small></span></div>
+    </div>
+  </section>
+
+  <section class="s roast rv">
+    <div>
+      <h2>Three roasts to start.</h2>
+      <div class="tabs" role="tablist" aria-label="Roasts">
+        <button role="tab" aria-selected="true" data-i="0">Light</button>
+        <button role="tab" aria-selected="false" data-i="1">Medium</button>
+        <button role="tab" aria-selected="false" data-i="2">Dark</button>
+      </div>
+      <div class="panel" id="panel" role="tabpanel" aria-live="polite"></div>
+    </div>
+    <div class="pic"><img id="rimg" src="https://picsum.photos/seed/harrow-light-roast/1000/800" alt="Light roast beans in a ceramic bowl" loading="lazy" width="1000" height="800"></div>
+  </section>
+
+  <section class="s rv" id="get" style="padding-top:0">
+    <div class="close">
+      <div><h2>Your next bag is one tap away.</h2><p class="sub">Free on iOS and Android. Your first delivery ships free.</p></div>
+      <a class="btn" href="#">Get the app</a>
+    </div>
+  </section>
+  <footer>Harrow Street Coffee Roasters. Roasted to order, shipped within a day.</footer>
+</div>
+<script>
+// Sample roast data for the demo
+var roasts=[
+ {n:"Light",d:"Ethiopia Guji. Blueberry, jasmine, tea-like finish.",p:"$19 / 250 g",s:"harrow-light-roast",a:"Light roast beans in a ceramic bowl"},
+ {n:"Medium",d:"Colombia Huila. Red apple, caramel, soft cocoa.",p:"$17 / 250 g",s:"harrow-medium-roast",a:"Medium roast beans spilling from a scoop"},
+ {n:"Dark",d:"Sumatra Mandheling. Dark chocolate, cedar, low acidity.",p:"$16 / 250 g",s:"harrow-dark-roast",a:"Dark roast beans in a grinder hopper"}];
+var panel=document.getElementById("panel"),rimg=document.getElementById("rimg"),tabs=document.querySelectorAll(".tabs button");
+function show(i){var r=roasts[i];
+  panel.innerHTML="<b>"+r.n+"</b><p class='sub' style='margin-top:6px'>"+r.d+" "+r.p+".</p>";
+  rimg.src="https://picsum.photos/seed/"+r.s+"/1000/800";rimg.alt=r.a;
+  tabs.forEach(function(t,k){t.setAttribute("aria-selected",k==i)})}
+tabs.forEach(function(t){t.addEventListener("click",function(){show(+t.dataset.i)})});
+show(0);
+// Reveal sections as they enter the viewport; the tracker line fills once visible
+var io=new IntersectionObserver(function(es){es.forEach(function(e){
+  if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.25});
+document.querySelectorAll(".rv,#trk").forEach(function(el){io.observe(el)});
+</script>
+</body>
+</html>
+```

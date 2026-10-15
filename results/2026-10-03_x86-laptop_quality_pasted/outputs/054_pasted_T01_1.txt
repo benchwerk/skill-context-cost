@@ -1,0 +1,146 @@
+```html
+<!-- Reading this as: ceramics studio landing for design-conscious locals and visitors, with a calm, confident language, leaning toward native CSS, system sans, cobalt accent on cool neutrals, auto light/dark. Dials 7 / 5 / 3. Images are picsum placeholders: swap for real studio photography. Prices are sample data. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Barro Azul Ceramics, Lisbon</title>
+<style>
+:root{--bg:#f3f4f6;--fg:#14181d;--mut:#4b5563;--line:#d5d9df;--card:#e6e9ee;--acc:#2f4bd8;--on:#fff;--r:14px;
+--ease:cubic-bezier(.16,1,.3,1);color-scheme:light dark}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1215;--fg:#eef0f3;--mut:#a3acb8;--line:#2a3039;--card:#181d23;--acc:#9aabff;--on:#0f1215}}
+*{box-sizing:border-box;margin:0}
+body{font:16px/1.6 "Helvetica Neue",Arial,system-ui,sans-serif;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased}
+img{display:block;width:100%;height:100%;object-fit:cover}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav .wrap{height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;white-space:nowrap}
+nav ul{display:flex;gap:28px;list-style:none;padding:0}
+nav ul a{text-decoration:none;color:var(--mut);font-size:15px}
+nav ul a:hover{color:var(--fg)}
+.logo{font-weight:700;letter-spacing:-.02em;text-decoration:none}
+.btn{display:inline-block;white-space:nowrap;padding:12px 22px;border-radius:var(--r);background:var(--acc);color:var(--on);font-weight:600;text-decoration:none;border:1px solid var(--acc);transition:transform .3s var(--ease)}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:scale(.98)}
+.btn.ghost{background:transparent;color:var(--fg);border-color:var(--fg)}
+h1,h2{letter-spacing:-.04em;line-height:1.05;font-weight:700}
+h1{font-size:clamp(2.4rem,5.4vw,4.6rem);max-width:12ch}
+h2{font-size:clamp(1.8rem,3.4vw,2.6rem)}
+.lead{color:var(--mut);max-width:60ch;margin-top:12px}
+.hero{min-height:calc(100dvh - 64px);display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center;padding-top:32px;padding-bottom:32px}
+.hero p{color:var(--mut);font-size:1.15rem;max-width:34ch;margin:20px 0 28px}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero figure{height:min(72dvh,640px);border-radius:var(--r);overflow:hidden;margin-top:48px}
+section{padding:112px 0}
+.bento{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(2,260px);gap:16px;margin-top:40px}
+.cell{position:relative;border-radius:var(--r);overflow:hidden;background:var(--card)}
+.cell.a{grid-column:span 4;grid-row:span 2}.cell.b{grid-column:span 2}.cell.c{grid-column:span 2;background:var(--acc);color:var(--on);padding:28px;display:flex;flex-direction:column;justify-content:flex-end}
+.cell img{transition:transform .8s var(--ease)}.cell:hover img{transform:scale(1.04)}
+.cap{position:absolute;left:0;right:0;bottom:0;padding:20px 24px;background:linear-gradient(transparent,rgba(10,12,15,.72));color:#fff}
+.cap b{display:block;font-size:1.15rem}.cell.c b{font-size:1.4rem}.cell.c p{margin-top:8px;opacity:.92}
+.voices{display:grid;grid-template-columns:3fr 2fr;gap:56px;margin-top:48px}
+blockquote{font-size:1.1rem}
+blockquote.big{font-size:clamp(1.5rem,2.8vw,2.1rem);line-height:1.3;letter-spacing:-.02em;font-weight:500}
+blockquote footer{margin-top:16px;font-size:.95rem;color:var(--mut)}
+blockquote footer strong{display:block;color:var(--fg)}
+.side{display:grid;gap:40px;align-content:center}
+.side blockquote+blockquote{border-top:1px solid var(--line);padding-top:40px}
+.rows{margin-top:40px;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:1.2fr 2fr .7fr .6fr;gap:24px;align-items:baseline;padding:28px 0;border-bottom:1px solid var(--line)}
+.row h3{font-size:1.25rem;letter-spacing:-.02em}.row p,.row span{color:var(--mut)}
+.row .price{font-size:1.6rem;font-weight:700;color:var(--acc);text-align:right;letter-spacing:-.03em}
+.book{margin-top:40px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.book p{color:var(--mut)}
+footer.site{border-top:1px solid var(--line);padding:64px 0 40px}
+.fgrid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px}
+.fgrid h4{margin-bottom:10px}.fgrid p,.fgrid a{color:var(--mut);display:block;text-decoration:none;font-size:.95rem}
+.fgrid a:hover{color:var(--fg)}
+.fine{margin-top:48px;font-size:.85rem;color:var(--mut)}
+@media(prefers-reduced-motion:no-preference){
+.js .rv{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+.hero>*{animation:up .9s var(--ease) both}.hero figure{animation-delay:.15s}
+@keyframes up{from{opacity:0;transform:translateY(24px)}}}
+@media(max-width:767px){
+nav ul{display:none}
+.hero,.voices,.fgrid{grid-template-columns:1fr}.hero{gap:32px;min-height:auto}.hero figure{height:48dvh;margin-top:0}
+section{padding:72px 0}
+.bento{grid-template-columns:1fr;grid-template-rows:none;grid-auto-rows:260px}
+.cell.a,.cell.b,.cell.c{grid-column:auto;grid-row:auto}.cell.c{min-height:220px}
+.row{grid-template-columns:1fr auto;gap:8px}.row p{grid-column:1/-1;order:3}.row .price{text-align:right}}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="logo" href="#top">Barro Azul</a>
+  <ul><li><a href="#work">Our pieces</a></li><li><a href="#voices">Reviews</a></li><li><a href="#workshops">Workshops</a></li></ul>
+  <a class="btn" href="#workshops">Book a workshop</a>
+</div></nav>
+<main id="top">
+<div class="wrap hero">
+  <div>
+    <h1>Pottery made slowly, by hand.</h1>
+    <p>Small-batch tableware and vases, plus weekend wheel classes for beginners.</p>
+    <div class="cta"><a class="btn" href="#workshops">Book a workshop</a><a class="btn ghost" href="#work">See the pieces</a></div>
+  </div>
+  <figure><img src="https://picsum.photos/seed/lisbon-ceramics-studio-wheel/900/1100" alt="Hands shaping a bowl on a potter's wheel" fetchpriority="high"></figure>
+</div>
+
+<section id="work"><div class="wrap">
+  <h2 class="rv">What we make</h2>
+  <p class="lead rv">Everything is thrown, glazed and fired in our studio, in runs of twenty pieces or fewer.</p>
+  <div class="bento">
+    <div class="cell a rv"><img src="https://picsum.photos/seed/ceramic-dinner-set-blue/1000/800" alt="Stack of blue glazed plates and bowls" loading="lazy"><div class="cap"><b>Tableware</b>Plates, bowls and mugs for daily use</div></div>
+    <div class="cell b rv"><img src="https://picsum.photos/seed/ceramic-vase-stoneware/600/500" alt="Tall stoneware vase with dried grasses" loading="lazy"><div class="cap"><b>Vases</b>Stoneware, matte finish</div></div>
+    <div class="cell c rv"><b>Made to order</b><p>Need twelve matching bowls for your restaurant? We take commissions twice a year.</p></div>
+  </div>
+</div></section>
+
+<section id="voices"><div class="wrap">
+  <h2 class="rv">What customers say</h2>
+  <div class="voices">
+    <blockquote class="big rv">“I came for one mug and left with a full dinner set. Nothing else on my table feels this solid.”
+      <footer><strong>Marta Figueiredo</strong>Chef, Taberna do Poço</footer></blockquote>
+    <div class="side">
+      <blockquote class="rv">“The beginner class was patient and funny. My wobbly bowl is my favourite thing I own.”
+        <footer><strong>Daniel Okafor</strong>Architect, Campo de Ourique</footer></blockquote>
+      <blockquote class="rv">“They matched our hotel's glaze colour exactly across forty vases.”
+        <footer><strong>Inês Tavares</strong>Interior designer, Estúdio Marés</footer></blockquote>
+    </div>
+  </div>
+</div></section>
+
+<section id="workshops"><div class="wrap">
+  <h2 class="rv">Workshops</h2>
+  <p class="lead rv">Groups of six or fewer. Clay, tools, glazing and firing are included.</p>
+  <div class="rows">
+    <div class="row rv"><h3>First wheel session</h3><p>Centre the clay and throw two small bowls. No experience needed.</p><span>2.5 hours</span><span class="price">€68</span></div>
+    <div class="row rv"><h3>Weekend course</h3><p>Throw, trim and glaze a set of four pieces over two mornings.</p><span>2 x 3 hours</span><span class="price">€145</span></div>
+    <div class="row rv"><h3>Private group</h3><p>A team or birthday session for up to eight, with lunch from the café next door.</p><span>3 hours</span><span class="price">€390</span></div>
+  </div>
+  <div class="book rv"><a class="btn" href="mailto:hello@barroazul.example">Book a workshop</a><p>Reply within one working day.</p></div>
+</div></section>
+</main>
+
+<footer class="site"><div class="wrap">
+  <div class="fgrid">
+    <div><h4>Barro Azul Ceramics</h4><p>A small studio making tableware and vases in Lisbon since 2016.</p></div>
+    <div><h4>Visit</h4><p>Rua da Madalena 214</p><p>1100-319 Lisboa</p><p>Thu to Sun, 10:00 to 18:00</p></div>
+    <div><h4>Contact</h4><a href="mailto:hello@barroazul.example">hello@barroazul.example</a><a href="tel:+351211234567">+351 21 123 4567</a><a href="#top">Instagram</a></div>
+  </div>
+  <p class="fine">© 2026 Barro Azul Ceramics</p>
+</div></footer>
+
+<script>
+// Reveal on scroll via IntersectionObserver; skipped entirely under reduced motion.
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+  document.documentElement.classList.add('js');
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.2});
+  document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%3)*70+'ms';io.observe(el)});
+}
+</script>
+</body>
+</html>
+```

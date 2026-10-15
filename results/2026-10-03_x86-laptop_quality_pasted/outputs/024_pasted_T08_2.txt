@@ -1,0 +1,143 @@
+```html
+<!DOCTYPE html>
+<!-- Design Read: fintech About page for prospective hires and partners, calm trust-first language, native CSS with one emerald accent, auto light/dark. All figures and names are mock data. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ledgerwing | About</title>
+<style>
+:root{--bg:#f4f5f4;--surface:#e9ece9;--ink:#171a18;--mute:#4b5450;--line:#d3d8d4;--accent:#0b6b4d;--on-accent:#f4f5f4;--r:12px}
+@media (prefers-color-scheme:dark){:root{--bg:#101311;--surface:#181c19;--ink:#e8ebe8;--mute:#a3aca6;--line:#2a312c;--accent:#4fd1a1;--on-accent:#0c120f}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:400 1rem/1.6 "Geist","Outfit",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding:0 1.25rem}
+nav{height:64px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+nav b{font-weight:700;letter-spacing:-.02em}
+nav div{display:flex;gap:1.5rem;align-items:center;font-size:.9rem;color:var(--mute)}
+.btn{display:inline-block;padding:.75rem 1.25rem;border-radius:var(--r);background:var(--accent);color:var(--on-accent);font-weight:600;text-decoration:none;white-space:nowrap;transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:scale(.98)}
+.btn.ghost{background:none;color:var(--ink);border:1px solid var(--ink)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center;min-height:calc(100dvh - 64px);padding-top:3rem;padding-bottom:3rem}
+.eyebrow{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600}
+h1{font-size:clamp(2.25rem,4.6vw,4rem);line-height:1.04;letter-spacing:-.04em;margin:1rem 0}
+.hero p{color:var(--mute);max-width:46ch;margin-bottom:1.75rem}
+.hero .acts{display:flex;gap:.75rem;flex-wrap:wrap}
+.hero img{width:100%;height:min(70dvh,560px);object-fit:cover;border-radius:var(--r);display:block}
+section{padding:6rem 0}
+h2{font-size:clamp(1.75rem,3.2vw,2.75rem);letter-spacing:-.03em;line-height:1.1;margin-bottom:1rem}
+.lead{color:var(--mute);max-width:65ch}
+.nums{display:grid;grid-template-columns:2fr 1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:2.5rem}
+.nums div{background:var(--bg);padding:2rem 1.5rem}
+.nums div:first-child{grid-row:span 2;background:var(--accent);color:var(--on-accent);display:flex;flex-direction:column;justify-content:flex-end;min-height:260px}
+.nums strong{display:block;font-size:clamp(2.25rem,5vw,4.5rem);letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.nums span{font-size:.9rem;opacity:.85}
+.mission{background:var(--surface)}
+.mission blockquote{font-size:clamp(1.5rem,3vw,2.5rem);line-height:1.2;letter-spacing:-.03em;max-width:24em;padding-left:max(0px,6vw)}
+.mission p{margin-top:1.5rem;padding-left:max(0px,6vw);color:var(--mute);max-width:65ch}
+.team{display:grid;grid-template-columns:repeat(6,1fr);gap:1.5rem;margin-top:2.5rem}
+.person:nth-child(1){grid-column:span 3}.person:nth-child(2){grid-column:span 3;margin-top:3rem}
+.person:nth-child(3){grid-column:span 2}.person:nth-child(4){grid-column:span 2;margin-top:2rem}.person:nth-child(5){grid-column:span 2}
+.person img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r);display:block;filter:grayscale(.35);transition:filter .4s}
+.person:hover img{filter:none}
+.person h3{margin-top:.75rem;font-size:1.1rem;letter-spacing:-.01em}
+.person p{color:var(--mute);font-size:.9rem}
+details{border-top:1px solid var(--line)}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{display:flex;justify-content:space-between;gap:1rem;padding:1.25rem 0;cursor:pointer;font-weight:600;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary small{color:var(--mute);font-weight:400}
+details[open] summary{color:var(--accent)}
+.role-body{padding:0 0 1.5rem;display:flex;justify-content:space-between;gap:1.5rem;align-items:center;flex-wrap:wrap;color:var(--mute)}
+.role-body p{max-width:60ch}
+footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--mute);font-size:.85rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.btn{transition:none}}
+@media (max-width:767px){
+ nav div a:not(.btn){display:none}
+ .hero{grid-template-columns:1fr;min-height:0;padding-top:2rem}
+ .hero img{height:260px}
+ section{padding:4rem 0}
+ .nums{grid-template-columns:1fr}.nums div:first-child{grid-row:auto;min-height:180px}
+ .team{grid-template-columns:1fr}.person:nth-child(n){grid-column:auto;margin-top:0}
+ summary{flex-direction:column;gap:.25rem}
+}
+</style>
+</head>
+<body>
+<div class="wrap"><nav>
+ <b>Ledgerwing</b>
+ <div><a href="#mission">Mission</a><a href="#numbers">Numbers</a><a href="#team">Team</a><a class="btn" href="#roles">Open roles</a></div>
+</nav></div>
+
+<header class="wrap hero">
+ <div>
+  <span class="eyebrow">About Ledgerwing</span>
+  <h1>Business banking that closes its own books.</h1>
+  <p>We build payments and accounting for small businesses, so month-end takes minutes instead of days.</p>
+  <div class="acts"><a class="btn" href="#roles">Open roles</a><a class="btn ghost" href="#team">Meet the team</a></div>
+ </div>
+ <img src="https://picsum.photos/seed/ledgerwing-office-team/900/1100" alt="The Ledgerwing team working around a shared table" width="900" height="1100">
+</header>
+
+<section id="mission" class="mission"><div class="wrap rv">
+ <blockquote>Every owner should know what they can spend today, without calling an accountant.</blockquote>
+ <p>We started in 2019 after watching a bakery owner wait three weeks for a reconciliation. Today we move money, match receipts and file taxes in one place.</p>
+</div></section>
+
+<section id="numbers"><div class="wrap rv">
+ <h2>Where we are today</h2>
+ <p class="lead">Figures below are sample data for this design.</p>
+ <!-- mock data -->
+ <div class="nums">
+  <div><strong>$4.7B</strong><span>processed in the last twelve months</span></div>
+  <div><strong>38,400</strong><span>active businesses</span></div>
+  <div><strong>212</strong><span>people across 14 countries</span></div>
+  <div><strong>1.8 hrs</strong><span>median time to close a month</span></div>
+  <div><strong>41</strong><span>banking and card partners</span></div>
+ </div>
+</div></section>
+
+<section id="team" style="background:var(--surface)"><div class="wrap">
+ <h2 class="rv">Leadership</h2>
+ <p class="lead rv">Operators who have run payments, risk and compliance at scale.</p>
+ <div class="team">
+  <article class="person rv"><img src="https://picsum.photos/seed/ledgerwing-ceo/800/600" alt="Portrait of Amara Okonkwo-Reyes" loading="lazy"><h3>Amara Okonkwo-Reyes</h3><p>Chief Executive Officer</p></article>
+  <article class="person rv"><img src="https://picsum.photos/seed/ledgerwing-cto/800/600" alt="Portrait of Tomasz Wieczorek" loading="lazy"><h3>Tomasz Wieczorek</h3><p>Chief Technology Officer</p></article>
+  <article class="person rv"><img src="https://picsum.photos/seed/ledgerwing-cfo/800/600" alt="Portrait of Priya Venkataraman" loading="lazy"><h3>Priya Venkataraman</h3><p>Chief Financial Officer</p></article>
+  <article class="person rv"><img src="https://picsum.photos/seed/ledgerwing-risk/800/600" alt="Portrait of Lucas Brandão" loading="lazy"><h3>Lucas Brandão</h3><p>Head of Risk and Compliance</p></article>
+  <article class="person rv"><img src="https://picsum.photos/seed/ledgerwing-product/800/600" alt="Portrait of Hana Kobayashi" loading="lazy"><h3>Hana Kobayashi</h3><p>Chief Product Officer</p></article>
+ </div>
+</div></section>
+
+<section id="roles"><div class="wrap">
+ <h2 class="rv">Open roles</h2>
+ <p class="lead rv" style="margin-bottom:2rem">Remote-friendly, with hubs in Toronto, Lisbon and Singapore.</p>
+ <div class="rv">
+  <details><summary>Senior Backend Engineer, Payments <small>Engineering, Toronto or remote</small></summary>
+   <div class="role-body"><p>Own the ledger service that settles thousands of transfers every minute. Experience with Go or Kotlin and double-entry systems preferred.</p><a class="btn ghost" href="#">Apply</a></div></details>
+  <details><summary>Fraud Analyst <small>Risk, Lisbon</small></summary>
+   <div class="role-body"><p>Investigate flagged transactions, tune detection rules and work with engineers to ship new signals.</p><a class="btn ghost" href="#">Apply</a></div></details>
+  <details><summary>Product Designer <small>Design, Remote</small></summary>
+   <div class="role-body"><p>Design invoicing and reconciliation flows used daily by owners who are not finance experts.</p><a class="btn ghost" href="#">Apply</a></div></details>
+  <details><summary>Partnerships Manager <small>Growth, Singapore</small></summary>
+   <div class="role-body"><p>Grow our network of banks and accounting platforms across Southeast Asia.</p><a class="btn ghost" href="#">Apply</a></div></details>
+ </div>
+</div></section>
+
+<footer><div class="wrap"><span>Ledgerwing Financial Technologies Inc.</span><span>Banking services provided by licensed partner banks.</span></div></footer>
+
+<script>
+const els=document.querySelectorAll('.rv');
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window){
+ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+ els.forEach(el=>io.observe(el));
+}else els.forEach(el=>el.classList.add('in'));
+</script>
+</body>
+</html>
+```

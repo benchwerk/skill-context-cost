@@ -1,0 +1,6 @@
+claude -p "/context"
+claude -p "/context"
+claude -p "/context"
+claude -p "/context"
+claude -p "/context"
+claude -p "/context" --model claude-haiku-4-5-20251001

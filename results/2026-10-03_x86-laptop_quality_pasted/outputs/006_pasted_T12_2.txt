@@ -1,0 +1,192 @@
+```html
+<!DOCTYPE html>
+<!--
+  Design read: product announcement landing for design-conscious coffee drinkers, with a calm premium-consumer
+  language, leaning toward native CSS (system font stack, no external font links), one orange accent, auto light/dark.
+  Dials: VARIANCE 7, MOTION 5, DENSITY 3. Images are picsum placeholders: swap for real roastery and app photography.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harrow Street Coffee app: order beans, track the delivery</title>
+<meta name="color-scheme" content="light dark">
+<style>
+  :root {
+    --bg: #f3f3f1; --surface: #e6e6e2; --text: #181816; --muted: #55554f;
+    --line: #c9c9c3; --accent: #c2410c; --on-accent: #ffffff; --r: 14px;
+    --shadow: 0 18px 40px -22px rgb(60 30 10 / .35);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141413; --surface: #20201e; --text: #efefec; --muted: #a8a8a0;
+      --line: #3a3a36; --accent: #f97316; --on-accent: #1a1209;
+      --shadow: 0 18px 40px -22px rgb(0 0 0 / .8);
+    }
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--bg); color: var(--text); line-height: 1.55;
+    font-family: "Segoe UI Variable Display", "Helvetica Neue", "Avenir Next", system-ui, sans-serif; }
+  img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  a { color: inherit; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  h1, h2 { letter-spacing: -.035em; line-height: 1.04; font-weight: 700; }
+  h1 { font-size: clamp(2.4rem, 5.2vw, 4.4rem); max-width: 14ch; }
+  h2 { font-size: clamp(1.9rem, 3.6vw, 3rem); max-width: 18ch; }
+  p.lead { color: var(--muted); max-width: 52ch; font-size: 1.1rem; }
+
+  nav { height: 68px; display: flex; align-items: center; justify-content: space-between; }
+  nav .brand { font-weight: 700; letter-spacing: -.02em; text-decoration: none; white-space: nowrap; }
+  nav .links { display: flex; align-items: center; gap: 28px; }
+  nav .links a:not(.btn) { color: var(--muted); text-decoration: none; font-size: .95rem; }
+  nav .links a:not(.btn):hover { color: var(--text); }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; white-space: nowrap; border: 0; cursor: pointer;
+    background: var(--accent); color: var(--on-accent); font: inherit; font-weight: 600; text-decoration: none;
+    padding: 14px 26px; border-radius: var(--r); transition: transform .25s cubic-bezier(.16,1,.3,1), box-shadow .25s; }
+  .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .btn:active { transform: scale(.98); }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+  .hero { min-height: calc(100dvh - 68px); display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; padding: 24px 0 64px; }
+  .hero .copy { display: grid; gap: 24px; justify-items: start; }
+  .hero figure { aspect-ratio: 4 / 5; max-height: 640px; border-radius: var(--r); overflow: hidden; box-shadow: var(--shadow); margin-left: auto; width: 100%; }
+
+  section { padding: 112px 0; }
+  .bento { display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: 1fr 1fr; gap: 16px; margin-top: 48px; min-height: 520px; }
+  .cell { border-radius: var(--r); background: var(--surface); padding: 32px; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; position: relative; overflow: hidden; }
+  .cell h3 { font-size: 1.4rem; letter-spacing: -.02em; }
+  .cell p { color: var(--muted); max-width: 40ch; }
+  .cell.photo { grid-row: span 2; color: #f5f5f2; }
+  .cell.photo img { position: absolute; inset: 0; }
+  .cell.photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(10 10 9 / .82), rgb(10 10 9 / .1) 65%); }
+  .cell.photo > :not(img) { position: relative; z-index: 1; }
+  .cell.photo p { color: #dcdcd6; }
+  .cell.accent { background: var(--accent); color: var(--on-accent); }
+  .cell.accent p { color: inherit; opacity: .92; }
+
+  .verbs { display: grid; gap: 8px; margin-top: 40px; }
+  .verbs div { display: grid; grid-template-columns: minmax(180px, 1fr) 2fr; gap: 32px; align-items: baseline; padding: 20px 0; }
+  .verbs b { font-size: clamp(2rem, 5vw, 4rem); letter-spacing: -.04em; line-height: 1; transition: color .3s, transform .4s cubic-bezier(.16,1,.3,1); }
+  .verbs div:hover b { color: var(--accent); transform: translateX(8px); }
+  .verbs span { color: var(--muted); max-width: 46ch; }
+
+  .access { background: var(--surface); border-radius: var(--r); display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; padding: 56px; }
+  form { display: grid; gap: 8px; }
+  label { font-weight: 600; font-size: .95rem; }
+  input { font: inherit; color: var(--text); background: var(--bg); border: 2px solid var(--muted); border-radius: var(--r); padding: 14px 16px; width: 100%; }
+  input::placeholder { color: var(--muted); }
+  input[aria-invalid="true"] { border-color: var(--accent); }
+  .help, .msg { font-size: .9rem; color: var(--muted); min-height: 1.4em; }
+  .msg { color: var(--text); font-weight: 600; }
+  form .btn { margin-top: 8px; justify-self: start; }
+
+  footer { padding: 40px 0 56px; color: var(--muted); font-size: .92rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero .copy > * { animation: rise .8s cubic-bezier(.16,1,.3,1) both; }
+    .hero .copy > :nth-child(2) { animation-delay: .1s; } .hero .copy > :nth-child(3) { animation-delay: .2s; }
+    .hero figure { animation: rise 1s .15s cubic-bezier(.16,1,.3,1) both; }
+    @keyframes rise { from { opacity: 0; transform: translateY(28px); } }
+  }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .btn, .verbs b { transition: none; } }
+
+  @media (max-width: 767px) {
+    .wrap { padding: 0 16px; }
+    nav .links a:not(.btn) { display: none; }
+    .hero, .access, .verbs div { grid-template-columns: 1fr; }
+    .hero { gap: 32px; min-height: 0; padding-bottom: 48px; }
+    .hero figure { aspect-ratio: 4 / 3; margin: 0; }
+    section { padding: 72px 0; }
+    .bento { grid-template-columns: 1fr; grid-template-rows: none; min-height: 0; }
+    .cell { min-height: 200px; } .cell.photo { grid-row: auto; min-height: 340px; }
+    .access { padding: 32px 20px; gap: 28px; } .verbs div { gap: 6px; }
+  }
+</style>
+</head>
+<body>
+<header class="wrap">
+  <nav aria-label="Primary">
+    <a class="brand" href="#">Harrow Street Coffee</a>
+    <div class="links"><a href="#features">Features</a><a href="#how">How it works</a><a class="btn" href="#access">Get early access</a></div>
+  </nav>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <div class="copy">
+      <h1>Fresh beans, tracked to your door.</h1>
+      <p class="lead">Order our small-batch roasts from your phone and watch the bag travel from roaster to doorstep.</p>
+      <a class="btn" href="#access">Get early access</a>
+    </div>
+    <figure><img src="https://picsum.photos/seed/harrow-roastery-morning/900/1125" alt="Freshly roasted coffee beans cooling in the roastery" width="900" height="1125" fetchpriority="high"></figure>
+  </div>
+
+  <section id="features" class="wrap">
+    <h2 class="reveal">Everything a bag of coffee needs.</h2>
+    <div class="bento">
+      <article class="cell photo reveal">
+        <img src="https://picsum.photos/seed/harrow-order-beans/1100/900" alt="Burlap sacks of green coffee next to a roasting drum" loading="lazy" width="1100" height="900">
+        <h3>Order in three taps</h3>
+        <p>Pick a roast, choose a grind, confirm. Save your favourite and reorder when the bag runs low.</p>
+      </article>
+      <article class="cell accent reveal">
+        <h3>Live delivery tracking</h3>
+        <p>See when your bag leaves the roastery and when the courier is two streets away.</p>
+      </article>
+      <article class="cell reveal">
+        <h3>Roast date on every bag</h3>
+        <p>The app shows the day your beans were roasted, plus brewing notes for that batch.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="how" class="wrap">
+    <h2 class="reveal">From drum to doorstep.</h2>
+    <div class="verbs">
+      <div class="reveal"><b>Choose</b><span>Browse this week's roasts and pick the size and grind that suits your brewer.</span></div>
+      <div class="reveal"><b>Roast</b><span>We roast your order the next morning, so nothing sits on a shelf.</span></div>
+      <div class="reveal"><b>Receive</b><span>Follow the courier on the map and get a notification when the bag arrives.</span></div>
+    </div>
+  </section>
+
+  <section id="access" class="wrap">
+    <div class="access reveal">
+      <div>
+        <h2>The app launches this autumn.</h2>
+        <p class="lead" style="margin-top:16px">Leave your email and we will send a download link on launch day.</p>
+      </div>
+      <form id="signup" novalidate>
+        <label for="email">Email address</label>
+        <input id="email" type="email" autocomplete="email" placeholder="name@example.com" aria-describedby="help msg">
+        <p class="help" id="help">One email on launch day. Nothing else.</p>
+        <p class="msg" id="msg" role="status"></p>
+        <button class="btn" type="submit">Get early access</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap"><span>Harrow Street Coffee. Roasted in small batches.</span><a href="#">Privacy</a></footer>
+
+<script>
+  // Reveal on scroll: shows sections in reading order as they arrive (hierarchy).
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { threshold: 0.2 });
+  document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+  // Signup feedback: inline error below the field, confirmation on success.
+  const form = document.getElementById("signup"), input = document.getElementById("email"), msg = document.getElementById("msg");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim());
+    input.setAttribute("aria-invalid", String(!ok));
+    msg.textContent = ok ? "You are on the list. See you on launch day." : "Enter a valid email address, like name@example.com.";
+  });
+</script>
+</body>
+</html>
+```

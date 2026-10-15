@@ -1,0 +1,186 @@
+```html
+<!-- Design Read: neighbourhood restaurant homepage for local diners, warm editorial language, native CSS with a system serif stack, restrained motion. Dials 7/4/4. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fig &amp; Ember | Neighbourhood kitchen on Alder Street</title>
+<meta name="description" content="Seasonal cooking over a wood fire. Menu, hours, and table reservations.">
+<style>
+  :root {
+    --paper: #f4ede1; --ink: #1f1a14; --muted: #6b5f52; --accent: #a8402a; --dark: #231c15;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font: 1.0625rem/1.6 var(--sans); }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  .wrap { max-width: 1180px; margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 3rem); }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.05; letter-spacing: -0.02em; }
+  .eyebrow { font-size: .8rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+
+  header .wrap { display: flex; justify-content: space-between; align-items: center; padding-block: 1.5rem; }
+  .logo { font: 500 1.4rem var(--serif); text-decoration: none; }
+  nav { display: flex; gap: 1.75rem; font-size: .95rem; }
+  nav a { text-decoration: none; color: var(--muted); }
+  nav a:hover { color: var(--accent); }
+
+  .hero { min-height: min(100dvh, 780px); display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(2rem, 6vw, 5rem); align-items: end; padding-block: 2rem 4rem; }
+  .hero h1 { font-size: clamp(3.2rem, 9vw, 7.5rem); margin-block: 1rem 1.5rem; }
+  .hero h1 em { color: var(--accent); }
+  .hero p { max-width: 46ch; color: var(--muted); }
+  .btn { display: inline-block; margin-top: 2rem; padding: .95rem 1.8rem; background: var(--ink); color: var(--paper); border: 0; border-radius: 999px; font: 600 1rem var(--sans); text-decoration: none; cursor: pointer; transition: transform .2s, background .2s; }
+  .btn:hover { background: var(--accent); transform: translateY(-2px); }
+  .btn:active { transform: translateY(0) scale(.98); }
+
+  .hours { background: var(--ink); color: var(--paper); padding: 2rem; border-radius: 4px 80px 4px 4px; }
+  .hours h2 { font-size: 1.6rem; margin-bottom: 1.25rem; }
+  .hours dl { display: grid; grid-template-columns: auto 1fr; gap: .6rem 1.5rem; font-size: .95rem; }
+  .hours dd { text-align: right; font-variant-numeric: tabular-nums; }
+  .hours .closed { opacity: .55; }
+  .hours small { display: block; margin-top: 1.25rem; opacity: .7; }
+
+  section { padding-block: clamp(3.5rem, 9vw, 7rem); }
+  .menu { display: grid; grid-template-columns: 1fr 2fr; gap: clamp(2rem, 6vw, 5rem); border-top: 1px solid #1f1a1433; }
+  .menu h2, .chef h2, .book h2 { font-size: clamp(2.2rem, 5vw, 3.8rem); margin-top: .75rem; }
+  .menu-intro p { margin-top: 1rem; color: var(--muted); max-width: 32ch; }
+  .course + .course { margin-top: 2.5rem; }
+  .course h3 { font: 600 .8rem var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); padding-bottom: .6rem; border-bottom: 1px solid #1f1a1433; }
+  .dish { display: grid; grid-template-columns: 1fr auto; gap: .1rem 1.5rem; padding-block: 1rem 0; }
+  .dish b { font: 500 1.35rem var(--serif); }
+  .dish span { font-variant-numeric: tabular-nums; font-family: var(--serif); font-size: 1.2rem; }
+  .dish p { grid-column: 1; color: var(--muted); font-size: .95rem; }
+
+  .chef { display: grid; grid-template-columns: 5fr 6fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+  .portrait { aspect-ratio: 4/5; border-radius: 200px 200px 4px 4px; display: grid; place-items: center; font: italic 500 6rem var(--serif); color: #f4ede1cc;
+    background: radial-gradient(circle at 30% 20%, #d17a4a, transparent 55%), linear-gradient(160deg, var(--accent), #4a1d12); }
+  .chef p { margin-top: 1.25rem; max-width: 52ch; color: var(--muted); }
+  .chef blockquote { margin-top: 2rem; padding-left: 1.25rem; border-left: 3px solid var(--accent); font: italic 1.4rem/1.35 var(--serif); }
+
+  .book-wrap { background: var(--dark); color: var(--paper); }
+  .book { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(2rem, 6vw, 5rem); }
+  .book .eyebrow { color: #e0906f; }
+  .book p { margin-top: 1rem; opacity: .75; max-width: 34ch; }
+  form { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  label { display: grid; gap: .4rem; font-size: .85rem; letter-spacing: .04em; opacity: .9; }
+  .full { grid-column: 1 / -1; }
+  input, select { width: 100%; padding: .85rem 1rem; background: #f4ede112; color: inherit; border: 1px solid #f4ede140; border-radius: 6px; font: 1rem var(--sans); color-scheme: dark; }
+  input:focus-visible, select:focus-visible { outline-color: #e0906f; }
+  form .btn { background: var(--paper); color: var(--ink); margin: 0; justify-self: start; }
+  form .btn:hover { background: #e0906f; }
+  #status { grid-column: 1 / -1; min-height: 1.6em; color: #e0b08f; }
+
+  footer { padding-block: 2rem; font-size: .9rem; color: var(--muted); }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
+  @media (max-width: 800px) {
+    .hero, .menu, .chef, .book { grid-template-columns: 1fr; }
+    .portrait { max-width: 320px; }
+    nav a:not(:last-child) { display: none; }
+    form { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="logo" href="#top">Fig &amp; Ember</a>
+  <nav aria-label="Primary"><a href="#menu">Menu</a><a href="#chef">Chef</a><a href="#hours">Hours</a><a href="#reserve">Reserve</a></nav>
+</div></header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <p class="eyebrow">42 Alder Street &middot; Wood-fired kitchen</p>
+      <h1>Dinner, <em>slowly</em>, around the fire.</h1>
+      <p>A small neighbourhood room serving what the market gave us this week. Come hungry, stay for the second bottle.</p>
+      <a class="btn" href="#reserve">Reserve a table</a>
+    </div>
+    <aside class="hours" id="hours" aria-labelledby="hours-h">
+      <h2 id="hours-h">Opening hours</h2>
+      <dl>
+        <dt>Mon</dt><dd class="closed">Closed</dd>
+        <dt>Tue &ndash; Thu</dt><dd>17:30 &ndash; 22:00</dd>
+        <dt>Fri &ndash; Sat</dt><dd>17:30 &ndash; 23:30</dd>
+        <dt>Sunday lunch</dt><dd>12:00 &ndash; 16:00</dd>
+      </dl>
+      <small>Walk-ins welcome at the bar, always.</small>
+    </aside>
+  </div>
+
+  <section class="wrap menu reveal" id="menu">
+    <div class="menu-intro">
+      <p class="eyebrow">This week's menu</p>
+      <h2>Short, seasonal, honest.</h2>
+      <p>Changes with the market. Tell us about allergies and we will cook around them.</p>
+    </div>
+    <div>
+      <div class="course"><h3>To start</h3>
+        <div class="dish"><b>Charred leeks, hazelnut romesco</b><span>9</span><p>Smoked over vine cuttings, finished with sherry vinegar.</p></div>
+        <div class="dish"><b>Burrata, roasted figs, thyme honey</b><span>13</span><p>From the dairy two valleys over.</p></div>
+      </div>
+      <div class="course"><h3>From the fire</h3>
+        <div class="dish"><b>Half chicken, salsa verde</b><span>24</span><p>Brined for two days, with blistered potatoes.</p></div>
+        <div class="dish"><b>Hake, white beans, fennel</b><span>26</span><p>Line-caught, cooked on the bone.</p></div>
+        <div class="dish"><b>Wild mushroom and chestnut pie</b><span>21</span><p>Vegan, with a glossy onion gravy.</p></div>
+      </div>
+      <div class="course"><h3>To finish</h3>
+        <div class="dish"><b>Burnt honey tart, crème fraîche</b><span>9</span><p>Baked to order, so allow twenty minutes.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap chef reveal" id="chef">
+    <div class="portrait" role="img" aria-label="Portrait placeholder for Chef Marta Olsen">M</div>
+    <div>
+      <p class="eyebrow">Meet the chef</p>
+      <h2>Marta Olsen</h2>
+      <p>Marta grew up three streets from this dining room, washing pots in her aunt's bakery before she could reach the sink. After twelve years in kitchens in Lisbon and Copenhagen, she came home and lit the oven.</p>
+      <p>Her cooking is simple on purpose: good produce, patient heat, and salt in the right places.</p>
+      <blockquote>&ldquo;I want you to feel like you were cooked for, not served.&rdquo;</blockquote>
+    </div>
+  </section>
+
+  <div class="book-wrap"><section class="wrap book reveal" id="reserve">
+    <div>
+      <p class="eyebrow">Reservations</p>
+      <h2>Save us a seat.</h2>
+      <p>Tables for up to eight. For larger groups, call us on 020 7946 0123.</p>
+    </div>
+    <form id="rsvp" novalidate>
+      <label class="full">Name<input name="name" autocomplete="name" required></label>
+      <label>Date<input type="date" name="date" required></label>
+      <label>Time<select name="time"><option>18:00</option><option>19:00</option><option selected>20:00</option><option>21:00</option></select></label>
+      <label>Guests<select name="guests"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></label>
+      <label>Email<input type="email" name="email" autocomplete="email" required></label>
+      <button class="btn" type="submit">Request booking</button>
+      <p id="status" role="status" aria-live="polite"></p>
+    </form>
+  </section></div>
+</main>
+
+<footer><div class="wrap"><span>&copy; 2026 Fig &amp; Ember, 42 Alder Street</span><span>hello@figandember.example</span></div></footer>
+
+<script>
+  const form = document.getElementById('rsvp'), status = document.getElementById('status');
+  form.date.min = new Date().toISOString().split('T')[0];
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const bad = [...form.querySelectorAll('[required]')].find(f => !f.value.trim() || !f.checkValidity());
+    if (bad) { status.textContent = 'Please complete the ' + bad.name + ' field.'; bad.focus(); return; }
+    const d = new Date(form.date.value + 'T12:00');
+    if (d.getDay() === 1) { status.textContent = 'We are closed on Mondays. Please pick another day.'; form.date.focus(); return; }
+    status.textContent = `Thank you, ${form.name.value.split(' ')[0]}. We will confirm ${form.guests.value} at ${form.time.value} by email.`;
+    form.reset(); form.date.min = new Date().toISOString().split('T')[0];
+  });
+  const io = new IntersectionObserver(es => es.forEach(x => x.isIntersecting && (x.target.classList.add('in'), io.unobserve(x.target))), { threshold: .15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
+```

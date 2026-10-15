@@ -1,0 +1,174 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grid & Grain — A Two-Day Design Conference</title>
+<style>
+  :root {
+    --ink: #1b1a17;
+    --paper: #f6f2ea;
+    --card: #fffdf8;
+    --accent: #e4572e;
+    --muted: #6b665c;
+    --line: #ddd5c4;
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body { font: 16px/1.6 Georgia, "Times New Roman", serif; color: var(--ink); background: var(--paper); }
+  h1, h2, h3, .sans, nav, button { font-family: "Helvetica Neue", Arial, sans-serif; }
+  a { color: inherit; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+  nav { position: sticky; top: 0; background: rgba(246,242,234,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); z-index: 5; }
+  nav .wrap { display: flex; justify-content: space-between; align-items: center; height: 56px; }
+  nav a { text-decoration: none; margin-left: 20px; font-size: 14px; color: var(--muted); }
+  nav a:hover { color: var(--accent); }
+  nav strong { letter-spacing: .04em; }
+  .hero { padding: 88px 0 72px; }
+  .eyebrow { font: 600 13px/1 "Helvetica Neue", Arial, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: clamp(44px, 8vw, 92px); line-height: .98; letter-spacing: -.03em; margin: 18px 0 22px; }
+  h1 em { font-family: Georgia, serif; color: var(--accent); font-weight: 400; }
+  .lede { max-width: 560px; font-size: 20px; color: var(--muted); }
+  .btn { display: inline-block; margin-top: 28px; padding: 14px 26px; background: var(--ink); color: var(--paper); border-radius: 999px; text-decoration: none; font: 600 15px "Helvetica Neue", Arial, sans-serif; transition: background .2s, transform .2s; }
+  .btn:hover { background: var(--accent); transform: translateY(-2px); }
+  section { padding: 64px 0; border-top: 1px solid var(--line); }
+  h2 { font-size: 34px; letter-spacing: -.02em; margin-bottom: 28px; }
+  .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+  .speaker { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
+  .avatar { width: 64px; height: 64px; border-radius: 50%; margin-bottom: 14px; display: grid; place-items: center; color: #fff; font: 700 20px "Helvetica Neue", Arial, sans-serif; }
+  .speaker h3 { font-size: 17px; }
+  .speaker p { font-size: 14px; color: var(--muted); }
+  .tabs { display: inline-flex; background: var(--line); border-radius: 999px; padding: 4px; margin-bottom: 24px; }
+  .tabs button { border: 0; background: none; padding: 10px 22px; border-radius: 999px; font-size: 14px; font-weight: 600; cursor: pointer; color: var(--muted); }
+  .tabs button[aria-selected="true"] { background: var(--ink); color: var(--paper); }
+  .tabs button:focus-visible, .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .day { display: none; }
+  .day.on { display: block; }
+  .slot { display: grid; grid-template-columns: 110px 1fr; gap: 20px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .slot time { font: 600 14px "Helvetica Neue", Arial, sans-serif; color: var(--accent); padding-top: 3px; }
+  .slot h3 { font-size: 18px; }
+  .slot p { font-size: 14px; color: var(--muted); }
+  .venue { display: grid; gap: 32px; grid-template-columns: 1fr 1fr; align-items: center; }
+  .map { aspect-ratio: 4/3; border-radius: var(--radius); background:
+    linear-gradient(90deg, transparent 49%, #fff 49% 51%, transparent 51%),
+    linear-gradient(0deg, transparent 30%, #fff 30% 33%, transparent 33% 70%, #fff 70% 72%, transparent 72%),
+    #d9e4d3; position: relative; border: 1px solid var(--line); }
+  .map::after { content: ""; position: absolute; left: 49%; top: 40%; width: 22px; height: 22px; background: var(--accent); border-radius: 50% 50% 50% 0; transform: rotate(-45deg); box-shadow: 0 0 0 6px rgba(228,87,46,.25); }
+  .venue ul { list-style: none; padding: 0; margin-top: 14px; color: var(--muted); font-size: 15px; }
+  .tickets { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .tier { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; }
+  .tier.pop { border: 2px solid var(--accent); }
+  .tier h3 { font-size: 18px; }
+  .price { font: 700 40px "Helvetica Neue", Arial, sans-serif; margin: 8px 0 14px; }
+  .tier ul { padding-left: 18px; color: var(--muted); font-size: 15px; flex: 1; }
+  .tier .btn { text-align: center; margin-top: 22px; }
+  footer { padding: 32px 0 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+  @media (max-width: 720px) {
+    nav a:not(:last-child) { display: none; }
+    .venue { grid-template-columns: 1fr; }
+    .slot { grid-template-columns: 80px 1fr; gap: 12px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <strong>GRID &amp; GRAIN</strong>
+  <div><a href="#speakers">Speakers</a><a href="#schedule">Schedule</a><a href="#venue">Venue</a><a href="#tickets">Tickets</a></div>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <p class="eyebrow">14–15 May 2027 · Lisbon</p>
+  <h1>Design, made<br><em>by hand</em> &amp; by system.</h1>
+  <p class="lede">Two days of talks, workshops and honest conversation about craft, tooling and the future of design practice. 600 designers. 16 speakers. One very good lunch.</p>
+  <a class="btn" href="#tickets">Get your ticket</a>
+</div></header>
+
+<section id="speakers"><div class="wrap">
+  <h2>Speakers</h2>
+  <div class="grid" id="speakerGrid"></div>
+</div></section>
+
+<section id="schedule"><div class="wrap">
+  <h2>Schedule</h2>
+  <div class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-day="d1">Day 1 · Craft</button>
+    <button role="tab" aria-selected="false" data-day="d2">Day 2 · Systems</button>
+  </div>
+  <div class="day on" id="d1">
+    <div class="slot"><time>09:00</time><div><h3>Doors &amp; coffee</h3><p>Registration, pastries, name badges.</p></div></div>
+    <div class="slot"><time>10:00</time><div><h3>Opening keynote: The Quiet Details</h3><p>Maya Okonkwo on why polish is a form of respect.</p></div></div>
+    <div class="slot"><time>11:30</time><div><h3>Type that breathes</h3><p>Lena Fischer on variable fonts and rhythm.</p></div></div>
+    <div class="slot"><time>14:00</time><div><h3>Workshop: Prototyping with motion</h3><p>Hands-on with Tomás Ribeiro. Laptops required.</p></div></div>
+    <div class="slot"><time>18:00</time><div><h3>Rooftop reception</h3><p>Drinks and sunset over the river.</p></div></div>
+  </div>
+  <div class="day" id="d2">
+    <div class="slot"><time>09:30</time><div><h3>Design systems at scale</h3><p>Priya Nair on governing a system used by 400 teams.</p></div></div>
+    <div class="slot"><time>11:00</time><div><h3>Accessible by default</h3><p>Jonas Berg on building inclusion into the first sketch.</p></div></div>
+    <div class="slot"><time>14:00</time><div><h3>Panel: Designing with AI</h3><p>Four practitioners, no hype, plenty of disagreement.</p></div></div>
+    <div class="slot"><time>16:30</time><div><h3>Closing talk: What we keep</h3><p>Sofia Marchetti on durable ideas in a fast industry.</p></div></div>
+  </div>
+</div></section>
+
+<section id="venue"><div class="wrap venue">
+  <div>
+    <h2>Venue</h2>
+    <p><strong>Teatro da Ribeira</strong><br>Rua das Docas 28, 1200-001 Lisbon, Portugal</p>
+    <ul>
+      <li>🚇 4 minutes from Cais do Sodré station</li>
+      <li>♿ Step-free access throughout</li>
+      <li>🏨 Partner hotels with 15% off for attendees</li>
+    </ul>
+  </div>
+  <div class="map" role="img" aria-label="Stylised map showing the venue location"></div>
+</div></section>
+
+<section id="tickets"><div class="wrap">
+  <h2>Tickets</h2>
+  <div class="tickets">
+    <div class="tier"><h3>Student</h3><div class="price">€149</div>
+      <ul><li>Both days of talks</li><li>Lunch &amp; coffee</li><li>Valid student ID required</li></ul>
+      <a class="btn" href="#" data-tier="Student">Choose Student</a></div>
+    <div class="tier pop"><h3>Standard · most popular</h3><div class="price">€349</div>
+      <ul><li>Both days of talks</li><li>Workshop seat</li><li>Rooftop reception</li><li>Recordings for 1 year</li></ul>
+      <a class="btn" href="#" data-tier="Standard">Choose Standard</a></div>
+    <div class="tier"><h3>Team of 5</h3><div class="price">€1,490</div>
+      <ul><li>Five Standard passes</li><li>Reserved seating</li><li>Speaker dinner invite for one</li></ul>
+      <a class="btn" href="#" data-tier="Team">Choose Team</a></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">© 2027 Grid &amp; Grain · hello@gridandgrain.example · Code of conduct · Privacy</div></footer>
+
+<script>
+  const speakers = [
+    ["Maya Okonkwo", "Design Director, Northwind", "#e4572e"],
+    ["Lena Fischer", "Type Designer, Fischer Foundry", "#2e86ab"],
+    ["Tomás Ribeiro", "Motion Lead, Studio Alma", "#6a994e"],
+    ["Priya Nair", "Head of Design Systems, Lumen", "#8e5572"],
+    ["Jonas Berg", "Accessibility Advocate", "#d98324"],
+    ["Sofia Marchetti", "Principal Designer, Atelier M", "#3d405b"]
+  ];
+  const grid = document.getElementById("speakerGrid");
+  speakers.forEach(([name, role, color]) => {
+    const initials = name.split(" ").map(w => w[0]).join("");
+    grid.insertAdjacentHTML("beforeend",
+      `<article class="speaker"><div class="avatar" style="background:${color}">${initials}</div><h3>${name}</h3><p>${role}</p></article>`);
+  });
+
+  const tabs = document.querySelectorAll(".tabs button");
+  tabs.forEach(tab => tab.addEventListener("click", () => {
+    tabs.forEach(t => t.setAttribute("aria-selected", t === tab));
+    document.querySelectorAll(".day").forEach(d => d.classList.toggle("on", d.id === tab.dataset.day));
+  }));
+
+  document.querySelectorAll("[data-tier]").forEach(btn => btn.addEventListener("click", e => {
+    e.preventDefault();
+    btn.textContent = "Added: " + btn.dataset.tier + " ✓";
+  }));
+</script>
+</body>
+</html>
+```

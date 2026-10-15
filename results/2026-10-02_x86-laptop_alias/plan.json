@@ -1,0 +1,302 @@
+[
+ {
+  "config": "G-inline",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 3,
+  "seq": 1
+ },
+ {
+  "config": "G-inline",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 7,
+  "seq": 2
+ },
+ {
+  "config": "G-direct",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 5,
+  "seq": 3
+ },
+ {
+  "config": "G-inline",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 4,
+  "seq": 4
+ },
+ {
+  "config": "G-original",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 9,
+  "seq": 5
+ },
+ {
+  "config": "G-slash",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 6
+ },
+ {
+  "config": "G-slash",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 6,
+  "seq": 7
+ },
+ {
+  "config": "G-slash",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 10,
+  "seq": 8
+ },
+ {
+  "config": "G-prose",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 9
+ },
+ {
+  "config": "G-direct",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 8,
+  "seq": 10
+ },
+ {
+  "config": "G-original",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 8,
+  "seq": 11
+ },
+ {
+  "config": "G-direct",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 3,
+  "seq": 12
+ },
+ {
+  "config": "G-slash",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 3,
+  "seq": 13
+ },
+ {
+  "config": "G-direct",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 7,
+  "seq": 14
+ },
+ {
+  "config": "G-direct",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 6,
+  "seq": 15
+ },
+ {
+  "config": "G-slash",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 5,
+  "seq": 16
+ },
+ {
+  "config": "G-direct",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 9,
+  "seq": 17
+ },
+ {
+  "config": "G-original",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 18
+ },
+ {
+  "config": "G-prose",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 10,
+  "seq": 19
+ },
+ {
+  "config": "G-direct",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 10,
+  "seq": 20
+ },
+ {
+  "config": "G-original",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 5,
+  "seq": 21
+ },
+ {
+  "config": "G-prose",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 7,
+  "seq": 22
+ },
+ {
+  "config": "G-prose",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 8,
+  "seq": 23
+ },
+ {
+  "config": "G-original",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 7,
+  "seq": 24
+ },
+ {
+  "config": "G-direct",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 25
+ },
+ {
+  "config": "G-inline",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 6,
+  "seq": 26
+ },
+ {
+  "config": "G-original",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 4,
+  "seq": 27
+ },
+ {
+  "config": "G-inline",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 10,
+  "seq": 28
+ },
+ {
+  "config": "G-inline",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 8,
+  "seq": 29
+ },
+ {
+  "config": "G-original",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 3,
+  "seq": 30
+ },
+ {
+  "config": "G-slash",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 7,
+  "seq": 31
+ },
+ {
+  "config": "G-prose",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 5,
+  "seq": 32
+ },
+ {
+  "config": "G-slash",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 9,
+  "seq": 33
+ },
+ {
+  "config": "G-slash",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 4,
+  "seq": 34
+ },
+ {
+  "config": "G-prose",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 9,
+  "seq": 35
+ },
+ {
+  "config": "G-original",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 36
+ },
+ {
+  "config": "G-inline",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 9,
+  "seq": 37
+ },
+ {
+  "config": "G-inline",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 38
+ },
+ {
+  "config": "G-slash",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 8,
+  "seq": 39
+ },
+ {
+  "config": "G-prose",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 40
+ },
+ {
+  "config": "G-inline",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 41
+ },
+ {
+  "config": "G-direct",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 42
+ },
+ {
+  "config": "G-original",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 6,
+  "seq": 43
+ },
+ {
+  "config": "G-prose",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 3,
+  "seq": 44
+ },
+ {
+  "config": "G-prose",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 6,
+  "seq": 45
+ },
+ {
+  "config": "G-prose",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 4,
+  "seq": 46
+ },
+ {
+  "config": "G-inline",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 5,
+  "seq": 47
+ },
+ {
+  "config": "G-original",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 10,
+  "seq": 48
+ },
+ {
+  "config": "G-direct",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 4,
+  "seq": 49
+ },
+ {
+  "config": "G-slash",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 50
+ }
+]

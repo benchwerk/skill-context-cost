@@ -1,0 +1,130 @@
+{"cmd": 0, "t": 1.724, "line": "config C100, model claude-haiku-4-5-20251001, 100 skills in the project"}
+{"cmd": 0, "t": 2.965, "line": "## Context Usage"}
+{"cmd": 0, "t": 2.965, "line": ""}
+{"cmd": 0, "t": 2.965, "line": "**Model:** claude-haiku-4-5-20251001  "}
+{"cmd": 0, "t": 2.965, "line": "**Tokens:** 30.7k / 200k (15%)"}
+{"cmd": 0, "t": 2.965, "line": ""}
+{"cmd": 0, "t": 2.965, "line": "### Estimated usage by category"}
+{"cmd": 0, "t": 2.965, "line": ""}
+{"cmd": 0, "t": 2.965, "line": "| Category | Tokens | Percentage |"}
+{"cmd": 0, "t": 2.965, "line": "|----------|--------|------------|"}
+{"cmd": 0, "t": 2.97, "line": "| System prompt | 6.8k | 3.4% |"}
+{"cmd": 0, "t": 2.97, "line": "| System tools | 21.9k | 11.0% |"}
+{"cmd": 0, "t": 2.97, "line": "| System tools (deferred) | 20.4k | 10.2% |"}
+{"cmd": 0, "t": 2.971, "line": "| Skills | 2k | 1.0% |"}
+{"cmd": 0, "t": 2.971, "line": "| Free space | 169.3k | 84.7% |"}
+{"cmd": 0, "t": 2.971, "line": ""}
+{"cmd": 0, "t": 2.971, "line": "### Skills"}
+{"cmd": 0, "t": 2.971, "line": ""}
+{"cmd": 0, "t": 2.971, "line": "| Skill | Source | Tokens |"}
+{"cmd": 0, "t": 2.971, "line": "|-------|--------|--------|"}
+{"cmd": 0, "t": 2.971, "line": "| agent-browser | Project | < 20 |"}
+{"cmd": 0, "t": 2.971, "line": "| agentix-ceo | Project | ~20 |"}
+{"cmd": 0, "t": 2.971, "line": "| animation-vocabulary | Project | ~110 |"}
+{"cmd": 0, "t": 2.971, "line": "| anti-detect-browser | Project | < 20 |"}
+{"cmd": 0, "t": 2.971, "line": "| archify | Project | < 20 |"}
+{"cmd": 0, "t": 2.971, "line": "| azure-diagnostics | Project | < 20 |"}
+{"cmd": 0, "t": 2.971, "line": "| azure-prepare | Project | < 20 |"}
+{"cmd": 0, "t": 2.971, "line": "| better-auth-best-practices | Project | ~80 |"}
+{"cmd": 0, "t": 2.971, "line": "| brainstorming | Project | < 20 |"}
+{"cmd": 0, "t": 2.971, "line": "| browser-fingerprint-audit | Project | < 20 |"}
+{"cmd": 0, "t": 2.971, "line": "| browser-mcp-agent | Project | < 20 |"}
+{"cmd": 0, "t": 2.971, "line": "| caveman | Project | < 20 |"}
+{"cmd": 0, "t": 2.971, "line": "| caveman-commit | Project | < 20 |"}
+{"cmd": 0, "t": 2.971, "line": "| caveman-review | Project | < 20 |"}
+{"cmd": 0, "t": 2.971, "line": "| cloudflare | Project | < 20 |"}
+{"cmd": 0, "t": 2.971, "line": "| computer-use | Project | < 20 |"}
+{"cmd": 0, "t": 2.971, "line": "| convex | Project | < 20 |"}
+{"cmd": 0, "t": 2.971, "line": "| convex-create-component | Project | < 20 |"}
+{"cmd": 0, "t": 2.971, "line": "| convex-quickstart | Project | < 20 |"}
+{"cmd": 0, "t": 2.971, "line": "| copywriting | Project | < 20 |"}
+{"cmd": 0, "t": 2.971, "line": "| defuddle | Project | < 20 |"}
+{"cmd": 0, "t": 2.971, "line": "| design-taste-frontend | Project | < 20 |"}
+{"cmd": 0, "t": 2.971, "line": "| emil-design-eng | Project | < 20 |"}
+{"cmd": 0, "t": 2.971, "line": "| expo-dev-client | Project | < 20 |"}
+{"cmd": 0, "t": 2.971, "line": "| find-skills | Project | < 20 |"}
+{"cmd": 0, "t": 2.971, "line": "| fingerprint-ci-gate | Project | < 20 |"}
+{"cmd": 0, "t": 2.971, "line": "| firebase-auth-basics | Project | < 20 |"}
+{"cmd": 0, "t": 2.971, "line": "| firebase-basics | Project | < 20 |"}
+{"cmd": 0, "t": 2.971, "line": "| firebase-hosting-basics | Project | < 20 |"}
+{"cmd": 0, "t": 2.971, "line": "| frontend-design | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| google-agents-cli-adk-code | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| google-agents-cli-deploy | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| google-agents-cli-workflow | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| gws-drive | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| gws-gmail | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| higgsfield-generate | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| higgsfield-product-photoshoot | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| higgsfield-soul-id | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| high-end-visual-design | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| hyperframes | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| hyperframes-cli | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| hyperframes-registry | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| image-to-video | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| impeccable | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| landing-page-conversion-audit | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| lark-base | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| lark-doc | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| lark-shared | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| marketing-psychology | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| mastra | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| microsoft-foundry | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| multi-account-isolation | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| nano-banana-2 | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| neon | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| neon-postgres | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| notion-api | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| obsidian-markdown | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| orca-cli | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| orchestration | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| playwright-best-practices | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| playwright-cli | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| playwright-stealth-verify | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| ponytail | Project | < 20 |"}
+{"cmd": 0, "t": 2.972, "line": "| pptx | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| prisma-cli | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| prisma-client-api | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| prisma-database-setup | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| redesign-existing-projects | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| remotion-best-practices | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| remotion-create | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| remotion-render | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| review-loop | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| sales-funnel-blueprint | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| seo-audit | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| server-side-conversion-tracking | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| shadcn | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| skill-creator | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| solana-dev | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| stripe-best-practices | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| stripe-projects | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| supabase | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| supabase-postgres-best-practices | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| systematic-debugging | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| tailwind-design-system | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| turborepo | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| typescript-advanced-types | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| ui-ux-pro-max | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| upgrade-stripe | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| vercel-composition-patterns | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| vercel-react-best-practices | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| video-edit | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| web-design-guidelines | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| wind-mcp-skill | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| workers-best-practices | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| wrangler | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| writing-plans | Project | < 20 |"}
+{"cmd": 0, "t": 2.973, "line": "| dataviz | Built-in | ~360 |"}
+{"cmd": 0, "t": 2.973, "line": "| update-config | Built-in | ~180 |"}
+{"cmd": 0, "t": 2.973, "line": "| keybindings-help | Built-in | ~60 |"}
+{"cmd": 0, "t": 2.973, "line": "| code-review | Built-in | ~130 |"}
+{"cmd": 0, "t": 2.973, "line": "| simplify | Built-in | ~50 |"}
+{"cmd": 0, "t": 2.974, "line": "| fewer-permission-prompts | Built-in | ~50 |"}
+{"cmd": 0, "t": 2.974, "line": "| loop | Built-in | ~90 |"}
+{"cmd": 0, "t": 2.974, "line": "| claude-api | Built-in | ~270 |"}
+{"cmd": 0, "t": 2.974, "line": "| workflow-authoring | Built-in | ~60 |"}
+{"cmd": 0, "t": 2.974, "line": "| run | Built-in | ~90 |"}
+{"cmd": 0, "t": 2.974, "line": "| init | Built-in | < 20 |"}
+{"cmd": 0, "t": 2.974, "line": "| security-review | Built-in | < 20 |"}
+{"cmd": 0, "t": 2.974, "line": ""}
+{"cmd": 0, "exit": 0, "t": 2.975}

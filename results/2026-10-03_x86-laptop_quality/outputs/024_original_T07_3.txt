@@ -1,0 +1,213 @@
+```html
+<!-- Reading this as: mobile-first onboarding flow for language learners, with a calm, friendly language, leaning toward native CSS with one teal accent and a system font stack. Dials 5 / 4 / 3. Note: this skill is built for marketing pages, so the form logic here is plain hand-written JS. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parlo - Create your account</title>
+<style>
+  :root {
+    --bg: #f6f7f6; --surface: #ffffff; --text: #17201e; --muted: #4b5a56;
+    --line: #78897f; --accent: #0f766e; --on-accent: #ffffff; --tint: #e3f0ed; --error: #b42318;
+    --r: 12px;
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0c0f0e; --surface: #141a18; --text: #e8eeec; --muted: #a3b2ad;
+      --line: #6b7d77; --accent: #2dd4bf; --on-accent: #042f2e; --tint: #12332f; --error: #ff8a80;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    min-height: 100dvh; background: var(--bg); color: var(--text);
+    font: 16px/1.5 "Geist", "Satoshi", system-ui, -apple-system, "Segoe UI", sans-serif;
+    display: grid; align-content: start; gap: 2rem; padding: 1.25rem 1rem 2rem;
+    max-width: 1040px; margin-inline: auto;
+  }
+  .brand { font-weight: 700; letter-spacing: -0.02em; font-size: 1.25rem; }
+  .intro h1 { font-size: clamp(2rem, 8vw, 3.25rem); line-height: 1.05; letter-spacing: -0.04em; max-width: 12ch; }
+  .intro p { color: var(--muted); margin-top: 0.75rem; max-width: 34ch; }
+  main { display: grid; gap: 1.5rem; }
+  .progress { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+  .progress li { font-size: 0.875rem; color: var(--muted); border-top: 3px solid var(--line); padding-top: 0.5rem; transition: border-color .3s, color .3s; }
+  .progress li.done { border-color: var(--accent); }
+  .progress li.on { border-color: var(--accent); color: var(--text); font-weight: 600; }
+  form { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 1.25rem; display: grid; gap: 1.25rem; }
+  .panel { display: grid; gap: 1.25rem; animation: rise .4s cubic-bezier(.16, 1, .3, 1); }
+  .panel[hidden] { display: none; }
+  h2 { font-size: 1.375rem; letter-spacing: -0.02em; }
+  .field { display: grid; gap: 0.5rem; }
+  label, legend { font-weight: 600; font-size: 0.9375rem; }
+  .help { color: var(--muted); font-size: 0.875rem; }
+  .err { color: var(--error); font-size: 0.875rem; min-height: 1.25rem; }
+  input, select {
+    font: inherit; color: var(--text); background: var(--surface); width: 100%;
+    border: 1.5px solid var(--line); border-radius: var(--r); padding: 0.75rem 0.875rem; min-height: 48px;
+  }
+  input[aria-invalid="true"] { border-color: var(--error); }
+  :is(input, select, button):focus-visible, .opt:has(input:focus-visible) { outline: 3px solid var(--accent); outline-offset: 2px; }
+  fieldset { border: 0; padding: 0; display: grid; gap: 0.625rem; }
+  .opts { display: grid; gap: 0.625rem; }
+  .opt {
+    display: flex; justify-content: space-between; align-items: center; gap: 1rem; cursor: pointer;
+    border: 1.5px solid var(--line); border-radius: var(--r); padding: 0.875rem; min-height: 56px;
+    transition: transform .2s, background .2s, border-color .2s;
+  }
+  .opt:has(input:checked) { border-color: var(--accent); background: var(--tint); }
+  .opt:active { transform: scale(0.98); }
+  .opt input { position: absolute; opacity: 0; pointer-events: none; }
+  .opt b { font-weight: 600; }
+  .opt span { color: var(--muted); font-size: 0.875rem; }
+  .actions { display: flex; gap: 0.75rem; }
+  button {
+    font: inherit; font-weight: 600; min-height: 48px; padding: 0 1.25rem; border-radius: var(--r);
+    border: 1.5px solid var(--line); background: transparent; color: var(--text); cursor: pointer;
+    transition: transform .2s, opacity .2s;
+  }
+  button.primary { flex: 1; background: var(--accent); border-color: var(--accent); color: var(--on-accent); white-space: nowrap; }
+  button:active { transform: translateY(1px) scale(0.98); }
+  button[aria-busy="true"] { opacity: 0.7; pointer-events: none; }
+  .done-msg { display: grid; gap: 0.5rem; }
+  .done-msg p { color: var(--muted); }
+  @keyframes rise { from { opacity: 0; transform: translateY(12px); } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+  @media (min-width: 768px) {
+    body { grid-template-columns: 1fr 1fr; column-gap: 4rem; padding: 2rem 2rem 3rem; align-items: start; }
+    .brand { grid-column: 1 / -1; }
+    .intro { padding-top: 4rem; }
+    form { padding: 2rem; }
+  }
+</style>
+</head>
+<body>
+  <div class="brand">Parlo</div>
+  <div class="intro">
+    <h1>Start speaking in weeks.</h1>
+    <p>Make an account, pick a language, and set a daily goal you can keep.</p>
+  </div>
+  <main>
+    <ol class="progress" aria-label="Sign-up progress">
+      <li class="on" aria-current="step">Account</li><li>Language</li><li>Goal</li>
+    </ol>
+    <form novalidate>
+      <section class="panel" data-stage="0">
+        <h2>Create your account</h2>
+        <div class="field">
+          <label for="name">First name</label>
+          <input id="name" autocomplete="given-name" aria-describedby="name-e">
+          <div class="err" id="name-e" aria-live="polite"></div>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" type="email" autocomplete="email" aria-describedby="email-e">
+          <div class="err" id="email-e" aria-live="polite"></div>
+        </div>
+        <div class="field">
+          <label for="pw">Password</label>
+          <input id="pw" type="password" autocomplete="new-password" aria-describedby="pw-h pw-e">
+          <div class="help" id="pw-h">At least 8 characters.</div>
+          <div class="err" id="pw-e" aria-live="polite"></div>
+        </div>
+        <div class="actions"><button class="primary" type="submit">Continue</button></div>
+      </section>
+
+      <section class="panel" data-stage="1" hidden>
+        <h2>What do you want to learn?</h2>
+        <div class="field">
+          <label for="lang">Language</label>
+          <select id="lang">
+            <option>Italian</option><option>Japanese</option><option>Portuguese</option>
+            <option>Korean</option><option>German</option><option>Spanish</option>
+          </select>
+        </div>
+        <fieldset>
+          <legend>Your level</legend>
+          <div class="opts">
+            <label class="opt"><span><b>Beginner</b></span><input type="radio" name="level" value="Beginner" checked></label>
+            <label class="opt"><span><b>Some basics</b></span><input type="radio" name="level" value="Some basics"></label>
+            <label class="opt"><span><b>Conversational</b></span><input type="radio" name="level" value="Conversational"></label>
+          </div>
+        </fieldset>
+        <div class="actions"><button type="button" data-back>Back</button><button class="primary" type="submit">Continue</button></div>
+      </section>
+
+      <section class="panel" data-stage="2" hidden>
+        <h2>Pick a daily goal</h2>
+        <fieldset>
+          <legend class="help" style="font-weight:400">You can change this any time in settings.</legend>
+          <div class="opts">
+            <label class="opt"><b>Casual</b><span>5 min a day</span><input type="radio" name="goal" value="5 minutes"></label>
+            <label class="opt"><b>Regular</b><span>10 min a day</span><input type="radio" name="goal" value="10 minutes" checked></label>
+            <label class="opt"><b>Serious</b><span>20 min a day</span><input type="radio" name="goal" value="20 minutes"></label>
+            <label class="opt"><b>Intense</b><span>30 min a day</span><input type="radio" name="goal" value="30 minutes"></label>
+          </div>
+        </fieldset>
+        <div class="err" id="form-e" role="alert"></div>
+        <div class="actions"><button type="button" data-back>Back</button><button class="primary" type="submit">Start learning</button></div>
+      </section>
+
+      <section class="panel done-msg" data-stage="3" hidden aria-live="polite">
+        <h2 id="done-title"></h2>
+        <p id="done-text"></p>
+      </section>
+    </form>
+  </main>
+<script>
+  const form = document.querySelector("form");
+  const panels = [...form.querySelectorAll(".panel")];
+  const steps = [...document.querySelectorAll(".progress li")];
+  const $ = (id) => document.getElementById(id);
+  let stage = 0;
+
+  function show(n) {
+    stage = n;
+    panels.forEach((p, i) => (p.hidden = i !== n));
+    steps.forEach((s, i) => {
+      s.classList.toggle("on", i === Math.min(n, 2));
+      s.classList.toggle("done", i < n);
+      i === Math.min(n, 2) ? s.setAttribute("aria-current", "step") : s.removeAttribute("aria-current");
+    });
+    panels[n].querySelector("input, select, h2")?.focus?.({ preventScroll: false });
+  }
+
+  function fail(id, msg) {
+    $(id).setAttribute("aria-invalid", "true");
+    $(id + "-e").textContent = msg;
+    return false;
+  }
+
+  function validateAccount() {
+    ["name", "email", "pw"].forEach((id) => { $(id).removeAttribute("aria-invalid"); $(id + "-e").textContent = ""; });
+    const ok = [
+      $("name").value.trim() || fail("name", "Enter your first name."),
+      /^\S+@\S+\.\S+$/.test($("email").value) || fail("email", "Enter an email like name@example.com."),
+      $("pw").value.length >= 8 || fail("pw", "Use at least 8 characters."),
+    ];
+    if (!ok.every(Boolean)) document.querySelector("[aria-invalid]").focus();
+    return ok.every(Boolean);
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (stage === 0 && !validateAccount()) return;
+    if (stage < 2) return show(stage + 1);
+    if (stage === 2) {
+      const btn = e.submitter;
+      btn.setAttribute("aria-busy", "true");
+      btn.textContent = "Creating your plan...";
+      setTimeout(() => {
+        const goal = form.elements.goal.value;
+        $("done-title").textContent = "You're in, " + $("name").value.trim() + ".";
+        $("done-text").textContent = $("lang").value + ", " + goal + " a day. Your first lesson is ready.";
+        show(3);
+      }, 900);
+    }
+  });
+
+  form.querySelectorAll("[data-back]").forEach((b) => b.addEventListener("click", () => show(stage - 1)));
+</script>
+</body>
+</html>
+```

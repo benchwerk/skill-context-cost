@@ -1,0 +1,164 @@
+```html
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fennel &amp; Ash — a neighbourhood kitchen</title>
+<style>
+:root{--paper:#f6efe3;--ink:#231f1a;--olive:#38412b;--clay:#b4532a;--line:#d9ccb6;--serif:Georgia,"Iowan Old Style","Palatino Linotype",serif;--sans:system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font:17px/1.6 var(--sans)}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+header{display:flex;justify-content:space-between;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)}
+.logo{font:italic 1.5rem var(--serif);text-decoration:none}
+nav a{margin-left:26px;font-size:.9rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
+nav a:hover{color:var(--clay)}
+.hero{display:grid;grid-template-columns:1.25fr 1fr;gap:56px;padding:88px 0 96px;align-items:end}
+.eyebrow{font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--clay);margin-bottom:18px}
+h1{font:400 clamp(2.8rem,6.5vw,5.2rem)/1 var(--serif);letter-spacing:-.02em}
+h1 em{color:var(--clay)}
+.hero p{max-width:34ch;margin:26px 0 34px;font-size:1.1rem}
+.btn{display:inline-block;background:var(--olive);color:var(--paper);padding:14px 28px;border:0;font:600 .95rem var(--sans);letter-spacing:.04em;text-decoration:none;cursor:pointer;transition:background .2s,transform .2s}
+.btn:hover{background:var(--clay)}
+.btn:active{transform:translateY(1px)}
+.plate{aspect-ratio:4/5;background:var(--olive);position:relative;overflow:hidden}
+.plate::before{content:"";position:absolute;inset:14%;border-radius:50%;background:var(--paper);box-shadow:0 0 0 10px var(--olive),0 0 0 11px var(--paper)}
+.plate::after{content:"Open since 2014";position:absolute;inset:auto 0 22px;text-align:center;color:var(--paper);font:italic 1rem var(--serif)}
+section{padding:80px 0;border-top:1px solid var(--line)}
+h2{font:400 clamp(2rem,4vw,2.8rem)/1.1 var(--serif);margin-bottom:12px}
+.lede{color:#6b6255;margin-bottom:44px;max-width:46ch}
+.menu{display:grid;grid-template-columns:1fr 1fr;gap:12px 64px}
+.menu h3{grid-column:1/-1;font:600 .8rem var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--clay);margin-top:18px}
+.dish{display:grid;grid-template-columns:auto 1fr auto;gap:0 10px;align-items:baseline}
+.dish b{font:400 1.2rem var(--serif)}
+.dish i{border-bottom:1px dotted #9c917d;transform:translateY(-4px)}
+.dish span{font-variant-numeric:tabular-nums}
+.dish small{grid-column:1/-1;color:#6b6255;font-size:.9rem;margin-bottom:12px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:72px}
+table{width:100%;border-collapse:collapse}
+td{padding:13px 0;border-bottom:1px solid var(--line)}
+td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+tr.today td{color:var(--clay);font-weight:600}
+tr.today td:first-child::after{content:" · today";font-weight:400;font-size:.85rem}
+.chef{background:var(--olive);color:var(--paper);border:0}
+.chef .split{align-items:center}
+.chef blockquote{font:italic 1.6rem/1.35 var(--serif);margin-bottom:24px}
+.chef p{opacity:.85;max-width:44ch}
+.chef .eyebrow{color:#e7a27d}
+.portrait{aspect-ratio:1;border:1px solid #67705a;display:grid;place-items:center;font:italic 7rem var(--serif);color:#e7a27d}
+form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+label{display:grid;gap:6px;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase}
+.full{grid-column:1/-1}
+input,select,textarea{font:inherit;font-size:1rem;padding:12px;border:1px solid #bfb198;background:#fffaf0;color:var(--ink);border-radius:0;letter-spacing:0;text-transform:none}
+input:focus-visible,select:focus-visible,textarea:focus-visible,.btn:focus-visible,a:focus-visible{outline:2px solid var(--clay);outline-offset:2px}
+#ok{grid-column:1/-1;min-height:1.6em;color:var(--olive);font-weight:600}
+footer{padding:36px 0;border-top:1px solid var(--line);font-size:.9rem;color:#6b6255;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+@media(max-width:780px){.hero,.split,.menu,form{grid-template-columns:1fr;gap:32px}.hero{padding:48px 0}.plate{aspect-ratio:16/9}nav a{margin-left:16px}.portrait{display:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="logo" href="#">Fennel &amp; Ash</a>
+    <nav><a href="#menu">Menu</a><a href="#hours">Hours</a><a href="#chef">Chef</a><a href="#book">Book</a></nav>
+  </header>
+  <main>
+    <div class="hero">
+      <div>
+        <p class="eyebrow">14 Alder Lane · Wood-fired, seasonal</p>
+        <h1>Dinner like <em>someone</em> cooked it for you.</h1>
+        <p>A twenty-eight seat kitchen on the corner of Alder Lane. Small menu, local farms, a fire that never really goes out.</p>
+        <a class="btn" href="#book">Reserve a table</a>
+      </div>
+      <div class="plate" role="img" aria-label="Illustration of an empty plate on a green cloth"></div>
+    </div>
+
+    <section id="menu">
+      <h2>This week's menu</h2>
+      <p class="lede">Changes with the market. Tell us about allergies when you book and we'll look after you.</p>
+      <div class="menu">
+        <h3>To begin</h3>
+        <div class="dish"><b>Charred leeks</b><i></i><span>9</span><small>Hazelnut romesco, brown butter crumb</small></div>
+        <div class="dish"><b>Whipped ricotta</b><i></i><span>8</span><small>Honey, thyme, grilled sourdough</small></div>
+        <h3>To follow</h3>
+        <div class="dish"><b>Ash-baked celeriac</b><i></i><span>19</span><small>Mushroom jus, pickled walnut</small></div>
+        <div class="dish"><b>Hand-cut pappardelle</b><i></i><span>18</span><small>Slow-cooked lamb shoulder, fennel pollen</small></div>
+        <div class="dish"><b>Line-caught hake</b><i></i><span>26</span><small>White beans, salsa verde, lemon</small></div>
+        <div class="dish"><b>Half chicken</b><i></i><span>24</span><small>Wood-roasted, spring onion, bread sauce</small></div>
+        <h3>To finish</h3>
+        <div class="dish"><b>Burnt honey tart</b><i></i><span>8</span><small>Crème fraîche, sea salt</small></div>
+        <div class="dish"><b>Poached quince</b><i></i><span>7</span><small>Vanilla custard, almond</small></div>
+      </div>
+    </section>
+
+    <section id="hours" class="split">
+      <div>
+        <h2>Opening hours</h2>
+        <p class="lede">Walk-ins are welcome at the counter, always. The rest of the room fills up fast on weekends.</p>
+      </div>
+      <table aria-label="Opening hours">
+        <tr data-d="1"><td>Monday</td><td>Closed</td></tr>
+        <tr data-d="2"><td>Tuesday</td><td>17:00 – 22:00</td></tr>
+        <tr data-d="3"><td>Wednesday</td><td>17:00 – 22:00</td></tr>
+        <tr data-d="4"><td>Thursday</td><td>17:00 – 22:00</td></tr>
+        <tr data-d="5"><td>Friday</td><td>17:00 – 23:00</td></tr>
+        <tr data-d="6"><td>Saturday</td><td>12:00 – 23:00</td></tr>
+        <tr data-d="0"><td>Sunday</td><td>12:00 – 21:00</td></tr>
+      </table>
+    </section>
+  </main>
+</div>
+
+<section id="chef" class="chef">
+  <div class="wrap split">
+    <div>
+      <p class="eyebrow">Meet the chef</p>
+      <blockquote>“I cook what my neighbours would want to eat on a Tuesday.”</blockquote>
+      <p>Marta Oliveira grew up in her grandmother's kitchen in Porto, spent ten years on the line in London, and came home to open Fennel &amp; Ash. She buys from three farms within twenty miles and still makes the pasta by hand every morning.</p>
+    </div>
+    <div class="portrait" aria-hidden="true">M</div>
+  </div>
+</section>
+
+<div class="wrap">
+  <section id="book" class="split" style="border-top:0">
+    <div>
+      <h2>Reserve a table</h2>
+      <p class="lede">Parties of up to eight. For larger groups, call us on 020 7946 0321 and we'll sort something out.</p>
+    </div>
+    <form id="f">
+      <label class="full">Name<input name="name" required autocomplete="name"></label>
+      <label class="full">Email<input type="email" name="email" required autocomplete="email"></label>
+      <label>Date<input type="date" name="date" id="date" required></label>
+      <label>Time<select name="time"><option>17:30</option><option>18:00</option><option>18:30</option><option>19:00</option><option>19:30</option><option>20:00</option><option>20:30</option></select></label>
+      <label>Guests<select name="guests"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></label>
+      <label>Allergies or occasion<input name="note"></label>
+      <button class="btn full" type="submit">Request booking</button>
+      <p id="ok" class="full" role="status"></p>
+    </form>
+  </section>
+  <footer><span>14 Alder Lane · hello@fennelandash.example</span><span>© 2026 Fennel &amp; Ash</span></footer>
+</div>
+
+<script>
+const today = new Date();
+document.querySelector(`tr[data-d="${today.getDay()}"]`).classList.add('today');
+const date = document.getElementById('date');
+date.min = today.toISOString().slice(0, 10);
+document.getElementById('f').addEventListener('submit', e => {
+  e.preventDefault();
+  const d = new FormData(e.target);
+  const day = new Date(d.get('date') + 'T00:00');
+  if (day.getDay() === 1) { document.getElementById('ok').textContent = 'Sorry, we are closed on Mondays. Please pick another day.'; return; }
+  const when = day.toLocaleDateString(undefined, { weekday: 'long', day: 'numeric', month: 'long' });
+  document.getElementById('ok').textContent = `Thank you, ${d.get('name')}. We have your request for ${d.get('guests')} on ${when} at ${d.get('time')} and will confirm by email.`;
+  e.target.reset();
+});
+</script>
+</body>
+</html>
+```

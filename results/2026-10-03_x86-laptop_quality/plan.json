@@ -1,0 +1,1010 @@
+[
+ {
+  "cond": "original",
+  "task": "T02",
+  "sample": 1,
+  "brief": "Design a pricing page for a log-analytics tool for small engineering teams: invent the product name, three plans, a comparison table and a short FAQ.",
+  "seq": 1
+ },
+ {
+  "cond": "none",
+  "task": "T08",
+  "sample": 2,
+  "brief": "Design an About page for a financial-technology start-up with the mission, the leadership team, the company's key numbers and open roles.",
+  "seq": 2
+ },
+ {
+  "cond": "placebo",
+  "task": "T12",
+  "sample": 2,
+  "brief": "Design a one-page announcement site for a mobile app from a coffee roaster that lets people order beans and track their delivery.",
+  "seq": 3
+ },
+ {
+  "cond": "split",
+  "task": "T08",
+  "sample": 1,
+  "brief": "Design an About page for a financial-technology start-up with the mission, the leadership team, the company's key numbers and open roles.",
+  "seq": 4
+ },
+ {
+  "cond": "split",
+  "task": "T11",
+  "sample": 1,
+  "brief": "Design a category page for an outdoor-gear shop with a filter sidebar, a grid of twelve products and a short buying guide.",
+  "seq": 5
+ },
+ {
+  "cond": "none",
+  "task": "T03",
+  "sample": 2,
+  "brief": "Design a portfolio site for a wedding photographer: a hero, a gallery of six photos, an about section with the photographer's story, and a contact form.",
+  "seq": 6
+ },
+ {
+  "cond": "placebo",
+  "task": "T10",
+  "sample": 2,
+  "brief": "Design an event page for a two-day design conference with speakers, the schedule, the venue and ticket options.",
+  "seq": 7
+ },
+ {
+  "cond": "split",
+  "task": "T04",
+  "sample": 3,
+  "brief": "Design an appointment dashboard for a small dental clinic with today's schedule, patient names, a week overview and a few summary statistics.",
+  "seq": 8
+ },
+ {
+  "cond": "placebo",
+  "task": "T04",
+  "sample": 3,
+  "brief": "Design an appointment dashboard for a small dental clinic with today's schedule, patient names, a week overview and a few summary statistics.",
+  "seq": 9
+ },
+ {
+  "cond": "original",
+  "task": "T04",
+  "sample": 2,
+  "brief": "Design an appointment dashboard for a small dental clinic with today's schedule, patient names, a week overview and a few summary statistics.",
+  "seq": 10
+ },
+ {
+  "cond": "placebo",
+  "task": "T09",
+  "sample": 1,
+  "brief": "Design the homepage for an open-source command-line tool: what it does, an install snippet, a feature overview and a changelog.",
+  "seq": 11
+ },
+ {
+  "cond": "split",
+  "task": "T03",
+  "sample": 3,
+  "brief": "Design a portfolio site for a wedding photographer: a hero, a gallery of six photos, an about section with the photographer's story, and a contact form.",
+  "seq": 12
+ },
+ {
+  "cond": "split",
+  "task": "T10",
+  "sample": 2,
+  "brief": "Design an event page for a two-day design conference with speakers, the schedule, the venue and ticket options.",
+  "seq": 13
+ },
+ {
+  "cond": "original",
+  "task": "T12",
+  "sample": 3,
+  "brief": "Design a one-page announcement site for a mobile app from a coffee roaster that lets people order beans and track their delivery.",
+  "seq": 14
+ },
+ {
+  "cond": "original",
+  "task": "T10",
+  "sample": 1,
+  "brief": "Design an event page for a two-day design conference with speakers, the schedule, the venue and ticket options.",
+  "seq": 15
+ },
+ {
+  "cond": "placebo",
+  "task": "T04",
+  "sample": 1,
+  "brief": "Design an appointment dashboard for a small dental clinic with today's schedule, patient names, a week overview and a few summary statistics.",
+  "seq": 16
+ },
+ {
+  "cond": "none",
+  "task": "T09",
+  "sample": 3,
+  "brief": "Design the homepage for an open-source command-line tool: what it does, an install snippet, a feature overview and a changelog.",
+  "seq": 17
+ },
+ {
+  "cond": "none",
+  "task": "T07",
+  "sample": 2,
+  "brief": "Design a mobile-first sign-up flow for a language-learning app that takes the user from creating an account to picking a daily goal in three stages.",
+  "seq": 18
+ },
+ {
+  "cond": "split",
+  "task": "T07",
+  "sample": 2,
+  "brief": "Design a mobile-first sign-up flow for a language-learning app that takes the user from creating an account to picking a daily goal in three stages.",
+  "seq": 19
+ },
+ {
+  "cond": "placebo",
+  "task": "T11",
+  "sample": 2,
+  "brief": "Design a category page for an outdoor-gear shop with a filter sidebar, a grid of twelve products and a short buying guide.",
+  "seq": 20
+ },
+ {
+  "cond": "none",
+  "task": "T01",
+  "sample": 1,
+  "brief": "Design a landing page for a small ceramics studio in Lisbon: hero, what they make, three customer testimonials, workshop pricing and a footer.",
+  "seq": 21
+ },
+ {
+  "cond": "none",
+  "task": "T08",
+  "sample": 1,
+  "brief": "Design an About page for a financial-technology start-up with the mission, the leadership team, the company's key numbers and open roles.",
+  "seq": 22
+ },
+ {
+  "cond": "split",
+  "task": "T02",
+  "sample": 3,
+  "brief": "Design a pricing page for a log-analytics tool for small engineering teams: invent the product name, three plans, a comparison table and a short FAQ.",
+  "seq": 23
+ },
+ {
+  "cond": "original",
+  "task": "T07",
+  "sample": 3,
+  "brief": "Design a mobile-first sign-up flow for a language-learning app that takes the user from creating an account to picking a daily goal in three stages.",
+  "seq": 24
+ },
+ {
+  "cond": "original",
+  "task": "T05",
+  "sample": 1,
+  "brief": "Design a product page for a mechanical keyboard: gallery, key specifications, a customer reviews section and a buy button.",
+  "seq": 25
+ },
+ {
+  "cond": "original",
+  "task": "T12",
+  "sample": 2,
+  "brief": "Design a one-page announcement site for a mobile app from a coffee roaster that lets people order beans and track their delivery.",
+  "seq": 26
+ },
+ {
+  "cond": "split",
+  "task": "T02",
+  "sample": 2,
+  "brief": "Design a pricing page for a log-analytics tool for small engineering teams: invent the product name, three plans, a comparison table and a short FAQ.",
+  "seq": 27
+ },
+ {
+  "cond": "original",
+  "task": "T11",
+  "sample": 2,
+  "brief": "Design a category page for an outdoor-gear shop with a filter sidebar, a grid of twelve products and a short buying guide.",
+  "seq": 28
+ },
+ {
+  "cond": "none",
+  "task": "T05",
+  "sample": 2,
+  "brief": "Design a product page for a mechanical keyboard: gallery, key specifications, a customer reviews section and a buy button.",
+  "seq": 29
+ },
+ {
+  "cond": "placebo",
+  "task": "T08",
+  "sample": 1,
+  "brief": "Design an About page for a financial-technology start-up with the mission, the leadership team, the company's key numbers and open roles.",
+  "seq": 30
+ },
+ {
+  "cond": "none",
+  "task": "T05",
+  "sample": 1,
+  "brief": "Design a product page for a mechanical keyboard: gallery, key specifications, a customer reviews section and a buy button.",
+  "seq": 31
+ },
+ {
+  "cond": "placebo",
+  "task": "T02",
+  "sample": 3,
+  "brief": "Design a pricing page for a log-analytics tool for small engineering teams: invent the product name, three plans, a comparison table and a short FAQ.",
+  "seq": 32
+ },
+ {
+  "cond": "original",
+  "task": "T03",
+  "sample": 1,
+  "brief": "Design a portfolio site for a wedding photographer: a hero, a gallery of six photos, an about section with the photographer's story, and a contact form.",
+  "seq": 33
+ },
+ {
+  "cond": "original",
+  "task": "T01",
+  "sample": 3,
+  "brief": "Design a landing page for a small ceramics studio in Lisbon: hero, what they make, three customer testimonials, workshop pricing and a footer.",
+  "seq": 34
+ },
+ {
+  "cond": "none",
+  "task": "T04",
+  "sample": 3,
+  "brief": "Design an appointment dashboard for a small dental clinic with today's schedule, patient names, a week overview and a few summary statistics.",
+  "seq": 35
+ },
+ {
+  "cond": "none",
+  "task": "T12",
+  "sample": 3,
+  "brief": "Design a one-page announcement site for a mobile app from a coffee roaster that lets people order beans and track their delivery.",
+  "seq": 36
+ },
+ {
+  "cond": "placebo",
+  "task": "T06",
+  "sample": 3,
+  "brief": "Design the homepage of a neighbourhood restaurant with the menu, opening hours, the chef's introduction and a table reservation form.",
+  "seq": 37
+ },
+ {
+  "cond": "none",
+  "task": "T10",
+  "sample": 2,
+  "brief": "Design an event page for a two-day design conference with speakers, the schedule, the venue and ticket options.",
+  "seq": 38
+ },
+ {
+  "cond": "placebo",
+  "task": "T01",
+  "sample": 3,
+  "brief": "Design a landing page for a small ceramics studio in Lisbon: hero, what they make, three customer testimonials, workshop pricing and a footer.",
+  "seq": 39
+ },
+ {
+  "cond": "split",
+  "task": "T12",
+  "sample": 1,
+  "brief": "Design a one-page announcement site for a mobile app from a coffee roaster that lets people order beans and track their delivery.",
+  "seq": 40
+ },
+ {
+  "cond": "placebo",
+  "task": "T06",
+  "sample": 1,
+  "brief": "Design the homepage of a neighbourhood restaurant with the menu, opening hours, the chef's introduction and a table reservation form.",
+  "seq": 41
+ },
+ {
+  "cond": "split",
+  "task": "T05",
+  "sample": 3,
+  "brief": "Design a product page for a mechanical keyboard: gallery, key specifications, a customer reviews section and a buy button.",
+  "seq": 42
+ },
+ {
+  "cond": "original",
+  "task": "T07",
+  "sample": 2,
+  "brief": "Design a mobile-first sign-up flow for a language-learning app that takes the user from creating an account to picking a daily goal in three stages.",
+  "seq": 43
+ },
+ {
+  "cond": "none",
+  "task": "T07",
+  "sample": 3,
+  "brief": "Design a mobile-first sign-up flow for a language-learning app that takes the user from creating an account to picking a daily goal in three stages.",
+  "seq": 44
+ },
+ {
+  "cond": "split",
+  "task": "T08",
+  "sample": 3,
+  "brief": "Design an About page for a financial-technology start-up with the mission, the leadership team, the company's key numbers and open roles.",
+  "seq": 45
+ },
+ {
+  "cond": "placebo",
+  "task": "T12",
+  "sample": 1,
+  "brief": "Design a one-page announcement site for a mobile app from a coffee roaster that lets people order beans and track their delivery.",
+  "seq": 46
+ },
+ {
+  "cond": "placebo",
+  "task": "T02",
+  "sample": 1,
+  "brief": "Design a pricing page for a log-analytics tool for small engineering teams: invent the product name, three plans, a comparison table and a short FAQ.",
+  "seq": 47
+ },
+ {
+  "cond": "none",
+  "task": "T11",
+  "sample": 2,
+  "brief": "Design a category page for an outdoor-gear shop with a filter sidebar, a grid of twelve products and a short buying guide.",
+  "seq": 48
+ },
+ {
+  "cond": "original",
+  "task": "T04",
+  "sample": 3,
+  "brief": "Design an appointment dashboard for a small dental clinic with today's schedule, patient names, a week overview and a few summary statistics.",
+  "seq": 49
+ },
+ {
+  "cond": "placebo",
+  "task": "T06",
+  "sample": 2,
+  "brief": "Design the homepage of a neighbourhood restaurant with the menu, opening hours, the chef's introduction and a table reservation form.",
+  "seq": 50
+ },
+ {
+  "cond": "placebo",
+  "task": "T04",
+  "sample": 2,
+  "brief": "Design an appointment dashboard for a small dental clinic with today's schedule, patient names, a week overview and a few summary statistics.",
+  "seq": 51
+ },
+ {
+  "cond": "placebo",
+  "task": "T07",
+  "sample": 1,
+  "brief": "Design a mobile-first sign-up flow for a language-learning app that takes the user from creating an account to picking a daily goal in three stages.",
+  "seq": 52
+ },
+ {
+  "cond": "none",
+  "task": "T06",
+  "sample": 1,
+  "brief": "Design the homepage of a neighbourhood restaurant with the menu, opening hours, the chef's introduction and a table reservation form.",
+  "seq": 53
+ },
+ {
+  "cond": "original",
+  "task": "T08",
+  "sample": 3,
+  "brief": "Design an About page for a financial-technology start-up with the mission, the leadership team, the company's key numbers and open roles.",
+  "seq": 54
+ },
+ {
+  "cond": "placebo",
+  "task": "T08",
+  "sample": 3,
+  "brief": "Design an About page for a financial-technology start-up with the mission, the leadership team, the company's key numbers and open roles.",
+  "seq": 55
+ },
+ {
+  "cond": "original",
+  "task": "T04",
+  "sample": 1,
+  "brief": "Design an appointment dashboard for a small dental clinic with today's schedule, patient names, a week overview and a few summary statistics.",
+  "seq": 56
+ },
+ {
+  "cond": "split",
+  "task": "T01",
+  "sample": 1,
+  "brief": "Design a landing page for a small ceramics studio in Lisbon: hero, what they make, three customer testimonials, workshop pricing and a footer.",
+  "seq": 57
+ },
+ {
+  "cond": "split",
+  "task": "T03",
+  "sample": 1,
+  "brief": "Design a portfolio site for a wedding photographer: a hero, a gallery of six photos, an about section with the photographer's story, and a contact form.",
+  "seq": 58
+ },
+ {
+  "cond": "placebo",
+  "task": "T05",
+  "sample": 2,
+  "brief": "Design a product page for a mechanical keyboard: gallery, key specifications, a customer reviews section and a buy button.",
+  "seq": 59
+ },
+ {
+  "cond": "original",
+  "task": "T10",
+  "sample": 2,
+  "brief": "Design an event page for a two-day design conference with speakers, the schedule, the venue and ticket options.",
+  "seq": 60
+ },
+ {
+  "cond": "split",
+  "task": "T12",
+  "sample": 2,
+  "brief": "Design a one-page announcement site for a mobile app from a coffee roaster that lets people order beans and track their delivery.",
+  "seq": 61
+ },
+ {
+  "cond": "split",
+  "task": "T01",
+  "sample": 3,
+  "brief": "Design a landing page for a small ceramics studio in Lisbon: hero, what they make, three customer testimonials, workshop pricing and a footer.",
+  "seq": 62
+ },
+ {
+  "cond": "original",
+  "task": "T02",
+  "sample": 2,
+  "brief": "Design a pricing page for a log-analytics tool for small engineering teams: invent the product name, three plans, a comparison table and a short FAQ.",
+  "seq": 63
+ },
+ {
+  "cond": "none",
+  "task": "T06",
+  "sample": 3,
+  "brief": "Design the homepage of a neighbourhood restaurant with the menu, opening hours, the chef's introduction and a table reservation form.",
+  "seq": 64
+ },
+ {
+  "cond": "none",
+  "task": "T03",
+  "sample": 3,
+  "brief": "Design a portfolio site for a wedding photographer: a hero, a gallery of six photos, an about section with the photographer's story, and a contact form.",
+  "seq": 65
+ },
+ {
+  "cond": "split",
+  "task": "T05",
+  "sample": 2,
+  "brief": "Design a product page for a mechanical keyboard: gallery, key specifications, a customer reviews section and a buy button.",
+  "seq": 66
+ },
+ {
+  "cond": "split",
+  "task": "T11",
+  "sample": 3,
+  "brief": "Design a category page for an outdoor-gear shop with a filter sidebar, a grid of twelve products and a short buying guide.",
+  "seq": 67
+ },
+ {
+  "cond": "split",
+  "task": "T07",
+  "sample": 3,
+  "brief": "Design a mobile-first sign-up flow for a language-learning app that takes the user from creating an account to picking a daily goal in three stages.",
+  "seq": 68
+ },
+ {
+  "cond": "original",
+  "task": "T08",
+  "sample": 1,
+  "brief": "Design an About page for a financial-technology start-up with the mission, the leadership team, the company's key numbers and open roles.",
+  "seq": 69
+ },
+ {
+  "cond": "original",
+  "task": "T06",
+  "sample": 2,
+  "brief": "Design the homepage of a neighbourhood restaurant with the menu, opening hours, the chef's introduction and a table reservation form.",
+  "seq": 70
+ },
+ {
+  "cond": "original",
+  "task": "T01",
+  "sample": 2,
+  "brief": "Design a landing page for a small ceramics studio in Lisbon: hero, what they make, three customer testimonials, workshop pricing and a footer.",
+  "seq": 71
+ },
+ {
+  "cond": "placebo",
+  "task": "T02",
+  "sample": 2,
+  "brief": "Design a pricing page for a log-analytics tool for small engineering teams: invent the product name, three plans, a comparison table and a short FAQ.",
+  "seq": 72
+ },
+ {
+  "cond": "none",
+  "task": "T12",
+  "sample": 2,
+  "brief": "Design a one-page announcement site for a mobile app from a coffee roaster that lets people order beans and track their delivery.",
+  "seq": 73
+ },
+ {
+  "cond": "placebo",
+  "task": "T01",
+  "sample": 1,
+  "brief": "Design a landing page for a small ceramics studio in Lisbon: hero, what they make, three customer testimonials, workshop pricing and a footer.",
+  "seq": 74
+ },
+ {
+  "cond": "none",
+  "task": "T02",
+  "sample": 2,
+  "brief": "Design a pricing page for a log-analytics tool for small engineering teams: invent the product name, three plans, a comparison table and a short FAQ.",
+  "seq": 75
+ },
+ {
+  "cond": "none",
+  "task": "T09",
+  "sample": 2,
+  "brief": "Design the homepage for an open-source command-line tool: what it does, an install snippet, a feature overview and a changelog.",
+  "seq": 76
+ },
+ {
+  "cond": "placebo",
+  "task": "T09",
+  "sample": 3,
+  "brief": "Design the homepage for an open-source command-line tool: what it does, an install snippet, a feature overview and a changelog.",
+  "seq": 77
+ },
+ {
+  "cond": "placebo",
+  "task": "T07",
+  "sample": 3,
+  "brief": "Design a mobile-first sign-up flow for a language-learning app that takes the user from creating an account to picking a daily goal in three stages.",
+  "seq": 78
+ },
+ {
+  "cond": "split",
+  "task": "T05",
+  "sample": 1,
+  "brief": "Design a product page for a mechanical keyboard: gallery, key specifications, a customer reviews section and a buy button.",
+  "seq": 79
+ },
+ {
+  "cond": "none",
+  "task": "T02",
+  "sample": 3,
+  "brief": "Design a pricing page for a log-analytics tool for small engineering teams: invent the product name, three plans, a comparison table and a short FAQ.",
+  "seq": 80
+ },
+ {
+  "cond": "original",
+  "task": "T06",
+  "sample": 1,
+  "brief": "Design the homepage of a neighbourhood restaurant with the menu, opening hours, the chef's introduction and a table reservation form.",
+  "seq": 81
+ },
+ {
+  "cond": "split",
+  "task": "T12",
+  "sample": 3,
+  "brief": "Design a one-page announcement site for a mobile app from a coffee roaster that lets people order beans and track their delivery.",
+  "seq": 82
+ },
+ {
+  "cond": "none",
+  "task": "T11",
+  "sample": 3,
+  "brief": "Design a category page for an outdoor-gear shop with a filter sidebar, a grid of twelve products and a short buying guide.",
+  "seq": 83
+ },
+ {
+  "cond": "none",
+  "task": "T01",
+  "sample": 2,
+  "brief": "Design a landing page for a small ceramics studio in Lisbon: hero, what they make, three customer testimonials, workshop pricing and a footer.",
+  "seq": 84
+ },
+ {
+  "cond": "original",
+  "task": "T03",
+  "sample": 3,
+  "brief": "Design a portfolio site for a wedding photographer: a hero, a gallery of six photos, an about section with the photographer's story, and a contact form.",
+  "seq": 85
+ },
+ {
+  "cond": "original",
+  "task": "T09",
+  "sample": 1,
+  "brief": "Design the homepage for an open-source command-line tool: what it does, an install snippet, a feature overview and a changelog.",
+  "seq": 86
+ },
+ {
+  "cond": "none",
+  "task": "T10",
+  "sample": 3,
+  "brief": "Design an event page for a two-day design conference with speakers, the schedule, the venue and ticket options.",
+  "seq": 87
+ },
+ {
+  "cond": "split",
+  "task": "T10",
+  "sample": 1,
+  "brief": "Design an event page for a two-day design conference with speakers, the schedule, the venue and ticket options.",
+  "seq": 88
+ },
+ {
+  "cond": "placebo",
+  "task": "T03",
+  "sample": 3,
+  "brief": "Design a portfolio site for a wedding photographer: a hero, a gallery of six photos, an about section with the photographer's story, and a contact form.",
+  "seq": 89
+ },
+ {
+  "cond": "none",
+  "task": "T09",
+  "sample": 1,
+  "brief": "Design the homepage for an open-source command-line tool: what it does, an install snippet, a feature overview and a changelog.",
+  "seq": 90
+ },
+ {
+  "cond": "split",
+  "task": "T06",
+  "sample": 1,
+  "brief": "Design the homepage of a neighbourhood restaurant with the menu, opening hours, the chef's introduction and a table reservation form.",
+  "seq": 91
+ },
+ {
+  "cond": "original",
+  "task": "T05",
+  "sample": 2,
+  "brief": "Design a product page for a mechanical keyboard: gallery, key specifications, a customer reviews section and a buy button.",
+  "seq": 92
+ },
+ {
+  "cond": "placebo",
+  "task": "T10",
+  "sample": 3,
+  "brief": "Design an event page for a two-day design conference with speakers, the schedule, the venue and ticket options.",
+  "seq": 93
+ },
+ {
+  "cond": "placebo",
+  "task": "T11",
+  "sample": 3,
+  "brief": "Design a category page for an outdoor-gear shop with a filter sidebar, a grid of twelve products and a short buying guide.",
+  "seq": 94
+ },
+ {
+  "cond": "original",
+  "task": "T05",
+  "sample": 3,
+  "brief": "Design a product page for a mechanical keyboard: gallery, key specifications, a customer reviews section and a buy button.",
+  "seq": 95
+ },
+ {
+  "cond": "split",
+  "task": "T06",
+  "sample": 2,
+  "brief": "Design the homepage of a neighbourhood restaurant with the menu, opening hours, the chef's introduction and a table reservation form.",
+  "seq": 96
+ },
+ {
+  "cond": "original",
+  "task": "T09",
+  "sample": 3,
+  "brief": "Design the homepage for an open-source command-line tool: what it does, an install snippet, a feature overview and a changelog.",
+  "seq": 97
+ },
+ {
+  "cond": "none",
+  "task": "T11",
+  "sample": 1,
+  "brief": "Design a category page for an outdoor-gear shop with a filter sidebar, a grid of twelve products and a short buying guide.",
+  "seq": 98
+ },
+ {
+  "cond": "split",
+  "task": "T09",
+  "sample": 3,
+  "brief": "Design the homepage for an open-source command-line tool: what it does, an install snippet, a feature overview and a changelog.",
+  "seq": 99
+ },
+ {
+  "cond": "split",
+  "task": "T02",
+  "sample": 1,
+  "brief": "Design a pricing page for a log-analytics tool for small engineering teams: invent the product name, three plans, a comparison table and a short FAQ.",
+  "seq": 100
+ },
+ {
+  "cond": "original",
+  "task": "T09",
+  "sample": 2,
+  "brief": "Design the homepage for an open-source command-line tool: what it does, an install snippet, a feature overview and a changelog.",
+  "seq": 101
+ },
+ {
+  "cond": "placebo",
+  "task": "T12",
+  "sample": 3,
+  "brief": "Design a one-page announcement site for a mobile app from a coffee roaster that lets people order beans and track their delivery.",
+  "seq": 102
+ },
+ {
+  "cond": "split",
+  "task": "T10",
+  "sample": 3,
+  "brief": "Design an event page for a two-day design conference with speakers, the schedule, the venue and ticket options.",
+  "seq": 103
+ },
+ {
+  "cond": "none",
+  "task": "T12",
+  "sample": 1,
+  "brief": "Design a one-page announcement site for a mobile app from a coffee roaster that lets people order beans and track their delivery.",
+  "seq": 104
+ },
+ {
+  "cond": "original",
+  "task": "T07",
+  "sample": 1,
+  "brief": "Design a mobile-first sign-up flow for a language-learning app that takes the user from creating an account to picking a daily goal in three stages.",
+  "seq": 105
+ },
+ {
+  "cond": "original",
+  "task": "T08",
+  "sample": 2,
+  "brief": "Design an About page for a financial-technology start-up with the mission, the leadership team, the company's key numbers and open roles.",
+  "seq": 106
+ },
+ {
+  "cond": "split",
+  "task": "T03",
+  "sample": 2,
+  "brief": "Design a portfolio site for a wedding photographer: a hero, a gallery of six photos, an about section with the photographer's story, and a contact form.",
+  "seq": 107
+ },
+ {
+  "cond": "none",
+  "task": "T07",
+  "sample": 1,
+  "brief": "Design a mobile-first sign-up flow for a language-learning app that takes the user from creating an account to picking a daily goal in three stages.",
+  "seq": 108
+ },
+ {
+  "cond": "placebo",
+  "task": "T08",
+  "sample": 2,
+  "brief": "Design an About page for a financial-technology start-up with the mission, the leadership team, the company's key numbers and open roles.",
+  "seq": 109
+ },
+ {
+  "cond": "none",
+  "task": "T03",
+  "sample": 1,
+  "brief": "Design a portfolio site for a wedding photographer: a hero, a gallery of six photos, an about section with the photographer's story, and a contact form.",
+  "seq": 110
+ },
+ {
+  "cond": "split",
+  "task": "T06",
+  "sample": 3,
+  "brief": "Design the homepage of a neighbourhood restaurant with the menu, opening hours, the chef's introduction and a table reservation form.",
+  "seq": 111
+ },
+ {
+  "cond": "none",
+  "task": "T04",
+  "sample": 1,
+  "brief": "Design an appointment dashboard for a small dental clinic with today's schedule, patient names, a week overview and a few summary statistics.",
+  "seq": 112
+ },
+ {
+  "cond": "original",
+  "task": "T03",
+  "sample": 2,
+  "brief": "Design a portfolio site for a wedding photographer: a hero, a gallery of six photos, an about section with the photographer's story, and a contact form.",
+  "seq": 113
+ },
+ {
+  "cond": "none",
+  "task": "T06",
+  "sample": 2,
+  "brief": "Design the homepage of a neighbourhood restaurant with the menu, opening hours, the chef's introduction and a table reservation form.",
+  "seq": 114
+ },
+ {
+  "cond": "placebo",
+  "task": "T05",
+  "sample": 1,
+  "brief": "Design a product page for a mechanical keyboard: gallery, key specifications, a customer reviews section and a buy button.",
+  "seq": 115
+ },
+ {
+  "cond": "placebo",
+  "task": "T03",
+  "sample": 1,
+  "brief": "Design a portfolio site for a wedding photographer: a hero, a gallery of six photos, an about section with the photographer's story, and a contact form.",
+  "seq": 116
+ },
+ {
+  "cond": "placebo",
+  "task": "T01",
+  "sample": 2,
+  "brief": "Design a landing page for a small ceramics studio in Lisbon: hero, what they make, three customer testimonials, workshop pricing and a footer.",
+  "seq": 117
+ },
+ {
+  "cond": "placebo",
+  "task": "T09",
+  "sample": 2,
+  "brief": "Design the homepage for an open-source command-line tool: what it does, an install snippet, a feature overview and a changelog.",
+  "seq": 118
+ },
+ {
+  "cond": "split",
+  "task": "T04",
+  "sample": 2,
+  "brief": "Design an appointment dashboard for a small dental clinic with today's schedule, patient names, a week overview and a few summary statistics.",
+  "seq": 119
+ },
+ {
+  "cond": "none",
+  "task": "T10",
+  "sample": 1,
+  "brief": "Design an event page for a two-day design conference with speakers, the schedule, the venue and ticket options.",
+  "seq": 120
+ },
+ {
+  "cond": "split",
+  "task": "T09",
+  "sample": 2,
+  "brief": "Design the homepage for an open-source command-line tool: what it does, an install snippet, a feature overview and a changelog.",
+  "seq": 121
+ },
+ {
+  "cond": "none",
+  "task": "T01",
+  "sample": 3,
+  "brief": "Design a landing page for a small ceramics studio in Lisbon: hero, what they make, three customer testimonials, workshop pricing and a footer.",
+  "seq": 122
+ },
+ {
+  "cond": "none",
+  "task": "T05",
+  "sample": 3,
+  "brief": "Design a product page for a mechanical keyboard: gallery, key specifications, a customer reviews section and a buy button.",
+  "seq": 123
+ },
+ {
+  "cond": "placebo",
+  "task": "T10",
+  "sample": 1,
+  "brief": "Design an event page for a two-day design conference with speakers, the schedule, the venue and ticket options.",
+  "seq": 124
+ },
+ {
+  "cond": "original",
+  "task": "T10",
+  "sample": 3,
+  "brief": "Design an event page for a two-day design conference with speakers, the schedule, the venue and ticket options.",
+  "seq": 125
+ },
+ {
+  "cond": "none",
+  "task": "T04",
+  "sample": 2,
+  "brief": "Design an appointment dashboard for a small dental clinic with today's schedule, patient names, a week overview and a few summary statistics.",
+  "seq": 126
+ },
+ {
+  "cond": "original",
+  "task": "T11",
+  "sample": 1,
+  "brief": "Design a category page for an outdoor-gear shop with a filter sidebar, a grid of twelve products and a short buying guide.",
+  "seq": 127
+ },
+ {
+  "cond": "split",
+  "task": "T09",
+  "sample": 1,
+  "brief": "Design the homepage for an open-source command-line tool: what it does, an install snippet, a feature overview and a changelog.",
+  "seq": 128
+ },
+ {
+  "cond": "split",
+  "task": "T01",
+  "sample": 2,
+  "brief": "Design a landing page for a small ceramics studio in Lisbon: hero, what they make, three customer testimonials, workshop pricing and a footer.",
+  "seq": 129
+ },
+ {
+  "cond": "original",
+  "task": "T06",
+  "sample": 3,
+  "brief": "Design the homepage of a neighbourhood restaurant with the menu, opening hours, the chef's introduction and a table reservation form.",
+  "seq": 130
+ },
+ {
+  "cond": "placebo",
+  "task": "T03",
+  "sample": 2,
+  "brief": "Design a portfolio site for a wedding photographer: a hero, a gallery of six photos, an about section with the photographer's story, and a contact form.",
+  "seq": 131
+ },
+ {
+  "cond": "none",
+  "task": "T02",
+  "sample": 1,
+  "brief": "Design a pricing page for a log-analytics tool for small engineering teams: invent the product name, three plans, a comparison table and a short FAQ.",
+  "seq": 132
+ },
+ {
+  "cond": "original",
+  "task": "T11",
+  "sample": 3,
+  "brief": "Design a category page for an outdoor-gear shop with a filter sidebar, a grid of twelve products and a short buying guide.",
+  "seq": 133
+ },
+ {
+  "cond": "placebo",
+  "task": "T05",
+  "sample": 3,
+  "brief": "Design a product page for a mechanical keyboard: gallery, key specifications, a customer reviews section and a buy button.",
+  "seq": 134
+ },
+ {
+  "cond": "original",
+  "task": "T12",
+  "sample": 1,
+  "brief": "Design a one-page announcement site for a mobile app from a coffee roaster that lets people order beans and track their delivery.",
+  "seq": 135
+ },
+ {
+  "cond": "split",
+  "task": "T04",
+  "sample": 1,
+  "brief": "Design an appointment dashboard for a small dental clinic with today's schedule, patient names, a week overview and a few summary statistics.",
+  "seq": 136
+ },
+ {
+  "cond": "placebo",
+  "task": "T07",
+  "sample": 2,
+  "brief": "Design a mobile-first sign-up flow for a language-learning app that takes the user from creating an account to picking a daily goal in three stages.",
+  "seq": 137
+ },
+ {
+  "cond": "none",
+  "task": "T08",
+  "sample": 3,
+  "brief": "Design an About page for a financial-technology start-up with the mission, the leadership team, the company's key numbers and open roles.",
+  "seq": 138
+ },
+ {
+  "cond": "split",
+  "task": "T07",
+  "sample": 1,
+  "brief": "Design a mobile-first sign-up flow for a language-learning app that takes the user from creating an account to picking a daily goal in three stages.",
+  "seq": 139
+ },
+ {
+  "cond": "split",
+  "task": "T11",
+  "sample": 2,
+  "brief": "Design a category page for an outdoor-gear shop with a filter sidebar, a grid of twelve products and a short buying guide.",
+  "seq": 140
+ },
+ {
+  "cond": "split",
+  "task": "T08",
+  "sample": 2,
+  "brief": "Design an About page for a financial-technology start-up with the mission, the leadership team, the company's key numbers and open roles.",
+  "seq": 141
+ },
+ {
+  "cond": "placebo",
+  "task": "T11",
+  "sample": 1,
+  "brief": "Design a category page for an outdoor-gear shop with a filter sidebar, a grid of twelve products and a short buying guide.",
+  "seq": 142
+ },
+ {
+  "cond": "original",
+  "task": "T01",
+  "sample": 1,
+  "brief": "Design a landing page for a small ceramics studio in Lisbon: hero, what they make, three customer testimonials, workshop pricing and a footer.",
+  "seq": 143
+ },
+ {
+  "cond": "original",
+  "task": "T02",
+  "sample": 3,
+  "brief": "Design a pricing page for a log-analytics tool for small engineering teams: invent the product name, three plans, a comparison table and a short FAQ.",
+  "seq": 144
+ }
+]

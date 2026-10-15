@@ -1,0 +1,124 @@
+```html
+<!DOCTYPE html>
+<!-- Design read: category page for outdoor-gear shoppers comparing products, calm utilitarian language, native CSS + a little vanilla JS. Dials 5 / 3 / 4. Palette: forest + stone, one accent. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tents and Shelters | Ridgeline Supply</title>
+<style>
+:root{--bg:#eceee9;--surface:#f6f7f4;--ink:#161b18;--muted:#4b554f;--line:#c9cec7;--accent:#2c5a43;--on-accent:#f6f7f4;--r:6px;--shadow:0 6px 18px rgb(30 50 40 / .12)}
+@media (prefers-color-scheme:dark){:root{--bg:#121714;--surface:#1a211d;--ink:#e6eae4;--muted:#a5afa8;--line:#323c36;--accent:#7fbf9c;--on-accent:#101612;--shadow:0 6px 18px rgb(0 0 0 / .4)}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 "Avenir Next","Segoe UI",Helvetica,Arial,sans-serif}
+a{color:inherit}
+.wrap{max-width:1280px;margin:0 auto;padding:0 24px}
+nav{border-bottom:1px solid var(--line)}
+nav .wrap{height:64px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+nav b{font-size:1.15rem;letter-spacing:-.02em}
+nav ul{display:flex;gap:28px;list-style:none;padding:0;white-space:nowrap}
+nav a{text-decoration:none;color:var(--muted)}
+nav a:hover,nav a[aria-current]{color:var(--ink)}
+header.top{padding:48px 0 32px}
+h1{font-size:clamp(2rem,4.5vw,3.25rem);line-height:1.05;letter-spacing:-.035em;max-width:16ch}
+header.top p{color:var(--muted);margin-top:12px;max-width:52ch}
+.layout{display:grid;grid-template-columns:240px 1fr;gap:48px;align-items:start}
+aside{position:sticky;top:16px}
+fieldset{border:0;padding:0;margin:0 0 28px}
+legend{font-weight:700;margin-bottom:8px}
+label{display:flex;align-items:center;gap:10px;padding:5px 0;cursor:pointer}
+input[type=checkbox]{accent-color:var(--accent);width:18px;height:18px}
+input[type=range]{width:100%;accent-color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;color:var(--muted)}
+select{background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:var(--r);padding:8px 10px;font:inherit}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px 24px}
+.item{animation:rise .5s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(var(--i) * 40ms)}
+.item[hidden]{display:none}
+.item .ph{display:block;overflow:hidden;border-radius:var(--r);aspect-ratio:4/3;background:var(--line)}
+.item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.item:hover img{transform:scale(1.04)}
+.item h3{font-size:1rem;margin-top:12px;letter-spacing:-.01em}
+.item p{color:var(--muted);font-size:.9rem}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.price{font-weight:700}
+button{font:inherit;cursor:pointer;border-radius:var(--r);border:1px solid var(--accent);background:var(--accent);color:var(--on-accent);padding:7px 16px;font-weight:600;transition:transform .15s,box-shadow .2s}
+button:hover{box-shadow:var(--shadow)}
+button:active{transform:translateY(1px) scale(.98)}
+button.ghost{background:transparent;color:var(--accent)}
+.empty{padding:56px 0;max-width:40ch}
+.empty h3{font-size:1.25rem;margin-bottom:6px}
+.empty p{color:var(--muted);margin-bottom:16px}
+.guide{margin-top:88px;padding:56px 0 72px;border-top:1px solid var(--line)}
+.guide h2{font-size:1.9rem;letter-spacing:-.03em;line-height:1.1}
+.guide .lead{color:var(--muted);margin:10px 0 36px;max-width:60ch}
+.tips{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px}
+.tips h3{font-size:1.05rem;margin-bottom:6px}
+.tips p{color:var(--muted)}
+.tips div:first-child{padding-right:24px;border-right:1px solid var(--line)}
+footer{border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-size:.9rem}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}}
+@media (max-width:1023px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:767px){
+ .wrap{padding:0 16px}nav ul{gap:16px}nav li:nth-child(n+3){display:none}
+ .layout{grid-template-columns:1fr;gap:24px}aside{position:static}
+ .grid,.tips{grid-template-columns:1fr}.tips div:first-child{border:0;padding:0}
+}
+@media (prefers-reduced-motion:reduce){.item{animation:none}.item img,button{transition:none}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><b>Ridgeline Supply</b>
+<ul><li><a href="#" aria-current="page">Shelter</a></li><li><a href="#">Packs</a></li><li><a href="#">Sleep</a></li><li><a href="#">Cook</a></li></ul></div></nav>
+<main class="wrap">
+<header class="top"><h1>Tents and shelters</h1><p>Twelve designs tested on exposed ridges and in valley rain, from solo bivies to four-person base camps.</p></header>
+<div class="layout">
+<aside aria-label="Filters">
+<fieldset><legend>Type</legend>
+<label><input type="checkbox" name="type" value="Backpacking"> Backpacking</label>
+<label><input type="checkbox" name="type" value="Basecamp"> Basecamp</label>
+<label><input type="checkbox" name="type" value="Bivy"> Bivy and tarp</label></fieldset>
+<fieldset><legend>Sleeps</legend>
+<label><input type="checkbox" name="sleeps" value="1"> 1 person</label>
+<label><input type="checkbox" name="sleeps" value="2"> 2 people</label>
+<label><input type="checkbox" name="sleeps" value="4"> 4 people</label></fieldset>
+<fieldset><legend><label for="max" style="padding:0">Max price: <output id="out">$600</output></label></legend>
+<input id="max" type="range" min="100" max="600" step="10" value="600"></fieldset>
+<button class="ghost" id="reset" type="button">Clear filters</button>
+</aside>
+<section aria-live="polite">
+<div class="bar"><span id="count">12 products</span>
+<label>Sort <select id="sort"><option value="0">Featured</option><option value="1">Price, low to high</option><option value="2">Price, high to low</option></select></label></div>
+<div class="grid" id="grid"></div>
+<div class="empty" id="empty" hidden><h3>No tents match those filters</h3><p>Raise the price limit or remove a filter to see more shelters.</p><button type="button" id="reset2">Clear filters</button></div>
+</section>
+</div>
+<section class="guide"><h2>How to choose a tent</h2>
+<p class="lead">Start with how you travel, then match weight and weather rating to the trip.</p>
+<div class="tips">
+<div><h3>Match capacity to your habits</h3><p>Add one person to the number you plan to sleep. A two-person tent is a snug fit for one adult with a pack and boots inside, and a good size for a couple who share gear.</p></div>
+<div><h3>Weigh the carry</h3><p>Under 1.5 kg suits multi-day hiking. Heavier tents trade weight for headroom.</p></div>
+<div><h3>Check the season</h3><p>Three-season tents handle rain and wind. Snow loads need four-season poles.</p></div>
+</div></section>
+</main>
+<footer><div class="wrap">Ridgeline Supply, 48 Harbor Road, Bellingham. Free returns within 60 days.</div></footer>
+<script>
+const P=[["Tarn 1","Backpacking",1,289,"1.1 kg, two doors"],["Tarn 2","Backpacking",2,349,"1.6 kg, two doors"],["Kestrel Bivy","Bivy",1,179,"0.7 kg, waterproof shell"],["Ostler Tarp","Bivy",1,119,"0.4 kg, silnylon"],["Marlow 2P","Backpacking",2,429,"1.9 kg, vestibule"],["Alder 4","Basecamp",4,519,"5.2 kg, standing height"],["Cobalt Dome","Basecamp",4,569,"6.1 kg, four-season"],["Finch Solo","Backpacking",1,239,"1.0 kg, single wall"],["Heron 2","Basecamp",2,399,"3.4 kg, steep walls"],["Basalt 2","Backpacking",2,479,"2.1 kg, storm rated"],["Wren Hammock Tarp","Bivy",2,139,"0.6 kg, ridgeline kit"],["Longhouse 4","Basecamp",4,589,"6.8 kg, two rooms"]];
+const grid=document.getElementById("grid"),$=s=>document.querySelector(s);
+const checked=n=>[...document.querySelectorAll(`[name=${n}]:checked`)].map(i=>i.value);
+function render(){
+ const t=checked("type"),s=checked("sleeps"),max=+$("#max").value,mode=$("#sort").value;
+ $("#out").textContent="$"+max;
+ let list=P.map((p,i)=>({p,i})).filter(({p})=>(!t.length||t.includes(p[1]))&&(!s.length||s.includes(String(p[2])))&&p[3]<=max);
+ if(mode==="1")list.sort((a,b)=>a.p[3]-b.p[3]);if(mode==="2")list.sort((a,b)=>b.p[3]-a.p[3]);
+ grid.innerHTML=list.map(({p,i},n)=>`<article class="item" style="--i:${n}"><a class="ph" href="#"><img loading="lazy" width="480" height="360" src="https://picsum.photos/seed/ridgeline-tent-${i}/480/360" alt="${p[0]} pitched in a mountain meadow"></a><h3>${p[0]}</h3><p>${p[4]}</p><div class="row"><span class="price">$${p[3]}</span><button type="button">Add to cart</button></div></article>`).join("");
+ $("#count").textContent=list.length+(list.length===1?" product":" products");
+ $("#empty").hidden=list.length>0;
+}
+function reset(){document.querySelectorAll("[type=checkbox]").forEach(c=>c.checked=false);$("#max").value=600;$("#sort").value="0";render()}
+document.querySelector("aside").addEventListener("input",render);$("#sort").addEventListener("change",render);
+$("#reset").onclick=$("#reset2").onclick=reset;render();
+</script>
+</body>
+</html>
+```

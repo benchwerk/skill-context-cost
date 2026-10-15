@@ -1,0 +1,153 @@
+```html
+<!-- Reading this as: neighbourhood restaurant homepage for local diners, with a warm but modern sans language, leaning toward native CSS + a little inline JS (VARIANCE 6, MOTION 5, DENSITY 4). Forest green + cool bone + one burnt-orange accent, light/dark via prefers-color-scheme. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Brindle Kitchen | Neighbourhood restaurant</title>
+<style>
+:root{--bg:#f3f5f0;--surface:#e6ebe2;--text:#14201a;--muted:#46564b;--accent:#b94a14;--on-accent:#fff;--field:#fff;--line:#aab6a8;--r:12px;
+ font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1a14;--surface:#182820;--text:#eef2ea;--muted:#b4c2b6;--accent:#f08a4b;--on-accent:#1a0f08;--field:#0b130e;--line:#4d6354}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--text);line-height:1.6;font-size:1rem}
+a{color:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding:0 1.25rem}
+header{height:68px;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.logo{font-weight:800;font-size:1.25rem;letter-spacing:-.03em;text-decoration:none;white-space:nowrap}
+nav{display:flex;align-items:center;gap:1.5rem}
+nav a{text-decoration:none;color:var(--muted);font-size:.95rem}
+nav a:hover{color:var(--text)}
+.btn{display:inline-block;background:var(--accent);color:var(--on-accent);border:2px solid var(--accent);border-radius:var(--r);padding:.75rem 1.4rem;font:inherit;font-weight:700;text-decoration:none;cursor:pointer;white-space:nowrap;transition:transform .2s cubic-bezier(.16,1,.3,1)}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:scale(.98)}
+.btn.ghost{background:transparent;color:var(--text);border-color:var(--text)}
+.btn:focus-visible,input:focus-visible,select:focus-visible,[role=tab]:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.hero{min-height:calc(100dvh - 68px);display:grid;grid-template-columns:1fr 1.1fr;gap:3rem;align-items:center;padding-bottom:2rem}
+h1{font-size:clamp(2.25rem,4.6vw,4rem);line-height:1.02;letter-spacing:-.04em;margin-bottom:1.1rem}
+.hero p{color:var(--muted);max-width:42ch;margin-bottom:1.75rem;font-size:1.1rem}
+.hero .acts{display:flex;gap:.75rem;flex-wrap:wrap}
+.hero img{width:100%;height:min(68dvh,560px);object-fit:cover;border-radius:var(--r)}
+section{padding:6rem 0}
+h2{font-size:clamp(1.75rem,3vw,2.5rem);letter-spacing:-.03em;line-height:1.1;margin-bottom:1rem}
+.menu-head{max-width:65ch;margin-bottom:2rem}.menu-head p{color:var(--muted)}
+[role=tablist]{display:flex;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap}
+[role=tab]{font:inherit;font-weight:600;padding:.55rem 1.2rem;border-radius:var(--r);border:2px solid var(--line);background:transparent;color:var(--text);cursor:pointer}
+[role=tab][aria-selected=true]{background:var(--text);color:var(--bg);border-color:var(--text)}
+.dishes{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem 3rem;list-style:none;padding:0}
+.dishes li{display:grid;grid-template-columns:1fr auto;gap:.15rem 1rem;padding:.9rem 0}
+.dishes b{font-size:1.1rem}.dishes span{font-weight:700;color:var(--accent)}
+.dishes small{grid-column:1;color:var(--muted);font-size:.95rem}
+.chef{background:var(--surface)}
+.chef .wrap{display:grid;grid-template-columns:5fr 6fr;gap:4rem;align-items:center}
+.chef img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r);margin-bottom:-4rem}
+.chef p{color:var(--muted);max-width:60ch;margin-bottom:1rem}
+.visit{display:grid;grid-template-columns:5fr 6fr;gap:4rem;align-items:start}
+.hours{display:grid;gap:1.5rem;margin-top:1.5rem}
+.hours dt{font-weight:700}.hours dd{color:var(--muted)}
+form{background:var(--surface);padding:2rem;border-radius:var(--r);display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.f{display:grid;gap:.5rem;align-content:start}.f.full{grid-column:1/-1}
+label{font-weight:600;font-size:.95rem}
+input,select{font:inherit;color:var(--text);background:var(--field);border:2px solid var(--line);border-radius:var(--r);padding:.7rem .85rem;width:100%}
+input[aria-invalid=true]{border-color:var(--accent)}
+.err{color:var(--accent);font-size:.9rem;min-height:1.2em;font-weight:600}
+.ok{grid-column:1/-1;font-weight:700;font-size:1.1rem}
+footer{padding:2.5rem 0;color:var(--muted);font-size:.95rem}
+footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+@media(prefers-reduced-motion:no-preference){
+ .hero>*{animation:up .8s cubic-bezier(.16,1,.3,1) both}.hero>img{animation-delay:.15s}
+ .rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s cubic-bezier(.16,1,.3,1)}
+ .rv.in{opacity:1;transform:none}
+ @keyframes up{from{opacity:0;transform:translateY(24px)}}}
+@media(max-width:767px){
+ nav a:not(.btn){display:none}
+ .hero,.chef .wrap,.visit,form,.dishes{grid-template-columns:1fr}
+ .hero{min-height:auto;gap:1.5rem}.hero img{height:300px}
+ section{padding:4rem 0}.chef img{margin-bottom:0}.chef .wrap,.visit{gap:2rem}
+ form{padding:1.25rem}}
+</style>
+</head>
+<body>
+<div class="wrap"><header>
+ <a class="logo" href="#top">Brindle Kitchen</a>
+ <nav><a href="#menu">Menu</a><a href="#chef">Chef</a><a href="#visit">Hours</a><a class="btn" href="#reserve">Reserve a table</a></nav>
+</header></div>
+<main id="top">
+<div class="wrap hero">
+ <div>
+  <h1>Honest cooking, two streets from your door.</h1>
+  <p>Wood-fired vegetables, slow braises and handmade pasta, cooked daily for the neighbourhood.</p>
+  <div class="acts"><a class="btn" href="#reserve">Reserve a table</a><a class="btn ghost" href="#menu">See the menu</a></div>
+ </div>
+ <img src="https://picsum.photos/seed/brindle-kitchen-dining-room/1100/900" width="1100" height="900" alt="Warmly lit dining room with wooden tables and a bar">
+</div>
+
+<section id="menu"><div class="wrap rv">
+ <div class="menu-head"><h2>The menu</h2><p>Short and seasonal. It changes when the market does.</p></div>
+ <div role="tablist" aria-label="Menu sections"></div>
+ <ul class="dishes" id="dishes"></ul>
+</div></section>
+
+<section class="chef" id="chef"><div class="wrap rv">
+ <img src="https://picsum.photos/seed/chef-ilse-kitchen-portrait/800/1000" width="800" height="1000" alt="Chef Ilse Brandvold plating a dish at the pass">
+ <div>
+  <h2>Meet Ilse Brandvold</h2>
+  <p>Ilse grew up above her family's bakery in Bergen and spent twelve years in kitchens across Lyon and Leeds before opening Brindle in 2019.</p>
+  <p>She cooks what she wants to eat on a Tuesday: simple plates, good bread and sauces that take all afternoon.</p>
+ </div>
+</div></section>
+
+<section id="visit"><div class="wrap visit rv">
+ <div>
+  <h2>Opening hours</h2>
+  <p style="color:var(--muted)">14 Alder Row, Millbank. Walk-ins welcome at the bar.</p>
+  <dl class="hours">
+   <div><dt>Tuesday to Thursday</dt><dd>5:00pm to 10:00pm</dd></div>
+   <div><dt>Friday and Saturday</dt><dd>12:00pm to 11:00pm</dd></div>
+   <div><dt>Sunday</dt><dd>12:00pm to 8:00pm, roast and a short menu</dd></div>
+   <div><dt>Monday</dt><dd>Closed</dd></div>
+  </dl>
+ </div>
+ <form id="reserve" novalidate aria-labelledby="rt">
+  <h2 id="rt" class="full" style="grid-column:1/-1;font-size:1.6rem;margin:0">Reserve a table</h2>
+  <div class="f full"><label for="name">Full name</label><input id="name" autocomplete="name" required><div class="err" id="e-name"></div></div>
+  <div class="f full"><label for="email">Email</label><input id="email" type="email" autocomplete="email" required><div class="err" id="e-email"></div></div>
+  <div class="f"><label for="date">Date</label><input id="date" type="date" required><div class="err" id="e-date"></div></div>
+  <div class="f"><label for="time">Time</label><select id="time"><option>5:30pm</option><option>6:30pm</option><option>7:30pm</option><option>8:30pm</option></select></div>
+  <div class="f"><label for="size">Guests</label><select id="size"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
+  <div class="f" style="align-content:end"><button class="btn" type="submit">Book now</button></div>
+  <p class="ok" id="ok" role="status" hidden></p>
+ </form>
+</div></section>
+</main>
+<footer><div class="wrap"><span>Brindle Kitchen, 14 Alder Row, Millbank</span><a href="mailto:hello@brindlekitchen.example">hello@brindlekitchen.example</a></div></footer>
+
+<script>
+const menu={
+ Starters:[["Charred leeks, hazelnut romesco","9.50","Smoked paprika, sherry vinegar"],["Whipped cod roe on toast","8.00","Pickled fennel, dill"],["Burrata with roast plums","11.50","Black pepper, olive oil"],["Mushroom broth","7.50","Barley, thyme, soft egg"]],
+ Mains:[["Hand-rolled pappardelle","17.00","Beef shin ragu, aged pecorino"],["Wood-roast hake","23.50","White beans, salsa verde"],["Half roast chicken","21.00","Charred cabbage, jus gras"],["Squash and sage gnocchi","16.50","Brown butter, pumpkin seeds"]],
+ Desserts:[["Burnt honey tart","8.50","Crème fraîche"],["Dark chocolate pot","7.50","Sea salt, olive oil"],["Poached pear","8.00","Cardamom cream"],["Local cheese plate","10.00","Oatcakes, quince"]]};
+const tabs=document.querySelector('[role=tablist]'),list=document.getElementById('dishes');
+function show(k){
+ tabs.querySelectorAll('[role=tab]').forEach(t=>t.setAttribute('aria-selected',t.textContent===k));
+ list.innerHTML=menu[k].map(d=>`<li><b>${d[0]}</b><span>$${d[1]}</span><small>${d[2]}</small></li>`).join('');}
+Object.keys(menu).forEach(k=>{const b=document.createElement('button');b.role='tab';b.textContent=k;b.onclick=()=>show(k);tabs.append(b)});
+show('Starters');
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+const f=document.getElementById('reserve'),d=document.getElementById('date');
+d.min=new Date().toISOString().slice(0,10);
+function bad(id,msg){const i=document.getElementById(id);document.getElementById('e-'+id).textContent=msg;i.setAttribute('aria-invalid',!!msg);return !!msg}
+f.addEventListener('submit',e=>{
+ e.preventDefault();
+ const n=bad('name',f.name.value.trim()?'':'Please enter your name.'),
+  m=bad('email',/^\S+@\S+\.\S+$/.test(f.email.value)?'':'Please enter a valid email address.'),
+  dt=bad('date',!d.value?'Please choose a date.':new Date(d.value+'T12:00').getDay()===1?'We are closed on Mondays.':'');
+ if(n||m||dt)return;
+ const ok=document.getElementById('ok');
+ ok.hidden=false;ok.textContent=`Thanks, ${f.name.value.trim().split(' ')[0]}. Table for ${f.size.value} on ${d.value} at ${f.time.value} is requested. We will confirm by email.`;
+});
+</script>
+</body>
+</html>
+```

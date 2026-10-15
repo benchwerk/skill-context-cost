@@ -1,0 +1,129 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Halden 75 — Mechanical Keyboard</title>
+<style>
+:root{--bg:#ece8e1;--ink:#1b1a18;--mute:#6c675f;--line:#cfc9bf;--card:#f6f3ee;--acc:#c2410c}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 "Helvetica Neue",Arial,sans-serif}
+a{color:inherit}
+header{display:flex;justify-content:space-between;align-items:center;max-width:1100px;margin:0 auto;padding:22px 24px;border-bottom:1px solid var(--line)}
+header b{letter-spacing:.14em;text-transform:uppercase;font-size:13px}
+header span{color:var(--mute);font-size:14px}
+main{max-width:1100px;margin:0 auto;padding:40px 24px 80px;display:grid;grid-template-columns:1.15fr 1fr;gap:56px}
+.stage{aspect-ratio:4/3;background:var(--card);border:1px solid var(--line);border-radius:6px;display:grid;place-items:center;overflow:hidden}
+.stage svg{width:92%;height:auto;transition:opacity .2s}
+.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
+.thumbs button{aspect-ratio:1;background:var(--card);border:1px solid var(--line);border-radius:4px;cursor:pointer;display:grid;place-items:center;font:12px inherit;color:var(--mute);padding:0}
+.thumbs button[aria-pressed=true]{border-color:var(--ink);color:var(--ink);box-shadow:inset 0 -3px 0 var(--acc)}
+.eyebrow{color:var(--acc);font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+h1{font:400 clamp(34px,5vw,54px)/1.05 Georgia,"Times New Roman",serif;margin:10px 0 14px;letter-spacing:-.01em}
+.lede{color:var(--mute);max-width:44ch}
+.price{display:flex;align-items:baseline;gap:12px;margin:26px 0 20px;font-size:30px}
+.price s{color:var(--mute);font-size:16px}
+fieldset{border:0;padding:0;margin-bottom:22px}
+legend{font-size:13px;color:var(--mute);margin-bottom:8px}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opts label{cursor:pointer}
+.opts input{position:absolute;opacity:0}
+.opts span{display:block;padding:9px 16px;border:1px solid var(--line);border-radius:4px;font-size:14px;background:var(--card)}
+.opts input:checked+span{border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.opts input:focus-visible+span,.buy:focus-visible,.thumbs button:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.buy{width:100%;padding:17px;border:0;border-radius:4px;background:var(--acc);color:#fff;font:700 15px inherit;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:transform .15s,background .15s}
+.buy:hover{background:#9a3309}.buy:active{transform:translateY(1px)}
+.note{color:var(--mute);font-size:13px;margin-top:10px;text-align:center}
+section{grid-column:1/-1;border-top:1px solid var(--line);padding-top:36px;display:grid;grid-template-columns:1.15fr 1fr;gap:56px}
+h2{font:400 26px Georgia,serif}
+dl{display:grid;grid-template-columns:auto 1fr}
+dt,dd{padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+dt{color:var(--mute);padding-right:28px}
+.score{font:400 64px/1 Georgia,serif;margin:14px 0 4px}
+.stars{color:var(--acc);letter-spacing:2px}
+.bar{display:grid;grid-template-columns:18px 1fr 30px;gap:10px;align-items:center;font-size:13px;color:var(--mute);margin-top:6px}
+.bar i{height:6px;background:var(--line);border-radius:3px;overflow:hidden}.bar i b{display:block;height:100%;background:var(--ink)}
+.rev{padding:18px 0;border-bottom:1px solid var(--line)}
+.rev p{margin:6px 0 4px}.rev small{color:var(--mute)}
+@media(max-width:820px){main,section{grid-template-columns:1fr;gap:32px}}
+</style>
+</head>
+<body>
+<header><b>Halden Works</b><span>Free shipping over $100 · 60-day returns</span></header>
+<main>
+  <div>
+    <div class="stage" id="stage" role="img" aria-label="Halden 75 keyboard, top view"></div>
+    <div class="thumbs" id="thumbs"></div>
+  </div>
+  <div>
+    <p class="eyebrow">75% · Gasket mount · Hot-swap</p>
+    <h1>Halden 75</h1>
+    <p class="lede">A CNC aluminium board tuned for a low, dense thock. Gasket-mounted, foam-damped, and built to be taken apart.</p>
+    <div class="price"><span>$189</span><s>$219</s></div>
+    <fieldset><legend>Switch</legend>
+      <div class="opts">
+        <label><input type="radio" name="sw" value="Linear" checked><span>Linear</span></label>
+        <label><input type="radio" name="sw" value="Tactile"><span>Tactile</span></label>
+        <label><input type="radio" name="sw" value="Clicky"><span>Clicky</span></label>
+      </div>
+    </fieldset>
+    <fieldset><legend>Colour</legend>
+      <div class="opts" id="colours">
+        <label><input type="radio" name="col" value="Bone" checked><span>Bone</span></label>
+        <label><input type="radio" name="col" value="Graphite"><span>Graphite</span></label>
+        <label><input type="radio" name="col" value="Rust"><span>Rust</span></label>
+      </div>
+    </fieldset>
+    <button class="buy" id="buy">Add to cart — $189</button>
+    <p class="note" id="note">Ships in 3–5 business days</p>
+  </div>
+  <section>
+    <div><h2>Key specifications</h2>
+      <dl style="margin-top:14px">
+        <dt>Layout</dt><dd>75%, 82 keys, ANSI</dd>
+        <dt>Case</dt><dd>6063 aluminium, anodised</dd>
+        <dt>Mount</dt><dd>Gasket, PE foam + IXPE</dd>
+        <dt>Switches</dt><dd>Hot-swap, 5-pin, factory lubed</dd>
+        <dt>Keycaps</dt><dd>Double-shot PBT, Cherry profile</dd>
+        <dt>Connectivity</dt><dd>USB-C, Bluetooth 5.1, 2.4 GHz</dd>
+        <dt>Battery</dt><dd>4,000 mAh, about 90 hours</dd>
+        <dt>Firmware</dt><dd>QMK / VIA, per-key RGB</dd>
+        <dt>Weight</dt><dd>1.9 kg</dd>
+      </dl>
+    </div>
+    <div><h2>Reviews</h2>
+      <div class="score">4.7</div>
+      <div class="stars" aria-label="4.7 out of 5">★★★★★</div><small style="color:var(--mute)">Based on 312 reviews</small>
+      <div id="bars" style="margin:10px 0 8px"></div>
+      <div class="rev"><span class="stars">★★★★★</span><p>Best-sounding board I've owned. Heavy, quiet, no ping at all.</p><small>Mara T. · Verified buyer</small></div>
+      <div class="rev"><span class="stars">★★★★☆</span><p>Build is superb. Wish the Bluetooth reconnected faster after sleep.</p><small>Jonas K. · Verified buyer</small></div>
+      <div class="rev"><span class="stars">★★★★★</span><p>Swapped switches in ten minutes with no soldering. VIA just worked.</p><small>Priya S. · Verified buyer</small></div>
+    </div>
+  </section>
+</main>
+<script>
+const fills={Bone:'#e4ddd0',Graphite:'#3a3835',Rust:'#b5502a'};
+const views=['Top','Angle','Side','Switch'];
+let view=0;
+const $=s=>document.querySelector(s);
+const col=()=>document.querySelector('[name=col]:checked').value;
+function keys(c){let k='';for(let r=0;r<5;r++)for(let i=0;i<15;i++)
+  k+=`<rect x="${52+i*34}" y="${62+r*34}" width="30" height="30" rx="4" fill="${r==4&&i>2&&i<10?c:'#f6f3ee'}" stroke="#1b1a18" stroke-opacity=".18"/>`;return k}
+function art(v){const c=fills[col()];
+  if(v==3)return `<svg viewBox="0 0 400 300"><rect x="130" y="70" width="140" height="140" rx="14" fill="#f6f3ee" stroke="#1b1a18"/><rect x="160" y="100" width="80" height="80" rx="8" fill="${c}"/><path d="M200 210v50M175 260h50" stroke="#c2410c" stroke-width="4"/></svg>`;
+  const t=v==1?'transform="skewX(-14) scale(1 .8)" transform-origin="300 150"':v==2?'transform="scale(1 .22)" transform-origin="300 150"':'';
+  return `<svg viewBox="0 0 600 300"><g ${t}><rect x="28" y="38" width="544" height="196" rx="14" fill="${c}" stroke="#1b1a18" stroke-opacity=".4"/>${keys(c)}</g></svg>`}
+function draw(){$('#stage').innerHTML=art(view);$('#stage').setAttribute('aria-label','Halden 75 keyboard, '+views[view].toLowerCase()+' view');
+  $('#thumbs').innerHTML=views.map((n,i)=>`<button aria-pressed="${i==view}" data-i="${i}">${n}</button>`).join('')}
+$('#thumbs').onclick=e=>{const b=e.target.closest('button');if(b){view=+b.dataset.i;draw()}};
+$('#colours').onchange=draw;
+$('#bars').innerHTML=[[5,78],[4,15],[3,4],[2,2],[1,1]].map(([n,p])=>`<div class="bar">${n}<i><b style="width:${p}%"></b></i>${p}%</div>`).join('');
+$('#buy').onclick=()=>{const s=document.querySelector('[name=sw]:checked').value;
+  $('#buy').textContent='Added ✓';$('#note').textContent=`Halden 75 · ${col()} · ${s} switches in your cart`;
+  setTimeout(()=>$('#buy').textContent='Add to cart — $189',1800)};
+draw();
+</script>
+</body>
+</html>
+```

@@ -1,0 +1,131 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lingo – Sign up</title>
+<style>
+  :root { --bg:#f6f8f4; --card:#fff; --ink:#1f2a24; --mute:#6b786f; --brand:#2f9e5b; --brand-d:#237a45; --line:#dfe6df; --err:#c0392b; }
+  * { box-sizing:border-box; }
+  body { margin:0; min-height:100vh; display:flex; justify-content:center; background:var(--bg); color:var(--ink); font:16px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+  .app { width:100%; max-width:440px; min-height:100vh; display:flex; flex-direction:column; padding:20px 20px 24px; }
+  header { display:flex; align-items:center; gap:12px; height:40px; }
+  .back { border:0; background:none; font-size:24px; cursor:pointer; color:var(--ink); width:32px; height:32px; visibility:hidden; }
+  .back.show { visibility:visible; }
+  .bar { flex:1; display:flex; gap:6px; }
+  .bar i { flex:1; height:6px; border-radius:3px; background:var(--line); transition:background .3s; }
+  .bar i.on { background:var(--brand); }
+  main { flex:1; padding-top:24px; }
+  .step { display:none; animation:in .3s ease; }
+  .step.active { display:block; }
+  @keyframes in { from { opacity:0; transform:translateX(16px); } to { opacity:1; transform:none; } }
+  h1 { font-size:26px; margin:0 0 6px; }
+  p.sub { color:var(--mute); margin:0 0 24px; }
+  label { display:block; font-size:14px; font-weight:600; margin:14px 0 6px; }
+  input[type=text], input[type=email], input[type=password] { width:100%; padding:14px; font-size:16px; border:2px solid var(--line); border-radius:12px; background:var(--card); }
+  input:focus { outline:none; border-color:var(--brand); }
+  input.bad { border-color:var(--err); }
+  .err { color:var(--err); font-size:13px; min-height:18px; margin-top:6px; }
+  .grid { display:grid; gap:10px; }
+  .opt { display:flex; align-items:center; gap:14px; width:100%; padding:14px; text-align:left; font:inherit; color:inherit; background:var(--card); border:2px solid var(--line); border-radius:14px; cursor:pointer; transition:border-color .15s, background .15s; }
+  .opt:hover { border-color:#b9d8c5; }
+  .opt[aria-pressed=true] { border-color:var(--brand); background:#eaf6ee; }
+  .opt .em { font-size:28px; }
+  .opt b { display:block; }
+  .opt small { color:var(--mute); }
+  .cta { width:100%; padding:16px; border:0; border-radius:14px; background:var(--brand); color:#fff; font-size:17px; font-weight:700; cursor:pointer; margin-top:16px; }
+  .cta:hover:not(:disabled) { background:var(--brand-d); }
+  .cta:disabled { background:#b8c4bc; cursor:not-allowed; }
+  .done { text-align:center; padding-top:60px; }
+  .done .big { font-size:64px; }
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <button class="back" id="back" aria-label="Back">‹</button>
+    <div class="bar" id="bar" role="progressbar" aria-valuemin="1" aria-valuemax="3"><i></i><i></i><i></i></div>
+  </header>
+  <main>
+    <section class="step" id="s1">
+      <h1>Create your account</h1>
+      <p class="sub">Start your learning streak in under a minute.</p>
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="you@example.com" autocomplete="email">
+      <label for="pw">Password</label>
+      <input type="password" id="pw" placeholder="At least 8 characters" autocomplete="new-password">
+      <div class="err" id="err1"></div>
+    </section>
+    <section class="step" id="s2">
+      <h1>What do you want to learn?</h1>
+      <p class="sub">You can add more languages later.</p>
+      <div class="grid" id="langs"></div>
+    </section>
+    <section class="step" id="s3">
+      <h1>Pick a daily goal</h1>
+      <p class="sub">Small, steady practice beats cramming.</p>
+      <div class="grid" id="goals"></div>
+    </section>
+    <section class="step" id="s4">
+      <div class="done"><div class="big">🎉</div><h1>You're all set!</h1><p class="sub" id="summary"></p></div>
+    </section>
+  </main>
+  <button class="cta" id="next" disabled>Continue</button>
+</div>
+<script>
+  const langs = [["🇪🇸","Spanish","Most popular"],["🇫🇷","French","Language of love"],["🇯🇵","Japanese","Kana to kanji"],["🇩🇪","German","Der, die, das"],["🇮🇹","Italian","Bellissimo"]];
+  const goals = [["☕","Casual","5 min / day"],["📖","Regular","10 min / day"],["💪","Serious","20 min / day"],["🚀","Intense","30 min / day"]];
+  const state = { step:1, lang:null, goal:null };
+  const $ = id => document.getElementById(id);
+
+  function build(el, items, key) {
+    items.forEach(([em, name, sub]) => {
+      const b = document.createElement("button");
+      b.className = "opt"; b.setAttribute("aria-pressed", "false");
+      b.innerHTML = `<span class="em">${em}</span><span><b>${name}</b><small>${sub}</small></span>`;
+      b.onclick = () => {
+        state[key] = name;
+        [...el.children].forEach(c => c.setAttribute("aria-pressed", c === b));
+        update();
+      };
+      el.appendChild(b);
+    });
+  }
+  build($("langs"), langs, "lang");
+  build($("goals"), goals, "goal");
+
+  function validEmail() { return /^\S+@\S+\.\S+$/.test($("email").value.trim()); }
+  function validPw() { return $("pw").value.length >= 8; }
+
+  function update() {
+    document.querySelectorAll(".step").forEach((s, i) => s.classList.toggle("active", i + 1 === state.step));
+    [...$("bar").children].forEach((b, i) => b.classList.toggle("on", i < Math.min(state.step, 3)));
+    $("bar").setAttribute("aria-valuenow", Math.min(state.step, 3));
+    $("back").classList.toggle("show", state.step > 1 && state.step < 4);
+    $("next").style.display = state.step === 4 ? "none" : "";
+    $("next").textContent = state.step === 3 ? "Start learning" : "Continue";
+    $("next").disabled = (state.step === 1 && !(validEmail() && validPw())) ||
+                         (state.step === 2 && !state.lang) || (state.step === 3 && !state.goal);
+  }
+
+  ["email", "pw"].forEach(id => {
+    $(id).addEventListener("input", () => { $(id).classList.remove("bad"); $("err1").textContent = ""; update(); });
+    $(id).addEventListener("blur", () => {
+      if (!$(id).value) return;
+      const ok = id === "email" ? validEmail() : validPw();
+      $(id).classList.toggle("bad", !ok);
+      $("err1").textContent = ok ? "" : id === "email" ? "Enter a valid email address." : "Password must be at least 8 characters.";
+    });
+  });
+
+  $("next").onclick = () => {
+    if (state.step === 3) $("summary").textContent = `${state.lang} · ${state.goal} goal. Your first lesson is ready.`;
+    state.step++; update();
+  };
+  $("back").onclick = () => { state.step--; update(); };
+  update();
+</script>
+</body>
+</html>
+```

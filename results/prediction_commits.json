@@ -1,0 +1,100 @@
+{
+ "note": "Commits that touched prediction.md in the working repository, oldest first, regenerated 2026-10-08. Each Part was committed before its run (see the subject); the hashes refer to this repository's history and are not verifiable from a clean-commit publication, only the times are a claim.",
+ "commits": [
+  {
+   "commit": "501a73b",
+   "committed": "2026-10-02T19:27:20+02:00",
+   "subject": "skill-context-cost: harness, raw results, methodology and review record"
+  },
+  {
+   "commit": "feb728d",
+   "committed": "2026-10-02T22:11:18+02:00",
+   "subject": "Part 2 pre-registration: invocation-cost hypotheses, per-config prompts, body sizes in the manifest, harness --experiment"
+  },
+  {
+   "commit": "40a5685",
+   "committed": "2026-10-02T22:22:07+02:00",
+   "subject": "Part 3 pre-registration: delivery mechanisms (skill, CLAUDE.md, prompt, file pointer)"
+  },
+  {
+   "commit": "6b0514c",
+   "committed": "2026-10-02T22:27:35+02:00",
+   "subject": "Part 4 pre-registration: anatomy and types of skills; counted features, taxonomy, manual label sample"
+  },
+  {
+   "commit": "b48a931",
+   "committed": "2026-10-02T22:28:41+02:00",
+   "subject": "Part 5 pre-registration: split a monolithic skill into core and on-demand references (X1)"
+  },
+  {
+   "commit": "71b9896",
+   "committed": "2026-10-02T22:39:56+02:00",
+   "subject": "Part 6 pre-registration: the alias pattern; output-quality protocol"
+  },
+  {
+   "commit": "6e22578",
+   "committed": "2026-10-02T23:11:55+02:00",
+   "subject": "Part 7 pre-registration: trigger test (revised after external review), supervisor"
+  },
+  {
+   "commit": "2beda9b",
+   "committed": "2026-10-02T23:23:14+02:00",
+   "subject": "Part 8 pre-registration: claim probes"
+  },
+  {
+   "commit": "b1787e3",
+   "committed": "2026-10-03T08:26:29+02:00",
+   "subject": "Part 9 pre-registration: output quality of the design skill (mechanical checks)"
+  },
+  {
+   "commit": "e0d2bfb",
+   "committed": "2026-10-03T09:22:38+02:00",
+   "subject": "Quality analysis script, v2 checks as secondary analysis, deviation notice"
+  },
+  {
+   "commit": "2a90625",
+   "committed": "2026-10-03T13:59:25+02:00",
+   "subject": "Prediction Part 10: precedence probe P-09 (before the run)"
+  },
+  {
+   "commit": "b74fc29",
+   "committed": "2026-10-03T14:13:56+02:00",
+   "subject": "Prediction Part 11: alias pattern in a crowded session (before the run)"
+  },
+  {
+   "commit": "be1e3ec",
+   "committed": "2026-10-03T15:16:44+02:00",
+   "subject": "Prediction Part 12: skill against pasted text; quality_run.py gains the pasted condition, stdin for long prompts, full usage in rows"
+  },
+  {
+   "commit": "20a7111",
+   "committed": "2026-10-03T18:51:01+02:00",
+   "subject": "Part 12: network failure rows are excluded and re-run (deviation notice, before any score)"
+  },
+  {
+   "commit": "2b832c6",
+   "committed": "2026-10-03T19:14:38+02:00",
+   "subject": "Prediction Part 13: replication on Claude Code 2.1.286 (before the run)"
+  },
+  {
+   "commit": "0f1b0f0",
+   "committed": "2026-10-04T10:33:54+02:00",
+   "subject": "prediction: header corrected (append-only), process wording removed, dated status notes (Parts 7, 9, 13)"
+  },
+  {
+   "commit": "948a492",
+   "committed": "2026-10-04T11:23:12+02:00",
+   "subject": "Third verification follow-up: one verdict rule, corrected counts and signs, disclosed deviations (H7, Part 9 briefs, probe run of 10-02), footage path scrubbed, licence scope"
+  },
+  {
+   "commit": "30c1cb8",
+   "committed": "2026-10-04T11:37:46+02:00",
+   "subject": "Fourth verification follow-up: static-flag denominator corrected (62 of 138), census token from the environment, probe verdicts and T6/M2/H1 corrected, 99-token difference explained, disclosures completed, EOL-insensitive diff of post-run edits"
+  },
+  {
+   "commit": "26127f2",
+   "committed": "2026-10-08T05:44:29+02:00",
+   "subject": "Part 13: replication on Claude Code 2.1.286 (V2, V3, V4 hold; V1 fails: empty session +277 tokens, Haiku listing cost lower); disclosures, status updates"
+  }
+ ]
+}

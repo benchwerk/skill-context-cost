@@ -1,0 +1,177 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elena Marsh Photography — Wedding Photographer</title>
+<style>
+  :root {
+    --ink: #2b2623;
+    --paper: #faf6f1;
+    --accent: #b0805a;
+    --muted: #7a6f68;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.7;
+  }
+  h1, h2, .brand { font-weight: 400; letter-spacing: .04em; }
+  a { color: inherit; }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 5vw;
+    background: rgba(250, 246, 241, .92);
+    backdrop-filter: blur(6px);
+  }
+  .brand { font-size: 1.2rem; text-decoration: none; }
+  nav ul { display: flex; gap: 1.8rem; list-style: none; font-size: .9rem; }
+  nav a { text-decoration: none; text-transform: uppercase; letter-spacing: .15em; }
+  nav a:hover { color: var(--accent); }
+  .hero {
+    min-height: 100vh;
+    display: grid; place-items: center; text-align: center;
+    padding: 6rem 5vw 3rem;
+    color: #fff;
+    background:
+      linear-gradient(rgba(30, 20, 15, .45), rgba(30, 20, 15, .55)),
+      linear-gradient(135deg, #d9b99b, #8c6a55 60%, #4b3a31);
+  }
+  .hero h1 { font-size: clamp(2.4rem, 7vw, 5rem); line-height: 1.15; margin-bottom: 1rem; }
+  .hero p { font-style: italic; font-size: 1.15rem; margin-bottom: 2rem; }
+  .btn {
+    display: inline-block; padding: .85rem 2.2rem;
+    border: 1px solid currentColor; background: none; color: inherit;
+    font: inherit; text-transform: uppercase; letter-spacing: .15em; font-size: .85rem;
+    text-decoration: none; cursor: pointer; transition: .25s;
+  }
+  .btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+  section { padding: 6rem 5vw; max-width: 1200px; margin: 0 auto; }
+  h2 { font-size: 2rem; text-align: center; margin-bottom: 3rem; }
+  h2::after { content: ""; display: block; width: 50px; height: 1px; background: var(--accent); margin: 1rem auto 0; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .grid figure {
+    position: relative; aspect-ratio: 3 / 4; overflow: hidden;
+    background: var(--c); cursor: pointer;
+  }
+  .grid figure:nth-child(2), .grid figure:nth-child(5) { aspect-ratio: 3 / 3.6; }
+  .grid figcaption {
+    position: absolute; inset: auto 0 0 0; padding: 1.5rem 1rem 1rem;
+    color: #fff; font-style: italic;
+    background: linear-gradient(transparent, rgba(0, 0, 0, .6));
+    transform: translateY(100%); transition: transform .3s;
+  }
+  .grid figure:hover figcaption, .grid figure:focus figcaption { transform: none; }
+  .grid figure::before {
+    content: ""; position: absolute; inset: 0; background: inherit;
+    transition: transform .5s;
+  }
+  .grid figure:hover::before { transform: scale(1.06); }
+  .about { display: grid; grid-template-columns: 1fr 1.3fr; gap: 4rem; align-items: center; }
+  .portrait {
+    aspect-ratio: 4 / 5;
+    background: linear-gradient(160deg, #c9a88a, #7b5e4b);
+    border-radius: 200px 200px 6px 6px;
+  }
+  .about p { margin-bottom: 1.2rem; color: var(--muted); }
+  .about h2 { text-align: left; }
+  .about h2::after { margin-left: 0; }
+  form { max-width: 600px; margin: 0 auto; display: grid; gap: 1.2rem; }
+  label { font-size: .8rem; text-transform: uppercase; letter-spacing: .15em; color: var(--muted); }
+  input, select, textarea {
+    width: 100%; margin-top: .3rem; padding: .8rem;
+    border: 1px solid #d8cfc6; background: #fff;
+    font: inherit; color: var(--ink);
+  }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); border-color: transparent; }
+  form .btn { color: var(--ink); justify-self: center; }
+  #status { text-align: center; color: var(--accent); min-height: 1.5em; }
+  footer { text-align: center; padding: 2rem; font-size: .85rem; color: var(--muted); border-top: 1px solid #e6ddd3; }
+  @media (max-width: 760px) {
+    nav ul { display: none; }
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .about { grid-template-columns: 1fr; gap: 2rem; }
+    .portrait { max-width: 280px; margin: 0 auto; width: 100%; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a class="brand" href="#top">Elena Marsh</a>
+  <ul>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="top">
+  <div>
+    <h1>Timeless moments,<br>honestly told.</h1>
+    <p>Wedding photography for couples who'd rather laugh than pose.</p>
+    <a class="btn" href="#contact">Check your date</a>
+  </div>
+</header>
+
+<section id="work">
+  <h2>Selected Work</h2>
+  <div class="grid">
+    <figure tabindex="0" style="--c:linear-gradient(160deg,#e8cfc0,#b98a72)"><figcaption>Amelia &amp; James — Tuscany</figcaption></figure>
+    <figure tabindex="0" style="--c:linear-gradient(160deg,#cfd8cc,#7d9480)"><figcaption>The first look</figcaption></figure>
+    <figure tabindex="0" style="--c:linear-gradient(160deg,#e9dcc3,#b59a62)"><figcaption>Golden hour vows</figcaption></figure>
+    <figure tabindex="0" style="--c:linear-gradient(160deg,#c9cfdb,#6f7b96)"><figcaption>Priya &amp; Sam — Lake Como</figcaption></figure>
+    <figure tabindex="0" style="--c:linear-gradient(160deg,#ecd3d3,#b87c84)"><figcaption>Confetti exit</figcaption></figure>
+    <figure tabindex="0" style="--c:linear-gradient(160deg,#d6c4b4,#6e5446)"><figcaption>Last dance</figcaption></figure>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <div class="portrait" role="img" aria-label="Portrait of Elena Marsh"></div>
+  <div>
+    <h2>My Story</h2>
+    <p>I picked up my grandfather's battered film camera at sixteen, and I've been chasing light ever since. After years photographing news and travel, I shot my sister's wedding as a favour — and realised I'd found the work I was meant to do.</p>
+    <p>Weddings hold every kind of story at once: nerves, laughter, a father's quiet tears. I stay in the background, work with natural light, and let those moments unfold so you can relive them exactly as they felt.</p>
+    <p>Over twelve years and 300 weddings later, I still get goosebumps at the first look. Based in Portland, travelling wherever love takes us.</p>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Let's Talk</h2>
+  <form id="form">
+    <label>Your names <input name="names" required autocomplete="name"></label>
+    <label>Email <input type="email" name="email" required autocomplete="email"></label>
+    <label>Wedding date <input type="date" name="date"></label>
+    <label>Package interest
+      <select name="package">
+        <option>Full day coverage</option>
+        <option>Half day coverage</option>
+        <option>Elopement</option>
+        <option>Not sure yet</option>
+      </select>
+    </label>
+    <label>Tell me about your day <textarea name="message" rows="5" required></textarea></label>
+    <button class="btn" type="submit">Send inquiry</button>
+    <p id="status" role="status"></p>
+  </form>
+</section>
+
+<footer>© <span id="year"></span> Elena Marsh Photography · hello@elenamarsh.example</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = this.names.value.split(/[&,]| and /)[0].trim();
+    document.getElementById('status').textContent =
+      'Thank you, ' + name + '! I\'ll reply within two days.';
+    this.reset();
+  });
+</script>
+</body>
+</html>
+```

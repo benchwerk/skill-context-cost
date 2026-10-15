@@ -1,0 +1,1 @@
+{"arm": "plain", "task": "changelog", "status": "success", "turns": 2, "output_tokens": 1249, "input_tokens": 4, "cache_creation": 4613, "cache_read": 35003, "tools": ["Write"], "rate_limit": {"status": "allowed", "five_hour": 0.39, "five_hour_resets_local": "2026-10-08T14:20+02:00", "seven_day": 0.3}, "skill_files": [], "file_exists": false}

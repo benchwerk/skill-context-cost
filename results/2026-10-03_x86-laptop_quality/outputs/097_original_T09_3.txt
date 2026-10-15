@@ -1,0 +1,132 @@
+```html
+<!doctype html>
+<!-- Reading this as: open-source devtool homepage for working engineers, with a calm dark/light tech language, leaning toward native CSS with a system/Geist font stack. Dials: variance 6, motion 5, density 4. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>kiln - a shared build cache for the command line</title>
+<meta name="description" content="kiln is an open-source CLI that caches build steps and shares them across machines.">
+<style>
+:root{color-scheme:light dark;--bg:#f6f6f4;--surface:#ececE8;--text:#1d1d1b;--muted:#55554f;--line:#d9d9d3;--accent:#c2410c;--on-accent:#fff;--r:6px;
+--sans:"Geist","Satoshi",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"Geist Mono","JetBrains Mono",ui-monospace,Consolas,monospace}
+@media (prefers-color-scheme:dark){:root{--bg:#131312;--surface:#1c1c1a;--text:#ecece8;--muted:#a3a39b;--line:#2c2c29;--accent:#fb923c;--on-accent:#1a0f06}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--text);font:16px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+nav{height:64px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+nav .links{display:flex;gap:28px;font-size:15px;color:var(--muted)}
+nav a{text-decoration:none}nav a:hover{color:var(--text)}
+.logo{font:600 19px var(--mono);letter-spacing:-.03em;color:var(--text)}
+.hero{min-height:calc(100dvh - 64px);display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding:48px 0}
+h1{font-size:clamp(2.4rem,5vw,4rem);line-height:1.04;letter-spacing:-.04em;font-weight:650;max-width:14ch}
+.sub{margin-top:20px;color:var(--muted);max-width:44ch;font-size:1.125rem}
+.cta{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;white-space:nowrap;padding:12px 20px;border-radius:var(--r);font-weight:550;text-decoration:none;border:1px solid var(--line);transition:transform .25s cubic-bezier(.16,1,.3,1),background .2s}
+.btn.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(1px) scale(.98)}
+.install{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);overflow:hidden}
+.tabs{display:flex;border-bottom:1px solid var(--line)}
+.tabs button{flex:1;padding:12px;background:none;border:0;color:var(--muted);font:500 14px var(--mono);cursor:pointer}
+.tabs button[aria-selected=true]{color:var(--text);box-shadow:inset 0 -2px var(--accent)}
+.cmd{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px}
+.cmd code{font:15px/1.5 var(--mono);overflow-x:auto;white-space:nowrap}
+.cmd button{flex:none;min-width:84px;padding:8px 12px;border-radius:var(--r);border:1px solid var(--line);background:var(--bg);color:var(--text);font:500 13px var(--mono);cursor:pointer}
+.cmd button:active{transform:scale(.97)}
+.note{padding:0 20px 18px;color:var(--muted);font-size:14px;min-height:2.4em}
+section{padding:96px 0}
+h2{font-size:clamp(1.7rem,3vw,2.4rem);letter-spacing:-.03em;line-height:1.1;font-weight:620}
+.lead{margin:14px 0 40px;color:var(--muted);max-width:60ch}
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.cell{padding:28px;border-radius:var(--r);border:1px solid var(--line);background:var(--surface)}
+.cell h3{font-size:1.15rem;letter-spacing:-.02em;margin-bottom:8px}
+.cell p{color:var(--muted);max-width:48ch}
+.c1{grid-column:span 4;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 22%,var(--surface)),var(--surface) 70%)}
+.c2{grid-column:span 2}
+.c3{grid-column:span 2;background:var(--bg)}
+.c4{grid-column:span 4;background:repeating-linear-gradient(135deg,var(--surface) 0 14px,color-mix(in srgb,var(--line) 55%,var(--surface)) 14px 15px)}
+.cell code{display:block;margin-top:18px;font:14px var(--mono);color:var(--text)}
+.log{display:grid;grid-template-columns:240px 1fr;gap:56px}
+.log h2{position:sticky;top:32px;align-self:start}
+.rel{padding:0 0 36px 28px;border-left:1px solid var(--line);position:relative}
+.rel:last-child{padding-bottom:0}
+.rel h3{font:600 16px var(--mono);margin-bottom:2px}
+.rel time{font-size:14px;color:var(--muted)}
+.rel ul{margin:12px 0 0 18px;color:var(--muted)}
+.rel li{margin-bottom:6px}.rel li::marker{color:var(--accent)}
+footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media (prefers-reduced-motion:no-preference){
+.in{animation:rise .8s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(var(--i,0)*90ms)}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.seen{opacity:1;transform:none}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}}}
+@media (max-width:767px){
+nav .links a:not(.keep){display:none}
+.hero,.log{grid-template-columns:1fr;gap:32px}.hero{min-height:0;padding:40px 0}
+.grid{grid-template-columns:1fr}.cell{grid-column:auto!important}
+.log h2{position:static}section{padding:64px 0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav aria-label="Primary">
+    <a class="logo" href="#top">kiln</a>
+    <div class="links"><a href="#features">Features</a><a href="#changelog">Changelog</a><a href="https://github.com/" class="keep">GitHub</a></div>
+  </nav>
+  <header class="hero" id="top">
+    <div>
+      <h1 class="in" style="--i:0">Build it once. Reuse it everywhere.</h1>
+      <p class="sub in" style="--i:1">kiln caches the output of any shell command and shares it between your laptop, your teammates and CI.</p>
+      <div class="cta in" style="--i:2"><a class="btn primary" href="#features">See features</a><a class="btn" href="#changelog">Read the changelog</a></div>
+    </div>
+    <div class="install in" style="--i:3">
+      <div class="tabs" role="tablist" aria-label="Install method">
+        <button role="tab" aria-selected="true" data-cmd="brew install kiln" data-note="macOS and Linux, via Homebrew.">brew</button>
+        <button role="tab" aria-selected="false" data-cmd="npm install -g @kiln/cli" data-note="Requires Node 20 or newer.">npm</button>
+        <button role="tab" aria-selected="false" data-cmd="cargo install kiln-cli" data-note="Builds from source with a recent Rust toolchain.">cargo</button>
+      </div>
+      <div class="cmd"><code id="cmd">brew install kiln</code><button id="copy" type="button">Copy</button></div>
+      <p class="note" id="note" aria-live="polite">macOS and Linux, via Homebrew.</p>
+    </div>
+  </header>
+</div>
+<section id="features"><div class="wrap">
+  <h2 class="rv">What kiln does</h2>
+  <p class="lead rv">Wrap a command, and kiln hashes its inputs. Same inputs, same result, no rerun.</p>
+  <div class="grid">
+    <article class="cell c1 rv"><h3>Content-addressed caching</h3><p>Results are keyed by file contents, environment variables and tool versions, so a touched timestamp never invalidates anything.</p><code>kiln run -- make test</code></article>
+    <article class="cell c2 rv"><h3>Shared remote store</h3><p>Point at any S3-compatible bucket and your whole team reads from one cache.</p></article>
+    <article class="cell c3 rv"><h3>Works with what you have</h3><p>No config format to learn. If it runs in a shell, kiln can cache it.</p></article>
+    <article class="cell c4 rv"><h3>Explain every miss</h3><p>When a step reruns, kiln prints exactly which input changed.</p><code>kiln why build</code></article>
+  </div>
+</div></section>
+<section id="changelog"><div class="wrap log">
+  <h2 class="rv">Changelog</h2>
+  <div>
+    <article class="rel rv"><h3>0.9.0</h3><time datetime="2026-09-24">September 24, 2026</time><ul><li>Added <code>kiln why</code> to explain cache misses.</li><li>Remote store now retries failed uploads.</li></ul></article>
+    <article class="rel rv"><h3>0.8.2</h3><time datetime="2026-08-30">August 30, 2026</time><ul><li>Fixed hashing of symlinked directories on Windows.</li></ul></article>
+    <article class="rel rv"><h3>0.8.0</h3><time datetime="2026-07-18">July 18, 2026</time><ul><li>Added S3-compatible remote storage.</li><li>Cache entries can now expire after a set age.</li></ul></article>
+    <article class="rel rv"><h3>0.7.0</h3><time datetime="2026-06-02">June 2, 2026</time><ul><li>First public release under the MIT license.</li></ul></article>
+  </div>
+</div></section>
+<footer><div class="wrap"><span>kiln is free software under the MIT license.</span><span><a href="https://github.com/">Source</a> and <a href="https://github.com/">issues</a> on GitHub</span></div></footer>
+<script>
+const cmd=document.getElementById('cmd'),note=document.getElementById('note'),copy=document.getElementById('copy');
+document.querySelectorAll('.tabs button').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.tabs button').forEach(b=>b.setAttribute('aria-selected',b===t));
+  cmd.textContent=t.dataset.cmd;note.textContent=t.dataset.note;copy.textContent='Copy';
+}));
+copy.addEventListener('click',async()=>{
+  try{await navigator.clipboard.writeText(cmd.textContent);copy.textContent='Copied'}
+  catch{copy.textContent='Press Ctrl+C';const r=document.createRange();r.selectNodeContents(cmd);getSelection().removeAllRanges();getSelection().addRange(r)}
+  setTimeout(()=>copy.textContent='Copy',1800);
+});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('seen');io.unobserve(e.target)}}),{threshold:.2});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
+```

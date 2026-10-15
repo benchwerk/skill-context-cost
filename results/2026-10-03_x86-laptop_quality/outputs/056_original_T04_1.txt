@@ -1,0 +1,145 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Larkspur Dental - Appointments</title>
+<!-- Design read: small-clinic operations dashboard, calm and dense-ish, native CSS, one teal accent, sample data throughout. -->
+<style>
+:root{--bg:#f2f5f5;--ink:#1d2a2e;--muted:#52636a;--line:#d5dede;--accent:#0f766e;--on-accent:#f2f5f5;--tint:#e0eeec;--r:10px}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1516;--ink:#e3ebeb;--muted:#9bacb0;--line:#26343a;--accent:#5eead4;--on-accent:#062421;--tint:#16302e}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 "Segoe UI",system-ui,sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 48px}
+header{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;padding-bottom:20px;border-bottom:1px solid var(--line)}
+h1{margin:0;font-size:clamp(1.7rem,3.4vw,2.4rem);letter-spacing:-.03em;line-height:1.1}
+.sub{color:var(--muted);margin:4px 0 0}
+button{font:inherit;color:inherit;cursor:pointer;transition:transform .2s cubic-bezier(.16,1,.3,1),background .2s}
+button:active{transform:scale(.97)}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.primary{background:var(--accent);color:var(--on-accent);border:0;border-radius:var(--r);padding:10px 18px;font-weight:600;white-space:nowrap}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}
+.stat{padding:22px 20px 22px 0}
+.stat+.stat{padding-left:20px;border-left:1px solid var(--line)}
+.stat b{display:block;font-size:2.3rem;letter-spacing:-.04em;line-height:1.1;font-variant-numeric:tabular-nums}
+.stat span{color:var(--muted);font-size:.88rem}
+.main{display:grid;grid-template-columns:1.7fr 1fr;gap:48px;margin-top:28px}
+h2{font-size:1.15rem;margin:0 0 4px;letter-spacing:-.01em}
+.row{display:grid;grid-template-columns:64px 1fr auto;gap:4px 16px;align-items:center;padding:14px 12px;margin:0 -12px;border-radius:var(--r)}
+.row+.row{border-top:1px solid var(--line)}
+.row.now{background:var(--tint);border-top-color:transparent}
+.row.now+.row{border-top-color:transparent}
+.time{font-variant-numeric:tabular-nums;font-weight:600}
+.who{font-weight:600}
+.what{grid-column:2;color:var(--muted);font-size:.9rem}
+.status{grid-row:1/3;grid-column:3;min-width:96px;text-align:center;border:1px solid var(--line);border-radius:var(--r);background:transparent;padding:6px 10px;font-size:.85rem;font-weight:600}
+.status[data-s="In chair"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.status[data-s="Done"]{color:var(--muted);font-weight:400}
+.empty{padding:36px 0;color:var(--muted)}
+.week{display:grid;gap:2px;margin-top:10px}
+.day{display:grid;grid-template-columns:44px 28px 1fr;gap:12px;align-items:center;text-align:left;background:transparent;border:1px solid transparent;border-radius:var(--r);padding:10px 12px}
+.day:hover{background:var(--tint)}
+.day[aria-pressed="true"]{border-color:var(--accent)}
+.day i{font-style:normal;font-weight:600;font-variant-numeric:tabular-nums}
+.day em{display:block;height:8px;border-radius:4px;background:var(--accent);transform-origin:left;opacity:.85}
+.note{color:var(--muted);font-size:.88rem;margin-top:14px}
+@media(prefers-reduced-motion:no-preference){
+  .row,.stat{animation:rise .6s cubic-bezier(.16,1,.3,1) backwards;animation-delay:calc(var(--i,0)*60ms)}
+  .day em{animation:grow .7s cubic-bezier(.16,1,.3,1) backwards}
+  @keyframes rise{from{opacity:0;transform:translateY(12px)}}
+  @keyframes grow{from{transform:scaleX(0)}}
+}
+@media(max-width:768px){
+  .main{grid-template-columns:1fr;gap:36px}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat:nth-child(3){padding-left:0;border-left:0}
+  .row{grid-template-columns:56px 1fr}
+  .status{grid-row:auto;grid-column:2;justify-self:start;margin-top:6px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Larkspur Dental</h1>
+      <p class="sub" id="date"></p>
+    </div>
+    <button class="primary" id="add">New booking</button>
+  </header>
+
+  <section class="stats" id="stats" aria-label="Summary"></section>
+
+  <div class="main">
+    <section aria-live="polite">
+      <h2 id="title">Schedule</h2>
+      <div id="list"></div>
+    </section>
+    <section>
+      <h2>This week</h2>
+      <div class="week" id="week"></div>
+      <p class="note">Select a day to see its schedule.</p>
+    </section>
+  </div>
+</div>
+
+<script>
+// Sample data. Statuses cycle on click: Booked > Waiting > In chair > Done.
+const FLOW = ["Booked", "Waiting", "In chair", "Done"];
+const A = (t, n, w, s) => ({ t, n, w, s });
+const data = {
+  Mon: [A("08:30","Marguerite Okafor","Hygiene clean, Dr. Vance","Done"),A("09:15","Tobias Lindqvist","Crown fitting, Dr. Vance","Done"),A("11:00","Anjali Deshmukh","Check-up, Dr. Ruiz","Done"),A("14:00","Ewan Pritchard","Filling, Dr. Ruiz","Done"),A("15:30","Sofia Marchetti","Whitening consult, Dr. Vance","Done")],
+  Tue: [A("08:45","Callum Reyes","Root canal, Dr. Vance","Done"),A("10:30","Imogen Baptiste","Hygiene clean, Dr. Ruiz","Done"),A("13:00","Hamza Qureshi","Extraction, Dr. Vance","Done")],
+  Wed: [A("08:30","Dolores Whitcombe","Hygiene clean, Dr. Ruiz","Done"),A("09:30","Kenji Aoyama","Filling, Dr. Vance","Done"),A("10:45","Nadia Fenwick","Check-up, Dr. Ruiz","In chair"),A("11:30","Rafael Ibarra","Crown prep, Dr. Vance","Waiting"),A("13:15","Greta Solheim","Invisalign review, Dr. Ruiz","Booked"),A("14:30","Leopold Achterberg","Hygiene clean, Dr. Vance","Booked"),A("16:00","Priya Venkataraman","Emergency pain, Dr. Ruiz","Booked")],
+  Thu: [A("09:00","Odessa Whitlock","Check-up, Dr. Vance","Booked"),A("10:15","Mateus Carvalho","Filling, Dr. Ruiz","Booked"),A("11:45","Linnea Haugen","Hygiene clean, Dr. Vance","Booked"),A("14:00","Boris Teodorescu","Bridge repair, Dr. Ruiz","Booked"),A("15:15","Yuki Brennan","Check-up, Dr. Vance","Booked")],
+  Fri: [A("08:30","Aurelio Sandoval","Hygiene clean, Dr. Ruiz","Booked"),A("10:00","Henrietta Mbeki","Crown fitting, Dr. Vance","Booked"),A("13:30","Dmitri Falk","Extraction, Dr. Vance","Booked"),A("15:00","Cosima Rhodes","Check-up, Dr. Ruiz","Booked")],
+  Sat: [A("09:00","Eliot Nakamura","Check-up, Dr. Ruiz","Booked"),A("10:30","Wilhelmina Grau","Hygiene clean, Dr. Ruiz","Booked")]
+};
+const TODAY = "Wed", SLOTS = 9;
+let sel = TODAY;
+const $ = id => document.getElementById(id);
+$("date").textContent = "Wednesday, 7 October 2026. Two dentists on shift.";
+
+function stats() {
+  const d = data[TODAY], n = s => d.filter(x => x.s === s).length;
+  const left = d.filter(x => x.s !== "Done").length;
+  const rows = [[d.length, "Appointments today"], [n("Waiting") + n("In chair"), "In the building now"], [left, "Still to be seen"], [SLOTS - d.length, "Open slots left"]];
+  $("stats").innerHTML = rows.map(([v, l], i) => `<div class="stat" style="--i:${i}"><b>${v}</b><span>${l}</span></div>`).join("");
+}
+function list() {
+  const d = data[sel], first = d.findIndex(x => x.s === "In chair");
+  $("title").textContent = sel === TODAY ? "Today's schedule" : sel + " schedule";
+  $("list").innerHTML = d.length ? d.map((x, i) => `
+    <div class="row${i === first && sel === TODAY ? " now" : ""}" style="--i:${i}">
+      <span class="time">${x.t}</span><span class="who">${x.n}</span><span class="what">${x.w}</span>
+      ${sel === TODAY ? `<button class="status" data-i="${i}" data-s="${x.s}" aria-label="${x.n}: ${x.s}. Advance status">${x.s}</button>`
+        : `<span class="status" style="border:0;color:var(--muted);font-weight:400">${x.s === "Done" ? "Done" : "Booked"}</span>`}
+    </div>`).join("") : `<p class="empty">No appointments booked. Use New booking to fill this day.</p>`;
+}
+function week() {
+  const max = Math.max(...Object.values(data).map(a => a.length));
+  $("week").innerHTML = Object.keys(data).map(k => `
+    <button class="day" data-d="${k}" aria-pressed="${k === sel}">
+      <span>${k}${k === TODAY ? " *" : ""}</span><i>${data[k].length}</i><em style="width:${data[k].length / max * 100}%"></em>
+    </button>`).join("");
+}
+$("list").onclick = e => {
+  const b = e.target.closest("[data-i]"); if (!b) return;
+  const x = data[TODAY][b.dataset.i];
+  x.s = FLOW[(FLOW.indexOf(x.s) + 1) % FLOW.length];
+  stats(); list();
+};
+$("week").onclick = e => {
+  const b = e.target.closest("[data-d]"); if (!b) return;
+  sel = b.dataset.d; list(); week();
+};
+$("add").onclick = () => {
+  const d = data[sel];
+  if (d.length < SLOTS) { d.push(A("16:30", "Walk-in, name pending", "Check-up, Dr. Vance", "Booked")); stats(); list(); week(); }
+};
+stats(); list(); week();
+</script>
+</body>
+</html>
+```

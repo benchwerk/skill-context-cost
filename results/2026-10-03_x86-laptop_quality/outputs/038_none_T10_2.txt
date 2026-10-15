@@ -1,0 +1,165 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Form & Function 2026 — A Two-Day Design Conference</title>
+<style>
+  :root {
+    --bg: #faf7f2; --ink: #1c1b1a; --muted: #6b6560; --card: #fff;
+    --accent: #e4572e; --accent-ink: #fff; --line: #e6e0d6; --dark: #1c1b1a;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body { font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; background: var(--bg); color: var(--ink); }
+  a { color: inherit; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+  nav { position: sticky; top: 0; z-index: 5; background: rgba(250,247,242,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  nav strong { letter-spacing: .02em; }
+  nav ul { display: flex; gap: 20px; list-style: none; padding: 0; font-size: 14px; }
+  nav a { text-decoration: none; color: var(--muted); }
+  nav a:hover { color: var(--accent); }
+  .hero { padding: 88px 0 72px; }
+  .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: clamp(2.6rem, 8vw, 5.5rem); line-height: 1; letter-spacing: -.03em; margin: 14px 0 20px; }
+  h1 span { color: var(--accent); }
+  .lead { max-width: 560px; color: var(--muted); font-size: 18px; }
+  .btn { display: inline-block; margin-top: 28px; padding: 13px 26px; background: var(--accent); color: var(--accent-ink); border-radius: 999px; font-weight: 600; text-decoration: none; border: 0; cursor: pointer; font-size: 15px; }
+  .btn:hover { filter: brightness(.92); }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+  section { padding: 64px 0; border-top: 1px solid var(--line); }
+  h2 { font-size: 2rem; letter-spacing: -.02em; margin-bottom: 8px; }
+  .sub { color: var(--muted); margin-bottom: 32px; }
+  .speakers { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+  .speaker { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+  .avatar { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 20px; margin-bottom: 14px; }
+  .speaker h3 { font-size: 17px; }
+  .speaker p { font-size: 14px; color: var(--muted); }
+  .tabs { display: flex; gap: 8px; margin-bottom: 20px; }
+  .tab { padding: 9px 20px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--card); font: inherit; font-weight: 600; cursor: pointer; }
+  .tab[aria-selected="true"] { background: var(--dark); color: #fff; border-color: var(--dark); }
+  .day { display: none; }
+  .day.on { display: block; }
+  .slot { display: grid; grid-template-columns: 90px 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .slot time { font-weight: 600; font-variant-numeric: tabular-nums; color: var(--accent); }
+  .slot h4 { font-size: 16px; }
+  .slot p { font-size: 14px; color: var(--muted); }
+  .venue { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
+  .map { aspect-ratio: 4/3; border-radius: 14px; background:
+    linear-gradient(90deg, transparent 49%, #d9d2c5 49% 51%, transparent 51%),
+    linear-gradient(0deg, transparent 49%, #d9d2c5 49% 51%, transparent 51%), #ece6da;
+    background-size: 80px 80px; position: relative; border: 1px solid var(--line); }
+  .map::after { content: ""; position: absolute; left: 50%; top: 50%; width: 22px; height: 22px; background: var(--accent); border-radius: 50% 50% 50% 0; transform: translate(-50%,-70%) rotate(-45deg); box-shadow: 0 0 0 6px rgba(228,87,46,.25); }
+  .venue ul { padding-left: 18px; color: var(--muted); font-size: 15px; }
+  .tickets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .ticket { background: var(--card); border: 1.5px solid var(--line); border-radius: 16px; padding: 28px 24px; display: flex; flex-direction: column; }
+  .ticket.featured { border-color: var(--accent); box-shadow: 0 10px 30px rgba(228,87,46,.15); }
+  .price { font-size: 2.4rem; font-weight: 700; letter-spacing: -.02em; margin: 8px 0; }
+  .ticket ul { list-style: none; padding: 0; margin: 12px 0 24px; font-size: 14px; color: var(--muted); flex: 1; }
+  .ticket li { padding: 5px 0 5px 22px; position: relative; }
+  .ticket li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+  .ticket .btn { margin: 0; text-align: center; }
+  #msg { margin-top: 20px; font-weight: 600; color: var(--accent); min-height: 1.6em; }
+  footer { background: var(--dark); color: #bbb; padding: 32px 0; font-size: 14px; text-align: center; }
+  @media (max-width: 760px) {
+    nav ul { display: none; }
+    .venue, .tickets { grid-template-columns: 1fr; }
+    .slot { grid-template-columns: 70px 1fr; }
+  }
+</style>
+</head>
+<body>
+<nav><div class="wrap"><strong>Form &amp; Function</strong>
+  <ul><li><a href="#speakers">Speakers</a></li><li><a href="#schedule">Schedule</a></li><li><a href="#venue">Venue</a></li><li><a href="#tickets">Tickets</a></li></ul>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <p class="eyebrow">14–15 May 2027 · Lisbon</p>
+  <h1>Form <span>&amp;</span> Function</h1>
+  <p class="lead">Two days of talks, workshops and conversation on craft, systems and the future of design. Twelve speakers, 600 designers, one very good room.</p>
+  <a class="btn" href="#tickets">Get your ticket</a> <a class="btn ghost" href="#schedule">See the schedule</a>
+</div></header>
+
+<section id="speakers"><div class="wrap">
+  <h2>Speakers</h2><p class="sub">Practitioners who ship, teach and occasionally break things.</p>
+  <div class="speakers" id="speaker-grid"></div>
+</div></section>
+
+<section id="schedule"><div class="wrap">
+  <h2>Schedule</h2><p class="sub">Doors open at 8:30 each morning. Lunch and coffee included.</p>
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-day="d1">Day 1 · Craft</button>
+    <button class="tab" role="tab" aria-selected="false" data-day="d2">Day 2 · Systems</button>
+  </div>
+  <div class="day on" id="d1">
+    <div class="slot"><time>09:30</time><div><h4>Opening keynote: Making Things Matter</h4><p>Amara Okafor</p></div></div>
+    <div class="slot"><time>11:00</time><div><h4>Type in Motion</h4><p>Lukas Brandt</p></div></div>
+    <div class="slot"><time>14:00</time><div><h4>Workshop: Prototyping with Constraints</h4><p>Mei Tanaka</p></div></div>
+    <div class="slot"><time>16:30</time><div><h4>Panel: Taste in the Age of Automation</h4><p>All day-one speakers</p></div></div>
+  </div>
+  <div class="day" id="d2">
+    <div class="slot"><time>09:30</time><div><h4>Design Systems at Human Scale</h4><p>Sofia Marques</p></div></div>
+    <div class="slot"><time>11:00</time><div><h4>Accessible by Default</h4><p>Daniel Reyes</p></div></div>
+    <div class="slot"><time>14:00</time><div><h4>Workshop: Auditing Your Own Product</h4><p>Priya Raman</p></div></div>
+    <div class="slot"><time>16:30</time><div><h4>Closing talk &amp; party</h4><p>Amara Okafor &amp; friends</p></div></div>
+  </div>
+</div></section>
+
+<section id="venue"><div class="wrap venue">
+  <div class="map" role="img" aria-label="Map placeholder showing venue location"></div>
+  <div>
+    <h2>Venue</h2>
+    <p class="sub">Armazém das Artes<br>Rua da Fábrica 22, 1200-123 Lisbon</p>
+    <ul>
+      <li>8 min walk from Cais do Sodré station</li>
+      <li>Step-free access, quiet room and prayer room</li>
+      <li>Partner hotels from €95 per night</li>
+    </ul>
+  </div>
+</div></section>
+
+<section id="tickets"><div class="wrap">
+  <h2>Tickets</h2><p class="sub">Early-bird prices end 31 January. Group discounts for teams of five or more.</p>
+  <div class="tickets">
+    <div class="ticket"><h3>Student</h3><div class="price">€149</div>
+      <ul><li>Both days</li><li>Lunch and coffee</li><li>Valid student ID</li></ul>
+      <button class="btn ghost" data-plan="Student">Select</button></div>
+    <div class="ticket featured"><h3>Standard</h3><div class="price">€349</div>
+      <ul><li>Both days</li><li>One workshop seat</li><li>Recordings after the event</li></ul>
+      <button class="btn" data-plan="Standard">Select</button></div>
+    <div class="ticket"><h3>Supporter</h3><div class="price">€599</div>
+      <ul><li>Everything in Standard</li><li>All workshops</li><li>Speaker dinner invitation</li></ul>
+      <button class="btn ghost" data-plan="Supporter">Select</button></div>
+  </div>
+  <p id="msg" role="status"></p>
+</div></section>
+
+<footer>© 2026 Form &amp; Function · hello@formfunction.example</footer>
+
+<script>
+  const people = [
+    ["Amara Okafor", "Design Director, Studio Nine", "#e4572e"],
+    ["Lukas Brandt", "Type Designer, Foundry B", "#2e86ab"],
+    ["Mei Tanaka", "Prototyping Lead, Loop", "#6a994e"],
+    ["Sofia Marques", "Head of Design Systems, Atlas", "#8e5572"],
+    ["Daniel Reyes", "Accessibility Specialist", "#d98e04"],
+    ["Priya Raman", "Product Designer, Northwind", "#3d5a80"]
+  ];
+  document.getElementById("speaker-grid").innerHTML = people.map(([n, r, c]) =>
+    `<div class="speaker"><div class="avatar" style="background:${c}">${n.split(" ").map(w => w[0]).join("")}</div><h3>${n}</h3><p>${r}</p></div>`
+  ).join("");
+
+  document.querySelectorAll(".tab").forEach(tab => tab.addEventListener("click", () => {
+    document.querySelectorAll(".tab").forEach(t => t.setAttribute("aria-selected", t === tab));
+    document.querySelectorAll(".day").forEach(d => d.classList.toggle("on", d.id === tab.dataset.day));
+  }));
+
+  document.querySelectorAll("[data-plan]").forEach(b => b.addEventListener("click", () => {
+    document.getElementById("msg").textContent = `${b.dataset.plan} ticket added — checkout opens soon.`;
+  }));
+</script>
+</body>
+</html>
+```

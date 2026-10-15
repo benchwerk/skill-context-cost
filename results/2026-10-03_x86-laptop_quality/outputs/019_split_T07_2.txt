@@ -1,0 +1,154 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Verbena: Start learning</title>
+<style>
+  :root {
+    --paper: #f4efe6; --ink: #1f2a24; --muted: #66706a; --line: #d9d1c2;
+    --green: #1f4d3a; --coral: #e2593b; --card: #fbf8f2;
+    --serif: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    --sans: ui-sans-serif, "Segoe UI", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { min-height: 100dvh; background: var(--paper); color: var(--ink); font-family: var(--sans);
+         display: grid; place-items: start center; }
+  .app { width: 100%; max-width: 30rem; min-height: 100dvh; padding: 1.25rem 1.25rem max(1.25rem, env(safe-area-inset-bottom));
+         display: flex; flex-direction: column; }
+  header { display: flex; align-items: center; justify-content: space-between; min-height: 2.75rem; }
+  .brand { font-family: var(--serif); font-size: 1.25rem; font-style: italic; color: var(--green); }
+  .back { background: none; border: 0; color: var(--muted); font: inherit; min-height: 2.75rem; padding: 0 .5rem; cursor: pointer; }
+  .back[hidden] { display: none; }
+  .progress { display: grid; grid-template-columns: repeat(3, 1fr); gap: .375rem; margin: .75rem 0 2rem; }
+  .progress i { height: .25rem; border-radius: 1rem; background: var(--line); transition: background .4s; }
+  .progress i.on { background: var(--coral); }
+  form { flex: 1; display: flex; flex-direction: column; }
+  fieldset { border: 0; padding: 0; flex: 1; display: none; }
+  fieldset.active { display: block; animation: rise .45s cubic-bezier(.2, .8, .2, 1); }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+  .eyebrow { font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--coral); font-weight: 600; }
+  h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(2rem, 9vw, 2.6rem); line-height: 1.05;
+       letter-spacing: -.02em; margin: .5rem 0 .75rem; text-wrap: balance; }
+  .lede { color: var(--muted); line-height: 1.5; margin-bottom: 1.75rem; max-width: 34ch; }
+  .field { display: block; margin-bottom: 1.1rem; }
+  .field span { display: block; font-size: .875rem; font-weight: 600; margin-bottom: .4rem; }
+  input[type=email], input[type=password] { width: 100%; min-height: 3.25rem; padding: 0 1rem; font: inherit; font-size: 1rem;
+         background: var(--card); color: var(--ink); border: 1.5px solid var(--line); border-radius: .875rem; }
+  input:focus-visible, .back:focus-visible, .cta:focus-visible { outline: 3px solid var(--coral); outline-offset: 2px; }
+  input[aria-invalid=true] { border-color: var(--coral); }
+  .err { color: #b23a20; font-size: .85rem; min-height: 1.25rem; margin-top: -.5rem; }
+  .options { display: grid; gap: .625rem; }
+  .options.two { grid-template-columns: 1fr 1fr; }
+  .opt { position: relative; }
+  .opt input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+  .opt label { display: flex; flex-direction: column; gap: .15rem; min-height: 3.5rem; justify-content: center; padding: .75rem 1rem;
+         background: var(--card); border: 1.5px solid var(--line); border-radius: .875rem; transition: transform .2s, border-color .2s, background .2s; }
+  .opt b { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; }
+  .opt small { color: var(--muted); font-size: .8rem; }
+  .opt input:checked + label { border-color: var(--green); background: #e7efe8; transform: translateY(-2px); box-shadow: 0 6px 0 -3px var(--green); }
+  .opt input:focus-visible + label { outline: 3px solid var(--coral); outline-offset: 2px; }
+  .goal { flex-direction: row !important; align-items: baseline; justify-content: space-between !important; }
+  .goal em { font-style: normal; font-family: var(--serif); font-size: 1.6rem; }
+  .cta { margin-top: 1.5rem; min-height: 3.5rem; border: 0; border-radius: 1rem; background: var(--green); color: #fff;
+         font: inherit; font-weight: 600; font-size: 1rem; cursor: pointer; transition: transform .15s, background .2s; }
+  .cta:active { transform: scale(.98); }
+  .cta:hover { background: #17392b; }
+  .done { text-align: left; }
+  .done[hidden] { display: none; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+  @media (min-width: 640px) { .app { min-height: auto; margin-top: 4rem; padding: 2rem; background: var(--card); border: 1px solid var(--line); border-radius: 1.5rem; } }
+</style>
+</head>
+<body>
+<main class="app">
+  <header>
+    <span class="brand">Verbena</span>
+    <button class="back" type="button" hidden>Back</button>
+  </header>
+  <div class="progress" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+
+  <form novalidate>
+    <fieldset class="active" data-title="Create your account">
+      <p class="eyebrow">Step 1 of 3</p>
+      <h1>Let's set up your account</h1>
+      <p class="lede">One minute now, and your streak starts today.</p>
+      <label class="field"><span>Email</span><input type="email" name="email" autocomplete="email" inputmode="email" required></label>
+      <label class="field"><span>Password</span><input type="password" name="pw" autocomplete="new-password" minlength="8" required></label>
+      <p class="err" role="alert"></p>
+    </fieldset>
+
+    <fieldset data-title="Choose a language">
+      <p class="eyebrow">Step 2 of 3</p>
+      <h1>What do you want to speak?</h1>
+      <p class="lede">You can add more languages later.</p>
+      <div class="options two"></div>
+    </fieldset>
+
+    <fieldset data-title="Pick a daily goal">
+      <p class="eyebrow">Step 3 of 3</p>
+      <h1>How much time each day?</h1>
+      <p class="lede">Small and steady beats big and rare. Change it any time.</p>
+      <div class="options goals"></div>
+    </fieldset>
+
+    <button class="cta" type="submit">Continue</button>
+  </form>
+
+  <section class="done" hidden aria-live="polite">
+    <p class="eyebrow">You're in</p>
+    <h1></h1>
+    <p class="lede"></p>
+  </section>
+</main>
+
+<script>
+  const langs = [["Spanish", "Español"], ["French", "Français"], ["Japanese", "日本語"], ["German", "Deutsch"], ["Italian", "Italiano"], ["Korean", "한국어"]];
+  const goals = [[5, "Casual", "One short lesson"], [10, "Regular", "A lesson and a review"], [15, "Serious", "Two lessons, steady progress"], [30, "Intense", "Fluency sprint"]];
+  const $ = (s, r = document) => r.querySelector(s);
+  const steps = [...document.querySelectorAll("fieldset")], bars = [...document.querySelectorAll(".progress i")];
+  const form = $("form"), cta = $(".cta"), back = $(".back"), err = $(".err");
+  let step = 0;
+
+  const card = (name, value, title, sub, cls = "") => `<div class="opt"><input type="radio" name="${name}" id="${name}-${value}" value="${value}">
+    <label for="${name}-${value}" class="${cls}"><b>${title}</b><small>${sub}</small></label></div>`;
+  $(".two").innerHTML = langs.map(([l, n]) => card("lang", l, l, n)).join("");
+  $(".goals").innerHTML = goals.map(([m, t, d]) => card("goal", m, `${t}`, d, "goal").replace(`<b>${t}</b>`, `<b>${t}</b><em>${m} min</em>`)).join("");
+
+  function show(n) {
+    step = n;
+    steps.forEach((s, i) => s.classList.toggle("active", i === n));
+    bars.forEach((b, i) => b.classList.toggle("on", i <= n));
+    back.hidden = n === 0;
+    cta.textContent = ["Continue", "Continue", "Start learning"][n];
+    steps[n].querySelector("input")?.focus({ preventScroll: true });
+  }
+
+  function valid() {
+    const f = new FormData(form);
+    if (step === 0) {
+      const okMail = /^\S+@\S+\.\S+$/.test(f.get("email") || ""), okPw = (f.get("pw") || "").length >= 8;
+      form.email.setAttribute("aria-invalid", !okMail); form.pw.setAttribute("aria-invalid", !okPw);
+      err.textContent = !okMail ? "Enter a valid email address." : !okPw ? "Use at least 8 characters for your password." : "";
+      return okMail && okPw;
+    }
+    return !!f.get(step === 1 ? "lang" : "goal");
+  }
+
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    if (!valid()) { if (step) cta.animate([{ transform: "translateX(-6px)" }, { transform: "translateX(6px)" }, { transform: "none" }], 220); return; }
+    if (step < 2) return show(step + 1);
+    const f = new FormData(form);
+    form.hidden = true; $(".progress").hidden = true; back.hidden = true;
+    const done = $(".done"); done.hidden = false;
+    $("h1", done).textContent = `${f.get("goal")} minutes of ${f.get("lang")} a day`;
+    $(".lede", done).textContent = "Your first lesson is ready. We'll nudge you at the same time each day.";
+  });
+  back.addEventListener("click", () => show(step - 1));
+  show(0);
+</script>
+</body>
+</html>
+```

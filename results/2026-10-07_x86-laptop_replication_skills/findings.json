@@ -1,0 +1,2997 @@
+{
+ "run": "2026-10-07_x86-laptop_replication_skills",
+ "claude_version": "2.1.286 (Claude Code)",
+ "model_windows": {
+  "claude-sonnet-5-5[1m]": 1000000,
+  "claude-haiku-4-5-20251001": 200000
+ },
+ "window_mismatch": [],
+ "excluded_runs": [
+  {
+   "seq": 10,
+   "config": "I5",
+   "model": "claude-sonnet-5-5[1m]",
+   "why": "no usage or non-zero exit",
+   "unexpected": null,
+   "missing": null,
+   "stderr_tail": ""
+  },
+  {
+   "seq": 15,
+   "config": "X1-orig",
+   "model": "claude-sonnet-5-5[1m]",
+   "why": "no usage or non-zero exit",
+   "unexpected": null,
+   "missing": null,
+   "stderr_tail": ""
+  },
+  {
+   "seq": 19,
+   "config": "I18",
+   "model": "claude-sonnet-5-5[1m]",
+   "why": "no usage or non-zero exit",
+   "unexpected": null,
+   "missing": null,
+   "stderr_tail": ""
+  },
+  {
+   "seq": 20,
+   "config": "M-skill-used",
+   "model": "claude-sonnet-5-5[1m]",
+   "why": "no usage or non-zero exit",
+   "unexpected": null,
+   "missing": null,
+   "stderr_tail": ""
+  },
+  {
+   "seq": 26,
+   "config": "I6",
+   "model": "claude-sonnet-5-5[1m]",
+   "why": "no usage or non-zero exit",
+   "unexpected": null,
+   "missing": null,
+   "stderr_tail": ""
+  },
+  {
+   "seq": 28,
+   "config": "I15",
+   "model": "claude-sonnet-5-5[1m]",
+   "why": "no usage or non-zero exit",
+   "unexpected": null,
+   "missing": null,
+   "stderr_tail": ""
+  },
+  {
+   "seq": 38,
+   "config": "G-slash",
+   "model": "claude-sonnet-5-5[1m]",
+   "why": "no usage or non-zero exit",
+   "unexpected": null,
+   "missing": null,
+   "stderr_tail": ""
+  },
+  {
+   "seq": 41,
+   "config": "I4",
+   "model": "claude-sonnet-5-5[1m]",
+   "why": "no usage or non-zero exit",
+   "unexpected": null,
+   "missing": null,
+   "stderr_tail": ""
+  },
+  {
+   "seq": 47,
+   "config": "I2",
+   "model": "claude-sonnet-5-5[1m]",
+   "why": "no usage or non-zero exit",
+   "unexpected": null,
+   "missing": null,
+   "stderr_tail": ""
+  },
+  {
+   "seq": 48,
+   "config": "I3",
+   "model": "claude-sonnet-5-5[1m]",
+   "why": "no usage or non-zero exit",
+   "unexpected": null,
+   "missing": null,
+   "stderr_tail": ""
+  },
+  {
+   "seq": 61,
+   "config": "I9",
+   "model": "claude-sonnet-5-5[1m]",
+   "why": "no usage or non-zero exit",
+   "unexpected": null,
+   "missing": null,
+   "stderr_tail": ""
+  },
+  {
+   "seq": 72,
+   "config": "X1-split",
+   "model": "claude-sonnet-5-5[1m]",
+   "why": "no usage or non-zero exit",
+   "unexpected": null,
+   "missing": null,
+   "stderr_tail": ""
+  },
+  {
+   "seq": 73,
+   "config": "I19",
+   "model": "claude-sonnet-5-5[1m]",
+   "why": "no usage or non-zero exit",
+   "unexpected": null,
+   "missing": null,
+   "stderr_tail": ""
+  },
+  {
+   "seq": 76,
+   "config": "I20",
+   "model": "claude-sonnet-5-5[1m]",
+   "why": "no usage or non-zero exit",
+   "unexpected": null,
+   "missing": null,
+   "stderr_tail": ""
+  },
+  {
+   "seq": 79,
+   "config": "I14",
+   "model": "claude-sonnet-5-5[1m]",
+   "why": "no usage or non-zero exit",
+   "unexpected": null,
+   "missing": null,
+   "stderr_tail": ""
+  },
+  {
+   "seq": 80,
+   "config": "I12",
+   "model": "claude-sonnet-5-5[1m]",
+   "why": "no usage or non-zero exit",
+   "unexpected": null,
+   "missing": null,
+   "stderr_tail": ""
+  },
+  {
+   "seq": 81,
+   "config": "M-prompt-used",
+   "model": "claude-sonnet-5-5[1m]",
+   "why": "no usage or non-zero exit",
+   "unexpected": null,
+   "missing": null,
+   "stderr_tail": ""
+  }
+ ],
+ "baseline_reported_skills": {
+  "claude-sonnet-5-5[1m]": [
+   "batch",
+   "claude-api",
+   "code-review",
+   "dataviz",
+   "debug",
+   "design",
+   "design-sync",
+   "doctor",
+   "fewer-permission-prompts",
+   "loop",
+   "plugin-authoring",
+   "run",
+   "run-skill-generator",
+   "schedule",
+   "simplify",
+   "update-config",
+   "verify"
+  ],
+  "claude-haiku-4-5-20251001": [
+   "batch",
+   "claude-api",
+   "code-review",
+   "dataviz",
+   "debug",
+   "design",
+   "design-sync",
+   "doctor",
+   "fewer-permission-prompts",
+   "loop",
+   "plugin-authoring",
+   "run",
+   "run-skill-generator",
+   "schedule",
+   "simplify",
+   "update-config",
+   "verify"
+  ]
+ },
+ "tools_identical_to_C0": {
+  "claude-sonnet-5-5[1m]": {
+   "L18": true,
+   "G-prose": true,
+   "M-docs-used": true,
+   "L11": true,
+   "L4": true,
+   "G-direct": true,
+   "C50-trim100": true,
+   "L7": true,
+   "G-original": true,
+   "T4": true,
+   "M-claudemd": true,
+   "L14": true,
+   "I13": true,
+   "M-base": true,
+   "L2": true,
+   "C50": true,
+   "F1": true,
+   "G2-slash": true,
+   "L9": true,
+   "M-docs-idle": true,
+   "X1-split-read": true,
+   "I16": true,
+   "L17": true,
+   "C0": true,
+   "T3": true,
+   "I10": true,
+   "L20": true,
+   "G-inline": true,
+   "S10-L300": true,
+   "T5": true,
+   "L13": true,
+   "I1": true,
+   "S10-L1500": true,
+   "I7": true,
+   "L3": true,
+   "G2-prose": true,
+   "S10-B600": true,
+   "I8": true,
+   "L16": true,
+   "L10": true,
+   "C10": true,
+   "T2": true,
+   "C100": true,
+   "L19": true,
+   "G2-original": true,
+   "L15": true,
+   "S10-L600": true,
+   "M-skill-idle": true,
+   "C1": true,
+   "S10-L1000": true,
+   "R50": true,
+   "L12": true,
+   "L6": true,
+   "L1": true,
+   "I17": true,
+   "L5": true,
+   "L8": true,
+   "S10-L100": true,
+   "I11": true,
+   "C50-disable": true,
+   "T1": true
+  },
+  "claude-haiku-4-5-20251001": {
+   "C10": true,
+   "C100": true,
+   "C1": true,
+   "C50": true,
+   "C0": true
+  }
+ },
+ "models": {
+  "claude-sonnet-5-5[1m]": {
+   "window_tokens": 1000000,
+   "C0_window_total": {
+    "median": 19196,
+    "min": 19196,
+    "max": 19196,
+    "n": 1
+   },
+   "configs": {
+    "C0": {
+     "n_skills": 0,
+     "n_model_visible": 0,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 19196,
+      "min": 19196,
+      "max": 19196,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 19194,
+      "min": 19194,
+      "max": 19194,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 0,
+     "added_min": 0,
+     "added_max": 0,
+     "added_share_of_own_window": 0.0,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "C1": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 19286,
+      "min": 19286,
+      "max": 19286,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 3686,
+      "min": 3686,
+      "max": 3686,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 90,
+     "added_min": 90,
+     "added_max": 90,
+     "added_share_of_own_window": 9e-05,
+     "result_subtypes": [
+      "success"
+     ],
+     "marginal_per_skill_since_previous_N": 90.0
+    },
+    "C10": {
+     "n_skills": 10,
+     "n_model_visible": 7,
+     "manual_only_skills_in_set": [
+      "grill-me",
+      "grill-with-docs",
+      "improve-codebase-architecture"
+     ],
+     "runs": 1,
+     "window_total": {
+      "median": 20363,
+      "min": 20363,
+      "max": 20363,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 4763,
+      "min": 4763,
+      "max": 4763,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 1167,
+     "added_min": 1167,
+     "added_max": 1167,
+     "added_share_of_own_window": 0.001167,
+     "result_subtypes": [
+      "success"
+     ],
+     "marginal_per_skill_since_previous_N": 119.66666666666667
+    },
+    "C100": {
+     "n_skills": 100,
+     "n_model_visible": 96,
+     "manual_only_skills_in_set": [
+      "grill-me",
+      "grill-with-docs",
+      "improve-codebase-architecture",
+      "review-animations"
+     ],
+     "runs": 1,
+     "window_total": {
+      "median": 27826,
+      "min": 27826,
+      "max": 27826,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 12226,
+      "min": 12226,
+      "max": 12226,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 8630,
+     "added_min": 8630,
+     "added_max": 8630,
+     "added_share_of_own_window": 0.00863,
+     "result_subtypes": [
+      "success"
+     ],
+     "marginal_per_skill_since_previous_N": 7.86,
+     "cap_suspected": true
+    },
+    "C50": {
+     "n_skills": 50,
+     "n_model_visible": 46,
+     "manual_only_skills_in_set": [
+      "grill-me",
+      "grill-with-docs",
+      "improve-codebase-architecture",
+      "review-animations"
+     ],
+     "runs": 1,
+     "window_total": {
+      "median": 27433,
+      "min": 27433,
+      "max": 27433,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 11833,
+      "min": 11833,
+      "max": 11833,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 8237,
+     "added_min": 8237,
+     "added_max": 8237,
+     "added_share_of_own_window": 0.008237,
+     "result_subtypes": [
+      "success"
+     ],
+     "marginal_per_skill_since_previous_N": 176.75
+    },
+    "C50-disable": {
+     "n_skills": 50,
+     "n_model_visible": 46,
+     "manual_only_skills_in_set": [
+      "grill-me",
+      "grill-with-docs",
+      "improve-codebase-architecture",
+      "review-animations"
+     ],
+     "runs": 1,
+     "window_total": {
+      "median": 19196,
+      "min": 19196,
+      "max": 19196,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 19194,
+      "min": 19194,
+      "max": 19194,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 0,
+     "added_min": 0,
+     "added_max": 0,
+     "added_share_of_own_window": 0.0,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "C50-trim100": {
+     "n_skills": 50,
+     "n_model_visible": 46,
+     "manual_only_skills_in_set": [
+      "grill-me",
+      "grill-with-docs",
+      "improve-codebase-architecture",
+      "review-animations"
+     ],
+     "runs": 1,
+     "window_total": {
+      "median": 21152,
+      "min": 21152,
+      "max": 21152,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 5552,
+      "min": 5552,
+      "max": 5552,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 1956,
+     "added_min": 1956,
+     "added_max": 1956,
+     "added_share_of_own_window": 0.001956,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "F1": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 19217,
+      "min": 19217,
+      "max": 19217,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 3617,
+      "min": 3617,
+      "max": 3617,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 21,
+     "added_min": 21,
+     "added_max": 21,
+     "added_share_of_own_window": 2.1e-05,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "G-direct": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 19921,
+      "min": 19921,
+      "max": 19921,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 4321,
+      "min": 4321,
+      "max": 4321,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 3,
+      "min": 3,
+      "max": 3,
+      "n": 1
+     },
+     "added": 725,
+     "added_min": 725,
+     "added_max": 725,
+     "added_share_of_own_window": 0.000725,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "G-inline": {
+     "n_skills": 1,
+     "n_model_visible": 0,
+     "manual_only_skills_in_set": [
+      "grill-me"
+     ],
+     "runs": 1,
+     "window_total": {
+      "median": 19863,
+      "min": 19863,
+      "max": 19863,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 4263,
+      "min": 4263,
+      "max": 4263,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 2,
+      "min": 2,
+      "max": 2,
+      "n": 1
+     },
+     "added": 667,
+     "added_min": 667,
+     "added_max": 667,
+     "added_share_of_own_window": 0.000667,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "G-original": {
+     "n_skills": 2,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [
+      "grill-me"
+     ],
+     "runs": 1,
+     "window_total": {
+      "median": 19371,
+      "min": 19371,
+      "max": 19371,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 3771,
+      "min": 3771,
+      "max": 3771,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 16,
+      "min": 16,
+      "max": 16,
+      "n": 1
+     },
+     "added": 175,
+     "added_min": 175,
+     "added_max": 175,
+     "added_share_of_own_window": 0.000175,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "G-prose": {
+     "n_skills": 2,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [
+      "grill-me"
+     ],
+     "runs": 1,
+     "window_total": {
+      "median": 19371,
+      "min": 19371,
+      "max": 19371,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 3771,
+      "min": 3771,
+      "max": 3771,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 16,
+      "min": 16,
+      "max": 16,
+      "n": 1
+     },
+     "added": 175,
+     "added_min": 175,
+     "added_max": 175,
+     "added_share_of_own_window": 0.000175,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "G2-original": {
+     "n_skills": 50,
+     "n_model_visible": 47,
+     "manual_only_skills_in_set": [
+      "grill-me",
+      "grill-with-docs",
+      "improve-codebase-architecture"
+     ],
+     "runs": 1,
+     "window_total": {
+      "median": 27608,
+      "min": 27608,
+      "max": 27608,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 12008,
+      "min": 12008,
+      "max": 12008,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 16,
+      "min": 16,
+      "max": 16,
+      "n": 1
+     },
+     "added": 8412,
+     "added_min": 8412,
+     "added_max": 8412,
+     "added_share_of_own_window": 0.008412,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "G2-prose": {
+     "n_skills": 50,
+     "n_model_visible": 47,
+     "manual_only_skills_in_set": [
+      "grill-me",
+      "grill-with-docs",
+      "improve-codebase-architecture"
+     ],
+     "runs": 1,
+     "window_total": {
+      "median": 27608,
+      "min": 27608,
+      "max": 27608,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 12008,
+      "min": 12008,
+      "max": 12008,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 16,
+      "min": 16,
+      "max": 16,
+      "n": 1
+     },
+     "added": 8412,
+     "added_min": 8412,
+     "added_max": 8412,
+     "added_share_of_own_window": 0.008412,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "G2-slash": {
+     "n_skills": 50,
+     "n_model_visible": 47,
+     "manual_only_skills_in_set": [
+      "grill-me",
+      "grill-with-docs",
+      "improve-codebase-architecture"
+     ],
+     "runs": 1,
+     "window_total": {
+      "median": 27601,
+      "min": 27601,
+      "max": 27601,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 12001,
+      "min": 12001,
+      "max": 12001,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 16,
+      "min": 16,
+      "max": 16,
+      "n": 1
+     },
+     "added": 8405,
+     "added_min": 8405,
+     "added_max": 8405,
+     "added_share_of_own_window": 0.008405,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "I1": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 21148,
+      "min": 21148,
+      "max": 21148,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 5548,
+      "min": 5548,
+      "max": 5548,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 1952,
+     "added_min": 1952,
+     "added_max": 1952,
+     "added_share_of_own_window": 0.001952,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "I10": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 19654,
+      "min": 19654,
+      "max": 19654,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 4054,
+      "min": 4054,
+      "max": 4054,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 1,
+      "min": 1,
+      "max": 1,
+      "n": 1
+     },
+     "added": 458,
+     "added_min": 458,
+     "added_max": 458,
+     "added_share_of_own_window": 0.000458,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "I11": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 22477,
+      "min": 22477,
+      "max": 22477,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 6877,
+      "min": 6877,
+      "max": 6877,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 2,
+      "min": 2,
+      "max": 2,
+      "n": 1
+     },
+     "added": 3281,
+     "added_min": 3281,
+     "added_max": 3281,
+     "added_share_of_own_window": 0.003281,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "I13": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 21793,
+      "min": 21793,
+      "max": 21793,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 6193,
+      "min": 6193,
+      "max": 6193,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 2597,
+     "added_min": 2597,
+     "added_max": 2597,
+     "added_share_of_own_window": 0.002597,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "I16": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 21846,
+      "min": 21846,
+      "max": 21846,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 6246,
+      "min": 6246,
+      "max": 6246,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 8,
+      "min": 8,
+      "max": 8,
+      "n": 1
+     },
+     "added": 2650,
+     "added_min": 2650,
+     "added_max": 2650,
+     "added_share_of_own_window": 0.00265,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "I17": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 54517,
+      "min": 54517,
+      "max": 54517,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 54515,
+      "min": 54515,
+      "max": 54515,
+      "n": 1
+     },
+     "output": {
+      "median": 9,
+      "min": 9,
+      "max": 9,
+      "n": 1
+     },
+     "added": 35321,
+     "added_min": 35321,
+     "added_max": 35321,
+     "added_share_of_own_window": 0.035321,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "I7": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 22062,
+      "min": 22062,
+      "max": 22062,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 6462,
+      "min": 6462,
+      "max": 6462,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 2866,
+     "added_min": 2866,
+     "added_max": 2866,
+     "added_share_of_own_window": 0.002866,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "I8": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 26298,
+      "min": 26298,
+      "max": 26298,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 10698,
+      "min": 10698,
+      "max": 10698,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 9,
+      "min": 9,
+      "max": 9,
+      "n": 1
+     },
+     "added": 7102,
+     "added_min": 7102,
+     "added_max": 7102,
+     "added_share_of_own_window": 0.007102,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "L1": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 19286,
+      "min": 19286,
+      "max": 19286,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 19284,
+      "min": 19284,
+      "max": 19284,
+      "n": 1
+     },
+     "output": {
+      "median": 2,
+      "min": 2,
+      "max": 2,
+      "n": 1
+     },
+     "added": 90,
+     "added_min": 90,
+     "added_max": 90,
+     "added_share_of_own_window": 9e-05,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "L10": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 19266,
+      "min": 19266,
+      "max": 19266,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 3666,
+      "min": 3666,
+      "max": 3666,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 70,
+     "added_min": 70,
+     "added_max": 70,
+     "added_share_of_own_window": 7e-05,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "L11": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 19493,
+      "min": 19493,
+      "max": 19493,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 3893,
+      "min": 3893,
+      "max": 3893,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 297,
+     "added_min": 297,
+     "added_max": 297,
+     "added_share_of_own_window": 0.000297,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "L12": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 19599,
+      "min": 19599,
+      "max": 19599,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 3999,
+      "min": 3999,
+      "max": 3999,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 403,
+     "added_min": 403,
+     "added_max": 403,
+     "added_share_of_own_window": 0.000403,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "L13": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 19492,
+      "min": 19492,
+      "max": 19492,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 3892,
+      "min": 3892,
+      "max": 3892,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 296,
+     "added_min": 296,
+     "added_max": 296,
+     "added_share_of_own_window": 0.000296,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "L14": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 19481,
+      "min": 19481,
+      "max": 19481,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 3881,
+      "min": 3881,
+      "max": 3881,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 285,
+     "added_min": 285,
+     "added_max": 285,
+     "added_share_of_own_window": 0.000285,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "L15": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 19217,
+      "min": 19217,
+      "max": 19217,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 3617,
+      "min": 3617,
+      "max": 3617,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 21,
+     "added_min": 21,
+     "added_max": 21,
+     "added_share_of_own_window": 2.1e-05,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "L16": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 19289,
+      "min": 19289,
+      "max": 19289,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 3689,
+      "min": 3689,
+      "max": 3689,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 93,
+     "added_min": 93,
+     "added_max": 93,
+     "added_share_of_own_window": 9.3e-05,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "L17": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 19295,
+      "min": 19295,
+      "max": 19295,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 3695,
+      "min": 3695,
+      "max": 3695,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 99,
+     "added_min": 99,
+     "added_max": 99,
+     "added_share_of_own_window": 9.9e-05,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "L18": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 19389,
+      "min": 19389,
+      "max": 19389,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 5574,
+      "min": 5574,
+      "max": 5574,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 13813,
+      "min": 13813,
+      "max": 13813,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 193,
+     "added_min": 193,
+     "added_max": 193,
+     "added_share_of_own_window": 0.000193,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "L19": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 19395,
+      "min": 19395,
+      "max": 19395,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 3795,
+      "min": 3795,
+      "max": 3795,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 5,
+      "min": 5,
+      "max": 5,
+      "n": 1
+     },
+     "added": 199,
+     "added_min": 199,
+     "added_max": 199,
+     "added_share_of_own_window": 0.000199,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "L2": {
+     "n_skills": 1,
+     "n_model_visible": 0,
+     "manual_only_skills_in_set": [
+      "grill-me"
+     ],
+     "runs": 1,
+     "window_total": {
+      "median": 19196,
+      "min": 19196,
+      "max": 19196,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 19194,
+      "min": 19194,
+      "max": 19194,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 0,
+     "added_min": 0,
+     "added_max": 0,
+     "added_share_of_own_window": 0.0,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "L20": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 19458,
+      "min": 19458,
+      "max": 19458,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 3858,
+      "min": 3858,
+      "max": 3858,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 262,
+     "added_min": 262,
+     "added_max": 262,
+     "added_share_of_own_window": 0.000262,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "L3": {
+     "n_skills": 1,
+     "n_model_visible": 0,
+     "manual_only_skills_in_set": [
+      "grill-with-docs"
+     ],
+     "runs": 1,
+     "window_total": {
+      "median": 19196,
+      "min": 19196,
+      "max": 19196,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 19194,
+      "min": 19194,
+      "max": 19194,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 0,
+     "added_min": 0,
+     "added_max": 0,
+     "added_share_of_own_window": 0.0,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "L4": {
+     "n_skills": 1,
+     "n_model_visible": 0,
+     "manual_only_skills_in_set": [
+      "improve-codebase-architecture"
+     ],
+     "runs": 1,
+     "window_total": {
+      "median": 19196,
+      "min": 19196,
+      "max": 19196,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 3596,
+      "min": 3596,
+      "max": 3596,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 0,
+     "added_min": 0,
+     "added_max": 0,
+     "added_share_of_own_window": 0.0,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "L5": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 19521,
+      "min": 19521,
+      "max": 19521,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 19519,
+      "min": 19519,
+      "max": 19519,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 325,
+     "added_min": 325,
+     "added_max": 325,
+     "added_share_of_own_window": 0.000325,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "L6": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 19265,
+      "min": 19265,
+      "max": 19265,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 19263,
+      "min": 19263,
+      "max": 19263,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 69,
+     "added_min": 69,
+     "added_max": 69,
+     "added_share_of_own_window": 6.9e-05,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "L7": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 19313,
+      "min": 19313,
+      "max": 19313,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 3713,
+      "min": 3713,
+      "max": 3713,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 117,
+     "added_min": 117,
+     "added_max": 117,
+     "added_share_of_own_window": 0.000117,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "L8": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 19431,
+      "min": 19431,
+      "max": 19431,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 3831,
+      "min": 3831,
+      "max": 3831,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 5,
+      "min": 5,
+      "max": 5,
+      "n": 1
+     },
+     "added": 235,
+     "added_min": 235,
+     "added_max": 235,
+     "added_share_of_own_window": 0.000235,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "L9": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 19457,
+      "min": 19457,
+      "max": 19457,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 3857,
+      "min": 3857,
+      "max": 3857,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 261,
+     "added_min": 261,
+     "added_max": 261,
+     "added_share_of_own_window": 0.000261,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "M-base": {
+     "n_skills": 0,
+     "n_model_visible": 0,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 19196,
+      "min": 19196,
+      "max": 19196,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 19194,
+      "min": 19194,
+      "max": 19194,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 0,
+     "added_min": 0,
+     "added_max": 0,
+     "added_share_of_own_window": 0.0,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "M-claudemd": {
+     "n_skills": 0,
+     "n_model_visible": 0,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 22051,
+      "min": 22051,
+      "max": 22051,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 6451,
+      "min": 6451,
+      "max": 6451,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 2855,
+     "added_min": 2855,
+     "added_max": 2855,
+     "added_share_of_own_window": 0.002855,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "M-docs-idle": {
+     "n_skills": 0,
+     "n_model_visible": 0,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 19346,
+      "min": 19346,
+      "max": 19346,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 3746,
+      "min": 3746,
+      "max": 3746,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 150,
+     "added_min": 150,
+     "added_max": 150,
+     "added_share_of_own_window": 0.00015,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "M-docs-used": {
+     "n_skills": 0,
+     "n_model_visible": 0,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 19365,
+      "min": 19365,
+      "max": 19365,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 3765,
+      "min": 3765,
+      "max": 3765,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 16,
+      "min": 16,
+      "max": 16,
+      "n": 1
+     },
+     "added": 169,
+     "added_min": 169,
+     "added_max": 169,
+     "added_share_of_own_window": 0.000169,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "M-skill-idle": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 19265,
+      "min": 19265,
+      "max": 19265,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 3665,
+      "min": 3665,
+      "max": 3665,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 69,
+     "added_min": 69,
+     "added_max": 69,
+     "added_share_of_own_window": 6.9e-05,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "R50": {
+     "n_skills": 50,
+     "n_model_visible": 48,
+     "manual_only_skills_in_set": [
+      "handoff",
+      "wayfinder"
+     ],
+     "runs": 1,
+     "window_total": {
+      "median": 26380,
+      "min": 26380,
+      "max": 26380,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 10780,
+      "min": 10780,
+      "max": 10780,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 7184,
+     "added_min": 7184,
+     "added_max": 7184,
+     "added_share_of_own_window": 0.007184,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "S10-B600": {
+     "n_skills": 10,
+     "n_model_visible": 10,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 21105,
+      "min": 21105,
+      "max": 21105,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 5505,
+      "min": 5505,
+      "max": 5505,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 1909,
+     "added_min": 1909,
+     "added_max": 1909,
+     "added_share_of_own_window": 0.001909,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "S10-L100": {
+     "n_skills": 10,
+     "n_model_visible": 10,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 19659,
+      "min": 19659,
+      "max": 19659,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 4059,
+      "min": 4059,
+      "max": 4059,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 463,
+     "added_min": 463,
+     "added_max": 463,
+     "added_share_of_own_window": 0.000463,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "S10-L1000": {
+     "n_skills": 10,
+     "n_model_visible": 10,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 22272,
+      "min": 22272,
+      "max": 22272,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 6672,
+      "min": 6672,
+      "max": 6672,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 3076,
+     "added_min": 3076,
+     "added_max": 3076,
+     "added_share_of_own_window": 0.003076,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "S10-L1500": {
+     "n_skills": 10,
+     "n_model_visible": 10,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 23731,
+      "min": 23731,
+      "max": 23731,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 8131,
+      "min": 8131,
+      "max": 8131,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 4535,
+     "added_min": 4535,
+     "added_max": 4535,
+     "added_share_of_own_window": 0.004535,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "S10-L300": {
+     "n_skills": 10,
+     "n_model_visible": 10,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 20231,
+      "min": 20231,
+      "max": 20231,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 4631,
+      "min": 4631,
+      "max": 4631,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 1035,
+     "added_min": 1035,
+     "added_max": 1035,
+     "added_share_of_own_window": 0.001035,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "S10-L600": {
+     "n_skills": 10,
+     "n_model_visible": 10,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 21105,
+      "min": 21105,
+      "max": 21105,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 5505,
+      "min": 5505,
+      "max": 5505,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 1909,
+     "added_min": 1909,
+     "added_max": 1909,
+     "added_share_of_own_window": 0.001909,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "T1": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 19286,
+      "min": 19286,
+      "max": 19286,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 19284,
+      "min": 19284,
+      "max": 19284,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 90,
+     "added_min": 90,
+     "added_max": 90,
+     "added_share_of_own_window": 9e-05,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "T2": {
+     "n_skills": 1,
+     "n_model_visible": 0,
+     "manual_only_skills_in_set": [
+      "grill-me"
+     ],
+     "runs": 1,
+     "window_total": {
+      "median": 19196,
+      "min": 19196,
+      "max": 19196,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 19194,
+      "min": 19194,
+      "max": 19194,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 0,
+     "added_min": 0,
+     "added_max": 0,
+     "added_share_of_own_window": 0.0,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "T3": {
+     "n_skills": 1,
+     "n_model_visible": 0,
+     "manual_only_skills_in_set": [
+      "grill-with-docs"
+     ],
+     "runs": 1,
+     "window_total": {
+      "median": 19196,
+      "min": 19196,
+      "max": 19196,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 19194,
+      "min": 19194,
+      "max": 19194,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 0,
+     "added_min": 0,
+     "added_max": 0,
+     "added_share_of_own_window": 0.0,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "T4": {
+     "n_skills": 1,
+     "n_model_visible": 0,
+     "manual_only_skills_in_set": [
+      "improve-codebase-architecture"
+     ],
+     "runs": 1,
+     "window_total": {
+      "median": 19196,
+      "min": 19196,
+      "max": 19196,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 19194,
+      "min": 19194,
+      "max": 19194,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 0,
+     "added_min": 0,
+     "added_max": 0,
+     "added_share_of_own_window": 0.0,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "T5": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 19521,
+      "min": 19521,
+      "max": 19521,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 3921,
+      "min": 3921,
+      "max": 3921,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 325,
+     "added_min": 325,
+     "added_max": 325,
+     "added_share_of_own_window": 0.000325,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "X1-split-read": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 24766,
+      "min": 24766,
+      "max": 24766,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 9166,
+      "min": 9166,
+      "max": 9166,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 15598,
+      "min": 15598,
+      "max": 15598,
+      "n": 1
+     },
+     "output": {
+      "median": 16,
+      "min": 16,
+      "max": 16,
+      "n": 1
+     },
+     "added": 5570,
+     "added_min": 5570,
+     "added_max": 5570,
+     "added_share_of_own_window": 0.00557,
+     "result_subtypes": [
+      "success"
+     ]
+    }
+   },
+   "typical_popular_skill_tokens": {
+    "value": 176.75,
+    "min": 176.75,
+    "max": 176.75,
+    "definition": "(added C50 - added C10) / 40, tokens per skill, this model"
+   },
+   "typical_model_visible_skill_tokens": {
+    "value": 181.28205128205127,
+    "definition": "(added C50 - added C10) / (skills offered to the model in C50 minus C10)"
+   }
+  },
+  "claude-haiku-4-5-20251001": {
+   "window_tokens": 200000,
+   "C0_window_total": {
+    "median": 23792,
+    "min": 23792,
+    "max": 23792,
+    "n": 1
+   },
+   "configs": {
+    "C0": {
+     "n_skills": 0,
+     "n_model_visible": 0,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 23792,
+      "min": 23792,
+      "max": 23792,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 3145,
+      "min": 3145,
+      "max": 3145,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 20637,
+      "min": 20637,
+      "max": 20637,
+      "n": 1
+     },
+     "output": {
+      "median": 1,
+      "min": 1,
+      "max": 1,
+      "n": 1
+     },
+     "added": 0,
+     "added_min": 0,
+     "added_max": 0,
+     "added_share_of_own_window": 0.0,
+     "result_subtypes": [
+      "success"
+     ]
+    },
+    "C1": {
+     "n_skills": 1,
+     "n_model_visible": 1,
+     "manual_only_skills_in_set": [],
+     "runs": 1,
+     "window_total": {
+      "median": 23862,
+      "min": 23862,
+      "max": 23862,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 3215,
+      "min": 3215,
+      "max": 3215,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 20637,
+      "min": 20637,
+      "max": 20637,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 70,
+     "added_min": 70,
+     "added_max": 70,
+     "added_share_of_own_window": 0.00035,
+     "result_subtypes": [
+      "success"
+     ],
+     "marginal_per_skill_since_previous_N": 70.0
+    },
+    "C10": {
+     "n_skills": 10,
+     "n_model_visible": 7,
+     "manual_only_skills_in_set": [
+      "grill-me",
+      "grill-with-docs",
+      "improve-codebase-architecture"
+     ],
+     "runs": 1,
+     "window_total": {
+      "median": 24197,
+      "min": 24197,
+      "max": 24197,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 7627,
+      "min": 7627,
+      "max": 7627,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 16560,
+      "min": 16560,
+      "max": 16560,
+      "n": 1
+     },
+     "output": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "n": 1
+     },
+     "added": 405,
+     "added_min": 405,
+     "added_max": 405,
+     "added_share_of_own_window": 0.002025,
+     "result_subtypes": [
+      "success"
+     ],
+     "marginal_per_skill_since_previous_N": 37.22222222222222
+    },
+    "C100": {
+     "n_skills": 100,
+     "n_model_visible": 96,
+     "manual_only_skills_in_set": [
+      "grill-me",
+      "grill-with-docs",
+      "improve-codebase-architecture",
+      "review-animations"
+     ],
+     "runs": 1,
+     "window_total": {
+      "median": 24408,
+      "min": 24408,
+      "max": 24408,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 3761,
+      "min": 3761,
+      "max": 3761,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 20637,
+      "min": 20637,
+      "max": 20637,
+      "n": 1
+     },
+     "output": {
+      "median": 3,
+      "min": 3,
+      "max": 3,
+      "n": 1
+     },
+     "added": 616,
+     "added_min": 616,
+     "added_max": 616,
+     "added_share_of_own_window": 0.00308,
+     "result_subtypes": [
+      "success"
+     ],
+     "marginal_per_skill_since_previous_N": 2.56
+    },
+    "C50": {
+     "n_skills": 50,
+     "n_model_visible": 46,
+     "manual_only_skills_in_set": [
+      "grill-me",
+      "grill-with-docs",
+      "improve-codebase-architecture",
+      "review-animations"
+     ],
+     "runs": 1,
+     "window_total": {
+      "median": 24280,
+      "min": 24280,
+      "max": 24280,
+      "n": 1
+     },
+     "cache_creation": {
+      "median": 3633,
+      "min": 3633,
+      "max": 3633,
+      "n": 1
+     },
+     "cache_read": {
+      "median": 20637,
+      "min": 20637,
+      "max": 20637,
+      "n": 1
+     },
+     "output": {
+      "median": 1,
+      "min": 1,
+      "max": 1,
+      "n": 1
+     },
+     "added": 488,
+     "added_min": 488,
+     "added_max": 488,
+     "added_share_of_own_window": 0.00244,
+     "result_subtypes": [
+      "success"
+     ],
+     "marginal_per_skill_since_previous_N": 2.075,
+     "cap_suspected": true
+    }
+   },
+   "typical_popular_skill_tokens": {
+    "value": 2.075,
+    "min": 2.075,
+    "max": 2.075,
+    "definition": "(added C50 - added C10) / 40, tokens per skill, this model"
+   },
+   "typical_model_visible_skill_tokens": {
+    "value": 2.128205128205128,
+    "definition": "(added C50 - added C10) / (skills offered to the model in C50 minus C10)"
+   }
+  }
+ },
+ "comparisons": {
+  "sweep_points_chars_vs_added": [
+   [
+    99.8,
+    463
+   ],
+   [
+    299.7,
+    1035
+   ],
+   [
+    600.0,
+    1909
+   ],
+   [
+    999.5,
+    3076
+   ],
+   [
+    1499.7,
+    4535
+   ]
+  ],
+  "fit": {
+   "tokens_per_listing_char": 0.2911536632275275,
+   "r2": 0.999992902847101,
+   "sweep_n": 10,
+   "per_skill_constant_tokens": 17.112885203169405,
+   "fixed_overhead_tokens": -4.84749509999523
+  },
+  "fit_validation": [
+   {
+    "config": "C10",
+    "measured": 1167,
+    "estimated": 1212.97877623466,
+    "error_pct": 3.9399122737497874
+   },
+   {
+    "config": "C50",
+    "measured": 8237,
+    "estimated": 7275.975805163552,
+    "error_pct": -11.66716273930373
+   },
+   {
+    "config": "C100",
+    "measured": 8630,
+    "estimated": 14646.474433701178,
+    "error_pct": 69.71581035574945
+   },
+   {
+    "config": "R50",
+    "measured": 7184,
+    "estimated": 6043.231195058201,
+    "error_pct": -15.87929850976892
+   },
+   {
+    "config": "T1",
+    "skill": "find-skills",
+    "measured_increment_over_F1": 69,
+    "estimated_increment": 79.48495006111501,
+    "error_tokens": 10.484950061115015,
+    "non_ascii_share": 0.0
+   },
+   {
+    "config": "T2",
+    "skill": "grill-me",
+    "measured_increment_over_F1": -21,
+    "estimated_increment": 6.114226927778078,
+    "error_tokens": 27.114226927778077,
+    "non_ascii_share": 0.0
+   },
+   {
+    "config": "T3",
+    "skill": "grill-with-docs",
+    "measured_increment_over_F1": -21,
+    "estimated_increment": 22.12767840529209,
+    "error_tokens": 43.12767840529209,
+    "non_ascii_share": 0.0
+   },
+   {
+    "config": "T4",
+    "skill": "improve-codebase-architecture",
+    "measured_increment_over_F1": -21,
+    "estimated_increment": 27.659598006615113,
+    "error_tokens": 48.65959800661511,
+    "non_ascii_share": 0.0
+   },
+   {
+    "config": "T5",
+    "skill": "agent-browser",
+    "measured_increment_over_F1": 304,
+    "estimated_increment": 260.5825285886371,
+    "error_tokens": -43.4174714113629,
+    "non_ascii_share": 0.0
+   }
+  ],
+  "body_check": {
+   "difference_added_tokens": 0,
+   "range": [
+    0,
+    0
+   ],
+   "meaning": "about 0 = skill bodies are not in the starting context"
+  },
+  "C50-disable": {
+   "added": 0,
+   "C50_added": 8237,
+   "saved": 8237,
+   "saved_share": 1.0,
+   "saved_range": [
+    8237,
+    8237
+   ],
+   "required_caveat": "disable: the skill is no longer offered to the model and can only be started by name; trim: whether the skill still triggers when it should was not measured"
+  },
+  "C50-trim100": {
+   "added": 1956,
+   "C50_added": 8237,
+   "saved": 6281,
+   "saved_share": 0.7625349034842782,
+   "saved_range": [
+    6281,
+    6281
+   ],
+   "required_caveat": "disable: the skill is no longer offered to the model and can only be started by name; trim: whether the skill still triggers when it should was not measured"
+  },
+  "popular50_vs_random50": {
+   "popular_C50_added": 8237,
+   "random_R50_added": 7184,
+   "ratio_random_to_popular": 0.8721621949738982
+  },
+  "second_model_vs_first": {
+   "C1": {
+    "first": 90,
+    "second": 70,
+    "ratio": 0.7777777777777778
+   },
+   "C10": {
+    "first": 1167,
+    "second": 405,
+    "ratio": 0.34704370179948585
+   },
+   "C50": {
+    "first": 8237,
+    "second": 488,
+    "ratio": 0.05924487070535389
+   },
+   "C100": {
+    "first": 8630,
+    "second": 616,
+    "ratio": 0.07137891077636153
+   }
+  }
+ }
+}

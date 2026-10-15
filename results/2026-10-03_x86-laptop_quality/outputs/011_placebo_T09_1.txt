@@ -1,0 +1,168 @@
+```html
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>sift — structural search and rewrite for the command line</title>
+<meta name="description" content="sift finds and rewrites code by syntax tree, not by regex. Open source, single binary.">
+<style>
+  :root {
+    --paper: #f4f0e8; --ink: #1b1a17; --muted: #6b665c; --line: #d9d2c3;
+    --accent: #b8431c; --code-bg: #1b1a17; --code-ink: #ece6d8;
+    --mono: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --paper: #15140f; --ink: #ece6d8; --muted: #9a9384; --line: #2e2b22;
+            --accent: #e8794d; --code-bg: #0d0c09; --code-ink: #ece6d8; }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--paper); color: var(--ink);
+         font: 1.0625rem/1.6 var(--serif); }
+  a { color: inherit; text-decoration-color: var(--accent); text-underline-offset: 3px; }
+  a:hover { color: var(--accent); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .wrap { max-width: 68rem; margin: 0 auto; padding: 0 clamp(1.25rem, 5vw, 3rem); }
+  nav { display: flex; justify-content: space-between; align-items: baseline;
+        padding: 1.5rem 0; font-family: var(--mono); font-size: .875rem; }
+  nav .logo { font-weight: 700; letter-spacing: -.02em; text-decoration: none; }
+  nav .logo span { color: var(--accent); }
+  nav ul { display: flex; gap: 1.75rem; list-style: none; margin: 0; padding: 0; }
+  nav ul a { text-decoration: none; color: var(--muted); }
+  nav ul a:hover { color: var(--ink); }
+  header.hero { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(2rem, 6vw, 5rem);
+                align-items: end; padding: clamp(3rem, 9vw, 7rem) 0 clamp(3rem, 7vw, 5rem);
+                border-bottom: 1px solid var(--line); }
+  h1 { font-size: clamp(2.5rem, 6.4vw, 4.75rem); line-height: 1.02; letter-spacing: -.03em;
+       font-weight: 500; margin: 0 0 1.5rem; text-wrap: balance; }
+  h1 em { font-style: italic; color: var(--accent); }
+  .lede { max-width: 32rem; color: var(--muted); margin: 0; }
+  .install { font-family: var(--mono); font-size: .875rem; }
+  .install .label { display: block; color: var(--muted); margin-bottom: .6rem;
+                    text-transform: uppercase; letter-spacing: .08em; font-size: .72rem; }
+  .cmd { display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+         background: var(--code-bg); color: var(--code-ink); padding: .95rem 1.1rem;
+         border-radius: 4px; margin-bottom: .6rem; }
+  .cmd code::before { content: "$ "; color: var(--accent); }
+  .cmd button { font: inherit; font-size: .75rem; color: var(--code-ink); background: none;
+                border: 1px solid #4a463b; border-radius: 3px; padding: .25rem .6rem; cursor: pointer; }
+  .cmd button:hover { border-color: var(--accent); color: var(--accent); }
+  .install small { color: var(--muted); }
+  section { padding: clamp(3rem, 7vw, 5.5rem) 0; border-bottom: 1px solid var(--line); }
+  section > .wrap { display: grid; grid-template-columns: 12rem 1fr; gap: 2rem; }
+  h2 { font: 700 .78rem/1.4 var(--mono); text-transform: uppercase; letter-spacing: .1em;
+       color: var(--accent); margin: .4rem 0 0; }
+  .demo { background: var(--code-bg); color: var(--code-ink); font: .875rem/1.7 var(--mono);
+          padding: 1.4rem 1.5rem; border-radius: 4px; overflow-x: auto; margin: 0 0 2.5rem; }
+  .demo .d { color: #e8794d; } .demo .a { color: #8fbf7f; } .demo .c { color: #8a8372; }
+  .features { list-style: none; margin: 0; padding: 0; counter-reset: f;
+              display: grid; grid-template-columns: 1fr 1fr; gap: 0 3rem; }
+  .features li { counter-increment: f; padding: 1.25rem 0; border-top: 1px solid var(--line); }
+  .features li::before { content: counter(f, decimal-leading-zero); font: .75rem var(--mono);
+                         color: var(--muted); display: block; margin-bottom: .35rem; }
+  .features h3 { font-size: 1.2rem; font-weight: 600; margin: 0 0 .25rem; letter-spacing: -.01em; }
+  .features p { margin: 0; color: var(--muted); font-size: .98rem; }
+  .log { list-style: none; margin: 0; padding: 0; }
+  .log li { display: grid; grid-template-columns: 9rem 1fr; gap: 1.5rem; padding: 1.25rem 0;
+            border-top: 1px solid var(--line); }
+  .log li:first-child { border-top: 0; padding-top: 0; }
+  .log .v { font: 700 .95rem var(--mono); }
+  .log .v time { display: block; font-weight: 400; font-size: .78rem; color: var(--muted); margin-top: .15rem; }
+  .log ul { margin: 0; padding-left: 1.1rem; }
+  .log li li { display: list-item; padding: 0 0 .3rem; border: 0; }
+  .tag { font: 700 .68rem var(--mono); text-transform: uppercase; letter-spacing: .06em;
+         color: var(--accent); margin-right: .4rem; }
+  footer { padding: 2.5rem 0 4rem; font: .8rem var(--mono); color: var(--muted);
+           display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  @media (max-width: 52rem) {
+    header.hero, section > .wrap, .features { grid-template-columns: 1fr; }
+    .log li { grid-template-columns: 1fr; gap: .5rem; }
+    nav ul { gap: 1rem; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .cmd button, a { transition: color .15s, border-color .15s; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav aria-label="Primary">
+    <a class="logo" href="#top">sift<span>/</span></a>
+    <ul><li><a href="#features">Features</a></li><li><a href="#changelog">Changelog</a></li>
+        <li><a href="https://github.com/example/sift">Source</a></li></ul>
+  </nav>
+
+  <header class="hero" id="top">
+    <div>
+      <h1>Search code by what it <em>means</em>, not how it's spelled.</h1>
+      <p class="lede">sift matches and rewrites code using the syntax tree. One static binary, no daemon, no config. Refactors that used to take a regex and a prayer take one line.</p>
+    </div>
+    <div class="install">
+      <span class="label">Install</span>
+      <div class="cmd"><code id="cmd">curl -fsSL https://sift.dev/install.sh | sh</code>
+        <button type="button" id="copy" aria-label="Copy install command">copy</button></div>
+      <small>or <code>brew install sift</code> · <code>cargo install sift-cli</code> · MIT licensed</small>
+    </div>
+  </header>
+</div>
+
+<section id="what"><div class="wrap">
+  <h2>What it does</h2>
+  <div>
+    <pre class="demo"><span class="c"># replace every console.log(x) with logger.debug(x), only in call position</span>
+$ sift rewrite <span class="a">'console.log($A)'</span> <span class="a">'logger.debug($A)'</span> src/
+<span class="d">- </span>console.log(user, "signed in")
+<span class="a">+ </span>logger.debug(user, "signed in")
+<span class="c">14 matches in 6 files · strings and comments untouched · 38ms</span></pre>
+    <p class="lede">Write a pattern as ordinary code with <code>$VARS</code> as holes. sift parses both sides, matches on structure, and previews every change as a diff before touching a file.</p>
+  </div>
+</div></section>
+
+<section id="features"><div class="wrap">
+  <h2>Features</h2>
+  <ol class="features">
+    <li><h3>Structural patterns</h3><p>Match calls, imports, and blocks regardless of whitespace, line breaks, or argument names.</p></li>
+    <li><h3>Diff-first rewrites</h3><p>Nothing is written until you pass <code>--apply</code>. Review, then commit or discard.</p></li>
+    <li><h3>Thirty languages</h3><p>Grammars are bundled. Mixed repositories work in a single pass.</p></li>
+    <li><h3>Fast on large trees</h3><p>Parallel parsing respects <code>.gitignore</code>. A million-line monorepo scans in about a second.</p></li>
+    <li><h3>Rules as files</h3><p>Save patterns to <code>sift.yml</code> and run them in CI to keep deprecated APIs out.</p></li>
+    <li><h3>Editor friendly</h3><p>Emits JSON or SARIF, so results show up inline in your editor and code review.</p></li>
+  </ol>
+</div></section>
+
+<section id="changelog"><div class="wrap">
+  <h2>Changelog</h2>
+  <ol class="log">
+    <li><div class="v">v0.9.0<time datetime="2026-09-18">18 Sep 2026</time></div>
+      <ul><li><span class="tag">new</span>Rule files with <code>sift.yml</code> and <code>sift check</code>.</li>
+          <li><span class="tag">new</span>SARIF output for code scanning.</li>
+          <li><span class="tag">fix</span>Overlapping matches no longer corrupt rewrites.</li></ul></li>
+    <li><div class="v">v0.8.2<time datetime="2026-08-02">2 Aug 2026</time></div>
+      <ul><li><span class="tag">fix</span>Windows paths with spaces are quoted in diffs.</li>
+          <li><span class="tag">perf</span>Startup time cut from 40ms to 9ms.</li></ul></li>
+    <li><div class="v">v0.8.0<time datetime="2026-06-21">21 Jun 2026</time></div>
+      <ul><li><span class="tag">new</span>Kotlin, Zig, and Elixir grammars.</li>
+          <li><span class="tag">new</span><code>--interactive</code> mode to accept changes hunk by hunk.</li></ul></li>
+  </ol>
+</div></section>
+
+<div class="wrap"><footer>
+  <span>sift is free software under the MIT license.</span>
+  <span><a href="https://github.com/example/sift">GitHub</a> · <a href="#changelog">Releases</a> · <a href="#top">Top</a></span>
+</footer></div>
+
+<script>
+  const btn = document.getElementById('copy');
+  btn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(document.getElementById('cmd').textContent);
+      btn.textContent = 'copied';
+    } catch { btn.textContent = 'press ctrl+c'; }
+    setTimeout(() => (btn.textContent = 'copy'), 1800);
+  });
+</script>
+</body>
+</html>
+```

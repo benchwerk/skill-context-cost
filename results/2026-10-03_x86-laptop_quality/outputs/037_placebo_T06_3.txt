@@ -1,0 +1,193 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fig & Ember — Neighbourhood kitchen on Alder Street</title>
+<style>
+  :root {
+    --paper: #f4ede1; --ink: #231a14; --muted: #6d5f52; --ember: #b5441f;
+    --moss: #2f3d2c; --line: #d8ccb8;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: "Avenir Next", "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font: 17px/1.6 var(--sans); }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; }
+  .wrap { width: min(1080px, 100% - 3rem); margin-inline: auto; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.05; letter-spacing: -0.01em; }
+  .eyebrow { font-size: .75rem; letter-spacing: .18em; text-transform: uppercase; color: var(--ember); font-weight: 600; }
+
+  header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; }
+  .logo { font-family: var(--serif); font-size: 1.4rem; text-decoration: none; }
+  .logo i { color: var(--ember); }
+  nav a { margin-left: 1.75rem; font-size: .9rem; text-decoration: none; color: var(--muted); }
+  nav a:hover { color: var(--ember); }
+
+  .hero { display: grid; grid-template-columns: 1.15fr .85fr; gap: 3rem; align-items: end; padding: 4rem 0 5rem; }
+  .hero h1 { font-size: clamp(3rem, 7vw, 5.6rem); margin: 1rem 0 1.5rem; }
+  .hero h1 em { color: var(--ember); }
+  .hero p { max-width: 34ch; color: var(--muted); font-size: 1.1rem; }
+  .btn { display: inline-block; margin-top: 2rem; padding: .95rem 1.7rem; background: var(--ember); color: #fff8ee; border: 0;
+         border-radius: 2px; font: 600 .95rem var(--sans); text-decoration: none; cursor: pointer; transition: transform .2s, background .2s; }
+  .btn:hover { background: #8f3314; transform: translateY(-2px); }
+  .plate { aspect-ratio: 4/5; border-radius: 200px 200px 4px 4px; background:
+      radial-gradient(circle at 50% 42%, #e9c27a 0 14%, transparent 15%),
+      radial-gradient(circle at 50% 42%, #f4ede1 0 30%, transparent 31%),
+      radial-gradient(circle at 50% 42%, #c9b99f 0 33%, transparent 34%),
+      linear-gradient(160deg, var(--moss), #1b261a); position: relative; }
+  .plate span { position: absolute; bottom: 1.2rem; left: 1.2rem; right: 1.2rem; color: #d9cfb9; font-size: .8rem; letter-spacing: .08em; }
+
+  section { padding: 5rem 0; border-top: 1px solid var(--line); }
+  section > .wrap > h2 { font-size: clamp(2rem, 4vw, 3rem); margin: .6rem 0 2.5rem; }
+
+  .menu { display: grid; grid-template-columns: 1fr 1fr; gap: 0 4rem; }
+  .menu h3 { font-size: 1.3rem; font-style: italic; color: var(--ember); margin: 1.5rem 0 .5rem; }
+  .dish { display: flex; align-items: baseline; gap: .6rem; padding: .7rem 0; }
+  .dish b { font-weight: 600; }
+  .dish::after { content: ""; order: 1; flex: 1; border-bottom: 1px dotted var(--muted); }
+  .dish span { order: 2; font-variant-numeric: tabular-nums; }
+  .dish small { display: block; color: var(--muted); font-size: .85rem; }
+  .dish div { order: 0; }
+
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .hours { width: 100%; border-collapse: collapse; }
+  .hours td { padding: .8rem 0; border-bottom: 1px solid var(--line); }
+  .hours td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+  .hours tr.today { color: var(--ember); font-weight: 600; }
+  .note { margin-top: 1rem; color: var(--muted); font-size: .9rem; }
+
+  .chef { background: var(--moss); color: #eee4d0; border: 0; }
+  .chef .eyebrow { color: #e9b07a; }
+  .chef .split { align-items: center; }
+  .chef blockquote { font: italic 1.6rem/1.35 var(--serif); }
+  .chef p { margin-top: 1.2rem; color: #c9c1ac; }
+  .chef .sig { margin-top: 1.5rem; font-family: var(--serif); color: #e9b07a; }
+
+  form { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  label { display: grid; gap: .4rem; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  input, select, textarea { padding: .8rem .9rem; border: 1px solid var(--line); background: #fbf7ef; border-radius: 2px;
+                            font: 1rem var(--sans); color: var(--ink); }
+  .full { grid-column: 1 / -1; }
+  #msg { min-height: 1.6rem; font-family: var(--serif); font-size: 1.2rem; color: var(--ember); }
+  form .btn { justify-self: start; margin-top: 0; }
+
+  footer { padding: 2.5rem 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+
+  @media (max-width: 760px) {
+    .hero, .menu, .split, form { grid-template-columns: 1fr; gap: 2rem; }
+    .plate { aspect-ratio: 16/10; border-radius: 120px 120px 4px 4px; }
+    nav a:not(.keep) { display: none; }
+    section { padding: 3.5rem 0; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="logo" href="#">Fig <i>&amp;</i> Ember</a>
+    <nav><a href="#menu">Menu</a><a href="#hours">Hours</a><a href="#chef">The chef</a><a class="keep" href="#book">Reserve</a></nav>
+  </header>
+  <div class="hero">
+    <div>
+      <span class="eyebrow">Wood-fired cooking · 14 Alder Street</span>
+      <h1>Supper, <em>slowly</em>, with the neighbours.</h1>
+      <p>Thirty-two seats, one open fire, and a menu that follows whatever the market grower drops off on Thursday.</p>
+      <a class="btn" href="#book">Reserve a table</a>
+    </div>
+    <div class="plate" role="img" aria-label="Illustrated plate on a dark green table"><span>CHARRED FIG · WHIPPED RICOTTA · THYME HONEY</span></div>
+  </div>
+</div>
+
+<section id="menu"><div class="wrap">
+  <span class="eyebrow">Tonight's menu</span>
+  <h2>Small plates, big appetites.</h2>
+  <div class="menu">
+    <div>
+      <h3>To begin</h3>
+      <div class="dish"><div><b>Charred figs</b><small>whipped ricotta, thyme honey</small></div><span>9</span></div>
+      <div class="dish"><div><b>Embered leeks</b><small>hazelnut romesco, chive oil</small></div><span>8</span></div>
+      <div class="dish"><div><b>House sourdough</b><small>cultured butter, smoked salt</small></div><span>5</span></div>
+      <h3>From the fire</h3>
+      <div class="dish"><div><b>Half chicken</b><small>brined 24 hours, salsa verde</small></div><span>24</span></div>
+      <div class="dish"><div><b>Hanger steak</b><small>bone marrow, pickled shallot</small></div><span>29</span></div>
+    </div>
+    <div>
+      <h3>Pasta &amp; grain</h3>
+      <div class="dish"><div><b>Hand-cut pappardelle</b><small>slow lamb ragù, pecorino</small></div><span>19</span></div>
+      <div class="dish"><div><b>Roasted squash risotto</b><small>sage, brown butter, amaretti</small></div><span>17</span></div>
+      <h3>To finish</h3>
+      <div class="dish"><div><b>Burnt honey tart</b><small>crème fraîche</small></div><span>9</span></div>
+      <div class="dish"><div><b>Olive oil cake</b><small>blood orange, pistachio</small></div><span>8</span></div>
+      <p class="note">Vegetarian, vegan and gluten-free options marked on request. Please tell us about allergies when you book.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="hours"><div class="wrap split">
+  <div>
+    <span class="eyebrow">Come by</span>
+    <h2 style="margin:.6rem 0 1rem;font-size:clamp(2rem,4vw,3rem)">Opening hours</h2>
+    <p class="note" style="margin:0">Walk-ins welcome at the counter. The kitchen closes thirty minutes before we do.</p>
+  </div>
+  <div>
+    <table class="hours" aria-label="Opening hours">
+      <tr data-d="1"><td>Monday</td><td>Closed</td></tr>
+      <tr data-d="2"><td>Tuesday</td><td>5 – 10 pm</td></tr>
+      <tr data-d="3"><td>Wednesday</td><td>5 – 10 pm</td></tr>
+      <tr data-d="4"><td>Thursday</td><td>5 – 10 pm</td></tr>
+      <tr data-d="5"><td>Friday</td><td>5 – 11 pm</td></tr>
+      <tr data-d="6"><td>Saturday</td><td>11 am – 11 pm</td></tr>
+      <tr data-d="0"><td>Sunday</td><td>11 am – 8 pm</td></tr>
+    </table>
+  </div>
+</div></section>
+
+<section id="chef" class="chef"><div class="wrap split">
+  <blockquote>“I learned to cook at my grandmother's stove. I learned to listen at a fire. This room is both.”</blockquote>
+  <div>
+    <span class="eyebrow">Meet the chef</span>
+    <h2 style="margin:.6rem 0 0;font-size:2.4rem">Marisol Okafor</h2>
+    <p>Marisol grew up three streets from the restaurant, trained in Lisbon and Copenhagen, and came home in 2019 to open a place where regulars know the staff by name. She buys from four farms within forty miles and builds each week's menu around whatever is best.</p>
+    <p class="sig">— Chef &amp; owner</p>
+  </div>
+</div></section>
+
+<section id="book"><div class="wrap">
+  <span class="eyebrow">Reservations</span>
+  <h2>Save us a seat.</h2>
+  <form id="f">
+    <label>Name<input name="name" required autocomplete="name"></label>
+    <label>Email<input name="email" type="email" required autocomplete="email"></label>
+    <label>Date<input name="date" type="date" required></label>
+    <label>Time<select name="time"><option>5:30 pm</option><option>6:30 pm</option><option selected>7:30 pm</option><option>8:30 pm</option></select></label>
+    <label>Guests<select name="guests"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></label>
+    <label>Allergies or occasion<input name="note" placeholder="Optional"></label>
+    <button class="btn" type="submit">Request table</button>
+    <p id="msg" class="full" role="status" aria-live="polite"></p>
+  </form>
+</div></section>
+
+<div class="wrap"><footer><span>14 Alder Street · (555) 014-2290</span><span>© Fig &amp; Ember</span></footer></div>
+
+<script>
+  const today = new Date();
+  document.querySelector(`.hours tr[data-d="${today.getDay()}"]`).classList.add("today");
+  const f = document.getElementById("f");
+  f.date.min = today.toISOString().split("T")[0];
+  f.addEventListener("submit", e => {
+    e.preventDefault();
+    const d = new Date(f.date.value + "T12:00");
+    if (d.getDay() === 1) { msg.textContent = "We're closed on Mondays — please pick another evening."; return; }
+    const day = d.toLocaleDateString("en", { weekday: "long", month: "long", day: "numeric" });
+    msg.textContent = `Thank you, ${f.name.value.split(" ")[0]}. We'll hold a table for ${f.guests.value} on ${day} at ${f.time.value}.`;
+    f.reset(); f.guests.value = 2;
+  });
+</script>
+</body>
+</html>
+```

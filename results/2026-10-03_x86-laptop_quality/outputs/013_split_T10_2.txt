@@ -1,0 +1,117 @@
+```html
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Grain 27 — A two-day design conference, Lisbon</title>
+<!-- Design read: event landing for working designers, editorial/print language, native CSS, restrained motion. -->
+<style>
+:root{--paper:#f1ede4;--ink:#16140f;--mute:#6b665a;--line:#16140f26;--hot:#e0401c;--serif:"Iowan Old Style","Palatino Linotype",Georgia,serif;--sans:"Avenir Next","Segoe UI",system-ui,sans-serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font:16px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,56px)}
+nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0;font-size:14px;letter-spacing:.04em;text-transform:uppercase}
+nav div{display:flex;gap:28px}
+nav a{text-decoration:none}nav a:hover{color:var(--hot)}
+.logo{font:700 20px var(--serif);text-transform:none;letter-spacing:0}
+.hero{min-height:calc(100dvh - 70px);display:grid;grid-template-columns:repeat(12,1fr);align-content:center;gap:24px;padding:40px 0 64px}
+.hero h1{grid-column:1/-1;font:400 clamp(72px,17vw,248px)/.82 var(--serif);letter-spacing:-.05em}
+.hero h1 em{color:var(--hot);font-style:italic}
+.hero .meta{grid-column:1/6;font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--mute);align-self:end}
+.hero .lede{grid-column:7/-1;font:400 clamp(20px,2.2vw,28px)/1.35 var(--serif);margin-top:24px}
+.btn{display:inline-block;margin-top:28px;padding:14px 26px;border:1.5px solid var(--ink);border-radius:999px;text-decoration:none;font-weight:600;transition:background .25s,color .25s,transform .25s}
+.btn:hover,.btn.solid{background:var(--ink);color:var(--paper)}
+.btn.solid:hover{background:var(--hot);border-color:var(--hot)}
+.btn:active{transform:scale(.97)}
+.ticker{background:var(--ink);color:var(--paper);overflow:hidden;white-space:nowrap;padding:14px 0;font:italic 22px var(--serif)}
+.ticker span{display:inline-block;padding-left:100%;animation:run 38s linear infinite}
+@keyframes run{to{transform:translateX(-100%)}}
+section{padding:clamp(64px,10vw,140px) 0;border-bottom:1px solid var(--line)}
+.head{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;margin-bottom:48px}
+.head small{grid-column:1/4;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--hot);padding-top:12px}
+.head h2{grid-column:4/-1;font:400 clamp(40px,6vw,84px)/.95 var(--serif);letter-spacing:-.03em}
+.speakers{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.sp{grid-column:span 4;border-top:1.5px solid var(--ink);padding-top:14px}
+.sp:nth-child(2){margin-top:56px}.sp:nth-child(3){margin-top:112px}.sp:nth-child(5){margin-top:56px}
+.sp .ph{aspect-ratio:4/5;margin-bottom:14px;display:grid;place-items:end start;padding:14px;font:italic 64px var(--serif);color:var(--paper);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.sp:hover .ph{transform:translateY(-6px) rotate(-.8deg)}
+.sp h3{font:400 28px/1.1 var(--serif)}.sp p{color:var(--mute);font-size:15px}
+.tabs{display:flex;gap:8px;margin-bottom:24px}
+.tabs button{font:inherit;font-weight:600;padding:10px 22px;border-radius:999px;border:1.5px solid var(--ink);background:none;cursor:pointer;color:var(--ink)}
+.tabs button[aria-selected=true]{background:var(--ink);color:var(--paper)}
+.row{display:grid;grid-template-columns:120px 1fr auto;gap:24px;padding:22px 0;border-top:1px solid var(--line);align-items:baseline}
+.row time{font-variant-numeric:tabular-nums;color:var(--hot);font-weight:600}
+.row b{font:400 26px/1.15 var(--serif);display:block}
+.row span{color:var(--mute);font-size:14px}
+.row i{font-size:12px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);padding:4px 10px;border-radius:99px;font-style:normal}
+.venue{display:grid;grid-template-columns:7fr 5fr;gap:48px;align-items:start}
+.venue .map{min-height:380px;background:repeating-linear-gradient(135deg,var(--line) 0 1px,transparent 1px 14px),#e6e0d2;display:grid;place-items:center;font:italic 32px var(--serif);text-align:center;padding:24px}
+.venue dl{display:grid;gap:18px}.venue dt{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.venue dd{font:400 22px/1.3 var(--serif)}
+.tix{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tk{border:1.5px solid var(--ink);padding:32px;display:flex;flex-direction:column;gap:14px;transition:transform .3s}
+.tk:hover{transform:translateY(-6px)}
+.tk.pick{background:var(--ink);color:var(--paper)}
+.tk h3{font:400 30px var(--serif)}.tk .p{font:400 64px/1 var(--serif);letter-spacing:-.03em}
+.tk ul{list-style:none;padding:0;display:grid;gap:8px;font-size:15px;flex:1}
+.tk li{padding-bottom:8px;border-bottom:1px solid var(--line)}
+.tk .btn{margin:0;text-align:center}.tk.pick .btn{background:var(--hot);border-color:var(--hot);color:#fff}
+footer{padding:48px 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;color:var(--mute);font-size:14px}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1)}.rv.in{opacity:1;transform:none}
+:focus-visible{outline:3px solid var(--hot);outline-offset:3px}
+@media(max-width:820px){.hero .meta,.hero .lede,.head small,.head h2{grid-column:1/-1}.sp{grid-column:1/-1;margin-top:0!important}.venue,.tix{grid-template-columns:1fr}.row{grid-template-columns:70px 1fr}.row i{display:none}nav div a:nth-child(n+3){display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header class="wrap"><nav><a class="logo" href="#">Grain / 27</a><div><a href="#speakers">Speakers</a><a href="#schedule">Schedule</a><a href="#venue">Venue</a><a href="#tickets">Tickets</a></div></nav></header>
+<main>
+<div class="wrap hero">
+  <h1>Grain<em>27</em></h1>
+  <p class="meta">Two days of craft, critique<br>and unfinished ideas<br>18–19 March 2027 · Lisbon</p>
+  <div class="lede">A small conference for people who make interfaces, identities and objects by hand. Eight talks, four workshops, no panels.<br><a class="btn solid" href="#tickets">Get a ticket</a> <a class="btn" href="#schedule">Read the programme</a></div>
+</div>
+<div class="ticker" aria-hidden="true"><span>Type that breathes — Interfaces without chrome — Critique as a practice — Slow software — Print is not dead — Systems with a point of view — Type that breathes — Interfaces without chrome —</span></div>
+
+<section id="speakers"><div class="wrap">
+  <div class="head rv"><small>01 — Speakers</small><h2>Eight people worth a flight.</h2></div>
+  <div class="speakers" id="sp"></div>
+</div></section>
+
+<section id="schedule"><div class="wrap">
+  <div class="head rv"><small>02 — Schedule</small><h2>Two days, one room, no parallel tracks.</h2></div>
+  <div class="tabs" role="tablist"><button role="tab" aria-selected="true" data-d="0">Thu 18 March</button><button role="tab" aria-selected="false" data-d="1">Fri 19 March</button></div>
+  <div id="sched" aria-live="polite"></div>
+</div></section>
+
+<section id="venue"><div class="wrap">
+  <div class="head rv"><small>03 — Venue</small><h2>A converted printworks by the river.</h2></div>
+  <div class="venue rv"><div class="map">Armazém Tipográfico<br>Rua do Alecrim 41, Lisboa</div>
+    <dl><div><dt>Address</dt><dd>Rua do Alecrim 41, 1200-014 Lisbon</dd></div><div><dt>Getting there</dt><dd>8 min walk from Cais do Sodré station. Step-free entrance on the east side.</dd></div><div><dt>Doors</dt><dd>08:30 both days. Lunch and coffee included.</dd></div><div><dt>Capacity</dt><dd>420 seats, deliberately.</dd></div></dl></div>
+</div></section>
+
+<section id="tickets"><div class="wrap">
+  <div class="head rv"><small>04 — Tickets</small><h2>Pick your seat.</h2></div>
+  <div class="tix" id="tix"></div>
+</div></section>
+</main>
+<footer class="wrap"><span>Grain Conference · hello@grain27.example</span><span>Code of conduct · Accessibility · Refunds until 18 Feb</span></footer>
+<script>
+const SP=[["Marta Oyelaran","Type director, Foundry Nine","#e0401c"],["Jun Takeda","Product designer, ex-Arc","#16140f"],["Ines Valcárcel","Editorial designer","#2f5d50"],["Tomasz Wrona","Motion & systems","#b8860b"],["Aisha Rahimi","Researcher, civic design","#3b4a6b"],["Leo Marchetti","Industrial designer","#8a3b2a"]];
+document.getElementById("sp").innerHTML=SP.map(([n,r,c])=>`<article class="sp rv"><div class="ph" style="background:${c}">${n[0]}</div><h3>${n}</h3><p>${r}</p></article>`).join("");
+const DAYS=[[["09:30","Opening: the case for friction","Marta Oyelaran","Talk"],["10:30","Designing for the second visit","Jun Takeda","Talk"],["12:00","Lunch on the terrace","","Break"],["13:30","Letterpress for screen people","Ines Valcárcel","Workshop"],["16:00","Critique live: your work, on stage","Panel-free, open sign-up","Session"]],
+[["09:30","Motion as grammar","Tomasz Wrona","Talk"],["11:00","What public services taught me about craft","Aisha Rahimi","Talk"],["12:30","Lunch on the terrace","","Break"],["14:00","Making the object, then the interface","Leo Marchetti","Talk"],["16:30","Closing: what we will stop doing","All speakers","Session"]]];
+const sched=document.getElementById("sched"),tabs=document.querySelectorAll(".tabs button");
+function show(d){sched.innerHTML=DAYS[d].map(([t,a,b,k])=>`<div class="row"><time>${t}</time><div><b>${a}</b><span>${b}</span></div><i>${k}</i></div>`).join("");tabs.forEach(x=>x.setAttribute("aria-selected",x.dataset.d==d))}
+tabs.forEach(b=>b.onclick=()=>show(+b.dataset.d));show(0);
+const T=[["Day pass","€180",["One day, your choice","Lunch and coffee","Recorded talks, 30 days"],""],["Full conference","€320",["Both days, all talks","One workshop seat","Friday dinner at the venue","Recorded talks, lifetime"],"pick"],["Student / indie","€95",["Both days","Proof of status at the door","Limited to 60 seats"],""]];
+document.getElementById("tix").innerHTML=T.map(([n,p,l,c])=>`<div class="tk rv ${c}"><h3>${n}</h3><div class="p">${p}</div><ul>${l.map(x=>`<li>${x}</li>`).join("")}</ul><a class="btn" href="#tickets">Choose ${n.toLowerCase()}</a></div>`).join("");
+const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&(x.target.classList.add("in"),io.unobserve(x.target))),{threshold:.15});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
+```

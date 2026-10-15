@@ -1,0 +1,133 @@
+```html
+<!DOCTYPE html>
+<!-- Design read: fintech About page for prospective hires and partners, calm trust-first language with light editorial asymmetry, native CSS + one emerald accent, dials 6/4/3. Numbers and names are sample data. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About Tallymark</title>
+<style>
+:root{--bg:#f6f7f6;--surface:#ffffff;--text:#16191a;--muted:#4a5256;--line:#d9dedc;--accent:#047857;--on-accent:#f6fbf8;--r:10px;--font:"Geist","Helvetica Neue",Arial,system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1211;--surface:#171b1a;--text:#eceeed;--muted:#a3adaa;--line:#2a312f;--accent:#34d399;--on-accent:#062b1d}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+nav{height:64px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+nav b{font-size:1.15rem;letter-spacing:-.03em}
+nav ul{display:flex;gap:28px;list-style:none;padding:0;font-size:.95rem;color:var(--muted)}
+nav a{text-decoration:none}nav a:hover{color:var(--text)}
+.btn{display:inline-flex;align-items:center;white-space:nowrap;padding:12px 22px;border-radius:var(--r);background:var(--accent);color:var(--on-accent);font-weight:600;text-decoration:none;border:1px solid var(--accent);transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:scale(.98)}
+.btn.ghost{background:transparent;color:var(--text);border-color:var(--text)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+h1,h2{letter-spacing:-.04em;line-height:1.05;font-weight:650}
+h1{font-size:clamp(2.4rem,5.2vw,4.4rem)}
+h2{font-size:clamp(1.8rem,3.4vw,2.8rem);margin-bottom:16px}
+.hero{min-height:calc(100dvh - 65px);display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding:48px 0}
+.hero p{color:var(--muted);font-size:1.15rem;max-width:46ch;margin:22px 0 32px}
+.hero img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r);margin-left:auto;display:block}
+section{padding:96px 0}
+.mission{border-top:1px solid var(--line)}
+.mission blockquote{font-size:clamp(1.6rem,3.2vw,2.6rem);letter-spacing:-.03em;line-height:1.2;max-width:24ch;padding-left:12vw}
+.mission p{color:var(--muted);max-width:65ch;margin-top:28px;padding-left:12vw}
+.team{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:40px}
+.person:nth-child(even){margin-top:48px}
+.person img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:var(--r);display:block;margin-bottom:14px}
+.person h3{font-size:1.05rem;letter-spacing:-.01em}
+.person span{color:var(--muted);font-size:.92rem}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,minmax(190px,auto));gap:16px;margin-top:40px}
+.cell{border-radius:var(--r);padding:28px;display:flex;flex-direction:column;justify-content:flex-end;background:var(--surface);border:1px solid var(--line)}
+.cell strong{font-size:clamp(2rem,4vw,3.2rem);letter-spacing:-.04em;line-height:1}
+.cell span{margin-top:8px;color:var(--muted)}
+.cell.a{grid-area:1/1/3/3;background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.cell.a strong{font-size:clamp(3rem,7vw,5.6rem)}.cell.a span{color:inherit}
+.cell.d{grid-area:2/3/3/5;color:#f4f6f5;border:0;background:linear-gradient(to top,rgba(10,14,13,.85),rgba(10,14,13,.2)),url(https://picsum.photos/seed/tallymark-bank-offices/900/400) center/cover}
+.cell.d span{color:#e1e6e4}
+.roles{border-top:1px solid var(--line)}
+.role{display:grid;grid-template-columns:1fr auto auto;gap:24px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)}
+.role:first-of-type{margin-top:32px;border-top:1px solid var(--line)}
+.role h3{font-size:1.15rem;letter-spacing:-.02em}
+.role small{color:var(--muted);font-size:.95rem}
+footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:.9rem}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.btn{transition:none}}
+@media (max-width:767px){
+ nav ul{display:none}
+ .hero{grid-template-columns:1fr;gap:32px;min-height:auto}
+ .hero img{aspect-ratio:4/3}
+ section{padding:64px 0}
+ .mission blockquote,.mission p{padding-left:0}
+ .team{grid-template-columns:1fr 1fr}.person:nth-child(even){margin-top:0}
+ .bento{grid-template-columns:1fr;grid-template-rows:none}
+ .cell.a,.cell.d{grid-area:auto}.cell{min-height:170px}
+ .role{grid-template-columns:1fr;gap:10px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <nav aria-label="Primary">
+  <b>Tallymark</b>
+  <ul><li><a href="#mission">Mission</a></li><li><a href="#team">Leadership</a></li><li><a href="#numbers">Numbers</a></li></ul>
+ </nav>
+ <header class="hero">
+  <div class="reveal">
+   <h1>Money should move at the speed of the message.</h1>
+   <p>Tallymark builds payment and reconciliation infrastructure so finance teams close the books the same day.</p>
+   <a class="btn" href="#roles">See open roles</a>
+  </div>
+  <img class="reveal" src="https://picsum.photos/seed/tallymark-team-workshop/800/1000" width="800" height="1000" alt="Tallymark engineers and finance specialists working together at a long table" fetchpriority="high">
+ </header>
+</div>
+
+<section class="mission" id="mission"><div class="wrap reveal">
+ <blockquote>Every business deserves a ledger it can trust without a spreadsheet.</blockquote>
+ <p>Most finance teams still reconcile by hand because their banks, billing tools and ERPs disagree. We connect them, check every transfer against its invoice, and flag the mismatch before it becomes a write-off.</p>
+</div></section>
+
+<section id="team"><div class="wrap">
+ <h2 class="reveal">Leadership</h2>
+ <div class="team">
+  <article class="person reveal"><img src="https://picsum.photos/seed/amara-okonkwo-portrait/600/800" width="600" height="800" alt="Portrait of Amara Okonkwo-Reyes" loading="lazy"><h3>Amara Okonkwo-Reyes</h3><span>Chief Executive Officer</span></article>
+  <article class="person reveal"><img src="https://picsum.photos/seed/tomasz-wieczorek-portrait/600/800" width="600" height="800" alt="Portrait of Tomasz Wieczorek" loading="lazy"><h3>Tomasz Wieczorek</h3><span>Chief Technology Officer</span></article>
+  <article class="person reveal"><img src="https://picsum.photos/seed/priyanka-venkataraman-portrait/600/800" width="600" height="800" alt="Portrait of Priyanka Venkataraman" loading="lazy"><h3>Priyanka Venkataraman</h3><span>Chief Risk Officer</span></article>
+  <article class="person reveal"><img src="https://picsum.photos/seed/dario-castellanos-portrait/600/800" width="600" height="800" alt="Portrait of Dario Castellanos" loading="lazy"><h3>Dario Castellanos</h3><span>Head of Product</span></article>
+ </div>
+</div></section>
+
+<section id="numbers" style="padding-top:0"><div class="wrap">
+ <h2 class="reveal">Tallymark in numbers</h2>
+ <!-- sample data, replace with audited figures before launch -->
+ <div class="bento">
+  <div class="cell a reveal"><strong>$2.38B</strong><span>in payments reconciled during 2025</span></div>
+  <div class="cell reveal"><strong>187</strong><span>people across engineering, risk and support</span></div>
+  <div class="cell reveal"><strong>99.94%</strong><span>platform availability over the last 12 months</span></div>
+  <div class="cell d reveal"><strong>41</strong><span>banks and lenders connected directly</span></div>
+ </div>
+</div></section>
+
+<section class="roles" id="roles"><div class="wrap">
+ <h2 class="reveal">Open roles</h2>
+ <div class="reveal">
+  <div class="role"><div><h3>Senior Backend Engineer</h3><small>Payments core</small></div><small>Remote, Europe</small><a class="btn ghost" href="#roles" aria-label="Apply for Senior Backend Engineer">Apply</a></div>
+  <div class="role"><div><h3>Fraud Analyst</h3><small>Risk</small></div><small>Berlin</small><a class="btn ghost" href="#roles" aria-label="Apply for Fraud Analyst">Apply</a></div>
+  <div class="role"><div><h3>Product Designer</h3><small>Design</small></div><small>Remote, Europe</small><a class="btn ghost" href="#roles" aria-label="Apply for Product Designer">Apply</a></div>
+  <div class="role"><div><h3>Bank Partnerships Manager</h3><small>Partnerships</small></div><small>London</small><a class="btn ghost" href="#roles" aria-label="Apply for Bank Partnerships Manager">Apply</a></div>
+ </div>
+</div></section>
+
+<footer><div class="wrap">Tallymark Payments Ltd. Authorised and regulated payment institution. Sample page.</div></footer>
+
+<script>
+(()=>{
+ const els=document.querySelectorAll('.reveal');
+ if(matchMedia('(prefers-reduced-motion:reduce)').matches||!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));return;}
+ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.15});
+ els.forEach((e,i)=>{e.style.transitionDelay=(i%4)*70+'ms';io.observe(e);});
+})();
+</script>
+</body>
+</html>
+```

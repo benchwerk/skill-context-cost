@@ -1,0 +1,133 @@
+```html
+<!DOCTYPE html>
+<!-- Design read: ceramics studio landing for design-conscious locals and visitors in Lisbon; editorial, warm, tactile language; native CSS, system serif stack, restrained motion (VARIANCE 7 / MOTION 4 / DENSITY 3). -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Barro &amp; Azul · Ceramics Studio, Lisbon</title>
+<style>
+  :root {
+    --clay: #efe6d8; --paper: #f8f3ea; --ink: #2a211b; --muted: #6f6256;
+    --terra: #b4532a; --azul: #1f4e8c; --line: #d9ccb8;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font: 1.05rem/1.65 var(--sans); }
+  a { color: inherit; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 clamp(1.25rem, 5vw, 3rem); }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.05; letter-spacing: -0.02em; }
+  .eyebrow { font-size: .78rem; letter-spacing: .18em; text-transform: uppercase; color: var(--terra); }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; }
+  nav strong { font: 500 1.35rem var(--serif); }
+  nav a { text-decoration: none; margin-left: 1.5rem; font-size: .95rem; }
+  nav a:hover { color: var(--terra); }
+  .hero { min-height: 100dvh; display: grid; grid-template-columns: 1.15fr .85fr; gap: 3rem; align-items: center; padding-bottom: 4rem; }
+  .hero h1 { font-size: clamp(3rem, 8vw, 6.5rem); margin: 1rem 0 1.5rem; }
+  .hero h1 em { color: var(--azul); font-style: italic; }
+  .hero p { max-width: 42ch; color: var(--muted); }
+  .btn { display: inline-block; margin-top: 2rem; padding: .9rem 1.8rem; background: var(--ink); color: var(--paper); text-decoration: none; border-radius: 999px; transition: transform .25s, background .25s; }
+  .btn:hover { background: var(--terra); transform: translateY(-2px); }
+  .btn:active { transform: translateY(0) scale(.98); }
+  .vessel { position: relative; aspect-ratio: 4/5; }
+  .vessel i { position: absolute; display: block; }
+  .arch { inset: 0 0 0 12%; border-radius: 999px 999px 0 0; background: radial-gradient(circle at 30% 25%, #d97b4f, var(--terra) 60%, #8a3b1c); }
+  .jug { width: 46%; height: 52%; left: 0; bottom: 0; border-radius: 45% 45% 18% 18%; background: linear-gradient(120deg, #f4eee3, #d8cdb9); box-shadow: 0 20px 40px rgb(42 33 27 / .2); }
+  .jug::after { content: ""; position: absolute; inset: 30% 12% auto; height: 12px; border-radius: 6px; background: var(--azul); box-shadow: 0 24px 0 var(--azul), 0 48px 0 var(--azul); }
+  .dot { width: 22%; aspect-ratio: 1; right: 4%; top: 8%; border-radius: 50%; background: var(--azul); }
+  section { padding: clamp(4rem, 10vw, 8rem) 0; }
+  .make { background: var(--clay); }
+  .head { display: grid; grid-template-columns: 1fr 1.4fr; gap: 3rem; margin-bottom: 3.5rem; }
+  .head h2 { font-size: clamp(2.2rem, 5vw, 3.8rem); }
+  .head p { color: var(--muted); align-self: end; max-width: 52ch; }
+  .items { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.5rem; }
+  .item { padding: 1.75rem; border: 1px solid var(--line); border-radius: 1.25rem 1.25rem 1.25rem 0; background: var(--paper); }
+  .item:nth-child(1) { grid-column: span 5; } .item:nth-child(2) { grid-column: span 7; margin-top: 3rem; }
+  .item:nth-child(3) { grid-column: span 7; } .item:nth-child(4) { grid-column: span 5; margin-top: 3rem; }
+  .item h3 { font-size: 1.7rem; margin-bottom: .5rem; } .item p { color: var(--muted); }
+  .item span { display: block; margin-top: 1rem; font-size: .85rem; color: var(--azul); }
+  .quotes { display: grid; gap: 2.5rem; }
+  blockquote { max-width: 56ch; font: 1.55rem/1.35 var(--serif); padding-left: 1.5rem; border-left: 3px solid var(--terra); }
+  blockquote:nth-child(2) { margin-left: auto; border-left-color: var(--azul); }
+  blockquote:nth-child(3) { margin-left: 12%; }
+  cite { display: block; margin-top: .8rem; font: .9rem var(--sans); color: var(--muted); font-style: normal; }
+  .price { background: var(--ink); color: var(--paper); }
+  .price .head p, .price .eyebrow + h2 { color: inherit; } .price .head p { opacity: .7; }
+  .row { display: grid; grid-template-columns: 1.2fr 2fr auto; gap: 2rem; align-items: baseline; padding: 1.75rem 0; border-top: 1px solid rgb(248 243 234 / .2); transition: padding .3s; }
+  .row:hover { padding-left: 1rem; }
+  .row h3 { font-size: 1.8rem; } .row p { opacity: .7; }
+  .row b { font: 500 2rem var(--serif); color: #e8956b; }
+  footer { padding: 4rem 0 2.5rem; border-top: 1px solid var(--line); }
+  .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem; }
+  .foot h2 { font-size: 2.4rem; } .foot p { color: var(--muted); } small { display: block; margin-top: 3rem; color: var(--muted); }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  :focus-visible { outline: 2px solid var(--azul); outline-offset: 3px; }
+  @media (max-width: 800px) {
+    .hero, .head { grid-template-columns: 1fr; } .hero { min-height: auto; } .vessel { max-width: 340px; }
+    .item:nth-child(n) { grid-column: 1 / -1; margin-top: 0; }
+    .items { gap: 1rem; } blockquote:nth-child(n) { margin-left: 0; font-size: 1.3rem; }
+    .row { grid-template-columns: 1fr auto; } .row p { grid-column: 1 / -1; order: 3; }
+  }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<header class="wrap">
+  <nav><strong>Barro &amp; Azul</strong><div><a href="#make">Pieces</a><a href="#words">Words</a><a href="#workshops">Workshops</a></div></nav>
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Ceramics studio · Alfama, Lisbon</p>
+      <h1>Made by hand, <em>glazed</em> in Portuguese light.</h1>
+      <p>A six-person studio throwing stoneware tableware and teaching small-group workshops in a former tile warehouse on Rua dos Remédios.</p>
+      <a class="btn" href="#workshops">Book a workshop</a>
+    </div>
+    <div class="vessel" role="img" aria-label="Illustration of a terracotta arch, a cream jug with blue bands and a blue sun"><i class="arch"></i><i class="jug"></i><i class="dot"></i></div>
+  </div>
+</header>
+<main>
+  <section class="make" id="make"><div class="wrap">
+    <div class="head reveal"><div><p class="eyebrow">What we make</p><h2>Objects for slow tables.</h2></div>
+      <p>Everything is wheel-thrown from local clay, fired twice, and glazed with recipes we mix ourselves. Nothing is identical; everything is dishwasher safe.</p></div>
+    <div class="items">
+      <article class="item reveal"><h3>Table sets</h3><p>Plates, bowls and cups in sand, cobalt and oxide red.</p><span>From €68 per setting</span></article>
+      <article class="item reveal"><h3>Azulejo-inspired tiles</h3><p>Hand-painted tin-glaze panels, made to commission for kitchens and hallways.</p><span>From €42 per tile</span></article>
+      <article class="item reveal"><h3>Vases &amp; jugs</h3><p>Tall, uneven, quietly opinionated forms for market flowers.</p><span>From €55</span></article>
+      <article class="item reveal"><h3>Custom commissions</h3><p>Restaurant services and gifts, designed with you over two visits.</p><span>Lead time 6 to 8 weeks</span></article>
+    </div>
+  </div></section>
+  <section id="words"><div class="wrap">
+    <p class="eyebrow reveal">Kind words</p>
+    <div class="quotes" style="margin-top:2rem">
+      <blockquote class="reveal">I arrived as a tourist and left with a wonky bowl I will never, ever give away.<cite>Marta S., weekend workshop</cite></blockquote>
+      <blockquote class="reveal">They made twelve place settings for our restaurant. Guests ask where the plates are from every night.<cite>João P., chef at Taberna Velha</cite></blockquote>
+      <blockquote class="reveal">Patient teachers, real clay, good coffee. Booked my second course before the first ended.<cite>Emily R., evening wheel course</cite></blockquote>
+    </div>
+  </div></section>
+  <section class="price" id="workshops"><div class="wrap">
+    <div class="head reveal"><div><p class="eyebrow" style="color:#e8956b">Workshops</p><h2>Get your hands dirty.</h2></div>
+      <p>Groups of up to six. Aprons, clay, firing and glazing included. Finished pieces are ready for pickup after three weeks.</p></div>
+    <div class="row reveal"><h3>Wheel Intro</h3><p>Two hours at the wheel with one finished bowl or cup.</p><b>€55</b></div>
+    <div class="row reveal"><h3>Hand-building Evening</h3><p>Pinch, coil and slab techniques. Wine and petiscos included.</p><b>€70</b></div>
+    <div class="row reveal"><h3>Four-week Course</h3><p>Weekly three-hour sessions: centring, forms, trimming and glazing.</p><b>€260</b></div>
+    <div class="row reveal" style="border-bottom:1px solid rgb(248 243 234 / .2)"><h3>Private Group</h3><p>Birthdays or team days for up to eight, in English, Portuguese or French.</p><b>€480</b></div>
+  </div></section>
+</main>
+<footer><div class="wrap">
+  <div class="foot">
+    <div><h2>Come say olá.</h2><p>Rua dos Remédios 42, 1100-447 Lisboa<br>Wed to Sun, 10:00 to 18:00</p></div>
+    <p><a href="mailto:ola@barroeazul.example">ola@barroeazul.example</a><br>+351 21 000 0000<br><a href="#">Instagram</a></p>
+  </div>
+  <small>© 2026 Barro &amp; Azul Cerâmica, Lda. Made in Lisbon.</small>
+</div></footer>
+<script>
+  const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+  }), { threshold: 0.15 });
+  document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+</script>
+</body>
+</html>
+```

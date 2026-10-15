@@ -1,0 +1,179 @@
+```html
+<!doctype html>
+<!-- Design Read: neighbourhood restaurant homepage for local diners, calm editorial-sans language, native CSS + tiny vanilla JS. Dials: VARIANCE 6, MOTION 4, DENSITY 3. Palette: cool paper + forest ink + one tomato accent. Images are picsum placeholders, swap for real photography. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tarragon Street Kitchen</title>
+<meta name="color-scheme" content="light dark">
+<style>
+:root{--bg:#f2f5f2;--surface:#e4eae4;--ink:#14201a;--muted:#46544b;--line:#c5d0c6;--accent:#b93a12;--on-accent:#fff;--r:10px;
+--font:"Avenir Next","Segoe UI Variable","Segoe UI",system-ui,sans-serif}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1511;--surface:#18211b;--ink:#e8eee9;--muted:#a3b2a8;--line:#2f3d34;--accent:#f0733f;--on-accent:#1b0b04}}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font:16px/1.6 var(--font);background:var(--bg);color:var(--ink)}
+img{display:block;width:100%;height:100%;object-fit:cover;border-radius:var(--r)}
+a{color:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+h1,h2,h3{letter-spacing:-.03em;line-height:1.08}
+h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:12px}
+p.lead{color:var(--muted);max-width:60ch}
+section{padding:96px 0}
+.btn{display:inline-flex;align-items:center;white-space:nowrap;padding:12px 22px;border-radius:var(--r);border:1px solid var(--accent);background:var(--accent);color:var(--on-accent);font:inherit;font-weight:600;text-decoration:none;cursor:pointer;transition:transform .25s cubic-bezier(.16,1,.3,1)}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:scale(.98)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav{height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+nav b{font-size:1.1rem;letter-spacing:-.02em;white-space:nowrap}
+nav div{display:flex;align-items:center;gap:28px}
+nav a:not(.btn){text-decoration:none;color:var(--muted)}nav a:not(.btn):hover{color:var(--ink)}
+.hero{min-height:calc(100dvh - 69px);display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;padding:32px 0 48px}
+.hero h1{font-size:clamp(2.5rem,5.2vw,4.5rem);margin-bottom:20px}
+.hero p{color:var(--muted);font-size:1.15rem;max-width:44ch;margin-bottom:32px}
+.hero .acts{display:flex;gap:12px;flex-wrap:wrap}
+.hero figure{height:min(68dvh,620px)}
+.tabs{display:flex;gap:8px;margin:32px 0 28px;flex-wrap:wrap}
+.tabs button{font:inherit;font-weight:600;padding:10px 18px;border-radius:var(--r);border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.dishes{display:grid;grid-template-columns:1fr 1fr;gap:28px 56px;list-style:none;padding:0;animation:fade .45s both}
+.dishes li{display:grid;grid-template-columns:1fr auto;gap:2px 16px}
+.dishes b{font-size:1.1rem}.dishes span{font-weight:600;color:var(--accent)}
+.dishes small{grid-column:1/-1;color:var(--muted);font-size:.95rem}
+.chef{background:var(--surface)}
+.chef .wrap{display:grid;grid-template-columns:5fr 6fr;gap:64px;align-items:center}
+.chef figure{aspect-ratio:4/5;max-height:560px}
+.chef p{color:var(--muted);margin-top:16px;max-width:56ch}
+.hours .band{display:grid;grid-template-columns:2fr 1.4fr 1fr 1fr;margin-top:40px;border-top:2px solid var(--ink)}
+.hours .band div{padding:24px 24px 0 0}
+.hours dt{font-weight:600}.hours dd{color:var(--muted);margin-top:4px}
+.book{background:var(--surface)}
+.book .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:start}
+form{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.f{display:flex;flex-direction:column;gap:8px}.f.full{grid-column:1/-1}
+label{font-weight:600;font-size:.95rem}
+input,select{font:inherit;padding:12px 14px;border-radius:var(--r);border:1px solid var(--muted);background:var(--bg);color:var(--ink)}
+.err{color:#b4281c;font-size:.9rem;min-height:1.2em}
+@media(prefers-color-scheme:dark){.err{color:#ff8f82}}
+form .btn{grid-column:1/-1;justify-content:center}
+#ok{display:none;padding:28px;border:1px solid var(--accent);border-radius:var(--r)}
+footer{padding:32px 0;color:var(--muted);font-size:.95rem}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}}
+@media(max-width:900px){
+ section{padding:64px 0}nav div a:not(.btn){display:none}
+ .hero,.chef .wrap,.book .wrap{grid-template-columns:1fr;gap:32px}
+ .hero{min-height:0}.hero figure{height:320px}.chef figure{max-height:380px}
+ .dishes,form{grid-template-columns:1fr}.hours .band{grid-template-columns:1fr 1fr}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header><nav class="wrap">
+ <b>Tarragon Street Kitchen</b>
+ <div><a href="#menu">Menu</a><a href="#chef">Chef</a><a href="#hours">Hours</a><a class="btn" href="#reserve">Reserve a table</a></div>
+</nav></header>
+<main>
+<div class="wrap hero">
+ <div class="rv">
+  <h1>Wood-fired suppers for the whole street</h1>
+  <p>Seasonal plates, a short wine list and a corner table with your name on it.</p>
+  <div class="acts"><a class="btn" href="#reserve">Reserve a table</a><a class="btn ghost" href="#menu">See the menu</a></div>
+ </div>
+ <figure class="rv"><img src="https://picsum.photos/seed/tarragon-street-dining-room/900/1000" alt="Candlelit dining room with wooden tables" width="900" height="1000" fetchpriority="high"></figure>
+</div>
+
+<section id="menu"><div class="wrap">
+ <h2 class="rv">This week's menu</h2>
+ <p class="lead rv">Everything is cooked over oak and ash. The board changes when the market does.</p>
+ <div class="tabs" role="tablist" aria-label="Menu sections"></div>
+ <ul class="dishes" id="dishes" role="tabpanel"></ul>
+</div></section>
+
+<section class="chef" id="chef"><div class="wrap">
+ <figure class="rv"><img src="https://picsum.photos/seed/chef-marisol-kitchen/800/1000" alt="Chef Marisol Okafor-Reyes at the wood oven" width="800" height="1000" loading="lazy"></figure>
+ <div class="rv">
+  <h2>Meet Marisol Okafor-Reyes</h2>
+  <p>Marisol grew up cooking beside her grandmother in Lagos and trained in kitchens across Seville and Leeds before opening Tarragon Street.</p>
+  <p>She buys from three farms within an hour's drive, butchers whole animals in house and refuses to put anything on the menu she would not serve at home.</p>
+ </div>
+</div></section>
+
+<section class="hours" id="hours"><div class="wrap">
+ <h2 class="rv">Opening hours</h2>
+ <dl class="band rv">
+  <div><dt>Tuesday to Thursday</dt><dd>5pm to 10pm</dd></div>
+  <div><dt>Friday and Saturday</dt><dd>5pm to 11:30pm</dd></div>
+  <div><dt>Sunday</dt><dd>12pm to 8pm</dd></div>
+  <div><dt>Monday</dt><dd>Closed</dd></div>
+ </dl>
+</div></section>
+
+<section class="book" id="reserve"><div class="wrap">
+ <div class="rv">
+  <h2>Reserve a table</h2>
+  <p class="lead">Parties of up to eight can book here. For larger groups, call the restaurant and we will arrange the room.</p>
+ </div>
+ <div class="rv">
+  <form id="form" novalidate>
+   <div class="f full"><label for="n">Full name</label><input id="n" autocomplete="name" required><span class="err" id="e-n"></span></div>
+   <div class="f full"><label for="m">Email</label><input id="m" type="email" autocomplete="email" required><span class="err" id="e-m"></span></div>
+   <div class="f"><label for="d">Date</label><input id="d" type="date" required><span class="err" id="e-d"></span></div>
+   <div class="f"><label for="t">Time</label><select id="t"></select><span class="err"></span></div>
+   <div class="f full"><label for="g">Guests</label><select id="g"></select><span class="err"></span></div>
+   <button class="btn" type="submit">Confirm reservation</button>
+  </form>
+  <div id="ok" role="status" tabindex="-1"></div>
+ </div>
+</div></section>
+</main>
+<footer><div class="wrap"><span>14 Tarragon Street</span><span>hello@tarragonstreet.example</span></div></footer>
+
+<script>
+const menu={
+ Starters:[["Charred leeks","hazelnut romesco, whipped feta","11"],["Smoked mussels","pickled shallot, grilled sourdough","13"],["Burnt carrot soup","cumin butter, crisp chickpeas","9"],["Beef tartare","capers, egg yolk, rye crisps","14"]],
+ Mains:[["Oak-roast chicken","salsa verde, potatoes cooked in the drippings","24"],["Pork shoulder","braised cabbage, mustard jus","26"],["Whole sea bream","fennel, lemon, white beans","29"],["Ash-baked celeriac","brown butter, sage, walnuts","19"]],
+ Desserts:[["Burnt honey tart","creme fraiche","9"],["Chocolate pot","olive oil, sea salt","8"],["Poached pear","vanilla custard, toasted oats","9"]]
+};
+const tabs=document.querySelector(".tabs"),list=document.getElementById("dishes");
+function show(k){
+ tabs.querySelectorAll("button").forEach(b=>b.setAttribute("aria-selected",b.textContent===k));
+ list.innerHTML=menu[k].map(([a,b,c])=>`<li><b>${a}</b><span>$${c}</span><small>${b}</small></li>`).join("");
+ list.style.animation="none";list.offsetWidth;list.style.animation="";
+}
+Object.keys(menu).forEach(k=>{const b=document.createElement("button");b.role="tab";b.textContent=k;b.onclick=()=>show(k);tabs.append(b)});
+show("Starters");
+
+const t=document.getElementById("t"),g=document.getElementById("g"),d=document.getElementById("d");
+["5:00pm","5:30pm","6:00pm","6:30pm","7:00pm","7:30pm","8:00pm","8:30pm","9:00pm"].forEach(v=>t.add(new Option(v,v)));
+for(let i=1;i<=8;i++)g.add(new Option(i+(i>1?" guests":" guest"),i));
+g.value=2;d.min=new Date().toLocaleDateString("en-CA");
+
+const form=document.getElementById("form");
+const msg=(id,s)=>{document.getElementById("e-"+id).textContent=s;return !s};
+form.onsubmit=e=>{
+ e.preventDefault();
+ const n=form.n.value.trim(),m=form.m.value.trim(),v=d.value;
+ const day=v&&new Date(v+"T12:00").getDay();
+ const ok=[msg("n",n?"":"Please enter your name."),
+  msg("m",/^\S+@\S+\.\S+$/.test(m)?"":"Enter a valid email, like name@example.com."),
+  msg("d",!v?"Choose a date.":v<d.min?"Pick a date from today onward.":day===1?"We are closed on Mondays.":"")];
+ if(ok.includes(false))return;
+ form.style.display="none";
+ const o=document.getElementById("ok");
+ o.style.display="block";
+ o.innerHTML=`<h3>Thank you, ${n.split(" ")[0]}.</h3><p>A table for ${g.value} on ${v} at ${t.value} is requested. We will confirm by email at ${m}.</p>`;
+ o.focus();
+};
+
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}}),{threshold:.15});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
+```

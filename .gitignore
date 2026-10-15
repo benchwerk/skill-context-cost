@@ -1,0 +1,40 @@
+# Allow-list: nothing is published unless it is named here. Only what proves the claims:
+# the harness, the workload manifest, raw results, methodology, prediction, findings and the review record.
+/*
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/LICENSE
+!/LICENSE-DATA
+!/bench/
+!/analysis/
+!/workload/
+!/results/
+!/methodology.md
+!/quality_protocol.md
+!/prediction.md
+!/NUANCES.md
+!/RESULTS.md
+!/editorial_log.md
+# third-party skill files are fetched with bench/fetch_pinned.py at the recorded commit, never redistributed here
+/workload/src/
+# raw session output holds temp paths and any local skill names: reviewed by hand, not published by default
+/results/*/stdout/
+# dry-run output
+/results/*_dry/
+# never, anywhere
+.env
+*.key
+*.pem
+__pycache__/
+
+# smoke tests are not evidence
+/results/*_smoke*/
+
+# labelling inputs hold third-party text snippets: not published
+/analysis/_label_in/
+
+# the ranking itself is not published (decision 2026-10-03): the rule and the hash of the snapshot are
+/workload/popularity_snapshot.json
+/workload/selection.json
+results/*_aborted*/

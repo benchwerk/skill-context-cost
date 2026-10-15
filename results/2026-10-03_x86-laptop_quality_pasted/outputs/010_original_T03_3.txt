@@ -1,0 +1,134 @@
+```html
+<!DOCTYPE html>
+<!-- Design Read: portfolio for engaged couples, editorial-minimal, sans display, one deep-rose accent, auto light/dark. Dials 8 / 6 / 3. Placeholder photos are picsum seeds; swap in real work. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maren Okafor Photography | Wedding photographer</title>
+<style>
+:root{--bg:#f3f4f5;--tx:#17181a;--mu:#55595f;--ln:#d5d8dc;--ac:#a63a55;--on:#fff;--fi:#fbfbfc;--bd:#80858c;--er:#b3261e;
+--f:"Avenir Next","Segoe UI","Helvetica Neue",Arial,sans-serif;--e:cubic-bezier(.16,1,.3,1)}
+@media(prefers-color-scheme:dark){:root{--bg:#121315;--tx:#ecedef;--mu:#a4a9b0;--ln:#2a2d31;--ac:#e38aa1;--on:#1a1013;--fi:#1a1c1f;--bd:#6f757d;--er:#ff9a92}}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font:400 1rem/1.65 var(--f)}
+img{display:block;width:100%;height:100%;object-fit:cover}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ac);outline-offset:3px}
+.w{max-width:1280px;margin:0 auto;padding:0 1rem}
+nav{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--ln)}
+nav .w{display:flex;align-items:center;justify-content:space-between;height:68px}
+nav b{font-weight:600;letter-spacing:-.01em}
+nav div{display:flex;align-items:center;gap:1.75rem}
+nav a:not(.btn){text-decoration:none;color:var(--mu);transition:color .3s}
+nav a:not(.btn):hover{color:var(--tx)}
+.btn{display:inline-block;white-space:nowrap;padding:.8rem 1.4rem;background:var(--ac);color:var(--on);font:600 .95rem var(--f);text-decoration:none;border:1px solid var(--ac);border-radius:0;cursor:pointer;transition:transform .3s var(--e),opacity .3s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(1px) scale(.98)}
+.btn.o{background:none;color:var(--tx);border-color:var(--tx)}
+.btn[disabled]{opacity:.6;cursor:progress}
+h1,h2{font-weight:700;letter-spacing:-.035em;line-height:1.05}
+h1{font-size:clamp(2.5rem,5.6vw,4.75rem)}
+h2{font-size:clamp(2rem,4vw,3.25rem);margin-bottom:1rem}
+.hero{display:grid;grid-template-columns:1fr;gap:2rem;align-items:center;min-height:calc(100dvh - 68px);padding:2rem 0}
+.hero p{color:var(--mu);font-size:1.15rem;max-width:34ch;margin:1.5rem 0 2rem}
+.hero .acts{display:flex;flex-wrap:wrap;gap:.75rem}
+.hero figure{aspect-ratio:4/5;max-height:78dvh;overflow:hidden}
+section{padding:4rem 0}
+.gal{display:grid;grid-template-columns:1fr;gap:1rem;margin-top:2rem}
+.gal figure{overflow:hidden;aspect-ratio:4/3}
+.gal img{transition:transform .9s var(--e)}
+.gal figure:hover img{transform:scale(1.04)}
+.about{display:grid;grid-template-columns:1fr;gap:2.5rem;align-items:start}
+.about figure{aspect-ratio:3/4;overflow:hidden}
+.about p{color:var(--mu);max-width:62ch;margin-bottom:1.1rem}
+.about p:first-of-type{color:var(--tx);font-size:1.3rem;line-height:1.45}
+form{display:grid;gap:1.25rem;max-width:640px;margin-top:2rem}
+.r{display:grid;gap:1.25rem}
+label{display:grid;gap:.45rem;font-weight:600;font-size:.95rem}
+small{font-weight:400;color:var(--mu)}
+input,textarea{font:inherit;font-weight:400;color:var(--tx);background:var(--fi);border:1px solid var(--bd);border-radius:0;padding:.8rem .9rem;width:100%}
+input::placeholder,textarea::placeholder{color:var(--mu)}
+[aria-invalid=true]{border-color:var(--er);border-width:2px}
+.err{color:var(--er);font-weight:500;font-size:.9rem;min-height:0}
+.ok{border-left:3px solid var(--ac);padding:.75rem 1rem;font-weight:500}
+footer{border-top:1px solid var(--ln);padding:2rem 0;color:var(--mu);font-size:.9rem}
+.js .rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--e),transform .9s var(--e)}
+.js .rv.in{opacity:1;transform:none}
+@media(min-width:768px){
+.w{padding:0 2rem}
+.hero{grid-template-columns:7fr 5fr;gap:4rem}
+.gal{grid-template-columns:repeat(12,1fr);gap:1.25rem}
+.gal figure{aspect-ratio:auto;height:clamp(300px,34vw,460px)}
+.gal figure:nth-child(1){grid-column:span 7}.gal figure:nth-child(2){grid-column:span 5}
+.gal figure:nth-child(3){grid-column:span 5}.gal figure:nth-child(4){grid-column:span 7}
+.gal figure:nth-child(5),.gal figure:nth-child(6){grid-column:span 6}
+.about{grid-template-columns:5fr 7fr;gap:5rem}
+.r{grid-template-columns:1fr 1fr}
+section{padding:6rem 0}
+#contact{padding-left:8vw}
+}
+@media(max-width:767px){nav a:not(.btn){display:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto}.js .rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<nav><div class="w"><b>Maren Okafor</b>
+<div><a href="#work">Gallery</a><a href="#about">About</a><a class="btn" href="#contact">Check availability</a></div></div></nav>
+<main class="w">
+<header class="hero">
+<div class="rv"><h1>Weddings, photographed as they happened.</h1>
+<p>Unposed, honest photographs for couples who want to remember the day, not a performance of it.</p>
+<div class="acts"><a class="btn" href="#contact">Check availability</a><a class="btn o" href="#work">View gallery</a></div></div>
+<figure class="rv"><img src="https://picsum.photos/seed/wedding-couple-hero/900/1125" width="900" height="1125" alt="A couple laughing together after their ceremony"></figure>
+</header>
+<section id="work"><h2 class="rv">Recent weddings</h2>
+<div class="gal">
+<figure class="rv"><img loading="lazy" src="https://picsum.photos/seed/wedding-vows-garden/1100/700" width="1100" height="700" alt="Couple exchanging vows in a garden"></figure>
+<figure class="rv"><img loading="lazy" src="https://picsum.photos/seed/wedding-bouquet-detail/800/700" width="800" height="700" alt="Bridal bouquet held against a linen dress"></figure>
+<figure class="rv"><img loading="lazy" src="https://picsum.photos/seed/wedding-first-dance/800/700" width="800" height="700" alt="First dance under string lights"></figure>
+<figure class="rv"><img loading="lazy" src="https://picsum.photos/seed/wedding-family-lawn/1100/700" width="1100" height="700" alt="Family gathered on a lawn after the ceremony"></figure>
+<figure class="rv"><img loading="lazy" src="https://picsum.photos/seed/wedding-table-evening/900/700" width="900" height="700" alt="Reception table set at dusk"></figure>
+<figure class="rv"><img loading="lazy" src="https://picsum.photos/seed/wedding-walk-away/900/700" width="900" height="700" alt="Newlyweds walking down a country road"></figure>
+</div></section>
+<section id="about" class="about">
+<figure class="rv"><img loading="lazy" src="https://picsum.photos/seed/photographer-portrait-maren/800/1066" width="800" height="1066" alt="Maren Okafor holding a camera"></figure>
+<div class="rv"><h2>I started at my sister's wedding.</h2>
+<p>I was meant to be a guest. Instead I spent the day behind a borrowed camera, and the photos she kept were the ones nobody planned.</p>
+<p>Twelve years later I still work that way. I stay quiet, I stay close, and I limit myself to one wedding a weekend so I can give each couple my full attention.</p>
+<p>You will get a full gallery of about 600 edited images within four weeks, plus a printed album of your favorites.</p></div>
+</section>
+<section id="contact"><h2 class="rv">Tell me about your day.</h2>
+<p class="rv" style="color:var(--mu)">I reply to every inquiry within two working days.</p>
+<form class="rv" novalidate>
+<div class="r"><label>Your names<input name="n" autocomplete="name" aria-describedby="e-n"><span class="err" id="e-n" role="alert"></span></label>
+<label>Email<input name="e" type="email" autocomplete="email" aria-describedby="e-e"><span class="err" id="e-e" role="alert"></span></label></div>
+<label>Wedding date <small>(an estimate is fine)</small><input name="d" type="date"></label>
+<label>Venue and the kind of day you are planning<textarea name="m" rows="4" aria-describedby="e-m"></textarea><span class="err" id="e-m" role="alert"></span></label>
+<div><button class="btn" type="submit">Send message</button></div>
+<p class="ok" role="status" hidden>Thank you. Your message is in, and I will write back soon.</p>
+</form></section>
+</main>
+<footer><div class="w">Maren Okafor Photography. Hello@marenokafor.example</div></footer>
+<script>
+document.documentElement.classList.add('js');
+const io=new IntersectionObserver((es)=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%3)*80+'ms';io.observe(el)});
+const f=document.querySelector('form'),b=f.querySelector('button'),ok=f.querySelector('.ok');
+const rules={n:[v=>v.trim(),'Please enter your names.'],e:[v=>/^\S+@\S+\.\S+$/.test(v),'Please enter a valid email address.'],m:[v=>v.trim().length>9,'Please share a few details about the day.']};
+f.addEventListener('submit',ev=>{
+  ev.preventDefault();ok.hidden=true;let bad=null;
+  for(const k in rules){
+    const el=f.elements[k],msg=document.getElementById('e-'+k),fail=!rules[k][0](el.value);
+    el.setAttribute('aria-invalid',fail);msg.textContent=fail?rules[k][1]:'';
+    if(fail&&!bad)bad=el;
+  }
+  if(bad)return bad.focus();
+  b.disabled=true;b.textContent='Sending...';
+  setTimeout(()=>{f.reset();b.disabled=false;b.textContent='Send message';ok.hidden=false},900);
+});
+</script>
+</body>
+</html>
+```

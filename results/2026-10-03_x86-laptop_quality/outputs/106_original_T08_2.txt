@@ -1,0 +1,149 @@
+```html
+<!-- Design Read: About page for a fintech start-up, for prospective customers, partners and candidates, trust-first with a clean modern language, native CSS (no library). Dials: VARIANCE 6, MOTION 4, DENSITY 4. Numbers and names are mock data. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About Pennant</title>
+<style>
+:root{--bg:#f6f7f5;--panel:#eceee9;--ink:#15201b;--mute:#4b5a52;--line:#d3d8d1;--acc:#0b6b50;--on:#fff;--r:10px}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1411;--panel:#16201b;--ink:#e9efeb;--mute:#a1b0a8;--line:#2a3830;--acc:#4fd1a5;--on:#04140e}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 "Segoe UI Variable","Helvetica Neue",system-ui,sans-serif}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+nav{height:64px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+nav b{font-size:1.15rem;letter-spacing:-.02em}
+nav ul{display:flex;gap:28px;list-style:none;padding:0;font-size:.95rem}
+nav a{text-decoration:none;color:var(--mute)}nav a:hover{color:var(--ink)}
+h1,h2{letter-spacing:-.035em;line-height:1.05;font-weight:700}
+h1{font-size:clamp(2.2rem,4.6vw,3.8rem);max-width:15ch}
+h2{font-size:clamp(1.7rem,3vw,2.5rem)}
+p{color:var(--mute);max-width:62ch}
+.hero{min-height:calc(100dvh - 64px);display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center;padding:40px 0}
+.hero p{margin:20px 0 32px;max-width:44ch}
+.hero img{width:100%;height:min(66dvh,560px);object-fit:cover;border-radius:var(--r)}
+.btn{display:inline-block;background:var(--acc);color:var(--on);padding:14px 26px;border-radius:var(--r);font-weight:600;text-decoration:none;white-space:nowrap;transition:transform .25s cubic-bezier(.16,1,.3,1)}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(1px) scale(.98)}
+section{padding:112px 0}
+.mission{background:var(--panel)}
+.mission .wrap{display:grid;grid-template-columns:1fr 2fr;gap:56px}
+.mission h2{grid-column:2;font-size:clamp(1.8rem,3.6vw,3rem);max-width:20ch}
+.mission p{grid-column:2;margin-top:24px}
+.nums{display:grid;grid-template-columns:2fr 1fr 1fr;gap:0;margin-top:48px}
+.nums div{padding:8px 28px;border-left:2px solid var(--acc)}
+.nums strong{display:block;font-size:clamp(2.4rem,5vw,4.2rem);letter-spacing:-.04em;line-height:1.1;font-variant-numeric:tabular-nums}
+.nums div:first-child strong{font-size:clamp(3rem,7vw,5.8rem);color:var(--acc)}
+.nums span{color:var(--mute);font-size:.95rem}
+.team{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px}
+.team figure:nth-child(even){margin-top:48px}
+.team img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r);filter:grayscale(.35)}
+.team figcaption{margin-top:12px;font-weight:600}
+.team figcaption small{display:block;font-weight:400;color:var(--mute)}
+.roles .wrap{display:grid;grid-template-columns:1fr 1.5fr;gap:72px}
+.roles h2+p{margin-top:16px}
+details{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;padding:20px 0;font-size:1.15rem;font-weight:600}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--acc);font-size:1.4rem;line-height:1;transition:transform .3s}
+details[open] summary::after{transform:rotate(45deg)}
+details ul{list-style:none;padding:0 0 16px}
+details li{display:flex;justify-content:space-between;gap:16px;padding:10px 0;color:var(--mute)}
+details li a{color:var(--ink);text-decoration-color:var(--acc);text-underline-offset:4px}
+footer{border-top:1px solid var(--line);padding:32px 0;color:var(--mute);font-size:.9rem}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media (prefers-reduced-motion:no-preference){
+  .rv{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);transition-delay:calc(var(--i,0)*80ms)}
+  .rv.in{opacity:1;transform:none}
+}
+@media (max-width:767px){
+  nav ul{gap:16px;font-size:.85rem}nav li:first-child{display:none}
+  .hero,.mission .wrap,.roles .wrap,.nums{grid-template-columns:1fr}
+  .hero{min-height:0;gap:32px}.hero img{height:300px}
+  .mission h2,.mission p{grid-column:1}
+  section{padding:72px 0}
+  .nums div{margin-bottom:24px}
+  .team{grid-template-columns:1fr 1fr}.team figure:nth-child(even){margin-top:0}
+  .roles .wrap{gap:32px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav aria-label="Primary">
+    <b>Pennant</b>
+    <ul><li><a href="#mission">Mission</a></li><li><a href="#numbers">Numbers</a></li><li><a href="#team">Leadership</a></li><li><a href="#roles">Roles</a></li></ul>
+  </nav>
+  <header class="hero">
+    <div>
+      <h1>Money should move at the speed of business.</h1>
+      <p>Pennant gives small and mid-sized companies bank-grade payments, payroll and credit in one account.</p>
+      <a class="btn" href="#roles">See open roles</a>
+    </div>
+    <img src="https://picsum.photos/seed/pennant-team-office/900/700" width="900" height="700" alt="The Pennant team working together around a long table">
+  </header>
+</div>
+
+<section class="mission" id="mission">
+  <div class="wrap">
+    <h2 class="rv">We build the financial plumbing that small companies were never offered.</h2>
+    <p class="rv" style="--i:1">Banks built their tools for enterprises. Everyone else waited days for transfers and weeks for credit decisions. We started Pennant in 2021 to change that, and we publish our pricing, our uptime and our audit results so customers never have to guess.</p>
+  </div>
+</section>
+
+<section id="numbers">
+  <div class="wrap">
+    <h2 class="rv">Pennant in numbers</h2>
+    <!-- mock data -->
+    <div class="nums">
+      <div class="rv"><strong>$2.38B</strong><span>processed for customers in 2025</span></div>
+      <div class="rv" style="--i:1"><strong>41 min</strong><span>average time to open an account</span></div>
+      <div class="rv" style="--i:2"><strong>94</strong><span>people building Pennant</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="team" style="padding-top:0">
+  <div class="wrap">
+    <h2 class="rv">Leadership</h2>
+    <div class="team">
+      <figure class="rv"><img src="https://picsum.photos/seed/pennant-amara/400/500" width="400" height="500" alt="Portrait of Amara Okonkwo" loading="lazy"><figcaption>Amara Okonkwo<small>Co-founder and CEO</small></figcaption></figure>
+      <figure class="rv" style="--i:1"><img src="https://picsum.photos/seed/pennant-tomas/400/500" width="400" height="500" alt="Portrait of Tomas Lindqvist" loading="lazy"><figcaption>Tomas Lindqvist<small>Co-founder and CTO</small></figcaption></figure>
+      <figure class="rv" style="--i:2"><img src="https://picsum.photos/seed/pennant-priya/400/500" width="400" height="500" alt="Portrait of Priya Raghunathan" loading="lazy"><figcaption>Priya Raghunathan<small>Chief Risk Officer</small></figcaption></figure>
+      <figure class="rv" style="--i:3"><img src="https://picsum.photos/seed/pennant-mateo/400/500" width="400" height="500" alt="Portrait of Mateo Barrientos" loading="lazy"><figcaption>Mateo Barrientos<small>Chief Financial Officer</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="roles" id="roles" style="background:var(--panel)">
+  <div class="wrap">
+    <div class="rv">
+      <h2>Open roles</h2>
+      <p>Seven positions across three teams. Every role is hybrid, with a home hub and flexible remote days.</p>
+    </div>
+    <div class="rv" style="--i:1">
+      <details open><summary>Engineering</summary><ul>
+        <li><a href="#">Senior Backend Engineer, Ledger</a><span>Full-time</span></li>
+        <li><a href="#">Staff Security Engineer</a><span>Full-time</span></li>
+        <li><a href="#">Mobile Engineer, iOS</a><span>Full-time</span></li></ul></details>
+      <details><summary>Risk and Compliance</summary><ul>
+        <li><a href="#">Fraud Analyst</a><span>Full-time</span></li>
+        <li><a href="#">Compliance Manager</a><span>Full-time</span></li></ul></details>
+      <details><summary>Customer Operations</summary><ul>
+        <li><a href="#">Payments Support Specialist</a><span>Full-time</span></li>
+        <li><a href="#">Onboarding Lead</a><span>Full-time</span></li></ul></details>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap"><span>&copy; 2026 Pennant Financial Technologies Ltd.</span><span>Authorised and regulated as a payment institution.</span></div></footer>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.2});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
+```

@@ -1,0 +1,140 @@
+```html
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>sift: query logs from your terminal</title>
+<meta name="description" content="sift is an open-source CLI that filters, groups and tails structured logs with a small query language.">
+<style>
+  :root {
+    --paper: #f4efe6; --ink: #1d1b17; --muted: #6b655a; --line: #d9d1c1;
+    --accent: #c2410c; --term: #17150f; --term-ink: #e9e2d0;
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --paper: #14120e; --ink: #ece5d3; --muted: #9b9484; --line: #2c281f; --accent: #f08a4b; --term: #0b0a07; }
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font: 17px/1.6 var(--serif); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration-color: var(--accent); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 48px); }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; font: 14px var(--mono); }
+  nav b { font-size: 18px; letter-spacing: -.02em; }
+  nav b i { color: var(--accent); font-style: normal; }
+  nav div { display: flex; gap: 24px; }
+  .hero { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center; min-height: min(78dvh, 720px); padding: 40px 0 72px; }
+  h1 { font-size: clamp(2.6rem, 6.4vw, 5.2rem); line-height: .98; letter-spacing: -.035em; font-weight: 500; text-wrap: balance; }
+  h1 em { color: var(--accent); }
+  .lede { margin: 24px 0 32px; max-width: 46ch; color: var(--muted); font-size: 1.15rem; }
+  .install { max-width: 520px; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--term); color: var(--term-ink); font: 14px var(--mono); }
+  .tabs { display: flex; border-bottom: 1px solid #ffffff1a; }
+  .tabs button { background: none; border: 0; color: #9b9484; font: inherit; padding: 10px 16px; cursor: pointer; }
+  .tabs button[aria-selected="true"] { color: var(--term-ink); box-shadow: inset 0 -2px var(--accent); }
+  .cmd { display: flex; justify-content: space-between; gap: 12px; align-items: center; padding: 16px; }
+  .cmd code::before { content: "$ "; color: var(--accent); }
+  .copy { background: #ffffff14; border: 0; color: inherit; font: 12px var(--mono); padding: 6px 10px; border-radius: 6px; cursor: pointer; transition: background .2s, transform .15s; }
+  .copy:hover { background: #ffffff26; } .copy:active { transform: scale(.96); }
+  .meta { margin-top: 14px; font: 13px var(--mono); color: var(--muted); }
+  .demo { background: var(--term); color: var(--term-ink); border-radius: 12px; padding: 22px 24px; font: 13px/1.75 var(--mono); box-shadow: 0 30px 60px -30px #0008; transform: rotate(1.2deg); overflow-x: auto; white-space: pre; }
+  .demo .p { color: var(--accent); } .demo .d { color: #8a8372; } .demo .e { color: #f87171; } .demo .w { color: #fbbf24; }
+  .cursor { display: inline-block; width: 8px; height: 1em; background: var(--term-ink); vertical-align: -2px; animation: blink 1.1s steps(2) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  section { border-top: 1px solid var(--line); padding: 72px 0; display: grid; grid-template-columns: 1fr 2.2fr; gap: clamp(24px, 6vw, 80px); }
+  h2 { font: 500 13px var(--mono); text-transform: uppercase; letter-spacing: .12em; color: var(--accent); position: sticky; top: 24px; align-self: start; }
+  .feat { display: grid; grid-template-columns: 3rem 1fr; gap: 4px 16px; padding: 22px 0; border-bottom: 1px solid var(--line); }
+  .feat:first-child { padding-top: 0; }
+  .feat span { font: 14px var(--mono); color: var(--muted); grid-row: span 2; padding-top: 6px; }
+  .feat h3 { font: 500 1.45rem/1.2 var(--serif); letter-spacing: -.01em; }
+  .feat p { color: var(--muted); max-width: 56ch; }
+  code { font: .88em var(--mono); background: #8883; padding: 1px 6px; border-radius: 4px; }
+  .rel { display: grid; grid-template-columns: 9rem 1fr; gap: 8px 24px; padding: 0 0 32px; }
+  .rel time { font: 13px var(--mono); color: var(--muted); }
+  .rel h3 { font: 500 1.2rem var(--mono); }
+  .rel h3 small { margin-left: 8px; font-size: 11px; color: var(--paper); background: var(--accent); padding: 2px 8px; border-radius: 99px; vertical-align: 2px; }
+  .rel ul { grid-column: 2; padding-left: 18px; color: var(--muted); }
+  .rel li::marker { color: var(--accent); }
+  footer { border-top: 1px solid var(--line); padding: 32px 0 56px; font: 13px var(--mono); color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .cursor { animation: none; } html { scroll-behavior: auto; } }
+  @media (max-width: 800px) {
+    .hero, section { grid-template-columns: 1fr; } .demo { transform: none; } h2 { position: static; }
+    .rel { grid-template-columns: 1fr; } .rel ul { grid-column: 1; } nav div { gap: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav><b>sift<i>_</i></b><div><a href="#features">Features</a><a href="#changelog">Changelog</a><a href="https://github.com/">GitHub</a></div></nav>
+
+  <header class="hero">
+    <div>
+      <h1>Ask your logs a <em>question</em>, not a regex.</h1>
+      <p class="lede">sift is a single-binary command-line tool that filters, groups and tails structured logs with a small, readable query language. It reads JSON, logfmt and plain text, from files or pipes.</p>
+      <div class="install">
+        <div class="tabs" role="tablist" aria-label="Install method">
+          <button role="tab" aria-selected="true" data-cmd="brew install sift">Homebrew</button>
+          <button role="tab" aria-selected="false" data-cmd="cargo install sift-cli">Cargo</button>
+          <button role="tab" aria-selected="false" data-cmd="curl -fsSL sift.dev/install.sh | sh">Script</button>
+        </div>
+        <div class="cmd"><code id="cmd">brew install sift</code><button class="copy" id="copy" type="button">Copy</button></div>
+      </div>
+      <p class="meta">MIT licensed &middot; Linux, macOS, Windows &middot; v2.4.0</p>
+    </div>
+    <pre class="demo" aria-label="Example terminal session"><span class="p">$</span> sift 'level>=warn' api.log | group service
+<span class="d">service     count   p95</span>
+checkout      142   812ms
+search         37   240ms
+<span class="d">---</span>
+<span class="p">$</span> tail -f app.log | sift 'status:5xx' --live
+<span class="e">500</span> POST /orders      <span class="d">214ms</span>
+<span class="w">503</span> GET  /inventory   <span class="d">2.1s</span>
+<span class="p">$</span> <span class="cursor"></span></pre>
+  </header>
+
+  <section id="features">
+    <h2>Features</h2>
+    <div>
+      <div class="feat reveal"><span>01</span><h3>A query language you can remember</h3><p>Write <code>level>=warn and user:42</code> instead of nested <code>jq</code> filters. Autocomplete for fields ships for bash, zsh and fish.</p></div>
+      <div class="feat reveal"><span>02</span><h3>Fast on big files</h3><p>Memory-mapped, parallel parsing scans a 10 GB file in seconds and never loads it whole.</p></div>
+      <div class="feat reveal"><span>03</span><h3>Group, count, percentile</h3><p>Pipe results into <code>group</code>, <code>top</code> or <code>p95</code> for quick answers without leaving the shell.</p></div>
+      <div class="feat reveal"><span>04</span><h3>Live tail with context</h3><p>Follow a stream with <code>--live</code> and keep the surrounding lines of every match, like <code>grep -C</code> for events.</p></div>
+      <div class="feat reveal"><span>05</span><h3>Scriptable output</h3><p>Emit JSON, CSV or colored text. Exit codes are stable, so it behaves in CI.</p></div>
+    </div>
+  </section>
+
+  <section id="changelog">
+    <h2>Changelog</h2>
+    <div>
+      <article class="rel reveal"><time datetime="2026-09-18">Sep 18, 2026</time><h3>v2.4.0 <small>latest</small></h3>
+        <ul><li>Added <code>--live</code> context lines.</li><li>Windows builds now ship as signed MSI.</li><li>Fixed timestamps with offsets such as <code>+05:30</code>.</li></ul></article>
+      <article class="rel reveal"><time datetime="2026-08-02">Aug 2, 2026</time><h3>v2.3.0</h3>
+        <ul><li>New <code>p95</code> and <code>p99</code> aggregators.</li><li>Fish completions.</li></ul></article>
+      <article class="rel reveal"><time datetime="2026-06-11">Jun 11, 2026</time><h3>v2.2.0</h3>
+        <ul><li>logfmt parser rewritten, about 3x faster.</li><li>Breaking: <code>--format</code> renamed to <code>--out</code>.</li></ul></article>
+    </div>
+  </section>
+
+  <footer><span>sift &copy; 2026 contributors. MIT.</span><span><a href="https://github.com/">Source</a> &middot; <a href="#changelog">Releases</a> &middot; <a href="https://github.com/">Issues</a></span></footer>
+</div>
+<script>
+  const cmd = document.getElementById('cmd'), copy = document.getElementById('copy');
+  document.querySelectorAll('.tabs button').forEach(t => t.addEventListener('click', () => {
+    document.querySelectorAll('.tabs button').forEach(b => b.setAttribute('aria-selected', b === t));
+    cmd.textContent = t.dataset.cmd;
+  }));
+  copy.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(cmd.textContent); copy.textContent = 'Copied'; }
+    catch { copy.textContent = 'Press Ctrl+C'; }
+    setTimeout(() => copy.textContent = 'Copy', 1500);
+  });
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
+```

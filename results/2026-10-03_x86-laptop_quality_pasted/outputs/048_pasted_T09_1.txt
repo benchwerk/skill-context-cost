@@ -1,0 +1,133 @@
+```html
+<!doctype html>
+<!-- Design Read: open-source CLI homepage for developers, restrained dark/light tech language, native CSS + system fonts. Dials 7/5/4. Changelog entries are sample data. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>rill - read structured logs in your terminal</title>
+<style>
+:root{--bg:#f3f5f3;--panel:#e6ebe7;--ink:#121715;--mute:#4a5651;--line:#cdd6d0;--acc:#0b7a55;--on-acc:#fff;--code:#e1e8e3;--r:10px}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1311;--panel:#161d1a;--ink:#e9eeea;--mute:#a1afa8;--line:#26312c;--acc:#3ddc9a;--on-acc:#06150e;--code:#111815}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 ui-sans-serif,"Segoe UI",system-ui,sans-serif}
+code,pre{font-family:ui-monospace,"Cascadia Code",Menlo,Consolas,monospace}
+a{color:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+nav b{font-size:1.2rem;letter-spacing:-.03em}
+nav div{display:flex;gap:28px;font-size:.95rem;color:var(--mute)}
+nav a{text-decoration:none}nav a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;white-space:nowrap;padding:12px 22px;border-radius:var(--r);font-weight:600;text-decoration:none;border:1px solid var(--line);transition:transform .25s cubic-bezier(.16,1,.3,1)}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:scale(.98)}
+.btn.p{background:var(--acc);color:var(--on-acc);border-color:var(--acc)}
+.hero{min-height:calc(100dvh - 64px);display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding-top:48px;padding-bottom:48px}
+h1{font-size:clamp(2.4rem,5vw,4rem);line-height:1.02;letter-spacing:-.045em;max-width:14ch}
+.hero p{margin:20px 0 28px;color:var(--mute);max-width:44ch;font-size:1.1rem}
+.hero .acts{display:flex;gap:12px;flex-wrap:wrap}
+.hero img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r);border:1px solid var(--line);margin-top:24px}
+section{padding:96px 0}
+h2{font-size:clamp(1.8rem,3.4vw,2.6rem);letter-spacing:-.035em;line-height:1.1;margin-bottom:14px}
+.lead{color:var(--mute);max-width:60ch;margin-bottom:32px}
+.install{background:var(--panel);border-block:1px solid var(--line)}
+.tabs{display:flex;gap:8px;margin-bottom:12px}
+.tabs button{font:inherit;font-size:.9rem;padding:8px 16px;border-radius:var(--r);border:1px solid var(--line);background:transparent;color:var(--mute);cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.cmd{display:flex;justify-content:space-between;align-items:center;gap:16px;background:var(--code);border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;max-width:640px}
+.cmd code{overflow-x:auto;white-space:nowrap}
+.cmd button{font:inherit;font-size:.85rem;font-weight:600;padding:8px 14px;border-radius:var(--r);border:0;background:var(--acc);color:var(--on-acc);cursor:pointer;min-width:72px}
+.note{margin-top:14px;font-size:.9rem;color:var(--mute)}
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.cell{border-radius:var(--r);padding:28px;border:1px solid var(--line);background:var(--panel);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;min-height:230px}
+.cell h3{font-size:1.2rem;letter-spacing:-.02em;margin-bottom:6px}
+.cell p{color:var(--mute);font-size:.95rem;max-width:42ch}
+.cell code{display:inline-block;margin-top:12px;font-size:.85rem;background:var(--code);padding:4px 10px;border-radius:6px;align-self:flex-start}
+.c1{grid-column:span 4;min-height:300px;color:#f1f5f2}
+.c1 img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.c1::before{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgb(8 14 11/.92),rgb(8 14 11/.15));z-index:1}
+.c1>*:not(img){position:relative;z-index:2}.c1 p{color:#c3cfc8}.c1 code{background:rgb(255 255 255/.14)}
+.c2{grid-column:span 2;background:var(--acc);color:var(--on-acc);border-color:var(--acc)}.c2 p{color:inherit}.c2 code{background:rgb(0 0 0/.18)}
+.c3{grid-column:span 2}
+.c4{grid-column:span 2;background:repeating-linear-gradient(135deg,var(--panel) 0 14px,var(--code) 14px 28px)}
+.c5{grid-column:span 2}
+.log{display:grid;grid-template-columns:150px 1fr;gap:8px 32px;padding:28px 0;border-top:1px solid var(--line)}
+.log summary{cursor:pointer;list-style:none;font-weight:600;font-size:1.15rem;display:flex;flex-direction:column}
+.log summary::-webkit-details-marker{display:none}
+.log summary span{font-weight:400;font-size:.88rem;color:var(--mute)}
+.log ul{padding-left:18px;color:var(--mute)}.log li{margin-bottom:6px}.log li b{color:var(--ink)}
+footer{border-top:1px solid var(--line);padding:32px 0;color:var(--mute);font-size:.9rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.btn{transition:none}}
+@media(max-width:767px){
+ nav div{gap:16px}.hero{grid-template-columns:1fr;gap:24px}.hero img{aspect-ratio:16/10}
+ section{padding:64px 0}.bento{grid-template-columns:1fr}.cell,.c1,.c2,.c3,.c4,.c5{grid-column:auto;min-height:200px}
+ .log{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><b>rill</b><div><a href="#features">Features</a><a href="#changelog">Changelog</a><a href="https://github.com/">GitHub</a></div></div></nav>
+<main>
+<header class="wrap hero">
+ <div class="rv">
+  <h1>Read logs at the speed you scroll.</h1>
+  <p>Rill tails, filters and reshapes JSON logs in your terminal. One static binary, no config needed.</p>
+  <div class="acts"><a class="btn p" href="#install">Install rill</a><a class="btn" href="#features">Read the docs</a></div>
+ </div>
+ <img class="rv" src="https://picsum.photos/seed/rill-night-terminal/900/1100" alt="A dim workstation with a terminal glowing in the dark" width="900" height="1100" fetchpriority="high">
+</header>
+
+<section class="install" id="install"><div class="wrap rv">
+ <h2>Install in one line.</h2>
+ <p class="lead">Rill is a single binary for Linux, macOS and Windows.</p>
+ <div class="tabs" role="tablist">
+  <button role="tab" aria-selected="true" data-c="brew install rill">Homebrew</button>
+  <button role="tab" aria-selected="false" data-c="cargo install rill-cli">Cargo</button>
+  <button role="tab" aria-selected="false" data-c="npm install -g @rill/cli">npm</button>
+ </div>
+ <div class="cmd"><code id="cmd">brew install rill</code><button id="copy" type="button">Copy</button></div>
+ <p class="note" id="status" role="status">Then run <code>tail -f app.log | rill</code> to try it.</p>
+</div></section>
+
+<section id="features"><div class="wrap">
+ <h2 class="rv">Built for the 2 a.m. incident.</h2>
+ <p class="lead rv">Everything runs locally, streams from stdin and stays out of your way.</p>
+ <div class="bento">
+  <article class="cell c1 rv"><img src="https://picsum.photos/seed/rill-server-room/1000/600" alt="Rows of server racks lit in blue" loading="lazy" width="1000" height="600"><h3>Live filters</h3><p>Narrow a noisy stream to the lines that matter while it keeps flowing.</p><code>rill -f 'level>=warn'</code></article>
+  <article class="cell c2 rv"><h3>Reshape fields</h3><p>Pick, rename and format keys into the line you actually want to read.</p><code>rill -o '{ts} {msg}'</code></article>
+  <article class="cell c3 rv"><h3>Streams big files</h3><p>Reads line by line, so a multi-gigabyte archive never has to fit in memory.</p></article>
+  <article class="cell c4 rv"><h3>Single binary</h3><p>Copy it to a jump host and run it. No runtime, no daemon.</p></article>
+  <article class="cell c5 rv"><h3>Readable by default</h3><p>Levels and timestamps get color, and themes follow your terminal palette.</p></article>
+ </div>
+</div></section>
+
+<section id="changelog" style="padding-top:0"><div class="wrap">
+ <h2 class="rv">Changelog</h2>
+ <p class="lead rv">Recent releases, newest first.</p>
+ <details class="log rv" open><summary>0.9.0<span>September 18, 2026</span></summary><ul><li><b>Added</b> regex matching on any field with <code>--grep</code>.</li><li><b>Added</b> Windows ARM64 builds.</li><li><b>Fixed</b> timestamps losing their timezone when reshaped.</li></ul></details>
+ <details class="log rv"><summary>0.8.2<span>August 27, 2026</span></summary><ul><li><b>Fixed</b> a crash on lines with invalid UTF-8.</li><li><b>Changed</b> the default theme to respect NO_COLOR.</li></ul></details>
+ <details class="log rv"><summary>0.8.0<span>July 30, 2026</span></summary><ul><li><b>Added</b> output templates with <code>-o</code>.</li><li><b>Added</b> shell completions for bash, zsh and fish.</li><li><b>Removed</b> the deprecated <code>--json-only</code> flag.</li></ul></details>
+</div></section>
+</main>
+<footer><div class="wrap"><span>rill is MIT licensed.</span><span>Made by contributors on GitHub.</span></div></footer>
+<script>
+const cmd=document.getElementById('cmd'),copy=document.getElementById('copy'),st=document.getElementById('status');
+document.querySelectorAll('.tabs button').forEach(t=>t.addEventListener('click',()=>{
+ document.querySelectorAll('.tabs button').forEach(b=>b.setAttribute('aria-selected',b===t));
+ cmd.textContent=t.dataset.c;
+}));
+copy.addEventListener('click',async()=>{
+ try{await navigator.clipboard.writeText(cmd.textContent);copy.textContent='Copied';st.textContent='Copied to clipboard.'}
+ catch{copy.textContent='Failed';st.textContent='Copy failed. Select the command and copy it manually.'}
+ setTimeout(()=>copy.textContent='Copy',1800);
+});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
+```

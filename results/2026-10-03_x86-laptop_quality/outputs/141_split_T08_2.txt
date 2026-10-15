@@ -1,0 +1,172 @@
+```html
+<!-- Design Read: fintech About page for prospective customers, hires and partners, trust-first editorial language, native CSS + system serif/sans, restrained motion. Company, people and figures are placeholders. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About · Ledgerline</title>
+<style>
+  :root {
+    --paper: #f4f1ea; --card: #fbf9f4; --ink: #14201b; --muted: #55625b;
+    --line: #d9d4c7; --accent: #0f5c4a; --accent-ink: #ffffff;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: "Segoe UI Variable", "Segoe UI", system-ui, -apple-system, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--paper); color: var(--ink); font: 1rem/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 2.5rem); }
+  header.top { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; border-bottom: 1px solid var(--line); }
+  .logo { font: 700 1.25rem var(--serif); text-decoration: none; letter-spacing: -.01em; }
+  .logo b { color: var(--accent); }
+  nav a { margin-left: 1.5rem; font-size: .9rem; color: var(--muted); text-decoration: none; }
+  nav a:hover { color: var(--ink); }
+  .eyebrow { font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+  h1, h2 { font-family: var(--serif); font-weight: 600; letter-spacing: -.02em; line-height: 1.08; text-wrap: balance; }
+  h1 { font-size: clamp(2.5rem, 6.5vw, 5rem); max-width: 16ch; margin-top: 1rem; }
+  h2 { font-size: clamp(1.75rem, 3.4vw, 2.5rem); }
+  .hero { min-height: min(80dvh, 720px); display: grid; align-content: center; gap: 2rem; padding: 4rem 0; }
+  .hero p.lead { max-width: 52ch; font-size: 1.2rem; color: var(--muted); }
+  .hero p.lead em { color: var(--ink); font-style: normal; border-bottom: 2px solid var(--accent); }
+  section { padding: clamp(3rem, 8vw, 6rem) 0; border-top: 1px solid var(--line); }
+  .split { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+  @media (min-width: 820px) { .split { grid-template-columns: 5fr 7fr; gap: 4rem; } }
+  .split > div > p { color: var(--muted); max-width: 56ch; }
+  .split > div > p + p { margin-top: 1rem; }
+  .principles { list-style: none; padding: 0; counter-reset: p; display: grid; gap: 0; }
+  .principles li { counter-increment: p; display: grid; grid-template-columns: 3rem 1fr; padding: 1.25rem 0; border-top: 1px solid var(--line); }
+  .principles li::before { content: "0" counter(p); font: 600 .85rem var(--sans); color: var(--accent); padding-top: .3rem; }
+  .principles strong { font: 600 1.35rem var(--serif); display: block; }
+  .principles span { color: var(--muted); }
+  .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 2.5rem; }
+  @media (min-width: 820px) { .stats { grid-template-columns: repeat(4, 1fr); } }
+  .stat { background: var(--card); padding: 1.75rem 1.5rem; }
+  .stat:first-child { grid-column: span 2; background: var(--accent); color: var(--accent-ink); }
+  .stat:first-child small { color: #cfe5de; }
+  @media (min-width: 820px) { .stat:first-child { grid-column: span 1; } }
+  .stat output { display: block; font: 600 clamp(2.25rem, 4.5vw, 3.5rem)/1 var(--serif); font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+  .stat small { display: block; margin-top: .75rem; color: var(--muted); font-size: .85rem; }
+  .team { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+  .person { padding-top: 1.25rem; border-top: 2px solid var(--ink); transition: transform .3s ease; }
+  .person:nth-child(even) { margin-top: 2rem; }
+  .person:hover { transform: translateY(-4px); }
+  .mono { width: 4rem; height: 4rem; border-radius: 50%; display: grid; place-items: center; background: var(--card); border: 1px solid var(--line); font: 600 1.35rem var(--serif); color: var(--accent); }
+  .person h3 { font: 600 1.35rem var(--serif); margin-top: 1rem; }
+  .person .role { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); font-weight: 600; }
+  .person p { margin-top: .5rem; font-size: .92rem; color: var(--muted); }
+  .head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 1rem; }
+  .filters { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .filters button { font: 500 .85rem var(--sans); padding: .5rem 1rem; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; transition: background .2s, color .2s; }
+  .filters button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .roles { list-style: none; padding: 0; margin-top: 2rem; border-bottom: 1px solid var(--line); }
+  .roles li[hidden] { display: none; }
+  .roles a { display: grid; grid-template-columns: 1fr; gap: .25rem 1.5rem; padding: 1.25rem .5rem; border-top: 1px solid var(--line); text-decoration: none; transition: background .2s, padding .25s; }
+  @media (min-width: 720px) { .roles a { grid-template-columns: 2fr 1fr 1fr auto; align-items: center; } }
+  .roles a:hover { background: var(--card); padding-left: 1rem; }
+  .roles b { font: 600 1.2rem var(--serif); }
+  .roles span { color: var(--muted); font-size: .92rem; }
+  .roles i { font-style: normal; color: var(--accent); font-weight: 600; font-size: .9rem; }
+  footer { border-top: 1px solid var(--line); padding: 2rem 0 3rem; font-size: .8rem; color: var(--muted); }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="#">Ledger<b>line</b></a>
+    <nav aria-label="Primary"><a href="#mission">Mission</a><a href="#numbers">Numbers</a><a href="#team">Team</a><a href="#careers">Careers</a></nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div>
+        <p class="eyebrow">About Ledgerline</p>
+        <h1>Money should move at the speed of trust.</h1>
+      </div>
+      <p class="lead">We build payment and treasury infrastructure for growing businesses, so <em>settlement takes minutes, not days</em>, and every cent is accounted for along the way.</p>
+    </div>
+
+    <section id="mission">
+      <div class="split">
+        <div>
+          <p class="eyebrow">Our mission</p>
+          <h2 style="margin-top:.75rem">Make finance boringly reliable.</h2>
+          <p style="margin-top:1.25rem">Founded in 2021 after a founder waited nine days for a supplier payment to clear, Ledgerline is now a licensed payment institution serving teams in 31 countries.</p>
+        </div>
+        <ol class="principles">
+          <li><div><strong>Clarity before speed</strong><span>Fees, FX and timelines are shown before you commit, never after.</span></div></li>
+          <li><div><strong>Safety is a feature</strong><span>Customer funds are safeguarded in segregated accounts and audited every quarter.</span></div></li>
+          <li><div><strong>Software that gets out of the way</strong><span>One API, one ledger, and a support team that answers in minutes.</span></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="numbers">
+      <p class="eyebrow">Key numbers</p>
+      <h2 style="margin-top:.75rem">Trusted with real money, daily.</h2>
+      <div class="stats">
+        <div class="stat"><output data-to="4.8" data-dec="1" data-pre="$" data-suf="B">$4.8B</output><small>Processed in the last 12 months</small></div>
+        <div class="stat"><output data-to="12400" data-suf="+">12,400+</output><small>Businesses on the platform</small></div>
+        <div class="stat"><output data-to="99.99" data-dec="2" data-suf="%">99.99%</output><small>Uptime over the last 24 months</small></div>
+        <div class="stat"><output data-to="140">140</output><small>People across four offices</small></div>
+      </div>
+    </section>
+
+    <section id="team">
+      <p class="eyebrow">Leadership</p>
+      <h2 style="margin-top:.75rem">People who have run the plumbing before.</h2>
+      <div class="team">
+        <article class="person"><div class="mono" aria-hidden="true">AO</div><h3>Amara Okafor</h3><p class="role">Co-founder &amp; CEO</p><p>Ten years in cross-border payments at a global bank before starting Ledgerline.</p></article>
+        <article class="person"><div class="mono" aria-hidden="true">JM</div><h3>Jonas Meier</h3><p class="role">Co-founder &amp; CTO</p><p>Built low-latency clearing systems; leads platform engineering and security.</p></article>
+        <article class="person"><div class="mono" aria-hidden="true">PR</div><h3>Priya Raman</h3><p class="role">Chief Risk Officer</p><p>Former regulator who now shapes compliance by design across every product.</p></article>
+        <article class="person"><div class="mono" aria-hidden="true">DC</div><h3>Diego Castillo</h3><p class="role">Chief Financial Officer</p><p>Scaled two fintechs from seed to profitability; owns treasury and partner banks.</p></article>
+      </div>
+    </section>
+
+    <section id="careers">
+      <div class="head">
+        <div><p class="eyebrow">Open roles</p><h2 style="margin-top:.75rem">Help us build it.</h2></div>
+        <div class="filters" role="group" aria-label="Filter roles by team">
+          <button aria-pressed="true" data-team="all">All</button><button aria-pressed="false" data-team="Engineering">Engineering</button>
+          <button aria-pressed="false" data-team="Risk">Risk</button><button aria-pressed="false" data-team="Operations">Operations</button>
+        </div>
+      </div>
+      <ul class="roles">
+        <li data-team="Engineering"><a href="#"><b>Staff Backend Engineer</b><span>Engineering</span><span>London · Hybrid</span><i>Apply</i></a></li>
+        <li data-team="Engineering"><a href="#"><b>Senior Security Engineer</b><span>Engineering</span><span>Remote · EU</span><i>Apply</i></a></li>
+        <li data-team="Risk"><a href="#"><b>Financial Crime Analyst</b><span>Risk</span><span>Lisbon · On-site</span><i>Apply</i></a></li>
+        <li data-team="Operations"><a href="#"><b>Treasury Operations Lead</b><span>Operations</span><span>London · Hybrid</span><i>Apply</i></a></li>
+      </ul>
+    </section>
+  </main>
+  <footer>Ledgerline Ltd is a fictional company. All names and figures are placeholders for design purposes.</footer>
+</div>
+<script>
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const fmt = (n, o) => (o.pre || "") + n.toLocaleString("en-US", { minimumFractionDigits: +o.dec || 0, maximumFractionDigits: +o.dec || 0 }) + (o.suf || "");
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    io.unobserve(e.target);
+    const el = e.target, to = +el.dataset.to, t0 = performance.now();
+    const tick = t => {
+      const p = Math.min((t - t0) / 1100, 1);
+      el.textContent = fmt(to * (1 - Math.pow(1 - p, 3)), el.dataset);
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }), { threshold: .6 });
+  if (!reduce) document.querySelectorAll("output[data-to]").forEach(o => io.observe(o));
+
+  const btns = document.querySelectorAll(".filters button");
+  btns.forEach(b => b.addEventListener("click", () => {
+    btns.forEach(x => x.setAttribute("aria-pressed", x === b));
+    document.querySelectorAll(".roles li").forEach(li => {
+      li.hidden = b.dataset.team !== "all" && li.dataset.team !== b.dataset.team;
+    });
+  }));
+</script>
+</body>
+</html>
+```

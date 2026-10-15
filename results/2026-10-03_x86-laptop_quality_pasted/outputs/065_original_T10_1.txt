@@ -1,0 +1,135 @@
+```html
+<!-- Reading this as: event page for a two-day design conference, for working designers, with a confident editorial-grotesk language, leaning toward native CSS + Geist-style system sans. Dials 7/5/4. One vermilion accent, one 6px radius, auto light/dark. Images are picsum seeds; swap in real photography before launch. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Offset 2027, a design conference in Rotterdam</title>
+<style>
+:root{--bg:#f4f4f2;--fg:#17181a;--mute:#55585d;--line:#d9d9d5;--card:#eaeae6;--ac:#c2341a;--on:#fff;--r:6px}
+@media(prefers-color-scheme:dark){:root{--bg:#121315;--fg:#ececea;--mute:#a3a6ab;--line:#2c2e32;--card:#1b1c1f;--ac:#ff7050;--on:#141414}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 Geist,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}
+img{display:block;width:100%;object-fit:cover;border-radius:var(--r)}
+.w{max-width:1200px;margin:0 auto;padding:0 20px}
+nav{height:64px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+nav b{font-size:20px;letter-spacing:-.04em}
+nav div{display:flex;gap:28px;font-size:14px}
+nav a{text-decoration:none;color:var(--mute)}nav a:hover{color:var(--fg)}
+.btn{display:inline-block;white-space:nowrap;padding:12px 22px;border-radius:var(--r);background:var(--ac);color:var(--on);font-weight:600;text-decoration:none;border:1px solid var(--ac);transition:transform .25s cubic-bezier(.16,1,.3,1)}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(1px) scale(.98)}
+.btn.ghost{background:none;color:var(--fg);border-color:var(--fg)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;min-height:calc(100dvh - 64px);padding:48px 0}
+h1{font-size:clamp(40px,5.6vw,76px);line-height:1;letter-spacing:-.05em;font-weight:700}
+h1 em{font-style:italic;color:var(--ac);padding-bottom:4px}
+.hero p{max-width:44ch;margin:24px 0 32px;color:var(--mute);font-size:18px}
+.hero .btn+.btn{margin-left:10px}
+.hero img{aspect-ratio:4/5}
+section{padding:96px 0}
+h2{font-size:clamp(30px,4vw,48px);letter-spacing:-.04em;line-height:1.05;margin-bottom:12px}
+.sub{color:var(--mute);max-width:56ch;margin-bottom:40px}
+.sp{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:auto auto;gap:24px}
+.sp .big{grid-row:span 2}
+.sp figure img{aspect-ratio:1/1}.sp .big img{aspect-ratio:auto;height:calc(100% - 64px);min-height:320px}
+.sp figure{display:flex;flex-direction:column;gap:12px}
+.sp figcaption{font-weight:600;line-height:1.3}.sp small{display:block;font-weight:400;color:var(--mute);font-size:14px}
+.tabs{display:flex;gap:8px;margin-bottom:24px}
+.tabs button{font:inherit;padding:10px 20px;border-radius:var(--r);border:1px solid var(--line);background:none;color:var(--fg);cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.tabs button:focus-visible,.btn:focus-visible{outline:2px solid var(--ac);outline-offset:3px}
+.row{display:grid;grid-template-columns:110px 1fr auto;gap:24px;padding:20px 0;border-bottom:1px solid var(--line)}
+.row time{font-variant-numeric:tabular-nums;font-weight:600;color:var(--ac)}
+.row span{color:var(--mute);font-size:14px;text-align:right}
+.venue{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:end}
+.venue img{aspect-ratio:16/10}
+dl{display:grid;grid-template-columns:100px 1fr;gap:12px 20px;margin-top:28px}
+dt{color:var(--mute)}dd{font-weight:500}
+.tk{display:grid;grid-template-columns:1.4fr 1fr;gap:24px}
+.pass{background:var(--card);border-radius:var(--r);padding:32px;display:flex;flex-direction:column;gap:14px}
+.pass.main{grid-row:span 2;border:2px solid var(--ac);justify-content:space-between}
+.pass h3{font-size:22px;letter-spacing:-.02em}
+.price{font-size:44px;font-weight:700;letter-spacing:-.05em}
+.pass ul{list-style:none;padding:0;color:var(--mute)}
+.pass .btn{align-self:flex-start}
+footer{border-top:1px solid var(--line);padding:32px 0;color:var(--mute);font-size:14px}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.btn{transition:none}}
+@media(max-width:767px){
+.hero,.venue,.tk,.sp{grid-template-columns:1fr}.hero{min-height:0}.sp .big{grid-row:auto}.pass.main{grid-row:auto}
+.row{grid-template-columns:80px 1fr}.row span{grid-column:2;text-align:left}nav div a:not(.btn){display:none}section{padding:64px 0}}
+</style>
+</head>
+<body>
+<div class="w"><nav><b>Offset</b><div><a href="#speakers">Speakers</a><a href="#schedule">Schedule</a><a href="#venue">Venue</a><a href="#tickets">Tickets</a></div></nav></div>
+
+<header class="w hero">
+  <div class="rv">
+    <h1>Two days of <em>craft</em>, systems and strong opinions.</h1>
+    <p>Offset brings 600 designers to Rotterdam on 14 and 15 May 2027 for talks and workshops.</p>
+    <a class="btn" href="#tickets">Get tickets</a><a class="btn ghost" href="#schedule">See schedule</a>
+  </div>
+  <img class="rv" src="https://picsum.photos/seed/offset-conference-stage/800/1000" alt="Audience watching a speaker on a lit conference stage" width="800" height="1000">
+</header>
+
+<section id="speakers" class="w">
+  <h2 class="rv">Speakers</h2>
+  <p class="sub rv">Practitioners from type foundries, product teams and studios, each with one hard-won lesson.</p>
+  <div class="sp">
+    <figure class="big rv"><img src="https://picsum.photos/seed/offset-ayumi-takeda/700/900" alt="Portrait of Ayumi Takeda" loading="lazy"><figcaption>Ayumi Takeda<small>Type director, Hanko Foundry</small></figcaption></figure>
+    <figure class="rv"><img src="https://picsum.photos/seed/offset-tobias-wennerstrom/400/400" alt="Portrait of Tobias Wennerström" loading="lazy"><figcaption>Tobias Wennerström<small>Design systems lead, Nordlys</small></figcaption></figure>
+    <figure class="rv"><img src="https://picsum.photos/seed/offset-nkechi-adeyemi/400/400" alt="Portrait of Nkechi Adeyemi" loading="lazy"><figcaption>Nkechi Adeyemi<small>Principal designer, Kora Health</small></figcaption></figure>
+    <figure class="rv"><img src="https://picsum.photos/seed/offset-mateo-ferraro/400/400" alt="Portrait of Mateo Ferraro" loading="lazy"><figcaption>Mateo Ferraro<small>Motion designer, Studio Pallone</small></figcaption></figure>
+    <figure class="rv"><img src="https://picsum.photos/seed/offset-priya-raghunathan/400/400" alt="Portrait of Priya Raghunathan" loading="lazy"><figcaption>Priya Raghunathan<small>Research lead, Civic Labs</small></figcaption></figure>
+  </div>
+</section>
+
+<section id="schedule" class="w">
+  <h2 class="rv">Schedule</h2>
+  <div class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-d="0">Friday 14 May</button>
+    <button role="tab" aria-selected="false" data-d="1">Saturday 15 May</button>
+  </div>
+  <div id="list" aria-live="polite"></div>
+</section>
+
+<section id="venue" class="w venue">
+  <img class="rv" src="https://picsum.photos/seed/offset-venue-hall/900/560" alt="Interior of a converted harbour warehouse with tall windows" loading="lazy">
+  <div class="rv">
+    <h2>Maashaven Hall</h2>
+    <p class="sub" style="margin:0">A converted harbour warehouse with a main stage, two workshop rooms and a ground-floor café.</p>
+    <dl><dt>Address</dt><dd>Maashaven Zuidzijde 12, Rotterdam</dd><dt>Doors</dt><dd>08:30 both days</dd><dt>Transit</dt><dd>Tram 25 to Maashaven, 4 minutes on foot</dd></dl>
+  </div>
+</section>
+
+<section id="tickets" class="w">
+  <h2 class="rv">Tickets</h2>
+  <p class="sub rv">Prices include VAT, lunch and the Friday evening party.</p>
+  <div class="tk">
+    <div class="pass main rv"><div><h3>Full pass</h3><p style="color:var(--mute)">Both days, plus one workshop of your choice.</p></div><div class="price">€340</div><ul><li>Main stage and all rooms</li><li>Recordings after the event</li></ul><a class="btn" href="#tickets">Reserve</a></div>
+    <div class="pass rv"><h3>Day pass</h3><div class="price">€190</div><a class="btn ghost" href="#tickets">Reserve</a></div>
+    <div class="pass rv"><h3>Student pass</h3><div class="price">€95</div><a class="btn ghost" href="#tickets">Reserve</a></div>
+  </div>
+</section>
+
+<footer><div class="w">Offset Conference 2027. Questions: hello@offsetconf.example</div></footer>
+
+<script>
+const days=[
+[["09:30","Opening keynote: Drawing letters for screens","Ayumi Takeda"],["11:00","Tokens that survive a rebrand","Tobias Wennerström"],["13:30","Designing care pathways with clinicians","Nkechi Adeyemi"],["15:00","Workshop: Motion principles in 90 minutes","Mateo Ferraro"],["17:30","Panel: What we got wrong this year","All speakers"]],
+[["09:30","Research that changes roadmaps","Priya Raghunathan"],["11:00","Workshop: Auditing a design system","Tobias Wennerström"],["13:30","Type pairing without rules of thumb","Ayumi Takeda"],["15:00","Small teams, large products","Nkechi Adeyemi"],["16:30","Closing talk: Motion as a language","Mateo Ferraro"]]];
+const list=document.getElementById("list"),tabs=document.querySelectorAll("[role=tab]");
+function show(i){
+  tabs.forEach(t=>t.setAttribute("aria-selected",t.dataset.d==i));
+  list.innerHTML=days[i].map(r=>`<div class="row"><time>${r[0]}</time><div>${r[1]}</div><span>${r[2]}</span></div>`).join("");
+}
+tabs.forEach(t=>t.onclick=()=>show(t.dataset.d));
+show(0);
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
+```

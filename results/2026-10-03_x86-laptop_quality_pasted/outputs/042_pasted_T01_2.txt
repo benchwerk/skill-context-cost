@@ -1,0 +1,140 @@
+```html
+<!doctype html>
+<!-- Design Read: ceramics studio landing for design-conscious locals and visitors, calm premium-consumer language, cobalt accent on cool grey, native CSS with light/dark via prefers-color-scheme. Dials 7/5/3. Images are picsum placeholders, swap for real studio photography. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Olaria Maré | Ceramics studio in Lisbon</title>
+<meta name="description" content="Wheel-thrown tableware, vases and tiles made in Lisbon, plus hands-on pottery workshops.">
+<style>
+:root{--bg:#eef0f3;--surface:#e3e6eb;--ink:#14171c;--muted:#4a5160;--line:#c9ced6;--accent:#2447c9;--on-accent:#f4f6ff;--r:14px;--font:"Avenir Next","Segoe UI",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#101318;--surface:#181c23;--ink:#e8eaee;--muted:#a3a9b6;--line:#2b313b;--accent:#8aa2ff;--on-accent:#0d1020}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:400 1rem/1.6 var(--font);-webkit-font-smoothing:antialiased}
+img{display:block;width:100%;height:100%;object-fit:cover;border-radius:var(--r)}
+a{color:inherit}
+.wrap{max-width:80rem;margin:0 auto;padding:0 1.5rem}
+h1,h2{letter-spacing:-.035em;line-height:1.05;font-weight:650}
+h2{font-size:clamp(1.9rem,4vw,3rem);max-width:18ch}
+p.lead{color:var(--muted);max-width:60ch;margin-top:1rem}
+section{padding:6rem 0}
+.btn{display:inline-block;white-space:nowrap;background:var(--accent);color:var(--on-accent);padding:.85rem 1.5rem;border-radius:var(--r);font-weight:600;text-decoration:none;transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(1px) scale(.98)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+header{height:68px;border-bottom:1px solid var(--line)}
+header .wrap{height:100%;display:flex;align-items:center;justify-content:space-between}
+nav{display:flex;align-items:center;gap:2rem}
+nav a:not(.btn){text-decoration:none;color:var(--muted)}nav a:not(.btn):hover{color:var(--ink)}
+.logo{font-weight:700;letter-spacing:-.03em;font-size:1.2rem;text-decoration:none}
+.hero{min-height:calc(100dvh - 68px);display:grid;grid-template-columns:1.05fr 1fr;gap:4rem;align-items:center;padding:3rem 0 3rem}
+.hero h1{font-size:clamp(2.4rem,5vw,4.4rem)}
+.hero .ctas{display:flex;gap:.75rem;margin-top:2rem;flex-wrap:wrap}
+.hero figure{aspect-ratio:4/5;max-height:75dvh;margin-left:auto;width:100%}
+.make{display:grid;grid-template-columns:1.2fr 1fr 1fr;grid-template-rows:20rem 20rem;gap:1.5rem;margin-top:3rem}
+.make figure{display:flex;flex-direction:column;gap:.6rem;min-height:0}
+.make figure div{flex:1;min-height:0}
+.make figcaption{color:var(--muted);font-size:.95rem}.make figcaption b{color:var(--ink)}
+.make .tall{grid-row:span 2}.make .wide{grid-column:span 2}
+.quotes{display:grid;grid-template-columns:1.5fr 1fr;gap:3rem 4rem;margin-top:3rem;align-items:start}
+blockquote{font-size:1.05rem}
+blockquote p::before{content:"\201C"}blockquote p::after{content:"\201D"}
+blockquote.big p{font-size:clamp(1.5rem,2.8vw,2.3rem);line-height:1.25;letter-spacing:-.02em;font-weight:550}
+blockquote footer{margin-top:1rem;color:var(--muted);font-size:.9rem}blockquote footer b{display:block;color:var(--ink)}
+.side{display:grid;gap:2.5rem;border-left:1px solid var(--line);padding-left:2.5rem}
+.pricing{background:var(--surface)}
+.price-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;margin-top:3rem;align-items:center}
+.price-grid figure{aspect-ratio:1/1}
+.plans{display:grid;gap:2rem}
+.plan{display:grid;grid-template-columns:1fr auto;gap:.25rem 1.5rem}
+.plan+.plan{border-top:1px solid var(--line);padding-top:2rem}
+.plan h3{font-size:1.25rem;letter-spacing:-.02em}.plan p{color:var(--muted);grid-column:1}
+.plan strong{font-size:1.8rem;letter-spacing:-.03em;grid-row:1/3;grid-column:2;align-self:center}
+.plans .btn{justify-self:start}
+footer.site{padding:4rem 0 2.5rem}
+.foot{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem}
+.foot h4{font-size:.95rem;margin-bottom:.6rem}.foot p,.foot a{color:var(--muted);display:block;text-decoration:none}.foot a:hover{color:var(--ink)}
+.copy{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--line);color:var(--muted);font-size:.875rem}
+@media (prefers-reduced-motion:no-preference){
+.hero .in{animation:up .9s cubic-bezier(.16,1,.3,1) both}.hero .in:nth-child(2){animation-delay:.12s}.hero .in:nth-child(3){animation-delay:.24s}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.rv.on{opacity:1;transform:none}
+@keyframes up{from{opacity:0;transform:translateY(24px)}}}
+@media (max-width:767px){
+section{padding:4rem 0}.wrap{padding:0 1rem}nav a:not(.btn){display:none}
+.hero,.quotes,.price-grid,.foot{grid-template-columns:1fr;gap:2rem}.hero figure{margin:0;max-height:none;aspect-ratio:4/3}
+.make{grid-template-columns:1fr;grid-template-rows:none}.make .tall,.make .wide{grid-row:auto;grid-column:auto}.make figure div{aspect-ratio:4/3;flex:none}
+.side{border:0;padding:0}.plan{grid-template-columns:1fr}.plan strong{grid-row:auto;grid-column:1}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="logo" href="#top">Olaria Maré</a>
+  <nav><a href="#make">Our work</a><a href="#words">Reviews</a><a href="#workshops">Workshops</a><a class="btn" href="#workshops">Book a workshop</a></nav>
+</div></header>
+<main id="top">
+<div class="wrap hero">
+  <div>
+    <h1 class="in">Cups, bowls and vases, thrown by hand in Lisbon.</h1>
+    <p class="lead in">Small-batch stoneware in cobalt and ash glazes, made to be used every day.</p>
+    <div class="ctas in"><a class="btn" href="#workshops">Book a workshop</a><a class="btn ghost" href="#make">See the work</a></div>
+  </div>
+  <figure class="in"><img src="https://picsum.photos/seed/lisbon-ceramics-studio-wheel/900/1125" width="900" height="1125" alt="Hands shaping a blue-glazed bowl on a pottery wheel" fetchpriority="high"></figure>
+</div>
+
+<section id="make"><div class="wrap">
+  <h2 class="rv">What comes out of the kiln</h2>
+  <p class="lead rv">Everything is thrown, trimmed and glazed in our studio, then fired in small batches.</p>
+  <div class="make">
+    <figure class="tall rv"><div><img loading="lazy" src="https://picsum.photos/seed/stoneware-tableware-blue/700/800" width="700" height="800" alt="Stack of blue stoneware plates and bowls"></div><figcaption><b>Tableware.</b> Plates, bowls and mugs in dishwasher-safe stoneware.</figcaption></figure>
+    <figure class="wide rv"><div><img loading="lazy" src="https://picsum.photos/seed/ceramic-vases-shelf/1200/500" width="1200" height="500" alt="Row of tall ceramic vases on a wooden shelf"></div><figcaption><b>Vases.</b> Tall forms, glazed by dipping and pouring.</figcaption></figure>
+    <figure class="rv"><div><img loading="lazy" src="https://picsum.photos/seed/handmade-tiles-wall/600/450" width="600" height="450" alt="Hand-painted ceramic tiles on a wall"></div><figcaption><b>Tiles.</b> Painted in small runs for kitchens and bathrooms.</figcaption></figure>
+    <figure class="rv"><div><img loading="lazy" src="https://picsum.photos/seed/custom-dinner-set-commission/600/450" width="600" height="450" alt="Custom dinner set laid out on a table"></div><figcaption><b>Commissions.</b> Full sets made for restaurants and homes.</figcaption></figure>
+  </div>
+</div></section>
+
+<section id="words" style="padding-top:2rem"><div class="wrap">
+  <h2 class="rv">What customers say</h2>
+  <div class="quotes">
+    <blockquote class="big rv"><p>I bought one mug and came back for a full set of twelve. They survive our busy restaurant kitchen.</p><footer><b>Marta Ventura</b>Chef and owner, Tasca do Beco</footer></blockquote>
+    <div class="side">
+      <blockquote class="rv"><p>The beginner workshop was relaxed and I left with a bowl I am proud of.</p><footer><b>Tomás Albuquerque</b>Architect, Porto</footer></blockquote>
+      <blockquote class="rv"><p>They matched the tiles to our old kitchen exactly and delivered on the date promised.</p><footer><b>Ingrid Solheim</b>Interior designer, Oslo</footer></blockquote>
+    </div>
+  </div>
+</div></section>
+
+<section id="workshops" class="pricing"><div class="wrap">
+  <h2 class="rv">Workshops for every level</h2>
+  <div class="price-grid">
+    <figure class="rv"><img loading="lazy" src="https://picsum.photos/seed/pottery-workshop-table/800/800" width="800" height="800" alt="Students at a long table shaping clay"></figure>
+    <div class="plans rv">
+      <div class="plan"><h3>Wheel Night</h3><p>Two hours, one piece, all materials included.</p><strong>€45</strong></div>
+      <div class="plan"><h3>Saturday Intensive</h3><p>Throw, trim and glaze three pieces. Lunch included.</p><strong>€120</strong></div>
+      <div class="plan"><h3>Six-Week Course</h3><p>Weekly evening classes with your own wheel station.</p><strong>€280</strong></div>
+      <a class="btn" href="mailto:hello@olariamare.example?subject=Workshop%20booking">Book a workshop</a>
+    </div>
+  </div>
+</div></section>
+</main>
+
+<footer class="site"><div class="wrap">
+  <div class="foot">
+    <div><a class="logo" href="#top" style="color:var(--ink)">Olaria Maré</a><p style="margin-top:.6rem;max-width:34ch">Stoneware and pottery classes in the heart of Lisbon.</p></div>
+    <div><h4>Visit</h4><p>Rua do Século 118, Lisbon</p><p>Tue to Sat, 10:00 to 18:00</p></div>
+    <div><h4>Contact</h4><a href="mailto:hello@olariamare.example">hello@olariamare.example</a><a href="#">Instagram</a></div>
+  </div>
+  <p class="copy">&copy; 2026 Olaria Maré. All rights reserved.</p>
+</div></footer>
+<script>
+// Reveal on scroll: shows content in reading order as it enters the viewport.
+const els=document.querySelectorAll(".rv");
+if(!matchMedia("(prefers-reduced-motion:reduce)").matches&&"IntersectionObserver"in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("on");io.unobserve(e.target)}}),{threshold:.15});
+  els.forEach(el=>io.observe(el));
+}else els.forEach(el=>el.classList.add("on"));
+</script>
+</body>
+</html>
+```

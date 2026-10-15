@@ -1,0 +1,137 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Larkspur Dental | Appointments</title>
+<style>
+  /* One accent (teal), one radius (6px), system fonts, auto light/dark. Sample data below. */
+  :root {
+    --bg: #f3f4f3; --surface: #fbfbfa; --text: #1c2321; --muted: #5a6560; --line: #d9dedb;
+    --accent: #0f766e; --on-accent: #f4fbfa; --tint: #dcefec; --radius: 6px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #121614; --surface: #1a201e; --text: #e6ebe8; --muted: #9aa6a0; --line: #2c3532;
+            --accent: #3fb8aa; --on-accent: #0b1513; --tint: #1c3532; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 15px/1.5 "Geist", "Segoe UI Variable", "Segoe UI", system-ui, sans-serif; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 28px 20px 48px; }
+  header { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; }
+  h1 { font-size: 28px; letter-spacing: -0.03em; line-height: 1.1; margin: 0; }
+  h2 { font-size: 13px; font-weight: 600; margin: 0 0 12px; color: var(--muted); }
+  .date { color: var(--muted); margin: 4px 0 0; }
+  button { font: inherit; color: inherit; cursor: pointer; border-radius: var(--radius);
+           transition: transform .2s cubic-bezier(.16,1,.3,1), background .2s; }
+  button:active { transform: scale(.98); }
+  button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .primary { background: var(--accent); color: var(--on-accent); border: 0; padding: 9px 16px; font-weight: 600; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); margin: 24px 0; border-top: 1px solid var(--line); }
+  .stat { padding: 16px 16px 4px 0; }
+  .stat + .stat { padding-left: 16px; border-left: 1px solid var(--line); }
+  .num { font: 600 34px/1 ui-monospace, "Geist Mono", "Cascadia Mono", monospace; letter-spacing: -0.04em; }
+  .label { color: var(--muted); font-size: 13px; margin-top: 6px; }
+  .grid { display: grid; grid-template-columns: 1.7fr 1fr; gap: 20px; align-items: start; }
+  .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; }
+  .row { display: grid; grid-template-columns: 64px 1fr auto; gap: 12px; align-items: center;
+         padding: 12px 0; border-top: 1px solid var(--line); }
+  .row:first-of-type { border-top: 0; }
+  .time { font: 500 14px ui-monospace, "Cascadia Mono", monospace; color: var(--muted); }
+  .who { font-weight: 600; }
+  .what { color: var(--muted); font-size: 13px; }
+  .tag { font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: var(--radius); border: 1px solid var(--line); color: var(--muted); }
+  .tag.now { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .tag.done { background: var(--tint); border-color: var(--tint); color: var(--text); }
+  .cancelled .who { text-decoration: line-through; color: var(--muted); }
+  .week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; align-items: end; height: 150px; }
+  .day { display: flex; flex-direction: column; justify-content: end; align-items: center; gap: 6px;
+         height: 100%; background: none; border: 1px solid transparent; padding: 6px 0; }
+  .day:hover { background: var(--tint); }
+  .day[aria-pressed="true"] { border-color: var(--accent); }
+  .bar { width: 60%; background: var(--accent); border-radius: 3px 3px 0 0; min-height: 2px;
+         transform-origin: bottom; }
+  .day small { color: var(--muted); font-size: 12px; }
+  .day b { font: 600 13px ui-monospace, "Cascadia Mono", monospace; }
+  .empty { padding: 28px 0; color: var(--muted); }
+  .empty strong { display: block; color: var(--text); margin-bottom: 2px; }
+  .reveal { animation: rise .5s cubic-bezier(.16,1,.3,1) both; animation-delay: calc(var(--i) * 45ms); }
+  @keyframes rise { from { opacity: 0; transform: translateY(8px); } }
+  @media (prefers-reduced-motion: reduce) { .reveal { animation: none; } button { transition: none; } }
+  @media (max-width: 768px) {
+    .grid { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .stat:nth-child(3) { padding-left: 0; border-left: 0; }
+    .row { grid-template-columns: 56px 1fr; } .row .tag { grid-column: 2; justify-self: start; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div><h1>Larkspur Dental</h1><p class="date" id="date"></p></div>
+    <button class="primary" type="button" id="add">New appointment</button>
+  </header>
+  <section class="stats" id="stats" aria-label="Summary"></section>
+  <div class="grid">
+    <section class="panel" aria-live="polite"><h2 id="schedTitle">Schedule</h2><div id="sched"></div></section>
+    <section class="panel"><h2>This week</h2><div class="week" id="week"></div></section>
+  </div>
+</div>
+<script>
+  // Sample data. Index 0 = Monday. Status: done, now, next, booked, cancelled.
+  const D = [
+    [["08:30","Mireille Oduya","Check-up and clean","done"],["09:30","Tobias Lindqvist","Filling, lower left","done"],["11:00","Aanya Raghunathan","Crown fitting","done"],["14:00","Dov Hartmann","Whitening consult","done"]],
+    [["08:00","Priscilla Okafor","Root canal, stage 2","done"],["10:00","Henrik Voss","Check-up","done"],["11:30","Linnea Marchetti","Extraction review","done"],["13:30","Samir Haddad","Scale and polish","done"],["15:00","Odalys Brandt","Invisalign fitting","done"]],
+    [["09:00","Wen-Li Castellano","Check-up and clean","done"],["10:15","Bartholomew Achterberg","Crown prep","done"],["13:00","Ines Kowalczyk","Child exam","done"]],
+    [["08:30","Rafael Eze","Filling, upper right","done"],["09:45","Kaito Brennan","Implant review","done"],["11:15","Marguerite Delacroix","Scale and polish","done"],["14:30","Yusuf Petrovic","Emergency, cracked tooth","done"],["16:00","Greta Solheim","Check-up","done"],["17:00","Nnamdi Walsh","Night guard fitting","done"]],
+    [["08:00","Cosima Eriksen","Check-up","done"],["09:00","Lucian Mbeki","Wisdom tooth consult","done"],["10:30","Fenella Ashworth","Crown fitting","done"],["13:00","Idris Karimi","Scale and polish","done"],["14:15","Petra Novák","Root canal, stage 1","done"]],
+    [["09:00","Joaquim Teixeira","Check-up and clean","now"],["10:00","Saoirse Gallagher","Filling, lower right","next"],["11:15","Emeka Adeyemi","Bridge adjustment","booked"],["12:30","Thea Lindgren","Child exam","cancelled"],["13:30","Ravi Chaudhry","Whitening","booked"]],
+    []
+  ];
+  const names = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"], today = (new Date().getDay() + 6) % 7;
+  const tagText = { done: "Seen", now: "In chair", next: "Up next", booked: "Booked", cancelled: "Cancelled" };
+  const $ = id => document.getElementById(id);
+  const live = d => D[d].filter(a => a[3] !== "cancelled").length;
+  let sel = today;
+
+  $("date").textContent = new Date().toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+
+  const open = live(today), slots = 8;
+  const weekTotal = D.reduce((n, _, i) => n + live(i), 0);
+  const cancelled = D.flat().filter(a => a[3] === "cancelled").length;
+  $("stats").innerHTML = [
+    [open, "Booked today"], [Math.max(slots - open, 0), "Open slots today"],
+    [weekTotal, "Appointments this week"], [cancelled, "Cancellations this week"]
+  ].map(s => `<div class="stat"><div class="num">${s[0]}</div><div class="label">${s[1]}</div></div>`).join("");
+
+  function renderSched() {
+    const list = D[sel];
+    $("schedTitle").textContent = sel === today ? "Today's schedule" : names[sel] + " schedule";
+    $("sched").innerHTML = list.length ? list.map((a, i) => `
+      <div class="row reveal ${a[3] === "cancelled" ? "cancelled" : ""}" style="--i:${i}">
+        <span class="time">${a[0]}</span>
+        <div><div class="who">${a[1]}</div><div class="what">${a[2]}</div></div>
+        <span class="tag ${a[3]}">${tagText[a[3]]}</span>
+      </div>`).join("")
+      : `<div class="empty"><strong>No appointments on ${names[sel]}.</strong>The clinic is closed. Use New appointment to book a slot.</div>`;
+  }
+  function renderWeek() {
+    const max = Math.max(...D.map((_, i) => live(i)));
+    $("week").innerHTML = D.map((_, i) => `
+      <button class="day" type="button" data-d="${i}" aria-pressed="${i === sel}" aria-label="${names[i]}, ${live(i)} appointments">
+        <b>${live(i)}</b><span class="bar reveal" style="--i:${i};height:${live(i) / max * 80}px"></span>
+        <small>${names[i]}${i === today ? "*" : ""}</small>
+      </button>`).join("");
+  }
+  $("week").addEventListener("click", e => {
+    const b = e.target.closest(".day"); if (!b) return;
+    sel = +b.dataset.d; renderSched(); renderWeek();
+  });
+  $("add").addEventListener("click", () => alert("Booking form goes here."));
+  renderSched(); renderWeek();
+</script>
+</body>
+</html>
+```

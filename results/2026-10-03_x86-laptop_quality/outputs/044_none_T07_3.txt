@@ -1,0 +1,158 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lingo – Sign up</title>
+<style>
+  :root {
+    --bg: #f6f7fb; --card: #fff; --ink: #1d2433; --muted: #6b7385;
+    --brand: #4f46e5; --brand-ink: #fff; --line: #dfe3ee; --err: #c62828; --ok: #1b8a5a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #11131a; --card: #1b1e29; --ink: #eef0f6; --muted: #9aa2b6; --brand: #7c78ff; --brand-ink: #11131a; --line: #2f3447; --err: #ff8a80; --ok: #4ade9b; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100dvh; background: var(--bg); color: var(--ink);
+    font: 16px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; display: flex; justify-content: center; }
+  main { width: 100%; max-width: 440px; padding: 20px 20px 28px; display: flex; flex-direction: column; min-height: 100dvh; }
+  header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+  #back { border: 0; background: none; color: var(--ink); font-size: 24px; width: 44px; height: 44px; cursor: pointer; border-radius: 50%; }
+  #back[hidden] { display: block; visibility: hidden; }
+  .steps { flex: 1; display: flex; gap: 6px; }
+  .steps i { flex: 1; height: 6px; border-radius: 3px; background: var(--line); transition: background .3s; }
+  .steps i.on { background: var(--brand); }
+  form { flex: 1; display: flex; flex-direction: column; }
+  section { display: none; flex: 1; animation: in .25s ease; }
+  section.active { display: block; }
+  @keyframes in { from { opacity: 0; transform: translateX(16px); } }
+  @media (prefers-reduced-motion: reduce) { section { animation: none; } }
+  h1 { font-size: 1.6rem; margin: 0 0 6px; }
+  .sub { color: var(--muted); margin: 0 0 22px; }
+  label { display: block; font-weight: 600; font-size: .9rem; margin-bottom: 14px; }
+  input[type=text], input[type=email], input[type=password] {
+    width: 100%; margin-top: 6px; padding: 14px; font: inherit; color: var(--ink);
+    background: var(--card); border: 1.5px solid var(--line); border-radius: 12px; }
+  input:focus-visible, button:focus-visible, .opt:focus-within { outline: 3px solid var(--brand); outline-offset: 2px; }
+  input[aria-invalid=true] { border-color: var(--err); }
+  .err { color: var(--err); font-size: .85rem; font-weight: 500; min-height: 1.2em; margin: 4px 0 0; }
+  .grid { display: grid; gap: 10px; }
+  .opt { display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: var(--card);
+    border: 1.5px solid var(--line); border-radius: 14px; cursor: pointer; min-height: 56px; }
+  .opt:has(input:checked) { border-color: var(--brand); box-shadow: inset 0 0 0 1px var(--brand); }
+  .opt input { accent-color: var(--brand); width: 20px; height: 20px; margin: 0; }
+  .opt .em { font-size: 1.5rem; }
+  .opt b { display: block; } .opt small { color: var(--muted); }
+  .opt .tag { margin-left: auto; font-size: .75rem; color: var(--ok); font-weight: 700; }
+  .cta { margin-top: 24px; width: 100%; padding: 16px; font: inherit; font-weight: 700; border: 0;
+    border-radius: 14px; background: var(--brand); color: var(--brand-ink); cursor: pointer; }
+  .cta:active { transform: scale(.98); }
+  .done { text-align: center; padding-top: 60px; }
+  .done .big { font-size: 4rem; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <button id="back" type="button" aria-label="Back" hidden>←</button>
+    <div class="steps" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1" aria-label="Sign-up progress">
+      <i class="on"></i><i></i><i></i>
+    </div>
+  </header>
+
+  <form id="f" novalidate>
+    <section class="active" data-step="1">
+      <h1>Create your account</h1>
+      <p class="sub">It takes under a minute.</p>
+      <label>Name
+        <input type="text" name="name" autocomplete="name" required>
+        <p class="err" role="alert"></p>
+      </label>
+      <label>Email
+        <input type="email" name="email" autocomplete="email" inputmode="email" required>
+        <p class="err" role="alert"></p>
+      </label>
+      <label>Password
+        <input type="password" name="pw" autocomplete="new-password" minlength="8" required>
+        <p class="err" role="alert"></p>
+      </label>
+    </section>
+
+    <section data-step="2">
+      <h1>What do you want to learn?</h1>
+      <p class="sub">You can add more languages later.</p>
+      <div class="grid">
+        <label class="opt"><input type="radio" name="lang" value="Spanish" checked><span class="em">🇪🇸</span><span><b>Spanish</b><small>Español</small></span></label>
+        <label class="opt"><input type="radio" name="lang" value="French"><span class="em">🇫🇷</span><span><b>French</b><small>Français</small></span></label>
+        <label class="opt"><input type="radio" name="lang" value="Japanese"><span class="em">🇯🇵</span><span><b>Japanese</b><small>日本語</small></span></label>
+        <label class="opt"><input type="radio" name="lang" value="German"><span class="em">🇩🇪</span><span><b>German</b><small>Deutsch</small></span></label>
+      </div>
+    </section>
+
+    <section data-step="3">
+      <h1>Pick a daily goal</h1>
+      <p class="sub">Small, steady habits work best.</p>
+      <div class="grid">
+        <label class="opt"><input type="radio" name="goal" value="5"><span><b>Casual</b><small>5 min / day</small></span></label>
+        <label class="opt"><input type="radio" name="goal" value="10" checked><span><b>Regular</b><small>10 min / day</small></span><span class="tag">POPULAR</span></label>
+        <label class="opt"><input type="radio" name="goal" value="15"><span><b>Serious</b><small>15 min / day</small></span></label>
+        <label class="opt"><input type="radio" name="goal" value="30"><span><b>Intense</b><small>30 min / day</small></span></label>
+      </div>
+    </section>
+
+    <section id="done" class="done" data-step="4">
+      <div class="big">🎉</div>
+      <h1 id="doneTitle"></h1>
+      <p class="sub" id="doneText"></p>
+    </section>
+
+    <button class="cta" id="next" type="submit">Continue</button>
+  </form>
+</main>
+
+<script>
+  const f = document.getElementById('f'), next = document.getElementById('next'), back = document.getElementById('back');
+  const secs = [...f.querySelectorAll('section')], bars = document.querySelectorAll('.steps i');
+  const bar = document.querySelector('.steps');
+  let step = 1;
+
+  function show(n) {
+    step = n;
+    secs.forEach(s => s.classList.toggle('active', +s.dataset.step === n));
+    bars.forEach((b, i) => b.classList.toggle('on', i < Math.min(n, 3)));
+    bar.setAttribute('aria-valuenow', Math.min(n, 3));
+    back.hidden = n === 1 || n === 4;
+    next.textContent = n === 3 ? 'Start learning' : 'Continue';
+    next.hidden = n === 4;
+    const focus = secs[n - 1].querySelector('input');
+    if (focus) focus.focus({ preventScroll: true });
+  }
+
+  function validate() {
+    let ok = true;
+    secs[0].querySelectorAll('input').forEach(inp => {
+      const msg = inp.validity.valueMissing ? 'This field is required.'
+        : inp.validity.typeMismatch ? 'Enter a valid email address.'
+        : inp.validity.tooShort ? 'Use at least 8 characters.' : '';
+      inp.setAttribute('aria-invalid', !!msg);
+      inp.parentElement.querySelector('.err').textContent = msg;
+      if (msg && ok) { inp.focus(); ok = false; }
+    });
+    return ok;
+  }
+
+  f.addEventListener('submit', e => {
+    e.preventDefault();
+    if (step === 1 && !validate()) return;
+    if (step < 3) return show(step + 1);
+    const d = new FormData(f);
+    document.getElementById('doneTitle').textContent = `Welcome, ${d.get('name').trim().split(' ')[0]}!`;
+    document.getElementById('doneText').textContent = `${d.get('goal')} minutes of ${d.get('lang')} a day. Your first lesson is ready.`;
+    show(4);
+  });
+  back.addEventListener('click', () => show(step - 1));
+</script>
+</body>
+</html>
+```

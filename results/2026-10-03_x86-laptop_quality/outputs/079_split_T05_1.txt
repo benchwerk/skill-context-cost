@@ -1,0 +1,128 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vessel 75 - Mechanical Keyboard</title>
+<!-- Design read: premium consumer product page, warm editorial language, native CSS, system fonts, restrained motion. -->
+<style>
+:root{--bg:#f3efe8;--ink:#1d1b18;--mute:#6b655c;--line:#d9d2c5;--acc:#b4451f;--card:#faf7f2}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+.serif{font-family:Georgia,"Iowan Old Style",serif;font-weight:400;letter-spacing:-.02em}
+header{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;padding:22px 24px}
+header b{font:italic 22px Georgia,serif}
+header span{color:var(--mute);font-size:14px}
+main{display:grid;grid-template-columns:1.25fr 1fr;gap:56px;max-width:1200px;margin:0 auto;padding:8px 24px 72px}
+.gallery{position:sticky;top:24px;align-self:start}
+.stage{--case:#d8d1c4;--key:#ece7dc;--mod:#c9c1b1;--leg:#3a362f;aspect-ratio:4/3;border-radius:28px;background:radial-gradient(circle at 30% 20%,#fff8,transparent 60%),var(--line);display:grid;place-items:center;perspective:900px;overflow:hidden}
+.board{width:84%;padding:3.2%;border-radius:18px;background:var(--case);display:grid;gap:1.2%;box-shadow:0 30px 40px -18px #0006,inset 0 2px 0 #fff6;transform:rotateX(calc(52deg + var(--ty,0deg))) rotateZ(calc(-18deg + var(--tx,0deg)));transition:transform .5s cubic-bezier(.2,.8,.2,1),background .4s}
+.row{display:flex;gap:1.2%}
+.k{flex:var(--w) 1 0;aspect-ratio:var(--w)/1;border-radius:5px;background:var(--key);box-shadow:0 3px 0 #0003,inset 0 1px 0 #fff7;transition:background .4s}
+.k.m{background:var(--mod)}
+.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+.thumbs button{padding:10px 8px;border:1px solid var(--line);border-radius:14px;background:var(--card);font:inherit;font-size:13px;cursor:pointer;display:flex;gap:8px;align-items:center;justify-content:center;transition:border-color .2s,transform .2s}
+.thumbs button:hover{transform:translateY(-2px)}
+.thumbs button[aria-pressed=true]{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.thumbs i{width:14px;height:14px;border-radius:50%;background:var(--c);border:1px solid #0003}
+.eyebrow{color:var(--acc);font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+h1{font-size:clamp(44px,6vw,72px);line-height:1;margin:10px 0 16px}
+.lede{color:var(--mute);max-width:44ch}
+.buy{margin:28px 0 8px;padding:24px;border-radius:22px;background:var(--card);border:1px solid var(--line)}
+.price{display:flex;align-items:baseline;gap:12px;margin-bottom:16px}
+.price strong{font-size:36px}.price span{color:var(--mute);font-size:14px}
+.opts{display:flex;gap:8px;margin:8px 0 20px;flex-wrap:wrap}
+.opts label{cursor:pointer}.opts input{position:absolute;opacity:0}
+.opts span{display:block;padding:8px 14px;border:1px solid var(--line);border-radius:99px;font-size:14px;transition:all .2s}
+.opts input:checked+span{background:var(--ink);color:#fff;border-color:var(--ink)}
+.opts input:focus-visible+span,.cta:focus-visible,.thumbs button:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.cta{width:100%;padding:16px;border:0;border-radius:14px;background:var(--acc);color:#fff;font:600 17px inherit;font-family:inherit;cursor:pointer;transition:transform .15s,background .2s}
+.cta:hover{background:#9a3818}.cta:active{transform:scale(.98)}
+.fine{margin-top:12px;color:var(--mute);font-size:13px;text-align:center}
+h2{font-size:30px;margin:48px 0 8px}
+dl{display:grid;grid-template-columns:auto 1fr;border-top:1px solid var(--ink)}
+dt,dd{padding:12px 0;border-bottom:1px solid var(--line)}
+dt{color:var(--mute);padding-right:28px;font-size:14px}dd{text-align:right;font-weight:500}
+.score{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;margin:16px 0 24px}
+.score big{font-size:64px;line-height:1}
+.bars{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font-size:13px;color:var(--mute)}
+.bars div{height:6px;align-self:center;border-radius:9px;background:var(--line);overflow:hidden}
+.bars div::after{content:"";display:block;height:100%;width:var(--p);background:var(--ink)}
+blockquote{padding:18px 0;border-top:1px solid var(--line)}
+blockquote p{font:19px/1.4 Georgia,serif}
+blockquote footer{margin-top:8px;color:var(--mute);font-size:13px}
+@media(max-width:860px){main{grid-template-columns:1fr;gap:32px}.gallery{position:static}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header><b>Vessel</b><span>Free shipping over $100 &middot; 60-day returns</span></header>
+<main>
+  <section class="gallery" aria-label="Product gallery">
+    <div class="stage" id="stage"><div class="board" id="board"></div></div>
+    <div class="thumbs" id="thumbs"></div>
+  </section>
+  <section>
+    <p class="eyebrow">75% wireless &middot; gasket mount</p>
+    <h1 class="serif">Vessel 75</h1>
+    <p class="lede">A keyboard that sounds as good as it looks. Milled aluminum, a foam-damped gasket mount, and switches lubed by hand before they leave the bench.</p>
+    <form class="buy" id="buy">
+      <div class="price"><strong id="price">$189</strong><span>Ships in 3 to 5 days</span></div>
+      <div class="eyebrow" style="color:var(--mute)">Switch</div>
+      <div class="opts">
+        <label><input type="radio" name="sw" value="189" data-n="Linear" checked><span>Linear</span></label>
+        <label><input type="radio" name="sw" value="189" data-n="Tactile"><span>Tactile</span></label>
+        <label><input type="radio" name="sw" value="199" data-n="Silent"><span>Silent +$10</span></label>
+      </div>
+      <button class="cta" id="cta" type="submit">Add to cart</button>
+      <p class="fine" id="fine" aria-live="polite">Hot-swap sockets, so you can change your mind later.</p>
+    </form>
+    <h2 class="serif">Specifications</h2>
+    <dl>
+      <dt>Layout</dt><dd>75%, 82 keys</dd>
+      <dt>Case</dt><dd>CNC 6063 aluminum</dd>
+      <dt>Mount</dt><dd>Gasket, PC plate</dd>
+      <dt>Keycaps</dt><dd>Double-shot PBT, Cherry profile</dd>
+      <dt>Connectivity</dt><dd>USB-C, Bluetooth 5.3, 2.4 GHz</dd>
+      <dt>Battery</dt><dd>4,000 mAh, about 90 hours</dd>
+      <dt>Weight</dt><dd>1.9 kg</dd>
+    </dl>
+    <h2 class="serif">What owners say</h2>
+    <div class="score">
+      <big class="serif">4.8</big>
+      <div class="bars"><span>5</span><div style="--p:84%"></div><span>4</span><div style="--p:12%"></div><span>3</span><div style="--p:3%"></div><span>2</span><div style="--p:1%"></div></div>
+    </div>
+    <blockquote><p>"The typing sound is thick and creamy with no ping at all. I stopped using my old board the first day."</p><footer>Maya R. &middot; Verified buyer &middot; Linear</footer></blockquote>
+    <blockquote><p>"Pairs with three devices and the battery lasts me a couple of weeks. The case feels like a tool, not a toy."</p><footer>Jonas K. &middot; Verified buyer &middot; Tactile</footer></blockquote>
+    <blockquote><p>"Wish the cable were longer, but that's the only complaint I have after four months."</p><footer>Priya S. &middot; Verified buyer &middot; Silent</footer></blockquote>
+  </section>
+</main>
+<script>
+const rows=[[...Array(13).fill(1),2],[1.5,...Array(12).fill(1),1.5],[1.75,...Array(11).fill(1),2.25],[2.25,...Array(10).fill(1),2.75],[1.25,1.25,1.25,6.25,1.25,1.25,1.25,1.25]];
+const board=document.getElementById('board'),stage=document.getElementById('stage');
+board.innerHTML=rows.map(r=>`<div class="row">${r.map((w,i)=>`<span class="k${i==0||i==r.length-1||w>5?' m':''}" style="--w:${w}"></span>`).join('')}</div>`).join('');
+const ways=[
+  ['Bone','#d8d1c4','#ece7dc','#c9c1b1'],['Graphite','#2b2a28','#44413c','#b4451f'],
+  ['Moss','#4d5a45','#d9dccb','#8a9a78'],['Ember','#8f3a1c','#efe1cf','#1d1b18']];
+const thumbs=document.getElementById('thumbs');
+function pick(i){const [,c,k,m]=ways[i];
+  stage.style.setProperty('--case',c);stage.style.setProperty('--key',k);stage.style.setProperty('--mod',m);
+  [...thumbs.children].forEach((b,j)=>b.setAttribute('aria-pressed',i==j));}
+ways.forEach((w,i)=>{const b=document.createElement('button');b.type='button';
+  b.innerHTML=`<i style="--c:${w[1]}"></i>${w[0]}`;b.onclick=()=>pick(i);thumbs.append(b);});
+pick(0);
+stage.addEventListener('pointermove',e=>{const r=stage.getBoundingClientRect();
+  board.style.setProperty('--tx',((e.clientX-r.left)/r.width-.5)*10+'deg');
+  board.style.setProperty('--ty',((e.clientY-r.top)/r.height-.5)*-8+'deg');});
+stage.addEventListener('pointerleave',()=>{board.style.removeProperty('--tx');board.style.removeProperty('--ty');});
+const price=document.getElementById('price');
+document.querySelectorAll('[name=sw]').forEach(r=>r.onchange=()=>price.textContent='$'+r.value);
+document.getElementById('buy').onsubmit=e=>{e.preventDefault();
+  const sw=document.querySelector('[name=sw]:checked').dataset.n;
+  document.getElementById('fine').textContent=`Added: Vessel 75, ${sw} switches, ${price.textContent}.`;
+  const c=document.getElementById('cta');c.textContent='Added to cart';setTimeout(()=>c.textContent='Add to cart',1800);};
+</script>
+</body>
+</html>
+```

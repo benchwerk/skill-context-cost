@@ -1,0 +1,7 @@
+{
+ "command": "python bench/run.py --experiment invocation --runs 1 --only I1,I2,I3,I4,I5,I6,I7,I8,I9,I10,I11,I12,I13,I14,I15,I16,I17,I18,I19,I20,L1,L2,L3,L4,L5,L6,L7,L8,L9,L10,L11,L12,L13,L14,L15,L16,L17,L18,L19,L20",
+ "date": "2026-10-02T22:15:31+02:00",
+ "os": "Windows-11-10.0.26200-SP0",
+ "python": "3.14.6",
+ "exit": 0
+}

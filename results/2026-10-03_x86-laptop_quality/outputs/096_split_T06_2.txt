@@ -1,0 +1,164 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fennel &amp; Ash | Neighbourhood kitchen on Alder Street</title>
+<!-- Design Read: neighbourhood restaurant for locals and walk-ins, warm editorial language, native CSS with system serif (no external fonts, no icons). Dials 7 / 4 / 3. -->
+<style>
+:root{--paper:#f4ecdc;--ink:#211b15;--clay:#a8421f;--moss:#4a5638;--line:#d8cab0;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;--sans:"Avenir Next","Segoe UI",system-ui,sans-serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font:1.05rem/1.6 var(--sans)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--clay);outline-offset:3px}
+.wrap{width:min(1180px,100% - 2.5rem);margin-inline:auto}
+header{display:flex;justify-content:space-between;align-items:center;padding:1.4rem 0}
+.logo{font:italic 1.5rem var(--serif);text-decoration:none}
+nav{display:flex;gap:1.6rem;font-size:.95rem}
+nav a{text-decoration:none;border-bottom:1px solid transparent}
+nav a:hover{border-color:var(--clay)}
+.hero{min-height:calc(100dvh - 5rem);display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(2rem,6vw,6rem);align-items:center;padding-block:2rem 4rem}
+.eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--clay);font-weight:700}
+h1{font:400 clamp(3rem,8.5vw,7.5rem)/.92 var(--serif);letter-spacing:-.03em;margin:1rem 0 1.6rem}
+h1 em{color:var(--clay)}
+.hero p{max-width:34ch;font-size:1.2rem}
+.btn{display:inline-block;margin-top:2rem;padding:.95rem 1.8rem;background:var(--ink);color:var(--paper);border:0;border-radius:99px;font:600 1rem var(--sans);text-decoration:none;cursor:pointer;transition:transform .25s,background .25s}
+.btn:hover{background:var(--clay);transform:translateY(-2px)}
+.btn:active{transform:scale(.97)}
+.tonight{background:var(--moss);color:var(--paper);padding:2.2rem;border-radius:2px 90px 2px 2px;transform:rotate(1.6deg)}
+.tonight h2{font:italic 400 1.6rem var(--serif);margin-bottom:1rem}
+.hours{list-style:none;padding:0}
+.hours li{display:flex;justify-content:space-between;padding:.55rem 0;border-bottom:1px solid #ffffff33}
+.hours li:last-child{border:0}
+section{padding-block:clamp(4rem,9vw,8rem)}
+h2.big{font:400 clamp(2.2rem,5vw,4rem)/1 var(--serif);letter-spacing:-.02em;margin:.6rem 0 2.5rem}
+.menu{display:grid;grid-template-columns:1fr 1fr;gap:1rem clamp(2rem,6vw,5rem)}
+.menu h3{grid-column:1/-1;font:italic 1.4rem var(--serif);color:var(--moss);border-bottom:2px solid var(--ink);padding-bottom:.4rem;margin-top:1.5rem}
+.dish{display:grid;grid-template-columns:auto 1fr auto;gap:.6rem;align-items:baseline}
+.dish b{font:600 1.1rem var(--serif)}
+.dish i{border-bottom:2px dotted var(--line);transform:translateY(-.3rem)}
+.dish small{grid-column:1/-1;color:#5d5346;margin-top:-.6rem}
+.chef{display:grid;grid-template-columns:5fr 6fr;gap:clamp(2rem,6vw,6rem);align-items:center}
+.portrait{aspect-ratio:4/5;background:radial-gradient(circle at 30% 25%,#d98c62,var(--clay) 55%,#5e2a14);border-radius:999px 999px 4px 4px;display:grid;place-items:end start;padding:1.5rem;color:var(--paper);font:italic 1.1rem var(--serif)}
+blockquote{font:italic 1.5rem/1.35 var(--serif);border-left:3px solid var(--clay);padding-left:1.2rem;margin:1.5rem 0}
+.book{background:var(--ink);color:var(--paper)}
+.book .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(2rem,6vw,6rem)}
+form{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+label{display:grid;gap:.35rem;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase}
+.full{grid-column:1/-1}
+input,select{padding:.8rem .9rem;background:#2e261e;color:var(--paper);border:1px solid #5a4e40;border-radius:4px;font:1rem var(--sans)}
+input:focus,select:focus{border-color:var(--paper)}
+form .btn{background:var(--clay);justify-self:start;margin:0}
+form .btn:hover{background:#c85a33}
+#note{grid-column:1/-1;min-height:1.6em;color:#f0b894}
+footer{padding:2rem 0;font-size:.9rem;color:#5d5346}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media(max-width:820px){nav{display:none}.hero,.menu,.chef,.book .wrap{grid-template-columns:1fr}.tonight{transform:none}.portrait{max-width:320px}}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}.btn{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="logo" href="#">Fennel &amp; Ash</a>
+    <nav aria-label="Primary"><a href="#menu">Menu</a><a href="#chef">The chef</a><a href="#reserve">Reserve</a></nav>
+  </header>
+  <main>
+    <div class="hero">
+      <div class="rv">
+        <span class="eyebrow">Alder Street, since 2014</span>
+        <h1>Supper, <em>slowly</em> made.</h1>
+        <p>A twenty-eight seat kitchen cooking over wood and ash, with whatever the market stalls three doors down had a surplus of.</p>
+        <a class="btn" href="#reserve">Reserve a table</a>
+      </div>
+      <aside class="tonight rv" aria-labelledby="hrs">
+        <h2 id="hrs">Opening hours</h2>
+        <ul class="hours">
+          <li><span>Tuesday to Thursday</span><span>17:30 to 22:00</span></li>
+          <li><span>Friday and Saturday</span><span>17:30 to 23:00</span></li>
+          <li><span>Sunday lunch</span><span>12:00 to 16:00</span></li>
+          <li><span>Monday</span><span>Closed</span></li>
+        </ul>
+      </aside>
+    </div>
+
+    <section id="menu" aria-labelledby="mh">
+      <span class="eyebrow rv">This week</span>
+      <h2 class="big rv" id="mh">The menu</h2>
+      <div class="menu rv">
+        <h3>To begin</h3>
+        <div class="dish"><b>Charred leeks</b><i></i><span>9</span><small>Hazelnut romesco, brown butter crumb</small></div>
+        <div class="dish"><b>Whipped cod roe</b><i></i><span>10</span><small>Flatbread from the oven, pickled fennel</small></div>
+        <h3>Mains</h3>
+        <div class="dish"><b>Ash-baked celeriac</b><i></i><span>19</span><small>Mushroom jus, sage, aged cheddar</small></div>
+        <div class="dish"><b>Wood-fired hake</b><i></i><span>26</span><small>Clams, white beans, salsa verde</small></div>
+        <div class="dish"><b>Lamb shoulder, for two</b><i></i><span>58</span><small>Seven hours, anchovy greens, potatoes</small></div>
+        <div class="dish"><b>Rye tagliatelle</b><i></i><span>18</span><small>Slow onions, thyme, pecorino</small></div>
+        <h3>To finish</h3>
+        <div class="dish"><b>Burnt honey tart</b><i></i><span>8</span><small>Crème fraîche, sea salt</small></div>
+        <div class="dish"><b>Poached quince</b><i></i><span>8</span><small>Sheep's yoghurt, toasted oats</small></div>
+      </div>
+    </section>
+
+    <section id="chef" class="chef" aria-labelledby="ch">
+      <div class="portrait rv" role="img" aria-label="Portrait placeholder for Marta Okonkwo-Reyes">Marta, at the pass</div>
+      <div class="rv">
+        <span class="eyebrow">Meet the chef</span>
+        <h2 class="big" id="ch">Marta Okonkwo-Reyes</h2>
+        <p>Marta spent twelve years in hotel kitchens before opening Fennel &amp; Ash with her brother Tomas, who runs the floor. She cooks the way her grandmother did: few ingredients, plenty of fire, and no hurry.</p>
+        <blockquote>"If a dish needs a paragraph to explain it, it is not finished yet."</blockquote>
+        <p>She still shops the Thursday market herself, and the menu changes with what she finds.</p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<section id="reserve" class="book" aria-labelledby="rh">
+  <div class="wrap">
+    <div class="rv">
+      <span class="eyebrow" style="color:#f0b894">Join us</span>
+      <h2 class="big" id="rh">Reserve a table</h2>
+      <p>Parties of up to eight can book here. For larger groups, call 020 7946 0321. We hold tables for fifteen minutes.</p>
+    </div>
+    <form id="rf" class="rv">
+      <label class="full">Name<input name="name" required autocomplete="name"></label>
+      <label>Date<input type="date" name="date" id="date" required></label>
+      <label>Time<select name="time"><option>17:30</option><option>18:30</option><option selected>19:30</option><option>20:30</option></select></label>
+      <label>Guests<select name="guests"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></label>
+      <label>Phone<input type="tel" name="phone" required autocomplete="tel"></label>
+      <button class="btn" type="submit">Request booking</button>
+      <p id="note" role="status"></p>
+    </form>
+  </div>
+</section>
+
+<div class="wrap"><footer>14 Alder Street &middot; Open Tuesday to Sunday &middot; &copy; Fennel &amp; Ash</footer></div>
+
+<script>
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+}), { threshold: .15 });
+document.querySelectorAll('.rv').forEach((el, i) => { el.style.transitionDelay = (i % 3) * 90 + 'ms'; io.observe(el); });
+
+const date = document.getElementById('date');
+date.min = new Date().toISOString().split('T')[0];
+
+document.getElementById('rf').addEventListener('submit', e => {
+  e.preventDefault();
+  const f = new FormData(e.target);
+  if (new Date(f.get('date') + 'T12:00').getDay() === 1) {
+    document.getElementById('note').textContent = 'We are closed on Mondays. Please choose another day.';
+    return;
+  }
+  document.getElementById('note').textContent =
+    `Thank you, ${f.get('name')}. We have noted a table for ${f.get('guests')} on ${f.get('date')} at ${f.get('time')} and will confirm by phone.`;
+  e.target.reset();
+});
+</script>
+</body>
+</html>
+```

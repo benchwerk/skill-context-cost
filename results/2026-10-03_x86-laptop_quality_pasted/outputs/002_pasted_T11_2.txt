@@ -1,0 +1,120 @@
+```html
+<!doctype html>
+<!-- Design Read: outdoor-gear category page for shoppers comparing options, calm utility language, native CSS + vanilla JS, system font stack (no external font links), one emerald accent. Dials 5/3/5. Prices and product names are mock data. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tents and Shelters | Ridgeline Supply</title>
+<style>
+:root{--bg:#f4f5f6;--surface:#fff;--text:#1c2024;--muted:#555d66;--line:#d9dde1;--accent:#0f6b4a;--on-accent:#fff;--r:10px;color-scheme:light dark}
+@media (prefers-color-scheme:dark){:root{--bg:#121416;--surface:#1a1d20;--text:#eceff1;--muted:#a3abb3;--line:#2c3136;--accent:#4fd1a0;--on-accent:#06231a}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,"Segoe UI",Roboto,sans-serif}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1280px;margin:0 auto;padding:0 24px}
+nav{border-bottom:1px solid var(--line);height:64px}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:100%}
+nav b{font-size:18px;letter-spacing:-.02em}
+nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-size:15px;color:var(--muted)}
+nav a{text-decoration:none}nav a:hover{color:var(--text)}
+header.top{padding:40px 0 24px}
+h1{font-size:clamp(2rem,4vw,3.25rem);letter-spacing:-.03em;line-height:1.05;margin:0 0 10px}
+header.top p{margin:0;color:var(--muted);max-width:60ch}
+.layout{display:grid;grid-template-columns:260px 1fr;gap:40px;padding-bottom:64px;align-items:start}
+aside{position:sticky;top:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+fieldset{border:0;padding:0;margin:0 0 20px}
+legend,label.l{font-weight:600;font-size:14px;margin-bottom:8px;display:block;padding:0}
+.opt{display:flex;gap:10px;align-items:center;padding:4px 0;font-size:15px;cursor:pointer}
+input[type=checkbox]{accent-color:var(--accent);width:16px;height:16px}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.help{font-size:13px;color:var(--muted);margin-top:4px}
+button,select{font:inherit;border-radius:var(--r)}
+select{width:100%;padding:8px 10px;border:1px solid var(--line);background:var(--surface);color:var(--text)}
+.btn{background:var(--accent);color:var(--on-accent);border:0;padding:10px 16px;font-weight:600;cursor:pointer;white-space:nowrap;transition:transform .2s ease}
+.btn:hover{transform:translateY(-1px)}.btn:active{transform:scale(.98)}
+.ghost{background:none;border:1px solid var(--line);color:var(--text);padding:8px 14px;cursor:pointer}
+.bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:16px}
+.bar p{margin:0;color:var(--muted)}
+.bar div{display:flex;align-items:center;gap:10px}.bar select{width:auto}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{display:flex;flex-direction:column;gap:6px}
+.card img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r);background:var(--line);transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.card .im{overflow:hidden;border-radius:var(--r);margin-bottom:6px}
+.card:hover img{transform:scale(1.04)}
+.card h3{margin:0;font-size:16px;letter-spacing:-.01em}
+.card small{color:var(--muted)}
+.card .row{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
+.price{font-weight:700}
+.empty{grid-column:1/-1;padding:48px;text-align:center;border:1px dashed var(--line);border-radius:var(--r);color:var(--muted)}
+.empty button{margin-top:12px}
+.guide{border-top:1px solid var(--line);padding:56px 0 72px}
+.guide h2{font-size:clamp(1.5rem,3vw,2.25rem);letter-spacing:-.02em;margin:0 0 8px}
+.guide>.wrap>p{color:var(--muted);max-width:65ch;margin:0 0 24px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 18px;margin-bottom:10px;max-width:760px}
+summary{font-weight:600;cursor:pointer}
+details p{margin:10px 0 0;color:var(--muted);max-width:65ch}
+@media (max-width:1023px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:767px){.wrap{padding:0 16px}nav ul{display:none}.layout{grid-template-columns:1fr;gap:24px}aside{position:static}.grid{grid-template-columns:1fr}.bar{flex-direction:column;align-items:stretch}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><b>Ridgeline Supply</b>
+<ul><li><a href="#">Shelter</a></li><li><a href="#">Packs</a></li><li><a href="#">Sleep</a></li><li><a href="#">Cook</a></li><li><a href="#">Sale</a></li></ul>
+<a href="#" class="ghost" style="text-decoration:none">Cart (0)</a></div></nav>
+<main class="wrap">
+<header class="top"><h1>Tents and shelters</h1><p>Backpacking tents, tarps and bivies, tested on wet ridgelines and windy campsites.</p></header>
+<div class="layout">
+<aside aria-label="Filters">
+<fieldset><legend>Type</legend><div id="types"></div></fieldset>
+<fieldset><legend>Brand</legend><div id="brands"></div></fieldset>
+<fieldset><label class="l" for="price">Max price: <span id="pv">$600</span></label>
+<input id="price" type="range" min="100" max="600" step="10" value="600"><div class="help">Prices in USD</div></fieldset>
+<label class="opt"><input id="stock" type="checkbox"> In stock only</label>
+<button class="ghost" id="reset" style="margin-top:14px;width:100%">Clear filters</button>
+</aside>
+<section aria-live="polite">
+<div class="bar"><p id="count"></p><div><label for="sort">Sort by</label>
+<select id="sort"><option value="f">Featured</option><option value="a">Price, low to high</option><option value="d">Price, high to low</option></select></div></div>
+<div class="grid" id="grid"></div>
+</section></div></main>
+<section class="guide"><div class="wrap">
+<h2>How to choose a tent</h2>
+<p>Start with how you travel, then match weight, capacity and weather rating to it.</p>
+<details open><summary>Weight versus space</summary><p>Solo trips under three days favor a tent below 1.5 kg. For longer trips or wet weather, extra headroom is worth carrying.</p></details>
+<details><summary>Three-season or four-season</summary><p>Three-season tents ventilate well and handle rain. Choose four-season only for snow load and sustained high wind.</p></details>
+<details><summary>Size up by one person</summary><p>A two-person tent fits one hiker plus gear. Split between two people, the weight per person drops.</p></details>
+</div></section>
+<script>
+const P=[
+["Tarn 1P","Backpacking tent","Northfell",329,1],["Tarn 2P","Backpacking tent","Northfell",399,1],
+["Kestrel Tarp 10","Tarp","Arvik",119,1],["Kestrel Tarp 12","Tarp","Arvik",149,0],
+["Skerry Bivy","Bivy","Halden",189,1],["Skerry Alpine Bivy","Bivy","Halden",259,1],
+["Moraine 3P","Family tent","Northfell",519,0],["Cairn 4-Season 2P","Backpacking tent","Halden",589,1],
+["Basalt Hammock Shelter","Tarp","Arvik",164,1],["Fjord Dome 4P","Family tent","Arvik",449,1],
+["Larch Ultralight 1P","Backpacking tent","Halden",449,1],["Gable Trail Bivy","Bivy","Arvik",139,0]];
+const $=id=>document.getElementById(id),uniq=i=>[...new Set(P.map(p=>p[i]))];
+const box=(id,vals)=>$(id).innerHTML=vals.map(v=>`<label class="opt"><input type="checkbox" value="${v}"> ${v}</label>`).join("");
+box("types",uniq(1));box("brands",uniq(2));
+const checked=id=>[...$(id).querySelectorAll("input:checked")].map(i=>i.value);
+function render(){
+  const t=checked("types"),b=checked("brands"),max=+$("price").value,s=$("stock").checked;
+  $("pv").textContent="$"+max;
+  let r=P.filter(p=>(!t.length||t.includes(p[1]))&&(!b.length||b.includes(p[2]))&&p[3]<=max&&(!s||p[4]));
+  if($("sort").value=="a")r.sort((x,y)=>x[3]-y[3]);if($("sort").value=="d")r.sort((x,y)=>y[3]-x[3]);
+  $("count").textContent=r.length+" of "+P.length+" products";
+  $("grid").innerHTML=r.length?r.map(p=>`<article class="card"><div class="im"><img loading="lazy" width="400" height="300" src="https://picsum.photos/seed/${p[0].replace(/\W+/g,"-").toLowerCase()}/400/300" alt="${p[0]} ${p[1].toLowerCase()} pitched outdoors"></div>
+  <h3>${p[0]}</h3><small>${p[2]}, ${p[1]}${p[4]?"":", out of stock"}</small>
+  <div class="row"><span class="price">$${p[3]}</span><button class="btn" ${p[4]?"":"disabled style='opacity:.5;cursor:not-allowed'"}>Add to cart</button></div></article>`).join("")
+  :`<div class="empty">No products match these filters.<br><button class="ghost" onclick="reset()">Clear filters</button></div>`;
+}
+function reset(){document.querySelectorAll("aside input[type=checkbox]").forEach(i=>i.checked=false);$("price").value=600;$("sort").value="f";render()}
+$("reset").onclick=reset;
+document.querySelectorAll("aside input,#sort").forEach(e=>e.addEventListener("input",render));
+render();
+</script>
+</body>
+</html>
+```

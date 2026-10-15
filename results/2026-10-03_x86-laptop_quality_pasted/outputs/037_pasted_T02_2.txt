@@ -1,0 +1,131 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sluice Pricing</title>
+<!-- Design Read: pricing page for small engineering teams, calm technical language, native CSS, one emerald accent, system dark/light. Plan limits are mock data. -->
+<style>
+:root{--bg:#f6f7f6;--surface:#fff8;--panel:#ffffff;--ink:#1c2321;--mute:#4d5a55;--line:#dde3e0;--acc:#0f7b55;--on-acc:#f4fbf8;--tint:#e9f1ee;--r:10px}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1311;--surface:#0e1311cc;--panel:#161d1a;--ink:#e6ece9;--mute:#9fb0a9;--line:#27322e;--acc:#34d399;--on-acc:#04231a;--tint:#1a2420}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 "Geist",ui-sans-serif,system-ui,"Segoe UI",sans-serif}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:0;z-index:10;background:var(--surface);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:28px;height:64px}
+.brand{font-weight:700;letter-spacing:-.02em;font-size:20px;margin-right:auto;text-decoration:none}
+nav a:not(.brand){font-size:14px;color:var(--mute);text-decoration:none}
+nav a:hover{color:var(--ink)}
+.btn{display:inline-flex;justify-content:center;align-items:center;white-space:nowrap;padding:11px 20px;border-radius:var(--r);border:1px solid var(--line);background:transparent;color:var(--ink);font:600 15px/1 inherit;text-decoration:none;cursor:pointer;transition:transform .25s cubic-bezier(.16,1,.3,1),background .2s}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(1px) scale(.98)}
+.btn.pri{background:var(--acc);border-color:var(--acc);color:var(--on-acc)}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+header.hero{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:end;padding:72px 0 40px;min-height:min(60dvh,460px)}
+h1{font-size:clamp(2.2rem,5vw,3.75rem);line-height:1.02;letter-spacing:-.04em;max-width:13ch}
+.hero p{color:var(--mute);max-width:44ch;margin-top:18px}
+.toggle{justify-self:end;display:flex;padding:4px;border:1px solid var(--line);border-radius:var(--r);background:var(--panel)}
+.toggle button{border:0;background:none;color:var(--mute);padding:9px 16px;border-radius:7px;font:600 14px inherit;cursor:pointer}
+.toggle button[aria-pressed=true]{background:var(--acc);color:var(--on-acc)}
+.plans{display:grid;grid-template-columns:1fr 1.18fr 1fr;gap:20px;align-items:start}
+.plan{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:28px;box-shadow:0 12px 30px -18px color-mix(in srgb,var(--acc) 40%,transparent)}
+.plan.feat{border-color:var(--acc);padding-block:44px;margin-top:-16px}
+.plan h2{font-size:18px}
+.price{font-size:48px;font-weight:700;letter-spacing:-.04em;line-height:1.1;margin:14px 0 2px}
+.price small{font-size:15px;font-weight:500;color:var(--mute);letter-spacing:0}
+.plan .sub{color:var(--mute);font-size:14px;min-height:44px}
+.plan ul{list-style:none;padding:0;margin:20px 0 26px;display:grid;gap:10px;font-size:15px}
+.plan .btn{width:100%}
+section{padding:88px 0 0}
+h3{font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-.03em;line-height:1.1;margin-bottom:24px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--panel)}
+table{width:100%;border-collapse:collapse;min-width:620px;font-size:15px}
+th,td{text-align:left;padding:14px 20px}
+thead th{font-size:14px;color:var(--mute);font-weight:600}
+th[scope=row]{font-weight:500}
+tbody tr:nth-child(even){background:var(--tint)}
+tbody tr.grp th{background:var(--bg);color:var(--mute);font-size:13px;font-weight:600;padding-top:22px}
+td{color:var(--ink)}
+.faq{max-width:720px}
+details{border-bottom:1px solid var(--line);padding:18px 0}
+summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::after{content:"+";color:var(--acc);font-size:22px;line-height:1}
+details[open] summary::after{content:"-"}
+details p{color:var(--mute);margin-top:10px;max-width:60ch}
+footer{margin-top:88px;border-top:1px solid var(--line);padding:32px 0;color:var(--mute);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+@media (max-width:767px){
+ header.hero{grid-template-columns:1fr;padding:40px 0 28px;min-height:0}
+ .toggle{justify-self:start}
+ .plans{grid-template-columns:1fr}
+ .plan.feat{margin-top:0;padding-block:28px}
+ nav a:not(.brand):not(.btn){display:none}
+ section{padding-top:64px}
+}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.btn{transition:none}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><a class="brand" href="#">Sluice</a><a href="#compare">Compare</a><a href="#faq">FAQ</a><a href="#">Docs</a><a class="btn" href="#">Sign in</a></div></nav>
+<main class="wrap">
+<header class="hero">
+ <div><h1>Search every log. Pay for what you keep.</h1>
+ <p>Sluice gives small engineering teams fast log search with flat, predictable pricing.</p></div>
+ <div class="toggle" role="group" aria-label="Billing period">
+  <button id="mo" aria-pressed="true">Monthly</button><button id="yr" aria-pressed="false">Yearly, 2 months free</button>
+ </div>
+</header>
+<div class="plans">
+ <article class="plan rv"><h2>Solo</h2><div class="price">$0<small> /mo</small></div>
+  <p class="sub">For side projects and trying Sluice on one service.</p>
+  <ul><li>2 GB ingest per day</li><li>3 day retention</li><li>1 user</li></ul>
+  <a class="btn" href="#">Get Solo</a></article>
+ <article class="plan feat rv"><h2>Team</h2><div class="price"><span data-m="29" data-a="24">29</span><small> /user/mo</small></div>
+  <p class="sub">For teams of 3 to 15 shipping to production every week.</p>
+  <ul><li>50 GB ingest per day</li><li>30 day retention</li><li>Unlimited saved searches</li><li>Slack and PagerDuty alerts</li></ul>
+  <a class="btn pri" href="#">Get Team</a></article>
+ <article class="plan rv"><h2>Scale</h2><div class="price"><span data-m="89" data-a="74">89</span><small> /user/mo</small></div>
+  <p class="sub">For growing teams that need audit trails and long history.</p>
+  <ul><li>500 GB ingest per day</li><li>1 year retention</li><li>SSO and audit log</li></ul>
+  <a class="btn" href="#">Get Scale</a></article>
+</div>
+<section id="compare" class="rv"><h3>Compare plans</h3>
+<div class="tablewrap"><table>
+ <thead><tr><th>Feature</th><th>Solo</th><th>Team</th><th>Scale</th></tr></thead>
+ <tbody>
+  <tr class="grp"><th colspan="4">Data</th></tr>
+  <tr><th scope="row">Daily ingest</th><td>2 GB</td><td>50 GB</td><td>500 GB</td></tr>
+  <tr><th scope="row">Retention</th><td>3 days</td><td>30 days</td><td>1 year</td></tr>
+  <tr><th scope="row">Archive to your S3 bucket</th><td>No</td><td>Yes</td><td>Yes</td></tr>
+  <tr class="grp"><th colspan="4">Collaboration</th></tr>
+  <tr><th scope="row">Users</th><td>1</td><td>Up to 15</td><td>Unlimited</td></tr>
+  <tr><th scope="row">Shared dashboards</th><td>No</td><td>Yes</td><td>Yes</td></tr>
+  <tr><th scope="row">Alert channels</th><td>Email</td><td>Slack, PagerDuty</td><td>Slack, PagerDuty, webhooks</td></tr>
+  <tr class="grp"><th colspan="4">Security and support</th></tr>
+  <tr><th scope="row">SSO and audit log</th><td>No</td><td>No</td><td>Yes</td></tr>
+  <tr><th scope="row">Support</th><td>Community</td><td>Email, next business day</td><td>Shared channel, 4 hour reply</td></tr>
+ </tbody></table></div></section>
+<section id="faq" class="rv"><h3>Questions</h3><div class="faq">
+ <details><summary>What happens if we go over our daily ingest?</summary><p>We keep ingesting for 48 hours and email you. After that, the lowest-priority sources are sampled until the next day.</p></details>
+ <details><summary>Can we change plans later?</summary><p>Yes. Upgrades apply immediately and are prorated. Downgrades take effect at the next billing date.</p></details>
+ <details><summary>Do you offer a trial of Team?</summary><p>Every new workspace gets 14 days of Team features, no card needed. After that it moves to Solo.</p></details>
+ <details><summary>Is our data used to train anything?</summary><p>No. Logs are stored encrypted, only searched by your team, and deleted when retention ends.</p></details>
+</div></section>
+</main>
+<footer><div class="wrap"><span>Sluice, log search for small teams.</span><span>Prices in USD, billed per user.</span></div></footer>
+<script>
+const spans=[...document.querySelectorAll("[data-m]")],mo=document.getElementById("mo"),yr=document.getElementById("yr");
+function setBilling(yearly){
+ spans.forEach(s=>s.textContent=yearly?s.dataset.a:s.dataset.m);
+ mo.setAttribute("aria-pressed",!yearly);yr.setAttribute("aria-pressed",yearly);
+}
+mo.onclick=()=>setBilling(false);yr.onclick=()=>setBilling(true);
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll(".rv").forEach((el,i)=>{el.style.transitionDelay=(el.classList.contains("plan")?i*80:0)+"ms";io.observe(el)});
+</script>
+</body>
+</html>
+```

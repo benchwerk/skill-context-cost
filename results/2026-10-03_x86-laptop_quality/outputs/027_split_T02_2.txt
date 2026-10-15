@@ -1,0 +1,157 @@
+```html
+<!-- Reading this as: pricing page for small engineering teams, with a warm editorial-meets-terminal language, leaning toward native CSS + system fonts + restrained motion. Dials 7/4/4. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kerf — Pricing</title>
+<style>
+  :root {
+    --bg: #f3eee4; --ink: #1c1915; --mute: #6b645a; --line: #d9d1c2;
+    --card: #fbf8f2; --accent: #c4410c; --accent-soft: #f6d9c8;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "Segoe UI", sans-serif; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 28px 0; font-family: var(--mono); font-size: 14px; }
+  nav b { font-size: 18px; letter-spacing: -.02em; }
+  nav b i { color: var(--accent); font-style: normal; }
+  nav a { color: var(--ink); text-decoration: none; margin-left: 24px; }
+  nav a:hover { color: var(--accent); }
+  header { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: end; padding: 56px 0 48px; }
+  h1 { font: 400 clamp(40px, 6.4vw, 76px)/1 var(--serif); letter-spacing: -.035em; }
+  h1 em { color: var(--accent); }
+  header p { color: var(--mute); max-width: 36ch; }
+  .toggle { display: inline-flex; margin-top: 20px; border: 1px solid var(--ink); border-radius: 999px; padding: 3px; font: 13px var(--mono); }
+  .toggle button { border: 0; background: none; padding: 7px 16px; border-radius: 999px; cursor: pointer; color: var(--ink); font: inherit; }
+  .toggle button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+  .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: start; padding-bottom: 24px; }
+  .plan { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 32px 28px; transition: transform .25s ease, box-shadow .25s ease; }
+  .plan:hover { transform: translateY(-4px); box-shadow: 0 14px 30px -18px rgba(28,25,21,.45); }
+  .plan.pro { background: var(--ink); color: var(--bg); border-color: var(--ink); margin-top: -20px; padding-top: 52px; }
+  .tag { font: 12px var(--mono); text-transform: uppercase; letter-spacing: .12em; color: var(--accent); }
+  .pro .tag { color: #ff9a62; }
+  .price { font: 400 56px/1 var(--serif); letter-spacing: -.04em; margin: 16px 0 4px; }
+  .price small { font: 13px var(--mono); letter-spacing: 0; opacity: .6; margin-left: 6px; }
+  .blurb { font-size: 14px; opacity: .75; min-height: 44px; }
+  .plan ul { list-style: none; padding: 0; margin: 20px 0 28px; border-top: 1px solid currentColor; border-color: color-mix(in srgb, currentColor 20%, transparent); }
+  .plan li { padding: 9px 0 9px 22px; font-size: 14px; position: relative; border-bottom: 1px solid color-mix(in srgb, currentColor 12%, transparent); }
+  .plan li::before { content: ""; position: absolute; left: 2px; top: 17px; width: 8px; height: 8px; background: var(--accent); border-radius: 1px; }
+  .btn { display: block; text-align: center; padding: 13px; border-radius: 4px; border: 1px solid currentColor; color: inherit; text-decoration: none; font: 14px var(--mono); transition: background .2s, color .2s; }
+  .btn:hover { background: var(--ink); color: var(--bg); }
+  .pro .btn { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .pro .btn:hover { background: #e0561f; }
+  h2 { font: 400 clamp(28px, 3.6vw, 40px)/1.1 var(--serif); letter-spacing: -.025em; margin: 88px 0 28px; }
+  .scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--card); }
+  table { width: 100%; border-collapse: collapse; min-width: 640px; font-size: 14px; }
+  th, td { padding: 14px 20px; text-align: left; border-bottom: 1px solid var(--line); }
+  thead th { font: 12px var(--mono); text-transform: uppercase; letter-spacing: .1em; color: var(--mute); }
+  th[scope="row"] { font-weight: 500; }
+  td { font-family: var(--mono); font-size: 13px; }
+  td.y { color: var(--accent); font-weight: 700; } td.n { color: var(--mute); }
+  tbody tr:last-child > * { border-bottom: 0; }
+  tbody tr:hover { background: var(--accent-soft); }
+  .faq { display: grid; grid-template-columns: 1fr 1.6fr; gap: 48px; }
+  .faq h2 { margin-top: 0; }
+  details { border-top: 1px solid var(--ink); padding: 18px 0; }
+  details:last-child { border-bottom: 1px solid var(--ink); }
+  summary { cursor: pointer; font: 400 20px var(--serif); list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+  summary::after { content: "+"; font-family: var(--mono); color: var(--accent); transition: transform .2s; }
+  details[open] summary::after { transform: rotate(45deg); }
+  details p { color: var(--mute); margin-top: 10px; max-width: 56ch; }
+  footer { margin-top: 96px; padding: 28px 0 40px; border-top: 1px solid var(--line); font: 13px var(--mono); color: var(--mute); display: flex; justify-content: space-between; }
+  a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  @media (max-width: 860px) {
+    header, .faq { grid-template-columns: 1fr; gap: 24px; }
+    .plans { grid-template-columns: 1fr; } .plan.pro { margin-top: 0; padding-top: 32px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav><b>kerf<i>_</i></b><div><a href="#">Docs</a><a href="#">Changelog</a><a href="#">Sign in</a></div></nav>
+
+  <header>
+    <div>
+      <h1>Logs you can <em>afford</em> to keep.</h1>
+    </div>
+    <div>
+      <p>Kerf is log analytics for teams of 2 to 20. Flat pricing, no per-seat tax, no surprise bill after an incident.</p>
+      <div class="toggle" role="group" aria-label="Billing period">
+        <button type="button" data-mode="monthly" aria-pressed="true">Monthly</button>
+        <button type="button" data-mode="annual" aria-pressed="false">Annual, 2 months free</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="plans" aria-label="Plans">
+      <article class="plan">
+        <span class="tag">Sawdust</span>
+        <div class="price"><span data-m="0" data-a="0">$0</span><small>/mo</small></div>
+        <p class="blurb">For side projects and trying Kerf on a single service.</p>
+        <ul><li>2 GB ingest per day</li><li>3 days retention</li><li>Up to 3 teammates</li><li>5 saved queries</li></ul>
+        <a class="btn" href="#">Start free</a>
+      </article>
+      <article class="plan pro">
+        <span class="tag">Crosscut · most teams</span>
+        <div class="price">$<span data-m="49" data-a="41">49</span><small>/mo, flat</small></div>
+        <p class="blurb">For product teams shipping daily who need real history and alerts.</p>
+        <ul><li>50 GB ingest per day</li><li>30 days retention</li><li>Unlimited teammates</li><li>Alerts to Slack and PagerDuty</li><li>Live tail and query sharing</li></ul>
+        <a class="btn" href="#">Start 14-day trial</a>
+      </article>
+      <article class="plan">
+        <span class="tag">Timberline</span>
+        <div class="price">$<span data-m="199" data-a="166">199</span><small>/mo, flat</small></div>
+        <p class="blurb">For teams with compliance needs and noisy, high-volume services.</p>
+        <ul><li>500 GB ingest per day</li><li>180 days retention</li><li>SSO and audit log</li><li>Archive to your own S3</li><li>Priority support, 4h reply</li></ul>
+        <a class="btn" href="#">Talk to us</a>
+      </article>
+    </section>
+
+    <h2>Every line, compared</h2>
+    <div class="scroll">
+      <table>
+        <thead><tr><th scope="col">Feature</th><th scope="col">Sawdust</th><th scope="col">Crosscut</th><th scope="col">Timberline</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Daily ingest</th><td>2 GB</td><td>50 GB</td><td>500 GB</td></tr>
+          <tr><th scope="row">Retention</th><td>3 days</td><td>30 days</td><td>180 days</td></tr>
+          <tr><th scope="row">Teammates</th><td>3</td><td>Unlimited</td><td>Unlimited</td></tr>
+          <tr><th scope="row">Live tail</th><td class="n">No</td><td class="y">Yes</td><td class="y">Yes</td></tr>
+          <tr><th scope="row">Alert rules</th><td>2</td><td>Unlimited</td><td>Unlimited</td></tr>
+          <tr><th scope="row">SSO (SAML)</th><td class="n">No</td><td class="n">No</td><td class="y">Yes</td></tr>
+          <tr><th scope="row">Archive to your S3</th><td class="n">No</td><td class="n">No</td><td class="y">Yes</td></tr>
+          <tr><th scope="row">Support</th><td>Community</td><td>Email, 1 day</td><td>Priority, 4h</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <section class="faq">
+      <h2>Questions, answered short</h2>
+      <div>
+        <details><summary>What happens if we go over our daily ingest?</summary><p>We keep ingesting. You get an email at 80%, and after three overage days in a month we suggest the next plan. Nothing is dropped and nothing is billed per GB.</p></details>
+        <details><summary>Can we change plans mid-month?</summary><p>Yes. Upgrades apply immediately and are prorated. Downgrades take effect at the next billing date.</p></details>
+        <details><summary>Do you charge per seat?</summary><p>Never. Crosscut and Timberline include unlimited teammates, so inviting a contractor for a week costs nothing.</p></details>
+        <details><summary>How do we send logs?</summary><p>Point any OpenTelemetry collector, Vector, Fluent Bit or plain HTTPS at your Kerf endpoint. Most teams are searching in under ten minutes.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <footer><span>Kerf Labs, Inc.</span><span>Prices in USD, excl. tax</span></footer>
+</div>
+<script>
+  const buttons = document.querySelectorAll(".toggle button");
+  buttons.forEach(btn => btn.addEventListener("click", () => {
+    buttons.forEach(b => b.setAttribute("aria-pressed", b === btn));
+    document.querySelectorAll("[data-m]").forEach(el => {
+      el.textContent = (el.dataset.m === "0" ? "$" : "") + el.dataset[btn.dataset.mode === "annual" ? "a" : "m"];
+    });
+  }));
+</script>
+</body>
+</html>
+```

@@ -1,0 +1,18 @@
+{"cmd": 0, "t": 0.193, "line": "14 runs (0 already done) -> <repo>\\results\\2026-10-02_x86-laptop_mechanisms"}
+{"cmd": 0, "t": 0.193, "line": "claude: <scrubbed>\\AppData\\Local/Packages/Claude_pzs8sxrjxfjjc/LocalCache/Roaming/Claude/claude-code/2.1.284/claude.exe (2.1.284 (Claude Code))"}
+{"cmd": 0, "t": 4.063, "line": "[1/14] M-docs-used claude-sonnet-5-5[1m] run 1 rc=0 3.9s"}
+{"cmd": 0, "t": 11.1, "line": "[2/14] M-skill-used claude-sonnet-5-5[1m] run 1 rc=1 5.0s"}
+{"cmd": 0, "t": 16.147, "line": "[3/14] M-base claude-sonnet-5-5[1m] run 2 rc=0 3.0s"}
+{"cmd": 0, "t": 21.576, "line": "[4/14] M-docs-idle claude-sonnet-5-5[1m] run 2 rc=0 3.4s"}
+{"cmd": 0, "t": 26.734, "line": "[5/14] M-skill-idle claude-sonnet-5-5[1m] run 2 rc=0 3.1s"}
+{"cmd": 0, "t": 35.523, "line": "[6/14] M-claudemd claude-sonnet-5-5[1m] run 2 rc=0 6.8s"}
+{"cmd": 0, "t": 40.895, "line": "[7/14] M-base claude-sonnet-5-5[1m] run 1 rc=0 3.4s"}
+{"cmd": 0, "t": 64.203, "line": "[8/14] M-prompt-used claude-sonnet-5-5[1m] run 2 rc=1 21.3s"}
+{"cmd": 0, "t": 72.09, "line": "[9/14] M-claudemd claude-sonnet-5-5[1m] run 1 rc=0 5.9s"}
+{"cmd": 0, "t": 79.321, "line": "[10/14] M-skill-used claude-sonnet-5-5[1m] run 2 rc=1 5.2s"}
+{"cmd": 0, "t": 103.859, "line": "[11/14] M-prompt-used claude-sonnet-5-5[1m] run 1 rc=1 22.5s"}
+{"cmd": 0, "t": 109.769, "line": "[12/14] M-docs-used claude-sonnet-5-5[1m] run 2 rc=0 3.9s"}
+{"cmd": 0, "t": 115.667, "line": "[13/14] M-docs-idle claude-sonnet-5-5[1m] run 1 rc=0 3.9s"}
+{"cmd": 0, "t": 121.02, "line": "[14/14] M-skill-idle claude-sonnet-5-5[1m] run 1 rc=0 3.3s"}
+{"cmd": 0, "t": 123.028, "line": "done -> <repo>\\results\\2026-10-02_x86-laptop_mechanisms"}
+{"cmd": 0, "exit": 0, "t": 123.042}

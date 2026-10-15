@@ -1,0 +1,135 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verso — Create your account</title>
+<style>
+  :root { --paper:#f6f1e7; --ink:#1d2a24; --muted:#5f6b64; --line:#d9d1c0; --green:#1f5d46; --coral:#d9573b; --card:#fffdf8; }
+  * { box-sizing: border-box; margin: 0; }
+  body { min-height: 100dvh; background: var(--paper); color: var(--ink); font: 16px/1.5 ui-sans-serif, system-ui, sans-serif; display: grid; place-items: start center; }
+  main { width: 100%; max-width: 440px; min-height: 100dvh; padding: 24px 20px 32px; display: flex; flex-direction: column; }
+  .brand { font: 700 1.25rem ui-serif, Georgia, serif; letter-spacing: .02em; color: var(--green); }
+  .steps { display: flex; gap: 6px; margin: 20px 0 8px; padding: 0; list-style: none; }
+  .steps li { flex: 1; height: 4px; border-radius: 2px; background: var(--line); transition: background .3s; }
+  .steps li.on { background: var(--green); }
+  .count { font-size: .8rem; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+  h1 { font: 600 1.9rem/1.15 ui-serif, Georgia, serif; margin: 16px 0 8px; }
+  .lede { color: var(--muted); margin-bottom: 24px; }
+  section { display: none; flex: 1; flex-direction: column; animation: in .35s ease; }
+  section.active { display: flex; }
+  @keyframes in { from { opacity: 0; transform: translateY(8px); } }
+  label { font-weight: 600; font-size: .9rem; display: block; margin-bottom: 6px; }
+  .field { margin-bottom: 18px; }
+  input[type=email], input[type=password] { width: 100%; padding: 14px; font: inherit; border: 1.5px solid var(--line); border-radius: 10px; background: var(--card); color: inherit; }
+  input:focus-visible, button:focus-visible, .opt:focus-within { outline: 3px solid var(--coral); outline-offset: 2px; }
+  .err { color: #a3321b; font-size: .85rem; min-height: 1.2em; margin-top: 4px; }
+  .opts { display: grid; gap: 10px; border: 0; padding: 0; margin: 0 0 20px; }
+  .opts.two { grid-template-columns: 1fr 1fr; }
+  .opt { position: relative; display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 16px; margin: 0; border: 1.5px solid var(--line); border-radius: 12px; background: var(--card); cursor: pointer; font-weight: 600; transition: border-color .2s, background .2s; }
+  .opt input { position: absolute; opacity: 0; }
+  .opt small { display: block; font-weight: 400; color: var(--muted); }
+  .opt .min { font: 600 1.4rem ui-serif, Georgia, serif; color: var(--green); white-space: nowrap; }
+  .opt:has(input:checked) { border-color: var(--green); background: #e6efe8; box-shadow: inset 0 0 0 1px var(--green); }
+  .actions { margin-top: auto; display: flex; gap: 10px; padding-top: 12px; }
+  button { font: inherit; font-weight: 600; padding: 15px 20px; border-radius: 12px; border: 0; cursor: pointer; min-height: 52px; }
+  .primary { flex: 1; background: var(--green); color: #fff; }
+  .primary:disabled { background: var(--line); color: var(--muted); cursor: not-allowed; }
+  .ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--line); }
+  .done { text-align: center; margin: auto 0; }
+  .done .big { font: 700 4rem/1 ui-serif, Georgia, serif; color: var(--coral); }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+  @media (min-width: 600px) { main { min-height: auto; margin-top: 6vh; padding: 36px; background: #fbf8f0; border: 1px solid var(--line); border-radius: 20px; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="brand">Verso</div>
+  <ol class="steps" aria-hidden="true"><li class="on"></li><li></li><li></li></ol>
+  <div class="count" id="count" aria-live="polite">Step 1 of 3</div>
+
+  <section class="active" data-step="1">
+    <h1>Start with the basics</h1>
+    <p class="lede">One account keeps your streak safe across every device.</p>
+    <form id="account" novalidate>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required>
+        <div class="err" id="emailErr" role="alert"></div>
+      </div>
+      <div class="field">
+        <label for="pw">Password</label>
+        <input id="pw" type="password" autocomplete="new-password" minlength="8" placeholder="At least 8 characters" required>
+        <div class="err" id="pwErr" role="alert"></div>
+      </div>
+    </form>
+    <div class="actions"><button class="primary" data-next>Create account</button></div>
+  </section>
+
+  <section data-step="2">
+    <h1>What do you want to speak?</h1>
+    <p class="lede">You can add more languages later.</p>
+    <fieldset class="opts two">
+      <legend class="count" style="margin-bottom:8px">Language</legend>
+      <label class="opt"><input type="radio" name="lang" value="Spanish">Spanish</label>
+      <label class="opt"><input type="radio" name="lang" value="Japanese">Japanese</label>
+      <label class="opt"><input type="radio" name="lang" value="French">French</label>
+      <label class="opt"><input type="radio" name="lang" value="Korean">Korean</label>
+      <label class="opt"><input type="radio" name="lang" value="German">German</label>
+      <label class="opt"><input type="radio" name="lang" value="Italian">Italian</label>
+    </fieldset>
+    <div class="actions"><button class="ghost" data-back>Back</button><button class="primary" data-next disabled>Continue</button></div>
+  </section>
+
+  <section data-step="3">
+    <h1>Set a daily goal</h1>
+    <p class="lede">Small and steady beats long and rare. Change it any time.</p>
+    <fieldset class="opts">
+      <legend class="count" style="margin-bottom:8px">Minutes per day</legend>
+      <label class="opt"><span>Casual<small>A coffee-break habit</small></span><span class="min">5 min<input type="radio" name="goal" value="5"></span></label>
+      <label class="opt"><span>Regular<small>Most people start here</small></span><span class="min">10 min<input type="radio" name="goal" value="10"></span></label>
+      <label class="opt"><span>Serious<small>Noticeable progress in weeks</small></span><span class="min">15 min<input type="radio" name="goal" value="15"></span></label>
+      <label class="opt"><span>Intense<small>For a trip or an exam</small></span><span class="min">20 min<input type="radio" name="goal" value="20"></span></label>
+    </fieldset>
+    <div class="actions"><button class="ghost" data-back>Back</button><button class="primary" data-next disabled>Start learning</button></div>
+  </section>
+
+  <section data-step="4" aria-live="polite">
+    <div class="done"><div class="big" id="doneMin"></div><h1 id="doneTitle"></h1><p class="lede">Your first lesson is ready.</p></div>
+  </section>
+</main>
+<script>
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  let step = 1;
+  const show = n => {
+    step = n;
+    $$('section').forEach(s => s.classList.toggle('active', +s.dataset.step === n));
+    $$('.steps li').forEach((li, i) => li.classList.toggle('on', i < Math.min(n, 3)));
+    $('#count').textContent = n > 3 ? 'All set' : `Step ${n} of 3`;
+    const h = $(`section[data-step="${n}"] h1`); h.tabIndex = -1; h.focus({ preventScroll: true });
+  };
+  const validate = () => {
+    const email = $('#email'), pw = $('#pw');
+    $('#emailErr').textContent = email.validity.valid && email.value ? '' : 'Enter a valid email address.';
+    $('#pwErr').textContent = pw.value.length >= 8 ? '' : 'Use at least 8 characters.';
+    return !$('#emailErr').textContent && !$('#pwErr').textContent;
+  };
+  $$('[data-back]').forEach(b => b.onclick = () => show(step - 1));
+  $$('input[type=radio]').forEach(r => r.onchange = () => $(`section[data-step="${step}"] .primary`).disabled = false);
+  $('#account').onsubmit = e => e.preventDefault();
+  $$('[data-next]').forEach(b => b.onclick = () => {
+    if (step === 1 && !validate()) return;
+    if (step === 3) {
+      const lang = $('input[name=lang]:checked').value, goal = $('input[name=goal]:checked').value;
+      $('#doneMin').textContent = goal + ' min';
+      $('#doneTitle').textContent = `${lang}, ${goal} minutes a day.`;
+      return show(4);
+    }
+    show(step + 1);
+  });
+  $('#account').addEventListener('keydown', e => { if (e.key === 'Enter') $('section.active [data-next]').click(); });
+</script>
+</body>
+</html>
+```

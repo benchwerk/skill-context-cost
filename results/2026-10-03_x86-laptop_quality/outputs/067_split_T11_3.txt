@@ -1,0 +1,109 @@
+```html
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Backpacking Gear | Fieldnote Outfitters</title>
+<!-- Design Read: outdoor-gear category page for trip planners comparing kit, with an editorial-utilitarian
+     language (serif headlines, topo-line tiles, restrained motion), native CSS with system fonts. -->
+<style>
+:root{--bg:#f3f0e8;--ink:#1e2a22;--mute:#5d685f;--line:#d6d1c2;--pine:#2f4a3a;--rust:#b4532a;--card:#faf8f2}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 "Segoe UI",system-ui,-apple-system,sans-serif}
+h1,h2,h3{font-family:Georgia,"Iowan Old Style",serif;font-weight:600;letter-spacing:-.01em}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--rust);outline-offset:2px}
+header{border-bottom:1px solid var(--line)}
+.bar,main{max-width:1280px;margin:0 auto;padding:0 24px}
+.bar{display:flex;justify-content:space-between;align-items:center;height:60px}
+.logo{font-family:Georgia,serif;font-size:20px;font-weight:700;text-decoration:none}
+nav{display:flex;gap:24px;font-size:14px;color:var(--mute)}
+nav a{text-decoration:none}nav a:hover{color:var(--ink)}
+.crumbs{font-size:13px;color:var(--mute);padding:20px 0 8px}
+.intro{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:end;padding-bottom:28px}
+.intro h1{font-size:clamp(34px,5vw,56px);line-height:1.05}
+.intro p{color:var(--mute);max-width:44ch}
+.layout{display:grid;grid-template-columns:230px 1fr;gap:40px;padding-bottom:64px}
+aside{position:sticky;top:16px;align-self:start}
+fieldset{border:0;padding:0;margin-bottom:24px}
+legend{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--mute);margin-bottom:8px;padding:0}
+.opt{display:flex;align-items:center;gap:10px;padding:5px 0;cursor:pointer;font-size:15px}
+.opt span:last-child{margin-left:auto;color:var(--mute);font-size:13px}
+input[type=checkbox]{accent-color:var(--pine);width:16px;height:16px}
+input[type=range]{width:100%;accent-color:var(--rust)}
+.price-out{font-variant-numeric:tabular-nums;font-size:15px}
+button.reset{background:none;border:0;border-bottom:1px solid var(--ink);font:inherit;font-size:14px;cursor:pointer;padding:0}
+.tools{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;font-size:14px;color:var(--mute)}
+select{font:inherit;font-size:14px;padding:6px 10px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,border-color .2s}
+.card:hover{transform:translateY(-3px);border-color:var(--pine)}
+.tile{aspect-ratio:4/3;position:relative;background:repeating-radial-gradient(ellipse at var(--x) 60%,transparent 0 9px,rgb(255 255 255/.22) 9px 10px),hsl(var(--h) 28% 34%)}
+.tile b{position:absolute;left:12px;bottom:10px;color:#fff;font:600 12px/1 system-ui;letter-spacing:.08em;text-transform:uppercase}
+.tag{position:absolute;top:10px;right:10px;background:var(--rust);color:#fff;font-size:11px;padding:2px 8px;border-radius:99px}
+.info{padding:14px;display:flex;flex-direction:column;gap:4px;flex:1}
+.info h3{font-size:18px;line-height:1.2}
+.meta{font-size:13px;color:var(--mute);margin-top:auto;padding-top:8px;display:flex;justify-content:space-between}
+.price{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.empty{grid-column:1/-1;padding:48px 0;color:var(--mute)}
+.guide{margin-top:56px;padding-top:32px;border-top:1px solid var(--pine);display:grid;grid-template-columns:1fr 2fr;gap:32px}
+.guide h2{font-size:30px;line-height:1.1}
+.guide div{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.guide h3{font-size:17px;color:var(--pine);margin-bottom:4px}
+.guide p{font-size:14px;color:var(--mute)}
+footer{border-top:1px solid var(--line);padding:24px;text-align:center;font-size:13px;color:var(--mute)}
+@media(max-width:860px){.layout,.intro,.guide,.guide div{grid-template-columns:1fr}aside{position:static}}
+@media(prefers-reduced-motion:reduce){.card{transition:none}.card:hover{transform:none}}
+</style>
+</head>
+<body>
+<header><div class="bar"><a class="logo" href="#">Fieldnote Outfitters</a>
+<nav><a href="#">Camp</a><a href="#">Climb</a><a href="#">Paddle</a><a href="#">Apparel</a><a href="#">Cart (0)</a></nav></div></header>
+<main>
+<div class="crumbs"><a href="#">Camp</a> / Backpacking</div>
+<section class="intro"><h1>Backpacking gear, tested on real miles</h1>
+<p>Shelter, packs, sleep systems and stoves. Every weight is measured on our own scale, packed with stakes and stuff sacks.</p></section>
+<div class="layout">
+<aside aria-label="Filters"><form id="f">
+<fieldset><legend>Type</legend><div id="types"></div></fieldset>
+<fieldset><legend>Max price</legend>
+<input type="range" id="price" min="40" max="600" step="10" value="600" aria-label="Maximum price">
+<div class="price-out">Up to $<span id="pv">600</span></div></fieldset>
+<fieldset><legend>Weight</legend><label class="opt"><input type="checkbox" id="light"> Under 1 kg</label></fieldset>
+<button type="button" class="reset" id="reset">Clear all filters</button></form></aside>
+<section aria-label="Products">
+<div class="tools"><span id="count" aria-live="polite"></span>
+<label>Sort <select id="sort"><option value="">Featured</option><option value="p">Price, low to high</option><option value="w">Weight, light to heavy</option></select></label></div>
+<div class="grid" id="grid"></div>
+<div class="guide"><h2>How to choose</h2><div>
+<article><h3>Start with base weight</h3><p>Add up everything except food, water and fuel. Under 6 kg is comfortable for most three-season trips.</p></article>
+<article><h3>Match the bag to the cold</h3><p>Pick a bag rated 5 degrees below the coldest night you expect. Down packs smaller; synthetic forgives damp.</p></article>
+<article><h3>Fit beats features</h3><p>A pack should carry about 80% of its load on your hips. Get your torso measured before you compare liters.</p></article></div></div>
+</section></div></main>
+<footer>Free returns within 60 days. Gear that fails in the field is replaced, no questions.</footer>
+<script>
+const P=[["Ridgeline 2P","Tents",449,1180,"New"],["Switchback 1P","Tents",329,890,""],["Basecamp 4P","Tents",589,2900,""],
+["Alder 55","Packs",259,1340,""],["Cairn 38","Packs",189,920,"Light"],["Summit 28 Daypack","Packs",119,640,""],
+["Down 20F Quilt","Sleep",379,690,"Light"],["Marlow 15F Bag","Sleep",289,1210,""],["Trailpad Insulated","Sleep",99,520,""],
+["Ember Canister Stove","Stoves",64,86,"Light"],["Hearth Wood Stove","Stoves",89,410,""],["Galley 2-Burner","Stoves",149,3100,""]]
+.map((a,i)=>({n:a[0],t:a[1],p:a[2],w:a[3],tag:a[4],h:[150,34,200,12,95,170][i%6],x:20+i*7%60+"%"}));
+const $=id=>document.getElementById(id),types=[...new Set(P.map(p=>p.t))];
+$("types").innerHTML=types.map(t=>`<label class="opt"><input type="checkbox" value="${t}"> ${t}<span>${P.filter(p=>p.t==t).length}</span></label>`).join("");
+function render(){
+  const on=[...document.querySelectorAll("#types input:checked")].map(i=>i.value),max=+$("price").value;
+  $("pv").textContent=max;
+  let r=P.filter(p=>(!on.length||on.includes(p.t))&&p.p<=max&&(!$("light").checked||p.w<1000));
+  const s=$("sort").value;if(s)r.sort((a,b)=>a[s]-b[s]);
+  $("count").textContent=`${r.length} of ${P.length} products`;
+  $("grid").innerHTML=r.map(p=>`<article class="card"><div class="tile" style="--h:${p.h};--x:${p.x}"><b>${p.t}</b>${p.tag?`<span class="tag">${p.tag}</span>`:""}</div>
+<div class="info"><h3><a href="#">${p.n}</a></h3><div class="meta"><span>${(p.w/1000).toFixed(2)} kg</span><span class="price">$${p.p}</span></div></div></article>`).join("")
+  ||`<p class="empty">Nothing matches those filters. Try raising the price limit.</p>`;
+}
+$("f").addEventListener("input",render);$("sort").addEventListener("input",render);
+$("reset").onclick=()=>{$("f").reset();$("sort").value="";render()};
+render();
+</script>
+</body>
+</html>
+```

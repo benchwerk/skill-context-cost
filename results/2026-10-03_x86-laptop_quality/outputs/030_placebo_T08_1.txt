@@ -1,0 +1,153 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About · Tallyfold</title>
+<style>
+:root{--bg:#f5f2ea;--ink:#12261d;--mute:#5b6a61;--line:#d9d4c5;--card:#fbf9f3;--acc:#c8501f;--deep:#0f3d2e}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:17px/1.6 "Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)}
+.logo{font:700 1.25rem Georgia,serif;letter-spacing:-.02em;text-decoration:none}
+.logo i{color:var(--acc);font-style:normal}
+nav div a{margin-left:28px;font-size:.95rem;color:var(--mute);text-decoration:none}
+nav div a:hover{color:var(--ink)}
+.eyebrow{font:600 .78rem/1 "Segoe UI",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+.hero{display:grid;grid-template-columns:1.5fr 1fr;gap:64px;padding:96px 0 80px;align-items:end}
+h1{font:400 clamp(2.4rem,5.4vw,4.1rem)/1.04 Georgia,serif;letter-spacing:-.03em;margin-top:18px}
+h1 em{color:var(--acc)}
+.hero p{color:var(--mute);max-width:36ch}
+section{padding:72px 0;border-top:1px solid var(--line)}
+h2{font:400 clamp(1.7rem,3vw,2.3rem)/1.15 Georgia,serif;letter-spacing:-.02em;margin:12px 0 40px;max-width:20ch}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);background:var(--deep);color:#eef0e6;border-radius:18px}
+.stat{padding:36px 28px;border-left:1px solid #ffffff24}
+.stat:first-child{border:0}
+.stat b{display:block;font:400 clamp(2rem,3.6vw,3rem)/1 Georgia,serif;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.stat span{display:block;margin-top:10px;font-size:.88rem;color:#b7c6bb}
+.values{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.values h3{font-size:1.02rem;margin-bottom:6px}
+.values h3::before{content:"";display:block;width:28px;height:3px;background:var(--acc);margin-bottom:14px}
+.values p{color:var(--mute);font-size:.96rem}
+.team{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.person{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;transition:transform .25s,border-color .25s}
+.person:hover{transform:translateY(-4px);border-color:var(--deep)}
+.av{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font:400 1.4rem Georgia,serif;color:#fff;margin-bottom:18px}
+.person h3{font-size:1.02rem}
+.person small{display:block;color:var(--acc);font-weight:600;font-size:.8rem;margin:2px 0 10px}
+.person p{color:var(--mute);font-size:.88rem;line-height:1.5}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.filters button{font:inherit;font-size:.88rem;padding:7px 16px;border-radius:99px;border:1px solid var(--line);background:none;color:var(--mute);cursor:pointer}
+.filters button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.role{display:grid;grid-template-columns:1fr 150px 130px 24px;gap:16px;align-items:center;padding:20px 4px;border-top:1px solid var(--line);text-decoration:none;transition:padding .2s,background .2s}
+.role:last-child{border-bottom:1px solid var(--line)}
+.role:hover{background:var(--card);padding-left:16px}
+.role strong{font-weight:600}
+.role span{color:var(--mute);font-size:.92rem}
+.role em{color:var(--acc);font-style:normal;transition:transform .2s}
+.role:hover em{transform:translateX(4px)}
+.role[hidden]{display:none}
+footer{padding:40px 0 56px;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:var(--mute);font-size:.86rem}
+@media(max-width:860px){
+ .hero{grid-template-columns:1fr;gap:24px;padding:56px 0}
+ .stats,.team{grid-template-columns:repeat(2,1fr)}
+ .stat:nth-child(3){border-left:0}.stat:nth-child(n+3){border-top:1px solid #ffffff24}
+ .values{grid-template-columns:1fr;gap:28px}
+ .role{grid-template-columns:1fr 24px}.role span{display:none}
+ nav div a:not(:last-child){display:none}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <nav>
+  <a class="logo" href="#">Tallyfold<i>.</i></a>
+  <div><a href="#numbers">Numbers</a><a href="#team">Team</a><a href="#roles">Careers</a></div>
+ </nav>
+
+ <header class="hero">
+  <div>
+   <span class="eyebrow">About Tallyfold</span>
+   <h1>Money should move at the speed of <em>trust</em>, not paperwork.</h1>
+  </div>
+  <p>We build payment and treasury infrastructure for small businesses, so a Tuesday invoice is settled by Tuesday, with every cent traceable and every fee shown up front.</p>
+ </header>
+
+ <section id="numbers">
+  <span class="eyebrow">Key numbers</span>
+  <h2>Four years in, and still counting every cent.</h2>
+  <div class="stats">
+   <div class="stat"><b data-to="2.4" data-pre="$" data-suf="B" data-dp="1">$2.4B</b><span>Processed in the last 12 months</span></div>
+   <div class="stat"><b data-to="38000" data-suf="+">38,000+</b><span>Businesses across 14 countries</span></div>
+   <div class="stat"><b data-to="99.99" data-suf="%" data-dp="2">99.99%</b><span>Platform uptime, trailing year</span></div>
+   <div class="stat"><b data-to="140">140</b><span>People, 60% in engineering</span></div>
+  </div>
+ </section>
+
+ <section>
+  <span class="eyebrow">Mission</span>
+  <h2>Make finance legible, fast and fair.</h2>
+  <div class="values">
+   <div><h3>Clarity over cleverness</h3><p>No hidden spreads, no fine print. If we cannot explain a charge in one sentence, we do not ship it.</p></div>
+   <div><h3>Speed with safeguards</h3><p>Real-time settlement backed by licensed partners, segregated funds and independent audits every quarter.</p></div>
+   <div><h3>Built for the long tail</h3><p>The café, the studio and the two-person exporter deserve the tooling that large enterprises take for granted.</p></div>
+  </div>
+ </section>
+
+ <section id="team">
+  <span class="eyebrow">Leadership</span>
+  <h2>The people steering the ledger.</h2>
+  <div class="team">
+   <article class="person"><div class="av" style="background:#0f3d2e">AO</div><h3>Amara Okafor</h3><small>Co-founder &amp; CEO</small><p>Ex-payments lead at a European neobank. Started Tallyfold after a 9-day wire delay.</p></article>
+   <article class="person"><div class="av" style="background:#c8501f">DR</div><h3>Daniel Reyes</h3><small>Co-founder &amp; CTO</small><p>Built clearing systems for two exchanges. Obsessed with idempotency and boring dashboards.</p></article>
+   <article class="person"><div class="av" style="background:#3f5b8a">MW</div><h3>Mei Wang</h3><small>Chief Risk Officer</small><p>Fifteen years in fraud and compliance. Designed our real-time risk engine.</p></article>
+   <article class="person"><div class="av" style="background:#7a6a3a">TH</div><h3>Tobias Hale</h3><small>Chief Financial Officer</small><p>Former audit partner. Keeps the books, and the promises, in balance.</p></article>
+  </div>
+ </section>
+
+ <section id="roles">
+  <span class="eyebrow">Open roles</span>
+  <h2>Help us move money better.</h2>
+  <div class="filters" role="group" aria-label="Filter by department">
+   <button aria-pressed="true" data-f="all">All</button><button aria-pressed="false" data-f="Engineering">Engineering</button>
+   <button aria-pressed="false" data-f="Risk">Risk</button><button aria-pressed="false" data-f="Growth">Growth</button>
+  </div>
+  <div id="list">
+   <a class="role" href="#" data-d="Engineering"><strong>Senior Backend Engineer, Ledger</strong><span>Engineering</span><span>Remote · EU</span><em>→</em></a>
+   <a class="role" href="#" data-d="Engineering"><strong>Staff Engineer, Settlement</strong><span>Engineering</span><span>London</span><em>→</em></a>
+   <a class="role" href="#" data-d="Risk"><strong>Fraud Analyst</strong><span>Risk</span><span>Lisbon</span><em>→</em></a>
+   <a class="role" href="#" data-d="Risk"><strong>Compliance Manager, EMEA</strong><span>Risk</span><span>Remote · EU</span><em>→</em></a>
+   <a class="role" href="#" data-d="Growth"><strong>Product Marketing Lead</strong><span>Growth</span><span>London</span><em>→</em></a>
+  </div>
+ </section>
+
+ <footer><span>© 2026 Tallyfold Ltd. Authorised e-money institution.</span><span>careers@tallyfold.example</span></footer>
+</div>
+
+<script>
+const buttons=document.querySelectorAll(".filters button"),roles=document.querySelectorAll(".role");
+buttons.forEach(b=>b.addEventListener("click",()=>{
+  buttons.forEach(x=>x.setAttribute("aria-pressed",x===b));
+  roles.forEach(r=>r.hidden=b.dataset.f!=="all"&&r.dataset.d!==b.dataset.f);
+}));
+const fmt=(n,dp)=>n.toLocaleString("en-US",{minimumFractionDigits:dp,maximumFractionDigits:dp});
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;io.unobserve(e.target);
+  const el=e.target,to=+el.dataset.to,dp=+el.dataset.dp||0,pre=el.dataset.pre||"",suf=el.dataset.suf||"",t0=performance.now();
+  if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;
+  (function tick(t){
+    const p=Math.min((t-t0)/1200,1),v=to*(1-Math.pow(1-p,3));
+    el.textContent=pre+fmt(v,dp)+suf;
+    if(p<1)requestAnimationFrame(tick);
+  })(t0);
+}),{threshold:.6});
+document.querySelectorAll("[data-to]").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
+```

@@ -1,0 +1,196 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Osteria Fenwick – Neighbourhood Kitchen</title>
+<style>
+  :root {
+    --cream: #faf5ec;
+    --ink: #2b2420;
+    --olive: #5b6b3a;
+    --terra: #b4532a;
+    --line: #e4d9c6;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  h1, h2, h3 { font-weight: normal; letter-spacing: .02em; }
+  a { color: inherit; }
+  header {
+    position: sticky; top: 0; z-index: 5;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 6vw;
+    background: rgba(250, 245, 236, .95);
+    border-bottom: 1px solid var(--line);
+  }
+  .logo { font-size: 1.3rem; font-style: italic; color: var(--terra); text-decoration: none; }
+  nav a { margin-left: 22px; text-decoration: none; font-size: .95rem; }
+  nav a:hover { color: var(--terra); }
+  .hero {
+    min-height: 70vh; display: grid; place-items: center; text-align: center;
+    padding: 60px 6vw; color: #fff;
+    background: linear-gradient(rgba(30, 20, 14, .55), rgba(30, 20, 14, .65)),
+      radial-gradient(circle at 30% 20%, #c9733f, #5b3a24 70%);
+  }
+  .hero h1 { font-size: clamp(2.4rem, 7vw, 4.5rem); }
+  .hero p { max-width: 34em; margin: 14px auto 28px; font-size: 1.1rem; }
+  .btn {
+    display: inline-block; padding: 12px 28px; border: 0; cursor: pointer;
+    background: var(--terra); color: #fff; text-decoration: none;
+    font: inherit; border-radius: 3px; transition: background .2s;
+  }
+  .btn:hover { background: #8f3f1c; }
+  section { padding: 70px 6vw; max-width: 1000px; margin: auto; }
+  h2 { font-size: 2rem; color: var(--olive); margin-bottom: 8px; }
+  .sub { color: #7a6c5d; margin-bottom: 30px; font-style: italic; }
+  .menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px 50px; }
+  .menu h3 { margin: 18px 0 6px; padding-bottom: 4px; border-bottom: 2px solid var(--terra); font-size: 1.15rem; }
+  .item { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px dotted var(--line); }
+  .item small { display: block; color: #7a6c5d; }
+  .price { color: var(--terra); white-space: nowrap; }
+  .alt { background: #f1e8d6; max-width: none; }
+  .alt > div { max-width: 1000px; margin: auto; }
+  .split { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; align-items: center; }
+  .portrait {
+    aspect-ratio: 1; border-radius: 50%; max-width: 280px; margin: auto; width: 100%;
+    display: grid; place-items: center; font-size: 5rem; color: #fff;
+    background: linear-gradient(135deg, var(--olive), #8a9a5b);
+  }
+  table { width: 100%; border-collapse: collapse; }
+  td { padding: 9px 0; border-bottom: 1px solid var(--line); }
+  td:last-child { text-align: right; }
+  tr.today { color: var(--terra); font-weight: bold; }
+  form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  label { display: grid; gap: 4px; font-size: .9rem; }
+  label.full, form .btn, #msg { grid-column: 1 / -1; }
+  input, select, textarea {
+    padding: 10px; font: inherit; border: 1px solid var(--line);
+    border-radius: 3px; background: #fff;
+  }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--olive); }
+  #msg { padding: 12px; background: #e6edd3; border-left: 4px solid var(--olive); }
+  #msg[hidden] { display: none; }
+  footer { text-align: center; padding: 30px; background: var(--ink); color: #d9ccb8; font-size: .9rem; }
+  @media (max-width: 600px) {
+    nav a { margin-left: 12px; font-size: .85rem; }
+    form { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="#top">Osteria Fenwick</a>
+  <nav><a href="#menu">Menu</a><a href="#hours">Hours</a><a href="#chef">Chef</a><a href="#reserve">Reserve</a></nav>
+</header>
+
+<div class="hero" id="top">
+  <div>
+    <h1>Good food, close to home</h1>
+    <p>Seasonal Italian cooking, wood-fired bread and a warm table waiting for you on Fenwick Lane.</p>
+    <a class="btn" href="#reserve">Reserve a table</a>
+  </div>
+</div>
+
+<section id="menu">
+  <h2>The Menu</h2>
+  <p class="sub">Changes with the market, usually on Thursdays.</p>
+  <div class="menu">
+    <div>
+      <h3>To Start</h3>
+      <div class="item"><span>Burrata &amp; roasted tomatoes<small>basil oil, grilled focaccia</small></span><span class="price">€9</span></div>
+      <div class="item"><span>Wild mushroom soup<small>thyme, toasted hazelnuts</small></span><span class="price">€7</span></div>
+      <div class="item"><span>Fritto misto<small>lemon aioli</small></span><span class="price">€10</span></div>
+      <h3>Desserts</h3>
+      <div class="item"><span>Tiramisu<small>made daily</small></span><span class="price">€6</span></div>
+      <div class="item"><span>Olive oil cake<small>poached pear, mascarpone</small></span><span class="price">€7</span></div>
+    </div>
+    <div>
+      <h3>Mains</h3>
+      <div class="item"><span>Tagliatelle al ragù<small>slow-cooked beef &amp; pork, 6 hours</small></span><span class="price">€16</span></div>
+      <div class="item"><span>Wood-fired margherita<small>fior di latte, basil</small></span><span class="price">€13</span></div>
+      <div class="item"><span>Roast chicken<small>salsa verde, crisp potatoes</small></span><span class="price">€18</span></div>
+      <div class="item"><span>Pumpkin risotto (v)<small>sage, aged parmesan</small></span><span class="price">€15</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="alt"><section id="chef">
+  <div class="split">
+    <div class="portrait" aria-hidden="true">👨‍🍳</div>
+    <div>
+      <h2>Meet the Chef</h2>
+      <p class="sub">Marco Bellini</p>
+      <p>Marco grew up in his grandmother's kitchen in Emilia-Romagna and spent fifteen years cooking across Europe before settling here, three streets from where he lives. He buys from local growers, makes pasta by hand every morning, and believes a restaurant should feel like an extension of your own dining room.</p>
+    </div>
+  </div>
+</section></div>
+
+<section id="hours">
+  <h2>Opening Hours</h2>
+  <p class="sub">Walk-ins welcome whenever there's a free table.</p>
+  <table id="hoursTable">
+    <tr data-d="1"><td>Monday</td><td>Closed</td></tr>
+    <tr data-d="2"><td>Tuesday – Thursday</td><td>12:00 – 22:00</td></tr>
+    <tr data-d="5"><td>Friday – Saturday</td><td>12:00 – 23:30</td></tr>
+    <tr data-d="0"><td>Sunday</td><td>12:00 – 21:00</td></tr>
+  </table>
+</section>
+
+<div class="alt"><section id="reserve">
+  <h2>Reserve a Table</h2>
+  <p class="sub">We'll confirm by email within a few hours.</p>
+  <form id="resForm">
+    <label>Name<input name="name" required></label>
+    <label>Email<input type="email" name="email" required></label>
+    <label>Date<input type="date" name="date" id="date" required></label>
+    <label>Time
+      <select name="time" required>
+        <option>12:30</option><option>13:30</option><option>18:00</option>
+        <option>19:00</option><option selected>20:00</option><option>21:00</option>
+      </select>
+    </label>
+    <label>Guests<input type="number" name="guests" min="1" max="10" value="2" required></label>
+    <label>Phone<input type="tel" name="phone"></label>
+    <label class="full">Special requests<textarea name="notes" rows="3" placeholder="Allergies, celebrations, high chairs…"></textarea></label>
+    <button class="btn" type="submit">Request reservation</button>
+    <p id="msg" role="status" hidden></p>
+  </form>
+</section></div>
+
+<footer>Osteria Fenwick · 12 Fenwick Lane · 020 7946 0123 · hello@osteriafenwick.example</footer>
+
+<script>
+  const date = document.getElementById('date');
+  date.min = new Date().toISOString().split('T')[0];
+
+  // Highlight today's row in the hours table
+  const day = new Date().getDay();
+  const map = { 1: 1, 2: 2, 3: 2, 4: 2, 5: 5, 6: 5, 0: 0 };
+  document.querySelector(`tr[data-d="${map[day]}"]`).classList.add('today');
+
+  document.getElementById('resForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const f = new FormData(e.target);
+    if (new Date(f.get('date') + 'T12:00').getDay() === 1) {
+      return show('Sorry, we are closed on Mondays. Please choose another day.');
+    }
+    show(`Thank you, ${f.get('name')}! Your request for ${f.get('guests')} on ${f.get('date')} at ${f.get('time')} has been received.`);
+    e.target.reset();
+  });
+
+  function show(text) {
+    const m = document.getElementById('msg');
+    m.textContent = text;
+    m.hidden = false;
+  }
+</script>
+</body>
+</html>
+```

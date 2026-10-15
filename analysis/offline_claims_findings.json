@@ -1,0 +1,49 @@
+{
+ "C-053_over_500_lines": {
+  "n": 138,
+  "over": 4,
+  "share": 0.029,
+  "median_lines": 142.0,
+  "max_lines": 1202
+ },
+ "C-071_over_5000_tokens_estimate": {
+  "over": 32,
+  "share": 0.232,
+  "median_tokens_estimate": 3042
+ },
+ "C-069_C-004_description_length": {
+  "over_1024": 0,
+  "over_1536_raw": 0,
+  "max_listing_chars": 1017,
+  "median": 314.5
+ },
+ "structure": {
+  "multi_file_share": 0.667,
+  "points_to_files_share": 0.529
+ },
+ "K-052_K-053_snapshot": {
+  "rows": 600,
+  "groups_with_identical_8_week_series": 0,
+  "rows_in_such_groups": 0,
+  "largest_identical_group": 0,
+  "sources_whose_skills_share_the_same_last_week_within_2pct": 9,
+  "rows_with_zero_first_5_weeks_then_over_10k_last_week": 13,
+  "top10_share_of_installs_in_snapshot": 0.077,
+  "top100_share": 0.435
+ },
+ "K-046_K-048_static_flags": {
+  "skills_checked": 138,
+  "skills_with_any_flag": 62,
+  "share": 0.449,
+  "by_category": {
+   "obfuscation_or_eval": 13,
+   "credential_paths": 40,
+   "network_call": 36,
+   "pipe_to_shell": 6,
+   "destructive": 6,
+   "hidden_unicode": 2,
+   "prompt_override": 2
+  },
+  "note": "heuristics only: a flag means a pattern appears somewhere in the skill folder (documentation and examples included), not that it is malicious"
+ }
+}

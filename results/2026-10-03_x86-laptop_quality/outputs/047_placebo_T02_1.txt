@@ -1,0 +1,160 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tailwake — Pricing</title>
+<style>
+  :root {
+    --bg: #f4f1ea; --ink: #16181d; --mute: #5d6169; --line: #d9d4c8;
+    --card: #fbf9f4; --accent: #d9480f; --accent-ink: #fff; --dark: #16181d;
+    --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    --sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 var(--sans); }
+  a { color: inherit; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; }
+  .logo { font-family: var(--mono); font-weight: 700; letter-spacing: -.02em; text-decoration: none; }
+  .logo b { color: var(--accent); }
+  nav a.link { font-size: 14px; color: var(--mute); text-decoration: none; }
+  header.hero { padding: 56px 0 32px; max-width: 640px; }
+  .eyebrow { font: 600 12px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: clamp(34px, 5vw, 52px); line-height: 1.05; letter-spacing: -.035em; margin: 12px 0 16px; }
+  .lede { color: var(--mute); font-size: 18px; }
+  .toggle { display: inline-flex; margin-top: 28px; border: 1px solid var(--line); border-radius: 999px; padding: 3px; background: var(--card); }
+  .toggle button { border: 0; background: none; font: 500 14px var(--sans); padding: 8px 18px; border-radius: 999px; cursor: pointer; color: var(--mute); }
+  .toggle button[aria-pressed="true"] { background: var(--dark); color: #fff; }
+  .toggle small { color: var(--accent); font-weight: 600; }
+  .toggle button[aria-pressed="true"] small { color: #ffb48f; }
+  .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 32px 0 72px; align-items: stretch; }
+  .plan { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 28px; display: flex; flex-direction: column; }
+  .plan.featured { background: var(--dark); color: #f4f1ea; border-color: var(--dark); }
+  .plan h2 { font: 700 15px var(--mono); }
+  .tag { font-size: 11px; background: var(--accent); color: var(--accent-ink); padding: 2px 8px; border-radius: 4px; margin-left: 8px; vertical-align: 1px; }
+  .plan p.sub { color: var(--mute); font-size: 14px; min-height: 44px; margin-top: 6px; }
+  .featured p.sub, .featured li { color: #c9c5ba; }
+  .price { font: 700 44px var(--mono); letter-spacing: -.04em; margin: 18px 0 2px; }
+  .price span { font: 400 14px var(--sans); letter-spacing: 0; color: var(--mute); }
+  .featured .price span { color: #a9a59a; }
+  .note { font-size: 13px; color: var(--mute); margin-bottom: 20px; }
+  .plan ul { list-style: none; padding: 0; margin: 0 0 24px; font-size: 14.5px; flex: 1; }
+  .plan li { padding: 7px 0; border-top: 1px solid var(--line); }
+  .featured li { border-color: #33363d; }
+  .btn { display: block; text-align: center; text-decoration: none; padding: 12px; border-radius: 8px; font-weight: 600; font-size: 15px; border: 1px solid var(--ink); }
+  .btn:hover { transform: translateY(-1px); }
+  .featured .btn { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  h3.section { font-size: 28px; letter-spacing: -.025em; margin-bottom: 20px; }
+  .tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: var(--card); margin-bottom: 72px; }
+  table { width: 100%; border-collapse: collapse; min-width: 640px; font-size: 14.5px; }
+  th, td { text-align: left; padding: 13px 20px; border-bottom: 1px solid var(--line); }
+  thead th { font: 700 13px var(--mono); background: #efebe1; }
+  tbody th { font-weight: 500; color: var(--mute); }
+  tr.group th { font: 600 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink); background: transparent; padding-top: 22px; }
+  tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
+  td.y { color: var(--accent); font-weight: 700; }
+  td.n { color: #aaa597; }
+  .faq { max-width: 720px; margin-bottom: 72px; }
+  details { border-top: 1px solid var(--line); padding: 16px 0; }
+  details:last-of-type { border-bottom: 1px solid var(--line); }
+  summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; }
+  summary::after { content: "+"; font: 400 20px var(--mono); color: var(--accent); }
+  details[open] summary::after { content: "–"; }
+  details p { color: var(--mute); margin-top: 10px; }
+  footer { border-top: 1px solid var(--line); padding: 28px 0 48px; font-size: 13px; color: var(--mute); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  @media (max-width: 820px) { .plans { grid-template-columns: 1fr; } .plan p.sub { min-height: 0; } }
+  @media (prefers-reduced-motion: no-preference) { .btn { transition: transform .15s; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="logo" href="#">tail<b>wake</b></a>
+    <a class="link" href="#faq">Questions?</a>
+  </nav>
+
+  <header class="hero">
+    <p class="eyebrow">Pricing</p>
+    <h1>Logs that cost less than the outage they explain.</h1>
+    <p class="lede">Tailwake gives small engineering teams fast search, live tail and alerts on one flat price. No per-seat tax, no surprise ingest bills.</p>
+    <div class="toggle" role="group" aria-label="Billing period">
+      <button type="button" data-mode="monthly" aria-pressed="true">Monthly</button>
+      <button type="button" data-mode="annual" aria-pressed="false">Annual <small>−20%</small></button>
+    </div>
+  </header>
+
+  <section class="plans" aria-label="Plans">
+    <article class="plan">
+      <h2>Side Project</h2>
+      <p class="sub">For hobby apps and trying Tailwake on a single service.</p>
+      <div class="price">$0<span> /mo</span></div>
+      <p class="note">Free forever, no card.</p>
+      <ul><li>2 GB ingest / month</li><li>3-day retention</li><li>Up to 3 teammates</li><li>Live tail and search</li></ul>
+      <a class="btn" href="#">Start free</a>
+    </article>
+    <article class="plan featured">
+      <h2>Crew <span class="tag">Most teams</span></h2>
+      <p class="sub">For teams of 3–15 running production services.</p>
+      <div class="price"><span class="amt" data-m="29" data-a="23">$29</span><span> /mo</span></div>
+      <p class="note" style="color:#a9a59a">Flat price, unlimited teammates.</p>
+      <ul><li>50 GB ingest / month</li><li>30-day retention</li><li>Unlimited teammates</li><li>Alerts to Slack and PagerDuty</li><li>Saved views and shared queries</li></ul>
+      <a class="btn" href="#">Start 14-day trial</a>
+    </article>
+    <article class="plan">
+      <h2>Fleet</h2>
+      <p class="sub">For growing teams with compliance and heavier volume.</p>
+      <div class="price"><span class="amt" data-m="99" data-a="79">$99</span><span> /mo</span></div>
+      <p class="note">Includes 250 GB. Extra at $0.40/GB.</p>
+      <ul><li>250 GB ingest / month</li><li>90-day retention + archive</li><li>SSO and audit log</li><li>Anomaly detection</li><li>Priority support, 4h response</li></ul>
+      <a class="btn" href="#">Talk to us</a>
+    </article>
+  </section>
+
+  <section aria-labelledby="cmp">
+    <h3 class="section" id="cmp">Compare plans</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th scope="col">Feature</th><th scope="col">Side Project</th><th scope="col">Crew</th><th scope="col">Fleet</th></tr></thead>
+        <tbody>
+          <tr class="group"><th colspan="4">Volume</th></tr>
+          <tr><th scope="row">Monthly ingest</th><td>2 GB</td><td>50 GB</td><td>250 GB</td></tr>
+          <tr><th scope="row">Retention</th><td>3 days</td><td>30 days</td><td>90 days + archive</td></tr>
+          <tr><th scope="row">Teammates</th><td>3</td><td>Unlimited</td><td>Unlimited</td></tr>
+          <tr class="group"><th colspan="4">Investigation</th></tr>
+          <tr><th scope="row">Live tail and search</th><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+          <tr><th scope="row">Saved views</th><td class="n">—</td><td class="y">✓</td><td class="y">✓</td></tr>
+          <tr><th scope="row">Alerts</th><td>Email</td><td>Slack, PagerDuty</td><td>Slack, PagerDuty, webhooks</td></tr>
+          <tr><th scope="row">Anomaly detection</th><td class="n">—</td><td class="n">—</td><td class="y">✓</td></tr>
+          <tr class="group"><th colspan="4">Security and support</th></tr>
+          <tr><th scope="row">SSO and audit log</th><td class="n">—</td><td class="n">—</td><td class="y">✓</td></tr>
+          <tr><th scope="row">Support</th><td>Community</td><td>Email, 1 business day</td><td>Priority, 4h</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="faq" id="faq" aria-labelledby="fq">
+    <h3 class="section" id="fq">Short answers</h3>
+    <details><summary>What counts as ingest?</summary><p>The uncompressed size of log lines we accept. Dropped or filtered lines at the agent are never billed.</p></details>
+    <details><summary>What happens if we go over our limit?</summary><p>On Crew we keep ingesting and email you before charging anything. On Fleet, overage is $0.40 per GB. Side Project pauses until the next month.</p></details>
+    <details><summary>Can we change plans anytime?</summary><p>Yes. Upgrades apply immediately and are prorated. Downgrades take effect at the next billing date.</p></details>
+    <details><summary>Do you offer discounts for startups or open source?</summary><p>Yes, 50% off Crew for the first year for seed-stage startups and maintainers of active open-source projects. Write to us.</p></details>
+  </section>
+
+  <footer><span>© 2026 Tailwake Labs</span><span>Prices in USD, excluding tax.</span></footer>
+</div>
+<script>
+  const buttons = document.querySelectorAll('.toggle button');
+  buttons.forEach(b => b.addEventListener('click', () => {
+    buttons.forEach(x => x.setAttribute('aria-pressed', x === b));
+    document.querySelectorAll('.amt').forEach(el => {
+      el.textContent = '$' + el.dataset[b.dataset.mode === 'annual' ? 'a' : 'm'];
+    });
+  }));
+</script>
+</body>
+</html>
+```

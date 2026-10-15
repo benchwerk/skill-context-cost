@@ -1,0 +1,424 @@
+{
+ "calls": 576,
+ "decisions": {
+  "text": 351,
+  "skill": 225
+ },
+ "other_skill_calls": 0,
+ "calls_with_tools_before_decision": 144,
+ "cells": {
+  "original/alone": {
+   "positive_all": {
+    "hits": 45,
+    "n": 48,
+    "rate": 0.938,
+    "ci": [
+     0.832,
+     0.979
+    ]
+   },
+   "positive_keyword": {
+    "hits": 21,
+    "n": 24,
+    "rate": 0.875,
+    "ci": [
+     0.69,
+     0.957
+    ]
+   },
+   "positive_paraphrase": {
+    "hits": 24,
+    "n": 24,
+    "rate": 1.0,
+    "ci": [
+     0.862,
+     1.0
+    ]
+   },
+   "negative_hard_false_trigger": {
+    "hits": 0,
+    "n": 36,
+    "rate": 0.0,
+    "ci": [
+     0.0,
+     0.096
+    ]
+   },
+   "negative_near_miss_false_trigger": {
+    "hits": 0,
+    "n": 12,
+    "rate": 0.0,
+    "ci": [
+     0.0,
+     0.243
+    ]
+   }
+  },
+  "original/crowded": {
+   "positive_all": {
+    "hits": 34,
+    "n": 48,
+    "rate": 0.708,
+    "ci": [
+     0.568,
+     0.818
+    ]
+   },
+   "positive_keyword": {
+    "hits": 19,
+    "n": 24,
+    "rate": 0.792,
+    "ci": [
+     0.595,
+     0.908
+    ]
+   },
+   "positive_paraphrase": {
+    "hits": 15,
+    "n": 24,
+    "rate": 0.625,
+    "ci": [
+     0.427,
+     0.788
+    ]
+   },
+   "negative_hard_false_trigger": {
+    "hits": 0,
+    "n": 36,
+    "rate": 0.0,
+    "ci": [
+     0.0,
+     0.096
+    ]
+   },
+   "negative_near_miss_false_trigger": {
+    "hits": 0,
+    "n": 12,
+    "rate": 0.0,
+    "ci": [
+     0.0,
+     0.243
+    ]
+   }
+  },
+  "trim100/alone": {
+   "positive_all": {
+    "hits": 45,
+    "n": 48,
+    "rate": 0.938,
+    "ci": [
+     0.832,
+     0.979
+    ]
+   },
+   "positive_keyword": {
+    "hits": 21,
+    "n": 24,
+    "rate": 0.875,
+    "ci": [
+     0.69,
+     0.957
+    ]
+   },
+   "positive_paraphrase": {
+    "hits": 24,
+    "n": 24,
+    "rate": 1.0,
+    "ci": [
+     0.862,
+     1.0
+    ]
+   },
+   "negative_hard_false_trigger": {
+    "hits": 0,
+    "n": 36,
+    "rate": 0.0,
+    "ci": [
+     0.0,
+     0.096
+    ]
+   },
+   "negative_near_miss_false_trigger": {
+    "hits": 0,
+    "n": 12,
+    "rate": 0.0,
+    "ci": [
+     0.0,
+     0.243
+    ]
+   }
+  },
+  "trim100/crowded": {
+   "positive_all": {
+    "hits": 28,
+    "n": 48,
+    "rate": 0.583,
+    "ci": [
+     0.443,
+     0.712
+    ]
+   },
+   "positive_keyword": {
+    "hits": 19,
+    "n": 24,
+    "rate": 0.792,
+    "ci": [
+     0.595,
+     0.908
+    ]
+   },
+   "positive_paraphrase": {
+    "hits": 9,
+    "n": 24,
+    "rate": 0.375,
+    "ci": [
+     0.212,
+     0.573
+    ]
+   },
+   "negative_hard_false_trigger": {
+    "hits": 0,
+    "n": 36,
+    "rate": 0.0,
+    "ci": [
+     0.0,
+     0.096
+    ]
+   },
+   "negative_near_miss_false_trigger": {
+    "hits": 0,
+    "n": 12,
+    "rate": 0.0,
+    "ci": [
+     0.0,
+     0.243
+    ]
+   }
+  },
+  "trim40/alone": {
+   "positive_all": {
+    "hits": 43,
+    "n": 48,
+    "rate": 0.896,
+    "ci": [
+     0.778,
+     0.955
+    ]
+   },
+   "positive_keyword": {
+    "hits": 22,
+    "n": 24,
+    "rate": 0.917,
+    "ci": [
+     0.742,
+     0.977
+    ]
+   },
+   "positive_paraphrase": {
+    "hits": 21,
+    "n": 24,
+    "rate": 0.875,
+    "ci": [
+     0.69,
+     0.957
+    ]
+   },
+   "negative_hard_false_trigger": {
+    "hits": 0,
+    "n": 36,
+    "rate": 0.0,
+    "ci": [
+     0.0,
+     0.096
+    ]
+   },
+   "negative_near_miss_false_trigger": {
+    "hits": 0,
+    "n": 12,
+    "rate": 0.0,
+    "ci": [
+     0.0,
+     0.243
+    ]
+   }
+  },
+  "trim40/crowded": {
+   "positive_all": {
+    "hits": 30,
+    "n": 48,
+    "rate": 0.625,
+    "ci": [
+     0.484,
+     0.748
+    ]
+   },
+   "positive_keyword": {
+    "hits": 18,
+    "n": 24,
+    "rate": 0.75,
+    "ci": [
+     0.551,
+     0.88
+    ]
+   },
+   "positive_paraphrase": {
+    "hits": 12,
+    "n": 24,
+    "rate": 0.5,
+    "ci": [
+     0.314,
+     0.686
+    ]
+   },
+   "negative_hard_false_trigger": {
+    "hits": 0,
+    "n": 36,
+    "rate": 0.0,
+    "ci": [
+     0.0,
+     0.096
+    ]
+   },
+   "negative_near_miss_false_trigger": {
+    "hits": 0,
+    "n": 12,
+    "rate": 0.0,
+    "ci": [
+     0.0,
+     0.243
+    ]
+   }
+  }
+ },
+ "by_skill_original_alone": {
+  "deploy-to-vercel": {
+   "hits": 12,
+   "n": 12,
+   "rate": 1.0,
+   "ci": [
+    0.757,
+    1.0
+   ]
+  },
+  "frontend-design": {
+   "hits": 12,
+   "n": 12,
+   "rate": 1.0,
+   "ci": [
+    0.757,
+    1.0
+   ]
+  },
+  "playwright-best-practices": {
+   "hits": 12,
+   "n": 12,
+   "rate": 1.0,
+   "ci": [
+    0.757,
+    1.0
+   ]
+  },
+  "seo-audit": {
+   "hits": 9,
+   "n": 12,
+   "rate": 0.75,
+   "ci": [
+    0.468,
+    0.911
+   ]
+  }
+ },
+ "differences_pp_with_95ci": {
+  "trim100 minus original / alone / all": [
+   0.0,
+   -0.114,
+   0.114
+  ],
+  "trim100 minus original / alone / keyword": [
+   0.0,
+   -0.202,
+   0.202
+  ],
+  "trim100 minus original / alone / paraphrase": [
+   0.0,
+   -0.138,
+   0.138
+  ],
+  "trim40 minus original / alone / all": [
+   -0.042,
+   -0.166,
+   0.079
+  ],
+  "trim40 minus original / alone / keyword": [
+   0.042,
+   -0.152,
+   0.236
+  ],
+  "trim40 minus original / alone / paraphrase": [
+   -0.125,
+   -0.31,
+   0.035
+  ],
+  "trim100 minus original / crowded / all": [
+   -0.125,
+   -0.303,
+   0.065
+  ],
+  "trim100 minus original / crowded / keyword": [
+   0.0,
+   -0.228,
+   0.228
+  ],
+  "trim100 minus original / crowded / paraphrase": [
+   -0.25,
+   -0.481,
+   0.03
+  ],
+  "trim40 minus original / crowded / all": [
+   -0.083,
+   -0.262,
+   0.103
+  ],
+  "trim40 minus original / crowded / keyword": [
+   -0.042,
+   -0.272,
+   0.194
+  ],
+  "trim40 minus original / crowded / paraphrase": [
+   -0.125,
+   -0.372,
+   0.146
+  ],
+  "crowded minus alone / original / all": [
+   -0.229,
+   -0.375,
+   -0.077
+  ],
+  "crowded minus alone / trim100 / all": [
+   -0.354,
+   -0.501,
+   -0.188
+  ],
+  "crowded minus alone / trim40 / all": [
+   -0.271,
+   -0.424,
+   -0.101
+  ]
+ },
+ "determinism": {
+  "cells": 192,
+  "cells_with_mixed_outcomes": 7,
+  "share": 0.036
+ },
+ "false_triggers": {
+  "total": 0,
+  "near_miss": 0,
+  "examples": []
+ },
+ "positive_misses": {
+  "n": 63,
+  "with_other_tools_first": 31,
+  "answered_in_text": 63,
+  "other_skill": 0
+ }
+}

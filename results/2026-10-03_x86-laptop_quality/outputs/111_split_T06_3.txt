@@ -1,0 +1,154 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fig &amp; Ember | Neighbourhood kitchen on Alder Street</title>
+<!-- Design read: neighbourhood restaurant for locals, warm editorial language, native CSS, system serif, restrained motion. -->
+<style>
+  :root { --paper:#f3ecdf; --ink:#221c15; --muted:#6d6254; --ember:#b2472a; --olive:#3f4a2c; --line:#d9ccb6;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif; --sans:"Avenir Next","Segoe UI",system-ui,sans-serif; }
+  * { box-sizing:border-box; margin:0; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--paper); color:var(--ink); font:1.0625rem/1.6 var(--sans); }
+  a { color:inherit; }
+  .wrap { max-width:1180px; margin:0 auto; padding:0 clamp(1.25rem,4vw,3rem); }
+  header.top { display:flex; justify-content:space-between; align-items:center; padding:1.5rem 0; }
+  .logo { font:italic 1.5rem var(--serif); text-decoration:none; }
+  nav a { margin-left:1.75rem; text-decoration:none; font-size:.95rem; border-bottom:1px solid transparent; }
+  nav a:hover, nav a:focus-visible { border-color:var(--ember); outline:none; }
+  .hero { min-height:100dvh; display:grid; grid-template-columns:1.5fr 1fr; gap:3rem; align-items:end; padding-bottom:4rem; margin-top:-5rem; padding-top:7rem; }
+  .eyebrow { text-transform:uppercase; letter-spacing:.18em; font-size:.75rem; color:var(--ember); font-weight:600; }
+  h1 { font:400 clamp(3rem,8vw,7rem)/.95 var(--serif); letter-spacing:-.03em; margin:1rem 0 1.5rem; }
+  h1 em { color:var(--ember); }
+  .lede { max-width:34ch; color:var(--muted); font-size:1.2rem; }
+  .btn { display:inline-block; margin-top:2rem; padding:.9rem 1.6rem; background:var(--ink); color:var(--paper); border:0; border-radius:2px; font:600 1rem var(--sans); text-decoration:none; cursor:pointer; transition:transform .25s, background .25s; }
+  .btn:hover { background:var(--ember); transform:translateY(-2px); }
+  .btn:active { transform:translateY(0); }
+  .plate { aspect-ratio:4/5; background:radial-gradient(circle at 50% 42%, var(--paper) 0 22%, transparent 23%), radial-gradient(circle at 50% 42%, var(--ember) 0 44%, transparent 45%), var(--olive); border-radius:200px 200px 4px 4px; }
+  section { padding:5rem 0; border-top:1px solid var(--line); }
+  h2 { font:400 clamp(2rem,4vw,3.25rem)/1.05 var(--serif); letter-spacing:-.02em; }
+  .menu { display:grid; grid-template-columns:1fr 2fr; gap:3rem; }
+  .menu h3 { font:600 .75rem var(--sans); text-transform:uppercase; letter-spacing:.16em; color:var(--olive); margin:2rem 0 .5rem; }
+  .menu h3:first-child { margin-top:0; }
+  .dish { display:grid; grid-template-columns:auto 1fr auto; gap:.75rem; align-items:baseline; padding:.7rem 0; }
+  .dish::after { content:""; grid-column:2; grid-row:1; border-bottom:1px dotted var(--muted); transform:translateY(-.3rem); }
+  .dish b { grid-column:1; grid-row:1; font:400 1.3rem var(--serif); }
+  .dish span { grid-column:3; grid-row:1; font-variant-numeric:tabular-nums; }
+  .dish small { grid-column:1 / -1; color:var(--muted); font-size:.9rem; margin-top:-.4rem; }
+  .chef { display:grid; grid-template-columns:5fr 6fr; gap:4rem; align-items:center; }
+  .portrait { aspect-ratio:1; background:var(--olive); color:var(--paper); display:grid; place-items:center; font:italic 11rem/1 var(--serif); border-radius:4px 120px 4px 4px; }
+  .chef p { margin-top:1.25rem; max-width:52ch; color:var(--muted); }
+  .chef blockquote { margin-top:1.75rem; padding-left:1.25rem; border-left:3px solid var(--ember); font:italic 1.35rem/1.4 var(--serif); }
+  .visit { display:grid; grid-template-columns:1fr 1fr; gap:4rem; }
+  table { width:100%; border-collapse:collapse; margin-top:1.75rem; }
+  th, td { text-align:left; padding:.8rem 0; border-bottom:1px solid var(--line); font-weight:400; }
+  td { text-align:right; font-variant-numeric:tabular-nums; }
+  tr.today th, tr.today td { color:var(--ember); font-weight:600; }
+  address { font-style:normal; margin-top:1.5rem; color:var(--muted); }
+  form { display:grid; grid-template-columns:1fr 1fr; gap:1.1rem; margin-top:1.75rem; }
+  label { display:grid; gap:.35rem; font-size:.85rem; font-weight:600; }
+  label.full, form button, #note { grid-column:1 / -1; }
+  input, select { padding:.75rem .8rem; background:#fbf7ef; border:1px solid var(--line); border-radius:2px; font:1rem var(--sans); color:var(--ink); }
+  input:focus-visible, select:focus-visible, .btn:focus-visible { outline:2px solid var(--ember); outline-offset:2px; }
+  form button { margin-top:.5rem; justify-self:start; }
+  #note { min-height:1.5rem; color:var(--olive); font-weight:600; }
+  footer { padding:2rem 0 3rem; color:var(--muted); font-size:.9rem; border-top:1px solid var(--line); }
+  .rise { opacity:0; transform:translateY(24px); transition:opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+  .rise.in { opacity:1; transform:none; }
+  @media (max-width:820px) {
+    .hero, .menu, .chef, .visit { grid-template-columns:1fr; gap:2.5rem; }
+    .plate { max-width:320px; aspect-ratio:1; } nav a:not(:last-child) { display:none; }
+    .portrait { font-size:8rem; } section { padding:3.5rem 0; }
+  }
+  @media (prefers-reduced-motion:reduce) { .rise { opacity:1; transform:none; transition:none; } html { scroll-behavior:auto; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="#">Fig &amp; Ember</a>
+    <nav aria-label="Primary"><a href="#menu">Menu</a><a href="#chef">Chef</a><a href="#visit">Hours</a><a href="#book">Reserve</a></nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="rise">
+        <p class="eyebrow">Wood-fired kitchen &middot; 14 Alder Street</p>
+        <h1>Supper, the way your <em>neighbours</em> cook it.</h1>
+        <p class="lede">Twenty-six seats, one oven, and a short menu that follows the market on Thursday mornings.</p>
+        <a class="btn" href="#book">Reserve a table</a>
+      </div>
+      <div class="plate rise" role="img" aria-label="Illustration of a plate of roasted tomatoes on an olive tablecloth"></div>
+    </div>
+
+    <section id="menu" class="menu">
+      <div class="rise"><p class="eyebrow">This week</p><h2>The short menu</h2><p style="color:var(--muted);margin-top:1rem;max-width:30ch">Changes every Friday. Tell us about allergies and we will cook around them.</p></div>
+      <div class="rise">
+        <h3>To begin</h3>
+        <div class="dish"><b>Charred leeks</b><span>9</span><small>hazelnut romesco, aged sheep's cheese</small></div>
+        <div class="dish"><b>Burrata &amp; roast figs</b><span>12</span><small>thyme honey, grilled sourdough</small></div>
+        <h3>From the oven</h3>
+        <div class="dish"><b>Half chicken</b><span>24</span><small>salsa verde, crushed potatoes</small></div>
+        <div class="dish"><b>Mushroom &amp; fennel flatbread</b><span>17</span><small>taleggio, pickled shallot</small></div>
+        <div class="dish"><b>Catch of the day</b><span>28</span><small>white beans, lemon, bitter leaves</small></div>
+        <h3>To finish</h3>
+        <div class="dish"><b>Burnt honey tart</b><span>9</span><small>crème fraîche, sea salt</small></div>
+      </div>
+    </section>
+
+    <section id="chef" class="chef">
+      <div class="portrait rise" aria-hidden="true">M</div>
+      <div class="rise">
+        <p class="eyebrow">Meet the chef</p>
+        <h2>Marta Ilves</h2>
+        <p>Marta grew up between her grandmother's smoke-black stove in Tartu and a Lisbon kitchen where she learned to respect fire. After ten years cooking for other people's restaurants, she opened this one on the street where she lives.</p>
+        <blockquote>&ldquo;If I would not serve it to the people at number 12, it does not leave the pass.&rdquo;</blockquote>
+      </div>
+    </section>
+
+    <section id="visit" class="visit">
+      <div class="rise">
+        <p class="eyebrow">Opening hours</p><h2>Come hungry</h2>
+        <table id="hours">
+          <tr><th>Monday</th><td>Closed</td></tr>
+          <tr><th>Tuesday &ndash; Thursday</th><td>17:30 &ndash; 22:00</td></tr>
+          <tr><th>Friday &ndash; Saturday</th><td>17:30 &ndash; 23:00</td></tr>
+          <tr><th>Sunday</th><td>12:00 &ndash; 21:00</td></tr>
+        </table>
+        <address>14 Alder Street, behind the bakery.<br>020 7946 0153</address>
+      </div>
+      <div id="book" class="rise">
+        <p class="eyebrow">Reservations</p><h2>Save a seat</h2>
+        <form id="rsvp">
+          <label class="full">Name<input name="name" required autocomplete="name"></label>
+          <label>Date<input type="date" name="date" id="date" required></label>
+          <label>Time<select name="time"><option>18:00</option><option>19:00</option><option>20:00</option><option>21:00</option></select></label>
+          <label>Guests<input type="number" name="guests" min="1" max="8" value="2" required></label>
+          <label>Phone<input type="tel" name="phone" required autocomplete="tel"></label>
+          <button class="btn" type="submit">Request table</button>
+          <p id="note" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer>&copy; 2026 Fig &amp; Ember. Groups of nine or more, please call us.</footer>
+</div>
+<script>
+  const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && (e.target.classList.add('in'), io.unobserve(e.target))), { threshold: .15 });
+  document.querySelectorAll('.rise').forEach(el => io.observe(el));
+  const date = document.getElementById('date');
+  date.min = new Date().toISOString().slice(0, 10);
+  const rows = document.querySelectorAll('#hours tr'), day = new Date().getDay();
+  rows[day === 0 ? 3 : day === 1 ? 0 : day < 5 ? 1 : 2].classList.add('today');
+  document.getElementById('rsvp').addEventListener('submit', e => {
+    e.preventDefault();
+    const f = new FormData(e.target);
+    document.getElementById('note').textContent = `Thank you, ${f.get('name')}. We are holding a table for ${f.get('guests')} on ${f.get('date')} at ${f.get('time')} and will confirm by phone.`;
+    e.target.reset(); date.min = new Date().toISOString().slice(0, 10);
+  });
+</script>
+</body>
+</html>
+```

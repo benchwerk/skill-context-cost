@@ -1,0 +1,7 @@
+{
+ "command": "python bench/run.py --experiment restructure --runs 2 --only X1-orig,X1-split,X1-split-read",
+ "date": "2026-10-02T22:29:24+02:00",
+ "os": "Windows-11-10.0.26200-SP0",
+ "python": "3.14.6",
+ "exit": 0
+}

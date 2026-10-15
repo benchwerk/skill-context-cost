@@ -1,0 +1,38 @@
+[
+ {
+  "config": "X1-orig",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 1
+ },
+ {
+  "config": "X1-split",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 2
+ },
+ {
+  "config": "X1-split-read",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 3
+ },
+ {
+  "config": "X1-split",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 1,
+  "seq": 4
+ },
+ {
+  "config": "X1-split-read",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 5
+ },
+ {
+  "config": "X1-orig",
+  "model": "claude-sonnet-5-5[1m]",
+  "run": 2,
+  "seq": 6
+ }
+]

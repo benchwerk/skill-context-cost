@@ -1,0 +1,139 @@
+```html
+<!doctype html>
+<!-- Design Read: event page for working designers, with a bold editorial-grotesk language, native CSS, one vermilion accent, dials 8/6/4. Dark and light follow the system. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Offset 26 - Design Conference, Rotterdam</title>
+<style>
+:root{--bg:#f4f4f2;--fg:#17181a;--mut:#53575c;--line:#d9d9d5;--card:#e9e9e5;--ac:#c2410c;--on:#fff;--r:14px;color-scheme:light dark}
+@media(prefers-color-scheme:dark){:root{--bg:#111214;--fg:#ececea;--mut:#a0a4a9;--line:#2a2c30;--card:#1a1c1f;--ac:#fb923c;--on:#17181a}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 "Helvetica Neue",Arial,sans-serif}
+h1,h2,h3{letter-spacing:-.03em;line-height:1.05}
+a{color:inherit}
+.w{max-width:1200px;margin:0 auto;padding:0 20px}
+section{padding:72px 0}
+h2{font-size:clamp(28px,4vw,44px);margin-bottom:12px}
+p.l{color:var(--mut);max-width:60ch}
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .w{display:flex;align-items:center;gap:24px;height:64px}
+nav b{font-size:20px;letter-spacing:-.04em;margin-right:auto}
+nav a{text-decoration:none;color:var(--mut);font-size:15px}
+nav a:hover{color:var(--fg)}
+.btn{display:inline-block;white-space:nowrap;padding:12px 22px;border-radius:var(--r);border:1px solid var(--fg);font-weight:600;text-decoration:none;color:var(--fg);background:none;cursor:pointer;font:inherit;font-weight:600;transition:transform .3s cubic-bezier(.16,1,.3,1),background .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:scale(.98)}
+.btn.p{background:var(--ac);border-color:var(--ac);color:var(--on)}
+:focus-visible{outline:3px solid var(--ac);outline-offset:3px}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;min-height:calc(100dvh - 64px);padding:40px 0}
+.eye{font:600 12px ui-monospace,Consolas,monospace;text-transform:uppercase;letter-spacing:.16em;color:var(--ac)}
+.hero h1{font-size:clamp(40px,6vw,76px);margin:16px 0}
+.hero h1 em{color:var(--ac)}
+.hero .l{margin-bottom:28px;font-size:18px}
+.hero .btn+.btn{margin-left:10px}
+.hero img{width:100%;height:min(70dvh,560px);object-fit:cover;border-radius:var(--r);margin-top:40px}
+.sp{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:40px}
+.sp figure:nth-child(even){margin-top:48px}
+.sp img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:var(--r);filter:grayscale(1);transition:filter .4s}
+.sp figure:hover img{filter:none}
+.sp h3{font-size:20px;margin-top:12px}
+.sp figcaption span{color:var(--mut);font-size:14px}
+.tabs{display:flex;gap:8px;margin:28px 0 20px}
+.tabs button{padding:10px 18px;border-radius:var(--r);border:1px solid var(--line);background:none;color:var(--fg);font:600 15px inherit;font-family:inherit;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.row{display:grid;grid-template-columns:130px 1fr;gap:20px;padding:18px 20px;background:var(--card);border-radius:var(--r);margin-bottom:8px;animation:up .5s cubic-bezier(.16,1,.3,1) both}
+.row time{font:600 14px ui-monospace,Consolas,monospace;color:var(--ac)}
+.row small{display:block;color:var(--mut)}
+.venue{display:grid;grid-template-columns:1fr 1fr;border-radius:var(--r);overflow:hidden;background:var(--card)}
+.venue img{width:100%;height:100%;min-height:340px;object-fit:cover}
+.venue div{padding:40px;align-self:center}
+.venue address{font-style:normal;margin:16px 0 24px;color:var(--mut)}
+.tix{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:16px;margin-top:36px}
+.t{padding:28px;border:1px solid var(--line);border-radius:var(--r);display:flex;flex-direction:column;gap:12px}
+.t.f{background:var(--card);border-color:var(--ac)}
+.t strong{font-size:44px;letter-spacing:-.04em;line-height:1}
+.t ul{list-style:none;padding:0;color:var(--mut);flex:1}
+footer{padding:32px 0;color:var(--mut);font-size:14px;border-top:1px solid var(--line)}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+@keyframes up{from{opacity:0;transform:translateY(12px)}}
+@media(max-width:767px){
+  nav a:not(.btn){display:none}
+  .hero,.venue,.tix{grid-template-columns:1fr}
+  .hero{min-height:0}
+  .hero img{margin-top:0;height:300px}
+  .sp{grid-template-columns:1fr 1fr}
+  .sp figure:nth-child(even){margin-top:0}
+  .row{grid-template-columns:1fr;gap:4px}
+  .venue div{padding:24px}
+  .hero .btn+.btn{margin:10px 0 0}
+}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.row{animation:none}.btn{transition:none}}
+</style>
+</head>
+<body>
+<nav><div class="w"><b>Offset 26</b><a href="#speakers">Speakers</a><a href="#schedule">Schedule</a><a href="#venue">Venue</a><a class="btn p" href="#tickets">Get tickets</a></div></nav>
+<main class="w">
+<header class="hero">
+  <div>
+    <p class="eye">12-13 November 2026</p>
+    <h1>Two days on how design <em>actually</em> gets made.</h1>
+    <p class="l">Sixteen practitioners share real process, real failures and real work. One room, no breakout tracks.</p>
+    <a class="btn p" href="#tickets">Get tickets</a><a class="btn" href="#schedule">See the schedule</a>
+  </div>
+  <img src="https://picsum.photos/seed/offset-conference-stage/900/1100" alt="Speaker on stage in front of a full auditorium" width="900" height="1100">
+</header>
+<section id="speakers" class="rv">
+  <h2>Who is on stage</h2>
+  <p class="l">Product, type, motion and research leads from studios and in-house teams across Europe.</p>
+  <div class="sp">
+    <figure><img src="https://picsum.photos/seed/speaker-ingrid/400/533" alt="Portrait of Ingrid Solheim" loading="lazy"><figcaption><h3>Ingrid Solheim</h3><span>Type director, Brakstad Foundry</span></figcaption></figure>
+    <figure><img src="https://picsum.photos/seed/speaker-tomasz/400/533" alt="Portrait of Tomasz Wierzba" loading="lazy"><figcaption><h3>Tomasz Wierzba</h3><span>Head of design systems, Pelion</span></figcaption></figure>
+    <figure><img src="https://picsum.photos/seed/speaker-amara/400/533" alt="Portrait of Amara Okonkwo-Reyes" loading="lazy"><figcaption><h3>Amara Okonkwo-Reyes</h3><span>Research lead, Tidewell Health</span></figcaption></figure>
+    <figure><img src="https://picsum.photos/seed/speaker-davit/400/533" alt="Portrait of Davit Kharatishvili" loading="lazy"><figcaption><h3>Davit Kharatishvili</h3><span>Motion designer, Studio Ferrow</span></figcaption></figure>
+  </div>
+</section>
+<section id="schedule" class="rv">
+  <h2>Schedule</h2>
+  <div class="tabs" role="tablist"><button role="tab" aria-selected="true" data-d="0">Thursday 12</button><button role="tab" aria-selected="false" data-d="1">Friday 13</button></div>
+  <div id="list" role="tabpanel"></div>
+</section>
+<section id="venue" class="rv">
+  <div class="venue">
+    <img src="https://picsum.photos/seed/rotterdam-harbour-hall/900/700" alt="Exterior of Halden Hall on the Rotterdam waterfront" loading="lazy">
+    <div>
+      <h2>Halden Hall</h2>
+      <p class="l">A converted grain warehouse with step-free access, a quiet room and a ten minute walk from Rotterdam Centraal.</p>
+      <address>41 Quay Street<br>3011 Rotterdam, Netherlands</address>
+      <a class="btn" href="https://maps.google.com/?q=Rotterdam+Centraal" target="_blank" rel="noopener">Open in maps</a>
+    </div>
+  </div>
+</section>
+<section id="tickets" class="rv">
+  <h2>Tickets</h2>
+  <p class="l">Prices include lunch on both days. Early rate ends 30 October.</p>
+  <div class="tix">
+    <div class="t f"><h3>Full pass</h3><strong>€420</strong><ul><li>Both days, all talks</li><li>Lunch and evening reception</li><li>Recordings after the event</li></ul><button class="btn p">Choose Full pass</button></div>
+    <div class="t"><h3>Single day</h3><strong>€240</strong><ul><li>Thursday or Friday</li><li>Lunch included</li></ul><button class="btn">Choose Single day</button></div>
+    <div class="t"><h3>Student</h3><strong>€95</strong><ul><li>Both days, valid ID</li><li>Limited to 60 seats</li></ul><button class="btn">Choose Student</button></div>
+  </div>
+</section>
+</main>
+<footer><div class="w">Offset 26, organised by the Offset Collective. hello@offsetconf.example</div></footer>
+<script>
+const days=[
+[["09:30","Doors and coffee",""],["10:15","Type is the interface","Ingrid Solheim"],["11:30","Systems that survive handoff","Tomasz Wierzba"],["14:00","Panel: design debt in public","Four speakers"],["16:30","Reception on the quay",""]],
+[["10:00","What patients taught us","Amara Okonkwo-Reyes"],["11:15","Motion with a reason","Davit Kharatishvili"],["13:45","Critique, live","Open floor"],["15:30","Workshops in the east hall","All speakers"],["17:30","Closing remarks",""]]];
+const list=document.getElementById("list"),tabs=document.querySelectorAll(".tabs button");
+function show(d){list.innerHTML=days[d].map((r,i)=>`<div class="row" style="animation-delay:${i*60}ms"><time>${r[0]}</time><div>${r[1]}<small>${r[2]}</small></div></div>`).join("");
+  tabs.forEach(b=>b.setAttribute("aria-selected",b.dataset.d==d))}
+tabs.forEach(b=>b.onclick=()=>show(+b.dataset.d));
+show(0);
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}}),{threshold:.15});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
+```

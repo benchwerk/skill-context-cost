@@ -1,0 +1,139 @@
+```html
+<!doctype html>
+<!-- Design Read: event page for working designers, editorial-clean language, native CSS + vanilla JS, restrained motion. Dials 6 / 5 / 3. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tessellate 26 | Two-day design conference, Rotterdam</title>
+<style>
+:root{--bg:#f4f4f2;--surface:#e9e9e5;--ink:#18181b;--mute:#52525b;--line:#d4d4cf;--accent:#c2410c;--on:#fff;--r:12px;--font:"Helvetica Neue","Segoe UI",system-ui,Arial,sans-serif}
+@media(prefers-color-scheme:dark){:root{--bg:#121214;--surface:#1c1c20;--ink:#ededea;--mute:#a1a1aa;--line:#2e2e34;--accent:#fb923c;--on:#1a1208}}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+img{display:block;width:100%;height:100%;object-fit:cover}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+section{padding:96px 0}
+h1,h2,h3{letter-spacing:-.03em;line-height:1.05}
+h2{font-size:clamp(30px,4.5vw,52px);margin-bottom:12px}
+.lead{color:var(--mute);max-width:60ch;margin-bottom:40px}
+.btn{display:inline-flex;align-items:center;white-space:nowrap;padding:14px 24px;border-radius:var(--r);font-weight:600;border:1.5px solid var(--ink);transition:transform .25s cubic-bezier(.16,1,.3,1),background .2s;cursor:pointer;font:inherit;font-weight:600;color:var(--ink);background:transparent}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:scale(.98)}
+.btn.main{background:var(--accent);border-color:var(--accent);color:var(--on)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+nav ul{display:flex;gap:28px;list-style:none;font-size:15px;color:var(--mute)}
+nav ul a:hover{color:var(--ink)}
+.logo{font-weight:800;letter-spacing:-.04em;font-size:20px}
+.hero{min-height:calc(100dvh - 64px);display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center;padding:48px 0}
+.hero h1{font-size:clamp(40px,5.6vw,76px);margin:16px 0 20px}
+.hero h1 em{color:var(--accent)}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.16em;color:var(--mute);font-weight:600}
+.hero p.lead{margin-bottom:28px}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero figure{aspect-ratio:4/5;max-height:72vh;border-radius:var(--r);overflow:hidden;background:var(--surface);justify-self:end;width:100%}
+.speakers{display:grid;grid-template-columns:repeat(6,1fr);gap:20px}
+.sp{grid-column:span 2;display:grid;gap:12px}
+.sp:nth-child(1){grid-column:span 3}.sp:nth-child(2){grid-column:span 3}
+.sp .ph{aspect-ratio:1/1;border-radius:var(--r);overflow:hidden;background:var(--surface)}
+.sp:nth-child(-n+2) .ph{aspect-ratio:16/10}
+.sp img{transition:transform .6s cubic-bezier(.16,1,.3,1)}.sp:hover img{transform:scale(1.04)}
+.sp h3{font-size:20px;letter-spacing:-.02em}.sp p{color:var(--mute);font-size:15px}
+.tabs{display:flex;gap:8px;margin-bottom:28px}
+.tabs button{padding:10px 20px;border-radius:var(--r);border:1.5px solid var(--line);background:none;color:var(--ink);font:inherit;font-weight:600;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.slot{display:grid;grid-template-columns:110px 1fr auto;gap:24px;padding:20px 0;align-items:baseline}
+.slot+.slot{border-top:1px solid var(--line)}
+.slot time{font-weight:700;font-variant-numeric:tabular-nums}.slot h3{font-size:20px;letter-spacing:-.02em}
+.slot span{color:var(--mute);font-size:15px}.slot.break h3{color:var(--mute);font-weight:500}
+[hidden]{display:none!important}
+.venue{background:var(--surface)}
+.venue .wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:56px;align-items:center}
+.venue figure{aspect-ratio:3/2;border-radius:var(--r);overflow:hidden}
+.venue dl{display:grid;grid-template-columns:auto 1fr;gap:10px 24px;margin:24px 0 28px}
+.venue dt{color:var(--mute)}.venue dd{font-weight:600}
+.tickets{display:grid;grid-template-columns:1.5fr 1fr;gap:20px}
+.tk{border:1.5px solid var(--line);border-radius:var(--r);padding:32px;display:flex;flex-direction:column;gap:14px}
+.tk.feat{grid-row:span 2;background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tk.feat .btn{border-color:var(--bg);color:var(--bg)}.tk.feat .btn.main{border-color:var(--accent);color:var(--on)}
+.tk .price{font-size:48px;font-weight:800;letter-spacing:-.04em;line-height:1}
+.tk ul{list-style:none;display:grid;gap:6px;opacity:.85;flex:1}
+.tk .btn{align-self:flex-start}
+footer{padding:40px 0;border-top:1px solid var(--line);color:var(--mute);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+@media(prefers-reduced-motion:no-preference){
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+.hero>*{animation:up .9s cubic-bezier(.16,1,.3,1) both}.hero>figure{animation-delay:.15s}
+@keyframes up{from{opacity:0;transform:translateY(28px)}}}
+@media(max-width:767px){
+section{padding:64px 0}nav ul{display:none}
+.hero,.venue .wrap,.tickets{grid-template-columns:1fr}.hero{min-height:0}.hero figure{max-height:none;aspect-ratio:4/3}
+.speakers{grid-template-columns:1fr 1fr}.sp,.sp:nth-child(n){grid-column:span 1}.sp:nth-child(1){grid-column:span 2}.sp:nth-child(2){grid-column:span 2}
+.slot{grid-template-columns:70px 1fr;gap:4px 16px}.slot span{grid-column:2}.tk.feat{grid-row:auto}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><a class="logo" href="#top">Tessellate 26</a>
+<ul><li><a href="#speakers">Speakers</a></li><li><a href="#schedule">Schedule</a></li><li><a href="#venue">Venue</a></li><li><a href="#tickets">Tickets</a></li></ul>
+<a class="btn main" href="#tickets">Get tickets</a></div></nav>
+<main id="top" class="wrap">
+<div class="hero">
+<div><p class="eyebrow">12-13 November 2026, Rotterdam</p>
+<h1>Two days on how <em>design</em> gets made.</h1>
+<p class="lead">Fourteen talks and four workshops on type, systems and product craft, for 600 designers.</p>
+<div class="cta"><a class="btn main" href="#tickets">Get tickets</a><a class="btn" href="#schedule">See the schedule</a></div></div>
+<figure><img src="https://picsum.photos/seed/tessellate-conference-stage/900/1100" alt="Speaker on stage in front of a seated audience" width="900" height="1100"></figure>
+</div>
+</main>
+<section id="speakers"><div class="wrap">
+<h2 class="rv">Speakers</h2><p class="lead rv">Practitioners who ship, from independent type foundries to product teams of thousands.</p>
+<div class="speakers">
+<article class="sp rv"><div class="ph"><img src="https://picsum.photos/seed/speaker-mirela/800/500" alt="Portrait of Mirela Okonkwo-Haas" loading="lazy"></div><h3>Mirela Okonkwo-Haas</h3><p>Head of Design Systems, Lantern Bank</p></article>
+<article class="sp rv"><div class="ph"><img src="https://picsum.photos/seed/speaker-tobias/800/500" alt="Portrait of Tobias Ferreira" loading="lazy"></div><h3>Tobias Ferreira</h3><p>Type designer, Foundry Ferreira</p></article>
+<article class="sp rv"><div class="ph"><img src="https://picsum.photos/seed/speaker-anneke/600/600" alt="Portrait of Anneke Voss" loading="lazy"></div><h3>Anneke Voss</h3><p>Motion lead, Studio Kettle</p></article>
+<article class="sp rv"><div class="ph"><img src="https://picsum.photos/seed/speaker-daejung/600/600" alt="Portrait of Dae-jung Park" loading="lazy"></div><h3>Dae-jung Park</h3><p>Principal designer, Orbit Maps</p></article>
+<article class="sp rv"><div class="ph"><img src="https://picsum.photos/seed/speaker-samira/600/600" alt="Portrait of Samira Belhadj" loading="lazy"></div><h3>Samira Belhadj</h3><p>Accessibility researcher, Civic Lab</p></article>
+</div></div></section>
+<section id="schedule" style="background:var(--surface)"><div class="wrap">
+<h2 class="rv">Schedule</h2>
+<div class="tabs" role="tablist"><button role="tab" aria-selected="true" aria-controls="d1" id="t1">Thursday 12 Nov</button><button role="tab" aria-selected="false" aria-controls="d2" id="t2">Friday 13 Nov</button></div>
+<div id="d1" role="tabpanel" aria-labelledby="t1">
+<div class="slot"><time>09:30</time><h3>Opening: what we got wrong in 2025</h3><span>Mirela Okonkwo-Haas</span></div>
+<div class="slot"><time>11:00</time><h3>Variable fonts in production</h3><span>Tobias Ferreira</span></div>
+<div class="slot break"><time>12:30</time><h3>Lunch</h3><span>Ground floor</span></div>
+<div class="slot"><time>14:00</time><h3>Tokens that survive a rebrand</h3><span>Mirela Okonkwo-Haas</span></div>
+<div class="slot"><time>16:00</time><h3>Workshop: building a type scale</h3><span>Tobias Ferreira</span></div></div>
+<div id="d2" role="tabpanel" aria-labelledby="t2" hidden>
+<div class="slot"><time>10:00</time><h3>Motion that explains, not decorates</h3><span>Anneke Voss</span></div>
+<div class="slot"><time>11:30</time><h3>Designing maps people trust</h3><span>Dae-jung Park</span></div>
+<div class="slot break"><time>13:00</time><h3>Lunch</h3><span>Ground floor</span></div>
+<div class="slot"><time>14:30</time><h3>Accessibility audits that change roadmaps</h3><span>Samira Belhadj</span></div>
+<div class="slot"><time>16:30</time><h3>Closing panel and drinks</h3><span>All speakers</span></div></div>
+</div></section>
+<section id="venue" class="venue"><div class="wrap">
+<div><h2 class="rv">Halden Hall</h2><p class="lead rv">A converted grain warehouse on the Maas, ten minutes by tram from Rotterdam Centraal.</p>
+<dl><dt>Address</dt><dd>41 Quay Street, Rotterdam</dd><dt>Doors</dt><dd>08:45 on both days</dd><dt>Access</dt><dd>Step-free, quiet room on level 2</dd></dl>
+<a class="btn" href="https://maps.google.com/?q=Rotterdam+Maas+warehouse">Open in maps</a></div>
+<figure class="rv"><img src="https://picsum.photos/seed/halden-hall-warehouse/1000/700" alt="Brick warehouse hall with tall windows" loading="lazy"></figure>
+</div></section>
+<section id="tickets"><div class="wrap">
+<h2 class="rv">Tickets</h2><p class="lead rv">All tickets cover both days, lunch and the closing drinks.</p>
+<div class="tickets">
+<div class="tk feat rv"><h3>Full pass</h3><p class="price">€348</p><ul><li>Both days of talks</li><li>All four workshops</li><li>Recordings after the event</li><li>Closing drinks</li></ul><a class="btn main" href="#top">Buy full pass</a></div>
+<div class="tk rv"><h3>Student</h3><p class="price">€119</p><ul><li>Talks on both days</li><li>Valid student ID required</li></ul><a class="btn" href="#top">Buy student pass</a></div>
+<div class="tk rv"><h3>Team of five</h3><p class="price">€1,490</p><ul><li>Five full passes</li><li>One shared workshop table</li></ul><a class="btn" href="#top">Buy team pass</a></div>
+</div></div></section>
+<footer><div class="wrap"><span>Tessellate 26, Halden Hall, Rotterdam</span><span>hello@tessellate.example</span></div></footer>
+<script>
+const tabs=[...document.querySelectorAll('[role=tab]')];
+tabs.forEach(t=>t.addEventListener('click',()=>tabs.forEach(o=>{const on=o===t;o.setAttribute('aria-selected',on);document.getElementById(o.getAttribute('aria-controls')).hidden=!on;})));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
+```

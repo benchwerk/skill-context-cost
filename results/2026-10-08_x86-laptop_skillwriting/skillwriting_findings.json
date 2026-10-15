@@ -1,0 +1,70 @@
+{
+ "reference_human_skills": {
+  "n": 150,
+  "mean_description_chars": 415.2,
+  "median": 314.5
+ },
+ "arms": {
+  "plain": {
+   "skills": 10,
+   "load_and_parse_ok": 10,
+   "name_matches_folder": 10,
+   "mean_description_chars": 312.6,
+   "mean_body_items": 24.8,
+   "has_trigger_wording": 10,
+   "has_steps": 10,
+   "extra_files": 0,
+   "mean_output_tokens": 1918.0,
+   "trigger_rows": 80,
+   "should_trigger_hits": "29 of 40",
+   "mean_hits_per_skill_of_4": 2.9,
+   "false_triggers": "1 of 40"
+  },
+  "plugin-authoring": {
+   "skills": 10,
+   "load_and_parse_ok": 10,
+   "name_matches_folder": 10,
+   "mean_description_chars": 278.2,
+   "mean_body_items": 24.8,
+   "has_trigger_wording": 10,
+   "has_steps": 10,
+   "extra_files": 0,
+   "mean_output_tokens": 2060.0,
+   "trigger_rows": 80,
+   "should_trigger_hits": "29 of 40",
+   "mean_hits_per_skill_of_4": 2.9,
+   "false_triggers": "1 of 40"
+  },
+  "skill-creator": {
+   "skills": 10,
+   "load_and_parse_ok": 10,
+   "name_matches_folder": 10,
+   "mean_description_chars": 460.1,
+   "mean_body_items": 19.1,
+   "has_trigger_wording": 10,
+   "has_steps": 10,
+   "extra_files": 0,
+   "mean_output_tokens": 2200.0,
+   "trigger_rows": 80,
+   "should_trigger_hits": "32 of 40",
+   "mean_hits_per_skill_of_4": 3.2,
+   "false_triggers": "1 of 40"
+  }
+ },
+ "complete": true,
+ "E1_plain_loads_9_of_10": true,
+ "E2_longer_than_human_reference": {
+  "plain": false,
+  "plugin-authoring": false,
+  "skill-creator": true
+ },
+ "E3_assisted_not_more_than_1_above_plain": {
+  "plugin-authoring": true,
+  "skill-creator": true
+ },
+ "E4_false_trigger_rate_le_10pct": {
+  "plain": true,
+  "plugin-authoring": true,
+  "skill-creator": true
+ }
+}

@@ -1,0 +1,124 @@
+{
+ "A1_runs_repeat_exactly_all_settings": true,
+ "A_totals": {
+  "sonnet/tools1": 3455.0,
+  "sonnet/system-prompt": 17076.0,
+  "sonnet/exclude-dynamic": 19004.0,
+  "sonnet/minimal": 3221.0,
+  "haiku/default": 23793.0,
+  "haiku/no-skills": 21683.0,
+  "haiku/tools3": 11652.0,
+  "haiku/tools1": 7904.0,
+  "haiku/system-prompt": 17425.0,
+  "haiku/exclude-dynamic": 23648.0,
+  "haiku/minimal": 5483.0,
+  "opus/default": 19246.0,
+  "opus/no-skills": 16335.0,
+  "opus/tools3": 5435.0,
+  "opus/tools1": 3549.0,
+  "opus/system-prompt": 17080.0,
+  "opus/exclude-dynamic": 19008.0,
+  "opus/minimal": 3318.0,
+  "sonnet/default": 19242.0,
+  "sonnet/no-skills": 16331.0,
+  "sonnet/tools3": 5338.0
+ },
+ "A_removed_tokens": {
+  "sonnet": {
+   "no-skills": 2911.0,
+   "tools3": 13904.0,
+   "tools1": 15787.0,
+   "system-prompt": 2166.0,
+   "exclude-dynamic": 238.0,
+   "minimal": 16021.0,
+   "tools3_share_of_default": 0.723
+  },
+  "haiku": {
+   "no-skills": 2110.0,
+   "tools3": 12141.0,
+   "tools1": 15889.0,
+   "system-prompt": 6368.0,
+   "exclude-dynamic": 145.0,
+   "minimal": 18310.0,
+   "tools3_share_of_default": 0.51
+  },
+  "opus": {
+   "no-skills": 2911.0,
+   "tools3": 13811.0,
+   "tools1": 15697.0,
+   "system-prompt": 2166.0,
+   "exclude-dynamic": 238.0,
+   "minimal": 15928.0,
+   "tools3_share_of_default": 0.718
+  }
+ },
+ "A2": {
+  "sonnet": true,
+  "haiku": false,
+  "opus": true
+ },
+ "A3": {
+  "sonnet": true,
+  "haiku": false,
+  "opus": true
+ },
+ "A4": {
+  "sonnet": true,
+  "haiku": false,
+  "opus": true
+ },
+ "A5": {
+  "sonnet": true,
+  "haiku": true,
+  "opus": true
+ },
+ "A6": {
+  "haiku_larger_than_sonnet": true,
+  "opus_within_500_of_sonnet": true
+ },
+ "A7": {
+  "sonnet": true,
+  "haiku": false,
+  "opus": true
+ },
+ "B_added": {
+  "100": 5700,
+  "200": 8359,
+  "400": 8909
+ },
+ "B1_within_5pct_of_100": {
+  "200": false,
+  "400": false
+ },
+ "B_growth_200_to_400_pct": 6.6,
+ "B2_total_listing_400": {
+  "tokens": 11820.0,
+  "pct_of_1M": 1.18,
+  "in_9500_12500": true
+ },
+ "C": {
+  "base": 19248,
+  "file_present_unreferenced": 19248,
+  "at_file": 22210,
+  "pasted": 21985,
+  "idle_vs_empty_session": 6,
+  "at_file_rise": 2962,
+  "pasted_rise": 2737,
+  "at_file_minus_pasted": 225,
+  "C1_idle_within_30": true,
+  "C2_within_150_of_pasted": false,
+  "C3_rise_at_least_2000": true
+ },
+ "D": {
+  "invoke-plugin-authoring": {
+   "median": 23543,
+   "added_over_baseline": 4301
+  },
+  "invoke-run-skill-generator": {
+   "median": 25385,
+   "added_over_baseline": 6143
+  }
+ },
+ "D1_each_body_over_1000": true,
+ "D2": "not tested: a single listing entry cannot be separated from the others"
+}

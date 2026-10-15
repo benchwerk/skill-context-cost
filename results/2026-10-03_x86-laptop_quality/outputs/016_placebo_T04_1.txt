@@ -1,0 +1,143 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Larkspur Dental · Appointments</title>
+<style>
+  :root {
+    --bg: #f6f3ed; --card: #fffdf9; --ink: #1d2a27; --muted: #6b7773; --line: #e4ded3;
+    --accent: #1f6f5c; --accent-soft: #dcebe5; --warn: #b4531f; --warn-soft: #f6e3d5;
+    --done: #9aa5a1;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { font: 15px/1.45 "Segoe UI", system-ui, sans-serif; background: var(--bg); color: var(--ink); padding: 32px 20px; }
+  .wrap { max-width: 1040px; margin: 0 auto; }
+  header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; gap: 16px; flex-wrap: wrap; }
+  h1 { font: 600 28px/1.1 Georgia, "Times New Roman", serif; letter-spacing: -.01em; }
+  header p { color: var(--muted); margin-top: 4px; }
+  .btn { background: var(--accent); color: #fff; border: 0; padding: 10px 16px; border-radius: 8px; font: inherit; font-weight: 600; cursor: pointer; }
+  .btn:hover { background: #185a4a; }
+  .btn:focus-visible, .day:focus-visible { outline: 3px solid #8cc7b6; outline-offset: 2px; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+  .stat, .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+  .stat { padding: 14px 16px; }
+  .stat small { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+  .stat b { display: block; font: 600 28px/1.2 Georgia, serif; font-variant-numeric: tabular-nums; margin-top: 2px; }
+  .stat span { font-size: 13px; color: var(--muted); }
+  .grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 20px; align-items: start; }
+  .card { padding: 20px; }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 14px; display: flex; justify-content: space-between; }
+  ul { list-style: none; padding: 0; }
+  .appt { display: grid; grid-template-columns: 64px 1fr auto; gap: 12px; align-items: center; padding: 12px 0; border-top: 1px solid var(--line); }
+  .appt:first-child { border-top: 0; }
+  .time { font-variant-numeric: tabular-nums; font-weight: 600; }
+  .who strong { display: block; }
+  .who span { color: var(--muted); font-size: 13px; }
+  .tag { font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 99px; background: var(--accent-soft); color: var(--accent); }
+  .tag.now { background: var(--accent); color: #fff; }
+  .tag.late { background: var(--warn-soft); color: var(--warn); }
+  .appt.done { opacity: .55; }
+  .appt.done .tag { background: #e8e6e0; color: var(--done); }
+  .week { display: grid; gap: 8px; }
+  .day { display: grid; grid-template-columns: 40px 1fr 28px; gap: 10px; align-items: center; padding: 6px 8px; border-radius: 8px; border: 0; background: none; font: inherit; color: inherit; text-align: left; cursor: pointer; }
+  .day:hover { background: #f1ede4; }
+  .day.today { background: var(--accent-soft); }
+  .bar { height: 10px; background: #ece7dc; border-radius: 6px; overflow: hidden; }
+  .bar i { display: block; height: 100%; background: var(--accent); border-radius: 6px; transition: width .4s; }
+  .day.today .bar { background: #fff; }
+  .day em { font-style: normal; font-variant-numeric: tabular-nums; text-align: right; font-weight: 600; }
+  .note { margin-top: 14px; font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; }
+  @media (max-width: 760px) { .stats { grid-template-columns: 1fr 1fr; } .grid { grid-template-columns: 1fr; } }
+  @media (prefers-reduced-motion: reduce) { .bar i { transition: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Larkspur Dental</h1>
+      <p id="date"></p>
+    </div>
+    <button class="btn" onclick="addWalkIn()">+ Add walk-in</button>
+  </header>
+
+  <section class="stats" aria-label="Summary">
+    <div class="stat"><small>Today</small><b id="sTotal">0</b><span id="sLeft"></span></div>
+    <div class="stat"><small>Chair time booked</small><b id="sHours">0 h</b><span>of 8 h open</span></div>
+    <div class="stat"><small>New patients</small><b id="sNew">0</b><span>first visits today</span></div>
+    <div class="stat"><small>Open slots</small><b id="sOpen">0</b><span>this week</span></div>
+  </section>
+
+  <div class="grid">
+    <section class="card" aria-label="Today's schedule">
+      <h2>Today's schedule <span id="count"></span></h2>
+      <ul id="list"></ul>
+    </section>
+    <section class="card" aria-label="Week overview">
+      <h2>This week <span>booked / 10 slots</span></h2>
+      <div class="week" id="week"></div>
+      <p class="note" id="note">Select a day to see how full it is.</p>
+    </section>
+  </div>
+</div>
+
+<script>
+  const appts = [
+    { t: "08:30", n: "Maya Okafor",     r: "Cleaning & exam",       m: 60, s: "done" },
+    { t: "09:30", n: "Tomas Lindqvist", r: "Crown fitting",         m: 90, s: "done" },
+    { t: "11:00", n: "Priya Raman",     r: "Root canal, follow-up", m: 45, s: "now" },
+    { t: "11:45", n: "Elena Rossi",     r: "New patient exam",      m: 60, s: "next", fresh: true },
+    { t: "13:30", n: "Daniel Whitaker", r: "Filling (lower left)",  m: 45, s: "next" },
+    { t: "14:30", n: "Amara Nwosu",     r: "Whitening consult",     m: 30, s: "late" },
+    { t: "15:15", n: "Jonas Becker",    r: "Night guard fitting",   m: 45, s: "next", fresh: true },
+  ];
+  const week = [8, 9, 6, 10, 7, 4]; // Mon–Sat bookings
+  const names = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const todayIdx = (new Date().getDay() + 6) % 7;
+  const label = { done: "Done", now: "In chair", next: "Upcoming", late: "Running late" };
+  const $ = id => document.getElementById(id);
+
+  $("date").textContent = new Date().toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" }) + " · Dr. Hale & Dr. Mensah";
+
+  function render() {
+    $("list").innerHTML = appts.map(a => `
+      <li class="appt ${a.s === "done" ? "done" : ""}">
+        <span class="time">${a.t}</span>
+        <div class="who"><strong>${a.n}</strong><span>${a.r} · ${a.m} min${a.fresh ? " · New" : ""}</span></div>
+        <span class="tag ${a.s === "now" || a.s === "late" ? a.s : ""}">${label[a.s]}</span>
+      </li>`).join("");
+    const left = appts.filter(a => a.s !== "done").length;
+    const mins = appts.reduce((s, a) => s + a.m, 0);
+    week[todayIdx] = Math.min(10, appts.length + 3);
+    $("sTotal").textContent = appts.length;
+    $("sLeft").textContent = left + " still to come";
+    $("sHours").textContent = (mins / 60).toFixed(1).replace(".0", "") + " h";
+    $("sNew").textContent = appts.filter(a => a.fresh).length;
+    $("sOpen").textContent = week.reduce((s, n) => s + (10 - n), 0);
+    $("count").textContent = appts.length + " patients";
+    $("week").innerHTML = names.map((d, i) => `
+      <button class="day ${i === todayIdx ? "today" : ""}" data-i="${i}" aria-label="${d}: ${week[i]} of 10 booked">
+        <span>${d}</span><div class="bar"><i style="width:${week[i] * 10}%"></i></div><em>${week[i]}</em>
+      </button>`).join("");
+  }
+
+  $("week").addEventListener("click", e => {
+    const b = e.target.closest(".day");
+    if (!b) return;
+    const i = +b.dataset.i, free = 10 - week[i];
+    $("note").textContent = `${names[i]}: ${week[i]} booked, ${free ? free + " slot" + (free > 1 ? "s" : "") + " open" : "fully booked"}.`;
+  });
+
+  function addWalkIn() {
+    const name = prompt("Walk-in patient name?");
+    if (!name || !name.trim()) return;
+    appts.push({ t: "16:00", n: name.trim(), r: "Walk-in", m: 30, s: "next" });
+    render();
+  }
+  render();
+</script>
+</body>
+</html>
+```

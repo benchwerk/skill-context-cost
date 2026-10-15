@@ -1,0 +1,159 @@
+```html
+<!-- Reading this as: neighbourhood restaurant homepage for local diners, with a warm but modern sans language, leaning toward native CSS with a green/bone palette and one burnt-orange accent. Dials: VARIANCE 6, MOTION 4, DENSITY 4. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tarn &amp; Ladle | Neighbourhood kitchen</title>
+<style>
+:root{--bg:#f1f4ee;--panel:#e3e9de;--ink:#17221b;--mute:#4a5a4f;--line:#c6d0c2;--accent:#b8420f;--on-accent:#fff;--r:10px}
+@media(prefers-color-scheme:dark){:root{--bg:#111a14;--panel:#1a261e;--ink:#e9eee6;--mute:#a9b8ad;--line:#2f4034;--accent:#f0905f;--on-accent:#1a0e07}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:1rem/1.6 "Segoe UI Variable","Helvetica Neue",system-ui,sans-serif}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+nav{display:flex;justify-content:space-between;align-items:center;height:68px}
+nav b{font-size:1.2rem;letter-spacing:-.02em}
+nav div{display:flex;gap:24px}
+nav a{text-decoration:none;color:var(--mute)}
+nav a:hover{color:var(--ink)}
+h1,h2{letter-spacing:-.035em;line-height:1.05}
+h1{font-size:clamp(2.4rem,5.4vw,4.4rem);max-width:12ch}
+h2{font-size:clamp(1.8rem,3.4vw,2.6rem);margin-bottom:12px}
+p{max-width:62ch;color:var(--mute)}
+section{padding:72px 0}
+.btn{display:inline-block;background:var(--accent);color:var(--on-accent);border:0;border-radius:var(--r);padding:13px 24px;font:600 1rem inherit;text-decoration:none;cursor:pointer;white-space:nowrap;transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:scale(.98)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding:40px 0 72px}
+.hero p{margin:20px 0 28px;font-size:1.15rem}
+img{display:block;width:100%;object-fit:cover;border-radius:var(--r)}
+.hero img{aspect-ratio:4/5;margin-top:24px}
+.tabs{display:flex;gap:8px;margin:24px 0}
+.tabs button{background:none;border:1px solid var(--line);color:var(--ink);border-radius:var(--r);padding:9px 18px;font:inherit;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.dishes{display:grid;grid-template-columns:repeat(2,1fr);gap:28px 48px;list-style:none;padding:0}
+.dishes[hidden]{display:none}
+.dishes li{display:grid;grid-template-columns:1fr auto;gap:2px 16px}
+.dishes strong{font-size:1.1rem}.dishes span{color:var(--accent);font-weight:700}
+.dishes small{grid-column:1/-1;color:var(--mute);font-size:.95rem}
+.chef{background:var(--panel)}
+.chef .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:center}
+.chef img{aspect-ratio:1}
+.chef p+p{margin-top:14px}
+.book{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px}
+.hours{display:grid;grid-template-columns:auto 1fr;gap:10px 28px;margin-top:20px}
+.hours dt{font-weight:600}.hours dd{color:var(--mute)}
+form{display:grid;grid-template-columns:1fr 1fr;gap:18px;background:var(--panel);padding:28px;border-radius:var(--r)}
+label{display:grid;gap:8px;font-weight:600;font-size:.95rem}
+input,select{font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--mute);border-radius:var(--r);padding:11px 12px;width:100%}
+.err{color:#a3340a;font-weight:500;font-size:.88rem;min-height:1.2em}
+@media(prefers-color-scheme:dark){.err{color:#ff9f78}}
+label.bad input{border-color:var(--accent)}
+.full{grid-column:1/-1}
+#ok{display:none;grid-column:1/-1;border:1.5px solid var(--accent);border-radius:var(--r);padding:16px;color:var(--ink)}
+footer{padding:32px 0;border-top:1px solid var(--line);color:var(--mute)}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.btn{transition:none}}
+@media(max-width:767px){.hero,.chef .wrap,.book,.dishes,form{grid-template-columns:1fr}.hero img{margin-top:0;aspect-ratio:4/3}section{padding:48px 0}nav div{gap:16px}}
+</style>
+</head>
+<body>
+<header class="wrap"><nav><b>Tarn &amp; Ladle</b><div><a href="#menu">Menu</a><a href="#chef">Chef</a><a href="#visit">Hours</a></div></nav></header>
+<main>
+<div class="wrap hero">
+  <div class="rv"><h1>Supper, the way the street likes it.</h1>
+  <p>Seasonal plates, a short wine list and a wood-fired oven, five minutes from the park gate.</p>
+  <a class="btn" href="#reserve">Book a table</a></div>
+  <img class="rv" src="https://picsum.photos/seed/tarn-ladle-dining-room/800/1000" width="800" height="1000" alt="Candlelit dining room with a long shared table">
+</div>
+
+<section id="menu"><div class="wrap rv">
+  <h2>This week on the menu</h2>
+  <p>The board changes with the market. Ask us about allergens before you order.</p>
+  <div class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-t="a">Small plates</button>
+    <button role="tab" aria-selected="false" data-t="b">Mains</button>
+    <button role="tab" aria-selected="false" data-t="c">Sweet</button>
+  </div>
+  <ul class="dishes" data-p="a">
+    <li><strong>Charred leeks</strong><span>£8.50</span><small>Hazelnut romesco, smoked curd.</small></li>
+    <li><strong>Whipped cod roe</strong><span>£7.00</span><small>Warm flatbread, pickled shallot.</small></li>
+    <li><strong>Beetroot and goat's cheese</strong><span>£9.00</span><small>Pumpkin seeds, sorrel oil.</small></li>
+    <li><strong>Crispy pig's ear</strong><span>£7.50</span><small>Burnt apple ketchup.</small></li>
+  </ul>
+  <ul class="dishes" data-p="b" hidden>
+    <li><strong>Wood-fired hake</strong><span>£22.00</span><small>Brown shrimp butter, samphire.</small></li>
+    <li><strong>Mutton shoulder</strong><span>£24.50</span><small>Slow-cooked, white beans, salsa verde.</small></li>
+    <li><strong>Wild mushroom pie</strong><span>£18.00</span><small>Thyme pastry, buttered greens.</small></li>
+    <li><strong>Pot-roast chicken for two</strong><span>£46.00</span><small>Bread sauce, roast potatoes.</small></li>
+  </ul>
+  <ul class="dishes" data-p="c" hidden>
+    <li><strong>Burnt honey tart</strong><span>£8.00</span><small>Crème fraîche.</small></li>
+    <li><strong>Rhubarb and ginger trifle</strong><span>£8.50</span><small>Served in a jar, as it should be.</small></li>
+    <li><strong>Dark chocolate pot</strong><span>£7.50</span><small>Sea salt, olive oil.</small></li>
+    <li><strong>Local cheese plate</strong><span>£11.00</span><small>Three cheeses, oatcakes, quince.</small></li>
+  </ul>
+</div></section>
+
+<section class="chef" id="chef"><div class="wrap">
+  <img class="rv" src="https://picsum.photos/seed/chef-portrait-kitchen/700/700" width="700" height="700" alt="Chef Mairead Okonkwo-Hale at the pass">
+  <div class="rv"><h2>Meet Mairead, our chef</h2>
+  <p>Mairead Okonkwo-Hale grew up two streets from here and cooked in Leeds and Lyon before coming home to open the kitchen.</p>
+  <p>She buys from growers within fifty miles, butchers whole animals, and cooks over fire because it keeps things simple.</p></div>
+</div></section>
+
+<section id="visit"><div class="wrap book">
+  <div class="rv"><h2>Opening hours</h2>
+  <p>Walk-ins are welcome at the bar. Tables are best booked ahead.</p>
+  <dl class="hours">
+    <dt>Tue to Thu</dt><dd>17:00 to 22:00</dd>
+    <dt>Fri and Sat</dt><dd>12:00 to 23:00</dd>
+    <dt>Sunday</dt><dd>12:00 to 20:00</dd>
+    <dt>Monday</dt><dd>Closed</dd>
+  </dl></div>
+  <form class="rv" id="reserve" novalidate>
+    <label class="full">Name<input name="n" autocomplete="name" required><span class="err"></span></label>
+    <label>Date<input name="d" type="date" required><span class="err"></span></label>
+    <label>Time<select name="t"><option>18:00</option><option>19:00</option><option>20:00</option><option>21:00</option></select><span class="err"></span></label>
+    <label>Guests<select name="g"><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select><span class="err"></span></label>
+    <label>Email<input name="e" type="email" autocomplete="email" required><span class="err"></span></label>
+    <button class="btn full" type="submit">Send request</button>
+    <p id="ok" role="status"></p>
+  </form>
+</div></section>
+</main>
+<footer><div class="wrap">Tarn &amp; Ladle, 14 Orchard Row, Hallam Green. 020 7946 0318</div></footer>
+<script>
+const $=(s,r=document)=>[...r.querySelectorAll(s)];
+$('.tabs button').forEach(b=>b.onclick=()=>{
+  $('.tabs button').forEach(x=>x.setAttribute('aria-selected',x===b));
+  $('.dishes').forEach(u=>u.hidden=u.dataset.p!==b.dataset.t);
+});
+const f=document.getElementById('reserve'),d=f.d;
+d.min=new Date().toISOString().slice(0,10);
+f.onsubmit=e=>{
+  e.preventDefault();
+  const msg={n:'Please tell us your name.',d:'Pick a date from today onwards.',e:'Enter a valid email address.'};
+  let ok=true;
+  for(const k in msg){
+    const i=f[k],bad=!i.value||!i.checkValidity()||(k==='d'&&i.value<i.min);
+    i.parentElement.classList.toggle('bad',bad);
+    i.nextElementSibling.textContent=bad?msg[k]:'';
+    i.setAttribute('aria-invalid',bad);
+    ok=ok&&!bad;
+  }
+  if(!ok)return;
+  const o=document.getElementById('ok');
+  o.style.display='block';
+  o.textContent=`Thanks ${f.n.value.split(' ')[0]}. We have noted a table for ${f.g.value} on ${f.d.value} at ${f.t.value} and will confirm by email.`;
+  f.querySelector('button').disabled=true;
+};
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.15});
+$('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
+```

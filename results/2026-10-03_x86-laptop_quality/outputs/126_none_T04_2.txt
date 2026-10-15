@@ -1,0 +1,158 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maple Street Dental – Dashboard</title>
+<style>
+  :root {
+    --bg:#f5f6f8; --surface:#fff; --ink:#1b2430; --ink2:#4b5666; --muted:#7a8494;
+    --line:#e3e6eb; --accent:#2a6fb0; --accent-soft:#cfe0f1; --hover:#f0f4f9;
+    --good:#1f7a4d; --warn:#9a6a00; --info:#2a6fb0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#12171e; --surface:#1a212b; --ink:#e8ecf1; --ink2:#b3bcc9; --muted:#8793a3;
+      --line:#2b3441; --accent:#6aa8e4; --accent-soft:#2c4560; --hover:#222b37;
+      --good:#5fc08c; --warn:#e0b04a; --info:#6aa8e4;
+    }
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; padding:24px; background:var(--bg); color:var(--ink);
+         font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .wrap { max-width:1040px; margin:0 auto; }
+  header { display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px; margin-bottom:16px; }
+  h1 { font-size:20px; margin:0; }
+  h2 { font-size:14px; margin:0 0 12px; }
+  .sub { color:var(--muted); }
+  .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:12px; margin-bottom:16px; }
+  .card { background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:16px; }
+  .stat .label { color:var(--ink2); font-size:12px; }
+  .stat .value { font-size:28px; font-weight:600; font-variant-numeric:tabular-nums; margin:2px 0; }
+  .stat .note { color:var(--muted); font-size:12px; }
+  .grid { display:grid; grid-template-columns:3fr 2fr; gap:12px; align-items:start; }
+  @media (max-width:820px) { .grid { grid-template-columns:1fr; } }
+  table { width:100%; border-collapse:collapse; }
+  th { text-align:left; font-weight:500; font-size:12px; color:var(--muted); padding:0 8px 8px; border-bottom:1px solid var(--line); }
+  td { padding:9px 8px; border-bottom:1px solid var(--line); }
+  tr:last-child td { border-bottom:0; }
+  tbody tr:hover { background:var(--hover); }
+  td.time { font-variant-numeric:tabular-nums; color:var(--ink2); white-space:nowrap; }
+  td.patient { font-weight:500; }
+  td.muted { color:var(--ink2); }
+  .status { display:inline-flex; align-items:center; gap:6px; font-size:12px; color:var(--ink2); white-space:nowrap; }
+  .status i { font-style:normal; font-weight:700; width:16px; height:16px; line-height:16px; text-align:center;
+              border-radius:50%; border:1.5px solid currentColor; font-size:10px; }
+  .s-done i { color:var(--good); } .s-chair i { color:var(--info); } .s-wait i { color:var(--warn); }
+  .s-conf i { color:var(--muted); }
+  tr.now td:first-child { box-shadow:inset 3px 0 var(--accent); }
+  .chart { display:flex; align-items:flex-end; gap:10px; height:180px; padding-top:8px; border-bottom:1px solid var(--line); position:relative; }
+  .col { flex:1; height:100%; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; cursor:default; }
+  .bar { width:100%; max-width:34px; background:var(--accent-soft); border-radius:4px 4px 0 0; transition:background .12s; }
+  .col.today .bar { background:var(--accent); }
+  .col:hover .bar, .col:focus .bar { background:var(--accent); outline:0; }
+  .col .n { font-size:12px; color:var(--ink2); margin-bottom:4px; font-variant-numeric:tabular-nums; }
+  .days { display:flex; gap:10px; margin-top:6px; }
+  .days span { flex:1; text-align:center; font-size:12px; color:var(--muted); }
+  .days span.today { color:var(--ink); font-weight:600; }
+  .tip { position:fixed; pointer-events:none; background:var(--ink); color:var(--bg); padding:6px 9px; border-radius:6px;
+         font-size:12px; opacity:0; transition:opacity .1s; z-index:5; white-space:nowrap; }
+  .legend { margin-top:12px; font-size:12px; color:var(--muted); display:flex; gap:14px; }
+  .legend b { display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:5px; vertical-align:-1px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Maple Street Dental</h1>
+    <div class="sub" id="date"></div>
+  </header>
+
+  <section class="stats" id="stats"></section>
+
+  <div class="grid">
+    <section class="card">
+      <h2>Today's schedule</h2>
+      <table>
+        <thead><tr><th>Time</th><th>Patient</th><th>Treatment</th><th>Dentist</th><th>Status</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>Week overview <span class="sub">· appointments per day</span></h2>
+      <div class="chart" id="chart"></div>
+      <div class="days" id="days"></div>
+      <div class="legend"><span><b style="background:var(--accent)"></b>Today</span><span><b style="background:var(--accent-soft)"></b>Other days</span></div>
+    </section>
+  </div>
+</div>
+<div class="tip" id="tip"></div>
+
+<script>
+const STATUS = {
+  done:  { cls:"s-done",  icon:"✓", label:"Completed" },
+  chair: { cls:"s-chair", icon:"●", label:"In chair" },
+  wait:  { cls:"s-wait",  icon:"!", label:"Checked in" },
+  conf:  { cls:"s-conf",  icon:"○", label:"Confirmed" }
+};
+const appts = [
+  ["08:30","Amara Okafor","Check-up & cleaning","Dr. Lee","done"],
+  ["09:15","Tom Brandt","Filling (lower left)","Dr. Patel","done"],
+  ["10:00","Sofia Marquez","Root canal, visit 2","Dr. Lee","chair"],
+  ["10:45","Henrik Olsen","Crown fitting","Dr. Patel","wait"],
+  ["11:30","Priya Raman","Whitening consult","Dr. Lee","conf"],
+  ["13:30","Daniel Kim","Child exam","Dr. Patel","conf"],
+  ["14:15","Linda Walsh","Extraction","Dr. Lee","conf"],
+  ["15:30","Marcus Bell","Scale & polish","Hygienist","conf"]
+];
+const week = [["Mon",11],["Tue",9],["Wed",8],["Thu",10],["Fri",7],["Sat",4]];
+const todayIdx = 2;
+
+document.getElementById("date").textContent =
+  new Date().toLocaleDateString(undefined,{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+
+const done = appts.filter(a => a[4] === "done").length;
+const weekTotal = week.reduce((s,d) => s + d[1], 0);
+const stats = [
+  ["Today's appointments", appts.length, `${done} completed, ${appts.length - done} remaining`],
+  ["Confirmed", Math.round(appts.filter(a => a[4] !== "wait").length / appts.length * 100) + "%", "of today's bookings"],
+  ["This week", weekTotal, "appointments booked"],
+  ["Open slots today", 3, "next: 12:15 and 16:15"]
+];
+document.getElementById("stats").innerHTML = stats.map(s =>
+  `<div class="card stat"><div class="label">${s[0]}</div><div class="value">${s[1]}</div><div class="note">${s[2]}</div></div>`).join("");
+
+document.getElementById("rows").innerHTML = appts.map(a => {
+  const s = STATUS[a[4]];
+  return `<tr class="${a[4] === "chair" ? "now" : ""}"><td class="time">${a[0]}</td><td class="patient">${a[1]}</td>
+    <td class="muted">${a[2]}</td><td class="muted">${a[3]}</td>
+    <td><span class="status ${s.cls}"><i aria-hidden="true">${s.icon}</i>${s.label}</span></td></tr>`;
+}).join("");
+
+const max = Math.max(...week.map(d => d[1]));
+document.getElementById("chart").innerHTML = week.map((d,i) =>
+  `<div class="col ${i === todayIdx ? "today" : ""}" tabindex="0" data-tip="${d[0]}: ${d[1]} appointments">
+     <div class="n">${d[1]}</div><div class="bar" style="height:${d[1] / max * 85}%"></div></div>`).join("");
+document.getElementById("days").innerHTML = week.map((d,i) =>
+  `<span class="${i === todayIdx ? "today" : ""}">${d[0]}</span>`).join("");
+
+const tip = document.getElementById("tip");
+document.querySelectorAll(".col").forEach(c => {
+  const show = e => {
+    const r = c.getBoundingClientRect();
+    tip.textContent = c.dataset.tip;
+    tip.style.left = (r.left + r.width / 2 - tip.offsetWidth / 2) + "px";
+    tip.style.top = (r.top - 4) + "px";
+    tip.style.opacity = 1;
+  };
+  c.addEventListener("mouseenter", show);
+  c.addEventListener("focus", show);
+  c.addEventListener("mouseleave", () => tip.style.opacity = 0);
+  c.addEventListener("blur", () => tip.style.opacity = 0);
+});
+</script>
+</body>
+</html>
+```

@@ -1,0 +1,134 @@
+```html
+<!-- Reading this as: open-source CLI homepage for developers, with a restrained dark-tech language, leaning toward native CSS + system mono. Dials: VARIANCE 6 / MOTION 5 / DENSITY 4. Sample content (tool name, versions, dates) is mock. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sluice - read JSON logs like plain text</title>
+<style>
+:root{--bg:#f6f7f6;--fg:#161a19;--mute:#4d5754;--line:#d5dad8;--panel:#eceeed;--accent:#0f766e;--on-accent:#fff;--tint:#d9efeb;--r:8px;
+--sans:ui-sans-serif,"Geist","Segoe UI",system-ui,sans-serif;--mono:ui-monospace,"Geist Mono","JetBrains Mono",Consolas,monospace}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1312;--fg:#e7ecea;--mute:#a1aca8;--line:#27302d;--panel:#171d1b;--accent:#2dd4bf;--on-accent:#04201c;--tint:#12312d}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 var(--sans)}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+nav{height:64px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+nav .links{display:flex;gap:24px;align-items:center;font-size:15px}
+nav a{text-decoration:none;color:var(--mute)}nav a:hover{color:var(--fg)}
+.logo{font:700 18px var(--mono);color:var(--fg)}
+.btn{display:inline-block;white-space:nowrap;padding:10px 18px;border-radius:var(--r);font-weight:600;text-decoration:none;border:1px solid var(--line);color:var(--fg);transition:transform .2s cubic-bezier(.16,1,.3,1),background .2s}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(1px) scale(.98)}
+.btn.primary,nav .btn.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;min-height:calc(100dvh - 64px);padding-top:48px;padding-bottom:48px}
+h1{font-size:clamp(2.25rem,5vw,3.75rem);line-height:1.05;letter-spacing:-.03em;max-width:12ch}
+.hero p{color:var(--mute);margin:20px 0 28px;max-width:46ch;font-size:18px}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r);border:1px solid var(--line);filter:grayscale(1) contrast(1.05)}
+section{padding:96px 0 0}
+h2{font-size:clamp(1.6rem,3vw,2.25rem);letter-spacing:-.02em;line-height:1.15;max-width:20ch}
+.sub{color:var(--mute);max-width:60ch;margin:12px 0 28px}
+.tabs{display:flex;gap:8px;margin-bottom:12px}
+.tabs button{font:600 14px var(--mono);padding:8px 14px;border-radius:var(--r);border:1px solid var(--line);background:none;color:var(--mute);cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.cmd{display:flex;justify-content:space-between;align-items:center;gap:16px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;font:15px var(--mono);overflow-x:auto}
+.cmd code{white-space:nowrap}.cmd button{font:600 13px var(--sans);padding:6px 12px;border-radius:var(--r);border:1px solid var(--line);background:var(--bg);color:var(--fg);cursor:pointer}
+.bento{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+.cell{border:1px solid var(--line);border-radius:var(--r);padding:28px}
+.cell h3{font-size:1.15rem;margin-bottom:8px}.cell p{color:var(--mute);max-width:52ch}
+.cell.wide{grid-column:span 2}.cell.tint{background:var(--tint);border-color:transparent}
+.cell.tint p{color:var(--fg)}
+.cell.media{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;padding:0;overflow:hidden}
+.cell.media div{padding:28px}.cell.media img{width:100%;height:100%;min-height:200px;object-fit:cover;filter:grayscale(1)}
+.log{list-style:none;padding:0;margin-top:32px;display:grid;gap:0}
+.log li{display:grid;grid-template-columns:200px 1fr;gap:24px;padding:24px 0;border-top:1px solid var(--line)}
+.log li:last-child{border-bottom:1px solid var(--line)}
+.log b{font:700 17px var(--mono)}.log time{display:block;color:var(--mute);font-size:14px}
+.log ul{padding-left:18px;color:var(--mute)}.log ul li{display:list-item;border:0;padding:2px 0}
+footer{margin-top:96px;border-top:1px solid var(--line);padding:28px 0;color:var(--mute);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media(prefers-reduced-motion:no-preference){
+.hero>*,.rise{opacity:0;transform:translateY(20px);animation:in .7s cubic-bezier(.16,1,.3,1) forwards}
+.hero>*:nth-child(2){animation-delay:.12s}
+.rise.pending{animation:none}
+@keyframes in{to{opacity:1;transform:none}}}
+@media(max-width:767px){
+nav .links a:not(.btn){display:none}
+.hero{grid-template-columns:1fr;min-height:0;padding-top:32px}
+.hero img{aspect-ratio:16/10}
+.bento{grid-template-columns:1fr}.cell.wide{grid-column:auto}.cell.media{grid-template-columns:1fr}
+.log li{grid-template-columns:1fr;gap:8px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav>
+  <a class="logo" href="#">sluice</a>
+  <div class="links"><a href="#features">Features</a><a href="#changelog">Changelog</a><a href="https://github.com/" rel="noopener">Source</a><a class="btn primary" href="#install">Install</a></div>
+</nav>
+
+<header class="hero">
+  <div>
+    <h1>Read JSON logs like plain text.</h1>
+    <p>Sluice tails structured logs, filters them with plain expressions, and prints readable lines. One static binary, no config.</p>
+    <div class="cta"><a class="btn primary" href="#install">Install</a><a class="btn" href="https://github.com/" rel="noopener">View source</a></div>
+  </div>
+  <img src="https://picsum.photos/seed/sluice-water-channel/800/1000" width="800" height="1000" alt="Water running through a concrete channel">
+</header>
+
+<section id="install">
+  <h2>Install in one line</h2>
+  <p class="sub">Prebuilt for Linux, macOS and Windows. Pipe anything into it, or point it at a file.</p>
+  <div class="tabs" role="tablist" aria-label="Package manager">
+    <button role="tab" aria-selected="true" data-cmd="brew install sluice">brew</button>
+    <button role="tab" aria-selected="false" data-cmd="cargo install sluice-cli">cargo</button>
+    <button role="tab" aria-selected="false" data-cmd="scoop install sluice">scoop</button>
+  </div>
+  <div class="cmd"><code id="cmd">brew install sluice</code><button id="copy" type="button">Copy</button></div>
+  <p class="sub" id="status" role="status" style="margin:12px 0 0;font-size:14px"></p>
+</section>
+
+<section id="features">
+  <h2>Built for the 2 a.m. incident</h2>
+  <div class="bento">
+    <div class="cell wide tint rise"><h3>Filter with expressions</h3><p>Write <code>level=error and svc~"pay"</code> instead of a jq pipeline. Fields are typed, so comparisons on numbers and timestamps behave.</p></div>
+    <div class="cell rise"><h3>Follow live</h3><p>Tail files or stdin and keep filters applied as new lines arrive.</p></div>
+    <div class="cell rise"><h3>Readable output</h3><p>Color by level, align fields, and fold stack traces until you ask for them.</p></div>
+    <div class="cell wide media rise"><div><h3>Runs where your logs are</h3><p>A single static binary. Copy it to a container or a bastion host and it works.</p></div><img src="https://picsum.photos/seed/sluice-server-room/600/400" width="600" height="400" alt="Rows of server racks in a dim room" loading="lazy"></div>
+  </div>
+</section>
+
+<section id="changelog">
+  <h2>Changelog</h2>
+  <ol class="log">
+    <li class="rise"><div><b>0.9.0</b><time datetime="2026-09-18">Sep 18, 2026</time></div><ul><li>Added <code>--fold</code> to collapse stack traces.</li><li>Timestamps now parse RFC 3339 with offsets.</li></ul></li>
+    <li class="rise"><div><b>0.8.2</b><time datetime="2026-08-30">Aug 30, 2026</time></div><ul><li>Fixed a crash on lines longer than 1 MB.</li><li>Faster startup on Windows.</li></ul></li>
+    <li class="rise"><div><b>0.8.0</b><time datetime="2026-08-06">Aug 6, 2026</time></div><ul><li>Added the <code>~</code> substring operator.</li><li>Colors respect <code>NO_COLOR</code>.</li></ul></li>
+  </ol>
+</section>
+</div>
+
+<footer><div class="wrap"><span>Sluice is MIT licensed.</span><a href="https://github.com/" rel="noopener">Report an issue</a></div></footer>
+
+<script>
+const code=document.getElementById('cmd'),status=document.getElementById('status');
+document.querySelectorAll('[role=tab]').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('[role=tab]').forEach(o=>o.setAttribute('aria-selected',o===t));
+  code.textContent=t.dataset.cmd;status.textContent='';
+}));
+document.getElementById('copy').addEventListener('click',async()=>{
+  try{await navigator.clipboard.writeText(code.textContent);status.textContent='Copied to clipboard.'}
+  catch{status.textContent='Copy failed. Select the command and copy it manually.'}
+});
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+  const els=document.querySelectorAll('.rise');
+  els.forEach(e=>e.classList.add('pending'));
+  const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.remove('pending');io.unobserve(x.target)}}),{threshold:.2});
+  els.forEach(e=>io.observe(e));
+}
+</script>
+</body>
+</html>
+```

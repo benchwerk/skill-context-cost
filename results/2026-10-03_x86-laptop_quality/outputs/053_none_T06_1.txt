@@ -1,0 +1,189 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Osteria Fico – Neighbourhood Kitchen</title>
+<style>
+  :root {
+    --cream: #faf5ec;
+    --ink: #2b2118;
+    --olive: #5b6b3a;
+    --terra: #b4532a;
+    --line: #e2d8c6;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  h1, h2, h3 { font-weight: normal; letter-spacing: .02em; }
+  a { color: inherit; }
+  header {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 6vw;
+    background: rgba(250, 245, 236, .95);
+    border-bottom: 1px solid var(--line);
+  }
+  .logo { font-size: 1.4rem; font-style: italic; color: var(--terra); }
+  nav a { margin-left: 22px; text-decoration: none; font-size: .95rem; }
+  nav a:hover { color: var(--terra); }
+  .hero {
+    min-height: 62vh;
+    display: grid; place-content: center; text-align: center;
+    padding: 60px 6vw;
+    color: #fff;
+    background: linear-gradient(rgba(43,33,24,.55), rgba(43,33,24,.65)),
+      radial-gradient(circle at 30% 20%, #c9773f, #6b3a1e 70%);
+  }
+  .hero h1 { font-size: clamp(2.4rem, 7vw, 4.5rem); }
+  .hero p { max-width: 34rem; margin: 14px auto 28px; font-size: 1.15rem; }
+  .btn {
+    display: inline-block; border: 0; cursor: pointer;
+    padding: 12px 30px; border-radius: 30px;
+    background: var(--terra); color: #fff;
+    font: inherit; text-decoration: none;
+    transition: background .2s;
+  }
+  .btn:hover { background: #8f3f1d; }
+  section { padding: 70px 6vw; max-width: 1000px; margin: auto; }
+  h2 { font-size: 2rem; text-align: center; margin-bottom: 8px; color: var(--olive); }
+  .sub { text-align: center; margin-bottom: 36px; font-style: italic; opacity: .75; }
+  .menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px 50px; }
+  .menu h3 { grid-column: 1 / -1; margin-top: 14px; color: var(--terra); border-bottom: 1px solid var(--line); }
+  .dish { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; }
+  .dish small { display: block; opacity: .7; font-size: .85rem; }
+  .dish b { font-weight: normal; white-space: nowrap; }
+  .alt { background: #f1e9d8; max-width: none; }
+  .alt > div { max-width: 1000px; margin: auto; }
+  .split { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; align-items: center; }
+  .portrait {
+    aspect-ratio: 1; border-radius: 50%; max-width: 280px; margin: auto; width: 100%;
+    display: grid; place-content: center; font-size: 5rem; color: #fff;
+    background: linear-gradient(135deg, var(--olive), #3a4624);
+  }
+  .hours { width: 100%; max-width: 420px; margin: auto; border-collapse: collapse; }
+  .hours td { padding: 9px 4px; border-bottom: 1px dotted var(--line); }
+  .hours td:last-child { text-align: right; }
+  .today { color: var(--terra); font-weight: bold; }
+  form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 600px; margin: auto; }
+  label { display: grid; gap: 4px; font-size: .9rem; }
+  .full { grid-column: 1 / -1; }
+  input, select, textarea {
+    padding: 10px; border: 1px solid #cbbfa8; border-radius: 6px;
+    font: inherit; background: #fff;
+  }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--olive); border-color: transparent; }
+  #msg { grid-column: 1 / -1; text-align: center; color: var(--olive); min-height: 1.6em; }
+  footer { text-align: center; padding: 30px; background: var(--ink); color: #d9cdb8; font-size: .9rem; }
+  @media (max-width: 560px) { nav a:not(.keep) { display: none; } form { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header>
+  <span class="logo">Osteria Fico</span>
+  <nav><a href="#menu">Menu</a><a href="#hours">Hours</a><a href="#chef">Chef</a><a href="#book" class="keep">Reserve</a></nav>
+</header>
+
+<div class="hero">
+  <h1>Good food, close to home</h1>
+  <p>Seasonal Italian cooking, hand-rolled pasta and a wood oven, at the corner of Fig Street since 2012.</p>
+  <div><a class="btn" href="#book">Reserve a table</a></div>
+</div>
+
+<section id="menu">
+  <h2>The Menu</h2>
+  <p class="sub">Changes with the market, usually on Thursdays</p>
+  <div class="menu">
+    <h3>To start</h3>
+    <div class="dish"><span>Burrata &amp; roasted figs<small>honey, thyme, grilled sourdough</small></span><b>£9</b></div>
+    <div class="dish"><span>Wood-fired focaccia<small>rosemary, sea salt, olive oil</small></span><b>£5</b></div>
+    <div class="dish"><span>Crispy artichokes<small>lemon aioli</small></span><b>£8</b></div>
+    <h3>Mains</h3>
+    <div class="dish"><span>Tagliatelle al ragù<small>slow-cooked beef &amp; pork, parmesan</small></span><b>£15</b></div>
+    <div class="dish"><span>Wild mushroom risotto<small>sage butter, aged pecorino</small></span><b>£14</b></div>
+    <div class="dish"><span>Margherita<small>San Marzano, fior di latte, basil</small></span><b>£12</b></div>
+    <div class="dish"><span>Roast sea bream<small>fennel, capers, salsa verde</small></span><b>£21</b></div>
+    <h3>Sweet</h3>
+    <div class="dish"><span>Tiramisu<small>our grandmother's way</small></span><b>£7</b></div>
+    <div class="dish"><span>Olive oil cake<small>orange, mascarpone</small></span><b>£7</b></div>
+  </div>
+</section>
+
+<section class="alt" id="chef"><div class="split">
+  <div class="portrait" aria-hidden="true">🍝</div>
+  <div>
+    <h2 style="text-align:left">Meet the chef</h2>
+    <p>Chef Marta Rossi grew up in her nonna's kitchen in Emilia-Romagna before cooking her way through Bologna, Lyon and London. In 2012 she opened Osteria Fico to cook the food she missed: simple, generous and made by hand every morning.</p>
+    <p style="margin-top:12px">"If you can taste the season and feel at home, I've done my job."</p>
+  </div>
+</div></section>
+
+<section id="hours">
+  <h2>Opening Hours</h2>
+  <p class="sub">14 Fig Street · 020 7946 0123</p>
+  <table class="hours">
+    <tr data-d="1"><td>Monday</td><td>Closed</td></tr>
+    <tr data-d="2"><td>Tuesday – Thursday</td><td>12:00 – 22:00</td></tr>
+    <tr data-d="5"><td>Friday – Saturday</td><td>12:00 – 23:30</td></tr>
+    <tr data-d="0"><td>Sunday</td><td>12:00 – 21:00</td></tr>
+  </table>
+</section>
+
+<section class="alt" id="book" style="padding-bottom:70px"><div>
+  <h2>Reserve a Table</h2>
+  <p class="sub">We'll confirm by email within the hour</p>
+  <form id="f">
+    <label>Name<input name="name" required autocomplete="name"></label>
+    <label>Email<input type="email" name="email" required autocomplete="email"></label>
+    <label>Date<input type="date" name="date" id="date" required></label>
+    <label>Time
+      <select name="time" required>
+        <option>12:00</option><option>13:00</option><option>14:00</option>
+        <option>18:00</option><option selected>19:00</option><option>20:00</option><option>21:00</option>
+      </select>
+    </label>
+    <label>Guests<input type="number" name="guests" min="1" max="10" value="2" required></label>
+    <label>Occasion
+      <select name="occasion"><option>None</option><option>Birthday</option><option>Anniversary</option><option>Business</option></select>
+    </label>
+    <label class="full">Notes (allergies, high chair…)<textarea name="notes" rows="3"></textarea></label>
+    <button class="btn full" type="submit">Request reservation</button>
+    <p id="msg" role="status"></p>
+  </form>
+</div></section>
+
+<footer>© 2026 Osteria Fico · 14 Fig Street · Closed Mondays</footer>
+
+<script>
+  const date = document.getElementById('date');
+  const today = new Date().toISOString().split('T')[0];
+  date.min = today;
+
+  const dow = new Date().getDay();
+  document.querySelectorAll('.hours tr').forEach(r => {
+    const d = +r.dataset.d;
+    const match = d === dow || (d === 2 && dow >= 2 && dow <= 4) || (d === 5 && dow >= 5 && dow <= 6);
+    if (match) r.classList.add('today');
+  });
+
+  document.getElementById('f').addEventListener('submit', e => {
+    e.preventDefault();
+    const f = e.target;
+    if (new Date(date.value + 'T12:00').getDay() === 1) {
+      document.getElementById('msg').textContent = 'Sorry, we are closed on Mondays. Please pick another day.';
+      return;
+    }
+    document.getElementById('msg').textContent =
+      `Thank you, ${f.name.value}! Table for ${f.guests.value} on ${date.value} at ${f.time.value} requested.`;
+    f.reset();
+  });
+</script>
+</body>
+</html>
+```

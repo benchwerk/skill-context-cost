@@ -1,0 +1,122 @@
+<!doctype html>
+<!-- Design read: pricing page for small engineering teams, calm technical language, native CSS, one emerald accent, 8px radius, light/dark by system. Dials 6 / 3 / 4. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sluice pricing</title>
+<style>
+:root{--bg:#f6f7f6;--surface:#fff;--text:#18201c;--muted:#56625b;--line:#d9dfdb;--accent:#0f6b4f;--on-accent:#fff;--tint:#e4f1ec;--r:8px;
+--sans:"Geist","Satoshi",ui-sans-serif,system-ui,"Segoe UI",sans-serif;--mono:"Geist Mono","JetBrains Mono",ui-monospace,Consolas,monospace}
+@media (prefers-color-scheme:dark){:root{--bg:#111513;--surface:#181e1b;--text:#e8eeea;--muted:#a1ada6;--line:#2c3631;--accent:#4ad6a2;--on-accent:#0b1410;--tint:#1c2a24}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 var(--sans)}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+nav{display:flex;justify-content:space-between;align-items:center;height:64px}
+.logo{font-weight:700;letter-spacing:-.02em;text-decoration:none;font-size:20px}
+nav a:not(.logo){color:var(--muted);text-decoration:none;font-size:15px}
+header.top{padding:48px 0 32px;max-width:640px}
+h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.05;letter-spacing:-.04em;margin:0 0 16px}
+h2{font-size:1.75rem;letter-spacing:-.03em;margin:0 0 20px}
+.sub{color:var(--muted);max-width:52ch;margin:0 0 24px}
+.toggle{display:inline-flex;border:1px solid var(--line);border-radius:var(--r);padding:3px;background:var(--surface)}
+.toggle button{font:inherit;font-size:14px;border:0;background:none;color:var(--muted);padding:6px 14px;border-radius:6px;cursor:pointer}
+.toggle button[aria-pressed=true]{background:var(--accent);color:var(--on-accent)}
+.plans{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:16px;align-items:stretch;margin:32px 0 80px}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:28px;display:flex;flex-direction:column;transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.plan:hover{transform:translateY(-3px)}
+.plan.feat{border:2px solid var(--accent);padding:36px 28px}
+.plan h3{margin:0;font-size:1.1rem}
+.plan p{color:var(--muted);margin:6px 0 20px;font-size:15px}
+.price{font:600 2.6rem/1 var(--mono);letter-spacing:-.04em}
+.price small{font:400 14px var(--sans);color:var(--muted);letter-spacing:0}
+.plan ul{list-style:none;padding:20px 0;margin:20px 0 24px;border-top:1px solid var(--line);flex:1}
+.plan li{padding:4px 0;font-size:15px}
+.btn{display:block;text-align:center;text-decoration:none;white-space:nowrap;font-weight:600;padding:12px 16px;border-radius:var(--r);border:1px solid var(--line);transition:transform .15s}
+.btn:active{transform:scale(.98)}
+.btn:focus-visible,summary:focus-visible,.toggle button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.feat .btn{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.tablewrap{overflow-x:auto;margin-bottom:80px}
+table{width:100%;border-collapse:collapse;min-width:560px;font-size:15px}
+th,td{text-align:left;padding:12px 16px}
+td:not(:first-child),th:not(:first-child){font-family:var(--mono);font-size:14px}
+thead th{padding-bottom:16px;font-size:15px}
+tbody th{font-weight:500}
+tr.grp th{padding-top:28px;font:600 13px var(--sans);color:var(--accent);border-bottom:1px solid var(--line)}
+tbody tr:not(.grp):hover{background:var(--tint)}
+.faq{max-width:720px;margin-bottom:80px}
+details{border-bottom:1px solid var(--line);padding:4px 0}
+summary{cursor:pointer;font-weight:600;padding:14px 0;list-style:none;display:flex;justify-content:space-between}
+summary::after{content:"+";font:400 20px var(--mono);color:var(--accent)}
+details[open] summary::after{content:"-"}
+details p{color:var(--muted);margin:0 0 16px;max-width:60ch}
+footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--muted);font-size:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (prefers-reduced-motion:no-preference){.plan{animation:rise .6s cubic-bezier(.16,1,.3,1) backwards}.plan:nth-child(2){animation-delay:.08s}.plan:nth-child(3){animation-delay:.16s}}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}}
+@media (prefers-reduced-motion:reduce){.plan,.btn{transition:none}}
+@media (max-width:768px){.plans{grid-template-columns:1fr}.plan.feat{padding:28px 28px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><a class="logo" href="#">Sluice</a><a href="#compare">Compare plans</a></nav>
+<header class="top">
+<h1>Search every log line. Pay for the team, not the gigabyte.</h1>
+<p class="sub">Sluice is log analytics for teams of 2 to 20 engineers. Flat monthly pricing with no surprise ingest bills.</p>
+<div class="toggle" role="group" aria-label="Billing period">
+<button type="button" data-bill="m" aria-pressed="true">Monthly</button>
+<button type="button" data-bill="y" aria-pressed="false">Annual, 20% off</button>
+</div>
+</header>
+<main>
+<section class="plans" aria-label="Plans">
+<article class="plan"><h3>Pilot</h3><p>For a side project or a first look.</p>
+<div class="price">$0<small> / month</small></div>
+<ul><li>2 GB ingest per day</li><li>3 days retention</li><li>Up to 3 seats</li><li>Email alerts</li></ul>
+<a class="btn" href="#">Start free</a></article>
+<article class="plan feat"><h3>Crew</h3><p>For a product team shipping weekly.</p>
+<div class="price"><span data-m="$39" data-y="$31">$39</span><small> / month, flat</small></div>
+<ul><li>25 GB ingest per day</li><li>30 days retention</li><li>Up to 15 seats</li><li>Slack and PagerDuty alerts</li><li>Shared saved queries</li></ul>
+<a class="btn" href="#">Start trial</a></article>
+<article class="plan"><h3>Fleet</h3><p>For several services and on-call rotations.</p>
+<div class="price"><span data-m="$149" data-y="$119">$149</span><small> / month, flat</small></div>
+<ul><li>150 GB ingest per day</li><li>180 days retention</li><li>Unlimited seats</li><li>SSO and audit log</li></ul>
+<a class="btn" href="#">Talk to sales</a></article>
+</section>
+<section id="compare"><h2>Compare plans</h2>
+<div class="tablewrap"><table>
+<thead><tr><th scope="col">Feature</th><th scope="col">Pilot</th><th scope="col">Crew</th><th scope="col">Fleet</th></tr></thead>
+<tbody>
+<tr class="grp"><th colspan="4">Volume</th></tr>
+<tr><th scope="row">Daily ingest</th><td>2 GB</td><td>25 GB</td><td>150 GB</td></tr>
+<tr><th scope="row">Retention</th><td>3 days</td><td>30 days</td><td>180 days</td></tr>
+<tr><th scope="row">Seats</th><td>3</td><td>15</td><td>Unlimited</td></tr>
+<tr class="grp"><th colspan="4">Workflow</th></tr>
+<tr><th scope="row">Saved queries</th><td>5</td><td>Unlimited</td><td>Unlimited</td></tr>
+<tr><th scope="row">Alert channels</th><td>Email</td><td>Slack, PagerDuty</td><td>Slack, PagerDuty, webhooks</td></tr>
+<tr class="grp"><th colspan="4">Security and support</th></tr>
+<tr><th scope="row">SSO and audit log</th><td>No</td><td>No</td><td>Yes</td></tr>
+<tr><th scope="row">Support</th><td>Community</td><td>Email, next day</td><td>Shared channel</td></tr>
+</tbody></table></div>
+</section>
+<section class="faq"><h2>Questions</h2>
+<details><summary>What happens if we go over our daily ingest?</summary><p>We keep accepting logs for 3 days over the limit and email you. After that, extra lines are sampled instead of dropped, and nothing is billed overage.</p></details>
+<details><summary>Can we change plans mid-month?</summary><p>Yes. Upgrades apply immediately and are prorated. Downgrades take effect at the next billing date.</p></details>
+<details><summary>Do you offer a trial of Crew?</summary><p>Every Crew trial lasts 14 days and needs no card. You return to Pilot automatically if you do not upgrade.</p></details>
+<details><summary>Where is our data stored?</summary><p>Logs are encrypted at rest in the AWS region you pick at signup, either us-east-1 or eu-west-1.</p></details>
+</section>
+</main>
+<footer><span>Sluice Labs, Inc.</span><span>Prices in USD. Annual plans are billed once per year.</span></footer>
+</div>
+<script>
+const buttons = document.querySelectorAll('[data-bill]');
+const prices = document.querySelectorAll('[data-m]');
+buttons.forEach(b => b.addEventListener('click', () => {
+  const key = b.dataset.bill;
+  buttons.forEach(o => o.setAttribute('aria-pressed', String(o === b)));
+  prices.forEach(p => { p.textContent = p.dataset[key]; });
+}));
+</script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+```html
+<!DOCTYPE html>
+<!-- Design read: consumer app announcement for coffee drinkers, premium-consumer language, native CSS, monochrome + one orange accent, auto light/dark. Dials 7 / 6 / 3. Images are picsum placeholders: swap for real roaster photography. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kettleback Coffee App: order beans, track delivery</title>
+<style>
+  :root {
+    --bg: #f3f3f1; --surface: #e6e6e2; --text: #181817; --muted: #55554f;
+    --accent: #c2501c; --on-accent: #ffffff; --line: #d3d3cd; --r: 14px;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #151514; --surface: #1f1f1d; --text: #efefec; --muted: #a8a8a1;
+      --accent: #e8743b; --on-accent: #151514; --line: #2f2f2c; }
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--bg); color: var(--text); line-height: 1.5;
+    font-family: "Satoshi", "Geist", "Avenir Next", "Segoe UI", system-ui, sans-serif; }
+  img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  a { color: inherit; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .btn { display: inline-flex; align-items: center; white-space: nowrap; padding: 14px 24px;
+    border-radius: var(--r); font-weight: 600; text-decoration: none; border: 1.5px solid transparent;
+    transition: transform .3s var(--ease), background .3s var(--ease); }
+  .btn:hover { transform: translateY(-2px); }
+  .btn:active { transform: translateY(1px) scale(.98); }
+  .btn:focus-visible { outline: 3px solid var(--text); outline-offset: 3px; }
+  .primary { background: var(--accent); color: var(--on-accent); }
+  .ghost { border-color: var(--text); color: var(--text); }
+  nav .wrap { display: flex; justify-content: space-between; align-items: center; height: 68px; }
+  .brand { font-weight: 800; font-size: 1.15rem; letter-spacing: -.02em; text-decoration: none; }
+  .hero { display: grid; grid-template-columns: 1.15fr 1fr; gap: 56px; align-items: center;
+    min-height: calc(100dvh - 68px); padding-top: 24px; padding-bottom: 48px; }
+  h1 { font-size: clamp(2.5rem, 5.4vw, 4.4rem); line-height: 1.02; letter-spacing: -.04em; font-weight: 800; max-width: 11ch; }
+  h1 em { color: var(--accent); }
+  .hero p { margin: 24px 0 32px; color: var(--muted); font-size: 1.15rem; max-width: 42ch; }
+  .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .photo { border-radius: var(--r); overflow: hidden; background: var(--surface); }
+  .hero .photo { aspect-ratio: 4 / 5; max-height: calc(100dvh - 140px); margin-left: auto; width: 100%; }
+  section { padding: 96px 0; }
+  h2 { font-size: clamp(1.9rem, 3.6vw, 3rem); letter-spacing: -.03em; line-height: 1.08; max-width: 16ch; }
+  .lead { color: var(--muted); max-width: 52ch; margin: 16px 0 48px; }
+  .bento { display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: 1fr 1fr; gap: 16px; min-height: 560px; }
+  .tile { position: relative; border-radius: var(--r); overflow: hidden; background: var(--surface); padding: 28px; display: flex; flex-direction: column; justify-content: flex-end; }
+  .tile.big { grid-row: span 2; color: #f4f4f1; }
+  .tile.big img { position: absolute; inset: 0; z-index: 0; }
+  .tile.big::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 35%, rgb(20 20 18 / .85)); }
+  .tile > :not(img) { position: relative; z-index: 1; }
+  .tile.tint { background: var(--accent); color: var(--on-accent); }
+  .tile h3 { font-size: 1.5rem; letter-spacing: -.02em; line-height: 1.15; }
+  .tile p { margin-top: 8px; max-width: 34ch; opacity: .9; }
+  .track { display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: start; }
+  .steps { list-style: none; padding: 0; display: grid; gap: 0; }
+  .steps li { display: grid; grid-template-columns: 28px 1fr; gap: 16px; padding-bottom: 28px; position: relative; color: var(--muted); transition: color .5s var(--ease); }
+  .steps li::before { content: ""; width: 18px; height: 18px; margin-top: 4px; border-radius: 50%; border: 2px solid var(--line); background: var(--bg); transition: background .5s var(--ease), border-color .5s var(--ease); }
+  .steps li::after { content: ""; position: absolute; left: 8px; top: 26px; bottom: 4px; width: 2px; background: var(--line); }
+  .steps li:last-child::after { display: none; }
+  .steps li.done { color: var(--text); }
+  .steps li.done::before { background: var(--accent); border-color: var(--accent); }
+  .steps strong { display: block; font-size: 1.15rem; }
+  .steps span { font-size: .95rem; }
+  .cta { background: var(--surface); }
+  .cta .wrap { display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center; }
+  footer { padding: 32px 0; color: var(--muted); font-size: .9rem; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .rv { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+  .rv.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero > * { animation: rise .9s var(--ease) both; }
+    .hero > .photo { animation-delay: .15s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(28px); } }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rv { opacity: 1; transform: none; transition: none; }
+    .btn, .steps li, .steps li::before { transition: none; }
+  }
+  @media (max-width: 767px) {
+    .hero, .track, .cta .wrap { grid-template-columns: 1fr; gap: 32px; }
+    .hero { min-height: auto; padding-top: 16px; }
+    .hero .photo { max-height: 420px; aspect-ratio: 4 / 3; }
+    section { padding: 64px 0; }
+    .bento { grid-template-columns: 1fr; grid-template-rows: auto; min-height: 0; }
+    .tile { min-height: 240px; } .tile.big { grid-row: auto; min-height: 380px; }
+    .wrap { padding: 0 16px; }
+  }
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="brand" href="#">Kettleback</a>
+  <a class="btn primary" href="#get">Get the app</a>
+</div></nav>
+
+<main>
+  <header class="wrap hero">
+    <div>
+      <h1>Fresh roasts, <em>tracked</em> to your door.</h1>
+      <p>Order small-batch beans from Kettleback and watch your bag travel from roaster to doorstep.</p>
+      <div class="actions">
+        <a class="btn primary" href="#get">Get the app</a>
+        <a class="btn ghost" href="#tracking">See how it works</a>
+      </div>
+    </div>
+    <div class="photo"><img src="https://picsum.photos/seed/coffee-beans-roaster-hero/900/1125" width="900" height="1125" alt="Freshly roasted coffee beans in a cooling tray"></div>
+  </header>
+
+  <section class="wrap">
+    <h2 class="rv">Ordering is quick. Waiting is not a mystery.</h2>
+    <p class="lead rv">Pick a roast, choose a grind, and confirm. The app handles the rest.</p>
+    <div class="bento">
+      <article class="tile big rv">
+        <img src="https://picsum.photos/seed/coffee-bag-order-pour/900/700" width="900" height="700" alt="A bag of beans next to a pour-over kettle" loading="lazy">
+        <h3>Order beans in three taps</h3>
+        <p>Choose a roast, pick whole bean or ground, and check out with a saved card.</p>
+      </article>
+      <article class="tile tint rv">
+        <h3>Know where your bag is</h3>
+        <p>Live status from roasting day to delivery, with a push alert at your door.</p>
+      </article>
+      <article class="tile rv">
+        <img src="https://picsum.photos/seed/coffee-reorder-cup/600/400" width="600" height="400" alt="Steaming cup of black coffee" loading="lazy" style="position:absolute;inset:0;opacity:.28">
+        <h3>Reorder when you run low</h3>
+        <p>Repeat your last bag in one tap, or set a schedule.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap track" id="tracking">
+    <div class="rv">
+      <h2>Follow the bag, step by step.</h2>
+      <p class="lead" style="margin-bottom:0">Every order shows exactly where it is, so you can plan your morning around it.</p>
+    </div>
+    <ol class="steps" id="steps" aria-label="Example delivery progress">
+      <li><div><strong>Roasted</strong><span>Your batch comes off the drum on Tuesday.</span></div></li>
+      <li><div><strong>Packed</strong><span>Sealed in a one-way valve bag with the roast date.</span></div></li>
+      <li><div><strong>Out for delivery</strong><span>The courier is on the way, with a live map.</span></div></li>
+      <li><div><strong>At your door</strong><span>We send a photo of the drop-off spot.</span></div></li>
+    </ol>
+  </section>
+
+  <section class="cta" id="get"><div class="wrap">
+    <div class="rv">
+      <h2>Your next bag is one tap away.</h2>
+      <p class="lead" style="margin-bottom:0">Free on iPhone and Android. First delivery is on us.</p>
+    </div>
+    <a class="btn primary rv" href="#get">Get the app</a>
+  </div></section>
+</main>
+
+<footer><div class="wrap"><span>Kettleback Coffee Roasters</span><span>hello@kettleback.coffee</span></div></footer>
+
+<script>
+  // Scroll reveal (hierarchy) and the tracker lighting up in sequence (storytelling).
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const io = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+  }), { threshold: 0.2 });
+  document.querySelectorAll(".rv").forEach(el => io.observe(el));
+
+  const steps = [...document.querySelectorAll("#steps li")];
+  const play = () => steps.forEach((li, i) => setTimeout(() => li.classList.add("done"), reduce ? 0 : i * 700));
+  new IntersectionObserver((entries, obs) => {
+    if (entries[0].isIntersecting) { play(); obs.disconnect(); }
+  }, { threshold: 0.5 }).observe(document.getElementById("steps"));
+</script>
+</body>
+</html>
+```

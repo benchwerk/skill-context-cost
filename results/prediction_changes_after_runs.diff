@@ -1,0 +1,81 @@
+diff --git a/prediction.md b/prediction.md
+index db259d0..6409fac 100644
+--- a/prediction.md
++++ b/prediction.md
+@@ -1,7 +1,7 @@
+ # Prediction: 004-skill-context-cost
+ 
+-Written 2026-10-02, **before any measurement** and before the first read-only checks. Not edited after the first run;
+-wrong predictions stay . Basis: the official docs and secondary posts in the documentation cited in `methodology.md`, no measured data.
++Written 2026-10-02, **before any measurement** and before the first read-only checks. Parts are appended, each dated
++before its run; no prediction is edited after its run (wording changes made later are listed in the note headed "Wording changes after the runs, 2026-10-04"), and wrong predictions stay in place. Basis: the official documentation and secondary posts, no measured data.
+ 
+ ## Hypotheses
+ 
+@@ -217,7 +217,7 @@ Q3. Split is within 5 points of original (the fixed rule in `quality_protocol.md
+ Q4. The model opens a reference file in fewer than 25% of split runs.
+ Q5. Em-dashes appear in at least 25% of pages written without the skill and in fewer with the original skill.
+ Deviations from `quality_protocol.md`, stated now: this part is the mechanical-check stage only; the blinded pairwise judge,
+-its calibration and the owner's blind sample come later and only if the checks leave room to compare; briefs were shortened
++its calibration and a blind human sample come later and only if the checks leave room to compare; briefs were shortened
+ to compact pages after the pilot because full pages cost about 1.5 to 2 percent of the five-hour allowance each.
+ 
+ ### Deviation notice for Part 9, 2026-10-03 (before the run finished; 74 of 144 pages existed)
+@@ -257,7 +257,7 @@ not evidence.
+ 
+ ## Part 12: the skill against the same text pasted into the prompt, written 2026-10-03 before it was run
+ 
+-Question (owner): is a skill, once it is invoked, the same as a text that holds the instructions, or does the model do something different?
++Question: is a skill, once it is invoked, the same as a text that holds the instructions, or does the model do something different?
+ Test: the same design skill and the same 12 briefs and suffix as Part 9, Sonnet 5.5 1M, Claude Code 2.1.284, three samples per brief, in one run
+ with two conditions: `original` (the skill installed, invoked by `/design-taste-frontend <brief>`, as in Part 9) and `pasted` (no skill
+ installed; the skill file without its frontmatter, 86,805 characters, placed in the prompt in front of the brief and the suffix, sent on
+@@ -274,7 +274,7 @@ R3. Tokens: for runs of one turn, the median total input of `original` (input +
+ R4. `pasted` runs take one turn and open no file (the median number of turns is 1).
+ R5. Replication of Part 9: `original` in this run is within 5 points of 98.4%, its score in Part 9.
+ Limits stated now: one skill, one model, heuristic checks with a ceiling (6 of 16 never fail), forced slash invocation (the test measures
+-the content and its route, not whether the model chooses the skill), the harness wrapper around an invoked skill body is not visible to us.
++the content and its route, not whether the model chooses the skill), the harness wrapper around an invoked skill body is not visible in the output.
+ 
+ ### Deviation notice for Part 12, 2026-10-03 (during the run, 49 of 72 generations existed)
+ 
+@@ -285,7 +285,7 @@ One generation (seq 48, `pasted`, brief T09, sample 1) returned the text "API Er
+ The desktop app installed Claude Code 2.1.286 after the whole study ran on 2.1.284. Replication on 2.1.286, same machine, same isolated config
+ (`results/<date>_x86-laptop_replication_*`): the token measurements (`bench/run.py`, one run per configuration: the token counts repeated exactly in
+ every run on 2.1.284), the trigger test (576 calls, `bench/trigger_test.py`) and the claim probes (`bench/claim_probes.py`, including P-09). The quality
+-run is not repeated. Every call of the replication also records full usage and the meter for the quota study.
++run is not repeated. Every call of the replication also records full usage and the meter for a separate study of the subscription meter.
+ 
+ V1. Added tokens (a configuration minus the empty session of the same version) equal the 2.1.284 values within 3%: C1, C10, C50, C100, C50-disable,
+     the invocation configurations and the mechanisms. The empty session itself may move (the harness prompt changes between versions); if it does, the
+@@ -296,3 +296,30 @@ V3. Every probe verdict equals the 2.1.284 verdict (cap 1,536 characters; `.agen
+     skill beats command; boolean spellings hidden; P-09: project over personal).
+ V4. Alias test: the nested call fires 10 of 10 for all three wordings, empty and crowded.
+ A difference is reported as measured, with the version change as the only known change; a difference of one call in a cell is not evidence.
++
++## Status notes, 2026-10-04 (added after the runs; no prediction above was changed)
++
++- **Part 7.** The prediction said cells with mixed outcomes would be repeated on later days. They were not: the 11 mixed cells of 192 are reported as measured.
++- **Part 9.** The change of the Q3 verdict labels and the secondary analyses were decided after the analysis script had been run once on 74 of the 144 pages
++  (disclosed above): an amendment informed by an interim look at the script's output, not by new data; the primary analysis and the decision rules are unchanged.
++- **Part 13.** Not run yet at the time of this note. No results folder exists for it.
++
++### Wording changes after the runs, 2026-10-04 (no prediction changed)
++
++- Header: the sentence on how the file is edited was corrected (it said Parts are never edited; it now says no prediction is edited after its run).
++- Process wording removed from Parts 9 and 12: "the owner's blind sample" became "a blind human sample", "Question (owner)" became "Question", "not visible to us" became "not visible in the output".
++- The line endings of the file were converted from CRLF to LF, which is why the commit of 2026-10-04 shows every line as changed.
++- The deviation notice of Part 12 says 49 of 72 pages existed when it was written; the output files show that 50 existed.
++- The status notes of 2026-10-04 above and this note were appended; nothing else in the file was changed.
++
++### Further disclosures, 2026-10-04 (no prediction changed)
++
++- **H7.** The prediction named S50 configurations (body-heavy against mid); the test used the synthetic sets S10-B600 and S10-L600, because the synthetic sets have 10 skills.
++- **Part 9.** The quality protocol describes 8 in-scope briefs, 2 out of scope and 2 that need the moved part; Part 9 used 12 in-scope design briefs because only the mechanical stage was run.
++- **Part 2.** It was committed before any invoked measurement of a real skill in the harness. One earlier probe of a real skill, made before the harness removed the desktop application's environment variables, read about 12,000 tokens too high; it is described in `editorial_log.md` and not used.
++- **Part 13.** The sentence on the meter study was reworded before the replication (it said "the quota study"); the replication itself has not been run.
++- The changes made to this file after the runs are listed as an end-of-line-insensitive diff in `results/prediction_changes_after_runs.diff`.
++
++### Part 13 was run, 2026-10-07 and 2026-10-08 (no prediction changed)
++
++The replication ran as written, with one addition: the alias test needed ten runs per wording, which the main sweep did not make, so it was run separately (60 calls). Results and the failures during the run are in `RESULTS.md`. The earlier note that Part 13 had not been run is superseded.

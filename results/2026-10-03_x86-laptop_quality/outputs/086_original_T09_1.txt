@@ -1,0 +1,155 @@
+```html
+<!-- Reading this as: open-source CLI homepage for developers, with a restrained dev-tool language, leaning toward native CSS + system fonts + light motion (variance 6, motion 4, density 4). No product screenshots or photos: the install panel is the hero asset. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dredge: find and remove unused code</title>
+<meta name="description" content="Open-source CLI that finds unused dependencies, dead exports and orphaned files.">
+<style>
+:root{--bg:#f4f5f3;--panel:#e9ece8;--ink:#161a18;--muted:#566059;--line:#cfd5cf;--accent:#0f6b4a;--on-accent:#f4f5f3;--r:6px;
+--sans:ui-sans-serif,"Segoe UI Variable","Segoe UI",system-ui,sans-serif;--mono:ui-monospace,"Cascadia Code","SF Mono",Menlo,monospace}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1311;--panel:#171d1a;--ink:#e6ebe7;--muted:#9aa59e;--line:#2a332e;--accent:#4cc38a;--on-accent:#0b1210}}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--sans)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+nav{height:64px;display:flex;align-items:center;justify-content:space-between}
+nav .links{display:flex;gap:28px;font-size:15px;color:var(--muted)}
+nav a{text-decoration:none}
+nav a:hover{color:var(--ink)}
+.brand{font:700 20px var(--mono);letter-spacing:-.02em;color:var(--ink)}
+.hero{min-height:calc(100dvh - 64px);display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:center;padding-bottom:64px}
+h1{font-size:clamp(2.25rem,5vw,3.75rem);line-height:1.04;letter-spacing:-.04em;max-width:13ch}
+.sub{margin:20px 0 32px;color:var(--muted);font-size:18px;max-width:46ch}
+.btn{display:inline-block;padding:12px 20px;border-radius:var(--r);font-weight:600;text-decoration:none;border:1px solid var(--line);white-space:nowrap;transition:transform .2s cubic-bezier(.16,1,.3,1),background .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(1px) scale(.98)}
+.btn.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.install{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.tabs{display:flex;border-bottom:1px solid var(--line)}
+.tabs button{flex:1;padding:12px;background:none;border:0;color:var(--muted);font:600 14px var(--mono);cursor:pointer}
+.tabs button[aria-selected=true]{color:var(--ink);box-shadow:inset 0 -2px var(--accent)}
+.cmd{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px 20px;font:15px var(--mono);overflow-x:auto}
+.cmd code{white-space:nowrap}
+.copy{padding:6px 12px;border-radius:var(--r);border:1px solid var(--line);background:var(--bg);color:var(--ink);font:600 13px var(--sans);cursor:pointer;min-width:72px}
+.copy:active{transform:scale(.96)}
+.next{padding:14px 20px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+.next code{font-family:var(--mono);color:var(--ink)}
+section{padding:96px 0}
+h2{font-size:clamp(1.75rem,3.5vw,2.5rem);letter-spacing:-.03em;line-height:1.1;margin-bottom:12px}
+.lede{color:var(--muted);max-width:60ch;margin-bottom:40px}
+.grid{display:grid;grid-template-columns:2fr 1fr;gap:16px}
+.cell{border:1px solid var(--line);border-radius:var(--r);padding:28px}
+.cell h3{font-size:19px;letter-spacing:-.02em;margin-bottom:8px}
+.cell p{color:var(--muted);max-width:52ch}
+.cell.a{grid-row:span 2;background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.cell.a p{color:inherit;opacity:.88}
+.cell.a pre{margin-top:28px;padding:16px;border-radius:var(--r);background:rgb(0 0 0/.22);font:14px/1.7 var(--mono);overflow-x:auto}
+.cell.d{grid-column:1/-1;background:radial-gradient(var(--line) 1px,transparent 1px) 0 0/16px 16px}
+.log{display:grid;grid-template-columns:140px 1fr;gap:12px 32px;max-width:760px}
+.log dt{font:600 15px var(--mono)}
+.log dt small{display:block;font:400 13px var(--sans);color:var(--muted)}
+.log dd{padding-bottom:24px}
+.log li{margin-left:18px;color:var(--muted)}
+.log b{color:var(--ink);font-weight:600}
+footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.reveal{opacity:1}
+@media(prefers-reduced-motion:no-preference){
+ .js .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+ .js .reveal.in{opacity:1;transform:none}
+ .hero>*{animation:rise .7s cubic-bezier(.16,1,.3,1) both}
+ .hero>:nth-child(2){animation-delay:.12s}
+ @keyframes rise{from{opacity:0;transform:translateY(16px)}}
+}
+@media(max-width:760px){
+ .hero,.grid,.log{grid-template-columns:1fr}
+ .hero{gap:40px;min-height:0;padding-top:24px}
+ .cell.a{grid-row:auto}
+ nav .links{gap:16px}
+ section{padding:64px 0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <nav aria-label="Main">
+  <a class="brand" href="#">dredge</a>
+  <div class="links"><a href="#features">Features</a><a href="#changelog">Changelog</a><a href="https://github.com/dredge-dev/dredge">GitHub</a></div>
+ </nav>
+ <header class="hero">
+  <div>
+   <h1>Find the code you no longer use.</h1>
+   <p class="sub">dredge scans your repo for unused dependencies, dead exports and orphaned files, then removes them safely.</p>
+   <div class="actions"><a class="btn primary" href="https://dredge.dev/docs">Read the docs</a><a class="btn" href="https://github.com/dredge-dev/dredge">View source</a></div>
+  </div>
+  <div class="install" id="install">
+   <div class="tabs" role="tablist" aria-label="Install method">
+    <button role="tab" aria-selected="true" data-cmd="curl -fsSL https://dredge.dev/install.sh | sh">curl</button>
+    <button role="tab" aria-selected="false" data-cmd="brew install dredge">Homebrew</button>
+    <button role="tab" aria-selected="false" data-cmd="cargo install dredge">Cargo</button>
+   </div>
+   <div class="cmd"><code id="cmd">curl -fsSL https://dredge.dev/install.sh | sh</code><button class="copy" id="copy" type="button">Copy</button></div>
+   <p class="next">Then run <code>dredge scan</code> in any repo.</p>
+  </div>
+ </header>
+</div>
+
+<main class="wrap">
+ <section id="features">
+  <h2 class="reveal">One scan, four kinds of cleanup.</h2>
+  <p class="lede reveal">Works on JavaScript, TypeScript and Python projects, including monorepos.</p>
+  <div class="grid">
+   <article class="cell a reveal">
+    <h3>Unused dependencies</h3>
+    <p>Compares every manifest against the imports your code actually makes, workspace by workspace.</p>
+    <pre>$ dredge deps --workspace
+$ dredge deps --json</pre>
+   </article>
+   <article class="cell reveal"><h3>Dead exports</h3><p>Walks the import graph from your entry points and lists what nothing reaches.</p></article>
+   <article class="cell reveal"><h3>Safe removal</h3><p>dredge fix writes its changes as one git commit, so a revert is one command.</p></article>
+   <article class="cell d reveal"><h3>Built for CI</h3><p>Exits non-zero when it finds something. Output as text, JSON or SARIF for code review tools.</p></article>
+  </div>
+ </section>
+
+ <section id="changelog">
+  <h2 class="reveal">Changelog</h2>
+  <p class="lede reveal">Recent releases. The full history lives in the repository.</p>
+  <dl class="log reveal">
+   <dt>0.9.0<small>2026-09-18</small></dt>
+   <dd><ul><li><b>Added</b> Python support for imports and pyproject.toml.</li><li><b>Fixed</b> false positives on type-only imports.</li></ul></dd>
+   <dt>0.8.2<small>2026-08-27</small></dt>
+   <dd><ul><li><b>Fixed</b> monorepo workspace globs on Windows.</li></ul></dd>
+   <dt>0.8.0<small>2026-07-30</small></dt>
+   <dd><ul><li><b>Added</b> SARIF output.</li><li><b>Changed</b> dredge fix now commits each category separately.</li></ul></dd>
+  </dl>
+ </section>
+</main>
+
+<footer><div class="wrap"><span>MIT licensed. Free and open source.</span><span><a href="https://github.com/dredge-dev/dredge/issues">Report an issue</a></span></div></footer>
+
+<script>
+const code=document.getElementById('cmd'),copy=document.getElementById('copy');
+document.querySelectorAll('[role=tab]').forEach(t=>t.addEventListener('click',()=>{
+ document.querySelectorAll('[role=tab]').forEach(o=>o.setAttribute('aria-selected',o===t));
+ code.textContent=t.dataset.cmd;copy.textContent='Copy';
+}));
+copy.addEventListener('click',async()=>{
+ try{await navigator.clipboard.writeText(code.textContent);copy.textContent='Copied'}
+ catch{copy.textContent='Press Ctrl+C';getSelection().selectAllChildren(code)}
+ setTimeout(()=>copy.textContent='Copy',2000);
+});
+if('IntersectionObserver' in window){
+ document.documentElement.classList.add('js');
+ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+}
+</script>
+</body>
+</html>
+```

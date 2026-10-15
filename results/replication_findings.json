@@ -1,0 +1,278 @@
+{
+ "claude_code": {
+  "old": "2.1.284",
+  "new": "2.1.286"
+ },
+ "V1_added_tokens": {
+  "claude-haiku-4-5-20251001": {
+   "empty_session_old": 23513,
+   "empty_session_new": 23792,
+   "empty_session_change": 279,
+   "configs_compared": 4,
+   "configs_within_3pct": 1,
+   "outside": [
+    {
+     "config": "C10",
+     "added_old": 479,
+     "added_new": 405,
+     "relative_change_pct": -15.45,
+     "within_3pct": false
+    },
+    {
+     "config": "C100",
+     "added_old": 662,
+     "added_new": 616,
+     "relative_change_pct": -6.95,
+     "within_3pct": false
+    },
+    {
+     "config": "C50",
+     "added_old": 566,
+     "added_new": 488,
+     "relative_change_pct": -13.78,
+     "within_3pct": false
+    }
+   ]
+  },
+  "claude-sonnet-5-5[1m]": {
+   "empty_session_old": 18919,
+   "empty_session_new": 19196,
+   "empty_session_change": 277,
+   "configs_compared": 66,
+   "configs_within_3pct": 63,
+   "outside": [
+    {
+     "config": "I10",
+     "added_old": 435,
+     "added_new": 458,
+     "relative_change_pct": 5.29,
+     "within_3pct": false
+    },
+    {
+     "config": "I2",
+     "added_old": 52,
+     "added_new": 75,
+     "relative_change_pct": 44.23,
+     "within_3pct": false
+    },
+    {
+     "config": "I3",
+     "added_old": 73,
+     "added_new": 96,
+     "relative_change_pct": 31.51,
+     "within_3pct": false
+    }
+   ]
+  }
+ },
+ "V2_trigger": {
+  "original_alone": {
+   "old": [
+    46,
+    48,
+    0.958,
+    [
+     0.86,
+     0.988
+    ]
+   ],
+   "new": [
+    45,
+    48,
+    0.938,
+    [
+     0.832,
+     0.979
+    ]
+   ]
+  },
+  "original_crowded": {
+   "old": [
+    37,
+    48,
+    0.771,
+    [
+     0.635,
+     0.867
+    ]
+   ],
+   "new": [
+    34,
+    48,
+    0.708,
+    [
+     0.568,
+     0.818
+    ]
+   ]
+  },
+  "false_triggers_old": 0,
+  "false_triggers_new": 0,
+  "calls_new": 576,
+  "mixed_cells_new": 7,
+  "mixed_cells_old": 11,
+  "alone_within_10pp": true,
+  "crowded_within_10pp": true,
+  "no_false_triggers": true
+ },
+ "V3_probes": {
+  "compared": 18,
+  "same": 18,
+  "differences": [],
+  "missing_in_new": []
+ },
+ "V4_alias": {
+  "G-original": {
+   "hits": 10,
+   "n": 10
+  },
+  "G-prose": {
+   "hits": 10,
+   "n": 10
+  },
+  "G-slash": {
+   "hits": 10,
+   "n": 10
+  },
+  "G2-original": {
+   "hits": 10,
+   "n": 10
+  },
+  "G2-prose": {
+   "hits": 10,
+   "n": 10
+  },
+  "G2-slash": {
+   "hits": 10,
+   "n": 10
+  }
+ },
+ "V4_alias_all_10_of_10": true,
+ "bundled_skill_plugin_authoring": {
+  "2026-10-02_x86-laptop_skills": {
+   "rows": 125,
+   "with_plugin_authoring": 0,
+   "bundled_skills_in_C0_rows": [
+    16
+   ]
+  },
+  "2026-10-07_x86-laptop_replication_skills": {
+   "rows": 83,
+   "with_plugin_authoring": 83,
+   "bundled_skills_in_C0_rows": [
+    17
+   ]
+  },
+  "2026-10-08_x86-laptop_v1check_2.1.284_default": {
+   "rows": 36,
+   "with_plugin_authoring": 1,
+   "bundled_skills_in_C0_rows": [
+    16
+   ]
+  },
+  "2026-10-08_x86-laptop_v1check_2.1.284_notset": {
+   "rows": 36,
+   "with_plugin_authoring": 0,
+   "bundled_skills_in_C0_rows": [
+    16
+   ]
+  },
+  "2026-10-08_x86-laptop_v1check_2.1.286_default": {
+   "rows": 36,
+   "with_plugin_authoring": 35,
+   "bundled_skills_in_C0_rows": [
+    17
+   ]
+  },
+  "2026-10-08_x86-laptop_v1check_2.1.286_notset": {
+   "rows": 36,
+   "with_plugin_authoring": 36,
+   "bundled_skills_in_C0_rows": [
+    17
+   ]
+  },
+  "2026-10-08_x86-laptop_replication_alias": {
+   "rows": 60,
+   "with_plugin_authoring": 60,
+   "bundled_skills_in_C0_rows": []
+  }
+ },
+ "alias_turns": {
+  "2.1.284": {
+   "runs": 60,
+   "result_subtypes": {
+    "success": 60
+   },
+   "turns": {
+    "4": 20,
+    "3": 40
+   },
+   "max_tool_calls_in_a_run": 2,
+   "tool_calls_in_runs_that_ended_in_error_max_turns": []
+  },
+  "2.1.286": {
+   "runs": 60,
+   "result_subtypes": {
+    "error_max_turns": 10,
+    "success": 50
+   },
+   "turns": {
+    "4": 14,
+    "3": 46
+   },
+   "max_tool_calls_in_a_run": 3,
+   "tool_calls_in_runs_that_ended_in_error_max_turns": [
+    [
+     "Skill",
+     "Bash",
+     "Glob"
+    ],
+    [
+     "Skill",
+     "Bash",
+     "Glob"
+    ],
+    [
+     "Skill",
+     "Bash",
+     "Glob"
+    ],
+    [
+     "Skill",
+     "Bash",
+     "Glob"
+    ],
+    [
+     "Skill",
+     "Bash",
+     "PowerShell"
+    ],
+    [
+     "Skill",
+     "Bash",
+     "Glob"
+    ],
+    [
+     "Skill",
+     "Bash",
+     "Glob"
+    ],
+    [
+     "Skill",
+     "Bash",
+     "Glob"
+    ],
+    [
+     "Skill",
+     "Bash",
+     "PowerShell"
+    ],
+    [
+     "Skill",
+     "Bash",
+     "Glob"
+    ]
+   ]
+  }
+ }
+}

@@ -1,0 +1,155 @@
+```html
+<!DOCTYPE html>
+<!-- Design read: pricing page for small engineering teams (technical buyers), editorial dev-tool language,
+     native CSS, serif display + mono data, warm paper palette with one ember accent. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tailrace — Pricing</title>
+<style>
+  :root {
+    --paper: #f4f0e8; --ink: #1d1b17; --muted: #6b665b; --line: #d9d2c3;
+    --card: #fbf9f4; --ember: #c2410c; --ember-ink: #fff7ed;
+    --serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --paper: #15130f; --ink: #efe9dc; --muted: #9a9384; --line: #2e2a22; --card: #1c1913; --ember: #f97316; --ember-ink: #1a0e04; }
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--paper); color: var(--ink); font: 16px/1.55 var(--sans); }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 28px 0; font-family: var(--mono); font-size: 14px; }
+  nav b { font-size: 17px; letter-spacing: -.02em; }
+  nav b::before { content: ""; display: inline-block; width: 10px; height: 10px; background: var(--ember); border-radius: 50% 0 50% 0; margin-right: 8px; }
+  nav a { color: var(--muted); text-decoration: none; margin-left: 24px; }
+  nav a:hover { color: var(--ink); }
+  header { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: end; padding: 56px 0 48px; }
+  h1 { font: 400 clamp(2.6rem, 6vw, 4.6rem)/1.02 var(--serif); letter-spacing: -.03em; }
+  h1 em { color: var(--ember); }
+  header p { color: var(--muted); max-width: 38ch; }
+  .toggle { display: inline-flex; margin-top: 20px; border: 1px solid var(--line); border-radius: 99px; padding: 3px; font: 13px var(--mono); }
+  .toggle button { all: unset; cursor: pointer; padding: 6px 14px; border-radius: 99px; color: var(--muted); transition: background .25s, color .25s; }
+  .toggle button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+  .toggle button:focus-visible, .btn:focus-visible, summary:focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; }
+  .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: start; }
+  .plan { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 28px; transition: transform .3s cubic-bezier(.2,.8,.2,1); }
+  .plan:hover { transform: translateY(-4px); }
+  .plan.hot { border-color: var(--ember); margin-top: -20px; padding-top: 48px; box-shadow: 8px 8px 0 var(--ember); }
+  .tag { font: 12px var(--mono); color: var(--ember); text-transform: uppercase; letter-spacing: .08em; }
+  .plan h2 { font: 400 1.7rem var(--serif); margin: 4px 0 12px; }
+  .price { font: 500 3rem/1 var(--mono); letter-spacing: -.05em; }
+  .price small { font-size: .9rem; color: var(--muted); letter-spacing: 0; }
+  .plan > p { color: var(--muted); font-size: 14px; margin: 12px 0 20px; min-height: 3em; }
+  .btn { display: block; text-align: center; padding: 11px; border: 1px solid var(--ink); border-radius: 4px; color: var(--ink); text-decoration: none; font: 500 14px var(--mono); transition: background .2s, color .2s; }
+  .btn:hover { background: var(--ink); color: var(--paper); }
+  .hot .btn { background: var(--ember); border-color: var(--ember); color: var(--ember-ink); }
+  .hot .btn:hover { filter: brightness(1.1); }
+  .plan ul { list-style: none; padding: 0; margin-top: 22px; font-size: 14px; border-top: 1px dashed var(--line); }
+  .plan li { padding: 8px 0; border-bottom: 1px dashed var(--line); }
+  h3.sec { font: 400 2rem var(--serif); letter-spacing: -.02em; margin: 96px 0 24px; }
+  .scroll { overflow-x: auto; }
+  table { width: 100%; min-width: 640px; border-collapse: collapse; font-size: 14px; }
+  th, td { padding: 14px 12px; text-align: left; border-bottom: 1px solid var(--line); }
+  thead th { font: 500 13px var(--mono); position: sticky; top: 0; background: var(--paper); }
+  tbody th { font-weight: 400; color: var(--muted); }
+  td { font-family: var(--mono); }
+  td.y::before { content: ""; display: inline-block; width: 6px; height: 11px; border: solid var(--ember); border-width: 0 2px 2px 0; transform: rotate(45deg); }
+  td.n { color: var(--line); }
+  .faq { display: grid; grid-template-columns: 1fr 1.6fr; gap: 48px; }
+  .faq h3.sec { margin-top: 0; }
+  details { border-top: 1px solid var(--line); padding: 18px 0; }
+  details:last-child { border-bottom: 1px solid var(--line); }
+  summary { cursor: pointer; font: 400 1.2rem var(--serif); list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; font-family: var(--mono); color: var(--ember); transition: transform .25s; }
+  details[open] summary::after { transform: rotate(45deg); }
+  details p { color: var(--muted); margin-top: 10px; max-width: 54ch; }
+  footer { margin: 96px 0 40px; padding-top: 24px; border-top: 1px solid var(--line); font: 13px var(--mono); color: var(--muted); display: flex; justify-content: space-between; }
+  @media (max-width: 860px) {
+    header, .faq, .plans { grid-template-columns: 1fr; }
+    .plan.hot { margin-top: 0; box-shadow: 5px 5px 0 var(--ember); padding-top: 28px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav><b>tailrace</b><div><a href="#">Docs</a><a href="#">Changelog</a><a href="#">Sign in</a></div></nav>
+  <header>
+    <h1>Find the line that broke <em>prod.</em> Pay for what you keep.</h1>
+    <div>
+      <p>Log analytics for teams of 2 to 25. Flat pricing, no per-seat tax, and no surprise bill after a noisy deploy.</p>
+      <div class="toggle" role="group" aria-label="Billing period">
+        <button type="button" data-p="monthly" aria-pressed="true">Monthly</button>
+        <button type="button" data-p="annual" aria-pressed="false">Annual · save 20%</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="plans" aria-label="Plans">
+    <article class="plan">
+      <span class="tag">Side projects</span><h2>Drip</h2>
+      <div class="price">$0<small> /mo</small></div>
+      <p>For one service and one curious engineer.</p>
+      <a class="btn" href="#">Start free</a>
+      <ul><li>5 GB ingest / month</li><li>3 day retention</li><li>2 seats</li></ul>
+    </article>
+    <article class="plan hot">
+      <span class="tag">Most teams</span><h2>Stream</h2>
+      <div class="price">$<span data-m="49" data-a="39">49</span><small> /mo flat</small></div>
+      <p>Everything a five-person team needs to debug fast.</p>
+      <a class="btn" href="#">Try 14 days free</a>
+      <ul><li>100 GB ingest / month</li><li>30 day retention</li><li>Unlimited seats</li><li>Alerts to Slack and PagerDuty</li></ul>
+    </article>
+    <article class="plan">
+      <span class="tag">Growing fast</span><h2>Torrent</h2>
+      <div class="price">$<span data-m="199" data-a="159">199</span><small> /mo flat</small></div>
+      <p>More volume, longer memory, and audit controls.</p>
+      <a class="btn" href="#">Talk to an engineer</a>
+      <ul><li>1 TB ingest / month</li><li>180 day retention</li><li>SSO and audit log</li></ul>
+    </article>
+  </section>
+
+  <h3 class="sec">Compare plans</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Feature</th><th>Drip</th><th>Stream</th><th>Torrent</th></tr></thead>
+      <tbody>
+        <tr><th>Ingest / month</th><td>5 GB</td><td>100 GB</td><td>1 TB</td></tr>
+        <tr><th>Retention</th><td>3 days</td><td>30 days</td><td>180 days</td></tr>
+        <tr><th>Seats</th><td>2</td><td>Unlimited</td><td>Unlimited</td></tr>
+        <tr><th>Live tail</th><td class="y"></td><td class="y"></td><td class="y"></td></tr>
+        <tr><th>Saved queries and dashboards</th><td class="n">—</td><td class="y"></td><td class="y"></td></tr>
+        <tr><th>Alerts</th><td class="n">—</td><td class="y"></td><td class="y"></td></tr>
+        <tr><th>SSO (SAML)</th><td class="n">—</td><td class="n">—</td><td class="y"></td></tr>
+        <tr><th>Support</th><td>Community</td><td>Email, 1 day</td><td>Shared channel, 2 hr</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <section class="faq">
+    <h3 class="sec">Questions, answered plainly</h3>
+    <div>
+      <details open><summary>What happens if I go over my ingest limit?</summary><p>We keep ingesting. You get an email at 80% and 100%, and overage is billed at $0.40 per GB. You can also set a hard cap.</p></details>
+      <details><summary>Do you charge per seat?</summary><p>No. Drip includes 2 seats. Stream and Torrent are unlimited, so your whole on-call rotation can have access.</p></details>
+      <details><summary>Can I export my logs?</summary><p>Yes. Every plan can export to S3-compatible storage or stream over OTLP, so you are never locked in.</p></details>
+      <details><summary>How does the annual discount work?</summary><p>Pay for 12 months upfront and get 20% off. Cancel any time for a prorated refund of the unused months.</p></details>
+    </div>
+  </section>
+
+  <footer><span>© 2026 Tailrace Labs</span><span>Prices in USD</span></footer>
+</div>
+<script>
+  const btns = document.querySelectorAll('.toggle button');
+  const prices = document.querySelectorAll('[data-m]');
+  btns.forEach(b => b.addEventListener('click', () => {
+    btns.forEach(o => o.setAttribute('aria-pressed', o === b));
+    prices.forEach(p => { p.textContent = p.dataset[b.dataset.p === 'annual' ? 'a' : 'm']; });
+  }));
+</script>
+</body>
+</html>
+```

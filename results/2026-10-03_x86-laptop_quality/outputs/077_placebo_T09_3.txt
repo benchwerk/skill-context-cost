@@ -1,0 +1,144 @@
+```html
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>seam: diff config across environments</title>
+<meta name="description" content="seam is an open-source CLI that diffs, validates and promotes configuration between environments.">
+<style>
+  :root {
+    --paper: #f4f1ea; --ink: #1c1b19; --mute: #6b675e; --rule: #d9d4c7;
+    --accent: #c2410c; --code: #1c1b19; --code-ink: #ece8dc;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --paper: #14130f; --ink: #ece8dc; --mute: #9a958a; --rule: #2d2b25; --accent: #f08a4b; --code: #1d1b16; }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 17px/1.6 var(--serif); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration-color: var(--accent); text-underline-offset: 3px; }
+  a:hover { color: var(--accent); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+  header { display: flex; justify-content: space-between; align-items: baseline; padding: 28px 0; font-family: var(--mono); font-size: 14px; }
+  header nav { display: flex; gap: 24px; }
+  header nav a { color: var(--mute); text-decoration: none; }
+  header nav a:hover { color: var(--ink); }
+  .logo { font-weight: 700; letter-spacing: -0.02em; font-size: 18px; text-decoration: none; }
+  .logo b { color: var(--accent); }
+  .hero { padding: 72px 0 56px; }
+  h1 { font-size: clamp(40px, 7vw, 72px); line-height: 1.02; letter-spacing: -0.03em; font-weight: 600; margin: 0 0 24px; max-width: 14em; }
+  h1 em { font-style: italic; color: var(--accent); }
+  .lede { font-size: 20px; color: var(--mute); max-width: 34em; margin: 0 0 40px; }
+  .install { background: var(--code); color: var(--code-ink); border-radius: 6px; max-width: 560px; font-family: var(--mono); font-size: 14px; }
+  .tabs { display: flex; border-bottom: 1px solid #ffffff1f; }
+  .tabs button { background: none; border: 0; color: #9a958a; font: inherit; padding: 12px 18px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+  .tabs button[aria-selected="true"] { color: var(--code-ink); border-color: var(--accent); }
+  .cmd { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px; }
+  .cmd code::before { content: "$ "; color: var(--accent); }
+  .copy { background: none; border: 1px solid #ffffff33; color: var(--code-ink); font: 12px var(--mono); padding: 5px 10px; border-radius: 3px; cursor: pointer; }
+  .copy:hover { border-color: var(--accent); }
+  .meta { font: 13px var(--mono); color: var(--mute); margin-top: 16px; }
+  section { border-top: 1px solid var(--rule); padding: 56px 0; display: grid; grid-template-columns: 180px 1fr; gap: 24px 48px; }
+  h2 { font: 600 13px var(--mono); text-transform: uppercase; letter-spacing: 0.12em; color: var(--mute); margin: 6px 0 0; }
+  .demo { background: var(--code); color: var(--code-ink); font: 14px/1.7 var(--mono); padding: 22px; border-radius: 6px; overflow-x: auto; margin: 0; }
+  .add { color: #7fd18b; } .del { color: #ff8a7a; } .dim { color: #8a8578; }
+  .feats { list-style: none; margin: 0; padding: 0; }
+  .feats li { padding: 20px 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 170px 1fr; gap: 8px 24px; }
+  .feats li:first-child { padding-top: 0; }
+  .feats li:last-child { border: 0; padding-bottom: 0; }
+  .feats h3 { font: 600 15px var(--mono); margin: 0; }
+  .feats p { margin: 0; color: var(--mute); }
+  .log { list-style: none; margin: 0; padding: 0; }
+  .log li { display: grid; grid-template-columns: 110px 1fr; gap: 24px; padding-bottom: 28px; }
+  .log time { font: 13px var(--mono); color: var(--mute); padding-top: 4px; }
+  .log h3 { font: 600 17px var(--serif); margin: 0 0 6px; }
+  .log h3 span { font: 12px var(--mono); color: var(--accent); border: 1px solid var(--accent); padding: 1px 7px; border-radius: 99px; margin-left: 8px; vertical-align: 2px; }
+  .log ul { margin: 0; padding-left: 18px; color: var(--mute); }
+  footer { border-top: 1px solid var(--rule); padding: 32px 0 56px; font: 13px var(--mono); color: var(--mute); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  @media (max-width: 680px) {
+    section, .feats li { grid-template-columns: 1fr; }
+    .log li { grid-template-columns: 1fr; gap: 4px; }
+    .hero { padding-top: 40px; }
+    header nav { gap: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="logo" href="#">seam<b>.</b></a>
+    <nav><a href="#features">Features</a><a href="#changelog">Changelog</a><a href="https://github.com/example/seam">GitHub</a></nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <h1>Find the <em>drift</em> between staging and production.</h1>
+      <p class="lede">seam is a small command-line tool that diffs, validates and promotes configuration across environments. It reads YAML, TOML, JSON and .env, and tells you what changed before a deploy does.</p>
+      <div class="install" id="install">
+        <div class="tabs" role="tablist" aria-label="Install method">
+          <button role="tab" aria-selected="true" data-cmd="brew install seam">brew</button>
+          <button role="tab" aria-selected="false" data-cmd="npm install -g @seam/cli">npm</button>
+          <button role="tab" aria-selected="false" data-cmd="cargo install seam-cli">cargo</button>
+        </div>
+        <div class="cmd"><code id="cmd">brew install seam</code><button class="copy" id="copy">Copy</button></div>
+      </div>
+      <p class="meta">MIT licensed &middot; single static binary &middot; macOS, Linux, Windows</p>
+    </div>
+
+    <section>
+      <h2>What it does</h2>
+      <pre class="demo" aria-label="Example output"><span class="dim">$ seam diff staging production</span>
+<span class="dim">config/app.yaml</span>
+  database.pool_size
+<span class="del">- 10</span>
+<span class="add">+ 40</span>
+  feature_flags.new_checkout
+<span class="del">- true</span>
+<span class="add">+ false</span>
+<span class="dim">2 changes in 1 file. 0 secrets exposed.</span></pre>
+    </section>
+
+    <section id="features">
+      <h2>Features</h2>
+      <ul class="feats">
+        <li><h3>Semantic diff</h3><p>Compares parsed values, not text. Reordered keys and comment edits never show up as noise.</p></li>
+        <li><h3>Secret-safe</h3><p>Values that look like tokens or keys are masked in every output, including CI logs and JSON reports.</p></li>
+        <li><h3>Schema checks</h3><p>Validate each environment against a JSON Schema and fail the build on missing or mistyped keys.</p></li>
+        <li><h3>Promote</h3><p>Apply a reviewed diff from one environment to another, with a dry run by default and a patch file you can commit.</p></li>
+        <li><h3>CI native</h3><p>Stable exit codes, GitHub annotations and SARIF output. No network access, no telemetry.</p></li>
+      </ul>
+    </section>
+
+    <section id="changelog">
+      <h2>Changelog</h2>
+      <ol class="log">
+        <li><time datetime="2026-09-24">Sep 24, 2026</time><div><h3>v1.4.0<span>latest</span></h3><ul><li>Added <code>seam promote --patch</code> for reviewable change sets.</li><li>Diff is 3x faster on files over 10 MB.</li></ul></div></li>
+        <li><time datetime="2026-08-11">Aug 11, 2026</time><div><h3>v1.3.2</h3><ul><li>Fixed masking of base64 values containing <code>=</code> padding.</li><li>TOML arrays of tables now diff by index.</li></ul></div></li>
+        <li><time datetime="2026-06-30">Jun 30, 2026</time><div><h3>v1.3.0</h3><ul><li>SARIF output for code scanning dashboards.</li><li>Added <code>--ignore</code> globs in <code>seam.toml</code>.</li></ul></div></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer><span>seam &copy; 2026 contributors</span><span><a href="https://github.com/example/seam">Source</a> &middot; <a href="#">Docs</a> &middot; <a href="#">Issues</a></span></footer>
+</div>
+<script>
+  const cmd = document.getElementById('cmd'), copy = document.getElementById('copy');
+  document.querySelectorAll('[role=tab]').forEach(tab => tab.addEventListener('click', () => {
+    document.querySelectorAll('[role=tab]').forEach(t => t.setAttribute('aria-selected', t === tab));
+    cmd.textContent = tab.dataset.cmd;
+    copy.textContent = 'Copy';
+  }));
+  copy.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(cmd.textContent); copy.textContent = 'Copied'; }
+    catch { copy.textContent = 'Press Ctrl+C'; }
+    setTimeout(() => copy.textContent = 'Copy', 1800);
+  });
+</script>
+</body>
+</html>
+```

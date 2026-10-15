@@ -1,0 +1,166 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brightside Dental – Today</title>
+<style>
+  :root {
+    --bg:#f6f7f9; --card:#fff; --ink:#1b2430; --ink2:#55606e; --muted:#808a97; --line:#e3e7ec;
+    --bar:#9cc3e6; --bar-today:#1f5f99; --cap:#c9d1da;
+    --ok:#1d7a46; --warn:#9a6700; --info:#1f5f99; --crit:#b3261e;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#12171d; --card:#1b222b; --ink:#e8edf2; --ink2:#a9b4c0; --muted:#7d8996; --line:#2c3642;
+      --bar:#3b6c99; --bar-today:#7fb6ea; --cap:#3a4552;
+      --ok:#5cc58a; --warn:#e0b04a; --info:#7fb6ea; --crit:#f08a82;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:24px; background:var(--bg); color:var(--ink);
+         font:14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width:1040px; margin:0 auto; }
+  header { display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px; margin-bottom:16px; }
+  h1 { font-size:20px; margin:0; }
+  h2 { font-size:14px; margin:0 0 12px; display:flex; justify-content:space-between; align-items:center; }
+  .sub { color:var(--ink2); }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px; }
+  .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:12px; margin-bottom:12px; }
+  .stats { grid-template-columns:repeat(4,1fr); }
+  .stat .v { font-size:28px; font-weight:650; font-variant-numeric:tabular-nums; }
+  .stat .l { color:var(--ink2); font-size:12px; }
+  .stat .n { color:var(--muted); font-size:12px; margin-top:2px; }
+  .grid { display:grid; grid-template-columns:1.5fr 1fr; gap:12px; }
+  @media (max-width:820px) { .stats { grid-template-columns:1fr 1fr; } .grid { grid-template-columns:1fr; } }
+  table { width:100%; border-collapse:collapse; }
+  th { text-align:left; font-weight:500; color:var(--muted); font-size:12px; padding:0 8px 6px 0; }
+  td { padding:8px 8px 8px 0; border-top:1px solid var(--line); vertical-align:middle; }
+  td.t { color:var(--ink2); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .pt { font-weight:550; }
+  .badge { display:inline-flex; align-items:center; gap:5px; font-size:12px; color:var(--ink); white-space:nowrap; }
+  .badge svg { width:14px; height:14px; flex:none; }
+  tr.now td { background:color-mix(in srgb, var(--info) 8%, transparent); }
+  .chart { position:relative; height:190px; display:flex; align-items:flex-end; gap:10px; padding:8px 4px 0;
+           border-bottom:1px solid var(--line); }
+  .col { flex:1; height:100%; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; cursor:default; position:relative; }
+  .col .val { font-size:12px; color:var(--ink2); margin-bottom:4px; font-variant-numeric:tabular-nums; }
+  .bar { width:100%; max-width:44px; background:var(--bar); border-radius:4px 4px 0 0; transition:filter .1s; }
+  .col.today .bar { background:var(--bar-today); }
+  .col:hover .bar, .col:focus .bar { filter:brightness(1.12); outline:none; }
+  .days { display:flex; gap:10px; padding:6px 4px 0; color:var(--muted); font-size:12px; }
+  .days span { flex:1; text-align:center; }
+  .days .today { color:var(--ink); font-weight:600; }
+  .legend { display:flex; gap:14px; margin-top:10px; font-size:12px; color:var(--ink2); }
+  .legend i { display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:5px; vertical-align:-1px; }
+  #tip { position:fixed; pointer-events:none; opacity:0; background:var(--ink); color:var(--bg); padding:6px 9px;
+         border-radius:6px; font-size:12px; transition:opacity .08s; z-index:5; }
+  button { font:inherit; font-size:12px; color:var(--ink2); background:none; border:1px solid var(--line); border-radius:6px; padding:2px 8px; cursor:pointer; }
+  #wk-table { display:none; font-size:13px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Brightside Dental · Appointments</h1>
+    <span class="sub" id="date"></span>
+  </header>
+
+  <section class="stats" id="stats"></section>
+
+  <div class="grid">
+    <section class="card">
+      <h2>Today's schedule <span class="sub" id="count"></span></h2>
+      <table>
+        <thead><tr><th>Time</th><th>Patient</th><th>Treatment</th><th>Status</th></tr></thead>
+        <tbody id="sched"></tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>Week overview <button id="toggle" aria-pressed="false">Table view</button></h2>
+      <div id="wk-chart">
+        <div class="chart" id="chart"></div>
+        <div class="days" id="days"></div>
+        <div class="legend"><span><i style="background:var(--bar-today)"></i>Today</span><span><i style="background:var(--bar)"></i>Other days</span><span>Booked of 12 slots</span></div>
+      </div>
+      <table id="wk-table"><thead><tr><th>Day</th><th>Booked</th><th>Open</th></tr></thead><tbody></tbody></table>
+    </section>
+  </div>
+</main>
+<div id="tip"></div>
+
+<script>
+const ICON = {
+  done:  '<svg viewBox="0 0 16 16" fill="none" stroke="var(--ok)" stroke-width="2"><circle cx="8" cy="8" r="6.5"/><path d="M5 8.3l2 2 4-4.3"/></svg>',
+  chair: '<svg viewBox="0 0 16 16" fill="var(--info)"><circle cx="8" cy="8" r="6.5"/><path d="M6.3 5l5 3-5 3z" fill="var(--card)"/></svg>',
+  wait:  '<svg viewBox="0 0 16 16" fill="none" stroke="var(--warn)" stroke-width="2"><circle cx="8" cy="8" r="6.5"/><path d="M8 4.5V8l2.3 1.5"/></svg>',
+  conf:  '<svg viewBox="0 0 16 16" fill="none" stroke="var(--muted)" stroke-width="2"><circle cx="8" cy="8" r="6.5"/></svg>',
+  cancel:'<svg viewBox="0 0 16 16" fill="none" stroke="var(--crit)" stroke-width="2"><circle cx="8" cy="8" r="6.5"/><path d="M5.5 5.5l5 5M10.5 5.5l-5 5"/></svg>'
+};
+const LABEL = { done:'Completed', chair:'In chair', wait:'Waiting', conf:'Confirmed', cancel:'Cancelled' };
+const appts = [
+  ['08:30','Maria Alvarez','Check-up & cleaning','done'],
+  ['09:15','Tom Becker','Filling (upper left)','done'],
+  ['10:00','Aisha Khan','Root canal, visit 2','chair'],
+  ['10:45','Liam O\'Connor','Whitening consult','wait'],
+  ['11:30','Priya Nair','Crown fitting','conf'],
+  ['13:00','Hannah Weiss','Child check-up','conf'],
+  ['13:45','Diego Santos','Extraction','cancel'],
+  ['14:30','Grace Lee','Braces adjustment','conf'],
+  ['15:15','Omar Farouk','Scale & polish','conf']
+];
+const week = [9, 11, 8, 10, 7, 4];            // Mon–Sat booked slots
+const CAP = 12, names = ['Mon','Tue','Wed','Thu','Fri','Sat'];
+const full = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const now = new Date(), todayIdx = (now.getDay() + 6) % 7;   // Mon=0
+
+document.getElementById('date').textContent =
+  now.toLocaleDateString(undefined, { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+
+const active = appts.filter(a => a[3] !== 'cancel');
+const doneN = appts.filter(a => a[3] === 'done').length;
+const stats = [
+  [active.length, 'Appointments today', appts.length - active.length + ' cancelled'],
+  [doneN + ' / ' + active.length, 'Completed', appts.filter(a => a[3]==='chair'||a[3]==='wait').length + ' in clinic now'],
+  [CAP - active.length, 'Open slots today', 'Next free: 16:00'],
+  [week.reduce((a,b)=>a+b,0), 'Booked this week', Math.round(week.reduce((a,b)=>a+b,0) / (CAP*week.length) * 100) + '% of capacity']
+];
+document.getElementById('stats').innerHTML = stats.map(s =>
+  `<div class="card stat"><div class="l">${s[1]}</div><div class="v">${s[0]}</div><div class="n">${s[2]}</div></div>`).join('');
+
+document.getElementById('count').textContent = appts.length + ' booked';
+document.getElementById('sched').innerHTML = appts.map(a =>
+  `<tr class="${a[3]==='chair'?'now':''}"><td class="t">${a[0]}</td><td class="pt">${a[1]}</td><td>${a[2]}</td>` +
+  `<td><span class="badge">${ICON[a[3]]}${LABEL[a[3]]}</span></td></tr>`).join('');
+
+const tip = document.getElementById('tip');
+document.getElementById('chart').innerHTML = week.map((n, i) =>
+  `<div class="col ${i===todayIdx?'today':''}" tabindex="0" data-i="${i}" aria-label="${full[i]}: ${n} of ${CAP} slots booked">` +
+  `<span class="val">${n}</span><div class="bar" style="height:${n/CAP*100*0.82}%"></div></div>`).join('');
+document.getElementById('days').innerHTML = names.map((d, i) => `<span class="${i===todayIdx?'today':''}">${d}</span>`).join('');
+document.querySelectorAll('.col').forEach(c => {
+  const show = e => {
+    const i = +c.dataset.i, r = c.getBoundingClientRect();
+    tip.innerHTML = `<b>${full[i]}</b> · ${week[i]} booked, ${CAP - week[i]} open`;
+    tip.style.left = Math.max(8, r.left + r.width/2 - tip.offsetWidth/2) + 'px';
+    tip.style.top = (r.top - 34) + 'px'; tip.style.opacity = 1;
+  };
+  c.addEventListener('mouseenter', show); c.addEventListener('focus', show);
+  c.addEventListener('mouseleave', () => tip.style.opacity = 0); c.addEventListener('blur', () => tip.style.opacity = 0);
+});
+
+document.querySelector('#wk-table tbody').innerHTML = week.map((n, i) =>
+  `<tr><td>${full[i]}</td><td>${n}</td><td>${CAP - n}</td></tr>`).join('');
+const btn = document.getElementById('toggle');
+btn.onclick = () => {
+  const t = btn.getAttribute('aria-pressed') === 'false';
+  btn.setAttribute('aria-pressed', t); btn.textContent = t ? 'Chart view' : 'Table view';
+  document.getElementById('wk-chart').style.display = t ? 'none' : 'block';
+  document.getElementById('wk-table').style.display = t ? 'table' : 'none';
+};
+</script>
+</body>
+</html>
+```

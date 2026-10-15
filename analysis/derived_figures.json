@@ -1,0 +1,34 @@
+{
+ "label_agreement": {
+  "sample": 28,
+  "domain": 23,
+  "form": 13,
+  "clarity_exact": 24,
+  "clarity_within_1": 28,
+  "domain_pct": 82.1,
+  "form_pct": 46.4,
+  "clarity_exact_pct": 85.7,
+  "clarity_within_1_pct": 100.0
+ },
+ "invocation_slope_tokens_per_char": {
+  "skills": 20,
+  "stored_counts_crlf": 0.3975,
+  "lf_counts": 0.4026,
+  "lf_over_stored_pct": 1.3
+ },
+ "median_tokens_per_body_char": {
+  "stored": 0.3791,
+  "lf": 0.3823
+ },
+ "split_skill": {
+  "core_chars": 13117,
+  "reference_files": 15,
+  "target_core_chars": 12000
+ },
+ "descriptive": {
+  "skills": 138,
+  "median_body_chars": 8085.5,
+  "skills_with_deferred_material": 73,
+  "median_deferred_share_of_those": 0.707
+ }
+}

@@ -1,0 +1,18 @@
+{
+  "_note": "Written before any generation. Briefs are self-contained and deliberately contain the elements where the skill's rules bite: people, statistics, steps, brand names, hero sections. The task text never names the rules.",
+  "suffix": "Keep it compact: one self-contained HTML file of roughly 120 to 180 lines (all CSS and any JavaScript inline), in a single code block and nothing else. Do not use tools to write files.",
+  "tasks": [
+    {"id": "T01", "text": "Design a landing page for a small ceramics studio in Lisbon: hero, what they make, three customer testimonials, workshop pricing and a footer."},
+    {"id": "T02", "text": "Design a pricing page for a log-analytics tool for small engineering teams: invent the product name, three plans, a comparison table and a short FAQ."},
+    {"id": "T03", "text": "Design a portfolio site for a wedding photographer: a hero, a gallery of six photos, an about section with the photographer's story, and a contact form."},
+    {"id": "T04", "text": "Design an appointment dashboard for a small dental clinic with today's schedule, patient names, a week overview and a few summary statistics."},
+    {"id": "T05", "text": "Design a product page for a mechanical keyboard: gallery, key specifications, a customer reviews section and a buy button."},
+    {"id": "T06", "text": "Design the homepage of a neighbourhood restaurant with the menu, opening hours, the chef's introduction and a table reservation form."},
+    {"id": "T07", "text": "Design a mobile-first sign-up flow for a language-learning app that takes the user from creating an account to picking a daily goal in three stages."},
+    {"id": "T08", "text": "Design an About page for a financial-technology start-up with the mission, the leadership team, the company's key numbers and open roles."},
+    {"id": "T09", "text": "Design the homepage for an open-source command-line tool: what it does, an install snippet, a feature overview and a changelog."},
+    {"id": "T10", "text": "Design an event page for a two-day design conference with speakers, the schedule, the venue and ticket options."},
+    {"id": "T11", "text": "Design a category page for an outdoor-gear shop with a filter sidebar, a grid of twelve products and a short buying guide."},
+    {"id": "T12", "text": "Design a one-page announcement site for a mobile app from a coffee roaster that lets people order beans and track their delivery."}
+  ]
+}

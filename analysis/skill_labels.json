@@ -1,0 +1,1106 @@
+[
+ {
+  "name": "find-skills",
+  "domain": "D8",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "Helps users discover and install other agent skills through a step-by-step workflow.",
+  "confidence": "high"
+ },
+ {
+  "name": "grill-me",
+  "domain": "D1",
+  "form": "F6",
+  "clarity": 1,
+  "purpose": "A short pointer to invoke the grilling skill to sharpen plans.",
+  "confidence": "high"
+ },
+ {
+  "name": "grill-with-docs",
+  "domain": "D1",
+  "form": "F6",
+  "clarity": 1,
+  "purpose": "A pointer to invoke grilling and domain-modeling skills for planning and documentation.",
+  "confidence": "high"
+ },
+ {
+  "name": "improve-codebase-architecture",
+  "domain": "D1",
+  "form": "F1",
+  "clarity": 2,
+  "purpose": "Explores codebase for architecture refactoring opportunities and presents them in an HTML report.",
+  "confidence": "high"
+ },
+ {
+  "name": "agent-browser",
+  "domain": "D4",
+  "form": "F6",
+  "clarity": 3,
+  "purpose": "A discovery stub for a browser automation CLI used to interact with websites.",
+  "confidence": "medium"
+ },
+ {
+  "name": "frontend-design",
+  "domain": "D2",
+  "form": "F3",
+  "clarity": 2,
+  "purpose": "Provides aesthetic guidance and design principles for building distinct frontend user interfaces.",
+  "confidence": "medium"
+ },
+ {
+  "name": "vercel-react-best-practices",
+  "domain": "D3",
+  "form": "F3",
+  "clarity": 3,
+  "purpose": "Performance optimization guidelines and best practices for writing React and Next.js code.",
+  "confidence": "high"
+ },
+ {
+  "name": "hyperframes-cli",
+  "domain": "D4",
+  "form": "F4",
+  "clarity": 3,
+  "purpose": "A tool wrapper for the HyperFrames CLI covering development loop and render commands.",
+  "confidence": "high"
+ },
+ {
+  "name": "hyperframes",
+  "domain": "D5",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "Procedural entry point for creating and rendering videos with HyperFrames, routing to specific skills.",
+  "confidence": "high"
+ },
+ {
+  "name": "web-design-guidelines",
+  "domain": "D2",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "A procedural workflow to review UI code against fetched Web Interface Guidelines.",
+  "confidence": "medium"
+ },
+ {
+  "name": "hyperframes-registry",
+  "domain": "D5",
+  "form": "F2",
+  "clarity": 3,
+  "purpose": "Reference for finding and installing reusable registry components into HyperFrames video compositions.",
+  "confidence": "high"
+ },
+ {
+  "name": "microsoft-foundry",
+  "domain": "D3",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "Reference and workflows for managing Microsoft Foundry agents, models, and Azure AI resources.",
+  "confidence": "medium"
+ },
+ {
+  "name": "azure-diagnostics",
+  "domain": "D3",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "Procedural workflow and commands to diagnose and troubleshoot production issues on Microsoft Azure.",
+  "confidence": "high"
+ },
+ {
+  "name": "azure-prepare",
+  "domain": "D3",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "A mandatory step-by-step workflow for preparing azd-based Azure projects for deployment.",
+  "confidence": "high"
+ },
+ {
+  "name": "remotion-best-practices",
+  "domain": "D5",
+  "form": "F6",
+  "clarity": 1,
+  "purpose": "A routing stub and rules reference for Remotion video creation tasks and best practices.",
+  "confidence": "low"
+ },
+ {
+  "name": "caveman",
+  "domain": "D8",
+  "form": "F5",
+  "clarity": 3,
+  "purpose": "A persona mode forcing the agent to communicate in an ultra-compressed, terse style.",
+  "confidence": "high"
+ },
+ {
+  "name": "design-taste-frontend",
+  "domain": "D2",
+  "form": "F3",
+  "clarity": 2,
+  "purpose": "Rules and procedures for shipping distinctive frontend interfaces that avoid generic templated designs.",
+  "confidence": "medium"
+ },
+ {
+  "name": "google-agents-cli-adk-code",
+  "domain": "D8",
+  "form": "F2",
+  "clarity": 3,
+  "purpose": "A code reference and recipe guide for building agents with the Agent Development Kit.",
+  "confidence": "high"
+ },
+ {
+  "name": "google-agents-cli-workflow",
+  "domain": "D8",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "A comprehensive procedural workflow for the lifecycle of developing agents with agents-cli.",
+  "confidence": "high"
+ },
+ {
+  "name": "google-agents-cli-deploy",
+  "domain": "D8",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "A workflow guide for deploying agents built with agents-cli to Google Cloud targets.",
+  "confidence": "medium"
+ },
+ {
+  "name": "lark-doc",
+  "domain": "D7",
+  "form": "F6",
+  "clarity": 3,
+  "purpose": "Operational rules and routing stub for interacting with Lark documents via the larksuite CLI.",
+  "confidence": "low"
+ },
+ {
+  "name": "lark-base",
+  "domain": "D7",
+  "form": "F4",
+  "clarity": 3,
+  "purpose": "Reference and operational guide for interacting with Lark Base spreadsheets via the larksuite CLI.",
+  "confidence": "low"
+ },
+ {
+  "name": "lark-shared",
+  "domain": "D4",
+  "form": "F4",
+  "clarity": 2,
+  "purpose": "Shared rules, authentication setup, and common directives for the lark-cli tool suite.",
+  "confidence": "medium"
+ },
+ {
+  "name": "video-edit",
+  "domain": "D5",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "Routes user intent to the appropriate video editing model on RunComfy via the CLI.",
+  "confidence": "medium"
+ },
+ {
+  "name": "supabase-postgres-best-practices",
+  "domain": "D3",
+  "form": "F3",
+  "clarity": 3,
+  "purpose": "Prioritized best practices and guidelines for Postgres database schema design and query optimization.",
+  "confidence": "high"
+ },
+ {
+  "name": "image-to-video",
+  "domain": "D5",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "Routes image animation requests to specific models on RunComfy using bundled prompting patterns.",
+  "confidence": "medium"
+ },
+ {
+  "name": "nano-banana-2",
+  "domain": "D5",
+  "form": "F4",
+  "clarity": 3,
+  "purpose": "Guides usage and prompting of the Nano Banana 2 image generation model on RunComfy.",
+  "confidence": "medium"
+ },
+ {
+  "name": "high-end-visual-design",
+  "domain": "D2",
+  "form": "F5",
+  "clarity": 1,
+  "purpose": "Imposes high-end agency design standards and blocks generic patterns via a specialized architectural persona.",
+  "confidence": "low"
+ },
+ {
+  "name": "redesign-existing-projects",
+  "domain": "D2",
+  "form": "F1",
+  "clarity": 2,
+  "purpose": "Procedural workflow to audit and upgrade existing website designs to premium visual quality standards.",
+  "confidence": "high"
+ },
+ {
+  "name": "skill-creator",
+  "domain": "D8",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "A procedural workflow for creating, refining, and evaluating new agent skills from scratch.",
+  "confidence": "high"
+ },
+ {
+  "name": "caveman-commit",
+  "domain": "D1",
+  "form": "F3",
+  "clarity": 3,
+  "purpose": "Rules for writing terse, intent-focused Conventional Commits in a compressed, ultra-brief style.",
+  "confidence": "medium"
+ },
+ {
+  "name": "caveman-review",
+  "domain": "D1",
+  "form": "F3",
+  "clarity": 3,
+  "purpose": "Rules for performing terse code reviews, formatted as one line per finding and fix.",
+  "confidence": "medium"
+ },
+ {
+  "name": "brainstorming",
+  "domain": "D1",
+  "form": "F1",
+  "clarity": 2,
+  "purpose": "A procedural workflow for collaborating on ideas, requirements, and designs before implementation begins.",
+  "confidence": "high"
+ },
+ {
+  "name": "ui-ux-pro-max",
+  "domain": "D2",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "A workflow and searchable dataset for applying UI/UX design intelligence to user interfaces.",
+  "confidence": "medium"
+ },
+ {
+  "name": "vercel-composition-patterns",
+  "domain": "D3",
+  "form": "F3",
+  "clarity": 3,
+  "purpose": "Rules and best practices for building scalable React components using advanced composition patterns.",
+  "confidence": "medium"
+ },
+ {
+  "name": "prisma-database-setup",
+  "domain": "D3",
+  "form": "F6",
+  "clarity": 3,
+  "purpose": "A deprecated stub skill pointing to the current prisma-orm-setup for database configuration tasks.",
+  "confidence": "high"
+ },
+ {
+  "name": "prisma-client-api",
+  "domain": "D3",
+  "form": "F2",
+  "clarity": 3,
+  "purpose": "API reference for Prisma Client queries, filters, and methods to interact with a database.",
+  "confidence": "high"
+ },
+ {
+  "name": "prisma-cli",
+  "domain": "D3",
+  "form": "F4",
+  "clarity": 2,
+  "purpose": "A command and options reference for operating the Prisma ORM 7 CLI.",
+  "confidence": "medium"
+ },
+ {
+  "name": "emil-design-eng",
+  "domain": "D2",
+  "form": "F5",
+  "clarity": 1,
+  "purpose": "Adopts Emil Kowalski's design engineering persona to provide philosophy and rules on UI polish.",
+  "confidence": "medium"
+ },
+ {
+  "name": "impeccable",
+  "domain": "D2",
+  "form": "F5",
+  "clarity": 3,
+  "purpose": "Adopts an award-winning design director persona to shape, critique, and audit high-quality frontend interfaces.",
+  "confidence": "high"
+ },
+ {
+  "name": "supabase",
+  "domain": "D3",
+  "form": "F2",
+  "clarity": 3,
+  "purpose": "Comprehensive guidelines, principles, and reference links for working with Supabase products and APIs.",
+  "confidence": "medium"
+ },
+ {
+  "name": "systematic-debugging",
+  "domain": "D1",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "A strict four-phase procedure for diagnosing and fixing bugs systematically to address root causes.",
+  "confidence": "high"
+ },
+ {
+  "name": "orca-cli",
+  "domain": "D4",
+  "form": "F6",
+  "clarity": 3,
+  "purpose": "Discovery stub loading the Orca CLI guide for managing worktrees and agent coordination.",
+  "confidence": "medium"
+ },
+ {
+  "name": "writing-plans",
+  "domain": "D1",
+  "form": "F3",
+  "clarity": 2,
+  "purpose": "Rules and structural guidelines for writing clear implementation plans before writing any actual code.",
+  "confidence": "medium"
+ },
+ {
+  "name": "orchestration",
+  "domain": "D8",
+  "form": "F6",
+  "clarity": 3,
+  "purpose": "A discovery stub to load Orca orchestration workflows for coordinating multi-agent task execution.",
+  "confidence": "high"
+ },
+ {
+  "name": "pptx",
+  "domain": "D7",
+  "form": "F2",
+  "clarity": 3,
+  "purpose": "A reference guide for creating, editing, and analyzing PowerPoint presentation files programmatically.",
+  "confidence": "medium"
+ },
+ {
+  "name": "seo-audit",
+  "domain": "D6",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "A systematic framework and procedure for auditing websites to identify and fix SEO issues.",
+  "confidence": "high"
+ },
+ {
+  "name": "copywriting",
+  "domain": "D6",
+  "form": "F3",
+  "clarity": 3,
+  "purpose": "Principles and stylistic rules for writing clear, compelling marketing copy that drives conversion.",
+  "confidence": "high"
+ },
+ {
+  "name": "neon-postgres",
+  "domain": "D3",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "A procedural setup guide and best practices for configuring Lakebase Postgres on Neon.",
+  "confidence": "medium"
+ },
+ {
+  "name": "review-animations",
+  "domain": "D2",
+  "form": "F3",
+  "clarity": 2,
+  "purpose": "Rules and a strict grading format for reviewing UI animation code against high standards.",
+  "confidence": "medium"
+ },
+ {
+  "name": "computer-use",
+  "domain": "D4",
+  "form": "F6",
+  "clarity": 3,
+  "purpose": "A discovery stub to load the Orca CLI guide for automating local GUI interactions.",
+  "confidence": "high"
+ },
+ {
+  "name": "higgsfield-generate",
+  "domain": "D5",
+  "form": "F4",
+  "clarity": 3,
+  "purpose": "Wraps the Higgsfield CLI to submit media generation jobs for images, video, and audio.",
+  "confidence": "high"
+ },
+ {
+  "name": "wind-mcp-skill",
+  "domain": "D4",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "A four-step procedural workflow for fetching and verifying financial market data via Wind MCP.",
+  "confidence": "low"
+ },
+ {
+  "name": "animation-vocabulary",
+  "domain": "D2",
+  "form": "F2",
+  "clarity": 3,
+  "purpose": "A reverse-lookup glossary reference for finding the exact technical terms for UI animation effects.",
+  "confidence": "high"
+ },
+ {
+  "name": "playwright-cli",
+  "domain": "D4",
+  "form": "F4",
+  "clarity": 1,
+  "purpose": "A tool wrapper covering commands for automating browser interactions and testing with playwright-cli.",
+  "confidence": "high"
+ },
+ {
+  "name": "higgsfield-product-photoshoot",
+  "domain": "D5",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "Procedural workflow for generating enhanced, brand-quality product photoshoot images via the Higgsfield CLI.",
+  "confidence": "medium"
+ },
+ {
+  "name": "higgsfield-soul-id",
+  "domain": "D5",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "A procedural workflow for training and using personalized identity models for media generation.",
+  "confidence": "high"
+ },
+ {
+  "name": "firebase-basics",
+  "domain": "D3",
+  "form": "F4",
+  "clarity": 3,
+  "purpose": "Instructions for foundational Firebase CLI setup, user login, project creation, and configuration file downloads.",
+  "confidence": "medium"
+ },
+ {
+  "name": "neon",
+  "domain": "D3",
+  "form": "F2",
+  "clarity": 2,
+  "purpose": "Reference overview and architectural guidance for using Neon cloud backend primitives and Lakebase Postgres.",
+  "confidence": "high"
+ },
+ {
+  "name": "firebase-auth-basics",
+  "domain": "D3",
+  "form": "F1",
+  "clarity": 2,
+  "purpose": "Procedural workflow and core concepts for configuring and using Firebase Authentication in apps.",
+  "confidence": "medium"
+ },
+ {
+  "name": "firebase-hosting-basics",
+  "domain": "D3",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "Instructions and a procedural workflow for configuring and deploying classic Firebase Hosting projects.",
+  "confidence": "high"
+ },
+ {
+  "name": "marketing-psychology",
+  "domain": "D6",
+  "form": "F2",
+  "clarity": 3,
+  "purpose": "A reference catalog of psychological principles and mental models for better marketing and persuasion.",
+  "confidence": "high"
+ },
+ {
+  "name": "archify",
+  "domain": "D1",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "Workflow for generating interactive architecture and sequence diagrams in HTML from text or Mermaid.",
+  "confidence": "low"
+ },
+ {
+  "name": "convex-quickstart",
+  "domain": "D3",
+  "form": "F1",
+  "clarity": 1,
+  "purpose": "A procedural quickstart workflow for scaffolding and running a barebones Convex backend and template.",
+  "confidence": "high"
+ },
+ {
+  "name": "convex-create-component",
+  "domain": "D3",
+  "form": "F1",
+  "clarity": 2,
+  "purpose": "Procedural workflow and patterns for creating reusable, isolated backend components in Convex.",
+  "confidence": "high"
+ },
+ {
+  "name": "remotion-render",
+  "domain": "D5",
+  "form": "F4",
+  "clarity": 1,
+  "purpose": "Commands and options for rendering and exporting videos using the Remotion CLI.",
+  "confidence": "high"
+ },
+ {
+  "name": "better-auth-best-practices",
+  "domain": "D3",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "A procedural setup workflow and configuration reference for integrating Better Auth into applications.",
+  "confidence": "medium"
+ },
+ {
+  "name": "remotion-create",
+  "domain": "D5",
+  "form": "F1",
+  "clarity": 1,
+  "purpose": "Step-by-step procedural instructions for scaffolding, designing, and previewing a new Remotion video project.",
+  "confidence": "high"
+ },
+ {
+  "name": "anti-detect-browser",
+  "domain": "D4",
+  "form": "F2",
+  "clarity": 3,
+  "purpose": "Reference guide for the Anti-Detect Browser SDK to run Playwright scripts with real-device fingerprints.",
+  "confidence": "medium"
+ },
+ {
+  "name": "cloudflare",
+  "domain": "D3",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "Helps agents discover appropriate Cloudflare products and route to their specific implementation skills.",
+  "confidence": "high"
+ },
+ {
+  "name": "wrangler",
+  "domain": "D4",
+  "form": "F4",
+  "clarity": 2,
+  "purpose": "Teaches how to operate the Wrangler CLI to manage and configure Cloudflare Worker projects.",
+  "confidence": "high"
+ },
+ {
+  "name": "convex",
+  "domain": "D3",
+  "form": "F6",
+  "clarity": 3,
+  "purpose": "Stub that routes to specific Convex backend capabilities for data persistence and infrastructure tasks.",
+  "confidence": "high"
+ },
+ {
+  "name": "workers-best-practices",
+  "domain": "D3",
+  "form": "F3",
+  "clarity": 2,
+  "purpose": "Provides rules and best practices for writing, configuring, and reviewing Cloudflare Workers production code.",
+  "confidence": "medium"
+ },
+ {
+  "name": "stripe-best-practices",
+  "domain": "D3",
+  "form": "F3",
+  "clarity": 3,
+  "purpose": "Defines rules and decisions for planning, developing, testing, and securing Stripe payments integrations.",
+  "confidence": "medium"
+ },
+ {
+  "name": "review-loop",
+  "domain": "D8",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "Implements a workflow to iteratively critique work using a dedicated reviewer subagent.",
+  "confidence": "high"
+ },
+ {
+  "name": "playwright-best-practices",
+  "domain": "D1",
+  "form": "F2",
+  "clarity": 3,
+  "purpose": "Comprehensive reference guide for writing, debugging, and maintaining reliable Playwright automated test suites.",
+  "confidence": "high"
+ },
+ {
+  "name": "obsidian-markdown",
+  "domain": "D7",
+  "form": "F3",
+  "clarity": 3,
+  "purpose": "Defines syntax rules and conventions for creating and editing Obsidian-flavored markdown note files.",
+  "confidence": "high"
+ },
+ {
+  "name": "shadcn",
+  "domain": "D2",
+  "form": "F4",
+  "clarity": 3,
+  "purpose": "Wraps the shadcn/ui CLI to manage UI components and points to specific styling rules.",
+  "confidence": "medium"
+ },
+ {
+  "name": "typescript-advanced-types",
+  "domain": "D9",
+  "form": "F2",
+  "clarity": 2,
+  "purpose": "Reference for TypeScript advanced type patterns like generics, mapped types, and utility types.",
+  "confidence": "medium"
+ },
+ {
+  "name": "notion-api",
+  "domain": "D7",
+  "form": "F2",
+  "clarity": 3,
+  "purpose": "Provides endpoints, procedures, and best practices for authenticating and using the Notion REST API.",
+  "confidence": "high"
+ },
+ {
+  "name": "solana-dev",
+  "domain": "D3",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "Defines procedures and architecture guidelines for building decentralized applications on the Solana blockchain.",
+  "confidence": "high"
+ },
+ {
+  "name": "gws-gmail",
+  "domain": "D7",
+  "form": "F6",
+  "clarity": 1,
+  "purpose": "Stub pointing to commands and API references for managing Google Workspace Gmail operations.",
+  "confidence": "high"
+ },
+ {
+  "name": "turborepo",
+  "domain": "D4",
+  "form": "F6",
+  "clarity": 2,
+  "purpose": "Stub instructing the agent to consult bundled Turborepo documentation rather than relying on pre-training.",
+  "confidence": "medium"
+ },
+ {
+  "name": "browser-mcp-agent",
+  "domain": "D8",
+  "form": "F4",
+  "clarity": 3,
+  "purpose": "Explains using the antibrow MCP server to give agents control over a fingerprinted browser.",
+  "confidence": "medium"
+ },
+ {
+  "name": "multi-account-isolation",
+  "domain": "D4",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "Procedure to verify if browser profiles are truly isolated to prevent fingerprinting leaks.",
+  "confidence": "medium"
+ },
+ {
+  "name": "landing-page-conversion-audit",
+  "domain": "D6",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "Workflow to audit landing pages for conversion leaks and generate prioritized actionable fixes.",
+  "confidence": "high"
+ },
+ {
+  "name": "sales-funnel-blueprint",
+  "domain": "D6",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "Procedure to design and specify the pages, copy, and metrics of a sales funnel.",
+  "confidence": "high"
+ },
+ {
+  "name": "server-side-conversion-tracking",
+  "domain": "D6",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "Step-by-step workflow for setting up server-side conversion tracking for advertising platforms.",
+  "confidence": "high"
+ },
+ {
+  "name": "browser-fingerprint-audit",
+  "domain": "D4",
+  "form": "F4",
+  "clarity": 3,
+  "purpose": "Wraps the liarjs CLI to audit browser fingerprints for inconsistencies and spoofing artifacts.",
+  "confidence": "high"
+ },
+ {
+  "name": "playwright-stealth-verify",
+  "domain": "D1",
+  "form": "F4",
+  "clarity": 3,
+  "purpose": "Explains using the liarjs library in tests to verify browser fingerprint evasion quality.",
+  "confidence": "medium"
+ },
+ {
+  "name": "fingerprint-ci-gate",
+  "domain": "D1",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "Procedure for integrating liarjs browser fingerprint regression testing into continuous integration pipelines.",
+  "confidence": "high"
+ },
+ {
+  "name": "gws-drive",
+  "domain": "D7",
+  "form": "F6",
+  "clarity": 1,
+  "purpose": "Stub pointing to specific commands and documentation for managing Google Workspace Drive files.",
+  "confidence": "high"
+ },
+ {
+  "name": "defuddle",
+  "domain": "D4",
+  "form": "F4",
+  "clarity": 1,
+  "purpose": "Wraps the Defuddle CLI to extract clean, readable markdown content from HTML pages.",
+  "confidence": "high"
+ },
+ {
+  "name": "ponytail",
+  "domain": "D8",
+  "form": "F5",
+  "clarity": 3,
+  "purpose": "Adopts a lazy senior developer persona to enforce the simplest, most minimal working solutions.",
+  "confidence": "high"
+ },
+ {
+  "name": "upgrade-stripe",
+  "domain": "D3",
+  "form": "F2",
+  "clarity": 1,
+  "purpose": "Reference guide for upgrading Stripe API versions, webhooks, and client or server-side SDKs.",
+  "confidence": "medium"
+ },
+ {
+  "name": "tailwind-design-system",
+  "domain": "D2",
+  "form": "F3",
+  "clarity": 2,
+  "purpose": "Provides rules and structural patterns for building scalable design systems using Tailwind CSS v4.",
+  "confidence": "high"
+ },
+ {
+  "name": "stripe-projects",
+  "domain": "D3",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "Procedure for provisioning third-party infrastructure and managing services using the Stripe Projects CLI.",
+  "confidence": "medium"
+ },
+ {
+  "name": "expo-dev-client",
+  "domain": "D3",
+  "form": "F1",
+  "clarity": 2,
+  "purpose": "Workflow for building and distributing Expo development clients locally or via EAS TestFlight.",
+  "confidence": "high"
+ },
+ {
+  "name": "agentix-ceo",
+  "domain": "D8",
+  "form": "F5",
+  "clarity": 1,
+  "purpose": "Adopts a CEO persona to orchestrate AI workers via the Agentix API platform.",
+  "confidence": "medium"
+ },
+ {
+  "name": "mastra",
+  "domain": "D3",
+  "form": "F2",
+  "clarity": 2,
+  "purpose": "Reference guide for building agents, workflows, and tools using the Mastra framework API.",
+  "confidence": "medium"
+ },
+ {
+  "name": "lark-openapi-explorer",
+  "domain": "D3",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "Procedure to explore and call undocumented native Lark OpenAPIs directly via the CLI.",
+  "confidence": "high"
+ },
+ {
+  "name": "lark-task",
+  "domain": "D7",
+  "form": "F4",
+  "clarity": 3,
+  "purpose": "Wraps the Lark CLI to create and manage tasks, checklists, and task agents.",
+  "confidence": "high"
+ },
+ {
+  "name": "brand-guidelines",
+  "domain": "D2",
+  "form": "F3",
+  "clarity": 2,
+  "purpose": "Applies rules and constraints for using Anthropic's official brand colors and typography formatting.",
+  "confidence": "high"
+ },
+ {
+  "name": "requesting-code-review",
+  "domain": "D1",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "Workflow to dispatch a reviewer subagent to catch code issues before finalizing tasks.",
+  "confidence": "high"
+ },
+ {
+  "name": "docx",
+  "domain": "D7",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "Procedures for creating, reading, and modifying Word document files programmatically or via unzipping.",
+  "confidence": "high"
+ },
+ {
+  "name": "design-taste-frontend-v1",
+  "domain": "D2",
+  "form": "F3",
+  "clarity": 3,
+  "purpose": "Legacy visual rules and design defaults for frontend UI generation needing backward compatibility.",
+  "confidence": "high"
+ },
+ {
+  "name": "cold-email",
+  "domain": "D6",
+  "form": "F3",
+  "clarity": 3,
+  "purpose": "Defines principles, structure, and voice rules for writing effective B2B cold outreach emails.",
+  "confidence": "high"
+ },
+ {
+  "name": "video-outpainting",
+  "domain": "D5",
+  "form": "F4",
+  "clarity": 3,
+  "purpose": "Wraps the RunComfy CLI for extending video canvas space and changing aspect ratios.",
+  "confidence": "high"
+ },
+ {
+  "name": "firebase-firestore",
+  "domain": "D3",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "Procedures for setting up, configuring, and modeling data in Firebase Cloud Firestore databases.",
+  "confidence": "high"
+ },
+ {
+  "name": "elevenlabs-music-generation",
+  "domain": "D5",
+  "form": "F4",
+  "clarity": 3,
+  "purpose": "Wraps the RunComfy CLI to generate structured, studio-quality songs and instrumental audio tracks.",
+  "confidence": "high"
+ },
+ {
+  "name": "find-animation-opportunities",
+  "domain": "D2",
+  "form": "F3",
+  "clarity": 3,
+  "purpose": "Defines strict rules and thresholds for identifying appropriate places to add UI animations.",
+  "confidence": "high"
+ },
+ {
+  "name": "scaffold-exercises",
+  "domain": "D9",
+  "form": "F3",
+  "clarity": 3,
+  "purpose": "Rules and structural constraints for creating lint-passing exercise directories for educational courses.",
+  "confidence": "medium"
+ },
+ {
+  "name": "writing-for-agents",
+  "domain": "D8",
+  "form": "F3",
+  "clarity": 2,
+  "purpose": "Rules for structuring, writing, and pruning documentation intended for AI agent consumption.",
+  "confidence": "high"
+ },
+ {
+  "name": "verification-before-completion",
+  "domain": "D1",
+  "form": "F3",
+  "clarity": 3,
+  "purpose": "Enforces strict rules requiring successful verification command execution before claiming task completion.",
+  "confidence": "high"
+ },
+ {
+  "name": "remotion-interactivity",
+  "domain": "D3",
+  "form": "F3",
+  "clarity": 1,
+  "purpose": "Rules for structuring Remotion React markup to enable interactivity in the Remotion Studio.",
+  "confidence": "medium"
+ },
+ {
+  "name": "wayfinder",
+  "domain": "D1",
+  "form": "F1",
+  "clarity": 2,
+  "purpose": "Workflow for planning large technical efforts using a shared map of decision tickets.",
+  "confidence": "high"
+ },
+ {
+  "name": "churn-prevention",
+  "domain": "D6",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "Framework for building cancellation flows and retention strategies to prevent SaaS customer churn.",
+  "confidence": "high"
+ },
+ {
+  "name": "higgsfield-youtube-thumbnail",
+  "domain": "D5",
+  "form": "F4",
+  "clarity": 3,
+  "purpose": "Wraps the Higgsfield CLI to generate and refine high-click-through YouTube video thumbnails.",
+  "confidence": "high"
+ },
+ {
+  "name": "handoff",
+  "domain": "D1",
+  "form": "F1",
+  "clarity": 1,
+  "purpose": "Procedure to summarize the current conversation context into a document for another agent.",
+  "confidence": "high"
+ },
+ {
+  "name": "analytics",
+  "domain": "D6",
+  "form": "F3",
+  "clarity": 3,
+  "purpose": "Principles and naming conventions for setting up actionable, decision-focused product analytics tracking.",
+  "confidence": "high"
+ },
+ {
+  "name": "azure-upgrade",
+  "domain": "D3",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "Procedure to analyze and upgrade Azure workload hosting plans or modernize Azure SDKs.",
+  "confidence": "high"
+ },
+ {
+  "name": "prisma-mongodb-upgrade",
+  "domain": "D3",
+  "form": "F2",
+  "clarity": 3,
+  "purpose": "Reference and migration guide for transitioning Prisma MongoDB projects from version 6.",
+  "confidence": "high"
+ },
+ {
+  "name": "azure-resource-visualizer",
+  "domain": "D3",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "Procedure to analyze Azure resource groups and generate Mermaid architecture relationship diagrams.",
+  "confidence": "high"
+ },
+ {
+  "name": "lark-calendar",
+  "domain": "D7",
+  "form": "F4",
+  "clarity": 3,
+  "purpose": "Wraps Lark CLI shortcuts for scheduling events and managing meeting room reservations.",
+  "confidence": "high"
+ },
+ {
+  "name": "self-hosted-funnel-launch",
+  "domain": "D6",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "Procedure for configuring and deploying a self-hosted Autonnel sales funnel infrastructure environment.",
+  "confidence": "medium"
+ },
+ {
+  "name": "deploy-to-vercel",
+  "domain": "D3",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "Step-by-step workflow for deploying applications to Vercel and configuring Git branch integrations.",
+  "confidence": "high"
+ },
+ {
+  "name": "webapp-testing",
+  "domain": "D1",
+  "form": "F4",
+  "clarity": 2,
+  "purpose": "Wraps Playwright and helper scripts to interact with and test local web applications.",
+  "confidence": "medium"
+ },
+ {
+  "name": "controlnet-pose",
+  "domain": "D5",
+  "form": "F4",
+  "clarity": 3,
+  "purpose": "Wraps the RunComfy CLI for pose-conditioned image and video generation using diverse models.",
+  "confidence": "high"
+ },
+ {
+  "name": "prisma-postgres",
+  "domain": "D3",
+  "form": "F6",
+  "clarity": 3,
+  "purpose": "Deprecated stub pointing users to the current prisma-postgres-setup skill for PostgreSQL initialization.",
+  "confidence": "high"
+ },
+ {
+  "name": "mcp-builder",
+  "domain": "D8",
+  "form": "F1",
+  "clarity": 2,
+  "purpose": "Workflow for researching, implementing, and testing Model Context Protocol servers and tools.",
+  "confidence": "high"
+ },
+ {
+  "name": "caveman-help",
+  "domain": "D8",
+  "form": "F2",
+  "clarity": 3,
+  "purpose": "Quick reference guide for caveman agent operational modes, shortcuts, and language parameters.",
+  "confidence": "high"
+ },
+ {
+  "name": "xcode-project-setup",
+  "domain": "D1",
+  "form": "F3",
+  "clarity": 3,
+  "purpose": "Strict rules for safely modifying Xcode project files to manage iOS dependencies.",
+  "confidence": "medium"
+ },
+ {
+  "name": "dispatching-parallel-agents",
+  "domain": "D8",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "Procedure for orchestrating multiple concurrent subagents to execute independent, isolated tasks simultaneously.",
+  "confidence": "medium"
+ },
+ {
+  "name": "gpt-image-edit",
+  "domain": "D5",
+  "form": "F4",
+  "clarity": 3,
+  "purpose": "Wraps the RunComfy CLI to edit images using OpenAI GPT Image 2 endpoint.",
+  "confidence": "high"
+ },
+ {
+  "name": "subagent-driven-development",
+  "domain": "D8",
+  "form": "F1",
+  "clarity": 2,
+  "purpose": "Workflow for delegating implementation plan tasks to isolated subagents and conducting automated reviews.",
+  "confidence": "medium"
+ },
+ {
+  "name": "git-guardrails-claude-code",
+  "domain": "D1",
+  "form": "F1",
+  "clarity": 3,
+  "purpose": "Procedure to configure hooks blocking destructive Git operations within the Claude Code environment.",
+  "confidence": "high"
+ },
+ {
+  "name": "cloudflare-email-service",
+  "domain": "D3",
+  "form": "F2",
+  "clarity": 2,
+  "purpose": "Reference guide for implementing and troubleshooting Cloudflare Email Routing and Sending services.",
+  "confidence": "medium"
+ },
+ {
+  "name": "lark-okr",
+  "domain": "D7",
+  "form": "F4",
+  "clarity": 3,
+  "purpose": "Wraps Lark CLI commands for managing Objectives and Key Results and tracking progress.",
+  "confidence": "high"
+ }
+]

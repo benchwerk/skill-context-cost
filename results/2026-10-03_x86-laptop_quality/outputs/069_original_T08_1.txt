@@ -1,0 +1,142 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About Brindle</title>
+<!-- Design Read: About page for fintech buyers and candidates, trust-first with a restrained editorial-sans language, native CSS. Dials 6 / 4 / 4. Figures below are mock data. -->
+<style>
+:root{--bg:#f4f5f4;--tint:#e8ebe9;--ink:#15191a;--mute:#4a5453;--line:#cdd3d1;--acc:#0b6e53;--on:#f4f5f4;--r:10px;
+--font:"Geist","Satoshi",system-ui,-apple-system,"Segoe UI",sans-serif}
+@media(prefers-color-scheme:dark){:root{--bg:#101413;--tint:#192120;--ink:#e9eeec;--mute:#a3b0ad;--line:#2b3735;--acc:#46d3a2;--on:#07201a}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:400 1rem/1.6 var(--font)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:var(--r)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 1.5rem}
+nav{height:68px;border-bottom:1px solid var(--line)}
+nav .wrap{height:100%;display:flex;align-items:center;justify-content:space-between}
+nav b{font-size:1.25rem;letter-spacing:-.03em}
+nav ul{display:flex;gap:1.75rem;list-style:none;padding:0;font-size:.95rem}
+nav ul a{text-decoration:none;color:var(--mute)}
+nav ul a:hover{color:var(--ink)}
+.btn{display:inline-block;white-space:nowrap;padding:.8rem 1.4rem;border-radius:var(--r);font-weight:600;text-decoration:none;
+border:1px solid var(--line);transition:transform .3s cubic-bezier(.16,1,.3,1),background .2s}
+.btn.pri{background:var(--acc);color:var(--on);border-color:var(--acc)}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(1px) scale(.98)}
+.hero{display:grid;grid-template-columns:7fr 5fr;gap:4rem;align-items:center;padding:4rem 0 5rem}
+h1{font-size:clamp(2.4rem,5vw,4.25rem);line-height:1.02;letter-spacing:-.045em;font-weight:650;max-width:14ch}
+h1 em{font-style:italic;color:var(--acc);padding-bottom:.1em}
+.hero p{margin:1.5rem 0 2rem;max-width:44ch;color:var(--mute);font-size:1.125rem}
+.hero img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r);background:var(--tint);display:block}
+h2{font-size:clamp(1.75rem,3vw,2.5rem);letter-spacing:-.035em;line-height:1.1;font-weight:650}
+section{padding:5rem 0}
+.label{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);font-weight:600;margin-bottom:1rem;display:block}
+.mission{background:var(--tint)}
+.mission .wrap{padding-left:max(1.5rem,14vw)}
+.mission h2{max-width:24ch;font-size:clamp(1.9rem,3.6vw,3rem)}
+.mission p{margin-top:1.5rem;max-width:62ch;color:var(--mute)}
+.nums{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem 2rem;margin-top:3rem}
+.nums div{border-left:2px solid var(--acc);padding-left:1.25rem}
+.nums strong{display:block;font-size:clamp(2.5rem,5vw,4.5rem);letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums}
+.nums div:first-child strong{font-size:clamp(3.5rem,8vw,7rem)}
+.nums span{display:block;margin-top:.5rem;color:var(--mute);max-width:26ch}
+.team{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem;align-items:start}
+.team figure:nth-child(even){margin-top:3rem}
+.team img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r);background:var(--tint);display:block;filter:grayscale(.85);transition:filter .4s}
+.team figure:hover img{filter:none}
+.team figcaption{margin-top:.75rem}
+.team b{display:block;letter-spacing:-.01em}
+.team span{color:var(--mute);font-size:.95rem}
+.roles{background:var(--tint)}
+.groups{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;margin-top:3rem}
+.groups h3{font-size:1rem;padding-bottom:.75rem;border-bottom:1px solid var(--line);margin-bottom:.5rem}
+.groups a{display:block;padding:.65rem 0;text-decoration:none;transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.groups a:hover{transform:translateX(6px);color:var(--acc)}
+.groups small{display:block;color:var(--mute)}
+.empty{display:none;margin-top:2rem;color:var(--mute)}
+footer{padding:3rem 0;color:var(--mute);font-size:.9rem}
+footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+@media(prefers-reduced-motion:no-preference){
+.hero>*{animation:up .9s cubic-bezier(.16,1,.3,1) both}.hero>:last-child{animation-delay:.15s}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+@keyframes up{from{opacity:0;transform:translateY(24px)}}}
+@media(max-width:768px){
+nav ul{display:none}
+.hero,.nums,.groups{grid-template-columns:1fr}.hero{gap:2rem;padding:2.5rem 0 3rem}
+.team{grid-template-columns:1fr 1fr}.team figure:nth-child(even){margin-top:0}
+.mission .wrap{padding-left:1.5rem}section{padding:3.5rem 0}}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <b>Brindle</b>
+  <ul><li><a href="#mission">Mission</a></li><li><a href="#numbers">Numbers</a></li><li><a href="#team">Team</a></li><li><a href="#roles">Roles</a></li></ul>
+</div></nav>
+<main>
+<header class="wrap hero">
+  <div>
+    <h1>Business banking that <em>pays</em> small firms first.</h1>
+    <p>We build accounts, cards and payouts for companies that banks overlook, and we answer our own phones.</p>
+    <a class="btn pri" href="#roles">See open roles</a>
+  </div>
+  <img src="https://picsum.photos/seed/brindle-office-team/800/1000" width="800" height="1000" alt="The Brindle team around a shared desk">
+</header>
+
+<section class="mission" id="mission"><div class="wrap rv">
+  <h2>Money should reach a supplier on the day it is owed.</h2>
+  <p>Brindle started in 2019 after our founders watched a bakery wait nine days for a transfer. We now run our own payment rails, hold every customer balance in segregated accounts, and publish our uptime every month.</p>
+</div></section>
+
+<section id="numbers"><div class="wrap rv">
+  <h2>Where we stand today</h2>
+  <!-- mock figures, replace with audited data -->
+  <div class="nums">
+    <div><strong>$2.8bn</strong><span>moved for customers over the last twelve months</span></div>
+    <div><strong>31,400</strong><span>businesses with an active account</span></div>
+    <div><strong>11</strong><span>minutes median to open an account</span></div>
+  </div>
+</div></section>
+
+<section id="team" style="padding-top:0"><div class="wrap rv">
+  <h2>The people running it</h2>
+  <div class="team">
+    <figure><img loading="lazy" src="https://picsum.photos/seed/odalys-reinholt/400/500" width="400" height="500" alt="Portrait of Odalys Reinholt"><figcaption><b>Odalys Reinholt</b><span>Chief Executive</span></figcaption></figure>
+    <figure><img loading="lazy" src="https://picsum.photos/seed/tobias-wanjiru/400/500" width="400" height="500" alt="Portrait of Tobias Wanjiru"><figcaption><b>Tobias Wanjiru</b><span>Chief Technology Officer</span></figcaption></figure>
+    <figure><img loading="lazy" src="https://picsum.photos/seed/priya-venkataraghavan/400/500" width="400" height="500" alt="Portrait of Priya Venkataraghavan"><figcaption><b>Priya Venkataraghavan</b><span>Chief Risk Officer</span></figcaption></figure>
+    <figure><img loading="lazy" src="https://picsum.photos/seed/mateus-lindqvist/400/500" width="400" height="500" alt="Portrait of Mateus Lindqvist"><figcaption><b>Mateus Lindqvist</b><span>Chief Financial Officer</span></figcaption></figure>
+  </div>
+</div></section>
+
+<section class="roles" id="roles"><div class="wrap rv">
+  <span class="label">Open roles</span>
+  <h2>Join us in building it</h2>
+  <div class="groups" id="groups">
+    <div data-team="Engineering"><h3>Engineering</h3>
+      <a href="#"><b>Staff Backend Engineer</b><small>Payments core, remote in Europe</small></a>
+      <a href="#"><b>Site Reliability Engineer</b><small>Platform, Lisbon or remote</small></a></div>
+    <div data-team="Risk"><h3>Risk and compliance</h3>
+      <a href="#"><b>Fraud Operations Analyst</b><small>Berlin</small></a>
+      <a href="#"><b>AML Policy Lead</b><small>London</small></a></div>
+    <div data-team="Customer"><h3>Customer</h3>
+      <a href="#"><b>Onboarding Specialist</b><small>Dublin</small></a>
+      <a href="#"><b>Support Team Lead</b><small>Remote in Europe</small></a></div>
+  </div>
+  <p class="empty" id="empty">No roles are open in this team right now. Check back next month.</p>
+</div></section>
+</main>
+<footer><div class="wrap"><span>Brindle Financial Ltd. Authorised and regulated e-money institution.</span><span>hello@brindle.example</span></div></footer>
+<script>
+// Reveal sections as they enter the viewport; shows hierarchy of reading order.
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+// Show the empty state if every team column has no listings.
+const none=![...document.querySelectorAll('#groups a')].length;
+document.getElementById('empty').style.display=none?'block':'none';
+</script>
+</body>
+</html>
+```

@@ -1,0 +1,692 @@
+{
+ "find-skills": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "c1d9628984991d7ed59ab3a7bf6a4dad3d731ef68c71f409f64a0ca258e8028e"
+ },
+ "grill-me": {
+  "user_invocable_false": false,
+  "disable_model_invocation": true,
+  "sha256": "19e660207b447acf6ee0d600471c02e549c7aca8fb3ab38fdc2c7056aa442fc8"
+ },
+ "grill-with-docs": {
+  "user_invocable_false": false,
+  "disable_model_invocation": true,
+  "sha256": "abc0fa7948db18b5fb0e1cc1c522ac5ff47d874e2da1e5df60619d79be11f38b"
+ },
+ "improve-codebase-architecture": {
+  "user_invocable_false": false,
+  "disable_model_invocation": true,
+  "sha256": "f053ff6d7a70f10bd0104e368f7e664b23ea6378898e305bf027e8864757822f"
+ },
+ "agent-browser": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "19c4b9f790f8a36cb2c485cb91ad36d6506b60e3cc32df299554ac9c8694247f"
+ },
+ "frontend-design": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "b8009ae690dfa69edc7f08bb8715f32db8817112cfa4388741dbaf876c237df8"
+ },
+ "vercel-react-best-practices": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "3286ace648b4d740317b9c1cb7fbd38600eaacc62a8b57ea5e06fd2992b5582e"
+ },
+ "hyperframes-cli": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "f94a4c7f11fae1d2af70330e83ceb9f13e1d0ff5cec3ee113184fb089038356f"
+ },
+ "hyperframes": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "ce542b8e03b4b9268bcda0f95790b1cf869b4ff9b3faf803c2abf816fd51c54c"
+ },
+ "web-design-guidelines": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "17e48da905f83a19c174079b50760a98c069527ba50079239b3c187236627c29"
+ },
+ "hyperframes-registry": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "5c0fa72f016897b78d1bb7589179eb44eed5572813fd044df94fa09ec52ad4ee"
+ },
+ "microsoft-foundry": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "1f1620be0d11b8b0f74a28234701eb93d4220d43d53a66bb4ca78a51dedd9a06"
+ },
+ "azure-diagnostics": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "a15c41d38228af3ab4381ed75c94472a576a5bcd6398ff86b27541c1fcee0168"
+ },
+ "azure-prepare": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "d50da9de3f6dc24bfc9e7d4371d8b447766d67a2cb6a01d0577daa80e0eca526"
+ },
+ "remotion-best-practices": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "b451ce17548ddd3f927625ba97a02e28c07729d14c2318dc2ff7dc177299b6a9"
+ },
+ "caveman": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "0bf09a0a9a017d004a81d4b693e5a2d830e1a28230a5885df773e1ed9c0571cc"
+ },
+ "design-taste-frontend": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "2e064e92aca020b2e0bad69326fe7ea55d59005ed53d1a8cbce1bd135d44b8b3"
+ },
+ "google-agents-cli-adk-code": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "3ae45e080b1a4c6fd55bea8d71b884105383ffc568cf05b7af222dcbe8f8a735"
+ },
+ "google-agents-cli-workflow": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "c82d3bb40fa332c950503e5ad73561188028ab8fc2ccd997c6987b359f72b4a9"
+ },
+ "google-agents-cli-deploy": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "fbe671a2f7849d751f52536dd241ab4005267ae985faa41e1c98f38ee5fdca15"
+ },
+ "lark-doc": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "2786f910370662069b1b52b98508033c84baaf0bd7b0bae177426ece4ceafacc"
+ },
+ "lark-base": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "356b708cda34beb6574a533ae1ef6b981ee8dbddc703923c1fadde0307663e9a"
+ },
+ "lark-shared": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "9fa68bb1f3ce564602c6df6c303ea4d2759de02442772f332fe5041d65720a1f"
+ },
+ "video-edit": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "89563e7819d88fec81ec14f61ffa731f5ac4f79a9a18f5396448a2c1d49dffee"
+ },
+ "supabase-postgres-best-practices": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "4d7d1bd60f2ad7fd0d510269279519059dcc630d832f4c241d90735244c70525"
+ },
+ "image-to-video": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "a847fe7b13c5186271208a615a55560637147a4425443fa90dd39831e08f8b02"
+ },
+ "nano-banana-2": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "2fab7b822520c912daae2c98bf9c22e4b8ebd513603560a62d549e6a21b23229"
+ },
+ "high-end-visual-design": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "2d11cdcefc8bf319429ee17d94d69a390802e2acf7163662d1eacbcf5be3ff79"
+ },
+ "redesign-existing-projects": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "d5a62efaf36fa52ea1966e06ce74452b3466a4f179af34fbce65f2c8e5461349"
+ },
+ "skill-creator": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "e030e7685e26283b4a76f5202aa3ae8516fb41dde799be5ae8ea6393ec009fe9"
+ },
+ "caveman-commit": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "c788a282fc75b981b421dfdad5d84ea7f83f946c126daa39cfc7d3f97845e193"
+ },
+ "caveman-review": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "599330563f19b5c59c3efddffcd7e8d9098b74c29817ab422ccd3253b103fcb8"
+ },
+ "brainstorming": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "a32d2255354775aa124855aa7100cf276bea096fff4ebb3a0edf57be216e6c72"
+ },
+ "ui-ux-pro-max": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "88aadd21220542083a455e373bd162ffe7843266a71f06f4d837bb3b34f9c9c7"
+ },
+ "vercel-composition-patterns": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "fb8f849b4d46c0c4d364ae6fb398a5cb693b54f9a4c31765a1ec0689c7cb93d5"
+ },
+ "prisma-database-setup": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "ddb9d0bb355aa1640f1ecfa010b923a2e09a3f0a668e24b12b85f2a51f38c2b1"
+ },
+ "prisma-client-api": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "0fa1fead6f9c8d8e1f19b4884e3fb62fd614f2f26c0d3aae9b37a4e8579f4cde"
+ },
+ "prisma-cli": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "3fca0498f5f0a0041dbd1069eec05e9289c50fce4149a1a18b7332c166199646"
+ },
+ "emil-design-eng": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "a2ee9da0840c23b509a27e742edbc8f8fdb4416ca7d6ffde67d79023bfb8a5bf"
+ },
+ "impeccable": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "0ad0e94c4e20e93458d1c220dd8ccc3322d885c602f4dfd952383bdde7da104e"
+ },
+ "supabase": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "44f4cfefb57751abf9288fb2920de621c748964de1301db627dea725e187bccf"
+ },
+ "systematic-debugging": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "808fc5717aa88ad65efff312b11c186294d3e6ee301afb584e2f86599b137787"
+ },
+ "orca-cli": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "aa76f86505010096e8ea9edda1705a78aae7af45e54485f3fe0460664c1d9e4a"
+ },
+ "writing-plans": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "a6c67c1900064347c2a329990dd3c555657c51c3ec53b259a08aa01a2c26139a"
+ },
+ "orchestration": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "cd1b364bf35781bad06bf75ab1766afa8d6cec69cb2060529691d89871a2098a"
+ },
+ "pptx": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "d11d1c5e9f8cf7cdfebeda2c1ef73299bee612e2d16eff90513b7aa2f1bc4d31"
+ },
+ "seo-audit": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "cc06b656a518e421086ebd33657e46974e0375663a331b161ec9ac56711bb7cd"
+ },
+ "copywriting": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "998a87bc8350b6641f3bf2fb6965a999914027a67ceab1701f495721b33e876c"
+ },
+ "neon-postgres": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "a3f0062ff69e968c322beacfdfc1191dbb30ea30f01f4adacc5d541d1fae3da1"
+ },
+ "review-animations": {
+  "user_invocable_false": false,
+  "disable_model_invocation": true,
+  "sha256": "5b2a8f5986d19514abef830d178ead49f21d254fee137b45aa0ca7cad4f80efd"
+ },
+ "computer-use": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "2839933fd35216845461466403e6061488005f6df57126d0cd0f769ea45753f3"
+ },
+ "higgsfield-generate": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "626deb96bed3515d9dc293f49ff181fbf1f10caac43303d5416d0eb34eaceade"
+ },
+ "wind-mcp-skill": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "76061d8c744a7c032ff98d41b2ab8fcb8bf9392568404ab7e05074c7a189bd93"
+ },
+ "animation-vocabulary": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "bd473dae686e85f6f82799aa7ef2aa11d357ddf3625de000fd8f28ea747562a4"
+ },
+ "playwright-cli": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "d35ea2029ba6ecae932e3de46444472861f5095ec9093207f494834e741e104d"
+ },
+ "higgsfield-product-photoshoot": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "64cc428ff1dfb22c367f9769201cddd74b7fe5cab9e1c5af1d482f9cc85ad152"
+ },
+ "higgsfield-soul-id": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "19f8af383fa3479d911a0d1bcdc0f219c5179d7d8942f37045a9d397d0e64573"
+ },
+ "firebase-basics": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "7e476278221b18837651ba27a98c5e0202ddace4dc59b9ab76155fbcb257725c"
+ },
+ "neon": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "79c864cd25c4aa7598da0d5e42ed3ce1eca83009afcdd6641812285f5bd8e779"
+ },
+ "firebase-auth-basics": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "88e7464018a56c9169e760aa880461db1916babe5241a19bf4bd22099d686540"
+ },
+ "firebase-hosting-basics": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "2c501342012d9d5f244e43c3a73cff3b1062c3aef29cd851e68f82c5d5a1d778"
+ },
+ "marketing-psychology": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "f02e4fe8370d629d914032f5f8a3a988e2825e5bdae08215cf08cfb4ff07de73"
+ },
+ "archify": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "66dfe99b35d7ceff95bcbdb00f138b8b3ec8094629acf69efba1eeda1013aaf3"
+ },
+ "convex-quickstart": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "88ea2469b786f0daa817c8e0b13ae255dc736d3b47aeddc75cba3d4bf692950f"
+ },
+ "convex-create-component": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "71c4781ec586f9dde750de892242848a3981f4b0003ec5d362c2921eb27017e9"
+ },
+ "remotion-render": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "d22c08963284446ea94fbe97df8ca4654863e23a969ffdfbf6c6042a1560e45f"
+ },
+ "better-auth-best-practices": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "e2ce334c4c3275dea7e91b2af1325679e3abe09000452a54d7d62f2c27c19c89"
+ },
+ "remotion-create": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "48f7d98134f0157247d5569af4dd7d1c1d9fb9638dfb7b40865e346647761bab"
+ },
+ "anti-detect-browser": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "3ff1640b067fc89021f68f79bfcaa36425b323bce10f2cbebd5a4edb40822cef"
+ },
+ "cloudflare": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "9395cad1896072876b3592478fddbb1d42a5712589353504c78674384cb5b444"
+ },
+ "wrangler": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "e7b27421bcee8db46ccb4149a8c0626ba4b887cbe8ef1ed86b7fc860d4cb63b4"
+ },
+ "convex": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "35608f235686f602c8aee455a168c16b8df4e857fbfee634e14deaa72dee15eb"
+ },
+ "workers-best-practices": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "b508c86ff0e42207af3babfefd9b4d6e86575a3590e044b13717bf47b584636f"
+ },
+ "stripe-best-practices": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "ee6688a1dad25e5528ebaa6f8db5f755a2c1cd2127cd1d1c1bffce61ad3d6c6e"
+ },
+ "review-loop": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "9a777a89a0a1c9900e981879a852ebccc89b157e20f76561ce293143361fe8dd"
+ },
+ "playwright-best-practices": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "5cc781c28740f7e04fd124147591a0550ea2d7b85a70e5866484e3ef40e4370a"
+ },
+ "obsidian-markdown": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "ef409b7eeda59e2e0c5cdead334dcc997dc9459d689859b3a610ffa9af5cabc5"
+ },
+ "shadcn": {
+  "user_invocable_false": true,
+  "disable_model_invocation": false,
+  "sha256": "e39871b64b1ba34f1aefc50ffea1b162c5a0750bc42a9ba54282ac503534429b"
+ },
+ "typescript-advanced-types": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "696b98d5a6f90a7d0f0797c6e24590deda11c42dab620c3f93c1d2befccbd7bb"
+ },
+ "notion-api": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "11722c2177e036ae0b4fc25668563ad3d511bfe44790deef3685ab7f18265fb3"
+ },
+ "solana-dev": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "4bd75e5a98186a596188222bba768cd96ca6fb1cbcb32a11b3b4d32231522772"
+ },
+ "gws-gmail": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "12e77c043afdf9e90f6e2e373e89f44a14f1629f0766a5fa088b15d29e133eee"
+ },
+ "turborepo": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "a4210fc48a14f1b9612d82f25af20d109d2b971cca9fb4204c5aa0476c0ae166"
+ },
+ "browser-mcp-agent": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "8c7471c8631155df5e6edf35478a680f4b67db7ff81c6ce1456550b4d6b35989"
+ },
+ "multi-account-isolation": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "398ac51e75c973ead92d706d1eae25838f136ecfec58ff36a0c9eebd922ac860"
+ },
+ "landing-page-conversion-audit": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "44d51deb4ae78d97bc936657950f1d9a2e0c9ee474e7d6954f6ffd96710908c6"
+ },
+ "sales-funnel-blueprint": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "7e707402ad99f8fd1daec56e78ca3d10fb795747e06295e98733bb42ccbbb7a3"
+ },
+ "server-side-conversion-tracking": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "55d76bcdc9ca60689e070d32cdad5e6984a0d5d369d5e0fa02cc810cab2274d9"
+ },
+ "browser-fingerprint-audit": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "74870170a48b737573b3e242d46fce72e5ac9b957e79841f7e5fa850386dd309"
+ },
+ "playwright-stealth-verify": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "105a5be8a3a0cf66bc867ea0999ce1359b4f1e248c09784ac4f51e2070c34983"
+ },
+ "fingerprint-ci-gate": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "ae6f4fe0b032a27e0c5ad80508b4def5be074266c6b70a62293540aa1ce5f93f"
+ },
+ "gws-drive": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "fb18d640b9df3253db573a35e06aca52ede07b2f01f831c8469646e24f59a310"
+ },
+ "defuddle": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "e1555c49c81394144ff88ebfeed1da90f0099dce7c479ab0cce7701d47d4ed34"
+ },
+ "ponytail": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "46a57e26a2632e7fa40eae6a3cf3011ccdc4d8db19d8f8617907d6b5deef055e"
+ },
+ "upgrade-stripe": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "35993de66c5d33d37341b6afcf34bb3f1f45525203b2436f87450ebcf7e5349c"
+ },
+ "tailwind-design-system": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "dc3723ef5db351ff9bd725f121789a4b30c7e73109c6546d7787d7563474d4d6"
+ },
+ "stripe-projects": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "d51584728ec0be1b0fb2cb77f120380982c50e942e63c4cc2bbbc86cce1ee8c8"
+ },
+ "expo-dev-client": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "00b86987b666a760b4bf35a70f9f0bfd938dcdc518fcae0a7053b15e0da23161"
+ },
+ "agentix-ceo": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "4e45fb4f15243ae1ff58ae9ca80584de920a2b409ee1aa67c7059bfe459426d8"
+ },
+ "mastra": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "e76f27461211a7ca2395b3c610c0101dcf86a8fe45cde61299a22227928980cc"
+ },
+ "lark-openapi-explorer": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "ae89debc3f807f9947831b4525e1c118bc14544877c14c14aaa47298b1e863b4"
+ },
+ "lark-task": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "f69e7f68432723240710a90ad390d97f777f5511868743d00a8478180a6a0d7a"
+ },
+ "brand-guidelines": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "a0aa0a21ebf9e8511a045cc234bc839adc2b6706db727add14e9855f242e11a7"
+ },
+ "requesting-code-review": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "cfcee1b06774e7c0517f1e09be1a11f2d5680257072723e709ddbcf7e08b795a"
+ },
+ "docx": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "ffd82aa6a49674c09914941639e5945694e19c67e43d8459704391e13b4ace25"
+ },
+ "design-taste-frontend-v1": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "b7d3715c36c93ce1ac44c60586dd7974a2c2c094aff06c3a72b736314e60d8ac"
+ },
+ "cold-email": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "738defee286ec2bf30f5429d1f967d41f55a25e6fbb161d73e0b8d18f7b79462"
+ },
+ "video-outpainting": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "32df19cf7c35c2e03896b44204de8df968d31843d38f8b54f81d61bdc6b44fdf"
+ },
+ "firebase-firestore": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "ef7f436546f82fb454f4c4453cdadd4f5cfca7c471bb6670fe1244048207aca6"
+ },
+ "elevenlabs-music-generation": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "7930bdec5628dc80708184031231f98faadff2b223b65c4a68ae72330cb30954"
+ },
+ "find-animation-opportunities": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "59646cf5cde38dd146334ae791501d335d049a57c436c0eb8b895b68db96fb70"
+ },
+ "scaffold-exercises": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "de28db7a0954db55c11ba1e3cc0fd4c037bf0f5cb8313cb292e319bcce47f424"
+ },
+ "writing-for-agents": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "1c0c4ebf2d221917591144f0ced4fe46dae13301cb3d6d93fc88ecf0dda6aed2"
+ },
+ "verification-before-completion": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "2befe7fc55bcadaa3d97dd9e8efeb633d2561c0ebe74c5a8b17c4d9e7e4520b3"
+ },
+ "remotion-interactivity": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "cbf4336f60cfc5470da3f2ad1b9aaf27d11a1a8ee867131f32357a5a82090fa9"
+ },
+ "wayfinder": {
+  "user_invocable_false": false,
+  "disable_model_invocation": true,
+  "sha256": "3362fa360948f8526e88ebe8184f5402f9b5f4d9dced2ba0ed2721f64ae3de5a"
+ },
+ "churn-prevention": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "68c9b49e1b3e2c437ae1eb7d960c4594fe7f2895b77f7f093c2a8f14af27eeeb"
+ },
+ "higgsfield-youtube-thumbnail": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "a38b6e98fc556007d3db920cf9e5f2b853cc6a14ba6768dcee36b02a06660ad0"
+ },
+ "handoff": {
+  "user_invocable_false": false,
+  "disable_model_invocation": true,
+  "sha256": "96f8045f01f569daa3737150d918b7201ccd090905fb10cefedd326e4001f551"
+ },
+ "analytics": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "990c4bc720d590e217427d0b8b3155f5f1f6b121613a917b15b2b8dc1f7e47d0"
+ },
+ "azure-upgrade": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "21f3093d09b4f21a4d24cf0b6e7a076d193c4f9e84baeabc2ff3b4d70716dc52"
+ },
+ "prisma-mongodb-upgrade": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "64b0191a2fc037caf36dc2a5951546a2d913f1da742c797ad18f8e29652772f6"
+ },
+ "azure-resource-visualizer": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "4cfc726f7130708d832ec3fb0e0fe3e814c55e1e78fa2e9130e6c0125f7c9333"
+ },
+ "lark-calendar": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "d5d0ebd02b68d90e3bd8c1992a05696c3ad9900f4dcb2c86ff95edeac840355f"
+ },
+ "self-hosted-funnel-launch": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "ef6d73f961b4bd3e63ae02dc13af121a03f8696a821c193f75af5d36f37ff9e1"
+ },
+ "deploy-to-vercel": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "0df550ec39472fa202d752754fddf797b5b7a605cf63aaad06462aea577aa6a7"
+ },
+ "webapp-testing": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "8bc27790f6e6dfc2bfa6692326d4518baacf6a31dcc646d963c729adad2f7e34"
+ },
+ "controlnet-pose": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "2fc4ec562c1fd5e50e4a09ba560126fb64cafa82c02a0a5f1616ed94d6a13c1a"
+ },
+ "prisma-postgres": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "7855eb607091e28bf8e1b4e62e98e17a78143fb8008534ead0d6108932a9a3ea"
+ },
+ "mcp-builder": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "57231330040e18e033dad8b2fdc0340a6185034c32b42b7d3448f444a6af6cf2"
+ },
+ "caveman-help": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "3effbc5b8943900c7500da48f73ab9de297866705c105df1b324d4337dec3a9a"
+ },
+ "xcode-project-setup": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "be7e5bc48383dc9cedf09382a2d11757f8d3ca499e106dfe2360269af62763fd"
+ },
+ "dispatching-parallel-agents": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "1968923066f3b707eb01d1992cdf4c42284c3855f70253b9cd5000ff45fca13c"
+ },
+ "gpt-image-edit": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "ba2fd291bd9fd18dc8a5faaf57952ff5038a5f18384a4c248e9bbac8ebc293a4"
+ },
+ "subagent-driven-development": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "8dde5589ee083fb4999106d116f01c8fdaf3116a8a9813fdedeb80329de49046"
+ },
+ "git-guardrails-claude-code": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "12d335b84bcf984b213b527014262233f27ffa1eb807db466832ff711b96f41f"
+ },
+ "cloudflare-email-service": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "badef8a71cc0f7196b5e4049706c10d6546aab85b230e581eedbfa5fde2c2e3e"
+ },
+ "lark-okr": {
+  "user_invocable_false": false,
+  "disable_model_invocation": false,
+  "sha256": "898fc8886d9c095a1a690e6606860d6073b76d374a0343993ab632813d81b187"
+ }
+}

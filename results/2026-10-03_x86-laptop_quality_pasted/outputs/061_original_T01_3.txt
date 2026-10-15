@@ -1,0 +1,174 @@
+```html
+<!-- Reading this as: ceramics studio landing for design-conscious locals and visitors, with a calm, tactile sans language, leaning toward native CSS with terracotta on cool slate. Dials 7/6/3. Placeholder photos via picsum seeds; swap in real studio photography. Testimonials are sample copy. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Argila | Ceramics studio in Lisbon</title>
+<meta name="color-scheme" content="light dark">
+<style>
+:root{--bg:#eceff1;--surface:#dde2e6;--ink:#1d2328;--muted:#4a555e;--line:#c3cbd1;--accent:#b04b2a;--on-accent:#fff;--r:10px;
+  --ease:cubic-bezier(.16,1,.3,1);--font:"Avenir Next","Segoe UI Variable","Segoe UI",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#13181c;--surface:#1c2328;--ink:#e7eaec;--muted:#a3adb5;--line:#2f383f;--accent:#e07a54;--on-accent:#13181c}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:1rem/1.6 var(--font);-webkit-font-smoothing:antialiased}
+img{display:block;width:100%;height:100%;object-fit:cover}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)}
+h1,h2,h3{letter-spacing:-.03em;line-height:1.05;font-weight:650}
+h2{font-size:clamp(1.9rem,3.6vw,3rem);max-width:18ch}
+.lede{color:var(--muted);max-width:60ch;margin-top:1rem}
+.btn{display:inline-block;white-space:nowrap;text-decoration:none;font-weight:600;padding:.8rem 1.4rem;border-radius:var(--r);
+  background:var(--accent);color:var(--on-accent);border:1px solid var(--accent);transition:transform .3s var(--ease),filter .2s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.btn:active{transform:translateY(1px) scale(.98)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+section{padding:clamp(4rem,9vw,8rem) 0}
+nav{height:68px;display:flex;align-items:center;justify-content:space-between;gap:1.5rem}
+nav .links{display:flex;gap:2rem;margin-left:auto}
+nav .links a{text-decoration:none;color:var(--muted)}
+nav .links a:hover{color:var(--ink)}
+.brand{font-weight:700;letter-spacing:-.04em;font-size:1.4rem;text-decoration:none}
+.hero{min-height:calc(100dvh - 68px);padding:1.5rem 0 3rem;display:grid;align-items:center}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,5rem);align-items:center}
+.hero h1{font-size:clamp(2.4rem,5.2vw,4.6rem);max-width:12ch}
+.hero .cta{display:flex;gap:.75rem;margin-top:2rem;flex-wrap:wrap}
+.hero figure{aspect-ratio:4/5;max-height:72dvh;border-radius:var(--r);overflow:hidden;margin-left:auto;width:100%}
+.make .grid{display:grid;grid-template-columns:1.5fr 1fr;grid-template-rows:auto auto;gap:1.5rem;margin-top:3rem}
+.make figure:first-child{grid-row:span 2;display:flex;flex-direction:column}
+.make figure{display:flex;flex-direction:column;gap:.75rem}
+.make .ph{overflow:hidden;border-radius:var(--r);flex:1;min-height:220px;background:var(--surface)}
+.make img{transition:transform .8s var(--ease)}
+.make figure:hover img{transform:scale(1.04)}
+figcaption{color:var(--muted);font-size:.95rem}
+figcaption b{color:var(--ink)}
+.voices{background:var(--surface)}
+.voices .grid{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(2rem,5vw,5rem);margin-top:3rem}
+blockquote{font-size:1.15rem;line-height:1.5}
+blockquote.big{font-size:clamp(1.6rem,3vw,2.5rem);letter-spacing:-.02em;line-height:1.2;font-weight:560}
+blockquote footer{margin-top:1rem;font-size:.9rem;color:var(--muted)}
+blockquote footer b{display:block;color:var(--ink)}
+.stack{display:grid;gap:2rem;align-content:start}
+.stack blockquote+blockquote{padding-top:2rem;border-top:1px solid var(--line)}
+.price-list{margin-top:3rem;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:1.1fr 1.6fr auto auto;gap:1.5rem;align-items:center;padding:1.75rem 0;border-bottom:1px solid var(--line)}
+.row h3{font-size:1.5rem}
+.row p{color:var(--muted)}
+.row .amt{font-size:1.8rem;font-weight:650;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.row .amt small{display:block;font-size:.8rem;font-weight:400;color:var(--muted);letter-spacing:0}
+footer.site{border-top:1px solid var(--line);padding:4rem 0 2.5rem}
+footer.site .cols{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:2rem}
+footer.site h4{font-size:.9rem;color:var(--muted);font-weight:500;margin-bottom:.5rem}
+footer.site p,footer.site a{font-size:.95rem}
+footer.site .fine{margin-top:3rem;color:var(--muted);font-size:.85rem}
+@media (prefers-reduced-motion:no-preference){
+  .js .rv{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:calc(var(--i,0)*90ms)}
+  .js .rv.in{opacity:1;transform:none}
+}
+@media (max-width:767px){
+  nav .links{display:none}
+  nav .btn{margin-left:auto}
+  .hero{min-height:auto}
+  .hero .wrap,.make .grid,.voices .grid,footer.site .cols{grid-template-columns:1fr}
+  .hero figure{max-height:none;aspect-ratio:4/3}
+  .make figure:first-child{grid-row:auto}
+  .row{grid-template-columns:1fr auto;gap:.75rem 1rem}
+  .row p{grid-column:1/-1;order:3}
+  .row .btn{grid-column:1/-1;text-align:center;order:4}
+}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <nav aria-label="Main">
+    <a class="brand" href="#">Argila</a>
+    <div class="links"><a href="#make">What we make</a><a href="#voices">Students</a><a href="#pricing">Pricing</a></div>
+    <a class="btn" href="#pricing">Book a workshop</a>
+  </nav>
+</header>
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="rv">
+        <h1>Hand-thrown stoneware for everyday tables</h1>
+        <p class="lede">Small-batch bowls, cups and vases thrown and glazed in our Lisbon studio. Join a workshop and make your own.</p>
+        <div class="cta"><a class="btn" href="#pricing">Book a workshop</a><a class="btn ghost" href="#make">See what we make</a></div>
+      </div>
+      <figure class="rv" style="--i:2"><img src="https://picsum.photos/seed/argila-studio-wheel/900/1125" width="900" height="1125" alt="Hands shaping a stoneware bowl on a potter's wheel"></figure>
+    </div>
+  </section>
+
+  <section class="make" id="make">
+    <div class="wrap">
+      <h2 class="rv">Made on the wheel, finished by hand</h2>
+      <p class="lede rv">Everything we sell is thrown, trimmed and glazed in the studio, then fired in our own kilns.</p>
+      <div class="grid">
+        <figure class="rv"><div class="ph"><img src="https://picsum.photos/seed/argila-tableware-set/960/900" width="960" height="900" loading="lazy" alt="Stack of matte stoneware plates and bowls"></div>
+          <figcaption><b>Tableware.</b> Plates, bowls and cups in matte glazes, dishwasher safe.</figcaption></figure>
+        <figure class="rv" style="--i:1"><div class="ph"><img src="https://picsum.photos/seed/argila-vases-shelf/640/560" width="640" height="560" loading="lazy" alt="Three tall vases on a wooden shelf"></div>
+          <figcaption><b>Vases.</b> Tall forms with a slim neck, one of each glaze.</figcaption></figure>
+        <figure class="rv" style="--i:2"><div class="ph"><img src="https://picsum.photos/seed/argila-tiles-wall/640/560" width="640" height="560" loading="lazy" alt="Hand-glazed ceramic tiles in blue and white"></div>
+          <figcaption><b>Tiles.</b> Hand-glazed, made to order for kitchens and splashbacks.</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="voices" id="voices">
+    <div class="wrap">
+      <h2 class="rv">What our students say</h2>
+      <div class="grid">
+        <blockquote class="big rv">“I walked in never having touched clay and left with a bowl I still eat from every morning.”
+          <footer><b>Marta Figueiredo</b>Architect, Four-week course</footer></blockquote>
+        <div class="stack">
+          <blockquote class="rv" style="--i:1">“Patient teachers and a warm studio. The four weeks went by far too fast.”
+            <footer><b>Tomás Valadas</b>Sound engineer</footer></blockquote>
+          <blockquote class="rv" style="--i:2">“We booked a private evening for my sister's birthday. Everyone went home with a cup.”
+            <footer><b>Inês Cardoso</b>Primary school teacher</footer></blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="wrap">
+      <h2 class="rv">Workshop pricing</h2>
+      <p class="lede rv">Clay, glazes and firing are included. Aprons are provided.</p>
+      <div class="price-list">
+        <div class="row rv"><h3>Taster evening</h3><p>Three hours at the wheel. Make two pieces, collected after firing.</p>
+          <div class="amt">€45<small>per person</small></div><a class="btn" href="#book">Book a workshop</a></div>
+        <div class="row rv"><h3>Four-week course</h3><p>One evening a week. Learn centering, pulling, trimming and glazing.</p>
+          <div class="amt">€210<small>per person</small></div><a class="btn" href="#book">Book a workshop</a></div>
+        <div class="row rv"><h3>Private group</h3><p>An evening for up to eight friends, with a teacher and drinks.</p>
+          <div class="amt">€380<small>per group</small></div><a class="btn" href="#book">Book a workshop</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site" id="book">
+  <div class="wrap">
+    <div class="cols">
+      <div><a class="brand" href="#">Argila</a><p class="lede" style="margin-top:.5rem">Ceramics studio and school.</p></div>
+      <div><h4>Visit</h4><p>Rua do Alecrim 38<br>1200-014 Lisbon</p></div>
+      <div><h4>Hours</h4><p>Tue to Sat, 10:00-19:00<br>Workshops in the evening</p></div>
+      <div><h4>Contact</h4><p><a href="mailto:ola@argila.example">ola@argila.example</a><br>+351 21 347 0182</p></div>
+    </div>
+    <p class="fine">© 2026 Argila Cerâmica Lda.</p>
+  </div>
+</footer>
+
+<script>
+// Reveal on scroll: shows hierarchy and sequence. Skipped entirely under reduced motion.
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+  document.documentElement.classList.add('js');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.rv').forEach((el) => io.observe(el));
+}
+</script>
+</body>
+</html>
+```

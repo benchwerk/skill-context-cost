@@ -1,0 +1,107 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Packs and Tents | Ridgeline Supply</title>
+<!-- Design read: outdoor-gear category page for trip planners, clean utilitarian language, native CSS + vanilla JS, one burnt-orange accent, 6px radius throughout. Images are picsum placeholders. -->
+<style>
+:root{--bg:#f4f5f3;--panel:#fff;--ink:#1d2421;--mute:#4f5a55;--line:#d5dad6;--acc:#b8420f;--on-acc:#fff;--r:6px}
+@media (prefers-color-scheme:dark){:root{--bg:#141917;--panel:#1c2320;--ink:#eef1ee;--mute:#a9b4ae;--line:#33403a;--acc:#f08a4b;--on-acc:#1a120c}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Geist,"Segoe UI",system-ui,sans-serif}
+a,button,input,select,summary{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+nav{height:64px;border-bottom:1px solid var(--line);background:var(--panel)}
+nav div,main,footer{max-width:1280px;margin:0 auto;padding:0 24px}
+nav div{height:100%;display:flex;align-items:center;justify-content:space-between}
+nav b{font-size:1.15rem;letter-spacing:-.02em}
+nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;color:var(--mute)}
+nav a{text-decoration:none}nav a:hover{color:var(--acc)}
+header.top{padding:40px 0 24px}
+h1{font-size:clamp(2rem,4vw,3rem);letter-spacing:-.04em;line-height:1.05;margin:0 0 8px}
+header.top p{color:var(--mute);max-width:60ch;margin:0}
+.layout{display:grid;grid-template-columns:1fr;gap:32px;padding-bottom:56px}
+@media (min-width:768px){.layout{grid-template-columns:240px 1fr}}
+aside form{display:grid;gap:24px;align-content:start}
+fieldset{border:0;margin:0;padding:0;display:grid;gap:8px}
+legend{font-weight:600;margin-bottom:8px;padding:0}
+label{display:flex;gap:8px;align-items:center;cursor:pointer}
+input[type=checkbox],input[type=range]{accent-color:var(--acc)}
+input[type=range]{width:100%}
+.bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;color:var(--mute)}
+select{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:8px 12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:24px 20px;list-style:none;margin:0;padding:0}
+.grid li{display:flex;flex-direction:column;transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.grid li:hover{transform:translateY(-3px)}
+.grid img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r);background:var(--line);display:block}
+.grid h3{font-size:1rem;margin:12px 0 2px}
+.grid small{color:var(--mute)}
+.price{margin:8px 0 12px;font-weight:600}
+.add{margin-top:auto;background:var(--acc);color:var(--on-acc);border:0;border-radius:var(--r);padding:10px 14px;font-weight:600;cursor:pointer;transition:transform .15s}
+.add:active{transform:scale(.97)}
+.empty{display:none;padding:48px 24px;border:1px dashed var(--line);border-radius:var(--r);text-align:center;color:var(--mute)}
+.empty button{margin-top:12px;background:none;border:1px solid var(--acc);color:var(--acc);border-radius:var(--r);padding:8px 14px;cursor:pointer}
+.guide{border-top:1px solid var(--line);padding:48px 0 64px;display:grid;gap:12px;max-width:760px}
+.guide h2{font-size:1.75rem;letter-spacing:-.03em;margin:0}
+.guide>p{color:var(--mute);margin:0 0 8px;max-width:65ch}
+details{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:14px 18px}
+summary{cursor:pointer;font-weight:600}
+details p{margin:10px 0 0;color:var(--mute);max-width:65ch}
+footer{border-top:1px solid var(--line);padding-top:20px;padding-bottom:32px;color:var(--mute)}
+@media (prefers-reduced-motion:reduce){.grid li,.add{transition:none}.grid li:hover{transform:none}}
+</style>
+</head>
+<body>
+<nav><div><b>Ridgeline Supply</b><ul><li><a href="#">Packs</a></li><li><a href="#">Shelter</a></li><li><a href="#">Sleep</a></li><li><a href="#">Cook</a></li></ul></div></nav>
+<main>
+<header class="top"><h1>Packs and tents</h1><p>Shelter and carry systems for overnight trips, tested on wet ridgelines and long approaches.</p></header>
+<div class="layout">
+<aside><form id="f" aria-label="Filters">
+<fieldset><legend>Category</legend>
+<label><input type="checkbox" name="cat" value="Backpack" checked> Backpacks</label>
+<label><input type="checkbox" name="cat" value="Tent" checked> Tents</label>
+<label><input type="checkbox" name="cat" value="Sleeping bag" checked> Sleeping bags</label></fieldset>
+<fieldset><legend>Max price: <output id="pv">$600</output></legend>
+<label for="pr" class="sr" style="position:absolute;left:-9999px">Maximum price</label>
+<input id="pr" type="range" min="100" max="600" step="10" value="600"></fieldset>
+<fieldset><legend>Weight</legend><label><input type="checkbox" id="light"> Under 2 kg only</label></fieldset>
+</form></aside>
+<section aria-live="polite">
+<div class="bar"><span id="count"></span><label>Sort <select id="sort"><option value="n">Featured</option><option value="a">Price, low to high</option><option value="d">Price, high to low</option></select></label></div>
+<ul class="grid" id="grid"></ul>
+<div class="empty" id="empty"><p>No gear matches those filters.</p><button type="button" id="reset">Reset filters</button></div>
+</section>
+</div>
+<section class="guide" aria-labelledby="g">
+<h2 id="g">How to choose</h2>
+<p>Three questions narrow most trips down to two or three options.</p>
+<details open><summary>How big a pack?</summary><p>Choose 35 to 45 liters for a weekend, 55 to 65 liters for five days or more. A snug pack with a good hip belt beats a larger one you fill out of habit.</p></details>
+<details><summary>How many seasons?</summary><p>Three-season tents handle rain and light wind. Pick a four-season shelter only if you expect snow load or sustained storms above the treeline.</p></details>
+<details><summary>What does the sleeping bag rating mean?</summary><p>The comfort rating is the lowest temperature at which most people sleep warm. Buy a bag rated 5 degrees C below the coldest night you expect.</p></details>
+</section>
+</main>
+<footer>Free returns within 60 days. Ridgeline Supply, 214 Alder Street.</footer>
+<script>
+const P=[["Tamsin 45 Pack","Backpack",189,1.6],["Corrie 65 Pack","Backpack",259,2.1],["Vesper 35 Daypack","Backpack",129,1.1],["Harrow 55 Pack","Backpack",219,1.9],
+["Kestrel 2 Tent","Tent",449,1.7],["Bramble 3 Tent","Tent",379,2.9],["Skerry 1 Bivy Tent","Tent",299,1.2],["Orrin 4 Season Tent","Tent",589,3.4],
+["Quill 0C Bag","Sleeping bag",199,1.0],["Fenwick -10C Bag","Sleeping bag",349,1.8],["Linnet 5C Bag","Sleeping bag",149,0.9],["Drumlin Down Bag","Sleeping bag",429,1.3]];
+const $=s=>document.querySelector(s),grid=$("#grid"),f=$("#f");
+function render(){
+  const cats=[...f.querySelectorAll("[name=cat]:checked")].map(e=>e.value),max=+$("#pr").value,lt=$("#light").checked,s=$("#sort").value;
+  $("#pv").textContent="$"+max;
+  let l=P.filter(p=>cats.includes(p[1])&&p[2]<=max&&(!lt||p[3]<2));
+  if(s==="a")l.sort((a,b)=>a[2]-b[2]);if(s==="d")l.sort((a,b)=>b[2]-a[2]);
+  grid.innerHTML=l.map(p=>`<li><img loading="lazy" src="https://picsum.photos/seed/ridgeline-${p[0].toLowerCase().replace(/\W+/g,"-")}/420/315" alt="${p[0]}"><h3>${p[0]}</h3><small>${p[1]}, ${p[3]} kg</small><div class="price">$${p[2]}</div><button class="add" type="button">Add to cart</button></li>`).join("");
+  $("#count").textContent=l.length+" of "+P.length+" products";
+  $("#empty").style.display=l.length?"none":"block";
+}
+f.addEventListener("input",render);$("#sort").addEventListener("change",render);
+$("#reset").onclick=()=>{f.reset();render()};
+grid.addEventListener("click",e=>{const b=e.target.closest(".add");if(b){b.textContent="Added";setTimeout(()=>b.textContent="Add to cart",1200)}});
+render();
+</script>
+</body>
+</html>
+```

@@ -1,0 +1,148 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Larkspur Dental · Today</title>
+<!-- Design read: small-clinic ops dashboard for front-desk staff, calm trust-first language, native CSS, no external assets.
+     DESIGN_VARIANCE 4 / MOTION_INTENSITY 2 / VISUAL_DENSITY 5. Type is the system stack; there are no icons, so nothing is hand-drawn. -->
+<style>
+:root{--bg:#f4f1ea;--card:#fffdf8;--ink:#1f2a27;--mute:#6b766f;--line:#e2ddd0;--accent:#1f6f5c;--soft:#dcebe4;--warn:#b4572d;--warn-soft:#f5e1d6;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#141a18;--card:#1c2421;--ink:#ecefe9;--mute:#98a39c;--line:#2d3833;--accent:#6fcfb2;--soft:#23372f;--warn:#e89a70;--warn-soft:#3a2a21;color-scheme:dark}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.45 "Segoe UI",system-ui,-apple-system,sans-serif;min-height:100dvh;padding:clamp(16px,3vw,40px)}
+.wrap{max-width:1180px;margin:0 auto;display:grid;gap:20px}
+header{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap}
+h1{font:600 clamp(26px,4vw,38px)/1.1 Georgia,"Times New Roman",serif;letter-spacing:-.01em}
+.sub{color:var(--mute);margin-top:4px}
+.btn{font:inherit;font-weight:600;background:var(--accent);color:var(--bg);border:0;border-radius:8px;padding:10px 16px;cursor:pointer;transition:transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn:focus-visible,.row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.stats{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:14px}
+.stat,.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.stat:first-child{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+.stat:first-child .lbl{color:inherit;opacity:.8}
+.lbl{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.num{font:600 38px/1.1 Georgia,serif;margin-top:8px;font-variant-numeric:tabular-nums}
+.stat small{display:block;margin-top:4px;opacity:.8;font-size:13px}
+.main{display:grid;grid-template-columns:1.7fr 1fr;gap:20px;align-items:start}
+h2{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);font-weight:600;margin-bottom:12px}
+.row{display:grid;grid-template-columns:72px 1fr auto;gap:14px;align-items:center;padding:12px 8px;border-top:1px solid var(--line);cursor:pointer;border-radius:8px;transition:background .15s}
+.row:first-of-type{border-top:0}
+.row:hover{background:var(--bg)}
+.time{font-variant-numeric:tabular-nums;font-weight:600}
+.who b{display:block;font-weight:600}
+.who span{color:var(--mute);font-size:13px}
+.tag{font-size:12px;font-weight:600;padding:4px 10px;border-radius:99px;background:var(--bg);color:var(--mute);white-space:nowrap}
+.row.in .tag{background:var(--soft);color:var(--accent)}
+.row.late .tag{background:var(--warn-soft);color:var(--warn)}
+.row.done{opacity:.55}
+.row.done .who b{text-decoration:line-through}
+.week{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;align-items:end;height:170px;padding-top:8px}
+.day{display:grid;grid-template-rows:1fr auto auto;height:100%;text-align:center;gap:6px}
+.bar{align-self:end;background:var(--soft);border-radius:8px 8px 4px 4px;position:relative;min-height:6px;transform-origin:bottom;animation:grow .6s cubic-bezier(.2,.8,.2,1) both}
+.day.today .bar{background:var(--accent)}
+.day b{font-variant-numeric:tabular-nums}
+.day span{font-size:12px;color:var(--mute)}
+.day.today span{color:var(--accent);font-weight:700}
+.note{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);color:var(--mute);font-size:13px}
+@keyframes grow{from{transform:scaleY(.05)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (max-width:860px){.stats{grid-template-columns:1fr 1fr}.stat:first-child{grid-column:1/-1}.main{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Larkspur Dental</h1>
+      <p class="sub" id="date"></p>
+    </div>
+    <button class="btn" id="next">Check in next patient</button>
+  </header>
+
+  <section class="stats" aria-label="Summary">
+    <div class="stat"><div class="lbl">Appointments today</div><div class="num" id="s-total">0</div><small id="s-left"></small></div>
+    <div class="stat"><div class="lbl">Seen</div><div class="num" id="s-done">0</div></div>
+    <div class="stat"><div class="lbl">Chair usage</div><div class="num" id="s-use">0%</div></div>
+    <div class="stat"><div class="lbl">Open slots</div><div class="num" id="s-open">0</div></div>
+  </section>
+
+  <div class="main">
+    <section class="panel" aria-label="Today's schedule">
+      <h2>Today's schedule · select a row to advance status</h2>
+      <div id="list"></div>
+    </section>
+    <section class="panel" aria-label="Week overview">
+      <h2>This week</h2>
+      <div class="week" id="week"></div>
+      <p class="note">Mon and Thu run busiest. Fri has room for emergency visits.</p>
+    </section>
+  </div>
+</div>
+
+<script>
+const SLOTS = 12; // bookable chair slots per day
+const appts = [
+  {t:"08:30", n:"Maren Okafor",    p:"Cleaning and exam",   s:"done"},
+  {t:"09:15", n:"Daniel Whitfield", p:"Crown fitting",       s:"done"},
+  {t:"10:00", n:"Priya Raman",      p:"Root canal, step 2",  s:"in"},
+  {t:"11:00", n:"Tomas Eriksen",    p:"Filling, lower left", s:"late"},
+  {t:"11:45", n:"Hana Yoshida",     p:"Whitening consult",   s:"wait"},
+  {t:"13:30", n:"Leo Castellanos",  p:"Child checkup",       s:"wait"},
+  {t:"14:15", n:"Ruth Adeyemi",     p:"Extraction review",   s:"wait"},
+  {t:"15:30", n:"Samir Haddad",     p:"Cleaning and exam",   s:"wait"}
+];
+const week = [["Mon",11],["Tue",8],["Wed",9],["Thu",11],["Fri",5]];
+const labels = {done:"Seen", in:"In chair", late:"Running late", wait:"Waiting"};
+const order = ["wait","in","done"];
+const $ = id => document.getElementById(id);
+
+$("date").textContent = new Date().toLocaleDateString(undefined,{weekday:"long",month:"long",day:"numeric"}) + " · Dr. Alvarez, Dr. Lim";
+
+function render(){
+  $("list").innerHTML = appts.map((a,i) => `
+    <div class="row ${a.s}" tabindex="0" role="button" data-i="${i}" aria-label="${a.n}, ${labels[a.s]}">
+      <span class="time">${a.t}</span>
+      <div class="who"><b>${a.n}</b><span>${a.p}</span></div>
+      <span class="tag">${labels[a.s]}</span>
+    </div>`).join("");
+  const done = appts.filter(a => a.s === "done").length;
+  $("s-total").textContent = appts.length;
+  $("s-left").textContent = (appts.length - done) + " still to come";
+  $("s-done").textContent = done;
+  $("s-use").textContent = Math.round(appts.length / SLOTS * 100) + "%";
+  $("s-open").textContent = SLOTS - appts.length;
+}
+
+function advance(i){
+  const a = appts[i];
+  a.s = order[Math.min(order.indexOf(a.s === "late" ? "wait" : a.s) + 1, 2)];
+  render();
+}
+
+$("list").addEventListener("click", e => { const r = e.target.closest(".row"); if (r) advance(+r.dataset.i); });
+$("list").addEventListener("keydown", e => {
+  if (e.key !== "Enter" && e.key !== " ") return;
+  const r = e.target.closest(".row"); if (!r) return;
+  e.preventDefault(); const i = +r.dataset.i; advance(i);
+  $("list").querySelector(`[data-i="${i}"]`).focus();
+});
+$("next").addEventListener("click", () => {
+  const i = appts.findIndex(a => a.s === "wait" || a.s === "late");
+  if (i > -1) { appts[i].s = "in"; render(); }
+});
+
+const today = (new Date().getDay() + 6) % 7; // Mon = 0
+$("week").innerHTML = week.map(([d,c],i) => `
+  <div class="day ${i === Math.min(today,4) ? "today" : ""}">
+    <div class="bar" style="height:${c / SLOTS * 100}%;animation-delay:${i * 60}ms"></div>
+    <b>${c}</b><span>${d}</span>
+  </div>`).join("");
+
+render();
+</script>
+</body>
+</html>
+```

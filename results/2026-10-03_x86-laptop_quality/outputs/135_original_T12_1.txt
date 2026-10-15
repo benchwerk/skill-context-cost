@@ -1,0 +1,135 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Corvid Coffee: order beans, track the bag</title>
+<!-- Design read: consumer app announcement for coffee drinkers, premium-consumer language, terracotta + slate, native CSS, no libraries.
+     Dials: variance 7, motion 6, density 3. Images are picsum placeholders: swap for real roastery photography. -->
+<style>
+:root{--bg:#eceff2;--surface:#e1e5ea;--ink:#171b20;--muted:#4b535d;--line:#c8cfd7;--accent:#c2512d;--accent-text:#a8431f;--on-accent:#fff;--r:14px;--ease:cubic-bezier(.16,1,.3,1)}
+@media (prefers-color-scheme:dark){:root{--bg:#14181c;--surface:#1d2227;--ink:#e9ecef;--muted:#a3acb5;--line:#2c333a;--accent-text:#ee8a63}}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 1.0625rem/1.6 "Avenir Next","Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%;height:100%;object-fit:cover}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+nav{height:68px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-weight:800;font-size:1.25rem;letter-spacing:-.04em}
+.btn{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;padding:14px 26px;border-radius:var(--r);font-weight:600;transition:transform .3s var(--ease),background .3s}
+.btn-main{background:var(--accent);color:var(--on-accent)}
+.btn-main:hover{transform:translateY(-2px);background:#a8431f}
+.btn-ghost{border:1.5px solid var(--ink)}
+.btn-ghost:hover{background:var(--surface)}
+.btn:active{transform:scale(.98)}
+.btn:focus-visible,a:focus-visible{outline:3px solid var(--accent-text);outline-offset:3px}
+.hero{min-height:calc(100dvh - 68px);display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding:16px 0 48px}
+h1{font-size:clamp(2.5rem,5.6vw,4.75rem);line-height:1;letter-spacing:-.045em;font-weight:800;max-width:11ch}
+h1 em{font-style:italic;color:var(--accent-text);padding-bottom:.08em;display:inline-block;line-height:1.1}
+.lede{margin:24px 0 32px;color:var(--muted);max-width:38ch}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.photo{border-radius:var(--r);overflow:hidden;background:var(--surface)}
+.hero .photo{aspect-ratio:4/5;margin-top:48px;box-shadow:0 30px 60px -30px rgb(40 22 14 / .45)}
+section{padding:88px 0}
+h2{font-size:clamp(1.9rem,3.6vw,3rem);letter-spacing:-.04em;line-height:1.05;font-weight:800;max-width:16ch}
+.sub{color:var(--muted);margin-top:14px;max-width:52ch}
+.bento{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:260px 260px;gap:16px;margin-top:44px}
+.cell{border-radius:var(--r);overflow:hidden;padding:28px;display:flex;flex-direction:column;justify-content:flex-end;background:var(--surface)}
+.cell h3{font-size:1.4rem;letter-spacing:-.03em;line-height:1.15}
+.cell p{margin-top:8px;color:var(--muted);font-size:1rem}
+.big{grid-row:span 2;position:relative;padding:0;justify-content:flex-start}
+.big .photo{flex:1;border-radius:0}
+.big div.t{padding:24px 28px 28px}
+.tint{background:var(--accent);color:var(--on-accent)}
+.tint p{color:rgb(255 255 255 / .92)}
+.wide{grid-column:span 2;flex-direction:row;padding:0;gap:0}
+.wide>div{padding:28px;display:flex;flex-direction:column;justify-content:flex-end;flex:1}
+.wide .photo{flex:1;border-radius:0}
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(240px,28%);gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:44px 0 12px}
+.rail article{scroll-snap-align:start}
+.rail .photo{aspect-ratio:1}
+.rail h3{margin-top:14px;font-size:1.15rem;letter-spacing:-.02em}
+.rail p{color:var(--muted);font-size:.95rem}
+.final{border-top:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end}
+footer{padding:0 0 40px;color:var(--muted);font-size:.9rem;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.in{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.in.show{opacity:1;transform:none}
+@media (prefers-reduced-motion:no-preference){.hero>*{animation:rise .9s var(--ease) both}.hero .photo{animation-delay:.15s}}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}}
+@media (prefers-reduced-motion:reduce){.in{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+@media (max-width:767px){
+.hero,.final{grid-template-columns:1fr}.hero{min-height:0;gap:32px}.hero .photo{margin-top:0;aspect-ratio:4/3}
+.bento{grid-template-columns:1fr;grid-template-rows:none}.big,.wide{grid-column:auto;grid-row:auto}.big .photo{min-height:260px}
+.wide{flex-direction:column}.wide .photo{min-height:200px}.cell{min-height:200px}
+.rail{grid-auto-columns:78%}section{padding:56px 0}.wrap{padding:0 16px}}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <nav aria-label="Main">
+    <a class="brand" href="#top">Corvid</a>
+    <a class="btn btn-main" href="#get">Get the app</a>
+  </nav>
+</header>
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <h1>Fresh roasted beans, <em>tracked</em> to your door.</h1>
+      <p class="lede">The Corvid app lets you order beans from our roastery and watch your bag arrive.</p>
+      <div class="row">
+        <a class="btn btn-main" href="#get">Get the app</a>
+        <a class="btn btn-ghost" href="#features">See how it works</a>
+      </div>
+    </div>
+    <div class="photo"><img src="https://picsum.photos/seed/corvid-coffee-pour-over/800/1000" alt="Coffee being poured over freshly ground beans" width="800" height="1000" fetchpriority="high"></div>
+  </div>
+
+  <section id="features" class="wrap">
+    <h2 class="in">Order in seconds. Follow every mile.</h2>
+    <p class="sub in">Pick a roast and a grind, set how often you drink it, and the app handles the rest.</p>
+    <div class="bento">
+      <article class="cell big in">
+        <div class="photo"><img src="https://picsum.photos/seed/corvid-roasting-drum/900/700" alt="Green beans tumbling in a roasting drum" width="900" height="700" loading="lazy"></div>
+        <div class="t"><h3>Roasted the day you order</h3><p>We start the drum after your order lands, so the bag leaves with a roast date from this week.</p></div>
+      </article>
+      <article class="cell tint in"><h3>Live delivery tracking</h3><p>See the courier, the stop count and a delivery window that narrows as they get close.</p></article>
+      <article class="cell in"><h3>Reorder in one tap</h3><p>Running low? Repeat your last bag from the home screen.</p></article>
+      <article class="cell wide in">
+        <div><h3>Notes before you buy</h3><p>Every roast lists flavor notes, origin and the best brew method, so you can choose without guessing.</p></div>
+        <div class="photo"><img src="https://picsum.photos/seed/corvid-cupping-table/700/400" alt="Cupping bowls lined up on a table" width="700" height="400" loading="lazy"></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <h2 class="in">On the roasting schedule now</h2>
+    <div class="rail" tabindex="0" aria-label="Current roasts">
+      <article class="in"><div class="photo"><img src="https://picsum.photos/seed/corvid-guji-bag/500/500" alt="Bag of Ethiopia Guji beans" width="500" height="500" loading="lazy"></div><h3>Ethiopia Guji</h3><p>Peach, jasmine, black tea. $19.50</p></article>
+      <article class="in"><div class="photo"><img src="https://picsum.photos/seed/corvid-huila-bag/500/500" alt="Bag of Colombia Huila beans" width="500" height="500" loading="lazy"></div><h3>Colombia Huila</h3><p>Red apple, panela, cocoa. $17.00</p></article>
+      <article class="in"><div class="photo"><img src="https://picsum.photos/seed/corvid-sidama-bag/500/500" alt="Bag of Kenya Nyeri beans" width="500" height="500" loading="lazy"></div><h3>Kenya Nyeri</h3><p>Blackcurrant, grapefruit, brown sugar. $21.00</p></article>
+      <article class="in"><div class="photo"><img src="https://picsum.photos/seed/corvid-night-bag/500/500" alt="Bag of Corvid Night espresso blend" width="500" height="500" loading="lazy"></div><h3>Corvid Night</h3><p>Dark chocolate, toasted hazelnut. $16.00</p></article>
+    </div>
+  </section>
+
+  <section id="get" class="wrap final">
+    <div><h2 class="in">Your next bag is a tap away.</h2><p class="sub in">Free on iPhone and Android. Your first delivery ships free.</p></div>
+    <a class="btn btn-main in" href="#top">Get the app</a>
+  </section>
+</main>
+<footer class="wrap"><span>Corvid Coffee Roasters</span><span>Roasted in small batches, shipped within 48 hours.</span></footer>
+<script>
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.in').forEach((el, i) => {
+  el.style.transitionDelay = (i % 4) * 70 + 'ms';
+  io.observe(el);
+});
+</script>
+</body>
+</html>
+```

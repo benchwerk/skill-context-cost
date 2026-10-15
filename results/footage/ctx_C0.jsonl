@@ -1,0 +1,35 @@
+{"cmd": 0, "t": 0.306, "line": "config C0, model claude-sonnet-5-5[1m], 0 skills in the project"}
+{"cmd": 0, "t": 1.328, "line": "## Context Usage"}
+{"cmd": 0, "t": 1.328, "line": ""}
+{"cmd": 0, "t": 1.328, "line": "**Model:** claude-sonnet-5-5[1m]  "}
+{"cmd": 0, "t": 1.328, "line": "**Tokens:** 17.5k / 1m (2%)"}
+{"cmd": 0, "t": 1.328, "line": ""}
+{"cmd": 0, "t": 1.328, "line": "### Estimated usage by category"}
+{"cmd": 0, "t": 1.328, "line": ""}
+{"cmd": 0, "t": 1.328, "line": "| Category | Tokens | Percentage |"}
+{"cmd": 0, "t": 1.328, "line": "|----------|--------|------------|"}
+{"cmd": 0, "t": 1.328, "line": "| System prompt | 1.9k | 0.2% |"}
+{"cmd": 0, "t": 1.334, "line": "| System tools | 13.8k | 1.4% |"}
+{"cmd": 0, "t": 1.334, "line": "| System tools (deferred) | 15k | 1.5% |"}
+{"cmd": 0, "t": 1.334, "line": "| Skills | 1.8k | 0.2% |"}
+{"cmd": 0, "t": 1.334, "line": "| Free space | 949.5k | 95.0% |"}
+{"cmd": 0, "t": 1.334, "line": "| Autocompact buffer | 33k | 3.3% |"}
+{"cmd": 0, "t": 1.334, "line": ""}
+{"cmd": 0, "t": 1.334, "line": "### Skills"}
+{"cmd": 0, "t": 1.334, "line": ""}
+{"cmd": 0, "t": 1.334, "line": "| Skill | Source | Tokens |"}
+{"cmd": 0, "t": 1.334, "line": "|-------|--------|--------|"}
+{"cmd": 0, "t": 1.334, "line": "| dataviz | Built-in | ~480 |"}
+{"cmd": 0, "t": 1.334, "line": "| update-config | Built-in | ~240 |"}
+{"cmd": 0, "t": 1.334, "line": "| keybindings-help | Built-in | ~80 |"}
+{"cmd": 0, "t": 1.334, "line": "| code-review | Built-in | ~170 |"}
+{"cmd": 0, "t": 1.334, "line": "| simplify | Built-in | ~60 |"}
+{"cmd": 0, "t": 1.334, "line": "| fewer-permission-prompts | Built-in | ~60 |"}
+{"cmd": 0, "t": 1.334, "line": "| loop | Built-in | ~120 |"}
+{"cmd": 0, "t": 1.334, "line": "| claude-api | Built-in | ~360 |"}
+{"cmd": 0, "t": 1.334, "line": "| workflow-authoring | Built-in | ~80 |"}
+{"cmd": 0, "t": 1.334, "line": "| run | Built-in | ~120 |"}
+{"cmd": 0, "t": 1.334, "line": "| init | Built-in | ~20 |"}
+{"cmd": 0, "t": 1.334, "line": "| security-review | Built-in | ~30 |"}
+{"cmd": 0, "t": 1.334, "line": ""}
+{"cmd": 0, "exit": 0, "t": 1.339}

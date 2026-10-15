@@ -1,0 +1,133 @@
+```html
+<!-- Design Read: pricing page for small engineering teams, devtool-calm language, native CSS with one emerald accent, system font stack, light and dark via prefers-color-scheme. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tailrun pricing</title>
+<style>
+:root{--bg:#f3f4f2;--panel:#e9ebe8;--ink:#1d2421;--mute:#56615b;--line:#d3d8d4;--acc:#1d7357;--on-acc:#f3f6f4;--r:10px;color-scheme:light dark}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1412;--panel:#161d1a;--ink:#e3e8e5;--mute:#9aa6a0;--line:#26302c;--acc:#5fd3ac;--on-acc:#0c1411}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 ui-sans-serif,system-ui,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+nav{height:64px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+nav b{font-size:1.15rem;letter-spacing:-.03em}
+nav a,.btn{color:inherit;text-decoration:none}
+nav .links{display:flex;gap:24px;font-size:.95rem;color:var(--mute)}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+header.hero{padding:64px 0 32px;display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:end}
+h1{font-size:clamp(2rem,4.6vw,3.5rem);line-height:1.05;letter-spacing:-.04em;margin:0;max-width:16ch}
+.hero p{color:var(--mute);margin:0;max-width:44ch}
+.toggle{display:inline-flex;border:1px solid var(--line);border-radius:var(--r);padding:4px;margin:24px 0 20px;background:var(--panel)}
+.toggle button{font:inherit;font-size:.9rem;border:0;background:none;color:var(--mute);padding:6px 16px;border-radius:calc(var(--r) - 4px);cursor:pointer;transition:background .25s,color .25s}
+.toggle button[aria-pressed=true]{background:var(--acc);color:var(--on-acc)}
+.plans{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:16px;align-items:stretch}
+.plan{padding:28px;border:1px solid var(--line);border-radius:var(--r);display:flex;flex-direction:column;gap:14px;transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.plan:hover{transform:translateY(-3px)}
+.plan.feat{background:var(--panel);border-color:var(--acc);padding-block:40px}
+.plan h2{margin:0;font-size:1.1rem}
+.plan p{margin:0;color:var(--mute);font-size:.95rem}
+.price{font-size:2.6rem;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.price small{font-size:.9rem;color:var(--mute);letter-spacing:0}
+.plan ul{margin:0;padding:0;list-style:none;display:grid;gap:8px;font-size:.95rem;flex:1}
+.plan li::before{content:"\2713";color:var(--acc);font-weight:700;margin-right:10px}
+.btn{display:block;text-align:center;padding:12px 18px;border-radius:var(--r);border:1px solid var(--ink);font-weight:600;transition:transform .15s}
+.btn:active{transform:scale(.98)}
+.feat .btn{background:var(--acc);border-color:var(--acc);color:var(--on-acc)}
+section{padding:72px 0 0}
+h3{font-size:1.7rem;letter-spacing:-.03em;margin:0 0 20px}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r)}
+table{width:100%;border-collapse:collapse;min-width:620px;font-size:.95rem}
+th,td{padding:12px 20px;text-align:left}
+thead th{background:var(--panel);font-weight:600}
+td:not(:first-child),th:not(:first-child){text-align:center}
+tbody th{font-weight:400}
+tr.grp th{padding-top:24px;font-weight:700;font-size:.85rem;color:var(--acc);border-bottom:1px solid var(--line)}
+.yes{color:var(--acc);font-weight:700}
+.no{color:var(--mute)}
+.faq{max-width:760px}
+details{border-bottom:1px solid var(--line);padding:16px 0}
+summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::after{content:"+";color:var(--acc);font-size:1.2rem;line-height:1}
+details[open] summary::after{content:"-"}
+details p{margin:10px 0 0;color:var(--mute);max-width:62ch}
+footer{margin-top:80px;padding:28px 0;border-top:1px solid var(--line);color:var(--mute);font-size:.9rem}
+@media (prefers-reduced-motion:no-preference){.plan{animation:rise .7s cubic-bezier(.16,1,.3,1) backwards}.plan:nth-child(2){animation-delay:.08s}.plan:nth-child(3){animation-delay:.16s}}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}}
+@media (max-width:767px){header.hero,.plans{grid-template-columns:1fr}.plan.feat{padding-block:28px}nav .links a:not(:last-child){display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav><b>Tailrun</b><div class="links"><a href="#compare">Compare</a><a href="#faq">FAQ</a><a href="#">Sign in</a></div></nav>
+  <header class="hero">
+    <h1>Search every log line without a platform team.</h1>
+    <p>Tailrun ingests, indexes and queries logs for teams of 2 to 30 engineers. Pay for volume, not seats.</p>
+  </header>
+  <div class="toggle" role="group" aria-label="Billing period">
+    <button type="button" data-p="month" aria-pressed="true">Monthly</button>
+    <button type="button" data-p="year" aria-pressed="false">Yearly, 2 months free</button>
+  </div>
+  <main class="plans">
+    <article class="plan">
+      <h2>Solo</h2><p>For side projects and a single service.</p>
+      <div class="price">$0<small> /month</small></div>
+      <ul><li>2 GB ingest per month</li><li>3 days retention</li><li>1 user</li></ul>
+      <a class="btn" href="#">Create account</a>
+    </article>
+    <article class="plan feat">
+      <h2>Team</h2><p>For a product team shipping weekly.</p>
+      <div class="price"><span data-m="39" data-y="32">$39</span><small> /month</small></div>
+      <ul><li>50 GB ingest per month</li><li>30 days retention</li><li>Unlimited users</li><li>Saved queries and alerts</li><li>Slack and PagerDuty routing</li></ul>
+      <a class="btn" href="#">Start trial</a>
+    </article>
+    <article class="plan">
+      <h2>Scale</h2><p>For many services and audit needs.</p>
+      <div class="price"><span data-m="149" data-y="124">$149</span><small> /month</small></div>
+      <ul><li>500 GB ingest per month</li><li>1 year retention</li><li>SSO and audit log</li></ul>
+      <a class="btn" href="#">Contact sales</a>
+    </article>
+  </main>
+
+  <section id="compare">
+    <h3>Compare plans</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>Feature</th><th>Solo</th><th>Team</th><th>Scale</th></tr></thead>
+      <tbody>
+        <tr class="grp"><th colspan="4">Volume</th></tr>
+        <tr><th>Ingest per month</th><td>2 GB</td><td>50 GB</td><td>500 GB</td></tr>
+        <tr><th>Retention</th><td>3 days</td><td>30 days</td><td>1 year</td></tr>
+        <tr><th>Overage per extra GB</th><td class="no">Blocked</td><td>$0.60</td><td>$0.35</td></tr>
+        <tr class="grp"><th colspan="4">Workflow</th></tr>
+        <tr><th>Saved queries</th><td class="no">3</td><td>Unlimited</td><td>Unlimited</td></tr>
+        <tr><th>Alert rules</th><td class="no">-</td><td class="yes">&#10003;</td><td class="yes">&#10003;</td></tr>
+        <tr><th>Live tail</th><td class="yes">&#10003;</td><td class="yes">&#10003;</td><td class="yes">&#10003;</td></tr>
+        <tr class="grp"><th colspan="4">Security</th></tr>
+        <tr><th>SSO (SAML)</th><td class="no">-</td><td class="no">-</td><td class="yes">&#10003;</td></tr>
+        <tr><th>Audit log</th><td class="no">-</td><td class="no">-</td><td class="yes">&#10003;</td></tr>
+        <tr><th>Support</th><td>Community</td><td>Email, 1 day</td><td>Shared channel</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section id="faq" class="faq">
+    <h3>Questions</h3>
+    <details><summary>What counts as ingest?</summary><p>The uncompressed size of log lines accepted by our endpoint. Dropped or filtered lines do not count.</p></details>
+    <details><summary>What happens if we go over our limit?</summary><p>On Team and Scale, extra volume is billed at the overage rate. On Solo, ingest pauses until the next month and nothing is charged.</p></details>
+    <details><summary>Can we send logs from our own agent?</summary><p>Yes. Tailrun accepts OpenTelemetry, syslog and plain HTTP, so Vector, Fluent Bit and the OTel Collector work as they are.</p></details>
+    <details><summary>Can we export our data?</summary><p>Any query result can be exported as JSON or CSV, and Scale plans can archive to your own S3 bucket.</p></details>
+  </section>
+  <footer>&copy; 2026 Tailrun Labs. Prices in USD, billed per workspace.</footer>
+</div>
+<script>
+const btns=document.querySelectorAll(".toggle button"),prices=document.querySelectorAll("[data-m]");
+btns.forEach(b=>b.addEventListener("click",()=>{
+  btns.forEach(x=>x.setAttribute("aria-pressed",x===b));
+  prices.forEach(p=>{p.textContent="$"+p.dataset[b.dataset.p==="year"?"y":"m"]});
+}));
+</script>
+</body>
+</html>
+```

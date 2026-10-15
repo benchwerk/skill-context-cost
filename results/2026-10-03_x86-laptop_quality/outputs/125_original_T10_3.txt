@@ -1,0 +1,149 @@
+```html
+<!-- Reading this as: event page for working designers, with a clean grotesque language, leaning toward native CSS + restrained motion. Dials 7 / 5 / 4. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gridline Conference 2027</title>
+<style>
+:root{--bg:#f4f5f7;--fg:#14161c;--mut:#4a4f5c;--line:#d5d8df;--acc:#2f4bff;--on:#fff;--r:4px;
+--f:"Helvetica Neue","Segoe UI",Arial,sans-serif}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1116;--fg:#eceef3;--mut:#a3a9b8;--line:#272b36;--acc:#8da0ff;--on:#0f1116}}
+*{box-sizing:border-box;margin:0}
+body{font:16px/1.6 var(--f);background:var(--bg);color:var(--fg)}
+img{display:block;width:100%;height:100%;object-fit:cover;border-radius:var(--r)}
+a{color:inherit}
+.w{max-width:1280px;margin:0 auto;padding:0 24px}
+section{padding:96px 0}
+h1,h2,h3{letter-spacing:-.03em;line-height:1.05}
+h1{font-size:clamp(2.5rem,5.6vw,4.75rem);max-width:12ch}
+h2{font-size:clamp(1.9rem,3.4vw,2.9rem);margin-bottom:40px}
+p{color:var(--mut);max-width:62ch}
+nav{position:sticky;top:0;z-index:10;height:64px;background:var(--bg);border-bottom:1px solid var(--line)}
+nav .w{display:flex;align-items:center;justify-content:space-between;height:100%}
+nav b{letter-spacing:-.02em}
+nav div{display:flex;gap:28px;font-size:.92rem}
+nav a{text-decoration:none;color:var(--mut)}nav a:hover{color:var(--fg)}
+.btn{display:inline-block;white-space:nowrap;padding:14px 26px;border:1px solid var(--acc);border-radius:var(--r);background:var(--acc);color:var(--on);font:600 1rem var(--f);text-decoration:none;cursor:pointer;transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(1px) scale(.98)}
+.btn.o{background:transparent;color:var(--fg);border-color:var(--fg)}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center;min-height:calc(100dvh - 64px);padding:48px 0}
+.hero p{margin:24px 0 32px;font-size:1.15rem}
+.hero .img{aspect-ratio:4/5;max-height:72dvh}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.sp{display:grid;grid-template-columns:2fr 1fr 1fr;grid-auto-rows:minmax(0,auto);gap:24px}
+.sp article:first-child{grid-row:span 2}
+.sp .img{aspect-ratio:1/1;margin-bottom:14px}
+.sp article:first-child .img{aspect-ratio:4/4.3}
+.sp h3{font-size:1.2rem;letter-spacing:-.01em}
+.tabs{display:flex;gap:8px;margin-bottom:32px}
+.tabs button{padding:10px 20px;border:1px solid var(--line);border-radius:var(--r);background:none;color:var(--fg);font:500 1rem var(--f);cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.sch{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 56px}
+.sch[hidden]{display:none}
+.sch div{display:grid;grid-template-columns:90px 1fr;padding:18px 0;border-top:1px solid var(--line)}
+.sch time{font-weight:600;color:var(--acc)}
+.sch strong{display:block;font-size:1.1rem;letter-spacing:-.01em}
+.sch span{color:var(--mut);font-size:.92rem}
+.venue{display:grid;grid-template-columns:1fr 1.5fr;gap:56px;align-items:end}
+.venue .img{aspect-ratio:16/10}
+.venue dl{margin:28px 0;display:grid;grid-template-columns:auto 1fr;gap:8px 24px}
+.venue dt{font-weight:600}.venue dd{color:var(--mut)}
+.tk{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:24px;align-items:stretch}
+.tk article{display:flex;flex-direction:column;gap:14px;padding:28px;border:1px solid var(--line);border-radius:var(--r)}
+.tk .f{background:var(--acc);border-color:var(--acc);color:var(--on)}
+.tk .f p,.tk .f li{color:var(--on)}
+.tk .f .btn{background:var(--on);color:var(--acc);border-color:var(--on)}
+.tk h3{font-size:1rem;font-weight:600;letter-spacing:0}
+.tk .p{font-size:2.6rem;font-weight:700;letter-spacing:-.04em}
+.tk ul{list-style:none;padding:0;color:var(--mut);flex:1}
+.tk li{padding:3px 0}
+.tk .btn{text-align:center}
+footer{border-top:1px solid var(--line);padding:32px 0;color:var(--mut);font-size:.9rem}
+footer .w{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+@media(prefers-reduced-motion:no-preference){
+.hero>*{animation:up .8s cubic-bezier(.16,1,.3,1) both}.hero>.img{animation-delay:.12s}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+@keyframes up{from{opacity:0;transform:translateY(24px)}}}
+@media(max-width:767px){
+section{padding:64px 0}.hero,.sp,.sch,.venue,.tk{grid-template-columns:1fr}
+.hero{min-height:0;gap:32px}.sp article:first-child{grid-row:auto}nav div{gap:16px}nav a:nth-child(n+3){display:none}}
+</style>
+</head>
+<body>
+<nav><div class="w"><b>Gridline 2027</b><div><a href="#speakers">Speakers</a><a href="#schedule">Schedule</a><a href="#venue">Venue</a><a href="#tickets">Tickets</a></div></div></nav>
+<main>
+<header class="w hero">
+  <div>
+    <h1>Two days of design, in person.</h1>
+    <p>Twelve talks, four workshops and one long lunch table in Rotterdam, 12 and 13 March 2027.</p>
+    <div class="cta"><a class="btn" href="#tickets">Get tickets</a><a class="btn o" href="#schedule">See the schedule</a></div>
+  </div>
+  <div class="img"><img src="https://picsum.photos/seed/gridline-conference-stage/900/1100" alt="Audience seated in a bright conference hall facing a stage"></div>
+</header>
+
+<section id="speakers"><div class="w">
+  <h2>Speakers</h2>
+  <div class="sp">
+    <article class="rv"><div class="img"><img src="https://picsum.photos/seed/imara-okonkwo-portrait/800/860" alt="Portrait of Imara Okonkwo"></div><h3>Imara Okonkwo</h3><p>Head of design systems, Veldt Mobility. On shipping one system across nine products.</p></article>
+    <article class="rv"><div class="img"><img src="https://picsum.photos/seed/tobias-wennerstrom-portrait/500/500" alt="Portrait of Tobias Wennerström"></div><h3>Tobias Wennerström</h3><p>Type designer, Studio Halm.</p></article>
+    <article class="rv"><div class="img"><img src="https://picsum.photos/seed/mei-lin-castellanos-portrait/500/500" alt="Portrait of Mei-Lin Castellanos"></div><h3>Mei-Lin Castellanos</h3><p>Research lead, Northfold Health.</p></article>
+    <article class="rv"><div class="img"><img src="https://picsum.photos/seed/rafael-duarte-portrait/500/500" alt="Portrait of Rafael Duarte"></div><h3>Rafael Duarte</h3><p>Motion director, Parallel Office.</p></article>
+    <article class="rv"><div class="img"><img src="https://picsum.photos/seed/anneke-vos-portrait/500/500" alt="Portrait of Anneke Vos"></div><h3>Anneke Vos</h3><p>Principal designer, City of Rotterdam.</p></article>
+  </div>
+</div></section>
+
+<section id="schedule"><div class="w">
+  <h2>Schedule</h2>
+  <div class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-d="d1">Friday 12 March</button>
+    <button role="tab" aria-selected="false" data-d="d2">Saturday 13 March</button>
+  </div>
+  <div class="sch" id="d1">
+    <div><time>09:30</time><p><strong>Opening: what we still get wrong</strong><span>Anneke Vos</span></p></div>
+    <div><time>10:30</time><p><strong>One system, nine products</strong><span>Imara Okonkwo</span></p></div>
+    <div><time>12:30</time><p><strong>Long lunch table</strong><span>Hall floor</span></p></div>
+    <div><time>14:00</time><p><strong>Drawing letters for small screens</strong><span>Tobias Wennerström</span></p></div>
+    <div><time>16:00</time><p><strong>Workshop: audit your own tokens</strong><span>Room B</span></p></div>
+  </div>
+  <div class="sch" id="d2" hidden>
+    <div><time>10:00</time><p><strong>Interviews that change the roadmap</strong><span>Mei-Lin Castellanos</span></p></div>
+    <div><time>11:30</time><p><strong>Motion as a design material</strong><span>Rafael Duarte</span></p></div>
+    <div><time>13:00</time><p><strong>Long lunch table</strong><span>Hall floor</span></p></div>
+    <div><time>14:30</time><p><strong>Workshop: prototype with timing</strong><span>Room A</span></p></div>
+    <div><time>17:00</time><p><strong>Closing panel and drinks</strong><span>Main stage</span></p></div>
+  </div>
+</div></section>
+
+<section id="venue"><div class="w venue">
+  <div>
+    <h2>Venue</h2>
+    <p>Halden Hall is a converted grain warehouse with a 600-seat main stage and two workshop rooms.</p>
+    <dl><dt>Address</dt><dd>41 Quay Street, Rotterdam</dd><dt>Doors</dt><dd>08:45 both days</dd><dt>Access</dt><dd>Step-free, 6 minutes from Centraal</dd></dl>
+    <a class="btn o" href="https://maps.google.com/?q=Rotterdam+Quay+Street">Open map</a>
+  </div>
+  <div class="img rv"><img src="https://picsum.photos/seed/rotterdam-warehouse-hall/1200/750" alt="Exterior of a brick warehouse beside a harbour quay"></div>
+</div></section>
+
+<section id="tickets"><div class="w">
+  <h2>Tickets</h2>
+  <div class="tk">
+    <article class="f rv"><h3>Studio pass</h3><div class="p">€480</div><ul><li>Both days, all talks</li><li>Choice of two workshops</li><li>Lunch and Saturday drinks</li><li>Talk recordings for a year</li></ul><a class="btn" href="#tickets">Select pass</a></article>
+    <article class="rv"><h3>Student</h3><div class="p">€190</div><ul><li>Both days, all talks</li><li>Valid student ID required</li></ul><a class="btn o" href="#tickets">Select pass</a></article>
+    <article class="rv"><h3>Team of five</h3><div class="p">€1,980</div><ul><li>Five Studio passes</li><li>Reserved front-row block</li></ul><a class="btn o" href="#tickets">Select pass</a></article>
+  </div>
+</div></section>
+</main>
+<footer><div class="w"><span>Gridline Conference, Rotterdam</span><a href="mailto:hello@gridline.example">hello@gridline.example</a></div></footer>
+<script>
+const tabs=[...document.querySelectorAll('[role=tab]')];
+tabs.forEach(t=>t.onclick=()=>tabs.forEach(o=>{const on=o===t;o.setAttribute('aria-selected',on);document.getElementById(o.dataset.d).hidden=!on}));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.2});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
+```

@@ -1,0 +1,162 @@
+```html
+<!DOCTYPE html>
+<!-- Reading this as: consumer mobile sign-up for language learners, with a warm editorial-meets-playful language, leaning toward native CSS, system fonts, and restrained motion. Dials: VARIANCE 7 / MOTION 5 / DENSITY 3. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Parlo - Start learning</title>
+<style>
+  :root {
+    --paper: #f6f1e7; --ink: #1d2a24; --muted: #66726b; --line: #d9d1bf;
+    --moss: #1f5c45; --moss-d: #174634; --sun: #f2a33a; --err: #b3361f;
+    --serif: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { font: 16px/1.5 var(--sans); color: var(--ink); background: var(--paper); min-height: 100dvh; display: grid; justify-items: center; }
+  main { width: 100%; max-width: 440px; min-height: 100dvh; padding: 24px 20px calc(24px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; }
+  .brand { font: italic 700 1.35rem var(--serif); color: var(--moss); letter-spacing: -.01em; }
+  .progress { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 20px 0 8px; list-style: none; padding: 0; }
+  .progress li { height: 5px; border-radius: 3px; background: var(--line); transition: background .4s; }
+  .progress li.done { background: var(--moss); }
+  .progress li.now { background: var(--sun); }
+  .stepno { font-size: .78rem; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
+  form { flex: 1; display: flex; flex-direction: column; }
+  section { display: none; flex: 1; flex-direction: column; animation: rise .45s cubic-bezier(.2,.8,.2,1); }
+  section.on { display: flex; }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+  h1 { font: 700 clamp(2rem, 9vw, 2.6rem)/1.05 var(--serif); letter-spacing: -.025em; margin: 10px 0 8px; max-width: 12ch; }
+  .lede { color: var(--muted); margin-bottom: 24px; max-width: 34ch; }
+  .field { display: grid; gap: 6px; margin-bottom: 16px; }
+  label, legend { font-weight: 600; font-size: .9rem; }
+  input[type=email], input[type=password], input[type=text] { font: inherit; padding: 14px; min-height: 52px; border: 1.5px solid var(--line); border-radius: 12px; background: #fffdf8; color: inherit; }
+  input:focus-visible, button:focus-visible, .card:has(input:focus-visible) { outline: 3px solid var(--sun); outline-offset: 2px; }
+  .err { color: var(--err); font-size: .85rem; min-height: 1.2em; }
+  fieldset { border: 0; padding: 0; display: grid; gap: 10px; }
+  .card { position: relative; display: flex; align-items: center; gap: 14px; padding: 14px 16px; min-height: 64px; border: 1.5px solid var(--line); border-radius: 14px; background: #fffdf8; cursor: pointer; transition: transform .2s, border-color .2s, background .2s; }
+  .card:active { transform: scale(.98); }
+  .card input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+  .card:has(input:checked) { border-color: var(--moss); background: #e8f1ea; box-shadow: 4px 4px 0 var(--moss); }
+  .glyph { flex: none; width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; font: 700 .9rem var(--serif); background: var(--ink); color: var(--paper); }
+  .card:nth-child(even) .glyph { background: var(--sun); color: var(--ink); }
+  .card b { display: block; line-height: 1.2; }
+  .card small { color: var(--muted); }
+  .goal b { font: 700 1.6rem/1 var(--serif); min-width: 3ch; }
+  .tag { margin-left: auto; font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; background: var(--sun); padding: 3px 8px; border-radius: 99px; }
+  .actions { margin-top: auto; padding-top: 24px; display: flex; gap: 10px; }
+  button { font: 600 1rem var(--sans); min-height: 54px; border-radius: 14px; border: 0; cursor: pointer; }
+  .next { flex: 1; background: var(--moss); color: #fff; transition: background .2s, transform .15s; }
+  .next:hover { background: var(--moss-d); }
+  .next:active { transform: translateY(1px); }
+  .back { padding: 0 20px; background: transparent; border: 1.5px solid var(--line); color: var(--ink); }
+  .back[hidden] { display: none; }
+  .fine { font-size: .8rem; color: var(--muted); text-align: center; margin-top: 14px; }
+  .done-card { margin: auto 0; text-align: center; }
+  .done-card h1 { margin-inline: auto; }
+  .done-card .lede { margin-inline: auto; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="brand">Parlo</div>
+  <ol class="progress" aria-hidden="true"><li></li><li></li><li></li></ol>
+  <p class="stepno" id="stepno" aria-live="polite"></p>
+
+  <form id="flow" novalidate>
+    <section data-title="Create your account">
+      <h1 tabindex="-1">Make it yours.</h1>
+      <p class="lede">A free account saves your streak across every device.</p>
+      <div class="field"><label for="email">Email</label>
+        <input id="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required>
+        <span class="err" id="e-email" role="alert"></span></div>
+      <div class="field"><label for="pw">Password</label>
+        <input id="pw" type="password" autocomplete="new-password" minlength="8" placeholder="At least 8 characters" required>
+        <span class="err" id="e-pw" role="alert"></span></div>
+    </section>
+
+    <section data-title="Choose a language">
+      <h1 tabindex="-1">What are we speaking?</h1>
+      <p class="lede">Pick one. You can add more once you find your rhythm.</p>
+      <fieldset><legend class="sr" style="position:absolute;left:-9999px">Language</legend>
+        <label class="card"><input type="radio" name="lang" value="Spanish" checked><span class="glyph">Es</span><span><b>Spanish</b><small>Most popular for beginners</small></span><span class="tag">Popular</span></label>
+        <label class="card"><input type="radio" name="lang" value="Japanese"><span class="glyph">Ja</span><span><b>Japanese</b><small>Kana first, then kanji</small></span></label>
+        <label class="card"><input type="radio" name="lang" value="French"><span class="glyph">Fr</span><span><b>French</b><small>Sound natural from day one</small></span></label>
+        <label class="card"><input type="radio" name="lang" value="Korean"><span class="glyph">Ko</span><span><b>Korean</b><small>Hangul in a single session</small></span></label>
+      </fieldset>
+    </section>
+
+    <section data-title="Set a daily goal">
+      <h1 tabindex="-1">How much each day?</h1>
+      <p class="lede">Small and steady beats big and rare. Change it any time.</p>
+      <fieldset><legend class="sr" style="position:absolute;left:-9999px">Daily goal</legend>
+        <label class="card goal"><input type="radio" name="goal" value="5"><b>5</b><span><b style="font:600 1rem var(--sans)">minutes</b><small>Casual</small></span></label>
+        <label class="card goal"><input type="radio" name="goal" value="10" checked><b>10</b><span><b style="font:600 1rem var(--sans)">minutes</b><small>Regular</small></span><span class="tag">Suggested</span></label>
+        <label class="card goal"><input type="radio" name="goal" value="15"><b>15</b><span><b style="font:600 1rem var(--sans)">minutes</b><small>Serious</small></span></label>
+        <label class="card goal"><input type="radio" name="goal" value="30"><b>30</b><span><b style="font:600 1rem var(--sans)">minutes</b><small>Intense</small></span></label>
+      </fieldset>
+    </section>
+
+    <section data-title="Done">
+      <div class="done-card">
+        <h1 tabindex="-1" id="doneH">You're in.</h1>
+        <p class="lede" id="doneP"></p>
+      </div>
+    </section>
+
+    <div class="actions" id="actions">
+      <button type="button" class="back" id="back" hidden>Back</button>
+      <button type="submit" class="next" id="next">Continue</button>
+    </div>
+    <p class="fine" id="fine">By continuing you agree to our Terms and Privacy Policy.</p>
+  </form>
+</main>
+
+<script>
+  const sections = [...document.querySelectorAll("section")];
+  const bars = [...document.querySelectorAll(".progress li")];
+  const $ = id => document.getElementById(id);
+  let step = 0;
+
+  function show(n, focus = true) {
+    step = n;
+    sections.forEach((s, i) => s.classList.toggle("on", i === n));
+    bars.forEach((b, i) => { b.className = i < n ? "done" : i === n ? "now" : ""; });
+    const last = n === sections.length - 1;
+    $("stepno").textContent = last ? "All set" : `Step ${n + 1} of 3 - ${sections[n].dataset.title}`;
+    $("back").hidden = n === 0 || last;
+    $("actions").hidden = $("fine").hidden = last;
+    $("next").textContent = n === 2 ? "Start learning" : "Continue";
+    $("fine").hidden = n !== 0;
+    if (focus) sections[n].querySelector("h1").focus({ preventScroll: true });
+    scrollTo({ top: 0 });
+  }
+
+  function validate() {
+    if (step !== 0) return true;
+    const email = $("email"), pw = $("pw");
+    const okE = email.checkValidity() && email.value.trim() !== "";
+    const okP = pw.value.length >= 8;
+    $("e-email").textContent = okE ? "" : "Enter a valid email address.";
+    $("e-pw").textContent = okP ? "" : "Use at least 8 characters.";
+    email.setAttribute("aria-invalid", !okE); pw.setAttribute("aria-invalid", !okP);
+    (okE ? pw : email).focus();
+    return okE && okP;
+  }
+
+  $("flow").addEventListener("submit", e => {
+    e.preventDefault();
+    if (!validate()) return;
+    if (step < 2) return show(step + 1);
+    const lang = document.querySelector("[name=lang]:checked").value;
+    const goal = document.querySelector("[name=goal]:checked").value;
+    $("doneP").textContent = `${goal} minutes of ${lang} a day. Your first lesson is ready when you are.`;
+    show(3);
+  });
+  $("back").addEventListener("click", () => show(step - 1));
+  show(0, false);
+</script>
+</body>
+</html>
+```

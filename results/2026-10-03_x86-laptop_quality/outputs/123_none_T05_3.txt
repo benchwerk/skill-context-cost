@@ -1,0 +1,136 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Halo75 Mechanical Keyboard</title>
+<style>
+  :root { --bg:#0f1115; --card:#181b22; --line:#2a2f3a; --text:#e8eaf0; --muted:#9aa3b2; --accent:#ff7a3d; }
+  * { box-sizing:border-box; margin:0; }
+  body { background:var(--bg); color:var(--text); font:16px/1.5 system-ui,sans-serif; }
+  header { padding:16px 24px; border-bottom:1px solid var(--line); font-weight:700; letter-spacing:.08em; }
+  header span { color:var(--accent); }
+  main { max-width:1080px; margin:0 auto; padding:32px 24px; }
+  .hero { display:grid; grid-template-columns:1.1fr 1fr; gap:40px; }
+  .stage { aspect-ratio:4/3; border-radius:14px; display:grid; place-items:center; background:var(--card); border:1px solid var(--line); }
+  .stage svg { width:88%; transition:opacity .2s; }
+  .thumbs { display:flex; gap:10px; margin-top:12px; }
+  .thumbs button { flex:1; height:64px; border-radius:10px; border:2px solid var(--line); background:var(--card); cursor:pointer; }
+  .thumbs button[aria-pressed="true"] { border-color:var(--accent); }
+  .thumbs i { display:block; height:100%; border-radius:8px; }
+  h1 { font-size:2rem; line-height:1.15; }
+  .stars { color:var(--accent); letter-spacing:2px; }
+  .muted { color:var(--muted); font-size:.9rem; }
+  .price { font-size:1.8rem; font-weight:700; margin:16px 0 8px; }
+  fieldset { border:0; padding:0; margin:16px 0; }
+  legend { font-size:.85rem; color:var(--muted); margin-bottom:8px; }
+  .opts { display:flex; gap:8px; flex-wrap:wrap; }
+  .opts label { cursor:pointer; }
+  .opts input { position:absolute; opacity:0; }
+  .opts span { display:block; padding:8px 14px; border:1px solid var(--line); border-radius:8px; }
+  .opts input:checked + span { border-color:var(--accent); background:#ff7a3d22; }
+  .opts input:focus-visible + span { outline:2px solid var(--text); }
+  .buy { display:flex; gap:10px; margin-top:20px; }
+  .buy input { width:70px; padding:12px; background:var(--card); border:1px solid var(--line); color:var(--text); border-radius:10px; font-size:1rem; }
+  .buy button { flex:1; padding:14px; border:0; border-radius:10px; background:var(--accent); color:#1a0d05; font-size:1.05rem; font-weight:700; cursor:pointer; }
+  .buy button:hover { filter:brightness(1.1); }
+  #msg { min-height:1.4em; margin-top:10px; color:var(--accent); font-size:.9rem; }
+  h2 { margin:48px 0 16px; font-size:1.3rem; }
+  .specs { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; }
+  .specs div { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; }
+  .specs dt { color:var(--muted); font-size:.8rem; text-transform:uppercase; letter-spacing:.06em; }
+  .specs dd { margin:0; font-weight:600; }
+  .summary { display:flex; gap:16px; align-items:center; margin-bottom:16px; }
+  .summary b { font-size:2.4rem; }
+  .review { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px; margin-bottom:12px; }
+  .review h3 { font-size:1rem; margin:4px 0; }
+  @media (max-width:760px) { .hero { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<header>HALO<span>75</span></header>
+<main>
+  <section class="hero">
+    <div>
+      <div class="stage" id="stage" role="img" aria-label="Keyboard photo"></div>
+      <div class="thumbs" id="thumbs"></div>
+    </div>
+    <div>
+      <p class="muted">Wireless · Hot-swappable · Gasket mount</p>
+      <h1>Halo75 Mechanical Keyboard</h1>
+      <p><span class="stars">★★★★★</span> <span class="muted">4.8 · 3 featured reviews</span></p>
+      <p class="price" id="price">$149</p>
+      <p class="muted">A 75% aluminum board with a tuned, thocky sound out of the box and up to 200 hours of battery life.</p>
+      <fieldset>
+        <legend>Switch type</legend>
+        <div class="opts">
+          <label><input type="radio" name="sw" value="Linear" data-p="149" checked><span>Linear</span></label>
+          <label><input type="radio" name="sw" value="Tactile" data-p="149"><span>Tactile</span></label>
+          <label><input type="radio" name="sw" value="Silent" data-p="159"><span>Silent +$10</span></label>
+        </div>
+      </fieldset>
+      <div class="buy">
+        <input type="number" id="qty" value="1" min="1" max="9" aria-label="Quantity">
+        <button id="buy">Add to cart</button>
+      </div>
+      <p id="msg" role="status"></p>
+    </div>
+  </section>
+
+  <h2>Key specifications</h2>
+  <dl class="specs">
+    <div><dt>Layout</dt><dd>75% · 82 keys</dd></div>
+    <div><dt>Switches</dt><dd>Hot-swap, 5-pin</dd></div>
+    <div><dt>Case</dt><dd>CNC aluminum</dd></div>
+    <div><dt>Keycaps</dt><dd>PBT double-shot</dd></div>
+    <div><dt>Connectivity</dt><dd>USB-C, BT 5.1, 2.4 GHz</dd></div>
+    <div><dt>Battery</dt><dd>4000 mAh · ~200 h</dd></div>
+    <div><dt>Polling rate</dt><dd>1000 Hz wired</dd></div>
+    <div><dt>Weight</dt><dd>1.6 kg</dd></div>
+  </dl>
+
+  <h2>Customer reviews</h2>
+  <div class="summary"><b>4.8</b><div><span class="stars">★★★★★</span><br><span class="muted">Based on 3 featured reviews</span></div></div>
+  <article class="review"><span class="stars">★★★★★</span><h3>Best typing feel I've owned</h3><p>The gasket mount is soft but not mushy, and the sound is deep without any ping. Setup took two minutes.</p><p class="muted">Maya R. · Verified buyer</p></article>
+  <article class="review"><span class="stars">★★★★★</span><h3>Battery lasts forever</h3><p>I charge it about once a month. Switching between my laptop and tablet is instant.</p><p class="muted">Devon K. · Verified buyer</p></article>
+  <article class="review"><span class="stars">★★★★☆</span><h3>Great board, heavy</h3><p>Build quality is excellent. It's hefty for travel, but it's perfect on a desk.</p><p class="muted">Sam T. · Verified buyer</p></article>
+</main>
+<script>
+  const views = [
+    { name:"Front", bg:"#ff7a3d", fill:"#2b303b" },
+    { name:"Dark", bg:"#4b5563", fill:"#12151b" },
+    { name:"Retro", bg:"#e8dcc2", fill:"#bfb08a" }
+  ];
+  const stage = document.getElementById("stage"), thumbs = document.getElementById("thumbs");
+  function board(v) {
+    let keys = "";
+    for (let r = 0; r < 5; r++) for (let c = 0; c < 15; c++)
+      keys += `<rect x="${24 + c * 24}" y="${30 + r * 24}" width="20" height="20" rx="4" fill="${v.bg}" opacity="${r % 2 ? .75 : 1}"/>`;
+    return `<svg viewBox="0 0 400 180"><rect x="8" y="10" width="384" height="150" rx="14" fill="${v.fill}"/>${keys}</svg>`;
+  }
+  function show(i) {
+    stage.innerHTML = board(views[i]);
+    stage.setAttribute("aria-label", views[i].name + " view");
+    [...thumbs.children].forEach((b, j) => b.setAttribute("aria-pressed", j === i));
+  }
+  views.forEach((v, i) => {
+    const b = document.createElement("button");
+    b.setAttribute("aria-label", v.name + " view");
+    b.innerHTML = `<i style="background:${v.fill}; border-bottom:6px solid ${v.bg}"></i>`;
+    b.onclick = () => show(i);
+    thumbs.append(b);
+  });
+  show(0);
+
+  const price = document.getElementById("price"), qty = document.getElementById("qty"), msg = document.getElementById("msg");
+  const current = () => document.querySelector("input[name=sw]:checked");
+  document.querySelectorAll("input[name=sw]").forEach(r => r.onchange = () => price.textContent = "$" + current().dataset.p);
+  document.getElementById("buy").onclick = () => {
+    const n = Math.max(1, Math.min(9, +qty.value || 1));
+    msg.textContent = `Added ${n} × Halo75 (${current().value}) — total $${n * current().dataset.p}`;
+  };
+</script>
+</body>
+</html>
+```

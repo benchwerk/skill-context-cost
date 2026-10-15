@@ -1,0 +1,172 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fennel & Ash — a neighbourhood kitchen on Alder Street</title>
+<style>
+  :root {
+    --paper: #f4ede0; --ink: #221a14; --clay: #b4472a; --moss: #4a5a3a; --line: #d9ccb6;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font: 17px/1.6 var(--sans); }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  header { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; }
+  .logo { font: italic 700 1.5rem var(--serif); text-decoration: none; }
+  .logo span { color: var(--clay); }
+  nav a { margin-left: 26px; font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; }
+  nav a:hover { color: var(--clay); }
+  .hero { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: end; padding: 56px 0 88px; }
+  h1 { font: 400 clamp(2.8rem, 7vw, 5.6rem)/.98 var(--serif); letter-spacing: -.02em; }
+  h1 em { color: var(--clay); }
+  .hero p { max-width: 44ch; margin: 26px 0 32px; font-size: 1.1rem; }
+  .btn { display: inline-block; background: var(--ink); color: var(--paper); padding: 14px 28px; border: 0;
+    font: 600 .85rem var(--sans); letter-spacing: .12em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: background .2s, transform .2s; }
+  .btn:hover { background: var(--clay); transform: translateY(-2px); }
+  .plate { aspect-ratio: 4/5; background:
+      radial-gradient(circle at 50% 44%, var(--paper) 0 24%, transparent 24.5%),
+      radial-gradient(circle at 50% 44%, var(--clay) 0 38%, transparent 38.5%),
+      radial-gradient(circle at 30% 80%, #e0a458 0 14%, transparent 14.5%), var(--moss);
+    border-radius: 200px 200px 6px 6px; position: relative; }
+  .plate::after { content: "Tonight: charred leeks, whipped ricotta, hazelnut"; position: absolute; left: 16px; right: 16px; bottom: 16px;
+    color: var(--paper); font: italic .95rem var(--serif); }
+  section { padding: 80px 0; border-top: 1px solid var(--line); }
+  h2 { font: 400 clamp(2rem, 4vw, 3rem) var(--serif); margin-bottom: 8px; }
+  .kicker { font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; color: var(--clay); font-weight: 700; }
+  .menu { display: grid; grid-template-columns: 1fr 1fr; gap: 0 72px; margin-top: 40px; }
+  .menu h3 { grid-column: 1 / -1; font: italic 400 1.3rem var(--serif); color: var(--moss); margin: 28px 0 6px; }
+  .dish { display: flex; gap: 12px; align-items: baseline; padding: 14px 0; border-bottom: 1px dotted var(--line); }
+  .dish b { font: 600 1.05rem var(--serif); }
+  .dish small { display: block; color: #6d5f52; font-size: .85rem; line-height: 1.4; }
+  .dish i { margin-left: auto; font-style: normal; font-variant-numeric: tabular-nums; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; }
+  .hours { list-style: none; padding: 0; margin-top: 28px; }
+  .hours li { display: flex; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid var(--line); }
+  .hours .today { color: var(--clay); font-weight: 700; }
+  .chef { background: var(--ink); color: var(--paper); }
+  .chef .wrap { display: grid; grid-template-columns: .6fr 1.4fr; gap: 64px; align-items: center; }
+  .portrait { aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 50% 38%, #e8c9a6 0 18%, transparent 18.5%),
+      radial-gradient(ellipse at 50% 100%, var(--clay) 0 46%, transparent 46.5%), #3a2e25; }
+  .chef blockquote { font: italic 1.5rem/1.4 var(--serif); margin: 18px 0; }
+  .chef p { color: #cdbfa9; max-width: 54ch; }
+  form { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 28px; }
+  label { display: grid; gap: 6px; font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; }
+  input, select { font: 1rem var(--sans); padding: 12px 14px; border: 1px solid var(--ink); background: transparent; color: var(--ink); border-radius: 0; }
+  input:focus, select:focus, .btn:focus-visible, a:focus-visible { outline: 3px solid var(--clay); outline-offset: 2px; }
+  .full { grid-column: 1 / -1; }
+  #note { min-height: 1.6em; font: italic 1.05rem var(--serif); color: var(--moss); }
+  footer { padding: 36px 0; border-top: 1px solid var(--line); font-size: .85rem; color: #6d5f52; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  @media (max-width: 760px) {
+    nav a:not(:last-child) { display: none; }
+    .hero, .menu, .split, .chef .wrap, form { grid-template-columns: 1fr; gap: 28px; }
+    .plate { aspect-ratio: 16/10; border-radius: 120px 120px 6px 6px; }
+    .portrait { max-width: 200px; }
+    section { padding: 56px 0; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="logo" href="#">Fennel <span>&</span> Ash</a>
+    <nav><a href="#menu">Menu</a><a href="#hours">Hours</a><a href="#chef">Chef</a><a href="#reserve">Reserve</a></nav>
+  </header>
+  <div class="hero">
+    <div>
+      <p class="kicker">Alder Street, since 2016</p>
+      <h1>Supper, cooked over <em>fire</em>, shared with neighbours.</h1>
+      <p>Thirty-two seats, one wood oven and a menu that follows the market. Come hungry, stay for the second bottle.</p>
+      <a class="btn" href="#reserve">Book a table</a>
+    </div>
+    <div class="plate" role="img" aria-label="Illustration of a plated dish"></div>
+  </div>
+</div>
+
+<section id="menu"><div class="wrap">
+  <p class="kicker">Tonight's menu</p>
+  <h2>Small plates, big appetites</h2>
+  <div class="menu">
+    <h3>To start</h3>
+    <div class="dish"><div><b>Charred leeks</b><small>whipped ricotta, hazelnut, chive oil</small></div><i>11</i></div>
+    <div class="dish"><div><b>Ember-baked flatbread</b><small>cultured butter, sea salt, thyme</small></div><i>7</i></div>
+    <div class="dish"><div><b>Beet carpaccio</b><small>pickled shallot, horseradish, rye crumb</small></div><i>12</i></div>
+    <div class="dish"><div><b>Clams in cider</b><small>fennel, smoked bacon, grilled sourdough</small></div><i>15</i></div>
+    <h3>To follow</h3>
+    <div class="dish"><div><b>Wood-fired hen</b><small>roast garlic jus, braised cabbage</small></div><i>26</i></div>
+    <div class="dish"><div><b>Hake, brown butter</b><small>white beans, capers, parsley</small></div><i>27</i></div>
+    <div class="dish"><div><b>Mushroom &amp; ash risotto</b><small>aged Gouda, leek ash, egg yolk</small></div><i>21</i></div>
+    <div class="dish"><div><b>Dry-aged hanger steak</b><small>bone marrow, watercress, chips</small></div><i>29</i></div>
+  </div>
+</div></section>
+
+<section id="hours"><div class="wrap split">
+  <div>
+    <p class="kicker">Find us</p>
+    <h2>Opening hours</h2>
+    <ul class="hours" id="hours-list">
+      <li><span>Monday</span><span>Closed</span></li>
+      <li><span>Tuesday – Thursday</span><span>17:00 – 22:00</span></li>
+      <li><span>Friday – Saturday</span><span>17:00 – 23:30</span></li>
+      <li><span>Sunday supper</span><span>13:00 – 20:00</span></li>
+    </ul>
+  </div>
+  <div>
+    <p class="kicker">Good to know</p>
+    <h2>14 Alder Street</h2>
+    <p style="margin-top:18px">Two minutes from the Marlow Road tram stop. Walk-ins are welcome at the bar, and we keep six seats back every night for neighbours who just turn up.</p>
+  </div>
+</div></section>
+
+<section id="chef" class="chef"><div class="wrap">
+  <div class="portrait" role="img" aria-label="Portrait illustration of the chef"></div>
+  <div>
+    <p class="kicker">Meet the chef</p>
+    <blockquote>“I cook what my grandmother would recognise, just with a little more smoke.”</blockquote>
+    <p>Marta Okonkwo-Reyes trained in Lyon and Lisbon before coming home to open Fennel &amp; Ash. She buys from three farms within thirty miles, bakes the bread every morning and still knows most of her regulars by their usual order.</p>
+  </div>
+</div></section>
+
+<section id="reserve"><div class="wrap" style="max-width:720px">
+  <p class="kicker">Reservations</p>
+  <h2>Save us a seat</h2>
+  <form id="rsv">
+    <label class="full">Name<input name="name" required autocomplete="name"></label>
+    <label>Date<input type="date" name="date" id="date" required></label>
+    <label>Time<select name="time"><option>17:30</option><option>18:30</option><option selected>19:30</option><option>20:30</option></select></label>
+    <label>Guests<select name="guests"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></label>
+    <label>Email<input type="email" name="email" required autocomplete="email"></label>
+    <div class="full"><button class="btn" type="submit">Request table</button></div>
+    <p class="full" id="note" role="status" aria-live="polite"></p>
+  </form>
+</div></section>
+
+<div class="wrap"><footer><span>© 2026 Fennel &amp; Ash</span><span>hello@fennelandash.example · 020 7946 0321</span></footer></div>
+
+<script>
+  const days = [6, 0, 0, 0, 0, 1, 1]; // Mon=0 .. Sun=6 → list row index
+  const rows = document.querySelectorAll("#hours-list li");
+  const dow = (new Date().getDay() + 6) % 7;
+  rows[dow === 0 ? 0 : dow <= 3 ? 1 : dow <= 5 ? 2 : 3].classList.add("today");
+  const date = document.getElementById("date");
+  date.min = new Date().toISOString().slice(0, 10);
+  document.getElementById("rsv").addEventListener("submit", e => {
+    e.preventDefault();
+    const d = new FormData(e.target);
+    if (new Date(d.get("date") + "T12:00").getDay() === 1) {
+      document.getElementById("note").textContent = "We're closed on Mondays. Please pick another evening.";
+      return;
+    }
+    document.getElementById("note").textContent =
+      `Thank you, ${d.get("name")}. A table for ${d.get("guests")} on ${d.get("date")} at ${d.get("time")} is pencilled in. Confirmation is on its way.`;
+    e.target.reset();
+  });
+</script>
+</body>
+</html>
+```

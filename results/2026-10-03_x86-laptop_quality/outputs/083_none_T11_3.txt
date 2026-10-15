@@ -1,0 +1,148 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Backpacks &amp; Packs – Ridgeline Outfitters</title>
+<style>
+  :root { --ink:#1f2a24; --muted:#5d6b63; --line:#dfe5df; --bg:#f6f7f3; --card:#fff; --accent:#2f6b4f; --accent-d:#234f3a; --sale:#b5482a; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--ink); background:var(--bg); }
+  a { color:inherit; }
+  header { background:var(--ink); color:#fff; }
+  .bar { max-width:1200px; margin:0 auto; padding:14px 20px; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; }
+  .logo { font-weight:800; letter-spacing:.04em; text-decoration:none; }
+  nav a { margin-left:18px; text-decoration:none; font-size:.9rem; opacity:.85; }
+  nav a:hover { opacity:1; }
+  main { max-width:1200px; margin:0 auto; padding:20px; }
+  .crumbs { font-size:.85rem; color:var(--muted); }
+  h1 { margin:.2em 0 .1em; font-size:2rem; }
+  .layout { display:grid; grid-template-columns:240px 1fr; gap:28px; margin-top:20px; align-items:start; }
+  aside { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px 18px; position:sticky; top:12px; }
+  aside h2 { font-size:1rem; margin:0 0 10px; display:flex; justify-content:space-between; align-items:center; }
+  fieldset { border:0; border-top:1px solid var(--line); margin:0; padding:12px 0; }
+  legend { font-weight:700; font-size:.85rem; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); padding:0; float:left; width:100%; margin-bottom:6px; }
+  fieldset label { display:flex; gap:8px; align-items:center; padding:3px 0; clear:both; font-size:.95rem; cursor:pointer; }
+  input[type=checkbox], input[type=range] { accent-color:var(--accent); }
+  input[type=range] { width:100%; }
+  button { font:inherit; cursor:pointer; }
+  .link { background:none; border:0; color:var(--accent); font-size:.85rem; text-decoration:underline; padding:0; }
+  .toolbar { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; font-size:.9rem; color:var(--muted); }
+  select { font:inherit; padding:6px 8px; border:1px solid var(--line); border-radius:6px; background:#fff; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:18px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; overflow:hidden; display:flex; flex-direction:column; transition:box-shadow .15s, transform .15s; }
+  .card:hover { box-shadow:0 6px 18px rgba(31,42,36,.12); transform:translateY(-2px); }
+  .thumb { height:130px; display:grid; place-items:center; font-size:3rem; position:relative; }
+  .tag { position:absolute; top:8px; left:8px; background:var(--sale); color:#fff; font-size:.7rem; font-weight:700; padding:2px 8px; border-radius:99px; }
+  .info { padding:12px 14px 14px; display:flex; flex-direction:column; gap:2px; flex:1; }
+  .info small { color:var(--muted); }
+  .info h3 { margin:0; font-size:1rem; }
+  .price { font-weight:700; margin-top:auto; padding-top:8px; }
+  .price s { font-weight:400; color:var(--muted); margin-left:6px; }
+  .add { margin-top:8px; background:var(--accent); color:#fff; border:0; border-radius:6px; padding:8px; }
+  .add:hover { background:var(--accent-d); }
+  .empty { grid-column:1/-1; text-align:center; color:var(--muted); padding:40px 0; }
+  .guide { margin-top:36px; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:22px 26px; }
+  .guide h2 { margin-top:0; }
+  .guide div { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; }
+  .guide h3 { margin:0 0 4px; font-size:1rem; color:var(--accent-d); }
+  .guide p { margin:0; font-size:.93rem; color:var(--muted); }
+  footer { text-align:center; color:var(--muted); font-size:.85rem; padding:28px 0; }
+  @media (max-width:760px) { .layout { grid-template-columns:1fr; } aside { position:static; } }
+</style>
+</head>
+<body>
+<header><div class="bar"><a class="logo" href="#">⛰ RIDGELINE</a><nav><a href="#">Packs</a><a href="#">Tents</a><a href="#">Apparel</a><a href="#">Sale</a></nav></div></header>
+<main>
+  <div class="crumbs"><a href="#">Home</a> / <a href="#">Gear</a> / Backpacks</div>
+  <h1>Backpacks &amp; Packs</h1>
+  <p style="color:var(--muted);margin:0">From summit-day daypacks to week-long haulers.</p>
+
+  <div class="layout">
+    <aside aria-label="Filters">
+      <h2>Filters <button class="link" id="reset" type="button">Reset</button></h2>
+      <fieldset data-key="type"><legend>Type</legend>
+        <label><input type="checkbox" value="Daypack"> Daypack</label>
+        <label><input type="checkbox" value="Hiking"> Hiking</label>
+        <label><input type="checkbox" value="Backpacking"> Backpacking</label>
+      </fieldset>
+      <fieldset data-key="brand"><legend>Brand</legend>
+        <label><input type="checkbox" value="Ridgeline"> Ridgeline</label>
+        <label><input type="checkbox" value="Alpenwerk"> Alpenwerk</label>
+        <label><input type="checkbox" value="Northfold"> Northfold</label>
+      </fieldset>
+      <fieldset><legend>Max price: <span id="pv">$300</span></legend>
+        <input type="range" id="price" min="40" max="300" step="10" value="300" aria-label="Maximum price">
+      </fieldset>
+      <fieldset><label><input type="checkbox" id="sale"> On sale only</label></fieldset>
+    </aside>
+
+    <section>
+      <div class="toolbar"><span id="count"></span>
+        <label>Sort <select id="sort"><option value="">Featured</option><option value="asc">Price: low to high</option><option value="desc">Price: high to low</option></select></label>
+      </div>
+      <div class="grid" id="grid"></div>
+    </section>
+  </div>
+
+  <section class="guide">
+    <h2>Buying guide: choosing a pack</h2>
+    <div>
+      <article><h3>Match the volume</h3><p>Under 30 L suits day hikes, 40–55 L covers weekends, and 60 L+ is for multi-day trips with bulky gear.</p></article>
+      <article><h3>Fit beats features</h3><p>Measure your torso length, not your height. The hip belt should carry most of the weight, with the load snug against your back.</p></article>
+      <article><h3>Mind the weight</h3><p>Lighter packs save energy but trade away padding and durability. Choose by how heavy your usual load is.</p></article>
+    </div>
+  </section>
+</main>
+<footer>© 2026 Ridgeline Outfitters · Free shipping over $75 · 30-day returns</footer>
+
+<script>
+const products = [
+  ["Trailhead 18","Daypack","Ridgeline",59,0,"🎒","#e3efe6"],
+  ["Summit Sprint 24","Daypack","Alpenwerk",89,109,"🎒","#e6ecf2"],
+  ["Foxglove 28","Daypack","Northfold",74,0,"👝","#f2e9e0"],
+  ["Switchback 35","Hiking","Ridgeline",119,0,"🥾","#e8efe0"],
+  ["Cirque 40","Hiking","Alpenwerk",149,179,"🥾","#e0ecee"],
+  ["Larch 45","Hiking","Northfold",134,0,"🌲","#e5eadf"],
+  ["Ridgewalker 50","Hiking","Ridgeline",169,0,"⛰️","#ece6ef"],
+  ["Basecamp 55","Backpacking","Northfold",199,0,"🏕️","#f0e8dc"],
+  ["Traverse 60","Backpacking","Alpenwerk",229,269,"🧭","#e2e9ef"],
+  ["Divide 65","Backpacking","Ridgeline",249,0,"🎒","#e4eee7"],
+  ["Expedition 75","Backpacking","Northfold",279,0,"🏔️","#e9e6f0"],
+  ["Ultralight 48","Backpacking","Alpenwerk",189,229,"🪶","#eef0e0"]
+].map(([name,type,brand,price,was,icon,bg]) => ({name,type,brand,price,was,icon,bg}));
+
+const $ = s => document.querySelector(s);
+const checked = key => [...document.querySelectorAll(`[data-key=${key}] input:checked`)].map(i => i.value);
+
+function render() {
+  const types = checked("type"), brands = checked("brand"), max = +$("#price").value;
+  $("#pv").textContent = "$" + max;
+  let list = products.filter(p =>
+    (!types.length || types.includes(p.type)) &&
+    (!brands.length || brands.includes(p.brand)) &&
+    p.price <= max && (!$("#sale").checked || p.was));
+  const s = $("#sort").value;
+  if (s) list.sort((a, b) => s === "asc" ? a.price - b.price : b.price - a.price);
+  $("#count").textContent = `${list.length} of ${products.length} products`;
+  $("#grid").innerHTML = list.map(p => `
+    <article class="card">
+      <div class="thumb" style="background:${p.bg}" aria-hidden="true">${p.was ? '<span class="tag">SALE</span>' : ""}${p.icon}</div>
+      <div class="info"><small>${p.brand} · ${p.type}</small><h3>${p.name}</h3>
+        <div class="price">$${p.price}${p.was ? `<s>$${p.was}</s>` : ""}</div>
+        <button class="add" type="button">Add to cart</button></div>
+    </article>`).join("") || '<p class="empty">No products match these filters.</p>';
+}
+
+document.querySelector("aside").addEventListener("input", render);
+$("#sort").addEventListener("change", render);
+$("#reset").addEventListener("click", () => {
+  document.querySelectorAll("aside input[type=checkbox]").forEach(i => i.checked = false);
+  $("#price").value = 300; $("#sort").value = ""; render();
+});
+render();
+</script>
+</body>
+</html>
+```

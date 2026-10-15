@@ -1,0 +1,145 @@
+```html
+<!DOCTYPE html>
+<!-- Design read: product page for design-conscious consumers, calm premium language, native CSS + minimal JS (no framework needed for one page). Placeholder photos via picsum; specs and reviews are sample data. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kestrel 75 Mechanical Keyboard</title>
+<style>
+:root{--bg:#f4f4f5;--surface:#fff;--ink:#18181b;--muted:#52525b;--line:#d4d4d8;--accent:#c2410c;--on-accent:#fff;--r:10px}
+@media (prefers-color-scheme:dark){:root{--bg:#121214;--surface:#1c1c20;--ink:#f4f4f5;--muted:#a1a1aa;--line:#34343a;--accent:#fb923c;--on-accent:#1a0e05}}
+*{box-sizing:border-box;margin:0}
+body{font:16px/1.6 "Geist","Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--ink)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+nav{height:64px;display:flex;align-items:center;justify-content:space-between;max-width:1280px;margin:0 auto;padding:0 24px}
+nav strong{letter-spacing:-.02em;font-size:18px}
+nav div{display:flex;gap:28px;color:var(--muted);font-size:15px}
+nav a{text-decoration:none}nav a:hover{color:var(--ink)}
+main{max-width:1280px;margin:0 auto;padding:0 24px 96px}
+.hero{display:grid;grid-template-columns:1.25fr 1fr;gap:64px;align-items:start;padding-top:16px}
+.stage{border-radius:var(--r);overflow:hidden;background:var(--surface);aspect-ratio:4/3}
+.stage img{width:100%;height:100%;object-fit:cover;display:block}
+@media (prefers-reduced-motion:no-preference){.stage img.swap{animation:fade .45s cubic-bezier(.16,1,.3,1)}}
+@keyframes fade{from{opacity:0;transform:scale(1.03)}}
+.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px}
+.thumbs button{padding:0;border:2px solid transparent;border-radius:var(--r);overflow:hidden;cursor:pointer;background:none;aspect-ratio:1}
+.thumbs button[aria-pressed=true]{border-color:var(--accent)}
+.thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+.buy{position:sticky;top:24px;padding-top:24px}
+h1{font-size:clamp(2.25rem,4vw,3.5rem);line-height:1;letter-spacing:-.04em}
+.lede{color:var(--muted);margin:16px 0 20px;max-width:46ch}
+.rate{font-size:15px;color:var(--muted)}.rate a{color:var(--accent)}
+.price{font-size:32px;font-weight:600;letter-spacing:-.02em;margin:20px 0}
+fieldset{border:0;padding:0;margin-bottom:24px}
+legend{font-weight:600;margin-bottom:8px}
+.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.opts label{border:1px solid var(--line);border-radius:var(--r);padding:12px;cursor:pointer;background:var(--surface);transition:border-color .2s}
+.opts label:has(input:checked){border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.opts label:has(:focus-visible){outline:2px solid var(--accent);outline-offset:3px}
+.opts input{position:absolute;opacity:0}
+.opts b{display:block}.opts span{font-size:14px;color:var(--muted)}
+.cta{width:100%;border:0;border-radius:var(--r);padding:16px;font:600 17px inherit;font-family:inherit;background:var(--accent);color:var(--on-accent);cursor:pointer;transition:transform .2s cubic-bezier(.16,1,.3,1)}
+.cta:hover{transform:translateY(-2px)}.cta:active{transform:scale(.98)}
+.note{margin-top:12px;font-size:14px;color:var(--muted);min-height:1.6em}
+h2{font-size:clamp(1.75rem,3vw,2.5rem);letter-spacing:-.03em;line-height:1.1;margin:112px 0 32px}
+.specs{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.specs div{background:var(--surface);border-radius:var(--r);padding:24px}
+.specs div:first-child{grid-column:span 2;background:var(--accent);color:var(--on-accent)}
+.specs div:first-child p{color:inherit;opacity:.85}
+.specs b{display:block;font-size:30px;letter-spacing:-.03em;line-height:1.15}
+.specs p{color:var(--muted);font-size:15px;margin-top:8px}
+details{margin-top:16px;color:var(--muted)}summary{cursor:pointer;color:var(--ink);font-weight:600}
+details dl{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 32px;margin-top:16px}
+details dt{color:var(--ink)}details dd{margin:0 0 8px}
+.reviews{display:grid;grid-template-columns:280px 1fr;gap:64px}
+.score b{font-size:72px;line-height:1;letter-spacing:-.05em}
+.score p{color:var(--muted)}
+.list{display:grid;gap:32px}
+.list blockquote{font-size:20px;line-height:1.45;letter-spacing:-.01em;max-width:60ch}
+.list footer{margin-top:8px;font-size:15px;color:var(--muted)}
+.list article+article{border-top:1px solid var(--line);padding-top:32px}
+@media (max-width:767px){
+nav div{gap:16px}
+.hero,.reviews{grid-template-columns:1fr;gap:32px}
+.buy{position:static;padding-top:0}
+.specs{grid-template-columns:1fr}.specs div:first-child{grid-column:auto}
+details dl{grid-template-columns:1fr}
+h2{margin-top:72px}
+}
+</style>
+</head>
+<body>
+<nav><strong>Halden Labs</strong><div><a href="#specs">Specs</a><a href="#reviews">Reviews</a></div></nav>
+<main>
+<section class="hero">
+  <div>
+    <div class="stage"><img id="main" src="https://picsum.photos/seed/kestrel-keyboard-desk/1200/900" width="1200" height="900" alt="Kestrel 75 keyboard on a walnut desk"></div>
+    <div class="thumbs" id="thumbs"></div>
+  </div>
+  <div class="buy">
+    <h1>Kestrel 75</h1>
+    <p class="lede">A gasket-mounted 75% keyboard with an aluminum case, hot-swap sockets and a quiet, dense typing sound.</p>
+    <p class="rate">4.8 out of 5 from 312 owners. <a href="#reviews">Read reviews</a></p>
+    <p class="price" id="price">$189</p>
+    <fieldset>
+      <legend>Switch type</legend>
+      <div class="opts">
+        <label><input type="radio" name="sw" value="189" checked><b>Linear</b><span>Smooth, quiet</span></label>
+        <label><input type="radio" name="sw" value="189"><b>Tactile</b><span>Soft bump</span></label>
+        <label><input type="radio" name="sw" value="199"><b>Clicky</b><span>Crisp, loud +$10</span></label>
+      </div>
+    </fieldset>
+    <button class="cta" id="buy" type="button">Buy now</button>
+    <p class="note" id="note" role="status">Ships in 3 to 5 business days.</p>
+  </div>
+</section>
+
+<h2 id="specs">Built to feel solid</h2>
+<section class="specs">
+  <div><b>Gasket mount</b><p>Silicone gaskets and a foam-lined case give a cushioned, even keystroke.</p></div>
+  <div><b>6063 aluminum</b><p>CNC-milled case with a weighted base.</p></div>
+  <div><b>Hot-swap</b><p>Change any switch without a soldering iron.</p></div>
+  <div><b>Triple connection</b><p>USB-C, Bluetooth and a 2.4 GHz dongle.</p></div>
+  <div><b>PBT keycaps</b><p>Double-shot legends that will not shine over time.</p></div>
+</section>
+<details><summary>View full specifications</summary>
+<dl><div><dt>Layout</dt><dd>75%, ANSI, 82 keys</dd></div><div><dt>Firmware</dt><dd>QMK and VIA compatible</dd></div><div><dt>Battery</dt><dd>4000 mAh rechargeable</dd></div><div><dt>Warranty</dt><dd>Two years</dd></div></dl>
+</details>
+
+<h2 id="reviews">What owners say</h2>
+<section class="reviews">
+  <div class="score"><b>4.8</b><p>Average rating across 312 reviews. Sample data.</p></div>
+  <div class="list">
+    <article><blockquote>"The sound is the reason I bought it. Deep and muted, and my partner says she cannot hear it from the next room."</blockquote><footer>Marit Solheim, technical writer</footer></article>
+    <article><blockquote>"Swapped the switches in an evening with the included puller. Bluetooth has not dropped once in two months."</blockquote><footer>Tobias Okonkwo-Reyes, firmware engineer</footer></article>
+    <article><blockquote>"Heavy and well finished. I only wish the carry case came in the box."</blockquote><footer>Priya Raghunathan, illustrator</footer></article>
+  </div>
+</section>
+</main>
+<script>
+const shots=[["kestrel-keyboard-desk","Kestrel 75 keyboard on a walnut desk"],["kestrel-keycap-closeup","Close-up of double-shot keycaps"],["kestrel-aluminum-case","Aluminum case edge and USB-C port"],["kestrel-switch-swap","Hot-swap switch being replaced"]];
+const main=document.getElementById("main"),thumbs=document.getElementById("thumbs");
+shots.forEach(([seed,alt],i)=>{
+  const b=document.createElement("button");
+  b.type="button";b.setAttribute("aria-label","Show photo "+(i+1));b.setAttribute("aria-pressed",i===0);
+  b.innerHTML=`<img src="https://picsum.photos/seed/${seed}/300/300" width="300" height="300" alt="${alt}">`;
+  b.onclick=()=>{
+    main.src=`https://picsum.photos/seed/${seed}/1200/900`;main.alt=alt;
+    main.classList.remove("swap");void main.offsetWidth;main.classList.add("swap");
+    thumbs.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));
+  };
+  thumbs.append(b);
+});
+document.querySelectorAll('input[name=sw]').forEach(r=>r.onchange=()=>{
+  document.getElementById("price").textContent="$"+r.value;
+});
+document.getElementById("buy").onclick=()=>{
+  const v=document.querySelector("input[name=sw]:checked").parentElement.querySelector("b").textContent;
+  document.getElementById("note").textContent="Added: Kestrel 75 with "+v+" switches. Checkout is not connected in this demo.";
+};
+</script>
+</body>
+</html>
+```
